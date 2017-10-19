@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.GenetichistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Genetichistory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="DiseaseName" property="diseasename" jdbcType="VARCHAR" />
+    <result column="infectionTime" property="infectiontime" jdbcType="TIMESTAMP" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="geneticHistory1" property="genetichistory1" jdbcType="VARCHAR" />
+    <result column="geneticHistory2" property="genetichistory2" jdbcType="VARCHAR" />
+    <result column="geneticHistory3" property="genetichistory3" jdbcType="VARCHAR" />
+    <result column="geneticHistory4" property="genetichistory4" jdbcType="VARCHAR" />
+    <result column="geneticHistory5" property="genetichistory5" jdbcType="VARCHAR" />
+    <result column="geneticHistory6" property="genetichistory6" jdbcType="VARCHAR" />
+    <result column="geneticHistory7" property="genetichistory7" jdbcType="VARCHAR" />
+    <result column="geneticHistory8" property="genetichistory8" jdbcType="VARCHAR" />
+    <result column="geneticHistory9" property="genetichistory9" jdbcType="VARCHAR" />
+    <result column="geneticHistory10" property="genetichistory10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, DiseaseName, infectionTime, place, remark, oldMan_id, geneticHistory1, geneticHistory2, 
+    geneticHistory3, geneticHistory4, geneticHistory5, geneticHistory6, geneticHistory7, 
+    geneticHistory8, geneticHistory9, geneticHistory10
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.GenetichistoryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from genetichistory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from genetichistory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from genetichistory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.GenetichistoryExample" >
+    delete from genetichistory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Genetichistory" >
+    insert into genetichistory (id, DiseaseName, infectionTime, 
+      place, remark, oldMan_id, 
+      geneticHistory1, geneticHistory2, geneticHistory3, 
+      geneticHistory4, geneticHistory5, geneticHistory6, 
+      geneticHistory7, geneticHistory8, geneticHistory9, 
+      geneticHistory10)
+    values (#{id,jdbcType=INTEGER}, #{diseasename,jdbcType=VARCHAR}, #{infectiontime,jdbcType=TIMESTAMP}, 
+      #{place,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}, 
+      #{genetichistory1,jdbcType=VARCHAR}, #{genetichistory2,jdbcType=VARCHAR}, #{genetichistory3,jdbcType=VARCHAR}, 
+      #{genetichistory4,jdbcType=VARCHAR}, #{genetichistory5,jdbcType=VARCHAR}, #{genetichistory6,jdbcType=VARCHAR}, 
+      #{genetichistory7,jdbcType=VARCHAR}, #{genetichistory8,jdbcType=VARCHAR}, #{genetichistory9,jdbcType=VARCHAR}, 
+      #{genetichistory10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Genetichistory" >
+    insert into genetichistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="diseasename != null" >
+        DiseaseName,
+      </if>
+      <if test="infectiontime != null" >
+        infectionTime,
+      </if>
+      <if test="place != null" >
+        place,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id,
+      </if>
+      <if test="genetichistory1 != null" >
+        geneticHistory1,
+      </if>
+      <if test="genetichistory2 != null" >
+        geneticHistory2,
+      </if>
+      <if test="genetichistory3 != null" >
+        geneticHistory3,
+      </if>
+      <if test="genetichistory4 != null" >
+        geneticHistory4,
+      </if>
+      <if test="genetichistory5 != null" >
+        geneticHistory5,
+      </if>
+      <if test="genetichistory6 != null" >
+        geneticHistory6,
+      </if>
+      <if test="genetichistory7 != null" >
+        geneticHistory7,
+      </if>
+      <if test="genetichistory8 != null" >
+        geneticHistory8,
+      </if>
+      <if test="genetichistory9 != null" >
+        geneticHistory9,
+      </if>
+      <if test="genetichistory10 != null" >
+        geneticHistory10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="diseasename != null" >
+        #{diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="infectiontime != null" >
+        #{infectiontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="place != null" >
+        #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="genetichistory1 != null" >
+        #{genetichistory1,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory2 != null" >
+        #{genetichistory2,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory3 != null" >
+        #{genetichistory3,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory4 != null" >
+        #{genetichistory4,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory5 != null" >
+        #{genetichistory5,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory6 != null" >
+        #{genetichistory6,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory7 != null" >
+        #{genetichistory7,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory8 != null" >
+        #{genetichistory8,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory9 != null" >
+        #{genetichistory9,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory10 != null" >
+        #{genetichistory10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.GenetichistoryExample" resultType="java.lang.Integer" >
+    select count(*) from genetichistory
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update genetichistory
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.diseasename != null" >
+        DiseaseName = #{record.diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.infectiontime != null" >
+        infectionTime = #{record.infectiontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.place != null" >
+        place = #{record.place,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldmanId != null" >
+        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.genetichistory1 != null" >
+        geneticHistory1 = #{record.genetichistory1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory2 != null" >
+        geneticHistory2 = #{record.genetichistory2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory3 != null" >
+        geneticHistory3 = #{record.genetichistory3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory4 != null" >
+        geneticHistory4 = #{record.genetichistory4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory5 != null" >
+        geneticHistory5 = #{record.genetichistory5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory6 != null" >
+        geneticHistory6 = #{record.genetichistory6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory7 != null" >
+        geneticHistory7 = #{record.genetichistory7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory8 != null" >
+        geneticHistory8 = #{record.genetichistory8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory9 != null" >
+        geneticHistory9 = #{record.genetichistory9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.genetichistory10 != null" >
+        geneticHistory10 = #{record.genetichistory10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update genetichistory
+    set id = #{record.id,jdbcType=INTEGER},
+      DiseaseName = #{record.diseasename,jdbcType=VARCHAR},
+      infectionTime = #{record.infectiontime,jdbcType=TIMESTAMP},
+      place = #{record.place,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      geneticHistory1 = #{record.genetichistory1,jdbcType=VARCHAR},
+      geneticHistory2 = #{record.genetichistory2,jdbcType=VARCHAR},
+      geneticHistory3 = #{record.genetichistory3,jdbcType=VARCHAR},
+      geneticHistory4 = #{record.genetichistory4,jdbcType=VARCHAR},
+      geneticHistory5 = #{record.genetichistory5,jdbcType=VARCHAR},
+      geneticHistory6 = #{record.genetichistory6,jdbcType=VARCHAR},
+      geneticHistory7 = #{record.genetichistory7,jdbcType=VARCHAR},
+      geneticHistory8 = #{record.genetichistory8,jdbcType=VARCHAR},
+      geneticHistory9 = #{record.genetichistory9,jdbcType=VARCHAR},
+      geneticHistory10 = #{record.genetichistory10,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Genetichistory" >
+    update genetichistory
+    <set >
+      <if test="diseasename != null" >
+        DiseaseName = #{diseasename,jdbcType=VARCHAR},
+      </if>
+      <if test="infectiontime != null" >
+        infectionTime = #{infectiontime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="place != null" >
+        place = #{place,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="genetichistory1 != null" >
+        geneticHistory1 = #{genetichistory1,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory2 != null" >
+        geneticHistory2 = #{genetichistory2,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory3 != null" >
+        geneticHistory3 = #{genetichistory3,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory4 != null" >
+        geneticHistory4 = #{genetichistory4,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory5 != null" >
+        geneticHistory5 = #{genetichistory5,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory6 != null" >
+        geneticHistory6 = #{genetichistory6,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory7 != null" >
+        geneticHistory7 = #{genetichistory7,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory8 != null" >
+        geneticHistory8 = #{genetichistory8,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory9 != null" >
+        geneticHistory9 = #{genetichistory9,jdbcType=VARCHAR},
+      </if>
+      <if test="genetichistory10 != null" >
+        geneticHistory10 = #{genetichistory10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Genetichistory" >
+    update genetichistory
+    set DiseaseName = #{diseasename,jdbcType=VARCHAR},
+      infectionTime = #{infectiontime,jdbcType=TIMESTAMP},
+      place = #{place,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      geneticHistory1 = #{genetichistory1,jdbcType=VARCHAR},
+      geneticHistory2 = #{genetichistory2,jdbcType=VARCHAR},
+      geneticHistory3 = #{genetichistory3,jdbcType=VARCHAR},
+      geneticHistory4 = #{genetichistory4,jdbcType=VARCHAR},
+      geneticHistory5 = #{genetichistory5,jdbcType=VARCHAR},
+      geneticHistory6 = #{genetichistory6,jdbcType=VARCHAR},
+      geneticHistory7 = #{genetichistory7,jdbcType=VARCHAR},
+      geneticHistory8 = #{genetichistory8,jdbcType=VARCHAR},
+      geneticHistory9 = #{genetichistory9,jdbcType=VARCHAR},
+      geneticHistory10 = #{genetichistory10,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

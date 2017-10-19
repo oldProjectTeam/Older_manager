@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.AssessMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Assess" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="doctor" property="doctor" jdbcType="VARCHAR" />
+    <result column="health" property="health" jdbcType="VARCHAR" />
+    <result column="healthDataAssessment" property="healthdataassessment" jdbcType="VARCHAR" />
+    <result column="suggest" property="suggest" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="num1" property="num1" jdbcType="VARCHAR" />
+    <result column="num2" property="num2" jdbcType="VARCHAR" />
+    <result column="num3" property="num3" jdbcType="VARCHAR" />
+    <result column="num4" property="num4" jdbcType="VARCHAR" />
+    <result column="num5" property="num5" jdbcType="VARCHAR" />
+    <result column="num6" property="num6" jdbcType="VARCHAR" />
+    <result column="num7" property="num7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, doctor, health, healthDataAssessment, suggest, oldMan_id, num1, num2, num3, num4, 
+    num5, num6, num7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.AssessExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from assess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from assess
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from assess
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.AssessExample" >
+    delete from assess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Assess" >
+    insert into assess (id, doctor, health, 
+      healthDataAssessment, suggest, oldMan_id, 
+      num1, num2, num3, num4, 
+      num5, num6, num7)
+    values (#{id,jdbcType=INTEGER}, #{doctor,jdbcType=VARCHAR}, #{health,jdbcType=VARCHAR}, 
+      #{healthdataassessment,jdbcType=VARCHAR}, #{suggest,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}, 
+      #{num1,jdbcType=VARCHAR}, #{num2,jdbcType=VARCHAR}, #{num3,jdbcType=VARCHAR}, #{num4,jdbcType=VARCHAR}, 
+      #{num5,jdbcType=VARCHAR}, #{num6,jdbcType=VARCHAR}, #{num7,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Assess" >
+    insert into assess
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="doctor != null" >
+        doctor,
+      </if>
+      <if test="health != null" >
+        health,
+      </if>
+      <if test="healthdataassessment != null" >
+        healthDataAssessment,
+      </if>
+      <if test="suggest != null" >
+        suggest,
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id,
+      </if>
+      <if test="num1 != null" >
+        num1,
+      </if>
+      <if test="num2 != null" >
+        num2,
+      </if>
+      <if test="num3 != null" >
+        num3,
+      </if>
+      <if test="num4 != null" >
+        num4,
+      </if>
+      <if test="num5 != null" >
+        num5,
+      </if>
+      <if test="num6 != null" >
+        num6,
+      </if>
+      <if test="num7 != null" >
+        num7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="doctor != null" >
+        #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="healthdataassessment != null" >
+        #{healthdataassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="suggest != null" >
+        #{suggest,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="num1 != null" >
+        #{num1,jdbcType=VARCHAR},
+      </if>
+      <if test="num2 != null" >
+        #{num2,jdbcType=VARCHAR},
+      </if>
+      <if test="num3 != null" >
+        #{num3,jdbcType=VARCHAR},
+      </if>
+      <if test="num4 != null" >
+        #{num4,jdbcType=VARCHAR},
+      </if>
+      <if test="num5 != null" >
+        #{num5,jdbcType=VARCHAR},
+      </if>
+      <if test="num6 != null" >
+        #{num6,jdbcType=VARCHAR},
+      </if>
+      <if test="num7 != null" >
+        #{num7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.AssessExample" resultType="java.lang.Integer" >
+    select count(*) from assess
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update assess
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.doctor != null" >
+        doctor = #{record.doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.health != null" >
+        health = #{record.health,jdbcType=VARCHAR},
+      </if>
+      <if test="record.healthdataassessment != null" >
+        healthDataAssessment = #{record.healthdataassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.suggest != null" >
+        suggest = #{record.suggest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldmanId != null" >
+        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.num1 != null" >
+        num1 = #{record.num1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num2 != null" >
+        num2 = #{record.num2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num3 != null" >
+        num3 = #{record.num3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num4 != null" >
+        num4 = #{record.num4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num5 != null" >
+        num5 = #{record.num5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num6 != null" >
+        num6 = #{record.num6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.num7 != null" >
+        num7 = #{record.num7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update assess
+    set id = #{record.id,jdbcType=INTEGER},
+      doctor = #{record.doctor,jdbcType=VARCHAR},
+      health = #{record.health,jdbcType=VARCHAR},
+      healthDataAssessment = #{record.healthdataassessment,jdbcType=VARCHAR},
+      suggest = #{record.suggest,jdbcType=VARCHAR},
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      num1 = #{record.num1,jdbcType=VARCHAR},
+      num2 = #{record.num2,jdbcType=VARCHAR},
+      num3 = #{record.num3,jdbcType=VARCHAR},
+      num4 = #{record.num4,jdbcType=VARCHAR},
+      num5 = #{record.num5,jdbcType=VARCHAR},
+      num6 = #{record.num6,jdbcType=VARCHAR},
+      num7 = #{record.num7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Assess" >
+    update assess
+    <set >
+      <if test="doctor != null" >
+        doctor = #{doctor,jdbcType=VARCHAR},
+      </if>
+      <if test="health != null" >
+        health = #{health,jdbcType=VARCHAR},
+      </if>
+      <if test="healthdataassessment != null" >
+        healthDataAssessment = #{healthdataassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="suggest != null" >
+        suggest = #{suggest,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="num1 != null" >
+        num1 = #{num1,jdbcType=VARCHAR},
+      </if>
+      <if test="num2 != null" >
+        num2 = #{num2,jdbcType=VARCHAR},
+      </if>
+      <if test="num3 != null" >
+        num3 = #{num3,jdbcType=VARCHAR},
+      </if>
+      <if test="num4 != null" >
+        num4 = #{num4,jdbcType=VARCHAR},
+      </if>
+      <if test="num5 != null" >
+        num5 = #{num5,jdbcType=VARCHAR},
+      </if>
+      <if test="num6 != null" >
+        num6 = #{num6,jdbcType=VARCHAR},
+      </if>
+      <if test="num7 != null" >
+        num7 = #{num7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Assess" >
+    update assess
+    set doctor = #{doctor,jdbcType=VARCHAR},
+      health = #{health,jdbcType=VARCHAR},
+      healthDataAssessment = #{healthdataassessment,jdbcType=VARCHAR},
+      suggest = #{suggest,jdbcType=VARCHAR},
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      num1 = #{num1,jdbcType=VARCHAR},
+      num2 = #{num2,jdbcType=VARCHAR},
+      num3 = #{num3,jdbcType=VARCHAR},
+      num4 = #{num4,jdbcType=VARCHAR},
+      num5 = #{num5,jdbcType=VARCHAR},
+      num6 = #{num6,jdbcType=VARCHAR},
+      num7 = #{num7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.SmsdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Smsdetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="sendId" property="sendid" jdbcType="VARCHAR" />
+    <result column="operatorId" property="operatorid" jdbcType="VARCHAR" />
+    <result column="sendResult" property="sendresult" jdbcType="VARCHAR" />
+    <result column="sendTime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="SMS_id" property="smsId" jdbcType="INTEGER" />
+    <result column="SMSDetails1" property="smsdetails1" jdbcType="VARCHAR" />
+    <result column="SMSDetails2" property="smsdetails2" jdbcType="VARCHAR" />
+    <result column="SMSDetails3" property="smsdetails3" jdbcType="VARCHAR" />
+    <result column="SMSDetails4" property="smsdetails4" jdbcType="VARCHAR" />
+    <result column="SMSDetails5" property="smsdetails5" jdbcType="VARCHAR" />
+    <result column="SMSDetails6" property="smsdetails6" jdbcType="VARCHAR" />
+    <result column="SMSDetails7" property="smsdetails7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, phone, number, sendId, operatorId, sendResult, sendTime, SMS_id, SMSDetails1, 
+    SMSDetails2, SMSDetails3, SMSDetails4, SMSDetails5, SMSDetails6, SMSDetails7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.SmsdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from smsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from smsdetails
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from smsdetails
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.SmsdetailsExample" >
+    delete from smsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Smsdetails" >
+    insert into smsdetails (id, phone, number, 
+      sendId, operatorId, sendResult, 
+      sendTime, SMS_id, SMSDetails1, 
+      SMSDetails2, SMSDetails3, SMSDetails4, 
+      SMSDetails5, SMSDetails6, SMSDetails7
+      )
+    values (#{id,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, 
+      #{sendid,jdbcType=VARCHAR}, #{operatorid,jdbcType=VARCHAR}, #{sendresult,jdbcType=VARCHAR}, 
+      #{sendtime,jdbcType=TIMESTAMP}, #{smsId,jdbcType=INTEGER}, #{smsdetails1,jdbcType=VARCHAR}, 
+      #{smsdetails2,jdbcType=VARCHAR}, #{smsdetails3,jdbcType=VARCHAR}, #{smsdetails4,jdbcType=VARCHAR}, 
+      #{smsdetails5,jdbcType=VARCHAR}, #{smsdetails6,jdbcType=VARCHAR}, #{smsdetails7,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Smsdetails" >
+    insert into smsdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="sendid != null" >
+        sendId,
+      </if>
+      <if test="operatorid != null" >
+        operatorId,
+      </if>
+      <if test="sendresult != null" >
+        sendResult,
+      </if>
+      <if test="sendtime != null" >
+        sendTime,
+      </if>
+      <if test="smsId != null" >
+        SMS_id,
+      </if>
+      <if test="smsdetails1 != null" >
+        SMSDetails1,
+      </if>
+      <if test="smsdetails2 != null" >
+        SMSDetails2,
+      </if>
+      <if test="smsdetails3 != null" >
+        SMSDetails3,
+      </if>
+      <if test="smsdetails4 != null" >
+        SMSDetails4,
+      </if>
+      <if test="smsdetails5 != null" >
+        SMSDetails5,
+      </if>
+      <if test="smsdetails6 != null" >
+        SMSDetails6,
+      </if>
+      <if test="smsdetails7 != null" >
+        SMSDetails7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="sendid != null" >
+        #{sendid,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null" >
+        #{operatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="sendresult != null" >
+        #{sendresult,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smsId != null" >
+        #{smsId,jdbcType=INTEGER},
+      </if>
+      <if test="smsdetails1 != null" >
+        #{smsdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails2 != null" >
+        #{smsdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails3 != null" >
+        #{smsdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails4 != null" >
+        #{smsdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails5 != null" >
+        #{smsdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails6 != null" >
+        #{smsdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails7 != null" >
+        #{smsdetails7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.SmsdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from smsdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update smsdetails
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendid != null" >
+        sendId = #{record.sendid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorid != null" >
+        operatorId = #{record.operatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendresult != null" >
+        sendResult = #{record.sendresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendtime != null" >
+        sendTime = #{record.sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.smsId != null" >
+        SMS_id = #{record.smsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.smsdetails1 != null" >
+        SMSDetails1 = #{record.smsdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsdetails2 != null" >
+        SMSDetails2 = #{record.smsdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsdetails3 != null" >
+        SMSDetails3 = #{record.smsdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsdetails4 != null" >
+        SMSDetails4 = #{record.smsdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsdetails5 != null" >
+        SMSDetails5 = #{record.smsdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsdetails6 != null" >
+        SMSDetails6 = #{record.smsdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smsdetails7 != null" >
+        SMSDetails7 = #{record.smsdetails7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update smsdetails
+    set id = #{record.id,jdbcType=INTEGER},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=INTEGER},
+      sendId = #{record.sendid,jdbcType=VARCHAR},
+      operatorId = #{record.operatorid,jdbcType=VARCHAR},
+      sendResult = #{record.sendresult,jdbcType=VARCHAR},
+      sendTime = #{record.sendtime,jdbcType=TIMESTAMP},
+      SMS_id = #{record.smsId,jdbcType=INTEGER},
+      SMSDetails1 = #{record.smsdetails1,jdbcType=VARCHAR},
+      SMSDetails2 = #{record.smsdetails2,jdbcType=VARCHAR},
+      SMSDetails3 = #{record.smsdetails3,jdbcType=VARCHAR},
+      SMSDetails4 = #{record.smsdetails4,jdbcType=VARCHAR},
+      SMSDetails5 = #{record.smsdetails5,jdbcType=VARCHAR},
+      SMSDetails6 = #{record.smsdetails6,jdbcType=VARCHAR},
+      SMSDetails7 = #{record.smsdetails7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Smsdetails" >
+    update smsdetails
+    <set >
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="sendid != null" >
+        sendId = #{sendid,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorid != null" >
+        operatorId = #{operatorid,jdbcType=VARCHAR},
+      </if>
+      <if test="sendresult != null" >
+        sendResult = #{sendresult,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        sendTime = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="smsId != null" >
+        SMS_id = #{smsId,jdbcType=INTEGER},
+      </if>
+      <if test="smsdetails1 != null" >
+        SMSDetails1 = #{smsdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails2 != null" >
+        SMSDetails2 = #{smsdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails3 != null" >
+        SMSDetails3 = #{smsdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails4 != null" >
+        SMSDetails4 = #{smsdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails5 != null" >
+        SMSDetails5 = #{smsdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails6 != null" >
+        SMSDetails6 = #{smsdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="smsdetails7 != null" >
+        SMSDetails7 = #{smsdetails7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Smsdetails" >
+    update smsdetails
+    set phone = #{phone,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      sendId = #{sendid,jdbcType=VARCHAR},
+      operatorId = #{operatorid,jdbcType=VARCHAR},
+      sendResult = #{sendresult,jdbcType=VARCHAR},
+      sendTime = #{sendtime,jdbcType=TIMESTAMP},
+      SMS_id = #{smsId,jdbcType=INTEGER},
+      SMSDetails1 = #{smsdetails1,jdbcType=VARCHAR},
+      SMSDetails2 = #{smsdetails2,jdbcType=VARCHAR},
+      SMSDetails3 = #{smsdetails3,jdbcType=VARCHAR},
+      SMSDetails4 = #{smsdetails4,jdbcType=VARCHAR},
+      SMSDetails5 = #{smsdetails5,jdbcType=VARCHAR},
+      SMSDetails6 = #{smsdetails6,jdbcType=VARCHAR},
+      SMSDetails7 = #{smsdetails7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

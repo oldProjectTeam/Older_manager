@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.TakedrugdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Takedrugdetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="medicines" property="medicines" jdbcType="VARCHAR" />
+    <result column="startTakingDate" property="starttakingdate" jdbcType="TIMESTAMP" />
+    <result column="endTakingDate" property="endtakingdate" jdbcType="TIMESTAMP" />
+    <result column="dosage" property="dosage" jdbcType="VARCHAR" />
+    <result column="methodUse" property="methoduse" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="takeDrugDetails1" property="takedrugdetails1" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails2" property="takedrugdetails2" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails3" property="takedrugdetails3" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails4" property="takedrugdetails4" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails5" property="takedrugdetails5" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails6" property="takedrugdetails6" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails7" property="takedrugdetails7" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails8" property="takedrugdetails8" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails9" property="takedrugdetails9" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails10" property="takedrugdetails10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, medicines, startTakingDate, endTakingDate, dosage, methodUse, role, oldMan_id, 
+    takeDrugDetails1, takeDrugDetails2, takeDrugDetails3, takeDrugDetails4, takeDrugDetails5, 
+    takeDrugDetails6, takeDrugDetails7, takeDrugDetails8, takeDrugDetails9, takeDrugDetails10
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.TakedrugdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from takedrugdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from takedrugdetails
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from takedrugdetails
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.TakedrugdetailsExample" >
+    delete from takedrugdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Takedrugdetails" >
+    insert into takedrugdetails (id, medicines, startTakingDate, 
+      endTakingDate, dosage, methodUse, 
+      role, oldMan_id, takeDrugDetails1, 
+      takeDrugDetails2, takeDrugDetails3, takeDrugDetails4, 
+      takeDrugDetails5, takeDrugDetails6, takeDrugDetails7, 
+      takeDrugDetails8, takeDrugDetails9, takeDrugDetails10
+      )
+    values (#{id,jdbcType=INTEGER}, #{medicines,jdbcType=VARCHAR}, #{starttakingdate,jdbcType=TIMESTAMP}, 
+      #{endtakingdate,jdbcType=TIMESTAMP}, #{dosage,jdbcType=VARCHAR}, #{methoduse,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}, #{takedrugdetails1,jdbcType=VARCHAR}, 
+      #{takedrugdetails2,jdbcType=VARCHAR}, #{takedrugdetails3,jdbcType=VARCHAR}, #{takedrugdetails4,jdbcType=VARCHAR}, 
+      #{takedrugdetails5,jdbcType=VARCHAR}, #{takedrugdetails6,jdbcType=VARCHAR}, #{takedrugdetails7,jdbcType=VARCHAR}, 
+      #{takedrugdetails8,jdbcType=VARCHAR}, #{takedrugdetails9,jdbcType=VARCHAR}, #{takedrugdetails10,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Takedrugdetails" >
+    insert into takedrugdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="medicines != null" >
+        medicines,
+      </if>
+      <if test="starttakingdate != null" >
+        startTakingDate,
+      </if>
+      <if test="endtakingdate != null" >
+        endTakingDate,
+      </if>
+      <if test="dosage != null" >
+        dosage,
+      </if>
+      <if test="methoduse != null" >
+        methodUse,
+      </if>
+      <if test="role != null" >
+        role,
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id,
+      </if>
+      <if test="takedrugdetails1 != null" >
+        takeDrugDetails1,
+      </if>
+      <if test="takedrugdetails2 != null" >
+        takeDrugDetails2,
+      </if>
+      <if test="takedrugdetails3 != null" >
+        takeDrugDetails3,
+      </if>
+      <if test="takedrugdetails4 != null" >
+        takeDrugDetails4,
+      </if>
+      <if test="takedrugdetails5 != null" >
+        takeDrugDetails5,
+      </if>
+      <if test="takedrugdetails6 != null" >
+        takeDrugDetails6,
+      </if>
+      <if test="takedrugdetails7 != null" >
+        takeDrugDetails7,
+      </if>
+      <if test="takedrugdetails8 != null" >
+        takeDrugDetails8,
+      </if>
+      <if test="takedrugdetails9 != null" >
+        takeDrugDetails9,
+      </if>
+      <if test="takedrugdetails10 != null" >
+        takeDrugDetails10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="medicines != null" >
+        #{medicines,jdbcType=VARCHAR},
+      </if>
+      <if test="starttakingdate != null" >
+        #{starttakingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtakingdate != null" >
+        #{endtakingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dosage != null" >
+        #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="methoduse != null" >
+        #{methoduse,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="takedrugdetails1 != null" >
+        #{takedrugdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails2 != null" >
+        #{takedrugdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails3 != null" >
+        #{takedrugdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails4 != null" >
+        #{takedrugdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails5 != null" >
+        #{takedrugdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails6 != null" >
+        #{takedrugdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails7 != null" >
+        #{takedrugdetails7,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails8 != null" >
+        #{takedrugdetails8,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails9 != null" >
+        #{takedrugdetails9,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails10 != null" >
+        #{takedrugdetails10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.TakedrugdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from takedrugdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update takedrugdetails
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicines != null" >
+        medicines = #{record.medicines,jdbcType=VARCHAR},
+      </if>
+      <if test="record.starttakingdate != null" >
+        startTakingDate = #{record.starttakingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endtakingdate != null" >
+        endTakingDate = #{record.endtakingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.dosage != null" >
+        dosage = #{record.dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.methoduse != null" >
+        methodUse = #{record.methoduse,jdbcType=VARCHAR},
+      </if>
+      <if test="record.role != null" >
+        role = #{record.role,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldmanId != null" >
+        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.takedrugdetails1 != null" >
+        takeDrugDetails1 = #{record.takedrugdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails2 != null" >
+        takeDrugDetails2 = #{record.takedrugdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails3 != null" >
+        takeDrugDetails3 = #{record.takedrugdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails4 != null" >
+        takeDrugDetails4 = #{record.takedrugdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails5 != null" >
+        takeDrugDetails5 = #{record.takedrugdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails6 != null" >
+        takeDrugDetails6 = #{record.takedrugdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails7 != null" >
+        takeDrugDetails7 = #{record.takedrugdetails7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails8 != null" >
+        takeDrugDetails8 = #{record.takedrugdetails8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails9 != null" >
+        takeDrugDetails9 = #{record.takedrugdetails9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takedrugdetails10 != null" >
+        takeDrugDetails10 = #{record.takedrugdetails10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update takedrugdetails
+    set id = #{record.id,jdbcType=INTEGER},
+      medicines = #{record.medicines,jdbcType=VARCHAR},
+      startTakingDate = #{record.starttakingdate,jdbcType=TIMESTAMP},
+      endTakingDate = #{record.endtakingdate,jdbcType=TIMESTAMP},
+      dosage = #{record.dosage,jdbcType=VARCHAR},
+      methodUse = #{record.methoduse,jdbcType=VARCHAR},
+      role = #{record.role,jdbcType=VARCHAR},
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      takeDrugDetails1 = #{record.takedrugdetails1,jdbcType=VARCHAR},
+      takeDrugDetails2 = #{record.takedrugdetails2,jdbcType=VARCHAR},
+      takeDrugDetails3 = #{record.takedrugdetails3,jdbcType=VARCHAR},
+      takeDrugDetails4 = #{record.takedrugdetails4,jdbcType=VARCHAR},
+      takeDrugDetails5 = #{record.takedrugdetails5,jdbcType=VARCHAR},
+      takeDrugDetails6 = #{record.takedrugdetails6,jdbcType=VARCHAR},
+      takeDrugDetails7 = #{record.takedrugdetails7,jdbcType=VARCHAR},
+      takeDrugDetails8 = #{record.takedrugdetails8,jdbcType=VARCHAR},
+      takeDrugDetails9 = #{record.takedrugdetails9,jdbcType=VARCHAR},
+      takeDrugDetails10 = #{record.takedrugdetails10,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Takedrugdetails" >
+    update takedrugdetails
+    <set >
+      <if test="medicines != null" >
+        medicines = #{medicines,jdbcType=VARCHAR},
+      </if>
+      <if test="starttakingdate != null" >
+        startTakingDate = #{starttakingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtakingdate != null" >
+        endTakingDate = #{endtakingdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dosage != null" >
+        dosage = #{dosage,jdbcType=VARCHAR},
+      </if>
+      <if test="methoduse != null" >
+        methodUse = #{methoduse,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null" >
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="takedrugdetails1 != null" >
+        takeDrugDetails1 = #{takedrugdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails2 != null" >
+        takeDrugDetails2 = #{takedrugdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails3 != null" >
+        takeDrugDetails3 = #{takedrugdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails4 != null" >
+        takeDrugDetails4 = #{takedrugdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails5 != null" >
+        takeDrugDetails5 = #{takedrugdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails6 != null" >
+        takeDrugDetails6 = #{takedrugdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails7 != null" >
+        takeDrugDetails7 = #{takedrugdetails7,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails8 != null" >
+        takeDrugDetails8 = #{takedrugdetails8,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails9 != null" >
+        takeDrugDetails9 = #{takedrugdetails9,jdbcType=VARCHAR},
+      </if>
+      <if test="takedrugdetails10 != null" >
+        takeDrugDetails10 = #{takedrugdetails10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Takedrugdetails" >
+    update takedrugdetails
+    set medicines = #{medicines,jdbcType=VARCHAR},
+      startTakingDate = #{starttakingdate,jdbcType=TIMESTAMP},
+      endTakingDate = #{endtakingdate,jdbcType=TIMESTAMP},
+      dosage = #{dosage,jdbcType=VARCHAR},
+      methodUse = #{methoduse,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      takeDrugDetails1 = #{takedrugdetails1,jdbcType=VARCHAR},
+      takeDrugDetails2 = #{takedrugdetails2,jdbcType=VARCHAR},
+      takeDrugDetails3 = #{takedrugdetails3,jdbcType=VARCHAR},
+      takeDrugDetails4 = #{takedrugdetails4,jdbcType=VARCHAR},
+      takeDrugDetails5 = #{takedrugdetails5,jdbcType=VARCHAR},
+      takeDrugDetails6 = #{takedrugdetails6,jdbcType=VARCHAR},
+      takeDrugDetails7 = #{takedrugdetails7,jdbcType=VARCHAR},
+      takeDrugDetails8 = #{takedrugdetails8,jdbcType=VARCHAR},
+      takeDrugDetails9 = #{takedrugdetails9,jdbcType=VARCHAR},
+      takeDrugDetails10 = #{takedrugdetails10,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

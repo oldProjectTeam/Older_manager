@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.GiftmanagementMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Giftmanagement" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="giftName" property="giftname" jdbcType="VARCHAR" />
+    <result column="giftNumber" property="giftnumber" jdbcType="INTEGER" />
+    <result column="giftType" property="gifttype" jdbcType="VARCHAR" />
+    <result column="giftState" property="giftstate" jdbcType="VARCHAR" />
+    <result column="giftUnit" property="giftunit" jdbcType="VARCHAR" />
+    <result column="giftPrice" property="giftprice" jdbcType="DOUBLE" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="inventory" property="inventory" jdbcType="INTEGER" />
+    <result column="lowerNumber" property="lowernumber" jdbcType="INTEGER" />
+    <result column="remake" property="remake" jdbcType="VARCHAR" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="giftManagement1" property="giftmanagement1" jdbcType="VARCHAR" />
+    <result column="giftManagement2" property="giftmanagement2" jdbcType="VARCHAR" />
+    <result column="giftManagement3" property="giftmanagement3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, giftName, giftNumber, giftType, giftState, giftUnit, giftPrice, integral, inventory, 
+    lowerNumber, remake, image, giftManagement1, giftManagement2, giftManagement3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.GiftmanagementExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from giftmanagement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from giftmanagement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from giftmanagement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.GiftmanagementExample" >
+    delete from giftmanagement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Giftmanagement" >
+    insert into giftmanagement (id, giftName, giftNumber, 
+      giftType, giftState, giftUnit, 
+      giftPrice, integral, inventory, 
+      lowerNumber, remake, image, 
+      giftManagement1, giftManagement2, giftManagement3
+      )
+    values (#{id,jdbcType=INTEGER}, #{giftname,jdbcType=VARCHAR}, #{giftnumber,jdbcType=INTEGER}, 
+      #{gifttype,jdbcType=VARCHAR}, #{giftstate,jdbcType=VARCHAR}, #{giftunit,jdbcType=VARCHAR}, 
+      #{giftprice,jdbcType=DOUBLE}, #{integral,jdbcType=INTEGER}, #{inventory,jdbcType=INTEGER}, 
+      #{lowernumber,jdbcType=INTEGER}, #{remake,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
+      #{giftmanagement1,jdbcType=VARCHAR}, #{giftmanagement2,jdbcType=VARCHAR}, #{giftmanagement3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Giftmanagement" >
+    insert into giftmanagement
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="giftname != null" >
+        giftName,
+      </if>
+      <if test="giftnumber != null" >
+        giftNumber,
+      </if>
+      <if test="gifttype != null" >
+        giftType,
+      </if>
+      <if test="giftstate != null" >
+        giftState,
+      </if>
+      <if test="giftunit != null" >
+        giftUnit,
+      </if>
+      <if test="giftprice != null" >
+        giftPrice,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="inventory != null" >
+        inventory,
+      </if>
+      <if test="lowernumber != null" >
+        lowerNumber,
+      </if>
+      <if test="remake != null" >
+        remake,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="giftmanagement1 != null" >
+        giftManagement1,
+      </if>
+      <if test="giftmanagement2 != null" >
+        giftManagement2,
+      </if>
+      <if test="giftmanagement3 != null" >
+        giftManagement3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="giftname != null" >
+        #{giftname,jdbcType=VARCHAR},
+      </if>
+      <if test="giftnumber != null" >
+        #{giftnumber,jdbcType=INTEGER},
+      </if>
+      <if test="gifttype != null" >
+        #{gifttype,jdbcType=VARCHAR},
+      </if>
+      <if test="giftstate != null" >
+        #{giftstate,jdbcType=VARCHAR},
+      </if>
+      <if test="giftunit != null" >
+        #{giftunit,jdbcType=VARCHAR},
+      </if>
+      <if test="giftprice != null" >
+        #{giftprice,jdbcType=DOUBLE},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="lowernumber != null" >
+        #{lowernumber,jdbcType=INTEGER},
+      </if>
+      <if test="remake != null" >
+        #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="giftmanagement1 != null" >
+        #{giftmanagement1,jdbcType=VARCHAR},
+      </if>
+      <if test="giftmanagement2 != null" >
+        #{giftmanagement2,jdbcType=VARCHAR},
+      </if>
+      <if test="giftmanagement3 != null" >
+        #{giftmanagement3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.GiftmanagementExample" resultType="java.lang.Integer" >
+    select count(*) from giftmanagement
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update giftmanagement
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.giftname != null" >
+        giftName = #{record.giftname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftnumber != null" >
+        giftNumber = #{record.giftnumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.gifttype != null" >
+        giftType = #{record.gifttype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftstate != null" >
+        giftState = #{record.giftstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftunit != null" >
+        giftUnit = #{record.giftunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftprice != null" >
+        giftPrice = #{record.giftprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.integral != null" >
+        integral = #{record.integral,jdbcType=INTEGER},
+      </if>
+      <if test="record.inventory != null" >
+        inventory = #{record.inventory,jdbcType=INTEGER},
+      </if>
+      <if test="record.lowernumber != null" >
+        lowerNumber = #{record.lowernumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.remake != null" >
+        remake = #{record.remake,jdbcType=VARCHAR},
+      </if>
+      <if test="record.image != null" >
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftmanagement1 != null" >
+        giftManagement1 = #{record.giftmanagement1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftmanagement2 != null" >
+        giftManagement2 = #{record.giftmanagement2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftmanagement3 != null" >
+        giftManagement3 = #{record.giftmanagement3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update giftmanagement
+    set id = #{record.id,jdbcType=INTEGER},
+      giftName = #{record.giftname,jdbcType=VARCHAR},
+      giftNumber = #{record.giftnumber,jdbcType=INTEGER},
+      giftType = #{record.gifttype,jdbcType=VARCHAR},
+      giftState = #{record.giftstate,jdbcType=VARCHAR},
+      giftUnit = #{record.giftunit,jdbcType=VARCHAR},
+      giftPrice = #{record.giftprice,jdbcType=DOUBLE},
+      integral = #{record.integral,jdbcType=INTEGER},
+      inventory = #{record.inventory,jdbcType=INTEGER},
+      lowerNumber = #{record.lowernumber,jdbcType=INTEGER},
+      remake = #{record.remake,jdbcType=VARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      giftManagement1 = #{record.giftmanagement1,jdbcType=VARCHAR},
+      giftManagement2 = #{record.giftmanagement2,jdbcType=VARCHAR},
+      giftManagement3 = #{record.giftmanagement3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Giftmanagement" >
+    update giftmanagement
+    <set >
+      <if test="giftname != null" >
+        giftName = #{giftname,jdbcType=VARCHAR},
+      </if>
+      <if test="giftnumber != null" >
+        giftNumber = #{giftnumber,jdbcType=INTEGER},
+      </if>
+      <if test="gifttype != null" >
+        giftType = #{gifttype,jdbcType=VARCHAR},
+      </if>
+      <if test="giftstate != null" >
+        giftState = #{giftstate,jdbcType=VARCHAR},
+      </if>
+      <if test="giftunit != null" >
+        giftUnit = #{giftunit,jdbcType=VARCHAR},
+      </if>
+      <if test="giftprice != null" >
+        giftPrice = #{giftprice,jdbcType=DOUBLE},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="inventory != null" >
+        inventory = #{inventory,jdbcType=INTEGER},
+      </if>
+      <if test="lowernumber != null" >
+        lowerNumber = #{lowernumber,jdbcType=INTEGER},
+      </if>
+      <if test="remake != null" >
+        remake = #{remake,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="giftmanagement1 != null" >
+        giftManagement1 = #{giftmanagement1,jdbcType=VARCHAR},
+      </if>
+      <if test="giftmanagement2 != null" >
+        giftManagement2 = #{giftmanagement2,jdbcType=VARCHAR},
+      </if>
+      <if test="giftmanagement3 != null" >
+        giftManagement3 = #{giftmanagement3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Giftmanagement" >
+    update giftmanagement
+    set giftName = #{giftname,jdbcType=VARCHAR},
+      giftNumber = #{giftnumber,jdbcType=INTEGER},
+      giftType = #{gifttype,jdbcType=VARCHAR},
+      giftState = #{giftstate,jdbcType=VARCHAR},
+      giftUnit = #{giftunit,jdbcType=VARCHAR},
+      giftPrice = #{giftprice,jdbcType=DOUBLE},
+      integral = #{integral,jdbcType=INTEGER},
+      inventory = #{inventory,jdbcType=INTEGER},
+      lowerNumber = #{lowernumber,jdbcType=INTEGER},
+      remake = #{remake,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      giftManagement1 = #{giftmanagement1,jdbcType=VARCHAR},
+      giftManagement2 = #{giftmanagement2,jdbcType=VARCHAR},
+      giftManagement3 = #{giftmanagement3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

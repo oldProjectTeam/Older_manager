@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.GiftexchangeMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Giftexchange" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oldManAccount_id" property="oldmanaccountId" jdbcType="INTEGER" />
+    <result column="giftManagement_id" property="giftmanagementId" jdbcType="INTEGER" />
+    <result column="exchangeTime" property="exchangetime" jdbcType="TIMESTAMP" />
+    <result column="Staff_id" property="staffId" jdbcType="INTEGER" />
+    <result column="exchangeNo" property="exchangeno" jdbcType="VARCHAR" />
+    <result column="exchangeNum" property="exchangenum" jdbcType="INTEGER" />
+    <result column="exchangeIntegral" property="exchangeintegral" jdbcType="INTEGER" />
+    <result column="giftExchange1" property="giftexchange1" jdbcType="VARCHAR" />
+    <result column="giftExchange2" property="giftexchange2" jdbcType="VARCHAR" />
+    <result column="giftExchange3" property="giftexchange3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, oldManAccount_id, giftManagement_id, exchangeTime, Staff_id, exchangeNo, exchangeNum, 
+    exchangeIntegral, giftExchange1, giftExchange2, giftExchange3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.GiftexchangeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from giftexchange
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from giftexchange
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from giftexchange
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.GiftexchangeExample" >
+    delete from giftexchange
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Giftexchange" >
+    insert into giftexchange (id, oldManAccount_id, giftManagement_id, 
+      exchangeTime, Staff_id, exchangeNo, 
+      exchangeNum, exchangeIntegral, giftExchange1, 
+      giftExchange2, giftExchange3)
+    values (#{id,jdbcType=INTEGER}, #{oldmanaccountId,jdbcType=INTEGER}, #{giftmanagementId,jdbcType=INTEGER}, 
+      #{exchangetime,jdbcType=TIMESTAMP}, #{staffId,jdbcType=INTEGER}, #{exchangeno,jdbcType=VARCHAR}, 
+      #{exchangenum,jdbcType=INTEGER}, #{exchangeintegral,jdbcType=INTEGER}, #{giftexchange1,jdbcType=VARCHAR}, 
+      #{giftexchange2,jdbcType=VARCHAR}, #{giftexchange3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Giftexchange" >
+    insert into giftexchange
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="oldmanaccountId != null" >
+        oldManAccount_id,
+      </if>
+      <if test="giftmanagementId != null" >
+        giftManagement_id,
+      </if>
+      <if test="exchangetime != null" >
+        exchangeTime,
+      </if>
+      <if test="staffId != null" >
+        Staff_id,
+      </if>
+      <if test="exchangeno != null" >
+        exchangeNo,
+      </if>
+      <if test="exchangenum != null" >
+        exchangeNum,
+      </if>
+      <if test="exchangeintegral != null" >
+        exchangeIntegral,
+      </if>
+      <if test="giftexchange1 != null" >
+        giftExchange1,
+      </if>
+      <if test="giftexchange2 != null" >
+        giftExchange2,
+      </if>
+      <if test="giftexchange3 != null" >
+        giftExchange3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="oldmanaccountId != null" >
+        #{oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="giftmanagementId != null" >
+        #{giftmanagementId,jdbcType=INTEGER},
+      </if>
+      <if test="exchangetime != null" >
+        #{exchangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeno != null" >
+        #{exchangeno,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangenum != null" >
+        #{exchangenum,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeintegral != null" >
+        #{exchangeintegral,jdbcType=INTEGER},
+      </if>
+      <if test="giftexchange1 != null" >
+        #{giftexchange1,jdbcType=VARCHAR},
+      </if>
+      <if test="giftexchange2 != null" >
+        #{giftexchange2,jdbcType=VARCHAR},
+      </if>
+      <if test="giftexchange3 != null" >
+        #{giftexchange3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.GiftexchangeExample" resultType="java.lang.Integer" >
+    select count(*) from giftexchange
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update giftexchange
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldmanaccountId != null" >
+        oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="record.giftmanagementId != null" >
+        giftManagement_id = #{record.giftmanagementId,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangetime != null" >
+        exchangeTime = #{record.exchangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.staffId != null" >
+        Staff_id = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangeno != null" >
+        exchangeNo = #{record.exchangeno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exchangenum != null" >
+        exchangeNum = #{record.exchangenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangeintegral != null" >
+        exchangeIntegral = #{record.exchangeintegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.giftexchange1 != null" >
+        giftExchange1 = #{record.giftexchange1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftexchange2 != null" >
+        giftExchange2 = #{record.giftexchange2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.giftexchange3 != null" >
+        giftExchange3 = #{record.giftexchange3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update giftexchange
+    set id = #{record.id,jdbcType=INTEGER},
+      oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      giftManagement_id = #{record.giftmanagementId,jdbcType=INTEGER},
+      exchangeTime = #{record.exchangetime,jdbcType=TIMESTAMP},
+      Staff_id = #{record.staffId,jdbcType=INTEGER},
+      exchangeNo = #{record.exchangeno,jdbcType=VARCHAR},
+      exchangeNum = #{record.exchangenum,jdbcType=INTEGER},
+      exchangeIntegral = #{record.exchangeintegral,jdbcType=INTEGER},
+      giftExchange1 = #{record.giftexchange1,jdbcType=VARCHAR},
+      giftExchange2 = #{record.giftexchange2,jdbcType=VARCHAR},
+      giftExchange3 = #{record.giftexchange3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Giftexchange" >
+    update giftexchange
+    <set >
+      <if test="oldmanaccountId != null" >
+        oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="giftmanagementId != null" >
+        giftManagement_id = #{giftmanagementId,jdbcType=INTEGER},
+      </if>
+      <if test="exchangetime != null" >
+        exchangeTime = #{exchangetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffId != null" >
+        Staff_id = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeno != null" >
+        exchangeNo = #{exchangeno,jdbcType=VARCHAR},
+      </if>
+      <if test="exchangenum != null" >
+        exchangeNum = #{exchangenum,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeintegral != null" >
+        exchangeIntegral = #{exchangeintegral,jdbcType=INTEGER},
+      </if>
+      <if test="giftexchange1 != null" >
+        giftExchange1 = #{giftexchange1,jdbcType=VARCHAR},
+      </if>
+      <if test="giftexchange2 != null" >
+        giftExchange2 = #{giftexchange2,jdbcType=VARCHAR},
+      </if>
+      <if test="giftexchange3 != null" >
+        giftExchange3 = #{giftexchange3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Giftexchange" >
+    update giftexchange
+    set oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      giftManagement_id = #{giftmanagementId,jdbcType=INTEGER},
+      exchangeTime = #{exchangetime,jdbcType=TIMESTAMP},
+      Staff_id = #{staffId,jdbcType=INTEGER},
+      exchangeNo = #{exchangeno,jdbcType=VARCHAR},
+      exchangeNum = #{exchangenum,jdbcType=INTEGER},
+      exchangeIntegral = #{exchangeintegral,jdbcType=INTEGER},
+      giftExchange1 = #{giftexchange1,jdbcType=VARCHAR},
+      giftExchange2 = #{giftexchange2,jdbcType=VARCHAR},
+      giftExchange3 = #{giftexchange3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

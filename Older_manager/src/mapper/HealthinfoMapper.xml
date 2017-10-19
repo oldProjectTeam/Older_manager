@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.HealthinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Healthinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="symptoms" property="symptoms" jdbcType="VARCHAR" />
+    <result column="bodyTemperature" property="bodytemperature" jdbcType="DOUBLE" />
+    <result column="pulseFrequency" property="pulsefrequency" jdbcType="INTEGER" />
+    <result column="breathingRate" property="breathingrate" jdbcType="INTEGER" />
+    <result column="LeftBloodPressure" property="leftbloodpressure" jdbcType="DOUBLE" />
+    <result column="RightBloodPressure" property="rightbloodpressure" jdbcType="DOUBLE" />
+    <result column="height" property="height" jdbcType="DOUBLE" />
+    <result column="bodyWeight" property="bodyweight" jdbcType="DOUBLE" />
+    <result column="waistCircumference" property="waistcircumference" jdbcType="DOUBLE" />
+    <result column="bmi" property="bmi" jdbcType="DOUBLE" />
+    <result column="armCirumferenceRatio" property="armcirumferenceratio" jdbcType="DOUBLE" />
+    <result column="healthAssessment" property="healthassessment" jdbcType="VARCHAR" />
+    <result column="selfEvaluation" property="selfevaluation" jdbcType="VARCHAR" />
+    <result column="cognitiveFunction" property="cognitivefunction" jdbcType="VARCHAR" />
+    <result column="emotionalState" property="emotionalstate" jdbcType="VARCHAR" />
+    <result column="eationHabits" property="eationhabits" jdbcType="VARCHAR" />
+    <result column="exerciseFrequency" property="exercisefrequency" jdbcType="VARCHAR" />
+    <result column="exerciseTime" property="exercisetime" jdbcType="INTEGER" />
+    <result column="stickExerciseTime" property="stickexercisetime" jdbcType="DOUBLE" />
+    <result column="exerciseWay" property="exerciseway" jdbcType="VARCHAR" />
+    <result column="smokingStatus" property="smokingstatus" jdbcType="VARCHAR" />
+    <result column="beginSmokingAge" property="beginsmokingage" jdbcType="INTEGER" />
+    <result column="daySmokingAmount" property="daysmokingamount" jdbcType="INTEGER" />
+    <result column="quitSmokingAge" property="quitsmokingage" jdbcType="INTEGER" />
+    <result column="drinkingFrequency" property="drinkingfrequency" jdbcType="VARCHAR" />
+    <result column="dailyDrinking" property="dailydrinking" jdbcType="DOUBLE" />
+    <result column="startDrinkingAge" property="startdrinkingage" jdbcType="INTEGER" />
+    <result column="isQuitDrinking" property="isquitdrinking" jdbcType="VARCHAR" />
+    <result column="oral" property="oral" jdbcType="VARCHAR" />
+    <result column="dentition" property="dentition" jdbcType="VARCHAR" />
+    <result column="pharyngeal" property="pharyngeal" jdbcType="VARCHAR" />
+    <result column="leftEyesight" property="lefteyesight" jdbcType="VARCHAR" />
+    <result column="rightEyesight" property="righteyesight" jdbcType="VARCHAR" />
+    <result column="correctLeftEyesight" property="correctlefteyesight" jdbcType="VARCHAR" />
+    <result column="correctRightEyesight" property="correctrighteyesight" jdbcType="VARCHAR" />
+    <result column="hearing" property="hearing" jdbcType="VARCHAR" />
+    <result column="sportsAbility" property="sportsability" jdbcType="VARCHAR" />
+    <result column="skin" property="skin" jdbcType="VARCHAR" />
+    <result column="sclera" property="sclera" jdbcType="VARCHAR" />
+    <result column="lymphNode" property="lymphnode" jdbcType="VARCHAR" />
+    <result column="barrelChest" property="barrelchest" jdbcType="VARCHAR" />
+    <result column="breathSounds" property="breathsounds" jdbcType="VARCHAR" />
+    <result column="rale" property="rale" jdbcType="VARCHAR" />
+    <result column="heartRate" property="heartrate" jdbcType="INTEGER" />
+    <result column="heartRegularity" property="heartregularity" jdbcType="VARCHAR" />
+    <result column="noise" property="noise" jdbcType="VARCHAR" />
+    <result column="tenderness" property="tenderness" jdbcType="VARCHAR" />
+    <result column="bagPiece" property="bagpiece" jdbcType="VARCHAR" />
+    <result column="splenomegaly" property="splenomegaly" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, symptoms, bodyTemperature, pulseFrequency, breathingRate, LeftBloodPressure, 
+    RightBloodPressure, height, bodyWeight, waistCircumference, bmi, armCirumferenceRatio, 
+    healthAssessment, selfEvaluation, cognitiveFunction, emotionalState, eationHabits, 
+    exerciseFrequency, exerciseTime, stickExerciseTime, exerciseWay, smokingStatus, beginSmokingAge, 
+    daySmokingAmount, quitSmokingAge, drinkingFrequency, dailyDrinking, startDrinkingAge, 
+    isQuitDrinking, oral, dentition, pharyngeal, leftEyesight, rightEyesight, correctLeftEyesight, 
+    correctRightEyesight, hearing, sportsAbility, skin, sclera, lymphNode, barrelChest, 
+    breathSounds, rale, heartRate, heartRegularity, noise, tenderness, bagPiece, splenomegaly, 
+    oldMan_id
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.HealthinfoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from healthinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from healthinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from healthinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.HealthinfoExample" >
+    delete from healthinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Healthinfo" >
+    insert into healthinfo (id, symptoms, bodyTemperature, 
+      pulseFrequency, breathingRate, LeftBloodPressure, 
+      RightBloodPressure, height, bodyWeight, 
+      waistCircumference, bmi, armCirumferenceRatio, 
+      healthAssessment, selfEvaluation, cognitiveFunction, 
+      emotionalState, eationHabits, exerciseFrequency, 
+      exerciseTime, stickExerciseTime, exerciseWay, 
+      smokingStatus, beginSmokingAge, daySmokingAmount, 
+      quitSmokingAge, drinkingFrequency, dailyDrinking, 
+      startDrinkingAge, isQuitDrinking, oral, 
+      dentition, pharyngeal, leftEyesight, 
+      rightEyesight, correctLeftEyesight, correctRightEyesight, 
+      hearing, sportsAbility, skin, 
+      sclera, lymphNode, barrelChest, 
+      breathSounds, rale, heartRate, 
+      heartRegularity, noise, tenderness, 
+      bagPiece, splenomegaly, oldMan_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{symptoms,jdbcType=VARCHAR}, #{bodytemperature,jdbcType=DOUBLE}, 
+      #{pulsefrequency,jdbcType=INTEGER}, #{breathingrate,jdbcType=INTEGER}, #{leftbloodpressure,jdbcType=DOUBLE}, 
+      #{rightbloodpressure,jdbcType=DOUBLE}, #{height,jdbcType=DOUBLE}, #{bodyweight,jdbcType=DOUBLE}, 
+      #{waistcircumference,jdbcType=DOUBLE}, #{bmi,jdbcType=DOUBLE}, #{armcirumferenceratio,jdbcType=DOUBLE}, 
+      #{healthassessment,jdbcType=VARCHAR}, #{selfevaluation,jdbcType=VARCHAR}, #{cognitivefunction,jdbcType=VARCHAR}, 
+      #{emotionalstate,jdbcType=VARCHAR}, #{eationhabits,jdbcType=VARCHAR}, #{exercisefrequency,jdbcType=VARCHAR}, 
+      #{exercisetime,jdbcType=INTEGER}, #{stickexercisetime,jdbcType=DOUBLE}, #{exerciseway,jdbcType=VARCHAR}, 
+      #{smokingstatus,jdbcType=VARCHAR}, #{beginsmokingage,jdbcType=INTEGER}, #{daysmokingamount,jdbcType=INTEGER}, 
+      #{quitsmokingage,jdbcType=INTEGER}, #{drinkingfrequency,jdbcType=VARCHAR}, #{dailydrinking,jdbcType=DOUBLE}, 
+      #{startdrinkingage,jdbcType=INTEGER}, #{isquitdrinking,jdbcType=VARCHAR}, #{oral,jdbcType=VARCHAR}, 
+      #{dentition,jdbcType=VARCHAR}, #{pharyngeal,jdbcType=VARCHAR}, #{lefteyesight,jdbcType=VARCHAR}, 
+      #{righteyesight,jdbcType=VARCHAR}, #{correctlefteyesight,jdbcType=VARCHAR}, #{correctrighteyesight,jdbcType=VARCHAR}, 
+      #{hearing,jdbcType=VARCHAR}, #{sportsability,jdbcType=VARCHAR}, #{skin,jdbcType=VARCHAR}, 
+      #{sclera,jdbcType=VARCHAR}, #{lymphnode,jdbcType=VARCHAR}, #{barrelchest,jdbcType=VARCHAR}, 
+      #{breathsounds,jdbcType=VARCHAR}, #{rale,jdbcType=VARCHAR}, #{heartrate,jdbcType=INTEGER}, 
+      #{heartregularity,jdbcType=VARCHAR}, #{noise,jdbcType=VARCHAR}, #{tenderness,jdbcType=VARCHAR}, 
+      #{bagpiece,jdbcType=VARCHAR}, #{splenomegaly,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Healthinfo" >
+    insert into healthinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="symptoms != null" >
+        symptoms,
+      </if>
+      <if test="bodytemperature != null" >
+        bodyTemperature,
+      </if>
+      <if test="pulsefrequency != null" >
+        pulseFrequency,
+      </if>
+      <if test="breathingrate != null" >
+        breathingRate,
+      </if>
+      <if test="leftbloodpressure != null" >
+        LeftBloodPressure,
+      </if>
+      <if test="rightbloodpressure != null" >
+        RightBloodPressure,
+      </if>
+      <if test="height != null" >
+        height,
+      </if>
+      <if test="bodyweight != null" >
+        bodyWeight,
+      </if>
+      <if test="waistcircumference != null" >
+        waistCircumference,
+      </if>
+      <if test="bmi != null" >
+        bmi,
+      </if>
+      <if test="armcirumferenceratio != null" >
+        armCirumferenceRatio,
+      </if>
+      <if test="healthassessment != null" >
+        healthAssessment,
+      </if>
+      <if test="selfevaluation != null" >
+        selfEvaluation,
+      </if>
+      <if test="cognitivefunction != null" >
+        cognitiveFunction,
+      </if>
+      <if test="emotionalstate != null" >
+        emotionalState,
+      </if>
+      <if test="eationhabits != null" >
+        eationHabits,
+      </if>
+      <if test="exercisefrequency != null" >
+        exerciseFrequency,
+      </if>
+      <if test="exercisetime != null" >
+        exerciseTime,
+      </if>
+      <if test="stickexercisetime != null" >
+        stickExerciseTime,
+      </if>
+      <if test="exerciseway != null" >
+        exerciseWay,
+      </if>
+      <if test="smokingstatus != null" >
+        smokingStatus,
+      </if>
+      <if test="beginsmokingage != null" >
+        beginSmokingAge,
+      </if>
+      <if test="daysmokingamount != null" >
+        daySmokingAmount,
+      </if>
+      <if test="quitsmokingage != null" >
+        quitSmokingAge,
+      </if>
+      <if test="drinkingfrequency != null" >
+        drinkingFrequency,
+      </if>
+      <if test="dailydrinking != null" >
+        dailyDrinking,
+      </if>
+      <if test="startdrinkingage != null" >
+        startDrinkingAge,
+      </if>
+      <if test="isquitdrinking != null" >
+        isQuitDrinking,
+      </if>
+      <if test="oral != null" >
+        oral,
+      </if>
+      <if test="dentition != null" >
+        dentition,
+      </if>
+      <if test="pharyngeal != null" >
+        pharyngeal,
+      </if>
+      <if test="lefteyesight != null" >
+        leftEyesight,
+      </if>
+      <if test="righteyesight != null" >
+        rightEyesight,
+      </if>
+      <if test="correctlefteyesight != null" >
+        correctLeftEyesight,
+      </if>
+      <if test="correctrighteyesight != null" >
+        correctRightEyesight,
+      </if>
+      <if test="hearing != null" >
+        hearing,
+      </if>
+      <if test="sportsability != null" >
+        sportsAbility,
+      </if>
+      <if test="skin != null" >
+        skin,
+      </if>
+      <if test="sclera != null" >
+        sclera,
+      </if>
+      <if test="lymphnode != null" >
+        lymphNode,
+      </if>
+      <if test="barrelchest != null" >
+        barrelChest,
+      </if>
+      <if test="breathsounds != null" >
+        breathSounds,
+      </if>
+      <if test="rale != null" >
+        rale,
+      </if>
+      <if test="heartrate != null" >
+        heartRate,
+      </if>
+      <if test="heartregularity != null" >
+        heartRegularity,
+      </if>
+      <if test="noise != null" >
+        noise,
+      </if>
+      <if test="tenderness != null" >
+        tenderness,
+      </if>
+      <if test="bagpiece != null" >
+        bagPiece,
+      </if>
+      <if test="splenomegaly != null" >
+        splenomegaly,
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="symptoms != null" >
+        #{symptoms,jdbcType=VARCHAR},
+      </if>
+      <if test="bodytemperature != null" >
+        #{bodytemperature,jdbcType=DOUBLE},
+      </if>
+      <if test="pulsefrequency != null" >
+        #{pulsefrequency,jdbcType=INTEGER},
+      </if>
+      <if test="breathingrate != null" >
+        #{breathingrate,jdbcType=INTEGER},
+      </if>
+      <if test="leftbloodpressure != null" >
+        #{leftbloodpressure,jdbcType=DOUBLE},
+      </if>
+      <if test="rightbloodpressure != null" >
+        #{rightbloodpressure,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null" >
+        #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="bodyweight != null" >
+        #{bodyweight,jdbcType=DOUBLE},
+      </if>
+      <if test="waistcircumference != null" >
+        #{waistcircumference,jdbcType=DOUBLE},
+      </if>
+      <if test="bmi != null" >
+        #{bmi,jdbcType=DOUBLE},
+      </if>
+      <if test="armcirumferenceratio != null" >
+        #{armcirumferenceratio,jdbcType=DOUBLE},
+      </if>
+      <if test="healthassessment != null" >
+        #{healthassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="selfevaluation != null" >
+        #{selfevaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="cognitivefunction != null" >
+        #{cognitivefunction,jdbcType=VARCHAR},
+      </if>
+      <if test="emotionalstate != null" >
+        #{emotionalstate,jdbcType=VARCHAR},
+      </if>
+      <if test="eationhabits != null" >
+        #{eationhabits,jdbcType=VARCHAR},
+      </if>
+      <if test="exercisefrequency != null" >
+        #{exercisefrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="exercisetime != null" >
+        #{exercisetime,jdbcType=INTEGER},
+      </if>
+      <if test="stickexercisetime != null" >
+        #{stickexercisetime,jdbcType=DOUBLE},
+      </if>
+      <if test="exerciseway != null" >
+        #{exerciseway,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingstatus != null" >
+        #{smokingstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="beginsmokingage != null" >
+        #{beginsmokingage,jdbcType=INTEGER},
+      </if>
+      <if test="daysmokingamount != null" >
+        #{daysmokingamount,jdbcType=INTEGER},
+      </if>
+      <if test="quitsmokingage != null" >
+        #{quitsmokingage,jdbcType=INTEGER},
+      </if>
+      <if test="drinkingfrequency != null" >
+        #{drinkingfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="dailydrinking != null" >
+        #{dailydrinking,jdbcType=DOUBLE},
+      </if>
+      <if test="startdrinkingage != null" >
+        #{startdrinkingage,jdbcType=INTEGER},
+      </if>
+      <if test="isquitdrinking != null" >
+        #{isquitdrinking,jdbcType=VARCHAR},
+      </if>
+      <if test="oral != null" >
+        #{oral,jdbcType=VARCHAR},
+      </if>
+      <if test="dentition != null" >
+        #{dentition,jdbcType=VARCHAR},
+      </if>
+      <if test="pharyngeal != null" >
+        #{pharyngeal,jdbcType=VARCHAR},
+      </if>
+      <if test="lefteyesight != null" >
+        #{lefteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="righteyesight != null" >
+        #{righteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="correctlefteyesight != null" >
+        #{correctlefteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="correctrighteyesight != null" >
+        #{correctrighteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="hearing != null" >
+        #{hearing,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsability != null" >
+        #{sportsability,jdbcType=VARCHAR},
+      </if>
+      <if test="skin != null" >
+        #{skin,jdbcType=VARCHAR},
+      </if>
+      <if test="sclera != null" >
+        #{sclera,jdbcType=VARCHAR},
+      </if>
+      <if test="lymphnode != null" >
+        #{lymphnode,jdbcType=VARCHAR},
+      </if>
+      <if test="barrelchest != null" >
+        #{barrelchest,jdbcType=VARCHAR},
+      </if>
+      <if test="breathsounds != null" >
+        #{breathsounds,jdbcType=VARCHAR},
+      </if>
+      <if test="rale != null" >
+        #{rale,jdbcType=VARCHAR},
+      </if>
+      <if test="heartrate != null" >
+        #{heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="heartregularity != null" >
+        #{heartregularity,jdbcType=VARCHAR},
+      </if>
+      <if test="noise != null" >
+        #{noise,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderness != null" >
+        #{tenderness,jdbcType=VARCHAR},
+      </if>
+      <if test="bagpiece != null" >
+        #{bagpiece,jdbcType=VARCHAR},
+      </if>
+      <if test="splenomegaly != null" >
+        #{splenomegaly,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        #{oldmanId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.HealthinfoExample" resultType="java.lang.Integer" >
+    select count(*) from healthinfo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update healthinfo
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.symptoms != null" >
+        symptoms = #{record.symptoms,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bodytemperature != null" >
+        bodyTemperature = #{record.bodytemperature,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pulsefrequency != null" >
+        pulseFrequency = #{record.pulsefrequency,jdbcType=INTEGER},
+      </if>
+      <if test="record.breathingrate != null" >
+        breathingRate = #{record.breathingrate,jdbcType=INTEGER},
+      </if>
+      <if test="record.leftbloodpressure != null" >
+        LeftBloodPressure = #{record.leftbloodpressure,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rightbloodpressure != null" >
+        RightBloodPressure = #{record.rightbloodpressure,jdbcType=DOUBLE},
+      </if>
+      <if test="record.height != null" >
+        height = #{record.height,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bodyweight != null" >
+        bodyWeight = #{record.bodyweight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.waistcircumference != null" >
+        waistCircumference = #{record.waistcircumference,jdbcType=DOUBLE},
+      </if>
+      <if test="record.bmi != null" >
+        bmi = #{record.bmi,jdbcType=DOUBLE},
+      </if>
+      <if test="record.armcirumferenceratio != null" >
+        armCirumferenceRatio = #{record.armcirumferenceratio,jdbcType=DOUBLE},
+      </if>
+      <if test="record.healthassessment != null" >
+        healthAssessment = #{record.healthassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.selfevaluation != null" >
+        selfEvaluation = #{record.selfevaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cognitivefunction != null" >
+        cognitiveFunction = #{record.cognitivefunction,jdbcType=VARCHAR},
+      </if>
+      <if test="record.emotionalstate != null" >
+        emotionalState = #{record.emotionalstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eationhabits != null" >
+        eationHabits = #{record.eationhabits,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exercisefrequency != null" >
+        exerciseFrequency = #{record.exercisefrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.exercisetime != null" >
+        exerciseTime = #{record.exercisetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.stickexercisetime != null" >
+        stickExerciseTime = #{record.stickexercisetime,jdbcType=DOUBLE},
+      </if>
+      <if test="record.exerciseway != null" >
+        exerciseWay = #{record.exerciseway,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smokingstatus != null" >
+        smokingStatus = #{record.smokingstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.beginsmokingage != null" >
+        beginSmokingAge = #{record.beginsmokingage,jdbcType=INTEGER},
+      </if>
+      <if test="record.daysmokingamount != null" >
+        daySmokingAmount = #{record.daysmokingamount,jdbcType=INTEGER},
+      </if>
+      <if test="record.quitsmokingage != null" >
+        quitSmokingAge = #{record.quitsmokingage,jdbcType=INTEGER},
+      </if>
+      <if test="record.drinkingfrequency != null" >
+        drinkingFrequency = #{record.drinkingfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dailydrinking != null" >
+        dailyDrinking = #{record.dailydrinking,jdbcType=DOUBLE},
+      </if>
+      <if test="record.startdrinkingage != null" >
+        startDrinkingAge = #{record.startdrinkingage,jdbcType=INTEGER},
+      </if>
+      <if test="record.isquitdrinking != null" >
+        isQuitDrinking = #{record.isquitdrinking,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oral != null" >
+        oral = #{record.oral,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dentition != null" >
+        dentition = #{record.dentition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pharyngeal != null" >
+        pharyngeal = #{record.pharyngeal,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lefteyesight != null" >
+        leftEyesight = #{record.lefteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.righteyesight != null" >
+        rightEyesight = #{record.righteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.correctlefteyesight != null" >
+        correctLeftEyesight = #{record.correctlefteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.correctrighteyesight != null" >
+        correctRightEyesight = #{record.correctrighteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hearing != null" >
+        hearing = #{record.hearing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sportsability != null" >
+        sportsAbility = #{record.sportsability,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skin != null" >
+        skin = #{record.skin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sclera != null" >
+        sclera = #{record.sclera,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lymphnode != null" >
+        lymphNode = #{record.lymphnode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.barrelchest != null" >
+        barrelChest = #{record.barrelchest,jdbcType=VARCHAR},
+      </if>
+      <if test="record.breathsounds != null" >
+        breathSounds = #{record.breathsounds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rale != null" >
+        rale = #{record.rale,jdbcType=VARCHAR},
+      </if>
+      <if test="record.heartrate != null" >
+        heartRate = #{record.heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="record.heartregularity != null" >
+        heartRegularity = #{record.heartregularity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.noise != null" >
+        noise = #{record.noise,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tenderness != null" >
+        tenderness = #{record.tenderness,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bagpiece != null" >
+        bagPiece = #{record.bagpiece,jdbcType=VARCHAR},
+      </if>
+      <if test="record.splenomegaly != null" >
+        splenomegaly = #{record.splenomegaly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldmanId != null" >
+        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update healthinfo
+    set id = #{record.id,jdbcType=INTEGER},
+      symptoms = #{record.symptoms,jdbcType=VARCHAR},
+      bodyTemperature = #{record.bodytemperature,jdbcType=DOUBLE},
+      pulseFrequency = #{record.pulsefrequency,jdbcType=INTEGER},
+      breathingRate = #{record.breathingrate,jdbcType=INTEGER},
+      LeftBloodPressure = #{record.leftbloodpressure,jdbcType=DOUBLE},
+      RightBloodPressure = #{record.rightbloodpressure,jdbcType=DOUBLE},
+      height = #{record.height,jdbcType=DOUBLE},
+      bodyWeight = #{record.bodyweight,jdbcType=DOUBLE},
+      waistCircumference = #{record.waistcircumference,jdbcType=DOUBLE},
+      bmi = #{record.bmi,jdbcType=DOUBLE},
+      armCirumferenceRatio = #{record.armcirumferenceratio,jdbcType=DOUBLE},
+      healthAssessment = #{record.healthassessment,jdbcType=VARCHAR},
+      selfEvaluation = #{record.selfevaluation,jdbcType=VARCHAR},
+      cognitiveFunction = #{record.cognitivefunction,jdbcType=VARCHAR},
+      emotionalState = #{record.emotionalstate,jdbcType=VARCHAR},
+      eationHabits = #{record.eationhabits,jdbcType=VARCHAR},
+      exerciseFrequency = #{record.exercisefrequency,jdbcType=VARCHAR},
+      exerciseTime = #{record.exercisetime,jdbcType=INTEGER},
+      stickExerciseTime = #{record.stickexercisetime,jdbcType=DOUBLE},
+      exerciseWay = #{record.exerciseway,jdbcType=VARCHAR},
+      smokingStatus = #{record.smokingstatus,jdbcType=VARCHAR},
+      beginSmokingAge = #{record.beginsmokingage,jdbcType=INTEGER},
+      daySmokingAmount = #{record.daysmokingamount,jdbcType=INTEGER},
+      quitSmokingAge = #{record.quitsmokingage,jdbcType=INTEGER},
+      drinkingFrequency = #{record.drinkingfrequency,jdbcType=VARCHAR},
+      dailyDrinking = #{record.dailydrinking,jdbcType=DOUBLE},
+      startDrinkingAge = #{record.startdrinkingage,jdbcType=INTEGER},
+      isQuitDrinking = #{record.isquitdrinking,jdbcType=VARCHAR},
+      oral = #{record.oral,jdbcType=VARCHAR},
+      dentition = #{record.dentition,jdbcType=VARCHAR},
+      pharyngeal = #{record.pharyngeal,jdbcType=VARCHAR},
+      leftEyesight = #{record.lefteyesight,jdbcType=VARCHAR},
+      rightEyesight = #{record.righteyesight,jdbcType=VARCHAR},
+      correctLeftEyesight = #{record.correctlefteyesight,jdbcType=VARCHAR},
+      correctRightEyesight = #{record.correctrighteyesight,jdbcType=VARCHAR},
+      hearing = #{record.hearing,jdbcType=VARCHAR},
+      sportsAbility = #{record.sportsability,jdbcType=VARCHAR},
+      skin = #{record.skin,jdbcType=VARCHAR},
+      sclera = #{record.sclera,jdbcType=VARCHAR},
+      lymphNode = #{record.lymphnode,jdbcType=VARCHAR},
+      barrelChest = #{record.barrelchest,jdbcType=VARCHAR},
+      breathSounds = #{record.breathsounds,jdbcType=VARCHAR},
+      rale = #{record.rale,jdbcType=VARCHAR},
+      heartRate = #{record.heartrate,jdbcType=INTEGER},
+      heartRegularity = #{record.heartregularity,jdbcType=VARCHAR},
+      noise = #{record.noise,jdbcType=VARCHAR},
+      tenderness = #{record.tenderness,jdbcType=VARCHAR},
+      bagPiece = #{record.bagpiece,jdbcType=VARCHAR},
+      splenomegaly = #{record.splenomegaly,jdbcType=VARCHAR},
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Healthinfo" >
+    update healthinfo
+    <set >
+      <if test="symptoms != null" >
+        symptoms = #{symptoms,jdbcType=VARCHAR},
+      </if>
+      <if test="bodytemperature != null" >
+        bodyTemperature = #{bodytemperature,jdbcType=DOUBLE},
+      </if>
+      <if test="pulsefrequency != null" >
+        pulseFrequency = #{pulsefrequency,jdbcType=INTEGER},
+      </if>
+      <if test="breathingrate != null" >
+        breathingRate = #{breathingrate,jdbcType=INTEGER},
+      </if>
+      <if test="leftbloodpressure != null" >
+        LeftBloodPressure = #{leftbloodpressure,jdbcType=DOUBLE},
+      </if>
+      <if test="rightbloodpressure != null" >
+        RightBloodPressure = #{rightbloodpressure,jdbcType=DOUBLE},
+      </if>
+      <if test="height != null" >
+        height = #{height,jdbcType=DOUBLE},
+      </if>
+      <if test="bodyweight != null" >
+        bodyWeight = #{bodyweight,jdbcType=DOUBLE},
+      </if>
+      <if test="waistcircumference != null" >
+        waistCircumference = #{waistcircumference,jdbcType=DOUBLE},
+      </if>
+      <if test="bmi != null" >
+        bmi = #{bmi,jdbcType=DOUBLE},
+      </if>
+      <if test="armcirumferenceratio != null" >
+        armCirumferenceRatio = #{armcirumferenceratio,jdbcType=DOUBLE},
+      </if>
+      <if test="healthassessment != null" >
+        healthAssessment = #{healthassessment,jdbcType=VARCHAR},
+      </if>
+      <if test="selfevaluation != null" >
+        selfEvaluation = #{selfevaluation,jdbcType=VARCHAR},
+      </if>
+      <if test="cognitivefunction != null" >
+        cognitiveFunction = #{cognitivefunction,jdbcType=VARCHAR},
+      </if>
+      <if test="emotionalstate != null" >
+        emotionalState = #{emotionalstate,jdbcType=VARCHAR},
+      </if>
+      <if test="eationhabits != null" >
+        eationHabits = #{eationhabits,jdbcType=VARCHAR},
+      </if>
+      <if test="exercisefrequency != null" >
+        exerciseFrequency = #{exercisefrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="exercisetime != null" >
+        exerciseTime = #{exercisetime,jdbcType=INTEGER},
+      </if>
+      <if test="stickexercisetime != null" >
+        stickExerciseTime = #{stickexercisetime,jdbcType=DOUBLE},
+      </if>
+      <if test="exerciseway != null" >
+        exerciseWay = #{exerciseway,jdbcType=VARCHAR},
+      </if>
+      <if test="smokingstatus != null" >
+        smokingStatus = #{smokingstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="beginsmokingage != null" >
+        beginSmokingAge = #{beginsmokingage,jdbcType=INTEGER},
+      </if>
+      <if test="daysmokingamount != null" >
+        daySmokingAmount = #{daysmokingamount,jdbcType=INTEGER},
+      </if>
+      <if test="quitsmokingage != null" >
+        quitSmokingAge = #{quitsmokingage,jdbcType=INTEGER},
+      </if>
+      <if test="drinkingfrequency != null" >
+        drinkingFrequency = #{drinkingfrequency,jdbcType=VARCHAR},
+      </if>
+      <if test="dailydrinking != null" >
+        dailyDrinking = #{dailydrinking,jdbcType=DOUBLE},
+      </if>
+      <if test="startdrinkingage != null" >
+        startDrinkingAge = #{startdrinkingage,jdbcType=INTEGER},
+      </if>
+      <if test="isquitdrinking != null" >
+        isQuitDrinking = #{isquitdrinking,jdbcType=VARCHAR},
+      </if>
+      <if test="oral != null" >
+        oral = #{oral,jdbcType=VARCHAR},
+      </if>
+      <if test="dentition != null" >
+        dentition = #{dentition,jdbcType=VARCHAR},
+      </if>
+      <if test="pharyngeal != null" >
+        pharyngeal = #{pharyngeal,jdbcType=VARCHAR},
+      </if>
+      <if test="lefteyesight != null" >
+        leftEyesight = #{lefteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="righteyesight != null" >
+        rightEyesight = #{righteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="correctlefteyesight != null" >
+        correctLeftEyesight = #{correctlefteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="correctrighteyesight != null" >
+        correctRightEyesight = #{correctrighteyesight,jdbcType=VARCHAR},
+      </if>
+      <if test="hearing != null" >
+        hearing = #{hearing,jdbcType=VARCHAR},
+      </if>
+      <if test="sportsability != null" >
+        sportsAbility = #{sportsability,jdbcType=VARCHAR},
+      </if>
+      <if test="skin != null" >
+        skin = #{skin,jdbcType=VARCHAR},
+      </if>
+      <if test="sclera != null" >
+        sclera = #{sclera,jdbcType=VARCHAR},
+      </if>
+      <if test="lymphnode != null" >
+        lymphNode = #{lymphnode,jdbcType=VARCHAR},
+      </if>
+      <if test="barrelchest != null" >
+        barrelChest = #{barrelchest,jdbcType=VARCHAR},
+      </if>
+      <if test="breathsounds != null" >
+        breathSounds = #{breathsounds,jdbcType=VARCHAR},
+      </if>
+      <if test="rale != null" >
+        rale = #{rale,jdbcType=VARCHAR},
+      </if>
+      <if test="heartrate != null" >
+        heartRate = #{heartrate,jdbcType=INTEGER},
+      </if>
+      <if test="heartregularity != null" >
+        heartRegularity = #{heartregularity,jdbcType=VARCHAR},
+      </if>
+      <if test="noise != null" >
+        noise = #{noise,jdbcType=VARCHAR},
+      </if>
+      <if test="tenderness != null" >
+        tenderness = #{tenderness,jdbcType=VARCHAR},
+      </if>
+      <if test="bagpiece != null" >
+        bagPiece = #{bagpiece,jdbcType=VARCHAR},
+      </if>
+      <if test="splenomegaly != null" >
+        splenomegaly = #{splenomegaly,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Healthinfo" >
+    update healthinfo
+    set symptoms = #{symptoms,jdbcType=VARCHAR},
+      bodyTemperature = #{bodytemperature,jdbcType=DOUBLE},
+      pulseFrequency = #{pulsefrequency,jdbcType=INTEGER},
+      breathingRate = #{breathingrate,jdbcType=INTEGER},
+      LeftBloodPressure = #{leftbloodpressure,jdbcType=DOUBLE},
+      RightBloodPressure = #{rightbloodpressure,jdbcType=DOUBLE},
+      height = #{height,jdbcType=DOUBLE},
+      bodyWeight = #{bodyweight,jdbcType=DOUBLE},
+      waistCircumference = #{waistcircumference,jdbcType=DOUBLE},
+      bmi = #{bmi,jdbcType=DOUBLE},
+      armCirumferenceRatio = #{armcirumferenceratio,jdbcType=DOUBLE},
+      healthAssessment = #{healthassessment,jdbcType=VARCHAR},
+      selfEvaluation = #{selfevaluation,jdbcType=VARCHAR},
+      cognitiveFunction = #{cognitivefunction,jdbcType=VARCHAR},
+      emotionalState = #{emotionalstate,jdbcType=VARCHAR},
+      eationHabits = #{eationhabits,jdbcType=VARCHAR},
+      exerciseFrequency = #{exercisefrequency,jdbcType=VARCHAR},
+      exerciseTime = #{exercisetime,jdbcType=INTEGER},
+      stickExerciseTime = #{stickexercisetime,jdbcType=DOUBLE},
+      exerciseWay = #{exerciseway,jdbcType=VARCHAR},
+      smokingStatus = #{smokingstatus,jdbcType=VARCHAR},
+      beginSmokingAge = #{beginsmokingage,jdbcType=INTEGER},
+      daySmokingAmount = #{daysmokingamount,jdbcType=INTEGER},
+      quitSmokingAge = #{quitsmokingage,jdbcType=INTEGER},
+      drinkingFrequency = #{drinkingfrequency,jdbcType=VARCHAR},
+      dailyDrinking = #{dailydrinking,jdbcType=DOUBLE},
+      startDrinkingAge = #{startdrinkingage,jdbcType=INTEGER},
+      isQuitDrinking = #{isquitdrinking,jdbcType=VARCHAR},
+      oral = #{oral,jdbcType=VARCHAR},
+      dentition = #{dentition,jdbcType=VARCHAR},
+      pharyngeal = #{pharyngeal,jdbcType=VARCHAR},
+      leftEyesight = #{lefteyesight,jdbcType=VARCHAR},
+      rightEyesight = #{righteyesight,jdbcType=VARCHAR},
+      correctLeftEyesight = #{correctlefteyesight,jdbcType=VARCHAR},
+      correctRightEyesight = #{correctrighteyesight,jdbcType=VARCHAR},
+      hearing = #{hearing,jdbcType=VARCHAR},
+      sportsAbility = #{sportsability,jdbcType=VARCHAR},
+      skin = #{skin,jdbcType=VARCHAR},
+      sclera = #{sclera,jdbcType=VARCHAR},
+      lymphNode = #{lymphnode,jdbcType=VARCHAR},
+      barrelChest = #{barrelchest,jdbcType=VARCHAR},
+      breathSounds = #{breathsounds,jdbcType=VARCHAR},
+      rale = #{rale,jdbcType=VARCHAR},
+      heartRate = #{heartrate,jdbcType=INTEGER},
+      heartRegularity = #{heartregularity,jdbcType=VARCHAR},
+      noise = #{noise,jdbcType=VARCHAR},
+      tenderness = #{tenderness,jdbcType=VARCHAR},
+      bagPiece = #{bagpiece,jdbcType=VARCHAR},
+      splenomegaly = #{splenomegaly,jdbcType=VARCHAR},
+      oldMan_id = #{oldmanId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.CourseenrolMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Courseenrol" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="enrolTime" property="enroltime" jdbcType="TIMESTAMP" />
+    <result column="enrolState" property="enrolstate" jdbcType="VARCHAR" />
+    <result column="oldMam_id" property="oldmamId" jdbcType="INTEGER" />
+    <result column="courseCompletion" property="coursecompletion" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="DOUBLE" />
+    <result column="rating" property="rating" jdbcType="VARCHAR" />
+    <result column="isNormalClass" property="isnormalclass" jdbcType="VARCHAR" />
+    <result column="courseEnrol1" property="courseenrol1" jdbcType="VARCHAR" />
+    <result column="courseEnrol2" property="courseenrol2" jdbcType="VARCHAR" />
+    <result column="courseEnrol3" property="courseenrol3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, enrolTime, enrolState, oldMam_id, courseCompletion, grade, rating, isNormalClass, 
+    courseEnrol1, courseEnrol2, courseEnrol3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.CourseenrolExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from courseenrol
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from courseenrol
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from courseenrol
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.CourseenrolExample" >
+    delete from courseenrol
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Courseenrol" >
+    insert into courseenrol (id, enrolTime, enrolState, 
+      oldMam_id, courseCompletion, grade, 
+      rating, isNormalClass, courseEnrol1, 
+      courseEnrol2, courseEnrol3)
+    values (#{id,jdbcType=INTEGER}, #{enroltime,jdbcType=TIMESTAMP}, #{enrolstate,jdbcType=VARCHAR}, 
+      #{oldmamId,jdbcType=INTEGER}, #{coursecompletion,jdbcType=VARCHAR}, #{grade,jdbcType=DOUBLE}, 
+      #{rating,jdbcType=VARCHAR}, #{isnormalclass,jdbcType=VARCHAR}, #{courseenrol1,jdbcType=VARCHAR}, 
+      #{courseenrol2,jdbcType=VARCHAR}, #{courseenrol3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Courseenrol" >
+    insert into courseenrol
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enroltime != null" >
+        enrolTime,
+      </if>
+      <if test="enrolstate != null" >
+        enrolState,
+      </if>
+      <if test="oldmamId != null" >
+        oldMam_id,
+      </if>
+      <if test="coursecompletion != null" >
+        courseCompletion,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="rating != null" >
+        rating,
+      </if>
+      <if test="isnormalclass != null" >
+        isNormalClass,
+      </if>
+      <if test="courseenrol1 != null" >
+        courseEnrol1,
+      </if>
+      <if test="courseenrol2 != null" >
+        courseEnrol2,
+      </if>
+      <if test="courseenrol3 != null" >
+        courseEnrol3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enroltime != null" >
+        #{enroltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enrolstate != null" >
+        #{enrolstate,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmamId != null" >
+        #{oldmamId,jdbcType=INTEGER},
+      </if>
+      <if test="coursecompletion != null" >
+        #{coursecompletion,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=DOUBLE},
+      </if>
+      <if test="rating != null" >
+        #{rating,jdbcType=VARCHAR},
+      </if>
+      <if test="isnormalclass != null" >
+        #{isnormalclass,jdbcType=VARCHAR},
+      </if>
+      <if test="courseenrol1 != null" >
+        #{courseenrol1,jdbcType=VARCHAR},
+      </if>
+      <if test="courseenrol2 != null" >
+        #{courseenrol2,jdbcType=VARCHAR},
+      </if>
+      <if test="courseenrol3 != null" >
+        #{courseenrol3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.CourseenrolExample" resultType="java.lang.Integer" >
+    select count(*) from courseenrol
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update courseenrol
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.enroltime != null" >
+        enrolTime = #{record.enroltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enrolstate != null" >
+        enrolState = #{record.enrolstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldmamId != null" >
+        oldMam_id = #{record.oldmamId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coursecompletion != null" >
+        courseCompletion = #{record.coursecompletion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=DOUBLE},
+      </if>
+      <if test="record.rating != null" >
+        rating = #{record.rating,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isnormalclass != null" >
+        isNormalClass = #{record.isnormalclass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseenrol1 != null" >
+        courseEnrol1 = #{record.courseenrol1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseenrol2 != null" >
+        courseEnrol2 = #{record.courseenrol2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseenrol3 != null" >
+        courseEnrol3 = #{record.courseenrol3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update courseenrol
+    set id = #{record.id,jdbcType=INTEGER},
+      enrolTime = #{record.enroltime,jdbcType=TIMESTAMP},
+      enrolState = #{record.enrolstate,jdbcType=VARCHAR},
+      oldMam_id = #{record.oldmamId,jdbcType=INTEGER},
+      courseCompletion = #{record.coursecompletion,jdbcType=VARCHAR},
+      grade = #{record.grade,jdbcType=DOUBLE},
+      rating = #{record.rating,jdbcType=VARCHAR},
+      isNormalClass = #{record.isnormalclass,jdbcType=VARCHAR},
+      courseEnrol1 = #{record.courseenrol1,jdbcType=VARCHAR},
+      courseEnrol2 = #{record.courseenrol2,jdbcType=VARCHAR},
+      courseEnrol3 = #{record.courseenrol3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Courseenrol" >
+    update courseenrol
+    <set >
+      <if test="enroltime != null" >
+        enrolTime = #{enroltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enrolstate != null" >
+        enrolState = #{enrolstate,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmamId != null" >
+        oldMam_id = #{oldmamId,jdbcType=INTEGER},
+      </if>
+      <if test="coursecompletion != null" >
+        courseCompletion = #{coursecompletion,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=DOUBLE},
+      </if>
+      <if test="rating != null" >
+        rating = #{rating,jdbcType=VARCHAR},
+      </if>
+      <if test="isnormalclass != null" >
+        isNormalClass = #{isnormalclass,jdbcType=VARCHAR},
+      </if>
+      <if test="courseenrol1 != null" >
+        courseEnrol1 = #{courseenrol1,jdbcType=VARCHAR},
+      </if>
+      <if test="courseenrol2 != null" >
+        courseEnrol2 = #{courseenrol2,jdbcType=VARCHAR},
+      </if>
+      <if test="courseenrol3 != null" >
+        courseEnrol3 = #{courseenrol3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Courseenrol" >
+    update courseenrol
+    set enrolTime = #{enroltime,jdbcType=TIMESTAMP},
+      enrolState = #{enrolstate,jdbcType=VARCHAR},
+      oldMam_id = #{oldmamId,jdbcType=INTEGER},
+      courseCompletion = #{coursecompletion,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=DOUBLE},
+      rating = #{rating,jdbcType=VARCHAR},
+      isNormalClass = #{isnormalclass,jdbcType=VARCHAR},
+      courseEnrol1 = #{courseenrol1,jdbcType=VARCHAR},
+      courseEnrol2 = #{courseenrol2,jdbcType=VARCHAR},
+      courseEnrol3 = #{courseenrol3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

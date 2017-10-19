@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.ProductcollectMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Productcollect" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oldManAccount_id" property="oldmanaccountId" jdbcType="INTEGER" />
+    <result column="Products_id" property="productsId" jdbcType="INTEGER" />
+    <result column="time" property="time" jdbcType="DATE" />
+    <result column="productCollect1" property="productcollect1" jdbcType="VARCHAR" />
+    <result column="productCollect2" property="productcollect2" jdbcType="VARCHAR" />
+    <result column="productCollect3" property="productcollect3" jdbcType="VARCHAR" />
+    <result column="productCollect4" property="productcollect4" jdbcType="VARCHAR" />
+    <result column="productCollect5" property="productcollect5" jdbcType="VARCHAR" />
+    <result column="productCollect6" property="productcollect6" jdbcType="VARCHAR" />
+    <result column="productCollect7" property="productcollect7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, oldManAccount_id, Products_id, time, productCollect1, productCollect2, productCollect3, 
+    productCollect4, productCollect5, productCollect6, productCollect7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ProductcollectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from productcollect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from productcollect
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from productcollect
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.ProductcollectExample" >
+    delete from productcollect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Productcollect" >
+    insert into productcollect (id, oldManAccount_id, Products_id, 
+      time, productCollect1, productCollect2, 
+      productCollect3, productCollect4, productCollect5, 
+      productCollect6, productCollect7)
+    values (#{id,jdbcType=INTEGER}, #{oldmanaccountId,jdbcType=INTEGER}, #{productsId,jdbcType=INTEGER}, 
+      #{time,jdbcType=DATE}, #{productcollect1,jdbcType=VARCHAR}, #{productcollect2,jdbcType=VARCHAR}, 
+      #{productcollect3,jdbcType=VARCHAR}, #{productcollect4,jdbcType=VARCHAR}, #{productcollect5,jdbcType=VARCHAR}, 
+      #{productcollect6,jdbcType=VARCHAR}, #{productcollect7,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Productcollect" >
+    insert into productcollect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="oldmanaccountId != null" >
+        oldManAccount_id,
+      </if>
+      <if test="productsId != null" >
+        Products_id,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="productcollect1 != null" >
+        productCollect1,
+      </if>
+      <if test="productcollect2 != null" >
+        productCollect2,
+      </if>
+      <if test="productcollect3 != null" >
+        productCollect3,
+      </if>
+      <if test="productcollect4 != null" >
+        productCollect4,
+      </if>
+      <if test="productcollect5 != null" >
+        productCollect5,
+      </if>
+      <if test="productcollect6 != null" >
+        productCollect6,
+      </if>
+      <if test="productcollect7 != null" >
+        productCollect7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="oldmanaccountId != null" >
+        #{oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="productsId != null" >
+        #{productsId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=DATE},
+      </if>
+      <if test="productcollect1 != null" >
+        #{productcollect1,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect2 != null" >
+        #{productcollect2,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect3 != null" >
+        #{productcollect3,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect4 != null" >
+        #{productcollect4,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect5 != null" >
+        #{productcollect5,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect6 != null" >
+        #{productcollect6,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect7 != null" >
+        #{productcollect7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.ProductcollectExample" resultType="java.lang.Integer" >
+    select count(*) from productcollect
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update productcollect
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.oldmanaccountId != null" >
+        oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productsId != null" >
+        Products_id = #{record.productsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.time != null" >
+        time = #{record.time,jdbcType=DATE},
+      </if>
+      <if test="record.productcollect1 != null" >
+        productCollect1 = #{record.productcollect1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productcollect2 != null" >
+        productCollect2 = #{record.productcollect2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productcollect3 != null" >
+        productCollect3 = #{record.productcollect3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productcollect4 != null" >
+        productCollect4 = #{record.productcollect4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productcollect5 != null" >
+        productCollect5 = #{record.productcollect5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productcollect6 != null" >
+        productCollect6 = #{record.productcollect6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productcollect7 != null" >
+        productCollect7 = #{record.productcollect7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update productcollect
+    set id = #{record.id,jdbcType=INTEGER},
+      oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      Products_id = #{record.productsId,jdbcType=INTEGER},
+      time = #{record.time,jdbcType=DATE},
+      productCollect1 = #{record.productcollect1,jdbcType=VARCHAR},
+      productCollect2 = #{record.productcollect2,jdbcType=VARCHAR},
+      productCollect3 = #{record.productcollect3,jdbcType=VARCHAR},
+      productCollect4 = #{record.productcollect4,jdbcType=VARCHAR},
+      productCollect5 = #{record.productcollect5,jdbcType=VARCHAR},
+      productCollect6 = #{record.productcollect6,jdbcType=VARCHAR},
+      productCollect7 = #{record.productcollect7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Productcollect" >
+    update productcollect
+    <set >
+      <if test="oldmanaccountId != null" >
+        oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="productsId != null" >
+        Products_id = #{productsId,jdbcType=INTEGER},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=DATE},
+      </if>
+      <if test="productcollect1 != null" >
+        productCollect1 = #{productcollect1,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect2 != null" >
+        productCollect2 = #{productcollect2,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect3 != null" >
+        productCollect3 = #{productcollect3,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect4 != null" >
+        productCollect4 = #{productcollect4,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect5 != null" >
+        productCollect5 = #{productcollect5,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect6 != null" >
+        productCollect6 = #{productcollect6,jdbcType=VARCHAR},
+      </if>
+      <if test="productcollect7 != null" >
+        productCollect7 = #{productcollect7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Productcollect" >
+    update productcollect
+    set oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      Products_id = #{productsId,jdbcType=INTEGER},
+      time = #{time,jdbcType=DATE},
+      productCollect1 = #{productcollect1,jdbcType=VARCHAR},
+      productCollect2 = #{productcollect2,jdbcType=VARCHAR},
+      productCollect3 = #{productcollect3,jdbcType=VARCHAR},
+      productCollect4 = #{productcollect4,jdbcType=VARCHAR},
+      productCollect5 = #{productcollect5,jdbcType=VARCHAR},
+      productCollect6 = #{productcollect6,jdbcType=VARCHAR},
+      productCollect7 = #{productcollect7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.ActivityenrolMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Activityenrol" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="enrolTime" property="enroltime" jdbcType="TIMESTAMP" />
+    <result column="enrolState" property="enrolstate" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="activityEnrol1" property="activityenrol1" jdbcType="VARCHAR" />
+    <result column="activityEnrol2" property="activityenrol2" jdbcType="VARCHAR" />
+    <result column="activityEnrol3" property="activityenrol3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, enrolTime, enrolState, oldMan_id, activity_id, activityEnrol1, activityEnrol2, 
+    activityEnrol3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ActivityenrolExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from activityenrol
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from activityenrol
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from activityenrol
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.ActivityenrolExample" >
+    delete from activityenrol
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Activityenrol" >
+    insert into activityenrol (id, enrolTime, enrolState, 
+      oldMan_id, activity_id, activityEnrol1, 
+      activityEnrol2, activityEnrol3)
+    values (#{id,jdbcType=INTEGER}, #{enroltime,jdbcType=TIMESTAMP}, #{enrolstate,jdbcType=VARCHAR}, 
+      #{oldmanId,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{activityenrol1,jdbcType=VARCHAR}, 
+      #{activityenrol2,jdbcType=VARCHAR}, #{activityenrol3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Activityenrol" >
+    insert into activityenrol
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="enroltime != null" >
+        enrolTime,
+      </if>
+      <if test="enrolstate != null" >
+        enrolState,
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="activityenrol1 != null" >
+        activityEnrol1,
+      </if>
+      <if test="activityenrol2 != null" >
+        activityEnrol2,
+      </if>
+      <if test="activityenrol3 != null" >
+        activityEnrol3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="enroltime != null" >
+        #{enroltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enrolstate != null" >
+        #{enrolstate,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityenrol1 != null" >
+        #{activityenrol1,jdbcType=VARCHAR},
+      </if>
+      <if test="activityenrol2 != null" >
+        #{activityenrol2,jdbcType=VARCHAR},
+      </if>
+      <if test="activityenrol3 != null" >
+        #{activityenrol3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.ActivityenrolExample" resultType="java.lang.Integer" >
+    select count(*) from activityenrol
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update activityenrol
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.enroltime != null" >
+        enrolTime = #{record.enroltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.enrolstate != null" >
+        enrolState = #{record.enrolstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldmanId != null" >
+        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityId != null" >
+        activity_id = #{record.activityId,jdbcType=INTEGER},
+      </if>
+      <if test="record.activityenrol1 != null" >
+        activityEnrol1 = #{record.activityenrol1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityenrol2 != null" >
+        activityEnrol2 = #{record.activityenrol2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityenrol3 != null" >
+        activityEnrol3 = #{record.activityenrol3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update activityenrol
+    set id = #{record.id,jdbcType=INTEGER},
+      enrolTime = #{record.enroltime,jdbcType=TIMESTAMP},
+      enrolState = #{record.enrolstate,jdbcType=VARCHAR},
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      activity_id = #{record.activityId,jdbcType=INTEGER},
+      activityEnrol1 = #{record.activityenrol1,jdbcType=VARCHAR},
+      activityEnrol2 = #{record.activityenrol2,jdbcType=VARCHAR},
+      activityEnrol3 = #{record.activityenrol3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Activityenrol" >
+    update activityenrol
+    <set >
+      <if test="enroltime != null" >
+        enrolTime = #{enroltime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="enrolstate != null" >
+        enrolState = #{enrolstate,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="activityenrol1 != null" >
+        activityEnrol1 = #{activityenrol1,jdbcType=VARCHAR},
+      </if>
+      <if test="activityenrol2 != null" >
+        activityEnrol2 = #{activityenrol2,jdbcType=VARCHAR},
+      </if>
+      <if test="activityenrol3 != null" >
+        activityEnrol3 = #{activityenrol3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Activityenrol" >
+    update activityenrol
+    set enrolTime = #{enroltime,jdbcType=TIMESTAMP},
+      enrolState = #{enrolstate,jdbcType=VARCHAR},
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      activityEnrol1 = #{activityenrol1,jdbcType=VARCHAR},
+      activityEnrol2 = #{activityenrol2,jdbcType=VARCHAR},
+      activityEnrol3 = #{activityenrol3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

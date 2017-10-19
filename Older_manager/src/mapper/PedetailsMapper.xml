@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.PedetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Pedetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="peProject" property="peproject" jdbcType="VARCHAR" />
+    <result column="peValue" property="pevalue" jdbcType="VARCHAR" />
+    <result column="peResult" property="peresult" jdbcType="VARCHAR" />
+    <result column="resultAnalysis" property="resultanalysis" jdbcType="VARCHAR" />
+    <result column="peInfo_id" property="peinfoId" jdbcType="INTEGER" />
+    <result column="PEDetails1" property="pedetails1" jdbcType="VARCHAR" />
+    <result column="PEDetails2" property="pedetails2" jdbcType="VARCHAR" />
+    <result column="PEDetails3" property="pedetails3" jdbcType="VARCHAR" />
+    <result column="PEDetails4" property="pedetails4" jdbcType="VARCHAR" />
+    <result column="PEDetails5" property="pedetails5" jdbcType="VARCHAR" />
+    <result column="PEDetails6" property="pedetails6" jdbcType="VARCHAR" />
+    <result column="PEDetails7" property="pedetails7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, peProject, peValue, peResult, resultAnalysis, peInfo_id, PEDetails1, PEDetails2, 
+    PEDetails3, PEDetails4, PEDetails5, PEDetails6, PEDetails7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.PedetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from pedetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pedetails
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pedetails
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.PedetailsExample" >
+    delete from pedetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Pedetails" >
+    insert into pedetails (id, peProject, peValue, 
+      peResult, resultAnalysis, peInfo_id, 
+      PEDetails1, PEDetails2, PEDetails3, 
+      PEDetails4, PEDetails5, PEDetails6, 
+      PEDetails7)
+    values (#{id,jdbcType=INTEGER}, #{peproject,jdbcType=VARCHAR}, #{pevalue,jdbcType=VARCHAR}, 
+      #{peresult,jdbcType=VARCHAR}, #{resultanalysis,jdbcType=VARCHAR}, #{peinfoId,jdbcType=INTEGER}, 
+      #{pedetails1,jdbcType=VARCHAR}, #{pedetails2,jdbcType=VARCHAR}, #{pedetails3,jdbcType=VARCHAR}, 
+      #{pedetails4,jdbcType=VARCHAR}, #{pedetails5,jdbcType=VARCHAR}, #{pedetails6,jdbcType=VARCHAR}, 
+      #{pedetails7,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Pedetails" >
+    insert into pedetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="peproject != null" >
+        peProject,
+      </if>
+      <if test="pevalue != null" >
+        peValue,
+      </if>
+      <if test="peresult != null" >
+        peResult,
+      </if>
+      <if test="resultanalysis != null" >
+        resultAnalysis,
+      </if>
+      <if test="peinfoId != null" >
+        peInfo_id,
+      </if>
+      <if test="pedetails1 != null" >
+        PEDetails1,
+      </if>
+      <if test="pedetails2 != null" >
+        PEDetails2,
+      </if>
+      <if test="pedetails3 != null" >
+        PEDetails3,
+      </if>
+      <if test="pedetails4 != null" >
+        PEDetails4,
+      </if>
+      <if test="pedetails5 != null" >
+        PEDetails5,
+      </if>
+      <if test="pedetails6 != null" >
+        PEDetails6,
+      </if>
+      <if test="pedetails7 != null" >
+        PEDetails7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="peproject != null" >
+        #{peproject,jdbcType=VARCHAR},
+      </if>
+      <if test="pevalue != null" >
+        #{pevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="peresult != null" >
+        #{peresult,jdbcType=VARCHAR},
+      </if>
+      <if test="resultanalysis != null" >
+        #{resultanalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="peinfoId != null" >
+        #{peinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="pedetails1 != null" >
+        #{pedetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails2 != null" >
+        #{pedetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails3 != null" >
+        #{pedetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails4 != null" >
+        #{pedetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails5 != null" >
+        #{pedetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails6 != null" >
+        #{pedetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails7 != null" >
+        #{pedetails7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.PedetailsExample" resultType="java.lang.Integer" >
+    select count(*) from pedetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update pedetails
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.peproject != null" >
+        peProject = #{record.peproject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pevalue != null" >
+        peValue = #{record.pevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peresult != null" >
+        peResult = #{record.peresult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.resultanalysis != null" >
+        resultAnalysis = #{record.resultanalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.peinfoId != null" >
+        peInfo_id = #{record.peinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pedetails1 != null" >
+        PEDetails1 = #{record.pedetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pedetails2 != null" >
+        PEDetails2 = #{record.pedetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pedetails3 != null" >
+        PEDetails3 = #{record.pedetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pedetails4 != null" >
+        PEDetails4 = #{record.pedetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pedetails5 != null" >
+        PEDetails5 = #{record.pedetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pedetails6 != null" >
+        PEDetails6 = #{record.pedetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pedetails7 != null" >
+        PEDetails7 = #{record.pedetails7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update pedetails
+    set id = #{record.id,jdbcType=INTEGER},
+      peProject = #{record.peproject,jdbcType=VARCHAR},
+      peValue = #{record.pevalue,jdbcType=VARCHAR},
+      peResult = #{record.peresult,jdbcType=VARCHAR},
+      resultAnalysis = #{record.resultanalysis,jdbcType=VARCHAR},
+      peInfo_id = #{record.peinfoId,jdbcType=INTEGER},
+      PEDetails1 = #{record.pedetails1,jdbcType=VARCHAR},
+      PEDetails2 = #{record.pedetails2,jdbcType=VARCHAR},
+      PEDetails3 = #{record.pedetails3,jdbcType=VARCHAR},
+      PEDetails4 = #{record.pedetails4,jdbcType=VARCHAR},
+      PEDetails5 = #{record.pedetails5,jdbcType=VARCHAR},
+      PEDetails6 = #{record.pedetails6,jdbcType=VARCHAR},
+      PEDetails7 = #{record.pedetails7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Pedetails" >
+    update pedetails
+    <set >
+      <if test="peproject != null" >
+        peProject = #{peproject,jdbcType=VARCHAR},
+      </if>
+      <if test="pevalue != null" >
+        peValue = #{pevalue,jdbcType=VARCHAR},
+      </if>
+      <if test="peresult != null" >
+        peResult = #{peresult,jdbcType=VARCHAR},
+      </if>
+      <if test="resultanalysis != null" >
+        resultAnalysis = #{resultanalysis,jdbcType=VARCHAR},
+      </if>
+      <if test="peinfoId != null" >
+        peInfo_id = #{peinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="pedetails1 != null" >
+        PEDetails1 = #{pedetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails2 != null" >
+        PEDetails2 = #{pedetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails3 != null" >
+        PEDetails3 = #{pedetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails4 != null" >
+        PEDetails4 = #{pedetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails5 != null" >
+        PEDetails5 = #{pedetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails6 != null" >
+        PEDetails6 = #{pedetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="pedetails7 != null" >
+        PEDetails7 = #{pedetails7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Pedetails" >
+    update pedetails
+    set peProject = #{peproject,jdbcType=VARCHAR},
+      peValue = #{pevalue,jdbcType=VARCHAR},
+      peResult = #{peresult,jdbcType=VARCHAR},
+      resultAnalysis = #{resultanalysis,jdbcType=VARCHAR},
+      peInfo_id = #{peinfoId,jdbcType=INTEGER},
+      PEDetails1 = #{pedetails1,jdbcType=VARCHAR},
+      PEDetails2 = #{pedetails2,jdbcType=VARCHAR},
+      PEDetails3 = #{pedetails3,jdbcType=VARCHAR},
+      PEDetails4 = #{pedetails4,jdbcType=VARCHAR},
+      PEDetails5 = #{pedetails5,jdbcType=VARCHAR},
+      PEDetails6 = #{pedetails6,jdbcType=VARCHAR},
+      PEDetails7 = #{pedetails7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Video" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="subtitle" property="subtitle" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="marking" property="marking" jdbcType="VARCHAR" />
+    <result column="lenght" property="lenght" jdbcType="VARCHAR" />
+    <result column="frameHeight" property="frameheight" jdbcType="DOUBLE" />
+    <result column="frameWidth" property="framewidth" jdbcType="DOUBLE" />
+    <result column="dateRate" property="daterate" jdbcType="VARCHAR" />
+    <result column="totalBitRate" property="totalbitrate" jdbcType="VARCHAR" />
+    <result column="frameRate" property="framerate" jdbcType="VARCHAR" />
+    <result column="bitRate" property="bitrate" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="afsf" property="afsf" jdbcType="VARCHAR" />
+    <result column="artists" property="artists" jdbcType="VARCHAR" />
+    <result column="years" property="years" jdbcType="VARCHAR" />
+    <result column="director" property="director" jdbcType="VARCHAR" />
+    <result column="producer" property="producer" jdbcType="VARCHAR" />
+    <result column="creators" property="creators" jdbcType="VARCHAR" />
+    <result column="promulgator" property="promulgator" jdbcType="VARCHAR" />
+    <result column="contentProvider" property="contentprovider" jdbcType="VARCHAR" />
+    <result column="copyRight" property="copyright" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="video1" property="video1" jdbcType="VARCHAR" />
+    <result column="video2" property="video2" jdbcType="VARCHAR" />
+    <result column="video3" property="video3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, title, subtitle, remark, marking, lenght, frameHeight, frameWidth, dateRate, 
+    totalBitRate, frameRate, bitRate, channel, afsf, artists, years, director, producer, 
+    creators, promulgator, contentProvider, copyRight, path, createTime, video1, video2, 
+    video3
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.VideoExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from video
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.VideoExample" >
+    delete from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Video" >
+    insert into video (id, title, subtitle, 
+      remark, marking, lenght, 
+      frameHeight, frameWidth, dateRate, 
+      totalBitRate, frameRate, bitRate, 
+      channel, afsf, artists, 
+      years, director, producer, 
+      creators, promulgator, contentProvider, 
+      copyRight, path, createTime, 
+      video1, video2, video3
+      )
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{marking,jdbcType=VARCHAR}, #{lenght,jdbcType=VARCHAR}, 
+      #{frameheight,jdbcType=DOUBLE}, #{framewidth,jdbcType=DOUBLE}, #{daterate,jdbcType=VARCHAR}, 
+      #{totalbitrate,jdbcType=VARCHAR}, #{framerate,jdbcType=VARCHAR}, #{bitrate,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{afsf,jdbcType=VARCHAR}, #{artists,jdbcType=VARCHAR}, 
+      #{years,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{producer,jdbcType=VARCHAR}, 
+      #{creators,jdbcType=VARCHAR}, #{promulgator,jdbcType=VARCHAR}, #{contentprovider,jdbcType=VARCHAR}, 
+      #{copyright,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{video1,jdbcType=VARCHAR}, #{video2,jdbcType=VARCHAR}, #{video3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Video" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="subtitle != null" >
+        subtitle,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="marking != null" >
+        marking,
+      </if>
+      <if test="lenght != null" >
+        lenght,
+      </if>
+      <if test="frameheight != null" >
+        frameHeight,
+      </if>
+      <if test="framewidth != null" >
+        frameWidth,
+      </if>
+      <if test="daterate != null" >
+        dateRate,
+      </if>
+      <if test="totalbitrate != null" >
+        totalBitRate,
+      </if>
+      <if test="framerate != null" >
+        frameRate,
+      </if>
+      <if test="bitrate != null" >
+        bitRate,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="afsf != null" >
+        afsf,
+      </if>
+      <if test="artists != null" >
+        artists,
+      </if>
+      <if test="years != null" >
+        years,
+      </if>
+      <if test="director != null" >
+        director,
+      </if>
+      <if test="producer != null" >
+        producer,
+      </if>
+      <if test="creators != null" >
+        creators,
+      </if>
+      <if test="promulgator != null" >
+        promulgator,
+      </if>
+      <if test="contentprovider != null" >
+        contentProvider,
+      </if>
+      <if test="copyright != null" >
+        copyRight,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="video1 != null" >
+        video1,
+      </if>
+      <if test="video2 != null" >
+        video2,
+      </if>
+      <if test="video3 != null" >
+        video3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="marking != null" >
+        #{marking,jdbcType=VARCHAR},
+      </if>
+      <if test="lenght != null" >
+        #{lenght,jdbcType=VARCHAR},
+      </if>
+      <if test="frameheight != null" >
+        #{frameheight,jdbcType=DOUBLE},
+      </if>
+      <if test="framewidth != null" >
+        #{framewidth,jdbcType=DOUBLE},
+      </if>
+      <if test="daterate != null" >
+        #{daterate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalbitrate != null" >
+        #{totalbitrate,jdbcType=VARCHAR},
+      </if>
+      <if test="framerate != null" >
+        #{framerate,jdbcType=VARCHAR},
+      </if>
+      <if test="bitrate != null" >
+        #{bitrate,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="afsf != null" >
+        #{afsf,jdbcType=VARCHAR},
+      </if>
+      <if test="artists != null" >
+        #{artists,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null" >
+        #{years,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="producer != null" >
+        #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="creators != null" >
+        #{creators,jdbcType=VARCHAR},
+      </if>
+      <if test="promulgator != null" >
+        #{promulgator,jdbcType=VARCHAR},
+      </if>
+      <if test="contentprovider != null" >
+        #{contentprovider,jdbcType=VARCHAR},
+      </if>
+      <if test="copyright != null" >
+        #{copyright,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="video1 != null" >
+        #{video1,jdbcType=VARCHAR},
+      </if>
+      <if test="video2 != null" >
+        #{video2,jdbcType=VARCHAR},
+      </if>
+      <if test="video3 != null" >
+        #{video3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.VideoExample" resultType="java.lang.Integer" >
+    select count(*) from video
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update video
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subtitle != null" >
+        subtitle = #{record.subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marking != null" >
+        marking = #{record.marking,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lenght != null" >
+        lenght = #{record.lenght,jdbcType=VARCHAR},
+      </if>
+      <if test="record.frameheight != null" >
+        frameHeight = #{record.frameheight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.framewidth != null" >
+        frameWidth = #{record.framewidth,jdbcType=DOUBLE},
+      </if>
+      <if test="record.daterate != null" >
+        dateRate = #{record.daterate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalbitrate != null" >
+        totalBitRate = #{record.totalbitrate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.framerate != null" >
+        frameRate = #{record.framerate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bitrate != null" >
+        bitRate = #{record.bitrate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channel != null" >
+        channel = #{record.channel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.afsf != null" >
+        afsf = #{record.afsf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.artists != null" >
+        artists = #{record.artists,jdbcType=VARCHAR},
+      </if>
+      <if test="record.years != null" >
+        years = #{record.years,jdbcType=VARCHAR},
+      </if>
+      <if test="record.director != null" >
+        director = #{record.director,jdbcType=VARCHAR},
+      </if>
+      <if test="record.producer != null" >
+        producer = #{record.producer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creators != null" >
+        creators = #{record.creators,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promulgator != null" >
+        promulgator = #{record.promulgator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contentprovider != null" >
+        contentProvider = #{record.contentprovider,jdbcType=VARCHAR},
+      </if>
+      <if test="record.copyright != null" >
+        copyRight = #{record.copyright,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        path = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.video1 != null" >
+        video1 = #{record.video1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.video2 != null" >
+        video2 = #{record.video2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.video3 != null" >
+        video3 = #{record.video3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update video
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      subtitle = #{record.subtitle,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      marking = #{record.marking,jdbcType=VARCHAR},
+      lenght = #{record.lenght,jdbcType=VARCHAR},
+      frameHeight = #{record.frameheight,jdbcType=DOUBLE},
+      frameWidth = #{record.framewidth,jdbcType=DOUBLE},
+      dateRate = #{record.daterate,jdbcType=VARCHAR},
+      totalBitRate = #{record.totalbitrate,jdbcType=VARCHAR},
+      frameRate = #{record.framerate,jdbcType=VARCHAR},
+      bitRate = #{record.bitrate,jdbcType=VARCHAR},
+      channel = #{record.channel,jdbcType=VARCHAR},
+      afsf = #{record.afsf,jdbcType=VARCHAR},
+      artists = #{record.artists,jdbcType=VARCHAR},
+      years = #{record.years,jdbcType=VARCHAR},
+      director = #{record.director,jdbcType=VARCHAR},
+      producer = #{record.producer,jdbcType=VARCHAR},
+      creators = #{record.creators,jdbcType=VARCHAR},
+      promulgator = #{record.promulgator,jdbcType=VARCHAR},
+      contentProvider = #{record.contentprovider,jdbcType=VARCHAR},
+      copyRight = #{record.copyright,jdbcType=VARCHAR},
+      path = #{record.path,jdbcType=VARCHAR},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      video1 = #{record.video1,jdbcType=VARCHAR},
+      video2 = #{record.video2,jdbcType=VARCHAR},
+      video3 = #{record.video3,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Video" >
+    update video
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="subtitle != null" >
+        subtitle = #{subtitle,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="marking != null" >
+        marking = #{marking,jdbcType=VARCHAR},
+      </if>
+      <if test="lenght != null" >
+        lenght = #{lenght,jdbcType=VARCHAR},
+      </if>
+      <if test="frameheight != null" >
+        frameHeight = #{frameheight,jdbcType=DOUBLE},
+      </if>
+      <if test="framewidth != null" >
+        frameWidth = #{framewidth,jdbcType=DOUBLE},
+      </if>
+      <if test="daterate != null" >
+        dateRate = #{daterate,jdbcType=VARCHAR},
+      </if>
+      <if test="totalbitrate != null" >
+        totalBitRate = #{totalbitrate,jdbcType=VARCHAR},
+      </if>
+      <if test="framerate != null" >
+        frameRate = #{framerate,jdbcType=VARCHAR},
+      </if>
+      <if test="bitrate != null" >
+        bitRate = #{bitrate,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="afsf != null" >
+        afsf = #{afsf,jdbcType=VARCHAR},
+      </if>
+      <if test="artists != null" >
+        artists = #{artists,jdbcType=VARCHAR},
+      </if>
+      <if test="years != null" >
+        years = #{years,jdbcType=VARCHAR},
+      </if>
+      <if test="director != null" >
+        director = #{director,jdbcType=VARCHAR},
+      </if>
+      <if test="producer != null" >
+        producer = #{producer,jdbcType=VARCHAR},
+      </if>
+      <if test="creators != null" >
+        creators = #{creators,jdbcType=VARCHAR},
+      </if>
+      <if test="promulgator != null" >
+        promulgator = #{promulgator,jdbcType=VARCHAR},
+      </if>
+      <if test="contentprovider != null" >
+        contentProvider = #{contentprovider,jdbcType=VARCHAR},
+      </if>
+      <if test="copyright != null" >
+        copyRight = #{copyright,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="video1 != null" >
+        video1 = #{video1,jdbcType=VARCHAR},
+      </if>
+      <if test="video2 != null" >
+        video2 = #{video2,jdbcType=VARCHAR},
+      </if>
+      <if test="video3 != null" >
+        video3 = #{video3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Video" >
+    update video
+    set title = #{title,jdbcType=VARCHAR},
+      subtitle = #{subtitle,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      marking = #{marking,jdbcType=VARCHAR},
+      lenght = #{lenght,jdbcType=VARCHAR},
+      frameHeight = #{frameheight,jdbcType=DOUBLE},
+      frameWidth = #{framewidth,jdbcType=DOUBLE},
+      dateRate = #{daterate,jdbcType=VARCHAR},
+      totalBitRate = #{totalbitrate,jdbcType=VARCHAR},
+      frameRate = #{framerate,jdbcType=VARCHAR},
+      bitRate = #{bitrate,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      afsf = #{afsf,jdbcType=VARCHAR},
+      artists = #{artists,jdbcType=VARCHAR},
+      years = #{years,jdbcType=VARCHAR},
+      director = #{director,jdbcType=VARCHAR},
+      producer = #{producer,jdbcType=VARCHAR},
+      creators = #{creators,jdbcType=VARCHAR},
+      promulgator = #{promulgator,jdbcType=VARCHAR},
+      contentProvider = #{contentprovider,jdbcType=VARCHAR},
+      copyRight = #{copyright,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      video1 = #{video1,jdbcType=VARCHAR},
+      video2 = #{video2,jdbcType=VARCHAR},
+      video3 = #{video3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

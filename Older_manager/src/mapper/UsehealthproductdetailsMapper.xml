@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.UsehealthproductdetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Usehealthproductdetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="ProductName" property="productname" jdbcType="VARCHAR" />
+    <result column="buyPatterns" property="buypatterns" jdbcType="VARCHAR" />
+    <result column="spendMoney" property="spendmoney" jdbcType="DOUBLE" />
+    <result column="solvedProblem" property="solvedproblem" jdbcType="VARCHAR" />
+    <result column="effect" property="effect" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="function" property="function" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails1" property="usehealthproductdetails1" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails2" property="usehealthproductdetails2" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails3" property="usehealthproductdetails3" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails4" property="usehealthproductdetails4" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails5" property="usehealthproductdetails5" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails6" property="usehealthproductdetails6" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails7" property="usehealthproductdetails7" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails8" property="usehealthproductdetails8" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails9" property="usehealthproductdetails9" jdbcType="VARCHAR" />
+    <result column="useHealthProductDetails10" property="usehealthproductdetails10" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, ProductName, buyPatterns, spendMoney, solvedProblem, effect, oldMan_id, function, 
+    useHealthProductDetails1, useHealthProductDetails2, useHealthProductDetails3, useHealthProductDetails4, 
+    useHealthProductDetails5, useHealthProductDetails6, useHealthProductDetails7, useHealthProductDetails8, 
+    useHealthProductDetails9, useHealthProductDetails10
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.UsehealthproductdetailsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from usehealthproductdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from usehealthproductdetails
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from usehealthproductdetails
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.UsehealthproductdetailsExample" >
+    delete from usehealthproductdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Usehealthproductdetails" >
+    insert into usehealthproductdetails (id, ProductName, buyPatterns, 
+      spendMoney, solvedProblem, effect, 
+      oldMan_id, function, useHealthProductDetails1, 
+      useHealthProductDetails2, useHealthProductDetails3, 
+      useHealthProductDetails4, useHealthProductDetails5, 
+      useHealthProductDetails6, useHealthProductDetails7, 
+      useHealthProductDetails8, useHealthProductDetails9, 
+      useHealthProductDetails10)
+    values (#{id,jdbcType=INTEGER}, #{productname,jdbcType=VARCHAR}, #{buypatterns,jdbcType=VARCHAR}, 
+      #{spendmoney,jdbcType=DOUBLE}, #{solvedproblem,jdbcType=VARCHAR}, #{effect,jdbcType=VARCHAR}, 
+      #{oldmanId,jdbcType=INTEGER}, #{function,jdbcType=VARCHAR}, #{usehealthproductdetails1,jdbcType=VARCHAR}, 
+      #{usehealthproductdetails2,jdbcType=VARCHAR}, #{usehealthproductdetails3,jdbcType=VARCHAR}, 
+      #{usehealthproductdetails4,jdbcType=VARCHAR}, #{usehealthproductdetails5,jdbcType=VARCHAR}, 
+      #{usehealthproductdetails6,jdbcType=VARCHAR}, #{usehealthproductdetails7,jdbcType=VARCHAR}, 
+      #{usehealthproductdetails8,jdbcType=VARCHAR}, #{usehealthproductdetails9,jdbcType=VARCHAR}, 
+      #{usehealthproductdetails10,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Usehealthproductdetails" >
+    insert into usehealthproductdetails
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productname != null" >
+        ProductName,
+      </if>
+      <if test="buypatterns != null" >
+        buyPatterns,
+      </if>
+      <if test="spendmoney != null" >
+        spendMoney,
+      </if>
+      <if test="solvedproblem != null" >
+        solvedProblem,
+      </if>
+      <if test="effect != null" >
+        effect,
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id,
+      </if>
+      <if test="function != null" >
+        function,
+      </if>
+      <if test="usehealthproductdetails1 != null" >
+        useHealthProductDetails1,
+      </if>
+      <if test="usehealthproductdetails2 != null" >
+        useHealthProductDetails2,
+      </if>
+      <if test="usehealthproductdetails3 != null" >
+        useHealthProductDetails3,
+      </if>
+      <if test="usehealthproductdetails4 != null" >
+        useHealthProductDetails4,
+      </if>
+      <if test="usehealthproductdetails5 != null" >
+        useHealthProductDetails5,
+      </if>
+      <if test="usehealthproductdetails6 != null" >
+        useHealthProductDetails6,
+      </if>
+      <if test="usehealthproductdetails7 != null" >
+        useHealthProductDetails7,
+      </if>
+      <if test="usehealthproductdetails8 != null" >
+        useHealthProductDetails8,
+      </if>
+      <if test="usehealthproductdetails9 != null" >
+        useHealthProductDetails9,
+      </if>
+      <if test="usehealthproductdetails10 != null" >
+        useHealthProductDetails10,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="buypatterns != null" >
+        #{buypatterns,jdbcType=VARCHAR},
+      </if>
+      <if test="spendmoney != null" >
+        #{spendmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="solvedproblem != null" >
+        #{solvedproblem,jdbcType=VARCHAR},
+      </if>
+      <if test="effect != null" >
+        #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="function != null" >
+        #{function,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails1 != null" >
+        #{usehealthproductdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails2 != null" >
+        #{usehealthproductdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails3 != null" >
+        #{usehealthproductdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails4 != null" >
+        #{usehealthproductdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails5 != null" >
+        #{usehealthproductdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails6 != null" >
+        #{usehealthproductdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails7 != null" >
+        #{usehealthproductdetails7,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails8 != null" >
+        #{usehealthproductdetails8,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails9 != null" >
+        #{usehealthproductdetails9,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails10 != null" >
+        #{usehealthproductdetails10,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.UsehealthproductdetailsExample" resultType="java.lang.Integer" >
+    select count(*) from usehealthproductdetails
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update usehealthproductdetails
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.productname != null" >
+        ProductName = #{record.productname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buypatterns != null" >
+        buyPatterns = #{record.buypatterns,jdbcType=VARCHAR},
+      </if>
+      <if test="record.spendmoney != null" >
+        spendMoney = #{record.spendmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.solvedproblem != null" >
+        solvedProblem = #{record.solvedproblem,jdbcType=VARCHAR},
+      </if>
+      <if test="record.effect != null" >
+        effect = #{record.effect,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldmanId != null" >
+        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.function != null" >
+        function = #{record.function,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails1 != null" >
+        useHealthProductDetails1 = #{record.usehealthproductdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails2 != null" >
+        useHealthProductDetails2 = #{record.usehealthproductdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails3 != null" >
+        useHealthProductDetails3 = #{record.usehealthproductdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails4 != null" >
+        useHealthProductDetails4 = #{record.usehealthproductdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails5 != null" >
+        useHealthProductDetails5 = #{record.usehealthproductdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails6 != null" >
+        useHealthProductDetails6 = #{record.usehealthproductdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails7 != null" >
+        useHealthProductDetails7 = #{record.usehealthproductdetails7,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails8 != null" >
+        useHealthProductDetails8 = #{record.usehealthproductdetails8,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails9 != null" >
+        useHealthProductDetails9 = #{record.usehealthproductdetails9,jdbcType=VARCHAR},
+      </if>
+      <if test="record.usehealthproductdetails10 != null" >
+        useHealthProductDetails10 = #{record.usehealthproductdetails10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update usehealthproductdetails
+    set id = #{record.id,jdbcType=INTEGER},
+      ProductName = #{record.productname,jdbcType=VARCHAR},
+      buyPatterns = #{record.buypatterns,jdbcType=VARCHAR},
+      spendMoney = #{record.spendmoney,jdbcType=DOUBLE},
+      solvedProblem = #{record.solvedproblem,jdbcType=VARCHAR},
+      effect = #{record.effect,jdbcType=VARCHAR},
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      function = #{record.function,jdbcType=VARCHAR},
+      useHealthProductDetails1 = #{record.usehealthproductdetails1,jdbcType=VARCHAR},
+      useHealthProductDetails2 = #{record.usehealthproductdetails2,jdbcType=VARCHAR},
+      useHealthProductDetails3 = #{record.usehealthproductdetails3,jdbcType=VARCHAR},
+      useHealthProductDetails4 = #{record.usehealthproductdetails4,jdbcType=VARCHAR},
+      useHealthProductDetails5 = #{record.usehealthproductdetails5,jdbcType=VARCHAR},
+      useHealthProductDetails6 = #{record.usehealthproductdetails6,jdbcType=VARCHAR},
+      useHealthProductDetails7 = #{record.usehealthproductdetails7,jdbcType=VARCHAR},
+      useHealthProductDetails8 = #{record.usehealthproductdetails8,jdbcType=VARCHAR},
+      useHealthProductDetails9 = #{record.usehealthproductdetails9,jdbcType=VARCHAR},
+      useHealthProductDetails10 = #{record.usehealthproductdetails10,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Usehealthproductdetails" >
+    update usehealthproductdetails
+    <set >
+      <if test="productname != null" >
+        ProductName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="buypatterns != null" >
+        buyPatterns = #{buypatterns,jdbcType=VARCHAR},
+      </if>
+      <if test="spendmoney != null" >
+        spendMoney = #{spendmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="solvedproblem != null" >
+        solvedProblem = #{solvedproblem,jdbcType=VARCHAR},
+      </if>
+      <if test="effect != null" >
+        effect = #{effect,jdbcType=VARCHAR},
+      </if>
+      <if test="oldmanId != null" >
+        oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="function != null" >
+        function = #{function,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails1 != null" >
+        useHealthProductDetails1 = #{usehealthproductdetails1,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails2 != null" >
+        useHealthProductDetails2 = #{usehealthproductdetails2,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails3 != null" >
+        useHealthProductDetails3 = #{usehealthproductdetails3,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails4 != null" >
+        useHealthProductDetails4 = #{usehealthproductdetails4,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails5 != null" >
+        useHealthProductDetails5 = #{usehealthproductdetails5,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails6 != null" >
+        useHealthProductDetails6 = #{usehealthproductdetails6,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails7 != null" >
+        useHealthProductDetails7 = #{usehealthproductdetails7,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails8 != null" >
+        useHealthProductDetails8 = #{usehealthproductdetails8,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails9 != null" >
+        useHealthProductDetails9 = #{usehealthproductdetails9,jdbcType=VARCHAR},
+      </if>
+      <if test="usehealthproductdetails10 != null" >
+        useHealthProductDetails10 = #{usehealthproductdetails10,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Usehealthproductdetails" >
+    update usehealthproductdetails
+    set ProductName = #{productname,jdbcType=VARCHAR},
+      buyPatterns = #{buypatterns,jdbcType=VARCHAR},
+      spendMoney = #{spendmoney,jdbcType=DOUBLE},
+      solvedProblem = #{solvedproblem,jdbcType=VARCHAR},
+      effect = #{effect,jdbcType=VARCHAR},
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      function = #{function,jdbcType=VARCHAR},
+      useHealthProductDetails1 = #{usehealthproductdetails1,jdbcType=VARCHAR},
+      useHealthProductDetails2 = #{usehealthproductdetails2,jdbcType=VARCHAR},
+      useHealthProductDetails3 = #{usehealthproductdetails3,jdbcType=VARCHAR},
+      useHealthProductDetails4 = #{usehealthproductdetails4,jdbcType=VARCHAR},
+      useHealthProductDetails5 = #{usehealthproductdetails5,jdbcType=VARCHAR},
+      useHealthProductDetails6 = #{usehealthproductdetails6,jdbcType=VARCHAR},
+      useHealthProductDetails7 = #{usehealthproductdetails7,jdbcType=VARCHAR},
+      useHealthProductDetails8 = #{usehealthproductdetails8,jdbcType=VARCHAR},
+      useHealthProductDetails9 = #{usehealthproductdetails9,jdbcType=VARCHAR},
+      useHealthProductDetails10 = #{usehealthproductdetails10,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

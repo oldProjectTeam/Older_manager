@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Orders" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DOUBLE" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="payType" property="paytype" jdbcType="VARCHAR" />
+    <result column="creatTime" property="creattime" jdbcType="DATE" />
+    <result column="oldManAccount_id" property="oldmanaccountId" jdbcType="INTEGER" />
+    <result column="harvestAddress" property="harvestaddress" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="consigneePhone" property="consigneephone" jdbcType="VARCHAR" />
+    <result column="shipper" property="shipper" jdbcType="VARCHAR" />
+    <result column="shipperPhone" property="shipperphone" jdbcType="VARCHAR" />
+    <result column="formulaWay" property="formulaway" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="freight" property="freight" jdbcType="DOUBLE" />
+    <result column="orders1" property="orders1" jdbcType="VARCHAR" />
+    <result column="orders2" property="orders2" jdbcType="VARCHAR" />
+    <result column="orders3" property="orders3" jdbcType="VARCHAR" />
+    <result column="orders4" property="orders4" jdbcType="VARCHAR" />
+    <result column="orders5" property="orders5" jdbcType="VARCHAR" />
+    <result column="orders6" property="orders6" jdbcType="VARCHAR" />
+    <result column="orders7" property="orders7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_no, cost, num, payType, creatTime, oldManAccount_id, harvestAddress, consignee, 
+    consigneePhone, shipper, shipperPhone, formulaWay, state, freight, orders1, orders2, 
+    orders3, orders4, orders5, orders6, orders7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.OrdersExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.OrdersExample" >
+    delete from orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Orders" >
+    insert into orders (id, order_no, cost, 
+      num, payType, creatTime, 
+      oldManAccount_id, harvestAddress, consignee, 
+      consigneePhone, shipper, shipperPhone, 
+      formulaWay, state, freight, 
+      orders1, orders2, orders3, 
+      orders4, orders5, orders6, 
+      orders7)
+    values (#{id,jdbcType=INTEGER}, #{orderNo,jdbcType=VARCHAR}, #{cost,jdbcType=DOUBLE}, 
+      #{num,jdbcType=INTEGER}, #{paytype,jdbcType=VARCHAR}, #{creattime,jdbcType=DATE}, 
+      #{oldmanaccountId,jdbcType=INTEGER}, #{harvestaddress,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
+      #{consigneephone,jdbcType=VARCHAR}, #{shipper,jdbcType=VARCHAR}, #{shipperphone,jdbcType=VARCHAR}, 
+      #{formulaway,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{freight,jdbcType=DOUBLE}, 
+      #{orders1,jdbcType=VARCHAR}, #{orders2,jdbcType=VARCHAR}, #{orders3,jdbcType=VARCHAR}, 
+      #{orders4,jdbcType=VARCHAR}, #{orders5,jdbcType=VARCHAR}, #{orders6,jdbcType=VARCHAR}, 
+      #{orders7,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="paytype != null" >
+        payType,
+      </if>
+      <if test="creattime != null" >
+        creatTime,
+      </if>
+      <if test="oldmanaccountId != null" >
+        oldManAccount_id,
+      </if>
+      <if test="harvestaddress != null" >
+        harvestAddress,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="consigneephone != null" >
+        consigneePhone,
+      </if>
+      <if test="shipper != null" >
+        shipper,
+      </if>
+      <if test="shipperphone != null" >
+        shipperPhone,
+      </if>
+      <if test="formulaway != null" >
+        formulaWay,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="freight != null" >
+        freight,
+      </if>
+      <if test="orders1 != null" >
+        orders1,
+      </if>
+      <if test="orders2 != null" >
+        orders2,
+      </if>
+      <if test="orders3 != null" >
+        orders3,
+      </if>
+      <if test="orders4 != null" >
+        orders4,
+      </if>
+      <if test="orders5 != null" >
+        orders5,
+      </if>
+      <if test="orders6 != null" >
+        orders6,
+      </if>
+      <if test="orders7 != null" >
+        orders7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=DATE},
+      </if>
+      <if test="oldmanaccountId != null" >
+        #{oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="harvestaddress != null" >
+        #{harvestaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneephone != null" >
+        #{consigneephone,jdbcType=VARCHAR},
+      </if>
+      <if test="shipper != null" >
+        #{shipper,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperphone != null" >
+        #{shipperphone,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaway != null" >
+        #{formulaway,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null" >
+        #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="orders1 != null" >
+        #{orders1,jdbcType=VARCHAR},
+      </if>
+      <if test="orders2 != null" >
+        #{orders2,jdbcType=VARCHAR},
+      </if>
+      <if test="orders3 != null" >
+        #{orders3,jdbcType=VARCHAR},
+      </if>
+      <if test="orders4 != null" >
+        #{orders4,jdbcType=VARCHAR},
+      </if>
+      <if test="orders5 != null" >
+        #{orders5,jdbcType=VARCHAR},
+      </if>
+      <if test="orders6 != null" >
+        #{orders6,jdbcType=VARCHAR},
+      </if>
+      <if test="orders7 != null" >
+        #{orders7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.OrdersExample" resultType="java.lang.Integer" >
+    select count(*) from orders
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update orders
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderNo != null" >
+        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=DOUBLE},
+      </if>
+      <if test="record.num != null" >
+        num = #{record.num,jdbcType=INTEGER},
+      </if>
+      <if test="record.paytype != null" >
+        payType = #{record.paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creattime != null" >
+        creatTime = #{record.creattime,jdbcType=DATE},
+      </if>
+      <if test="record.oldmanaccountId != null" >
+        oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="record.harvestaddress != null" >
+        harvestAddress = #{record.harvestaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consignee != null" >
+        consignee = #{record.consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.consigneephone != null" >
+        consigneePhone = #{record.consigneephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipper != null" >
+        shipper = #{record.shipper,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperphone != null" >
+        shipperPhone = #{record.shipperphone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.formulaway != null" >
+        formulaWay = #{record.formulaway,jdbcType=VARCHAR},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.freight != null" >
+        freight = #{record.freight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.orders1 != null" >
+        orders1 = #{record.orders1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders2 != null" >
+        orders2 = #{record.orders2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders3 != null" >
+        orders3 = #{record.orders3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders4 != null" >
+        orders4 = #{record.orders4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders5 != null" >
+        orders5 = #{record.orders5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders6 != null" >
+        orders6 = #{record.orders6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orders7 != null" >
+        orders7 = #{record.orders7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update orders
+    set id = #{record.id,jdbcType=INTEGER},
+      order_no = #{record.orderNo,jdbcType=VARCHAR},
+      cost = #{record.cost,jdbcType=DOUBLE},
+      num = #{record.num,jdbcType=INTEGER},
+      payType = #{record.paytype,jdbcType=VARCHAR},
+      creatTime = #{record.creattime,jdbcType=DATE},
+      oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      harvestAddress = #{record.harvestaddress,jdbcType=VARCHAR},
+      consignee = #{record.consignee,jdbcType=VARCHAR},
+      consigneePhone = #{record.consigneephone,jdbcType=VARCHAR},
+      shipper = #{record.shipper,jdbcType=VARCHAR},
+      shipperPhone = #{record.shipperphone,jdbcType=VARCHAR},
+      formulaWay = #{record.formulaway,jdbcType=VARCHAR},
+      state = #{record.state,jdbcType=VARCHAR},
+      freight = #{record.freight,jdbcType=DOUBLE},
+      orders1 = #{record.orders1,jdbcType=VARCHAR},
+      orders2 = #{record.orders2,jdbcType=VARCHAR},
+      orders3 = #{record.orders3,jdbcType=VARCHAR},
+      orders4 = #{record.orders4,jdbcType=VARCHAR},
+      orders5 = #{record.orders5,jdbcType=VARCHAR},
+      orders6 = #{record.orders6,jdbcType=VARCHAR},
+      orders7 = #{record.orders7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Orders" >
+    update orders
+    <set >
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="paytype != null" >
+        payType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="creattime != null" >
+        creatTime = #{creattime,jdbcType=DATE},
+      </if>
+      <if test="oldmanaccountId != null" >
+        oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      </if>
+      <if test="harvestaddress != null" >
+        harvestAddress = #{harvestaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneephone != null" >
+        consigneePhone = #{consigneephone,jdbcType=VARCHAR},
+      </if>
+      <if test="shipper != null" >
+        shipper = #{shipper,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperphone != null" >
+        shipperPhone = #{shipperphone,jdbcType=VARCHAR},
+      </if>
+      <if test="formulaway != null" >
+        formulaWay = #{formulaway,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="freight != null" >
+        freight = #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="orders1 != null" >
+        orders1 = #{orders1,jdbcType=VARCHAR},
+      </if>
+      <if test="orders2 != null" >
+        orders2 = #{orders2,jdbcType=VARCHAR},
+      </if>
+      <if test="orders3 != null" >
+        orders3 = #{orders3,jdbcType=VARCHAR},
+      </if>
+      <if test="orders4 != null" >
+        orders4 = #{orders4,jdbcType=VARCHAR},
+      </if>
+      <if test="orders5 != null" >
+        orders5 = #{orders5,jdbcType=VARCHAR},
+      </if>
+      <if test="orders6 != null" >
+        orders6 = #{orders6,jdbcType=VARCHAR},
+      </if>
+      <if test="orders7 != null" >
+        orders7 = #{orders7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Orders" >
+    update orders
+    set order_no = #{orderNo,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DOUBLE},
+      num = #{num,jdbcType=INTEGER},
+      payType = #{paytype,jdbcType=VARCHAR},
+      creatTime = #{creattime,jdbcType=DATE},
+      oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      harvestAddress = #{harvestaddress,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consigneePhone = #{consigneephone,jdbcType=VARCHAR},
+      shipper = #{shipper,jdbcType=VARCHAR},
+      shipperPhone = #{shipperphone,jdbcType=VARCHAR},
+      formulaWay = #{formulaway,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      freight = #{freight,jdbcType=DOUBLE},
+      orders1 = #{orders1,jdbcType=VARCHAR},
+      orders2 = #{orders2,jdbcType=VARCHAR},
+      orders3 = #{orders3,jdbcType=VARCHAR},
+      orders4 = #{orders4,jdbcType=VARCHAR},
+      orders5 = #{orders5,jdbcType=VARCHAR},
+      orders6 = #{orders6,jdbcType=VARCHAR},
+      orders7 = #{orders7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
