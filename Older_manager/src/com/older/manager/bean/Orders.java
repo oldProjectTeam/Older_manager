@@ -7,27 +7,29 @@ public class Orders {
 
     private String orderNo;
 
+    private String transactionid;
+
+    private String subject;
+
     private Double cost;
 
     private Integer num;
 
+    private String body;
+
     private String paytype;
 
     private Date creattime;
-
-    private Integer oldmanaccountId;
-
-    private String harvestaddress;
-
-    private String consignee;
-
-    private String consigneephone;
 
     private String shipper;
 
     private String shipperphone;
 
     private String formulaway;
+
+    private Integer shippingaddressId;
+
+    private Integer userId;
 
     private String state;
 
@@ -63,6 +65,22 @@ public class Orders {
         this.orderNo = orderNo == null ? null : orderNo.trim();
     }
 
+    public String getTransactionid() {
+        return transactionid;
+    }
+
+    public void setTransactionid(String transactionid) {
+        this.transactionid = transactionid == null ? null : transactionid.trim();
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject == null ? null : subject.trim();
+    }
+
     public Double getCost() {
         return cost;
     }
@@ -79,6 +97,14 @@ public class Orders {
         this.num = num;
     }
 
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body == null ? null : body.trim();
+    }
+
     public String getPaytype() {
         return paytype;
     }
@@ -93,38 +119,6 @@ public class Orders {
 
     public void setCreattime(Date creattime) {
         this.creattime = creattime;
-    }
-
-    public Integer getOldmanaccountId() {
-        return oldmanaccountId;
-    }
-
-    public void setOldmanaccountId(Integer oldmanaccountId) {
-        this.oldmanaccountId = oldmanaccountId;
-    }
-
-    public String getHarvestaddress() {
-        return harvestaddress;
-    }
-
-    public void setHarvestaddress(String harvestaddress) {
-        this.harvestaddress = harvestaddress == null ? null : harvestaddress.trim();
-    }
-
-    public String getConsignee() {
-        return consignee;
-    }
-
-    public void setConsignee(String consignee) {
-        this.consignee = consignee == null ? null : consignee.trim();
-    }
-
-    public String getConsigneephone() {
-        return consigneephone;
-    }
-
-    public void setConsigneephone(String consigneephone) {
-        this.consigneephone = consigneephone == null ? null : consigneephone.trim();
     }
 
     public String getShipper() {
@@ -149,6 +143,22 @@ public class Orders {
 
     public void setFormulaway(String formulaway) {
         this.formulaway = formulaway == null ? null : formulaway.trim();
+    }
+
+    public Integer getShippingaddressId() {
+        return shippingaddressId;
+    }
+
+    public void setShippingaddressId(Integer shippingaddressId) {
+        this.shippingaddressId = shippingaddressId;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public String getState() {

@@ -113,5 +113,11 @@
 		</table>
 		<table tableName="visitplan" domainObjectName="Visitplan">
 		</table>
+		<table tableName="integral" domainObjectName="Integral">
+		</table>
+		<table tableName="shippingaddress" domainObjectName="Shippingaddress">
+		</table>
+		<table tableName="users" domainObjectName="Users">
+		</table>
 	</context>
 </generatorConfiguration>
