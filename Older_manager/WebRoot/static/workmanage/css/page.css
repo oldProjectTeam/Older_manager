@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+a{
+	display:block;
+	color:black;
+	text-align:center;
+	height:160px;
+}
+a:hover{
+	text-decoration:none;
+}
+
+.textfont{
+	font-size:20px;
+	margin-left:3px;
+}
+
+img{
+	width:120px;
+	height:110px;
+}
+
+.backcolor{
+	margin-top:20px;
+	background:#EEEEEE;
+}
