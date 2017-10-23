@@ -73,7 +73,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 <table class="table table-hover table-bordered text-center">
 		 	<thead >
 		 		<tr>
-		 		  <td>全选<input type="checkbox" id='check_item_all'></td>
+		 		  <td><input type="checkbox" id='check_item_all'></td>
 		 		  <td>#</td>
 		 		  <td>课程名称</td>
 		 		  <td>老人姓名</td>
@@ -440,7 +440,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		});
    });
    
-   //编辑按钮
+   //编辑按钮,弹出模态框
    $("#course_edit_btn").click(function(){
 	   $("#course_edit_modal").modal({
 			backdrop:"static"
