@@ -119,5 +119,17 @@
 		</table>
 		<table tableName="users" domainObjectName="Users">
 		</table>
+		<table tableName="sys_parent_menu" domainObjectName="ParentMenu">
+		</table>
+		<table tableName="sys_permission" domainObjectName="Permission">
+		</table>
+		<table tableName="sys_role" domainObjectName="Role">
+		</table>
+		<table tableName="sys_role_permission" domainObjectName="RolePermission">
+		</table>
+		<table tableName="sys_user" domainObjectName="User">
+		</table>
+		<table tableName="sys_user_role" domainObjectName="UserRole">
+		</table>
 	</context>
 </generatorConfiguration>

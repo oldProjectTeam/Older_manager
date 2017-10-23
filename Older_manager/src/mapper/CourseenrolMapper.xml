@@ -10,6 +10,8 @@
     <result column="grade" property="grade" jdbcType="DOUBLE" />
     <result column="rating" property="rating" jdbcType="VARCHAR" />
     <result column="isNormalClass" property="isnormalclass" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="course_id" property="courseId" jdbcType="INTEGER" />
     <result column="courseEnrol1" property="courseenrol1" jdbcType="VARCHAR" />
     <result column="courseEnrol2" property="courseenrol2" jdbcType="VARCHAR" />
     <result column="courseEnrol3" property="courseenrol3" jdbcType="VARCHAR" />
@@ -74,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, enrolTime, enrolState, oldMam_id, courseCompletion, grade, rating, isNormalClass, 
-    courseEnrol1, courseEnrol2, courseEnrol3
+    remark, course_id, courseEnrol1, courseEnrol2, courseEnrol3
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.CourseenrolExample" >
     select
@@ -109,12 +111,14 @@
   <insert id="insert" parameterType="com.older.manager.bean.Courseenrol" >
     insert into courseenrol (id, enrolTime, enrolState, 
       oldMam_id, courseCompletion, grade, 
-      rating, isNormalClass, courseEnrol1, 
-      courseEnrol2, courseEnrol3)
+      rating, isNormalClass, remark, 
+      course_id, courseEnrol1, courseEnrol2, 
+      courseEnrol3)
     values (#{id,jdbcType=INTEGER}, #{enroltime,jdbcType=TIMESTAMP}, #{enrolstate,jdbcType=VARCHAR}, 
       #{oldmamId,jdbcType=INTEGER}, #{coursecompletion,jdbcType=VARCHAR}, #{grade,jdbcType=DOUBLE}, 
-      #{rating,jdbcType=VARCHAR}, #{isnormalclass,jdbcType=VARCHAR}, #{courseenrol1,jdbcType=VARCHAR}, 
-      #{courseenrol2,jdbcType=VARCHAR}, #{courseenrol3,jdbcType=VARCHAR})
+      #{rating,jdbcType=VARCHAR}, #{isnormalclass,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{courseId,jdbcType=INTEGER}, #{courseenrol1,jdbcType=VARCHAR}, #{courseenrol2,jdbcType=VARCHAR}, 
+      #{courseenrol3,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Courseenrol" >
     insert into courseenrol
@@ -142,6 +146,12 @@
       </if>
       <if test="isnormalclass != null" >
         isNormalClass,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="courseId != null" >
+        course_id,
       </if>
       <if test="courseenrol1 != null" >
         courseEnrol1,
@@ -177,6 +187,12 @@
       </if>
       <if test="isnormalclass != null" >
         #{isnormalclass,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        #{courseId,jdbcType=INTEGER},
       </if>
       <if test="courseenrol1 != null" >
         #{courseenrol1,jdbcType=VARCHAR},
@@ -222,6 +238,12 @@
       <if test="record.isnormalclass != null" >
         isNormalClass = #{record.isnormalclass,jdbcType=VARCHAR},
       </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.courseId != null" >
+        course_id = #{record.courseId,jdbcType=INTEGER},
+      </if>
       <if test="record.courseenrol1 != null" >
         courseEnrol1 = #{record.courseenrol1,jdbcType=VARCHAR},
       </if>
@@ -246,6 +268,8 @@
       grade = #{record.grade,jdbcType=DOUBLE},
       rating = #{record.rating,jdbcType=VARCHAR},
       isNormalClass = #{record.isnormalclass,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      course_id = #{record.courseId,jdbcType=INTEGER},
       courseEnrol1 = #{record.courseenrol1,jdbcType=VARCHAR},
       courseEnrol2 = #{record.courseenrol2,jdbcType=VARCHAR},
       courseEnrol3 = #{record.courseenrol3,jdbcType=VARCHAR}
@@ -277,6 +301,12 @@
       <if test="isnormalclass != null" >
         isNormalClass = #{isnormalclass,jdbcType=VARCHAR},
       </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="courseId != null" >
+        course_id = #{courseId,jdbcType=INTEGER},
+      </if>
       <if test="courseenrol1 != null" >
         courseEnrol1 = #{courseenrol1,jdbcType=VARCHAR},
       </if>
@@ -298,6 +328,8 @@
       grade = #{grade,jdbcType=DOUBLE},
       rating = #{rating,jdbcType=VARCHAR},
       isNormalClass = #{isnormalclass,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      course_id = #{courseId,jdbcType=INTEGER},
       courseEnrol1 = #{courseenrol1,jdbcType=VARCHAR},
       courseEnrol2 = #{courseenrol2,jdbcType=VARCHAR},
       courseEnrol3 = #{courseenrol3,jdbcType=VARCHAR}

@@ -19,6 +19,10 @@ public class Courseenrol {
 
     private String isnormalclass;
 
+    private String remark;
+
+    private Integer courseId;
+
     private String courseenrol1;
 
     private String courseenrol2;
@@ -87,6 +91,22 @@ public class Courseenrol {
 
     public void setIsnormalclass(String isnormalclass) {
         this.isnormalclass = isnormalclass == null ? null : isnormalclass.trim();
+    }
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    public Integer getCourseId() {
+        return courseId;
+    }
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
 
     public String getCourseenrol1() {
