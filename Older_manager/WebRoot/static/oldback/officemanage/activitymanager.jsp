@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="static/workmanage/css/informnotice.css">
+  	<link rel="stylesheet" href="static/oldback/css/informnotice.css">
   	<script src="static/js/jquery-3.2.1.min.js"></script>
   	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   	<script >
@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<br>
   		<br>
     	<ul class="list-unstyle list-inline">
-    		<li ><a href="/Older_manager/static/workmanage/page/sendactivity.jsp"><button type="button" class="btn btn-default">发布活动</button></a></li>
+    		<li ><a href="/Older_manager/static/oldback/officemanage/sendactivity.jsp"><button type="button" class="btn btn-default">发布活动</button></a></li>
     		<li ><a href=""><button type="button" class="btn btn-default">删除活动</button></a></li>
     		<li ><a href=""><button type="button" class="btn btn-default">推送到手机</button></a></li>
     	</ul>
@@ -79,7 +79,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<ul class="list-unstyle list-inline">
     					<li class="col-sm-4 text-center"><a href="" data-toggle="modal" data-target="#alter" >修改</a></li>
     					<li class="col-sm-4 text-center"><a href="" onclick="javascript:return del()">删除</a></li>
-    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/workmanage/page/activityinformation.jsp">查看</a></li>
+    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/oldback/officemanage/activityinformation.jsp">查看</a></li>
     				</ul>
     			</td>
     		</tr>
@@ -94,7 +94,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<ul class="list-unstyle list-inline">
     					<li class="col-sm-4 text-center"><a href="" data-toggle="modal" data-target="#alter">修改</a></li>
     					<li class="col-sm-4 text-center"><a href="" onclick="javascript:return del()">删除</a></li>
-    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/workmanage/page/activityinformation.jsp">查看</a></li>
+    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/oldback/officemanage/activityinformation.jsp">查看</a></li>
     				</ul>
     			</td>
     		</tr>
@@ -109,7 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<ul class="list-unstyle list-inline">
     					<li class="col-sm-4 text-center"><a href="" data-toggle="modal" data-target="#alter">修改</a></li>
     					<li class="col-sm-4 text-center"><a href="" onclick="javascript:return del()">删除</a></li>
-    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/workmanage/page/activityinformation.jsp">查看</a></li>
+    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/oldback/officemanage/activityinformation.jsp">查看</a></li>
     				</ul>
     			</td>
     		</tr>
@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     				<ul class="list-unstyle list-inline">
     					<li class="col-sm-4 text-center"><a href="" data-toggle="modal" data-target="#alter">修改</a></li>
     					<li class="col-sm-4 text-center"><a href="" onclick="javascript:return del()">删除</a></li>
-    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/workmanage/page/activityinformation.jsp">查看</a></li>
+    					<li class="col-sm-4 text-center"><a href="/Older_manager/static/oldback/officemanage/activityinformation.jsp">查看</a></li>
     				</ul>
     			</td>
     		</tr>

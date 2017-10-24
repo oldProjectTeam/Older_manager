@@ -1,0 +1,257 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+  <head>
+   <base href="<%=basePath%>">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+    <script language="JavaScript" src="static/js/jquery-3.2.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+	<script type="text/javascript" src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script> 	
+  </head>
+  
+<body >
+   <!--路劲导航  -->
+  	<div class="row">
+	  <div class="col-md-12" >
+		<ol class="breadcrumb">
+		  <li><b>位置：<a href="static/oldback/oldManInfoMange/index.html">老人档案管理</a></b></li>
+		  <li class="active">老人列表</li>
+		</ol>
+	  </div>
+    </div>
+   <!--内容 -->
+   <div >
+     <!--操作按钮  -->
+  	<div class="row" >
+	  <div class="col-md-6">&nbsp;
+		 <button type="button" class="btn btn-primary" id="add_old_btn">
+		 	<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+		 	新增
+		 </button>
+		 <button type="button" class="btn btn-danger">
+		 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+		 	批量删除
+		 </button>
+	  </div>
+    </div>
+    <!--条件查询  -->
+    <div class="row" style="margin-top:5px">
+	  <div class="col-md-12">
+		 <form class="form-inline">
+		  <div class="form-group">
+		    &nbsp;&nbsp;<label for="exampleInputName2">老人名字</label>
+		    <input type="text" class="form-control"  placeholder="请输入老人名字">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputEmail2">身份证号</label>
+		    <input type="text" class="form-control" placeholder="请输入身份证号">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputEmail2">联系电话</label>
+		    <input type="text" class="form-control" placeholder="请输入联系电话">
+		  </div>
+		  <div class="form-group">
+		    <label for="exampleInputEmail2">性别</label>
+		    <select class="form-control" name="sex">
+		    	<option>请选择</option>
+		    	<option value="男">男</option>
+		    	<option value="女">女</option>
+		    </select>
+		  </div>
+		  <button type="submit" class="btn btn-default">
+		  	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+		  	查询
+		  </button>
+		</form>
+	  </div>
+    </div>
+    <br>
+    <!--老人信息列表  -->
+    <div class="row" style="margin-left:3px">
+	  <div class="col-md-12">
+	    <div class="table-responsive">
+		 <table class="table table-hover table-bordered text-center">
+		 	<thead>
+		 		<tr class="text-center">
+		 		  <td><input type="checkbox" id='check_item_all'></td>
+		 		  <td>#</td>
+		 		  <td>老人姓名</td>
+		 		  <td>性别</td>
+		 		  <td>年龄</td>
+		 		  <td>老人手机号码</td>
+		 		  <td>身份证号</td>
+		 		  <td>居住情况</td>
+		 		  <td>所在服务区</td>
+		 		  <td>操作</td>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+		 		 <tr>  
+		 		 	<td class="text-center"><input type="checkbox" class="item_check"></td>
+		 		 	<td>1</td>
+		 		 	<td>李大伟</td>
+		 		 	<td>男</td>
+		 		 	<td>52</td>
+		 		 	<td>18208546963 </td>
+		 		 	<td>522732199506082615</td>
+		 		 	<td>与子女同住</td>
+		 		 	<td>北京分部</td>
+		 		 	<td>
+		 		 	 <button type="button" class="btn btn-success btn-sm">
+					   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					   修改
+					 </button>
+					 <button type="button" class="btn btn-info btn-sm oldManview-btn">
+					 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					 	查看
+					 </button>
+					 <button type="button" class="btn btn-danger btn-sm">
+					 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					 	删除
+					 </button>
+		 		 	</td>
+		 		 </tr>
+		 		 <tr>  
+		 		 	<td class="text-center"><input type="checkbox" class="item_check"></td>
+		 		 	<td>1</td>
+		 		 	<td>李大伟</td>
+		 		 	<td>男</td>
+		 		 	<td>52</td>
+		 		 	<td>18208546963 </td>
+		 		 	<td>522732199506082615</td>
+		 		 	<td>与子女同住</td>
+		 		 	<td>北京分部</td>
+		 		 	<td>
+		 		 	 <button type="button" class="btn btn-success btn-sm">
+					   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					   修改
+					 </button>
+					 <button type="button" class="btn btn-info btn-sm courseview-btn">
+					 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					 	查看
+					 </button>
+					 <button type="button" class="btn btn-danger btn-sm">
+					 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					 	删除
+					 </button>
+		 		 	</td>
+		 		 </tr>
+		 		 <tr>  
+		 		 	<td class="text-center"><input type="checkbox" class="item_check"></td>
+		 		 	<td>1</td>
+		 		 	<td>李大伟</td>
+		 		 	<td>男</td>
+		 		 	<td>52</td>
+		 		 	<td>18208546963 </td>
+		 		 	<td>522732199506082615</td>
+		 		 	<td>与子女同住</td>
+		 		 	<td>北京分部</td>
+		 		 	<td>
+		 		 	 <button type="button" class="btn btn-success btn-sm">
+					   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					   修改
+					 </button>
+					 <button type="button" class="btn btn-info btn-sm courseview-btn">
+					 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					 	查看
+					 </button>
+					 <button type="button" class="btn btn-danger btn-sm">
+					 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					 	删除
+					 </button>
+		 		 	</td>
+		 		 </tr>
+		 		 <tr>  
+		 		 	<td class="text-center"><input type="checkbox" class="item_check"></td>
+		 		 	<td>1</td>
+		 		 	<td>李大伟</td>
+		 		 	<td>男</td>
+		 		 	<td>52</td>
+		 		 	<td>18208546963 </td>
+		 		 	<td>522732199506082615</td>
+		 		 	<td>与子女同住</td>
+		 		 	<td>北京分部</td>
+		 		 	<td>
+		 		 	 <button type="button" class="btn btn-success btn-sm">
+					   <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+					   修改
+					 </button>
+					 <button type="button" class="btn btn-info btn-sm courseview-btn">
+					 	<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					 	查看
+					 </button>
+					 <button type="button" class="btn btn-danger btn-sm">
+					 	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					 	删除
+					 </button>
+		 		 	</td>
+		 		 </tr>
+		 	</tbody>
+			<thead>
+		 </table>
+		</div>
+	  </div>
+    </div>
+    <!--分页信息  -->
+    <div class="row" >
+      <div class="col-md-7">
+      	&nbsp;&nbsp;当前第1页，共20页，总计100条记录
+      </div>
+	  <div class="col-md-4 col-md-offset-1">
+		 <nav aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li>
+			      <a href="#">首页
+			      </a>
+			    </li>
+			    <li>
+			      <a href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    <li class="active"><a href="#">1</a></li>
+			    <li><a href="#">2</a></li>
+			    <li><a href="#">3</a></li>
+			    <li><a href="#">4</a></li>
+			    <li><a href="#">5</a></li>
+			    <li>
+			      <a href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			    <li>
+			      <a href="#">末页
+			      </a>
+			    </li>
+			  </ul>
+		</nav>
+	  </div>
+    </div>
+   </div>
+ 
+<script type="text/javascript">
+   //显示信息全选
+   $("#check_item_all").click(function(){
+	   $(".item_check").prop("checked",$(this).prop("checked"));
+   });
+   	
+   //新增账户全选
+   $("#add_old_btn").click(function(){
+	    window.location.href="static/oldback/oldManInfoMange/addOldManInfo.jsp";
+   });
+   
+   $(".oldManview-btn").click(function(){
+	    window.location.href="static/oldback/oldManInfoMange/oldManInfoView.jsp";
+  });
+</script>
+</body>
+</html>

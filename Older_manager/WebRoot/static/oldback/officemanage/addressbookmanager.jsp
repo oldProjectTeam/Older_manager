@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="static/workmanage/css/informnotice.css">
+  	<link rel="stylesheet" href="static/oldback/css/informnotice.css">
   	 	<script src="static/js/jquery-3.2.1.min.js"></script>
   	<script >
   		function del(){
@@ -38,8 +38,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <div style="width:98%;margin-left:4px">
     	<ul class="list-unstyle list-inline nav nav-tabs" style="margin-top:10px">
-    		<li class="active" style="font-size:20px;"><a href="/Older_manager/static/workmanage/page/addressbookmanager.jsp">老人</a></li>
-    		<li style="font-size:20px;"><a href="/Older_manager/static/workmanage/page/clanaddressmanager.jsp">亲属</a></li>
+    		<li class="active" style="font-size:20px;"><a href="/Older_manager/static/oldback/officemanage/addressbookmanager.jsp">老人</a></li>
+    		<li style="font-size:20px;"><a href="/Older_manager/static/oldback/officemanage/clanaddressmanager.jsp">亲属</a></li>
     	</ul>
     	<div>
 	    	<table class="table table-bordered table-hover" style="margin-top:10px">

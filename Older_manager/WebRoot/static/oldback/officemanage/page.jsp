@@ -21,32 +21,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/workmanage/css/page.css">
+    <link rel="stylesheet" href="static/oldback/css/page.css">
   </head>
   	
   <body>
   <div style="width:98%;margin-left:4px">
     <div class="col-sm-12">
 	    <div class="col-sm-3 ">
-	    	<a href="/Older_manager/static/workmanage/page/sendsms.jsp" class="backcolor">
+	    	<a href="/Older_manager/static/oldback/officemanage/sendsms.jsp" class="backcolor">
 		    	<img alt="" src="static/images/sendsms.png"><br>
 		    	<span class="textfont">发送短信</span>
 	    	</a>
 	    </div>
 	    <div class="col-sm-3">
-	    	<a href="/Older_manager/static/workmanage/page/sendrecord.jsp" class="backcolor">
+	    	<a href="/Older_manager/static/oldback/officemanage/sendrecord.jsp" class="backcolor">
 		    	<img alt="" src="static/images/sendrecord.png"><br>
 		    	<span class="textfont">短信记录</span>
 	    	</a>
 	    </div>
 	    <div class="col-sm-3">
-	    	<a href="/Older_manager/static/workmanage/page/informnotice.jsp" class="backcolor">
+	    	<a href="/Older_manager/static/oldback/officemanage/informnotice.jsp" class="backcolor">
 		    	<img alt="" src="static/images/tzgg.png"><br>
 		    	<span class="textfont">通知公告</span>
 	    	</a>
 	    </div>
 	    <div class="col-sm-3">
-	    	<a href="/Older_manager/static/workmanage/page/sendnotice.jsp" class="backcolor" style="padding-top:10px;">
+	    	<a href="/Older_manager/static/oldback/officemanage/sendnotice.jsp" class="backcolor" style="padding-top:10px;">
 		    	<img alt="" src="static/images/sendgg.png" style="height:90px;width:100px;margin-bottom:10px"><br>
 		    	<span class="textfont" style="margin-top:150px">发布公告</span>
 	    	</a>
@@ -54,19 +54,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
      <div class="col-sm-12" style="margin-top:50px">
 	    <div class="col-sm-3">
-	    	<a href="/Older_manager/static/workmanage/page/addressbookmanager.jsp" class="backcolor">
+	    	<a href="/Older_manager/static/oldback/officemanage/addressbookmanager.jsp" class="backcolor">
 		    	<img alt="" src="static/images/txlrecord.png"><br>
 		    	<span class="textfont">通讯录管理</span>
 	    	</a>
 	    </div>
 	    <div class="col-sm-3">
-	    	<a href="/Older_manager/static/workmanage/page/activitymanager.jsp" class="backcolor" style="padding-top:10px">
+	    	<a href="/Older_manager/static/oldback/officemanage/activitymanager.jsp" class="backcolor" style="padding-top:10px">
 		    	<img alt="" src="static/images/hdmanage.png" style="height:90px;width:110px;margin-bottom:10px"><br>
 		    	<span class="textfont">活动管理</span>
 	    	</a>
 	    </div>
 	    <div class="col-sm-3">
-	    	<a href="/Older_manager/static/workmanage/page/sendactivity.jsp" class="backcolor" style="padding-top:10px">
+	    	<a href="/Older_manager/static/oldback/officemanage/sendactivity.jsp" class="backcolor" style="padding-top:10px">
 		    	<img alt="" src="static/images/sendhd.png"  style="height:90px;width:110px;margin-bottom:10px"><br>
 		    	<span class="textfont">发布活动</span>
 	    	</a>

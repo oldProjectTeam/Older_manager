@@ -38,7 +38,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    	<ul class="list-unstyle list-inline  col-sm-offset-6">
 	    		<li>发送人：18989707890</li>&nbsp;&nbsp;&nbsp;&nbsp;
 	    		<li>发送时间为：2017-10-22</li>&nbsp;&nbsp;&nbsp;&nbsp;
-	    		<li><a href="/Older_manager/static/workmanage/page/sendrecord.jsp" style="color:black">返回</a></li>
+	    		<li><a href="/Older_manager/static/oldback/officemanage/sendrecord.jsp" style="color:black">返回</a></li>
 	    	</ul>
     	</div>
     </div>

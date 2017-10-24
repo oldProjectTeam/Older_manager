@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="static/workmanage/css/informnotice.css">
+  	<link rel="stylesheet" href="static/oldback/css/informnotice.css">
 
   </head>
   
@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<form action="" method="post">
   			<br>
   			收信人：<input type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="/Older_manager/static/workmanage/page/addressbookmanager.jsp"><button type="button">从通讯录中选择</button></a>
+			<a href="/Older_manager/static/oldback/officemanage/addressbookmanager.jsp"><button type="button">从通讯录中选择</button></a>
   			<br>
   			<br>
   			<span>发送内容：</span><br>

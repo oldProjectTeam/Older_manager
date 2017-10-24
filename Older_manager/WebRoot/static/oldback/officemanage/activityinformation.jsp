@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'noticeinformation.jsp' starting page</title>
+    <title></title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -30,10 +30,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     <div style="width:98%;margin-top:10px;margin-left:10px">
-    	<span>公告信息：</span><br>
+    	<span>活动信息：</span><br>
     	<div style="border:1px solid #F00;margin-top:10px;margin-bottom:10px;padding:10px;width:90%;height:220px">
     		<ul class="list-unstyled">
-	    		<li class="col-sm-offset-5" style="font-size:18px">保龄球比赛</li>
+	    		<li class="col-sm-offset-5" style="font-size:18px">便宜卖书</li>
 	    		<li>&nbsp;&nbsp;&nbsp;&nbsp;
 	    			书店近来窃贼颇多，多在讲座，签售会，团体活动时伺机作案。
 	    			专寻年轻女士挎包下手，店内无监控，忘各位读者朋友多多留心，大家共同防范，和先锋一起快乐。

@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="static/workmanage/css/informnotice.css">
+  	<link rel="stylesheet" href="static/oldback/css/informnotice.css">
   </head>
   
   <body>

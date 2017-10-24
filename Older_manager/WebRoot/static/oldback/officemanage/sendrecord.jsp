@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
 	<link rel="stylesheet" href="static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-  	<link rel="stylesheet" href="static/workmanage/css/informnotice.css">
+  	<link rel="stylesheet" href="static/oldback/css/informnotice.css">
  	<script src="static/js/jquery-3.2.1.js"></script>
  	<script>
  		function del(){
@@ -65,7 +65,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<td>2017-10-22</td>
     			<td>
     				<ul class="list-unstyle list-inline text-center">
-    					<li class="col-sm-6"><a href="/Older_manager/static/workmanage/page/noteinformation.jsp">查看详细</a></li>
+    					<li class="col-sm-6"><a href="/Older_manager/static/oldback/officemanage/noteinformation.jsp">查看详细</a></li>
     					<li class="col-sm-6"><a href="" onclick="javascript:return del()" >删除</a></li>
     				</ul>
     			</td>
@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<td>2017-10-22</td>
     			<td>
     				<ul class="list-unstyle list-inline text-center">
-    					<li class="col-sm-6"><a href="/Older_manager/static/workmanage/page/noteinformation.jsp">查看详细</a></li>
+    					<li class="col-sm-6"><a href="/Older_manager/static/oldback/officemanage/noteinformation.jsp">查看详细</a></li>
     					<li class="col-sm-6"><a href="" onclick="javascript:return del()">删除</a></li>
     				</ul>
     			</td>
@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<td>2017-10-22</td>
     			<td>
     				<ul class="list-unstyle list-inline text-center">
-    					<li class="col-sm-6"><a href="/Older_manager/static/workmanage/page/noteinformation.jsp">查看详细</a></li>
+    					<li class="col-sm-6"><a href="/Older_manager/static/oldback/officemanage/noteinformation.jsp">查看详细</a></li>
     					<li class="col-sm-6"><a href="" onclick="javascript:return del()">删除</a></li>
     				</ul>
     			</td>
@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<td>2017-10-22</td>
     			<td>
     				<ul class="list-unstyle list-inline text-center">
-    					<li class="col-sm-6"><a href="/Older_manager/static/workmanage/page/noteinformation.jsp">查看详细</a></li>
+    					<li class="col-sm-6"><a href="/Older_manager/static/oldback/officemanage/noteinformation.jsp">查看详细</a></li>
     					<li class="col-sm-6"><a href="" onclick="javascript:return del()">删除</a></li>
     				</ul>
     			</td>
