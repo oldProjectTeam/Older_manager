@@ -8,6 +8,9 @@
     <result column="hospitalName" property="hospitalname" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, traumaName, OccurrenceTime, hospitalName, remark, oldMan_id
+    id, traumaName, OccurrenceTime, hospitalName, remark, oldMan_id, numone, numtwo, 
+    numthree
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.TraumaExample" >
     select
@@ -102,10 +106,12 @@
   </delete>
   <insert id="insert" parameterType="com.older.manager.bean.Trauma" >
     insert into trauma (id, traumaName, OccurrenceTime, 
-      hospitalName, remark, oldMan_id
+      hospitalName, remark, oldMan_id, 
+      numone, numtwo, numthree
       )
     values (#{id,jdbcType=INTEGER}, #{traumaname,jdbcType=VARCHAR}, #{occurrencetime,jdbcType=DATE}, 
-      #{hospitalname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}
+      #{hospitalname,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}, 
+      #{numone,jdbcType=VARCHAR}, #{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Trauma" >
@@ -129,6 +135,15 @@
       <if test="oldmanId != null" >
         oldMan_id,
       </if>
+      <if test="numone != null" >
+        numone,
+      </if>
+      <if test="numtwo != null" >
+        numtwo,
+      </if>
+      <if test="numthree != null" >
+        numthree,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -148,6 +163,15 @@
       </if>
       <if test="oldmanId != null" >
         #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="numone != null" >
+        #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        #{numthree,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +202,15 @@
       <if test="record.oldmanId != null" >
         oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
       </if>
+      <if test="record.numone != null" >
+        numone = #{record.numone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numtwo != null" >
+        numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numthree != null" >
+        numthree = #{record.numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +223,10 @@
       OccurrenceTime = #{record.occurrencetime,jdbcType=DATE},
       hospitalName = #{record.hospitalname,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
-      oldMan_id = #{record.oldmanId,jdbcType=INTEGER}
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      numone = #{record.numone,jdbcType=VARCHAR},
+      numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      numthree = #{record.numthree,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +249,15 @@
       <if test="oldmanId != null" >
         oldMan_id = #{oldmanId,jdbcType=INTEGER},
       </if>
+      <if test="numone != null" >
+        numone = #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        numtwo = #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        numthree = #{numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -222,7 +267,10 @@
       OccurrenceTime = #{occurrencetime,jdbcType=DATE},
       hospitalName = #{hospitalname,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
-      oldMan_id = #{oldmanId,jdbcType=INTEGER}
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      numone = #{numone,jdbcType=VARCHAR},
+      numtwo = #{numtwo,jdbcType=VARCHAR},
+      numthree = #{numthree,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

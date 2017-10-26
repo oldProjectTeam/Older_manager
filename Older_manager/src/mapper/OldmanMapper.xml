@@ -31,6 +31,11 @@
     <result column="majors" property="majors" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="unitOrignal" property="unitorignal" jdbcType="VARCHAR" />
+    <result column="idcar" property="idcar" jdbcType="VARCHAR" />
+    <result column="liveinfo" property="liveinfo" jdbcType="VARCHAR" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -94,7 +99,8 @@
     id, name, sex, phone, nation, marriage, type, birthday, age, address, photo, service, 
     urgencyContact, urgencyContactPhone, relation, serviceType, serviceStatu, economicSource, 
     monthlyIncome, healthCare, socialSecurityNo, chronicDiseases, bloodType, disabilitySituation, 
-    disability, educationLevel, majors, title, unitOrignal
+    disability, educationLevel, majors, title, unitOrignal, idcar, liveinfo, numone, 
+    numtwo, numthree
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.OldmanExample" >
     select
@@ -136,7 +142,9 @@
       healthCare, socialSecurityNo, chronicDiseases, 
       bloodType, disabilitySituation, disability, 
       educationLevel, majors, title, 
-      unitOrignal)
+      unitOrignal, idcar, liveinfo, 
+      numone, numtwo, numthree
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR}, 
       #{type,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, 
@@ -146,7 +154,9 @@
       #{healthcare,jdbcType=VARCHAR}, #{socialsecurityno,jdbcType=VARCHAR}, #{chronicdiseases,jdbcType=VARCHAR}, 
       #{bloodtype,jdbcType=VARCHAR}, #{disabilitysituation,jdbcType=VARCHAR}, #{disability,jdbcType=VARCHAR}, 
       #{educationlevel,jdbcType=VARCHAR}, #{majors,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{unitorignal,jdbcType=VARCHAR})
+      #{unitorignal,jdbcType=VARCHAR}, #{idcar,jdbcType=VARCHAR}, #{liveinfo,jdbcType=VARCHAR}, 
+      #{numone,jdbcType=VARCHAR}, #{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Oldman" >
     insert into oldman
@@ -238,6 +248,21 @@
       <if test="unitorignal != null" >
         unitOrignal,
       </if>
+      <if test="idcar != null" >
+        idcar,
+      </if>
+      <if test="liveinfo != null" >
+        liveinfo,
+      </if>
+      <if test="numone != null" >
+        numone,
+      </if>
+      <if test="numtwo != null" >
+        numtwo,
+      </if>
+      <if test="numthree != null" >
+        numthree,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -326,6 +351,21 @@
       </if>
       <if test="unitorignal != null" >
         #{unitorignal,jdbcType=VARCHAR},
+      </if>
+      <if test="idcar != null" >
+        #{idcar,jdbcType=VARCHAR},
+      </if>
+      <if test="liveinfo != null" >
+        #{liveinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="numone != null" >
+        #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        #{numthree,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -425,6 +465,21 @@
       <if test="record.unitorignal != null" >
         unitOrignal = #{record.unitorignal,jdbcType=VARCHAR},
       </if>
+      <if test="record.idcar != null" >
+        idcar = #{record.idcar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.liveinfo != null" >
+        liveinfo = #{record.liveinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numone != null" >
+        numone = #{record.numone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numtwo != null" >
+        numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numthree != null" >
+        numthree = #{record.numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -460,7 +515,12 @@
       educationLevel = #{record.educationlevel,jdbcType=VARCHAR},
       majors = #{record.majors,jdbcType=VARCHAR},
       title = #{record.title,jdbcType=VARCHAR},
-      unitOrignal = #{record.unitorignal,jdbcType=VARCHAR}
+      unitOrignal = #{record.unitorignal,jdbcType=VARCHAR},
+      idcar = #{record.idcar,jdbcType=VARCHAR},
+      liveinfo = #{record.liveinfo,jdbcType=VARCHAR},
+      numone = #{record.numone,jdbcType=VARCHAR},
+      numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      numthree = #{record.numthree,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -552,6 +612,21 @@
       <if test="unitorignal != null" >
         unitOrignal = #{unitorignal,jdbcType=VARCHAR},
       </if>
+      <if test="idcar != null" >
+        idcar = #{idcar,jdbcType=VARCHAR},
+      </if>
+      <if test="liveinfo != null" >
+        liveinfo = #{liveinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="numone != null" >
+        numone = #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        numtwo = #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        numthree = #{numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -584,7 +659,12 @@
       educationLevel = #{educationlevel,jdbcType=VARCHAR},
       majors = #{majors,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
-      unitOrignal = #{unitorignal,jdbcType=VARCHAR}
+      unitOrignal = #{unitorignal,jdbcType=VARCHAR},
+      idcar = #{idcar,jdbcType=VARCHAR},
+      liveinfo = #{liveinfo,jdbcType=VARCHAR},
+      numone = #{numone,jdbcType=VARCHAR},
+      numtwo = #{numtwo,jdbcType=VARCHAR},
+      numthree = #{numthree,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

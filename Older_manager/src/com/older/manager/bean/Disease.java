@@ -19,6 +19,12 @@ public class Disease {
 
     private Date recordtime;
 
+    private String numone;
+
+    private String numtwo;
+
+    private String numthree;
+
     public Integer getId() {
         return id;
     }
@@ -81,5 +87,29 @@ public class Disease {
 
     public void setRecordtime(Date recordtime) {
         this.recordtime = recordtime;
+    }
+
+    public String getNumone() {
+        return numone;
+    }
+
+    public void setNumone(String numone) {
+        this.numone = numone == null ? null : numone.trim();
+    }
+
+    public String getNumtwo() {
+        return numtwo;
+    }
+
+    public void setNumtwo(String numtwo) {
+        this.numtwo = numtwo == null ? null : numtwo.trim();
+    }
+
+    public String getNumthree() {
+        return numthree;
+    }
+
+    public void setNumthree(String numthree) {
+        this.numthree = numthree == null ? null : numthree.trim();
     }
 }

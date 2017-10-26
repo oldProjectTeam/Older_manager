@@ -61,6 +61,16 @@ public class Oldman {
 
     private String unitorignal;
 
+    private String idcar;
+
+    private String liveinfo;
+
+    private String numone;
+
+    private String numtwo;
+
+    private String numthree;
+
     public Integer getId() {
         return id;
     }
@@ -292,4 +302,67 @@ public class Oldman {
     public void setUnitorignal(String unitorignal) {
         this.unitorignal = unitorignal == null ? null : unitorignal.trim();
     }
+
+    public String getIdcar() {
+        return idcar;
+    }
+
+    public void setIdcar(String idcar) {
+        this.idcar = idcar == null ? null : idcar.trim();
+    }
+
+    public String getLiveinfo() {
+        return liveinfo;
+    }
+
+    public void setLiveinfo(String liveinfo) {
+        this.liveinfo = liveinfo == null ? null : liveinfo.trim();
+    }
+
+    public String getNumone() {
+        return numone;
+    }
+
+    public void setNumone(String numone) {
+        this.numone = numone == null ? null : numone.trim();
+    }
+
+    public String getNumtwo() {
+        return numtwo;
+    }
+
+    public void setNumtwo(String numtwo) {
+        this.numtwo = numtwo == null ? null : numtwo.trim();
+    }
+
+    public String getNumthree() {
+        return numthree;
+    }
+
+    public void setNumthree(String numthree) {
+        this.numthree = numthree == null ? null : numthree.trim();
+    }
+
+	@Override
+	public String toString() {
+		return "Oldman [id=" + id + ", name=" + name + ", sex=" + sex
+				+ ", phone=" + phone + ", nation=" + nation + ", marriage="
+				+ marriage + ", type=" + type + ", birthday=" + birthday
+				+ ", age=" + age + ", address=" + address + ", photo=" + photo
+				+ ", service=" + service + ", urgencycontact=" + urgencycontact
+				+ ", urgencycontactphone=" + urgencycontactphone
+				+ ", relation=" + relation + ", servicetype=" + servicetype
+				+ ", servicestatu=" + servicestatu + ", economicsource="
+				+ economicsource + ", monthlyincome=" + monthlyincome
+				+ ", healthcare=" + healthcare + ", socialsecurityno="
+				+ socialsecurityno + ", chronicdiseases=" + chronicdiseases
+				+ ", bloodtype=" + bloodtype + ", disabilitysituation="
+				+ disabilitysituation + ", disability=" + disability
+				+ ", educationlevel=" + educationlevel + ", majors=" + majors
+				+ ", title=" + title + ", unitorignal=" + unitorignal
+				+ ", idcar=" + idcar + ", liveinfo=" + liveinfo + ", numone="
+				+ numone + ", numtwo=" + numtwo + ", numthree=" + numthree
+				+ "]";
+	}
+    
 }

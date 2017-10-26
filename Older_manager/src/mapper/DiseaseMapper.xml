@@ -10,6 +10,9 @@
     <result column="remark" property="remark" jdbcType="VARCHAR" />
     <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
     <result column="recordTime" property="recordtime" jdbcType="DATE" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, diseaseName, confirmedTime, place, nowState, remark, oldMan_id, recordTime
+    id, diseaseName, confirmedTime, place, nowState, remark, oldMan_id, recordTime, numone, 
+    numtwo, numthree
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.DiseaseExample" >
     select
@@ -105,10 +109,12 @@
   <insert id="insert" parameterType="com.older.manager.bean.Disease" >
     insert into disease (id, diseaseName, confirmedTime, 
       place, nowState, remark, 
-      oldMan_id, recordTime)
+      oldMan_id, recordTime, numone, 
+      numtwo, numthree)
     values (#{id,jdbcType=INTEGER}, #{diseasename,jdbcType=VARCHAR}, #{confirmedtime,jdbcType=DATE}, 
       #{place,jdbcType=VARCHAR}, #{nowstate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
-      #{oldmanId,jdbcType=INTEGER}, #{recordtime,jdbcType=DATE})
+      #{oldmanId,jdbcType=INTEGER}, #{recordtime,jdbcType=DATE}, #{numone,jdbcType=VARCHAR}, 
+      #{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Disease" >
     insert into disease
@@ -137,6 +143,15 @@
       <if test="recordtime != null" >
         recordTime,
       </if>
+      <if test="numone != null" >
+        numone,
+      </if>
+      <if test="numtwo != null" >
+        numtwo,
+      </if>
+      <if test="numthree != null" >
+        numthree,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +177,15 @@
       </if>
       <if test="recordtime != null" >
         #{recordtime,jdbcType=DATE},
+      </if>
+      <if test="numone != null" >
+        #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        #{numthree,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +222,15 @@
       <if test="record.recordtime != null" >
         recordTime = #{record.recordtime,jdbcType=DATE},
       </if>
+      <if test="record.numone != null" >
+        numone = #{record.numone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numtwo != null" >
+        numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numthree != null" >
+        numthree = #{record.numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +245,10 @@
       nowState = #{record.nowstate,jdbcType=VARCHAR},
       remark = #{record.remark,jdbcType=VARCHAR},
       oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-      recordTime = #{record.recordtime,jdbcType=DATE}
+      recordTime = #{record.recordtime,jdbcType=DATE},
+      numone = #{record.numone,jdbcType=VARCHAR},
+      numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      numthree = #{record.numthree,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +277,15 @@
       <if test="recordtime != null" >
         recordTime = #{recordtime,jdbcType=DATE},
       </if>
+      <if test="numone != null" >
+        numone = #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        numtwo = #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        numthree = #{numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -252,7 +297,10 @@
       nowState = #{nowstate,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
       oldMan_id = #{oldmanId,jdbcType=INTEGER},
-      recordTime = #{recordtime,jdbcType=DATE}
+      recordTime = #{recordtime,jdbcType=DATE},
+      numone = #{numone,jdbcType=VARCHAR},
+      numtwo = #{numtwo,jdbcType=VARCHAR},
+      numthree = #{numthree,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

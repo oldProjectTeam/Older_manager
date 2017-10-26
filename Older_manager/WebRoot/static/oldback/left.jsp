@@ -1,5 +1,8 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%
+ pageContext.setAttribute("APP_PATH", request.getContextPath());
+%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
@@ -42,9 +45,9 @@ $(function(){
     </div>
     	<ul class="menuson">
         <li><cite></cite><a href="oldManInfoMange/addOldManInfo.jsp" target="rightFrame">新增老人</a><i></i></li>
-        <li><cite></cite><a href="oldManInfoMange/batchImport.jsp" target="rightFrame">批量导入</a><i></i></li>
+        <li><cite></cite><a href="${APP_PATH }/old/batchImport" target="rightFrame">批量导入</a><i></i></li>
         
-        <li><cite></cite><a href="oldManInfoMange/oldManInfoList.jsp" target="rightFrame">老人列表</a><i></i></li>
+        <li><cite></cite><a href="${APP_PATH }/old/skipolderinfo/" target="rightFrame">老人列表</a><i></i></li>
         </ul>    
     </dd>
     

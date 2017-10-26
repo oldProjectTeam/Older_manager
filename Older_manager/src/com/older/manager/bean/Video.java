@@ -51,7 +51,7 @@ public class Video {
 
     private Date createtime;
 
-    private String video1;
+    private Integer vcount;
 
     private String video2;
 
@@ -249,12 +249,12 @@ public class Video {
         this.createtime = createtime;
     }
 
-    public String getVideo1() {
-        return video1;
+    public Integer getVcount() {
+        return vcount;
     }
 
-    public void setVideo1(String video1) {
-        this.video1 = video1 == null ? null : video1.trim();
+    public void setVcount(Integer vcount) {
+        this.vcount = vcount;
     }
 
     public String getVideo2() {

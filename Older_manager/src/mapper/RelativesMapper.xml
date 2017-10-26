@@ -10,6 +10,9 @@
     <result column="isLive" property="islive" jdbcType="VARCHAR" />
     <result column="address" property="address" jdbcType="VARCHAR" />
     <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -70,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, sex, phone, relation, isLive, address, oldMan_id
+    id, name, sex, phone, relation, isLive, address, oldMan_id, numone, numtwo, numthree
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.RelativesExample" >
     select
@@ -105,10 +108,12 @@
   <insert id="insert" parameterType="com.older.manager.bean.Relatives" >
     insert into relatives (id, name, sex, 
       phone, relation, isLive, 
-      address, oldMan_id)
+      address, oldMan_id, numone, 
+      numtwo, numthree)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{phone,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR}, #{islive,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER})
+      #{address,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}, #{numone,jdbcType=VARCHAR}, 
+      #{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Relatives" >
     insert into relatives
@@ -137,6 +142,15 @@
       <if test="oldmanId != null" >
         oldMan_id,
       </if>
+      <if test="numone != null" >
+        numone,
+      </if>
+      <if test="numtwo != null" >
+        numtwo,
+      </if>
+      <if test="numthree != null" >
+        numthree,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -162,6 +176,15 @@
       </if>
       <if test="oldmanId != null" >
         #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="numone != null" >
+        #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        #{numthree,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -198,6 +221,15 @@
       <if test="record.oldmanId != null" >
         oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
       </if>
+      <if test="record.numone != null" >
+        numone = #{record.numone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numtwo != null" >
+        numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numthree != null" >
+        numthree = #{record.numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,7 +244,10 @@
       relation = #{record.relation,jdbcType=VARCHAR},
       isLive = #{record.islive,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      oldMan_id = #{record.oldmanId,jdbcType=INTEGER}
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      numone = #{record.numone,jdbcType=VARCHAR},
+      numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      numthree = #{record.numthree,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -241,6 +276,15 @@
       <if test="oldmanId != null" >
         oldMan_id = #{oldmanId,jdbcType=INTEGER},
       </if>
+      <if test="numone != null" >
+        numone = #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        numtwo = #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        numthree = #{numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -252,7 +296,10 @@
       relation = #{relation,jdbcType=VARCHAR},
       isLive = #{islive,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      oldMan_id = #{oldmanId,jdbcType=INTEGER}
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      numone = #{numone,jdbcType=VARCHAR},
+      numtwo = #{numtwo,jdbcType=VARCHAR},
+      numthree = #{numthree,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

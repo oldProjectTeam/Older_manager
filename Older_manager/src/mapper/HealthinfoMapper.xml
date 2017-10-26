@@ -53,6 +53,9 @@
     <result column="bagPiece" property="bagpiece" jdbcType="VARCHAR" />
     <result column="splenomegaly" property="splenomegaly" jdbcType="VARCHAR" />
     <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -121,7 +124,7 @@
     isQuitDrinking, oral, dentition, pharyngeal, leftEyesight, rightEyesight, correctLeftEyesight, 
     correctRightEyesight, hearing, sportsAbility, skin, sclera, lymphNode, barrelChest, 
     breathSounds, rale, heartRate, heartRegularity, noise, tenderness, bagPiece, splenomegaly, 
-    oldMan_id
+    oldMan_id, numone, numtwo, numthree
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.HealthinfoExample" >
     select
@@ -170,7 +173,8 @@
       sclera, lymphNode, barrelChest, 
       breathSounds, rale, heartRate, 
       heartRegularity, noise, tenderness, 
-      bagPiece, splenomegaly, oldMan_id
+      bagPiece, splenomegaly, oldMan_id, 
+      numone, numtwo, numthree
       )
     values (#{id,jdbcType=INTEGER}, #{symptoms,jdbcType=VARCHAR}, #{bodytemperature,jdbcType=DOUBLE}, 
       #{pulsefrequency,jdbcType=INTEGER}, #{breathingrate,jdbcType=INTEGER}, #{leftbloodpressure,jdbcType=DOUBLE}, 
@@ -188,7 +192,8 @@
       #{sclera,jdbcType=VARCHAR}, #{lymphnode,jdbcType=VARCHAR}, #{barrelchest,jdbcType=VARCHAR}, 
       #{breathsounds,jdbcType=VARCHAR}, #{rale,jdbcType=VARCHAR}, #{heartrate,jdbcType=INTEGER}, 
       #{heartregularity,jdbcType=VARCHAR}, #{noise,jdbcType=VARCHAR}, #{tenderness,jdbcType=VARCHAR}, 
-      #{bagpiece,jdbcType=VARCHAR}, #{splenomegaly,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}
+      #{bagpiece,jdbcType=VARCHAR}, #{splenomegaly,jdbcType=VARCHAR}, #{oldmanId,jdbcType=INTEGER}, 
+      #{numone,jdbcType=VARCHAR}, #{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Healthinfo" >
@@ -347,6 +352,15 @@
       <if test="oldmanId != null" >
         oldMan_id,
       </if>
+      <if test="numone != null" >
+        numone,
+      </if>
+      <if test="numtwo != null" >
+        numtwo,
+      </if>
+      <if test="numthree != null" >
+        numthree,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -501,6 +515,15 @@
       </if>
       <if test="oldmanId != null" >
         #{oldmanId,jdbcType=INTEGER},
+      </if>
+      <if test="numone != null" >
+        #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        #{numthree,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -666,6 +689,15 @@
       <if test="record.oldmanId != null" >
         oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
       </if>
+      <if test="record.numone != null" >
+        numone = #{record.numone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numtwo != null" >
+        numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numthree != null" >
+        numthree = #{record.numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -723,7 +755,10 @@
       tenderness = #{record.tenderness,jdbcType=VARCHAR},
       bagPiece = #{record.bagpiece,jdbcType=VARCHAR},
       splenomegaly = #{record.splenomegaly,jdbcType=VARCHAR},
-      oldMan_id = #{record.oldmanId,jdbcType=INTEGER}
+      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+      numone = #{record.numone,jdbcType=VARCHAR},
+      numtwo = #{record.numtwo,jdbcType=VARCHAR},
+      numthree = #{record.numthree,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -881,6 +916,15 @@
       <if test="oldmanId != null" >
         oldMan_id = #{oldmanId,jdbcType=INTEGER},
       </if>
+      <if test="numone != null" >
+        numone = #{numone,jdbcType=VARCHAR},
+      </if>
+      <if test="numtwo != null" >
+        numtwo = #{numtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="numthree != null" >
+        numthree = #{numthree,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -935,7 +979,10 @@
       tenderness = #{tenderness,jdbcType=VARCHAR},
       bagPiece = #{bagpiece,jdbcType=VARCHAR},
       splenomegaly = #{splenomegaly,jdbcType=VARCHAR},
-      oldMan_id = #{oldmanId,jdbcType=INTEGER}
+      oldMan_id = #{oldmanId,jdbcType=INTEGER},
+      numone = #{numone,jdbcType=VARCHAR},
+      numtwo = #{numtwo,jdbcType=VARCHAR},
+      numthree = #{numthree,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

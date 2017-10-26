@@ -26,7 +26,7 @@
     <result column="copyRight" property="copyright" jdbcType="VARCHAR" />
     <result column="path" property="path" jdbcType="VARCHAR" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="video1" property="video1" jdbcType="VARCHAR" />
+    <result column="vcount" property="vcount" jdbcType="INTEGER" />
     <result column="video2" property="video2" jdbcType="VARCHAR" />
     <result column="video3" property="video3" jdbcType="VARCHAR" />
   </resultMap>
@@ -91,7 +91,7 @@
   <sql id="Base_Column_List" >
     id, title, subtitle, remark, marking, lenght, frameHeight, frameWidth, dateRate, 
     totalBitRate, frameRate, bitRate, channel, afsf, artists, years, director, producer, 
-    creators, promulgator, contentProvider, copyRight, path, createTime, video1, video2, 
+    creators, promulgator, contentProvider, copyRight, path, createTime, vcount, video2, 
     video3
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.VideoExample" >
@@ -133,7 +133,7 @@
       years, director, producer, 
       creators, promulgator, contentProvider, 
       copyRight, path, createTime, 
-      video1, video2, video3
+      vcount, video2, video3
       )
     values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR}, #{marking,jdbcType=VARCHAR}, #{lenght,jdbcType=VARCHAR}, 
@@ -143,7 +143,7 @@
       #{years,jdbcType=VARCHAR}, #{director,jdbcType=VARCHAR}, #{producer,jdbcType=VARCHAR}, 
       #{creators,jdbcType=VARCHAR}, #{promulgator,jdbcType=VARCHAR}, #{contentprovider,jdbcType=VARCHAR}, 
       #{copyright,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{video1,jdbcType=VARCHAR}, #{video2,jdbcType=VARCHAR}, #{video3,jdbcType=VARCHAR}
+      #{vcount,jdbcType=INTEGER}, #{video2,jdbcType=VARCHAR}, #{video3,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Video" >
@@ -221,8 +221,8 @@
       <if test="createtime != null" >
         createTime,
       </if>
-      <if test="video1 != null" >
-        video1,
+      <if test="vcount != null" >
+        vcount,
       </if>
       <if test="video2 != null" >
         video2,
@@ -304,8 +304,8 @@
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="video1 != null" >
-        #{video1,jdbcType=VARCHAR},
+      <if test="vcount != null" >
+        #{vcount,jdbcType=INTEGER},
       </if>
       <if test="video2 != null" >
         #{video2,jdbcType=VARCHAR},
@@ -396,8 +396,8 @@
       <if test="record.createtime != null" >
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.video1 != null" >
-        video1 = #{record.video1,jdbcType=VARCHAR},
+      <if test="record.vcount != null" >
+        vcount = #{record.vcount,jdbcType=INTEGER},
       </if>
       <if test="record.video2 != null" >
         video2 = #{record.video2,jdbcType=VARCHAR},
@@ -436,7 +436,7 @@
       copyRight = #{record.copyright,jdbcType=VARCHAR},
       path = #{record.path,jdbcType=VARCHAR},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      video1 = #{record.video1,jdbcType=VARCHAR},
+      vcount = #{record.vcount,jdbcType=INTEGER},
       video2 = #{record.video2,jdbcType=VARCHAR},
       video3 = #{record.video3,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -515,8 +515,8 @@
       <if test="createtime != null" >
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="video1 != null" >
-        video1 = #{video1,jdbcType=VARCHAR},
+      <if test="vcount != null" >
+        vcount = #{vcount,jdbcType=INTEGER},
       </if>
       <if test="video2 != null" >
         video2 = #{video2,jdbcType=VARCHAR},
@@ -552,7 +552,7 @@
       copyRight = #{copyright,jdbcType=VARCHAR},
       path = #{path,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP},
-      video1 = #{video1,jdbcType=VARCHAR},
+      vcount = #{vcount,jdbcType=INTEGER},
       video2 = #{video2,jdbcType=VARCHAR},
       video3 = #{video3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

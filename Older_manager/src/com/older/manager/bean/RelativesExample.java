@@ -643,6 +643,216 @@ public class RelativesExample {
             addCriterion("oldMan_id not between", value1, value2, "oldmanId");
             return (Criteria) this;
         }
+
+        public Criteria andNumoneIsNull() {
+            addCriterion("numone is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneIsNotNull() {
+            addCriterion("numone is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneEqualTo(String value) {
+            addCriterion("numone =", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneNotEqualTo(String value) {
+            addCriterion("numone <>", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneGreaterThan(String value) {
+            addCriterion("numone >", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneGreaterThanOrEqualTo(String value) {
+            addCriterion("numone >=", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneLessThan(String value) {
+            addCriterion("numone <", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneLessThanOrEqualTo(String value) {
+            addCriterion("numone <=", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneLike(String value) {
+            addCriterion("numone like", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneNotLike(String value) {
+            addCriterion("numone not like", value, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneIn(List<String> values) {
+            addCriterion("numone in", values, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneNotIn(List<String> values) {
+            addCriterion("numone not in", values, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneBetween(String value1, String value2) {
+            addCriterion("numone between", value1, value2, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumoneNotBetween(String value1, String value2) {
+            addCriterion("numone not between", value1, value2, "numone");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoIsNull() {
+            addCriterion("numtwo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoIsNotNull() {
+            addCriterion("numtwo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoEqualTo(String value) {
+            addCriterion("numtwo =", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoNotEqualTo(String value) {
+            addCriterion("numtwo <>", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoGreaterThan(String value) {
+            addCriterion("numtwo >", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoGreaterThanOrEqualTo(String value) {
+            addCriterion("numtwo >=", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoLessThan(String value) {
+            addCriterion("numtwo <", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoLessThanOrEqualTo(String value) {
+            addCriterion("numtwo <=", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoLike(String value) {
+            addCriterion("numtwo like", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoNotLike(String value) {
+            addCriterion("numtwo not like", value, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoIn(List<String> values) {
+            addCriterion("numtwo in", values, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoNotIn(List<String> values) {
+            addCriterion("numtwo not in", values, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoBetween(String value1, String value2) {
+            addCriterion("numtwo between", value1, value2, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumtwoNotBetween(String value1, String value2) {
+            addCriterion("numtwo not between", value1, value2, "numtwo");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeIsNull() {
+            addCriterion("numthree is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeIsNotNull() {
+            addCriterion("numthree is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeEqualTo(String value) {
+            addCriterion("numthree =", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeNotEqualTo(String value) {
+            addCriterion("numthree <>", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeGreaterThan(String value) {
+            addCriterion("numthree >", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeGreaterThanOrEqualTo(String value) {
+            addCriterion("numthree >=", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeLessThan(String value) {
+            addCriterion("numthree <", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeLessThanOrEqualTo(String value) {
+            addCriterion("numthree <=", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeLike(String value) {
+            addCriterion("numthree like", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeNotLike(String value) {
+            addCriterion("numthree not like", value, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeIn(List<String> values) {
+            addCriterion("numthree in", values, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeNotIn(List<String> values) {
+            addCriterion("numthree not in", values, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeBetween(String value1, String value2) {
+            addCriterion("numthree between", value1, value2, "numthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andNumthreeNotBetween(String value1, String value2) {
+            addCriterion("numthree not between", value1, value2, "numthree");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

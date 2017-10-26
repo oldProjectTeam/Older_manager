@@ -1745,73 +1745,63 @@ public class VideoExample {
             return (Criteria) this;
         }
 
-        public Criteria andVideo1IsNull() {
-            addCriterion("video1 is null");
+        public Criteria andVcountIsNull() {
+            addCriterion("vcount is null");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1IsNotNull() {
-            addCriterion("video1 is not null");
+        public Criteria andVcountIsNotNull() {
+            addCriterion("vcount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1EqualTo(String value) {
-            addCriterion("video1 =", value, "video1");
+        public Criteria andVcountEqualTo(Integer value) {
+            addCriterion("vcount =", value, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1NotEqualTo(String value) {
-            addCriterion("video1 <>", value, "video1");
+        public Criteria andVcountNotEqualTo(Integer value) {
+            addCriterion("vcount <>", value, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1GreaterThan(String value) {
-            addCriterion("video1 >", value, "video1");
+        public Criteria andVcountGreaterThan(Integer value) {
+            addCriterion("vcount >", value, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1GreaterThanOrEqualTo(String value) {
-            addCriterion("video1 >=", value, "video1");
+        public Criteria andVcountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("vcount >=", value, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1LessThan(String value) {
-            addCriterion("video1 <", value, "video1");
+        public Criteria andVcountLessThan(Integer value) {
+            addCriterion("vcount <", value, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1LessThanOrEqualTo(String value) {
-            addCriterion("video1 <=", value, "video1");
+        public Criteria andVcountLessThanOrEqualTo(Integer value) {
+            addCriterion("vcount <=", value, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1Like(String value) {
-            addCriterion("video1 like", value, "video1");
+        public Criteria andVcountIn(List<Integer> values) {
+            addCriterion("vcount in", values, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1NotLike(String value) {
-            addCriterion("video1 not like", value, "video1");
+        public Criteria andVcountNotIn(List<Integer> values) {
+            addCriterion("vcount not in", values, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1In(List<String> values) {
-            addCriterion("video1 in", values, "video1");
+        public Criteria andVcountBetween(Integer value1, Integer value2) {
+            addCriterion("vcount between", value1, value2, "vcount");
             return (Criteria) this;
         }
 
-        public Criteria andVideo1NotIn(List<String> values) {
-            addCriterion("video1 not in", values, "video1");
-            return (Criteria) this;
-        }
-
-        public Criteria andVideo1Between(String value1, String value2) {
-            addCriterion("video1 between", value1, value2, "video1");
-            return (Criteria) this;
-        }
-
-        public Criteria andVideo1NotBetween(String value1, String value2) {
-            addCriterion("video1 not between", value1, value2, "video1");
+        public Criteria andVcountNotBetween(Integer value1, Integer value2) {
+            addCriterion("vcount not between", value1, value2, "vcount");
             return (Criteria) this;
         }
 
