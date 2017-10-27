@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  	<!-- 分页显示旗下所有参加过活动的老人信息，提供多条件查询功能、可对这些信息进行增删改查操作 -->
+	    <title>参加活动</title>
+		<meta charset="utf-8">
+	    <meta name="keywords" content="keyword1,keyword2,keyword3">
+	    <meta name="description" content="this is my page">
+	    
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	    <!-- 引入jQuery -->
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/echarts.min.js"></script>
+		<script type="application/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="application/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+	    
+	    <link href="css/style.css" rel="stylesheet" type="text/css" />
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+		  		$(".click").click(function(){
+		  			$(".tip").fadeIn(200);
+		  		});
+		  		$(".tiptop a").click(function(){
+		  			$(".tip").fadeOut(200);
+				});
+		 		$(".sure").click(function(){
+		  			$(".tip").fadeOut(100);
+				});
+		  		$(".cancel").click(function(){
+		  			$(".tip").fadeOut(100);
+				});
+			});
+		</script>
+
+ 	</head>
+	<body>
+	  	<div class="place">
+	    	<span>位置：</span>
+	    	<ul class="placeul">
+	    		<li><a href="#">后台管理</a></li>
+	    		<li><a href="CustomerActivity.html">客户关系管理</a></li>
+	    		<li><a href="CustomerActivity.html">参加活动</a></li>
+	    	</ul>
+	    </div>
+	    
+	    <div class="rightinfo">
+	    	<div class="tools">
+	    		<ul class="toolbar">
+	        		<li style="height:35px;"><a href="CustomerActivityA.html"><span style="margin-top:-1px;"><img src="images/t01.png" /></span>添加</a></li>
+	        		<li class="click" style="height:35px;"><span style="margin-top:-1px;"><img src="images/t03.png" /></span>删除</li>
+	        		<li data-toggle="modal" data-target="#myModal" style="height:35px;"><span style="margin-top:-1px;"><img src="images/ico06.png" /></span>查询</li>
+	        	</ul>
+	        	<ul class="toolbar toolbar1">
+	        		<li style="height:35px;"><span style="margin-top:-1px;"><img src="images/t05.png" /></span>设置</li>
+	        	</ul>
+	    	</div>
+	    	
+	   		<table class="tablelist">
+	    		<thead>
+	    			<tr>
+	        			<th><input id="activity" name="" type="checkbox" value=""/></th>
+	        			<th>编号<i class="sort"><img src="images/px.gif" /></i></th>
+	        			<th>老人的姓名</th>
+	        			<th>参加活动的名称</th>
+				        <th>参加活动的类型</th>
+	        			<th>参加活动的时间</th>
+				        <th>操作</th>
+			        </tr>
+				</thead>
+	        	<tbody>
+	        		<tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr> 
+			        <tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr>
+	        		<tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input class="activityid" name="" type="checkbox" value=""/></td>
+				        <td>20130908</td>
+				        <td>王金平</td>
+				        <td>围棋比赛</td>
+				        <td>比赛</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a data-toggle="modal" data-target="#Modal">查看</a>
+				        	&nbsp;&nbsp;
+				        	<a href="CustomerActivityM.html">修改</a>
+				        	&nbsp;&nbsp;
+				        	<a href="#" class="click">删除</a>
+				        </td>
+			        </tr>
+	        	</tbody>
+	    	</table>
+	    	
+		    <div class="pagin">
+		    	<div class="message">共<i class="blue">258</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页</div>
+		        <ul class="paginList">
+			        <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
+			        <li class="paginItem current"><a href="javascript:;">1</a></li>
+			        <li class="paginItem"><a href="javascript:;">2</a></li>
+			        <li class="paginItem"><a href="javascript:;">3</a></li>
+			        <li class="paginItem"><a href="javascript:;">4</a></li>
+			        <li class="paginItem"><a href="javascript:;">5</a></li>
+			        <li class="paginItem more"><a href="javascript:;">...</a></li>
+			        <li class="paginItem"><a href="javascript:;">10</a></li>
+			        <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+		        </ul>
+		    </div>
+	    
+		    <div class="tip">
+		    	<div class="tiptop"><span>提示信息</span><a></a></div>
+					<div class="tipinfo">
+				        <span><img src="images/ticon.png" /></span>
+				        <div class="tipright">
+					        <p>是否确认删除信息 ？</p>
+					        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+				        </div>
+					</div>
+		        <div class="tipbtn">
+			        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+			        <input name="" type="button"  class="cancel" value="取消" />
+		        </div>
+		    </div>
+	    </div>
+	    
+	    <!-- 查询弹框 -->
+	    <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title">查询</h4>
+		      		</div>
+		      		<div class="modal-body">
+		        		<ul class="forminfo">
+		    				<li>
+		    					<label>老人的姓名</label>
+		    					<input name="" type="text" class="dfinput"  style="width:258px;"/>
+		    				</li>
+		    				<li>
+			    				<label>活动的名称</label>
+		    					<input name="" type="text" class="dfinput"  style="width:258px;"/>
+		    				</li>
+							<li>
+								<label>活动的类型</label>
+								<input name="" type="text" class="dfinput"  style="width:258px;"/>
+							</li>
+							<li>
+								<label>活动时间</label>
+								<input name="" type="text" class="dfinput"  style="width:258px;"/>
+							</li>
+	    				</ul>
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-primary" data-dismiss="modal">查询</button>
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+		      		</div>
+		    	</div><!-- /.modal-content -->
+		  	</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+		
+		<!-- 查看弹框 -->
+	    <div id="Modal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title">查看</h4>
+		      		</div>
+		      		<div class="modal-body">
+		        		<ul class="forminfo">
+		    				<li>
+		    					<p>老人的姓名：王金平</p>
+		    				</li>
+		    				<li>
+			    				<p>活动的名称：围棋比赛</p>
+		    				</li>
+							<li>
+								<p>活动的类型：比赛</p>
+							</li>
+							<li>
+								<p>活动时间：2013年01月04日</p>
+							</li>
+							<li>
+								<p>获得的奖项：获得了围棋比赛的第一名</p>
+							</li>
+							<li>
+								<p>活动中的表现：表现优秀</p>
+							</li>
+	    				</ul>
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+		      		</div>
+		    	</div><!-- /.modal-content -->
+		  	</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	    
+    	<script type="text/javascript">
+			$('.tablelist tbody tr:odd').addClass('odd');
+		</script>
+		
+		<script type="text/javascript">
+			$("#activity").click(function(){
+				 
+				$(".activityid").prop("checked",$(this).prop("checked"));
+			});
+		</script>
+		
+		<script type="text/javascript">
+			$('#myModal').on('shown.bs.modal', function () {
+				$('#myInput').focus();
+			});
+		</script>
+		
+		<script type="text/javascript">
+			$('#Modal').on('shown.bs.modal', function () {
+				$('#myInput').focus();
+			});
+		</script>
+		
+	</body>
+</html>

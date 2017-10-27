@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	  	<!-- 分页显示旗下所有参加过活动的老人信息，提供多条件查询功能、可对这些信息进行增删改查操作 -->
+	    <title>推荐活动</title>
+		<meta charset="utf-8">
+	    <meta name="keywords" content="keyword1,keyword2,keyword3">
+	    <meta name="description" content="this is my page">
+	    
+	    <meta http-equiv="Content-Type" content="text/html" />
+	    <!-- 引入jQuery -->
+		<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<!-- 引入样式 -->
+		<link href="../bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		<script src="../js/echarts.min.js"></script>
+		<script type="application/javascript" src="../js/jquery-3.2.1.min.js"></script>
+		<script type="application/javascript" src="../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+		
+	    <link href="css/style.css" rel="stylesheet" type="text/css" />
+		
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+		  		$(".click").click(function(){
+		  			$(".tip").fadeIn(200);
+		  		});
+		  		$(".tiptop a").click(function(){
+		  			$(".tip").fadeOut(200);
+				});
+		 		$(".sure").click(function(){
+		  			$(".tip").fadeOut(100);
+				});
+		  		$(".cancel").click(function(){
+		  			$(".tip").fadeOut(100);
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#myModal').on('shown.bs.modal', function () {
+					$('#myInput').focus();
+				})
+			});
+		</script>
+
+ 	</head>
+	<body>
+	  	<div class="place">
+	    	<span>位置：</span>
+	    	<ul class="placeul">
+	    		<li><a href="#">后台管理</a></li>
+	    		<li><a href="CustomerActivity.html">客户关系管理</a></li>
+	    		<li><a href="CustomerRecommendA.html">推荐活动</a></li>
+	    	</ul>
+	    </div>
+	    
+	    <div class="rightinfo">
+	    	<div class="tools">
+	    		<ul class="toolbar">
+	        		<li class="click" style="height:35px;"><span style="margin-top:-1px;"><img src="images/t03.png" /></span>删除</li>
+	        		<li style="height:35px;" data-toggle="modal" data-target="#Modal"><span style="margin-top:-1px;"><img src="images/ico06.png" /></span>查询</li>
+	        		<li data-toggle="modal" data-target="#myModal" style="height:35px;"><span style="margin-top:-1px;"><img src="images/time.png" /></span>推荐</span></li>
+	        	</ul>
+	    	</div>
+	    	
+	    	<script type="text/javascript">
+				$("#active").click(function(){
+					$(".actived").prop("checked",$(this).prop("checked"));
+				});
+			</script>
+	    	
+	   		<table class="tablelist">
+	    		<thead>
+	    			<tr>
+	        			<th><input name="" type="checkbox" value="" id="activity"/></th>
+	        			<th>编号<i class="sort"><img src="images/px.gif" /></i></th>
+	        			<th>活动名称</th>
+	        			<th>老人的姓名</th>
+				        <th>推荐人</th>
+				        <th>推荐状态</th>
+	        			<th>推荐时间</th>
+				        <th>操作</th>
+			        </tr>
+				</thead>
+	        	<tbody>
+			        <tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+	        		<tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+			        <tr>
+				        <td><input name="" type="checkbox" value="" class="activityid"/></td>
+				        <td>20130908</td>
+				        <td>围棋比赛</td>
+				        <td>王金平</td>
+				        <td>员工1102</td>
+				        <td>未推荐</td>
+				        <td>20130104</td>
+				        <td>
+				        	<a href="#" class="click"> 删除</a>
+				        </td>
+			        </tr>
+	        	</tbody>
+	    	</table>
+	    	
+		    <div class="pagin">
+		    	<div class="message">共<i class="blue">258</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页</div>
+		        <ul class="paginList">
+			        <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
+			        <li class="paginItem current"><a href="javascript:;">1</a></li>
+			        <li class="paginItem"><a href="javascript:;">2</a></li>
+			        <li class="paginItem"><a href="javascript:;">3</a></li>
+			        <li class="paginItem"><a href="javascript:;">4</a></li>
+			        <li class="paginItem"><a href="javascript:;">5</a></li>
+			        <li class="paginItem more"><a href="javascript:;">...</a></li>
+			        <li class="paginItem"><a href="javascript:;">10</a></li>
+			        <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+		        </ul>
+		    </div>
+				
+				<!-- 老人列表弹窗 -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+				    	<div class="modal-content">
+				      		<div class="modal-header">
+				        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        		<h4 class="modal-title" id="myModalLabel">老人列表</h4>
+				      		</div>
+				      		<div >
+								<table class="tablelist">
+					        		<thead>
+				    					<tr>
+				        					<th><input name="" type="checkbox" value="" id="active"/></th>
+				        					<th>编号<i class="sort"><img src="images/px.gif" /></i></th>
+				        					<th>姓名</th>
+				        					<th>性别</th>
+				        					<th>年龄</th>
+							        		<th>类别</th>
+							        		<th>慢性病</th>
+							        		<th>失能情况</th>
+							        		<th>残疾情况</th>
+							        		<th>文化程度</th>
+							        		<th>操作</th>
+						        		</tr>
+									</thead>
+									<tbody>
+						        		<tr>
+									        <td><input name="" type="checkbox" value="" class="actived"/></td>
+									        <td>12345</td>
+									        <td>王金平</td>
+									        <td>男</td>
+									        <td>78岁</td>
+									        <td>独居老人</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>本科</td>
+									        <td>
+									        	<a href="老人详细信息页面" class="tablelink">查看</a>
+									        </td>
+								        </tr>
+								        <tr>
+									        <td><input name="" type="checkbox" value="" class="actived"/></td>
+									        <td>12345</td>
+									        <td>王金平</td>
+									        <td>男</td>
+									        <td>78岁</td>
+									        <td>独居老人</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>本科</td>
+									        <td>
+									        	<a href="#" class="tablelink">查看</a>
+									        </td>
+								        </tr>
+								        <tr>
+									        <td><input name="" type="checkbox" value="" class="actived"/></td>
+									        <td>12345</td>
+									        <td>王金平</td>
+									        <td>男</td>
+									        <td>78岁</td>
+									        <td>独居老人</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>本科</td>
+									        <td>
+									        	<a href="#" class="tablelink">查看</a>
+									        </td>
+								        </tr>
+								        <tr>
+									        <td><input name="" type="checkbox" value="" class="actived"/></td>
+									        <td>12345</td>
+									        <td>王金平</td>
+									        <td>男</td>
+									        <td>78岁</td>
+									        <td>独居老人</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>本科</td>
+									        <td>
+									        	<a href="#" class="tablelink">查看</a>
+									        </td>
+								        </tr>
+								        <tr>
+									        <td><input name="" type="checkbox" value="" class="actived"/></td>
+									        <td>12345</td>
+									        <td>王金平</td>
+									        <td>男</td>
+									        <td>78岁</td>
+									        <td>独居老人</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>无</td>
+									        <td>本科</td>
+									        <td>
+									        	<a href="#" class="tablelink">查看</a>
+									        </td>
+								        </tr>
+						        	</tbody>
+				        		</table>
+				      		</div>
+						    <div class="modal-footer">
+						    	<button type="button" class="btn btn-primary">推荐</button>
+						        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						    </div>
+				    	</div>
+				  	</div>
+				</div>
+	    
+		    <div class="tip">
+		    	<div class="tiptop"><span>提示信息</span><a></a></div>
+					<div class="tipinfo">
+				        <span><img src="images/ticon.png" /></span>
+				        <div class="tipright">
+					        <p>是否确认删除信息 ？</p>
+					        <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+				        </div>
+					</div>
+		        <div class="tipbtn">
+			        <input name="" type="button"  class="sure" value="确定" />&nbsp;
+			        <input name="" type="button"  class="cancel" value="取消" />
+		        </div>
+		    </div>
+	    </div>
+	    
+	    <!-- 查询弹框 -->
+	    <div id="Modal" class="modal fade" tabindex="-1" role="dialog">
+			<div class="modal-dialog" role="document">
+		    	<div class="modal-content">
+		      		<div class="modal-header">
+		        		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        		<h4 class="modal-title">查询</h4>
+		      		</div>
+		      		<div class="modal-body">
+		        		<ul class="forminfo">
+		        			<li>
+		    					<label>活动名称</label>
+		    					<input name="" type="text" class="dfinput"  style="width:258px;"/>
+		    				</li>
+		    				<li>
+		    					<label>老人的姓名</label>
+		    					<input name="" type="text" class="dfinput"  style="width:258px;"/>
+		    				</li>
+							<li>
+								<label>推荐人</label>
+								<input name="" type="text" class="dfinput"  style="width:258px;"/>
+							</li>
+							<li>
+								<label>推荐状态</label>
+								<label class="radio-inline">
+								  	<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">已推荐
+								</label>
+								<label class="radio-inline">
+								  	<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">未推荐
+								</label>
+								<label class="radio-inline">
+								  	<input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">所有
+								</label>
+								<!-- <label>推荐状态</label>
+								<input name="" type="text" class="dfinput"  style="width:258px;"/> -->
+							</li>
+		    				<li>
+			    				<label>推荐时间</label>
+		    					<input name="" type="text" class="dfinput"  style="width:75px;"/>
+								年
+								<input name="" type="text" class="dfinput"  style="width:72px;"/>
+								月
+								<input name="" type="text" class="dfinput"  style="width:72px;"/>
+								日
+		    				</li>
+	    				</ul>
+		      		</div>
+		      		<div class="modal-footer">
+		        		<button type="button" class="btn btn-primary" data-dismiss="modal">查询</button>
+		        		<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
+		      		</div>
+		    	</div><!-- /.modal-content -->
+		  	</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	    
+    	<script type="text/javascript">
+			$('.tablelist tbody tr:odd').addClass('odd');
+		</script>
+		
+		<script type="text/javascript">
+			$("#activity").click(function(){
+				$(".activityid").prop("checked",$(this).prop("checked"));
+			});
+		</script>
+		
+		<script type="text/javascript">
+			$('#Modal').on('shown.bs.modal', function () {
+				$('#myInput').focus();
+			});
+		</script>
+		
+	</body>
+</html>
