@@ -92,6 +92,83 @@
       order by ${orderByClause}
     </if>
   </select>
+  
+  <!--查询课程报名信息和老人信息和课程信息ResultMap  -->
+  <resultMap id="selectByExampleAndCourseOldManResultMap" type="courseenrol">
+  	<id column="courseenrol_id" property="id" jdbcType="INTEGER" />
+    <result column="enrolTime" property="enroltime" jdbcType="TIMESTAMP" />
+    <result column="enrolState" property="enrolstate" jdbcType="VARCHAR" />
+    <result column="oldMamId" property="oldmamId" jdbcType="INTEGER" />
+    <result column="courseCompletion" property="coursecompletion" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="DOUBLE" />
+    <result column="rating" property="rating" jdbcType="VARCHAR" />
+    <result column="isNormalClass" property="isnormalclass" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="courseId" property="courseId" jdbcType="INTEGER" />
+    <result column="courseEnrol1" property="courseenrol1" jdbcType="VARCHAR" />
+    <result column="courseEnrol2" property="courseenrol2" jdbcType="VARCHAR" />
+    <result column="courseEnrol3" property="courseenrol3" jdbcType="VARCHAR" />
+    <association property="oldman" javaType="oldman">
+    	<id column="oldMan_id" property="id" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="sex" property="sex" jdbcType="VARCHAR" />
+	    <result column="phone" property="phone" jdbcType="VARCHAR" />
+	    <result column="age" property="age" jdbcType="INTEGER" />
+	    <result column="address" property="address" jdbcType="VARCHAR" />
+    </association>
+    <association property="courses" javaType="courses">
+    	<id column="course_id" property="id" jdbcType="INTEGER" />
+	    <result column="title" property="title" jdbcType="VARCHAR" />
+	    <result column="teachingWay" property="teachingway" jdbcType="VARCHAR" />
+	    <result column="teacher" property="teacher" jdbcType="VARCHAR" />
+	    <result column="content" property="content" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <!--查询课程报名信息和老人信息和课程信息字段  -->
+  <sql id="selectByExampleAndCourseOldMan_Column_List" >
+    cs.id courseenrol_id, cs.enrolTime, cs.enrolState, cs.oldMam_id oldMamId, cs.courseCompletion, cs.grade, cs.rating, cs.isNormalClass, 
+    cs.remark, cs.course_id courseId, cs.courseEnrol1, cs.courseEnrol2, cs.courseEnrol3,o.id oldMan_id,o.name,o.sex,o.phone,o.age,o.address,
+    c.id course_id,c.title,c.teachingWay,c.teacher,c.content
+  </sql>
+  <!--查询课程报名信息和老人信息和课程信息  -->
+  <select id="selectByExampleAndCourseOldMan" resultMap="selectByExampleAndCourseOldManResultMap" parameterType="courseenrolExample">
+  	 select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="selectByExampleAndCourseOldMan_Column_List" />
+    from courseenrol cs join oldman o join courses c on cs.course_id=c.id and cs.oldMam_id=o.id
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <!--根据课程主键、课程名、老人名字查询课程报名信息和老人信息和课程信息  -->
+  <select id="selectCourseenrolCourseOldManByCondition" resultMap="selectByExampleAndCourseOldManResultMap" parameterType="courseenrol">
+  	 select
+    <include refid="selectByExampleAndCourseOldMan_Column_List" />
+    from courseenrol cs join oldman o join courses c on cs.course_id=c.id and cs.oldMam_id=o.id
+	    <if test="id!=null and id!=''">
+	     and cs.id=#{id}
+	    </if>
+	    <if test="id==null or id==''">
+	    	<if test="courses.title!=null and courses.title!='' and (oldman.name==null or oldman.name=='')" >
+		     and c.title like '%${courses.title}%'
+		    </if>
+		    <if test="oldman.name!=null and oldman.name!='' and(courses.title==null or courses.title=='')">
+		     and o.name like '%${oldman.name}%'
+		    </if>
+		    <if test="courses.title!=null and courses.title!='' and oldman.name!=null and oldman.name!=''" >
+		     and (c.title like '%${courses.title}%' or o.name like '%${oldman.name}%')
+		    </if>
+	    </if>
+  </select>
+  
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

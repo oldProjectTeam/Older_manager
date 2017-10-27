@@ -17,7 +17,12 @@ public interface CourseenrolMapper {
     int insertSelective(Courseenrol record);
 
     List<Courseenrol> selectByExample(CourseenrolExample example);
-
+    
+    //查询所有课程报名信息带课程信息和老人信息
+    List<Courseenrol> selectByExampleAndCourseOldMan(CourseenrolExample example);
+  //根据条件查询所有课程报名信息带课程信息和老人信息
+   List<Courseenrol>  selectCourseenrolCourseOldManByCondition(Courseenrol courseenrol);
+    
     Courseenrol selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Courseenrol record, @Param("example") CourseenrolExample example);

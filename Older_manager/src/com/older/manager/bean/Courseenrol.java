@@ -6,7 +6,7 @@ public class Courseenrol {
     private Integer id;
 
     private Date enroltime;
-
+    private String timeStr;//用作设置日期格式所用
     private String enrolstate;
 
     private Integer oldmamId;
@@ -29,6 +29,10 @@ public class Courseenrol {
 
     private String courseenrol3;
 
+    //联表查询所用
+    private Oldman oldman;
+    private Courses courses;
+    
     public Integer getId() {
         return id;
     }
@@ -132,4 +136,40 @@ public class Courseenrol {
     public void setCourseenrol3(String courseenrol3) {
         this.courseenrol3 = courseenrol3 == null ? null : courseenrol3.trim();
     }
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Courses getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Courses courses) {
+		this.courses = courses;
+	}
+
+	@Override
+	public String toString() {
+		return "Courseenrol [id=" + id + ", enroltime=" + enroltime
+				+ ", enrolstate=" + enrolstate + ", oldmamId=" + oldmamId
+				+ ", coursecompletion=" + coursecompletion + ", grade=" + grade
+				+ ", rating=" + rating + ", isnormalclass=" + isnormalclass
+				+ ", remark=" + remark + ", courseId=" + courseId
+				+ ", courseenrol1=" + courseenrol1 + ", courseenrol2="
+				+ courseenrol2 + ", courseenrol3=" + courseenrol3 + ", oldman="
+				+ oldman + ", courses=" + courses + "]";
+	}
+
+	public String getTimeStr() {
+		return timeStr;
+	}
+
+	public void setTimeStr(String timeStr) {
+		this.timeStr = timeStr;
+	}
 }

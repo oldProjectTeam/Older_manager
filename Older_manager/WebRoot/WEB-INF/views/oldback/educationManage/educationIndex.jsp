@@ -48,28 +48,28 @@
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="videoManager.jsp" class="list-group-item text-center"><img
-						src="../images/vedio.png" alt="..." class="img-rounded"> <br>
+						src="static/images/oldback/images/vedio.png" alt="..." class="img-rounded"> <br>
 						<br>视频管理 </a>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="addvedio.jsp" class="list-group-item text-center"><img
-						src="../images/addvedio.png" alt="..." class="img-rounded">
+						src="static/images/oldback/images/addvedio.png" alt="..." class="img-rounded">
 						<br> <br>添加视频 </a>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="coursemanager.jsp" class="list-group-item text-center"><img
-						src="../images/course.png" alt="..." class="img-rounded"> <br>
+						src="static/images/oldback/images/course.png" alt="..." class="img-rounded"> <br>
 						<br>课程管理 </a>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="addcourse.jsp" class="list-group-item text-center"><img
-						src="../images/addcourse.png" alt="..." class="img-rounded">
+						src="static/images/oldback/images/addcourse.png" alt="..." class="img-rounded">
 						<br> <br>添加课程 </a>
 				</div>
 			</div>
@@ -77,8 +77,8 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="courseEnrol.jsp" class="list-group-item text-center"><img
-						src="../images/takecourse.png" alt="..." class="img-rounded">
+					<a href="courseenrol/searchCourseenrol" class="list-group-item text-center"><img
+						src="static/images/oldback/images/takecourse.png" alt="..." class="img-rounded">
 						<br> <br>课程报名 </a>
 				</div>
 			</div>

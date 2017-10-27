@@ -91,7 +91,7 @@
 			<div class="title" id="education">
 				<span><img
 					src="${APP_PATH}/static/images/oldback/images/leftico01.png" /></span> <a
-					href="educationManage/educationIndex.html" target="rightFrame">教育管理</a>
+					href="education/educationIndex" target="rightFrame">教育管理</a>
 			</div>
 			<ul class="menuson">
 				<li><cite></cite><a href="educationManage/videoManager.jsp"
@@ -102,7 +102,7 @@
 					target="rightFrame">课程管理</a><i></i></li>
 				<li><cite></cite><a href="educationManage/addcourse.jsp"
 					target="rightFrame">添加课程</a><i></i></li>
-				<li><cite></cite><a href="educationManage/courseEnrol.jsp"
+				<li><cite></cite><a href="courseenrol/searchCourseenrol"
 					target="rightFrame">课程报名</a><i></i></li>
 			</ul>
 		</dd>
