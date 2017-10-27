@@ -98,9 +98,9 @@
 					target="rightFrame">视频管理</a><i></i></li>
 				<li><cite></cite><a href="educationManage/addvedio.jsp"
 					target="rightFrame">添加视频</a><i></i></li>
-				<li><cite></cite><a href="educationManage/coursemanager.jsp"
+				<li><cite></cite><a href="${APP_PATH }/Course/coursemanager/"
 					target="rightFrame">课程管理</a><i></i></li>
-				<li><cite></cite><a href="educationManage/addcourse.jsp"
+				<li><cite></cite><a href="${APP_PATH }/Course/addcourse/"
 					target="rightFrame">添加课程</a><i></i></li>
 				<li><cite></cite><a href="courseenrol/searchCourseenrol"
 					target="rightFrame">课程报名</a><i></i></li>
