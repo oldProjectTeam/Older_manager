@@ -1,4 +1,4 @@
-package com.older.manager.test;
+package com.older.junit.test;
 
 import java.util.Date;
 
