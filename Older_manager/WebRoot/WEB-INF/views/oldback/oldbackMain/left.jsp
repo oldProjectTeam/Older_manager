@@ -39,7 +39,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico01.png" /></span> <a
+					src="${APP_PATH}/static/images/oldback/images/info.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
 					href="${APP_PATH }/old/addOldManInfo" target="rightFrame">档案管理</a>
 			</div>
 			<ul class="menuson">
@@ -57,7 +57,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico01.png" /></span><a
+					src="${APP_PATH}/static/images/oldback/images/health.png" width="30" height="30" style="margin-top: -8px;" /></span><a
 					href="healthManage/health.html" target="rightFrame">健康管理</a>
 			</div>
 			<ul class="menuson">
@@ -74,7 +74,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico01.png" /></span>客户关系管理
+					src="${APP_PATH}/static/images/oldback/images/relative.png" width="30" height="30" style="margin-top: -8px;" /></span>客户关系管理
 			</div>
 			<ul class="menuson">
 				<li><cite></cite><a href="into.html" target="rightFrame">参加活动</a><i></i></li>
@@ -90,7 +90,7 @@
 		<dd>
 			<div class="title" id="education">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico01.png" /></span> <a
+					src="${APP_PATH}/static/images/oldback/images/education.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
 					href="education/educationIndex" target="rightFrame">教育管理</a>
 			</div>
 			<ul class="menuson">
@@ -111,7 +111,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico02.png" /></span>数据统计
+					src="${APP_PATH}/static/images/oldback/images/count.png" width="30" height="30" style="margin-top: -8px;" /></span>数据统计
 			</div>
 			<ul class="menuson">
 
@@ -124,7 +124,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico02.png" /></span> <a
+					src="${APP_PATH}/static/images/oldback/images/office.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
 					href="/Older_manager/static/oldback/officemanage/page.jsp"
 					target="rightFrame">办公管理</a>
 			</div>
@@ -158,7 +158,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/accounticon1.png" /></span>
+					src="${APP_PATH}/static/images/oldback/images/old.png" width="30" height="30" style="margin-top: -8px;" /></span>
 				<a href="oldaccountmanage/accountManageindex.html"
 					target="rightFrame">老人账户管理</a>
 			</div>
@@ -179,7 +179,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico03.png" /></span> <a
+					src="${APP_PATH}/static/images/oldback/images/system.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
 					href="systemManage/systemManageindex.html" target="rightFrame">系统管理</a>
 			</div>
 			<ul class="menuson">
@@ -192,7 +192,7 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/leftico04.png" /></span>定位管理
+					src="${APP_PATH}/static/images/oldback/images/location.png" width="30" height="30" style="margin-top: -8px;" /></span>定位管理
 			</div>
 			<ul class="menuson">
 				<li><cite></cite><a href="#">定位查询</a><i></i></li>
