@@ -27,14 +27,14 @@
 
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!--路劲导航  -->
 	<div>
 		<div class="row">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
 					<li><b>位置：<a
-							href="static/oldback/systemManage/systemManageindex.html">系统管理</a></b></li>
+							href="systemManageindex">系统管理</a></b></li>
 					<li class="active">操作日志</li>
 				</ol>
 			</div>

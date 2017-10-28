@@ -30,9 +30,11 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script language="JavaScript"
+	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!--路劲导航  -->
 	<div class="row">
 		<div class="col-md-12">
@@ -74,8 +76,8 @@
 									<option>女</option>
 							</select></td>
 							<td rowspan="4" style="width:80px">图片</td>
-							<td rowspan="4"><input type="file" /> <input type="button"
-								value="上传图片" /></td>
+							<td rowspan="4"><input type="file" id="up_img" name="file" />
+								<img id="imgShow" class="img-responsive" /></td>
 						</tr>
 						<tr>
 							<td><font color=red>*</font>联系手机号：</td>
@@ -266,5 +268,11 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		new uploadPreview({
+			UpBtn : "up_img",
+			ImgShow : "imgShow"
+		});
+	</script>
 </body>
 </html>

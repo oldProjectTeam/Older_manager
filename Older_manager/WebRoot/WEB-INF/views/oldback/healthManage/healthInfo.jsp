@@ -36,7 +36,7 @@
 </STYLE>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!-- 头部 -->
 	<div class="col-md-12">
 		<div>
@@ -260,15 +260,15 @@
 
 		//新增按钮
 		$("#addvedio_btn").click(function() {
-			window.location.href = "addhealthInfo.html";
+			window.location.href = "health/addhealthInfo";
 		});
 		//修改按钮
 		$(".update-btn").click(function() {
-			window.location.href = "updateAttend.html";
+			window.location.href = "health/updateAttend";
 		});
 		//查看按钮
 		$(".vedioview-btn").click(function() {
-			window.location.href = "selectAttend.html";
+			window.location.href = "health/selectAttend";
 		});
 	</SCRIPT>
 </body>

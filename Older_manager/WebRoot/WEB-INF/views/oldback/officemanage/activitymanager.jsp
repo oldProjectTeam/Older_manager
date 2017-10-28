@@ -47,7 +47,7 @@
 </script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 
 	<div style="width:98%;margin-left:5px">
 		<span class="col-sm-12 backstyle">活动管理</span><br> <br> <br>

@@ -41,7 +41,7 @@
 </script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<div style="width:98%;margin-left:4px">
 		<ul class="list-unstyle list-inline nav nav-tabs"
 			style="margin-top:10px">

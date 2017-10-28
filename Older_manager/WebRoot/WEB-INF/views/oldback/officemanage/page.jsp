@@ -31,66 +31,63 @@
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-	<div style="width:98%;margin-left:4px">
-		<div class="col-sm-12">
-			<div class="col-sm-3 ">
-				<a href="/Older_manager/static/oldback/officemanage/sendsms.jsp"
-					class="backcolor"> <img alt="" src="static/images/sendsms.png"><br>
-					<span class="textfont">发送短信</span>
-				</a>
+<body style="margin: 15px;">
+
+	<!--菜单列表  -->
+	<div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="sendsms" class="list-group-item text-center"><img
+						src="static/images/sendsms.png" alt="..." class="img-rounded">
+						<br> <br>发送短信 </a>
+				</div>
 			</div>
-			<div class="col-sm-3">
-				<a href="/Older_manager/static/oldback/officemanage/sendrecord.jsp"
-					class="backcolor"> <img alt=""
-					src="static/images/sendrecord.png"><br> <span
-					class="textfont">短信记录</span>
-				</a>
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="sendrecord" class="list-group-item text-center"><img
+						src="static/images/sendrecord.png" alt="..." class="img-rounded">
+						<br> <br>短信记录 </a>
+				</div>
 			</div>
-			<div class="col-sm-3">
-				<a
-					href="/Older_manager/static/oldback/officemanage/informnotice.jsp"
-					class="backcolor"> <img alt="" src="static/images/tzgg.png"><br>
-					<span class="textfont">通知公告</span>
-				</a>
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="informnotice" class="list-group-item text-center"><img
+						src="static/images/tzgg.png" alt="..." class="img-rounded">
+						<br> <br>通知公告 </a>
+				</div>
 			</div>
-			<div class="col-sm-3">
-				<a href="/Older_manager/static/oldback/officemanage/sendnotice.jsp"
-					class="backcolor" style="padding-top:10px;"> <img alt=""
-					src="static/images/sendgg.png"
-					style="height:90px;width:100px;margin-bottom:10px"><br>
-					<span class="textfont" style="margin-top:150px">发布公告</span>
-				</a>
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="sendnotice" class="list-group-item text-center"><img
+						src="static/images/sendgg.png" alt="..." class="img-rounded">
+						<br> <br>发布公告 </a>
+				</div>
 			</div>
 		</div>
-		<div class="col-sm-12" style="margin-top:50px">
-			<div class="col-sm-3">
-				<a
-					href="/Older_manager/static/oldback/officemanage/addressbookmanager.jsp"
-					class="backcolor"> <img alt=""
-					src="static/images/txlrecord.png"><br> <span
-					class="textfont">通讯录管理</span>
-				</a>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="addressbookmanager" class="list-group-item text-center"><img
+						src="static/images/txlrecord.png" alt="..." class="img-rounded">
+						<br> <br>通讯录管理 </a>
+				</div>
 			</div>
-			<div class="col-sm-3">
-				<a
-					href="/Older_manager/static/oldback/officemanage/activitymanager.jsp"
-					class="backcolor" style="padding-top:10px"> <img alt=""
-					src="static/images/hdmanage.png"
-					style="height:90px;width:110px;margin-bottom:10px"><br>
-					<span class="textfont">活动管理</span>
-				</a>
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="activitymanager" class="list-group-item text-center"><img
+						src="static/images/hdmanage.png" alt="..." class="img-rounded">
+						<br> <br>活动管理 </a>
+				</div>
 			</div>
-			<div class="col-sm-3">
-				<a
-					href="/Older_manager/static/oldback/officemanage/sendactivity.jsp"
-					class="backcolor" style="padding-top:10px"> <img alt=""
-					src="static/images/sendhd.png"
-					style="height:90px;width:110px;margin-bottom:10px"><br>
-					<span class="textfont">发布活动</span>
-				</a>
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="sendactivity" class="list-group-item text-center"><img
+						src="static/images/sendhd.png" alt="..." class="img-rounded">
+						<br> <br>发布活动 </a>
+				</div>
 			</div>
-			<div class="col-sm-3"></div>
+
 		</div>
 	</div>
 </body>

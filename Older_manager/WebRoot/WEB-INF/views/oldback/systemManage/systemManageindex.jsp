@@ -30,7 +30,7 @@
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!--导航  -->
 	<div>
 		<div class="row">
@@ -45,8 +45,8 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="list-group">
-				<a href="operation_log.jsp" class="list-group-item text-center"><img
-					src="../images/operationlog.png" alt="..." class="img-rounded">
+				<a href="operation_log" class="list-group-item text-center"><img
+					src="${APP_PATH}/static/images/oldback/images/operationlog.png" alt="..." class="img-rounded">
 					<br> <br>操作日志 </a>
 			</div>
 		</div>

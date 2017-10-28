@@ -33,7 +33,7 @@
 
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!--导航  -->
 	<div>
 		<div class="row">

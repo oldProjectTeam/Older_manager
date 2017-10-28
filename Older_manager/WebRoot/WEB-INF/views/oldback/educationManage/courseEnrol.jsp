@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	
   </head>
   
-<body >
+<body style="margin: 15px;">
   <!--路劲导航  -->
    <div>
   	<div class="row">

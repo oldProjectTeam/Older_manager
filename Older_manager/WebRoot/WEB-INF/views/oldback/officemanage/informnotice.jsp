@@ -31,7 +31,7 @@
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<div style="width:98%;margin-left:4px"">
 		<div style="background:#fdfdfd;margin-top:15px;">
 			<span class="col-sm-12 backstyle">通知公告表</span> <br> <br> <br>

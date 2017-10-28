@@ -31,7 +31,7 @@
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="margin: 15px;">
 	<div class="row">
 		<div class="col-sm-12">
 			<form action="${APP_PATH}/addnewolder" method="post" class="form">

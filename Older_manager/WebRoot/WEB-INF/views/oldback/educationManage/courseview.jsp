@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<script language="JavaScript" src="static/js/jquery-3.2.1.min.js"></script>
   </head>
   
-  <body>
+  <body style="margin: 15px;">
     <!--路劲导航  -->
   	<div class="row">
 	  <div class="col-md-12" >
@@ -57,7 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				 </td>
 				 <td rowspan="3" class="active" style="padding-top:50px">宣传图片:</td>
 				 <td rowspan="3" class="col-xs-2">
-				 	 <img src=${Course.photo} alt="..." class="img-responsive">
+				 	 <img src=${Course.photo==null?'./upload/default.png':Course.photo} alt="..." class="img-responsive">
 				 </td>		 	
 			</tr>	 		 
 			 <tr>  

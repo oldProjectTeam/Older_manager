@@ -28,7 +28,7 @@
 <script language="JavaScript" src="static/js/jquery-3.2.1.min.js"></script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!--路劲导航  -->
 	<div>
 		<div class="row">
@@ -51,8 +51,9 @@
 					<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 					新增
 				</button>
-				<button type="button" class="btn btn-danger" id="course_delete_all_btn">
-					<span class="glyphicon glyphicon-trash" aria-hidden="true" ></span>
+				<button type="button" class="btn btn-danger"
+					id="course_delete_all_btn">
+					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					批量删除
 				</button>
 			</div>
@@ -219,10 +220,13 @@
 				var dataTd3 = $("<td></td>").append(item.teachingway);
 				var dataTd4 = $("<td></td>").append(item.teacher);
 				var dataTd5 = $("<td></td>").append(item.limitnumber);
-				
-				var dataTd6 = $("<td></td>").append(ChangeDateFormat(item.bytime));
-				var dataTd7 = $("<td></td>").append(ChangeDateFormat(item.starttime));
-				var dataTd8 = $("<td></td>").append(ChangeDateFormat(item.endtime));
+
+				var dataTd6 = $("<td></td>").append(
+						ChangeDateFormat(item.bytime));
+				var dataTd7 = $("<td></td>").append(
+						ChangeDateFormat(item.starttime));
+				var dataTd8 = $("<td></td>").append(
+						ChangeDateFormat(item.endtime));
 
 				var edit_btn = $("<button type='button'></button>").addClass(
 						"btn btn-success btn-sm update-btn").append(
@@ -231,8 +235,7 @@
 				var find_btn = $("<button type='button'></button>").addClass(
 						"btn btn-info btn-sm courseview-btn").append(
 						$("<span></span>").addClass(
-								"glyphicon glyphicon-search")).append(
-						"查看&nbsp;&nbsp");
+								"glyphicon glyphicon-search")).append("查看");
 				var del_btn = $("<button type='button'></button>").addClass(
 						"btn btn-danger btn-sm").append(
 						$("<span></span>")
@@ -245,14 +248,14 @@
 				//单个item查看事件
 				find_btn.click(function() {
 					window.location.href = "Course/findCoursesByid?id="
-							+ find_btn.attr("courseId")+"&way=0";
+							+ find_btn.attr("courseId") + "&way=0";
 
 				});
-				
+
 				//单个item修改事件
 				edit_btn.click(function() {
 					window.location.href = "Course/findCoursesByid?id="
-						+ find_btn.attr("courseId")+"&way=1";
+							+ find_btn.attr("courseId") + "&way=1";
 
 				});
 
@@ -279,8 +282,12 @@
 				dataTR.append(checkBoxData).append(dataTd1).append(dataTd2)
 						.append(dataTd3).append(dataTd4).append(dataTd5)
 						.append(dataTd6).append(dataTd7).append(dataTd8)
-						.append(edit_btn).append(find_btn).append(del_btn)
-						.appendTo($("#table_data"));
+						.append(
+								$("<td></td>").append(edit_btn).append(
+										"&nbsp;&nbsp;&nbsp;&nbsp;").append(
+										find_btn).append(
+										"&nbsp;&nbsp;&nbsp;&nbsp;").append(
+										del_btn)).appendTo($("#table_data"));
 				edit_btn.click(function() {
 
 				});
@@ -291,7 +298,7 @@
 		$(document).on("click", "#check_item_all", function() {
 			$(".item_check").prop("checked", $(this).prop("checked"));
 		});
-		
+
 		//点击批量删除
 		$("#course_delete_all_btn").click(
 				function() {
@@ -299,43 +306,46 @@
 					var empNames = "";
 					var del_idstr = "";
 					$.each($(".item_check:checked"), function(index, item) {
-						empNames += $(item).parents("tr").find("td:eq(2)").text()+ ",";
+						empNames += $(item).parents("tr").find("td:eq(2)")
+								.text()
+								+ ",";
 						//组装员工ID的字符串
-						del_idstr += $(item).parents("tr").find("td:eq(1)").text()+ "-";
+						del_idstr += $(item).parents("tr").find("td:eq(1)")
+								.text()
+								+ "-";
 					});
 					//去除empNames多余的,
 					empNames = empNames.substring(0, empNames.length - 1);
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
-					if(empNames!=null&&empNames.length!=0){
-						if (confirm("确认删除【" + empNames +"】吗?")) {
+					if (empNames != null && empNames.length != 0) {
+						if (confirm("确认删除【" + empNames + "】吗?")) {
 							//发送ajax请求删除
 							$.ajax({
 								url : "Course/delectCourseByListId/",
-								data : {"listId":del_idstr},
+								data : {
+									"listId" : del_idstr
+								},
 								type : "GET",
 								success : function(result) {
-									if(result.code==100){
+									if (result.code == 100) {
 										alert(result.msg);
 										go(currentNum);
 									}
 									//回到当前页
-									
+
 								}
 							});
 						}
-					}else{
+					} else {
 						alert("请选择要删除的课程！");
 					}
-					
+
 				});
 
-		
 		//新增按钮
-		$("#addcourse_btn")
-				.click(
-						function() {
-						location.href = "${APP_PATH }/Course/addcourse/";
-						});
+		$("#addcourse_btn").click(function() {
+			location.href = "${APP_PATH }/Course/addcourse/";
+		});
 		//修改按钮
 		$(".update-btn")
 				.click(
@@ -352,19 +362,21 @@
 		//搜索按钮
 		$("#search").click(function() {
 			var coursename = $('#coursename').val();//获取值
-			var teacher=$('#teacher').val();
-			if(coursename.length==0&&teacher.length==0){
+			var teacher = $('#teacher').val();
+			if (coursename.length == 0 && teacher.length == 0) {
 				alert("请输入数据");
-			}else{
-				search(coursename,teacher);
+			} else {
+				search(coursename, teacher);
 			}
-			
 
 		});
-		function search(coursename,Teacher) {
+		function search(coursename, Teacher) {
 			$.ajax({
 				url : "Course/findAllCoursesByCourseName",
-				data : {"CoursesName":coursename,"teacher":Teacher},
+				data : {
+					"CoursesName" : coursename,
+					"teacher" : Teacher
+				},
 				type : "get",
 				success : function(result) {
 
@@ -381,25 +393,24 @@
 				}
 			});
 		}
-		function  ChangeDateFormat(d) {
+		function ChangeDateFormat(d) {
 			//将时间戳转为int类型，构造Date类型
-			if(d!=null){
+			if (d != null) {
 				var date = new Date(parseInt(d));
 
 				//月份得+1，且只有个位数时在前面+0
-				var month = date.getMonth()+1+"月";
+				var month = date.getMonth() + 1 + "月";
 
 				//日期为个位数时在前面+0
-				var currentDate = date.getDate()+"日";
+				var currentDate = date.getDate() + "日";
 
 				//getFullYear得到4位数的年份 ，返回一串字符串
-				return date.getFullYear()+"年"  + month  + currentDate;
-			}else{
+				return date.getFullYear() + "年" + month + currentDate;
+			} else {
 				return null;
 			}
-			
+
 		}
-		
 	</script>
 </body>
 </html>

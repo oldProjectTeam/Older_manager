@@ -45,11 +45,11 @@
 					src="${APP_PATH}/static/images/oldback/images/help.png" title="帮助"
 					class="helpimg" /></span><a href="#">帮助</a></li>
 			<li><a href="#">关于</a></li>
-			<li><a href="login.jsp" target="_parent">退出</a></li>
+			<li><a href="system/logout" target="_parent">退出</a></li>
 		</ul>
 
 		<div class="user">
-			<span>admin</span> <i>消息</i> <b>5</b>
+			<span>${currentUser.username}</span>
 		</div>
 	</div>
 </body>

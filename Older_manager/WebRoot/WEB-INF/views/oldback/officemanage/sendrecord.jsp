@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 </head>
   
-  <body>
+  <body style="margin: 15px;">
   	<div style="width:98%;margin-left:5px">
   	<br>
     	<span>发送记录</span>

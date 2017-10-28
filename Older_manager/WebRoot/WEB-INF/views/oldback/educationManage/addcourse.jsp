@@ -31,7 +31,7 @@
 	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 </head>
 
-<body onload="">
+<body onload="" style="margin: 15px;">
 	<!--路劲导航  -->
 	<div class="row">
 		<div class="col-md-12">

@@ -30,7 +30,7 @@
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<div style="width:98%;margin-left:10px; margin-top:10px">
 		<span>收信人：赵琴琴</span><br> <br> <span>发送内容为：</span>
 		<div

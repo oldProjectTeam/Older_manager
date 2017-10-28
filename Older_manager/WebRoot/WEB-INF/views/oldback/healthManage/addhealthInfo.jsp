@@ -35,7 +35,7 @@
 }
 </STYLE>
 </head>
-<body>
+<body style="margin: 15px;">
 	<!-- 头部 -->
 	<div class="col-md-12">
 		<div>

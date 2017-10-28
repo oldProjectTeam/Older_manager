@@ -5,12 +5,7 @@
 	id="WebApp_ID" version="3.1">
 	<display-name>Older_manager</display-name>
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 	<!-- 1.启动spring的容器 -->
 	<context-param>
@@ -72,4 +67,14 @@
 		<filter-name>HttpPutFormContentFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+
+	<!-- 不对静态资源进行过滤 -->
+	<servlet-mapping>
+		<servlet-name>default
+		</servlet-name>
+		<url-pattern>*.js</url-pattern>
+		<url-pattern>*.css</url-pattern>
+		<url-pattern>/assets/*</url-pattern>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
 </web-app>

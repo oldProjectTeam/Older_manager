@@ -28,7 +28,7 @@
 	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 </head>
 
-<body >
+<body style="margin: 15px;">
 	<!--路劲导航  -->
 	<div class="row">
 		<div class="col-md-12">
@@ -66,8 +66,9 @@
 								<td rowspan="3" class="active" style="padding-top:50px">宣传图片:</td>
 								<td rowspan="3" class="col-xs-2"><input
 									class="btn btn-default" type="file" value="图片管理" name="file"
-									id="up_img"> <img src=${Course.photo} id="imgShow"
-									class="img-responsive"></td>
+									id="up_img"> <img
+									src=${Course.photo==null?'./upload/default.png':Course.photo}
+									id="imgShow" class="img-responsive"></td>
 
 							</tr>
 							<tr>
@@ -115,21 +116,22 @@
 
 	<script type="text/javascript">
 		//初始化时间
-		
 
 		window.onload = function() {
-			
+
 			new uploadPreview({
 				UpBtn : "up_img",
 				ImgShow : "imgShow"
 			});
-			document.getElementById("bytime").valueAsDate = new Date("${Course.bytime}");
-			document.getElementById("starttime").valueAsDate = new Date("${Course.starttime}");
-            document.getElementById("endtime").valueAsDate = new Date("${Course.endtime}");
-			
+			document.getElementById("bytime").valueAsDate = new Date(
+					"${Course.bytime}");
+			document.getElementById("starttime").valueAsDate = new Date(
+					"${Course.starttime}");
+			document.getElementById("endtime").valueAsDate = new Date(
+					"${Course.endtime}");
+
 		};
-		
-		
+
 		//修改按钮
 		$("#editCourse").click(function() {
 			$.ajax({
@@ -140,7 +142,6 @@
 				processData : false,
 				contentType : false,
 				success : function(result) {
-
 					if (result.code == 100) {
 						alert("修改成功!");
 					} else {

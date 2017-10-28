@@ -39,7 +39,8 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/info.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
+					src="${APP_PATH}/static/images/oldback/images/info.png" width="30"
+					height="30" style="margin-top: -8px;" /></span> <a
 					href="${APP_PATH }/old/addOldManInfo" target="rightFrame">档案管理</a>
 			</div>
 			<ul class="menuson">
@@ -57,15 +58,16 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/health.png" width="30" height="30" style="margin-top: -8px;" /></span><a
-					href="healthManage/health.html" target="rightFrame">健康管理</a>
+					src="${APP_PATH}/static/images/oldback/images/health.png"
+					width="30" height="30" style="margin-top: -8px;" /></span><a
+					href="${APP_PATH}/health/health" target="rightFrame">健康管理</a>
 			</div>
 			<ul class="menuson">
-				<li><cite></cite><a href="healthManage/healthInfo.html"
+				<li><cite></cite><a href="${APP_PATH}/health/healthInfo"
 					target="rightFrame">基本健康信息</a><i></i></li>
 				<li><cite></cite><a href="right.html" target="rightFrame">体检记录</a><i></i></li>
 				<li><cite></cite><a href="right.html" target="rightFrame">健康评估</a><i></i></li>
-				<li><cite></cite><a href="healthManage/healthattend.html"
+				<li><cite></cite><a href="${APP_PATH}/health/healthattend"
 					target="rightFrame">就诊记录</a><i></i></li>
 			</ul>
 		</dd>
@@ -74,7 +76,8 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/relative.png" width="30" height="30" style="margin-top: -8px;" /></span>客户关系管理
+					src="${APP_PATH}/static/images/oldback/images/relative.png"
+					width="30" height="30" style="margin-top: -8px;" /></span>客户关系管理
 			</div>
 			<ul class="menuson">
 				<li><cite></cite><a href="into.html" target="rightFrame">参加活动</a><i></i></li>
@@ -90,7 +93,8 @@
 		<dd>
 			<div class="title" id="education">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/education.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
+					src="${APP_PATH}/static/images/oldback/images/education.png"
+					width="30" height="30" style="margin-top: -8px;" /></span> <a
 					href="education/educationIndex" target="rightFrame">教育管理</a>
 			</div>
 			<ul class="menuson">
@@ -98,10 +102,9 @@
 					target="rightFrame">视频管理</a><i></i></li>
 				<li><cite></cite><a href="educationManage/addvedio.jsp"
 					target="rightFrame">添加视频</a><i></i></li>
-				<li><cite></cite><a href="${APP_PATH }/Course/coursemanager/"
+				<li><cite></cite><a href="Course/coursemanager"
 					target="rightFrame">课程管理</a><i></i></li>
-				<li><cite></cite><a href="${APP_PATH }/Course/addcourse/"
-					target="rightFrame">添加课程</a><i></i></li>
+				<li><cite></cite><a href="Course/addcourse" target="rightFrame">添加课程</a><i></i></li>
 				<li><cite></cite><a href="courseenrol/searchCourseenrol"
 					target="rightFrame">课程报名</a><i></i></li>
 			</ul>
@@ -111,7 +114,8 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/count.png" width="30" height="30" style="margin-top: -8px;" /></span>数据统计
+					src="${APP_PATH}/static/images/oldback/images/count.png" width="30"
+					height="30" style="margin-top: -8px;" /></span>数据统计
 			</div>
 			<ul class="menuson">
 
@@ -124,33 +128,20 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/office.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
-					href="/Older_manager/static/oldback/officemanage/page.jsp"
+					src="${APP_PATH}/static/images/oldback/images/office.png"
+					width="30" height="30" style="margin-top: -8px;" /></span> <a href="page"
 					target="rightFrame">办公管理</a>
 			</div>
 			<ul class="menuson">
 
-				<li><cite></cite><a
-					href="/Older_manager/static/oldback/officemanage/sendsms.jsp"
-					target="rightFrame">发送短信</a><i></i></li>
-				<li><cite></cite><a
-					href="/Older_manager/static/oldback/officemanage/sendrecord.jsp"
-					target="rightFrame">短信记录</a><i></i></li>
-				<li><cite></cite><a
-					href="/Older_manager/static/oldback/officemanage/informnotice.jsp"
-					target="rightFrame">通知公告</a><i></i></li>
-				<li><cite></cite><a
-					href="/Older_manager/static/oldback/officemanage/sendnotice.jsp"
-					target="rightFrame">发布公告</a><i></i></li>
-				<li><cite></cite><a
-					href="/Older_manager/static/oldback/officemanage/addressbookmanager.jsp"
+				<li><cite></cite><a href="sendsms" target="rightFrame">发送短信</a><i></i></li>
+				<li><cite></cite><a href="sendrecord" target="rightFrame">短信记录</a><i></i></li>
+				<li><cite></cite><a href="informnotice" target="rightFrame">通知公告</a><i></i></li>
+				<li><cite></cite><a href="sendnotice" target="rightFrame">发布公告</a><i></i></li>
+				<li><cite></cite><a href="addressbookmanager"
 					target="rightFrame">通讯录管理</a><i></i></li>
-				<li><cite></cite><a
-					href="/Older_manager/static/oldback/officemanage/activitymanager.jsp"
-					target="rightFrame">活动管理</a><i></i></li>
-				<li><cite></cite><a
-					href="/Older_manager/static/oldback/officemanage/sendactivity.jsp"
-					target="rightFrame">发布活动</a><i></i></li>
+				<li><cite></cite><a href="activitymanager" target="rightFrame">活动管理</a><i></i></li>
+				<li><cite></cite><a href="sendactivity" target="rightFrame">发布活动</a><i></i></li>
 			</ul>
 		</dd>
 
@@ -158,19 +149,15 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/old.png" width="30" height="30" style="margin-top: -8px;" /></span>
-				<a href="oldaccountmanage/accountManageindex.html"
+					src="${APP_PATH}/static/images/oldback/images/old.png" width="30"
+					height="30" style="margin-top: -8px;" /></span> <a href="accountmanage"
 					target="rightFrame">老人账户管理</a>
 			</div>
 			<ul class="menuson">
-				<li><cite></cite><a href="oldaccountmanage/accountmanage.jsp"
-					target="rightFrame">老人账户列表</a><i></i></li>
-				<li><cite></cite><a href="oldaccountmanage/giftmanage.jsp"
-					target="rightFrame">老人礼品管理</a><i></i></li>
-				<li><cite></cite><a href="oldaccountmanage/giftexchange.jsp"
-					target="rightFrame">礼品兑换记录</a><i></i></li>
-				<li><cite></cite><a href="oldaccountmanage/integralexchane.jsp"
-					target="rightFrame">积分管理</a><i></i></li>
+				<li><cite></cite><a href="accountmanage" target="rightFrame">老人账户列表</a><i></i></li>
+				<li><cite></cite><a href="giftmanage" target="rightFrame">老人礼品管理</a><i></i></li>
+				<li><cite></cite><a href="giftexchange" target="rightFrame">礼品兑换记录</a><i></i></li>
+				<li><cite></cite><a href="integralexchane" target="rightFrame">积分管理</a><i></i></li>
 			</ul>
 		</dd>
 
@@ -179,12 +166,12 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/system.png" width="30" height="30" style="margin-top: -8px;" /></span> <a
-					href="systemManage/systemManageindex.html" target="rightFrame">系统管理</a>
+					src="${APP_PATH}/static/images/oldback/images/system.png"
+					width="30" height="30" style="margin-top: -8px;" /></span> <a
+					href="systemManageindex" target="rightFrame">系统管理</a>
 			</div>
 			<ul class="menuson">
-				<li><cite></cite><a href="systemManage/operation_log.jsp"
-					target="rightFrame">操作日志</a><i></i></li>
+				<li><cite></cite><a href="operation_log" target="rightFrame">操作日志</a><i></i></li>
 			</ul>
 		</dd>
 
@@ -192,7 +179,8 @@
 		<dd>
 			<div class="title">
 				<span><img
-					src="${APP_PATH}/static/images/oldback/images/location.png" width="30" height="30" style="margin-top: -8px;" /></span>定位管理
+					src="${APP_PATH}/static/images/oldback/images/location.png"
+					width="30" height="30" style="margin-top: -8px;" /></span>定位管理
 			</div>
 			<ul class="menuson">
 				<li><cite></cite><a href="#">定位查询</a><i></i></li>

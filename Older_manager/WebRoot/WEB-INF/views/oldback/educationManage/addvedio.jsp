@@ -27,7 +27,7 @@
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!--路劲导航  -->
 	<div class="row">
 		<div class="col-md-12">

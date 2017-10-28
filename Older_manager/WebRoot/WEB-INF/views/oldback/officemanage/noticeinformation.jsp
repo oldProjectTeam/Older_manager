@@ -36,7 +36,7 @@ a {
 </style>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<div style="width:98%;margin-top:10px;margin-left:10px">
 		<span>公告信息：</span><br>
 		<div
