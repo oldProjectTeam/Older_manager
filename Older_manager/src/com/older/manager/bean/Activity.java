@@ -8,9 +8,9 @@ public class Activity {
     private String title;
 
     private Date releasetime;
-
+    private String releasetimeStr;
     private Date activitytime;
-
+    private String activitytimeStr;
     private String place;
 
     private String releasepeople;
@@ -222,4 +222,20 @@ public class Activity {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+	public String getReleasetimeStr() {
+		return releasetimeStr;
+	}
+
+	public void setReleasetimeStr(String releasetimeStr) {
+		this.releasetimeStr = releasetimeStr;
+	}
+
+	public String getActivitytimeStr() {
+		return activitytimeStr;
+	}
+
+	public void setActivitytimeStr(String activitytimeStr) {
+		this.activitytimeStr = activitytimeStr;
+	}
 }

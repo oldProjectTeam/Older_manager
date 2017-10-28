@@ -60,5 +60,10 @@ public class CourseenrolServiceImpl implements ICourseenrolService {
 		criteria.andIdIn(del_ids);
 		courseenrolMapper.deleteByExample(example);
 	}
+	@Override
+	public Courseenrol selectByPrimaryKey(Integer id) {
+		// TODO Auto-generated method stub
+		return courseenrolMapper.selectByPrimaryKey(id);
+	}
 
 }

@@ -19,10 +19,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript"  src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="${APP_PATH }/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 	<script type="text/javascript" src="${APP_PATH }/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-  	
+  	<style type="text/css">
+	  #parent{
+	  		width:200px; 
+	  		height:20px;
+	  		 border:2px solid #09F;
+	  		 }
+	  #son {width:0; height:100%; background-color:#09F; text-align:center;font-size:0.6em; line-height:15px; font-weight:bold;} 
+	</style>
   </head>
   
-<body style="margin: 15px;">
+<body >
   <!--路劲导航  -->
    <div>
   	<div class="row">
@@ -95,9 +102,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		 		 	<td>${cs.courses.title}</td>
 		 		 	<td>${cs.oldman.name }</td>
 		 		 	<td>${cs.oldman.phone }</td>
-		 		 	<td>${cs.coursecompletion!=null?cs.coursecompletion:'--'}</td>
+		 		 	<td>${cs.coursecompletion!=null&&cs.coursecompletion!=''?cs.coursecompletion:'--'}</td>
 		 		 	<td>${cs.grade!=null?cs.grade:'--'}</td>
-		 		 	<td>${cs.rating!=null?cs.rating:'--' }</td>
+		 		 	<td>${cs.rating!=null&&cs.rating!=''?cs.rating:'--' }</td>
 		 		 	<td><fmt:formatDate value="${cs.enroltime}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
 		 		 	<td>${cs.enrolstate}</td>
 		 		 	<td>
@@ -186,13 +193,84 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      </div>
 	      <div class="modal-body">
 	        <form class="form-horizontal" id="courseenrol_edit_form">
-			   <table class="table table-striped table-bordered text-center" border="1" id="courseenrol_edit_table">
-			   	  
+			   <table class="table table-striped table-bordered text-center" id="courseenrol_edit_table">
+			   	  <tr>
+			   	  	<td>课程名称</td>
+			   	  	<td id="courseTitle"></td>
+			   	  	<td>老人姓名</td>
+			   	  	<td id="oldManName"></td>
+			   	  	<td>联系电话</td>
+			   	  	<td id="oldManphone"></td>
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>课程完成情况</td>
+			   	  	<td>
+			   	  		<input type="text" class="form-control" name="coursecompletion" id="coursecompletion">
+			   	  	</td>
+			   	  	<td>成绩</td>
+			   	  	<td>
+			   	  		<input type="text" class="form-control" name="grade" id="grade">
+			   	  	</td>
+			   	  	<td colspan="2">上课风采</td>
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>评价等级</td>
+			   	  	<td >
+			   	  	    <select name="rating" id="rating">
+			   	  	    	<option value="">请选择</option>
+			   	  	    	<option value="差">差</option>
+			   	  	    	<option value="中">中</option>
+			   	  	    	<option value="良">良</option>
+			   	  	    	<option value="优">优</option>
+			   	  	    </select>			   	  		
+			   	  	</td>
+			   	  	<td>正常上课</td>
+			   	  	<td>
+			   	  		<input type="text" class="form-control" name="isnormalclass" id="isnormalclass">
+			   	  	</td>
+			   	  	<td colspan="2" rowspan="3">
+			   	  		<input type="file" class="form-control" id="photofile" onchange="showPic()">
+			   	  		<input class="btn btn-success" type="button" value="上传图片" onclick="uploadFile()"><br>
+			   	  		<div class="col-md-6 col-md-offset-2" id="imgDiv">
+			   	  		
+			   	  		   <div class="progress" id="parent">
+							  <div id="son" class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+							    <span class="sr-only"></span>
+							  </div>
+							</div>
+			   	  		
+			   	  		   <!-- <div id="parent">
+ 							<div id="son"></div>
+ 						   </div> -->
+						</div>
+			   	  		<img class="img-rounded" id="img" width="150" height="150">
+			   	  		
+			   	  	</td>
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>报名时间</td>
+			   	  	<td id="timeStr">
+			   	  	</td>
+			   	  	<td>报名状态</td>
+			   	  	<td>
+			   	  		<select name="enrolstate" id="enrolstate">
+			   	  	    	<option value="正在审核">正在审核</option>
+			   	  	    	<option value="报名成功">报名成功</option>
+			   	  	    </select>
+			   	  	</td>			   	  	 
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>备注</td>
+			   	  	<td colspan="3" id="tr5">
+			   	  		<textarea class="form-control" rows="3" name="remark" id="remark"></textarea>
+			   	  		<input type="hidden" name="id" id="csid"/>
+			   	  	</td>			   	  	 		   	  	 
+			   	  </tr>
 			   </table>
 			</form>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	        <button type="button" class="btn btn-default" data-dismiss="modal" id="close_btn">关闭</button>
 	        <button type="button" class="btn btn-primary" id="save_btn">保存</button>
 	      </div>
 	    </div><!-- /.modal-content -->
@@ -209,7 +287,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	      </div>
 	      <div class="modal-body">
 	        <form class="form-horizontal">
-			   <table id="courseenrol_view_table" border="1">
+			   <table id="courseenrol_view_table" class="table table-striped table-bordered text-center">
+			   <tr>
+			   	  	<td>课程名称</td>
+			   	  	<td id="courseTitle1"></td>
+			   	  	<td>老人姓名</td>
+			   	  	<td id="oldManName1"></td>
+			   	  	<td>联系电话</td>
+			   	  	<td id="oldManphone1"></td>
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>课程完成情况</td>
+			   	  	<td id="coursecompletion1">		   	  		
+			   	  	</td>
+			   	  	<td>成绩</td>
+			   	  	<td id="grade1">	  	  		
+			   	  	</td>
+			   	  	<td colspan="2">上课风采</td>
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>评价等级</td>
+			   	  	<td id="rating1">			   	  	   		   	  		
+			   	  	</td>
+			   	  	<td>正常上课</td>
+			   	  	<td id="isnormalclass1">	   	  		 
+			   	  	</td>
+			   	  	<td colspan="2" rowspan="3">
+			   	  		 
+			   	  		<img class="img-rounded" id="img1" width="150" height="150">
+			   	  		
+			   	  	</td>
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>报名时间</td>
+			   	  	<td id="timeStr1">
+			   	  	</td>
+			   	  	<td>报名状态</td>
+			   	  	<td id="enrolstate1">			   	  		 
+			   	  	</td>			   	  	 
+			   	  </tr>
+			   	  <tr>
+			   	  	<td>备注</td>
+			   	  	<td colspan="3" id="remark1">  		 
+			   	  	</td>			   	  	 		   	  	 
+			   	  </tr>
 			   </table>
 			</form>
 	      </div>
@@ -240,7 +361,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
    //点击查看，加载数据，弹出模态框
    $(document).on("click",".view_btn",function(){
-	   $("#courseenrol_view_table").empty();
+	   //$("#courseenrol_view_table").empty();
 	   var id=$(this).parents("tr").find("td:eq(1)").text();
 	   $.ajax({
 		   url:"${APP_PATH}/courseenrol/queryCourseenrolById.action?id="+id,
@@ -252,161 +373,91 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					backdrop:"static"
 			   });
 			   //2.显示数据
-			   var tr1=$("<tr>"+
-					      "<td>课程名称</td>"+
-					      "<td>"+cs.courses.title+"</td>"+
-					      "<td>老人姓名</td>"+
-					      "<td>"+cs.oldman.name+"</td>"+
-					      "<td>联系电话</td>"+
-					      "<td>"+cs.oldman.phone+"</td>"+
-					      "</tr>");
-			   var coursecompletion=cs.coursecompletion!=null?cs.coursecompletion:'---';
-			   var grade=cs.grade!=null?cs.grade:'---';
-			   var tr2=$("<tr>"+
-					      "<td>课程完成情况</td>"+
-					      "<td>"+coursecompletion+"</td>"+
-					      "<td>成绩</td>"+
-					      "<td>"+grade+"</td>"+
-					      "<td colspan='2'>上课风采</td>"+				       
-					      "</tr>");
-			   var isnormalclass=cs.isnormalclass!=null?cs.isnormalclass:'---';
-			   var rating=cs.rating!=null?cs.rating:'---';
-			   var tr3=$("<tr>"+
-					      "<td>评价等级</td>"+
-					      "<td>"+rating+"</td>"+
-					      "<td>正常上课</td>"+
-					      "<td>"+isnormalclass+"</td>"+
-					      "<td rowspan='3' colspan='2'>"+
-					      "<img src='static/images/oldback/images/vedioview.png' alt='图片找不到' class='img-rounded'>"+
-					      "</td>"+					   
-					      "</tr>");
 			   
-			   var tr4=$("<tr>"+
-					      "<td>报名时间</td>"+
-					      "<td>"+cs.timeStr+"</td>"+
-					      "<td>报名状态</td>"+
-					      "<td>"+cs.enrolstate+"</td>"+			       
-					      "</tr>");
-			   var remark=cs.remark!=null?cs.remark:'---';
-			   var tr5=$("<tr>"+					       
-					      "<td>备注</td>"+
-					      "<td colspan='3'>"+remark+"</td>"+
-					      "</tr>");
-			   $("#courseenrol_view_table").append(tr1).append(tr2)
-			   				.append(tr3).append(tr4).append(tr5);
-			    //table-striped table-bordered text-center
-			   $("#courseenrol_view_table").addClass("table table-striped table-bordered text-center");
+			   //第一行
+			   
+			   $("#courseTitle1").html(cs.courses.title);
+			   $("#oldManName1").html(cs.oldman.name);
+			   $("#oldManphone1").html(cs.oldman.phone);
+			   
+			   //第二行
+			   var coursecompletion=cs.coursecompletion!=null?cs.coursecompletion:'';
+			   var grade=cs.grade!=null?cs.grade:'';
+			   $("#coursecompletion1").html(coursecompletion);
+			   $("#grade1").html(grade);
+			   
+			   //第三行
+			   var rating=cs.rating!=null?cs.rating:'';
+			   $("#rating1").html(rating);
+			   var isnormalclass=cs.isnormalclass!=null?cs.isnormalclass:'';
+			   $("#isnormalclass1").html(isnormalclass);
+			   if(cs.courseenrol1!=null&&cs.courseenrol1!='')
+			   		$("#img1").attr("src","upload/"+cs.courseenrol1);
+			   else{
+				   $("#img1").attr("src","upload/default.png");
+			   }
+			   //第四行
+			   $("#timeStr1").html(cs.timeStr);
+			   var enrolstate=cs.enrolstate!=null?cs.enrolstate:'';
+			   $("#enrolstate1").html(enrolstate);
+			  
+			   //第五行
+			   var remark=cs.remark!=null?cs.remark:'';
+			    $("#remark1").html(remark);
+			    			  
 		   }
 	   });
    });
    
  //点击编辑，加载数据，弹出模态框
    $(document).on("click",".edit_btn",function(){
-	   $("#courseenrol_edit_table").empty();
+	   $("#imgDiv").hide();
+	    //清空文件域
+	   var file = $("#photofile") ;
+	   file.after(file.clone().val(""));      
+	   file.remove(); 
 	   var id=$(this).parents("tr").find("td:eq(1)").text();	   
 	   $.ajax({
 		   url:"${APP_PATH}/courseenrol/queryCourseenrolById.action?id="+id,
 		   type:"post",
-		   success:function(result){
+		   success:function(result){			
 			   var cs=result.extend.courseenrol;
 			   //1.弹出模态框
 			   $("#courseenrol_edit_modal").modal({
 					backdrop:"static"
 			   });
 			   //2.显示数据
+			   
 			   //第一行
-			   var tr1=$("<tr>"+
-					      "<td>课程名称</td>"+
-					      "<td>"+cs.courses.title+"</td>"+
-					      "<td>老人姓名</td>"+
-					      "<td>"+cs.oldman.name+"</td>"+
-					      "<td>联系电话</td>"+
-					      "<td>"+cs.oldman.phone+"</td>"+
-					      "</tr>");
+			   
+			   $("#courseTitle").html(cs.courses.title);
+			   $("#oldManName").html(cs.oldman.name);
+			   $("#oldManphone").html(cs.oldman.phone);
 			   
 			   //第二行
 			   var coursecompletion=cs.coursecompletion!=null?cs.coursecompletion:'';
-			   var grade=cs.grade!=null?cs.grade:'';		 
-			   var tr2td1 =$("<td>课程完成情况</td>");
-			   var tr2td2 =$("<td></td>");
-			   var tr2td2input=$("<input type='text' name='coursecompletion'/>");
-			   tr2td2input.addClass("form-control").attr("value",coursecompletion);
+			   var grade=cs.grade!=null?cs.grade:'';
+			   $("#coursecompletion").val(coursecompletion);
+			   $("#grade").val(grade);
 			   
-			   tr2td2.append(tr2td2input);  
-			   var tr2td3=$("<td>成绩</td>");
-			   var tr2td4 =$("<td></td>");
-			   var tr2td4input=$("<input type='text' name='grade'/>");
-			   tr2td4input.attr("value",grade).addClass("form-control");
-			   tr2td4.append(tr2td4input);
-			   var tr2td5 =$("<td colspan='2'></td>");
-			   tr2td5.append("上课风采");
-			   var tr2=$("<tr></tr>");
-			   tr2.append(tr2td1).append(tr2td2).append(tr2td3).append(tr2td4).append(tr2td5);
-			   
-			  
 			   //第三行
+			   $("#rating").val([cs.rating]);
 			   var isnormalclass=cs.isnormalclass!=null?cs.isnormalclass:'';
-			   var rating=cs.rating!=null?cs.rating:'';	 
-			   var tr3td1 =$("<td>评价等级</td>");
-			   var tr3td2 =$("<td></td>");
-			   
-			   var tr3td2option0=$("<option>请选择</option>").attr("value","");
-			   var tr3td2option1=$("<option>差</option>").attr("value","差");
-			   var tr3td2option2=$("<option>中</option>").attr("value","中");
-			   var tr3td2option3=$("<option>良</option>").attr("value","良");
-			   var tr3td2option4=$("<option>优</option>").attr("value","优");
-			   var  tr3td2select=$("<select name='rating'></select>");
-			   tr3td2select.append(tr3td2option0).append(tr3td2option1).append(tr3td2option2)
-			   .append(tr3td2option3).append(tr3td2option4);
-			   tr3td2select.val([cs.rating]);
-			   tr3td2.append(tr3td2select);  
-			   var tr3td3=$("<td>正常上课</td>");
-			   var tr3td4 =$("<td></td>");
-			   var tr3td4input=$("<input type='text' name='isnormalclass'/>");
-			   tr3td4input.attr("value",isnormalclass).addClass("form-control");
-			   tr3td4.append(tr3td4input);
-			   var tr3td5 =$("<td colspan='2' rowspan='3'></td>");
-			   var tr3td5img=$("<img >");tr3td5img.attr("src","static/images/oldback/images/vedioview.png");
-			   tr3td5img.addClass("img-rounded");
-			   tr3td5.append(tr3td5img);
-			   var tr3=$("<tr></tr>");
-			   tr3.append(tr3td1).append(tr3td2).append(tr3td3).append(tr3td4).append(tr3td5);
-			    
-			   
+			   $("#isnormalclass").val(isnormalclass);
+			   if(cs.courseenrol1!=null&&cs.courseenrol1!='')
+			   		$("#img").attr("src","upload/"+cs.courseenrol1);
+			   else{
+				   $("#img").attr("src","upload/default.png");
+			   }
 			   //第四行
-			   		 
-			   var tr4td1 =$("<td>报名时间</td>");
-			   var tr4td2 =$("<td></td>").append(cs.timeStr);		    
-			   var tr4td3=$("<td>报名状态</td>");
-			   var tr4td4 =$("<td></td>");
-			   var tr4td4option1=$("<option>正在审核</option>").attr("value","正在审核");
-			   var tr4td4option2=$("<option>报名成功</option>").attr("value","报名成功");
-			   var  tr4td4select=$("<select name='enrolstate'></select>");
-			   tr4td4select.append(tr4td4option1).append(tr4td4option2);
-			   tr4td4select.val([cs.enrolstate]);
-			   tr4td4.append(tr4td4select);
-			   var tr4=$("<tr></tr>");
-			   tr4.append(tr4td1).append(tr4td2).append(tr4td3).append(tr4td4);
-			   
+			   $("#timeStr").html(cs.timeStr);
+			   $("#enrolstate").val([cs.enrolstate]);
+			  
 			   //第五行
 			   var remark=cs.remark!=null?cs.remark:'';
-			   var tr5td1 =$("<td>备注</td>");
-			   var tr5td2 =$("<td colspan='3'></td>");		    
-			   var tr5td2input=$("<input type='text' name='remark'/>");
-			   tr5td2input.addClass("form-control").attr("value",remark);
-			   tr5td2.append(tr5td2input); 
-			   var tr5=$("<tr></tr>");
-			   tr5.append(tr5td1).append(tr5td2);
-			   
-			   //课程报名ID
-			   var inputId=$("<input type='hidden' name='id''/>");
-			   inputId.attr("value",cs.id);
-			   tr5.append(inputId);
-			   
-			   $("#courseenrol_edit_table").append(tr1).append(tr2)
-			   				.append(tr3).append(tr4).append(tr5);
-			    //table-striped table-bordered text-center
-			   //$("#courseenrol_view_table").addClass("table table-striped table-bordered text-center");
+			    $("#remark").val(remark);
+			    $("#csid").val(cs.id);
+			  
 		   }
 	   });
    });
@@ -429,6 +480,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			   }
 		   }
 	   });
+   });
+   
+   //编辑模态框点击关闭，查看是否
+   $("#close_btn").click(function(){
+	   //获取图片
+	   var isImg=$("#cs1").val();
+	    if(isImg!=undefined){//如果图片已上传，那么关闭之前将图片删除
+	    	$.ajax({
+	    		url:"${APP_PATH}/courseenrol/checkImg.action?isImg="+isImg,    		 
+	    		type:"post",
+	    		success:function(result){
+	    		}
+	    	});
+	    }
    });
    
    //单选删除按钮
@@ -486,6 +551,73 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   });
    });
 </script>
+<script type="text/javascript">
 
+$(function(){
+	 $("#imgDiv").hide();
+});
+//上传图片，加载进度条
+ function showPic(){
+  var pic = $("#photofile").get(0).files[0];
+  $("#son").css("width" ,"0%");
+  $("#imgDiv").hide();
+  $("#img").prop("src" , window.URL.createObjectURL(pic) );
+ // uploadFile();
+ }
+ function uploadFile(){
+  var pic = $("#photofile").get(0).files[0];
+  if(pic==undefined){
+	  alert("您还没选择上传的文件！");
+	  return false;
+  }
+  //显示进度条
+  $("#imgDiv").show();
+  var formData = new FormData();
+  formData.append("file" , pic);
+  /** 
+   * 必须false才会避开jQuery对 formdata 的默认处理 
+   * XMLHttpRequest会对 formdata 进行正确的处理 
+   */
+  $.ajax({
+	   type: "POST",
+	   url: "courseenrol/upload.action",
+	   data: formData ,
+	   processData : false, 
+	   //必须false才会自动加上正确的Content-Type 
+	   contentType : false , 
+	   xhr: function(){
+	    var xhr = $.ajaxSettings.xhr();
+	    if(onprogress && xhr.upload) {
+	     	xhr.upload.addEventListener("progress" , onprogress, false);
+	     return xhr;
+	    }
+  	   },
+  	 success:function(result){
+  		 if(result.code==100){
+			 var inputPath=$("<input type='hidden' name='courseenrol1' id='cs1'/>" );
+			 inputPath.attr("value",result.extend.fileName);
+			 inputPath.appendTo("#tr5");
+  		 }else{
+  			 $("#son").html("上传失败");
+  			 $("#son").css("font-size","0.6em");
+  			 $("#son").css("color","red");
+  		 }
+	 }
+  });
+ }
+ /**
+  * 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
+  */
+ function onprogress(evt){
+	  var loaded = evt.loaded;     //已经上传大小情况 
+	  var tot = evt.total;      //附件总大小 
+	  var per = Math.floor(100*loaded/tot);  //已经上传的百分比 
+	  $("#son").html( per +"%" );
+	  $("#son").css("width" , per +"%");
+	  if($("#son").text()=="100%"){
+		  $("#son").html("上传成功");
+	  }
+ }
+ </script>
 </body>
 </html>

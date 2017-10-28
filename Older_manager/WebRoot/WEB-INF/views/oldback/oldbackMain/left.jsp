@@ -98,13 +98,14 @@
 					href="education/educationIndex" target="rightFrame">教育管理</a>
 			</div>
 			<ul class="menuson">
-				<li><cite></cite><a href="educationManage/videoManager.jsp"
+				<li><cite></cite><a href="${APP_PATH }/video/intoVideoManager"
 					target="rightFrame">视频管理</a><i></i></li>
-				<li><cite></cite><a href="educationManage/addvedio.jsp"
+				<li><cite></cite><a href="${APP_PATH }/video/intoAddVideo"
 					target="rightFrame">添加视频</a><i></i></li>
-				<li><cite></cite><a href="Course/coursemanager"
+				<li><cite></cite><a href="${APP_PATH }/Course/coursemanager/"
 					target="rightFrame">课程管理</a><i></i></li>
-				<li><cite></cite><a href="Course/addcourse" target="rightFrame">添加课程</a><i></i></li>
+				<li><cite></cite><a href="${APP_PATH }/Course/addcourse/"
+					target="rightFrame">添加课程</a><i></i></li>
 				<li><cite></cite><a href="courseenrol/searchCourseenrol"
 					target="rightFrame">课程报名</a><i></i></li>
 			</ul>
@@ -129,7 +130,7 @@
 			<div class="title">
 				<span><img
 					src="${APP_PATH}/static/images/oldback/images/office.png"
-					width="30" height="30" style="margin-top: -8px;" /></span> <a href="page"
+					width="30" height="30" style="margin-top: -8px;" /></span> <a href="officemanage/officemanageIndex"
 					target="rightFrame">办公管理</a>
 			</div>
 			<ul class="menuson">
@@ -140,8 +141,8 @@
 				<li><cite></cite><a href="sendnotice" target="rightFrame">发布公告</a><i></i></li>
 				<li><cite></cite><a href="addressbookmanager"
 					target="rightFrame">通讯录管理</a><i></i></li>
-				<li><cite></cite><a href="activitymanager" target="rightFrame">活动管理</a><i></i></li>
-				<li><cite></cite><a href="sendactivity" target="rightFrame">发布活动</a><i></i></li>
+				<li><cite></cite><a href="activity/queryActivity" target="rightFrame">活动管理</a><i></i></li>
+				<li><cite></cite><a href="activity/sendactivity" target="rightFrame">发布活动</a><i></i></li>
 			</ul>
 		</dd>
 

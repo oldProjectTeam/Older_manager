@@ -19,6 +19,13 @@ public interface ActivityMapper {
     List<Activity> selectByExampleWithBLOBs(ActivityExample example);
 
     List<Activity> selectByExample(ActivityExample example);
+    
+    /**
+     * 多条件模糊查询所有信息
+     * @param activity
+     * @return
+     */
+    List<Activity>selectByCondiction(Activity activity);
 
     Activity selectByPrimaryKey(Integer id);
 

@@ -131,6 +131,45 @@
     from activity
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <!--根据条件模糊查询活动信息  -->
+  <select id="selectByCondiction" resultMap="ResultMapWithBLOBs" parameterType="activity" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from activity a
+    <where>     
+      <if test="title != null" >
+        and a.title like '%${title}%'
+      </if>
+      <if test="releasetime != null" >
+        <![CDATA[and a.releaseTime<#{releasetime}]]>
+      </if>
+      <if test="activitytime != null" >
+        <![CDATA[and a.activityTime<#{activitytime}]]>
+      </if>
+      <if test="place != null" >
+        and a.place like '%${place}%'
+      </if>
+      <if test="releasepeople != null" >
+        and a.releasePeople like '%${releasepeople}%'
+      </if>
+      <if test="type != null" >
+        and a.type=#{type}
+      </if>
+      <if test="state != null" >
+        and a.state=#{state}
+      </if>
+      <if test="remake != null" >
+        and a.remake like '%${remake}%'
+      </if>
+       
+      <if test="content != null" >
+        and a.content like '%${content}%'
+      </if>
+    </where>
+
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from activity
     where id = #{id,jdbcType=INTEGER}

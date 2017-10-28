@@ -14,8 +14,19 @@ public interface ICourseenrolService {
 	 */
 	public List<Courseenrol> queryAllCourseenrolByExample(CourseenrolExample example);
 
+	/**
+	 * 通过ID查询报名信息和课程信息和老人信息
+	 * @param id
+	 * @return
+	 */
 	public Courseenrol queryCourseenrolById(Integer id);
 	
+	/**
+	 * 根据ID查询报名信息
+	 * @param id
+	 * @return
+	 */
+	public Courseenrol selectByPrimaryKey(Integer id);
 	/**
 	 * 根据条件查询所有课程报名和课程与老人信息
 	 * @param courseenrol
