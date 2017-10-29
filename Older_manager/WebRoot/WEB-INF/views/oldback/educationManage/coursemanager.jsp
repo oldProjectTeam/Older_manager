@@ -293,7 +293,8 @@
 				});
 			});
 		}
-
+		
+	
 		//全选
 		$(document).on("click", "#check_item_all", function() {
 			$(".item_check").prop("checked", $(this).prop("checked"));

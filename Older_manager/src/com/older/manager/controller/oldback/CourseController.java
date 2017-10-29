@@ -214,6 +214,7 @@ public class CourseController {
 		return Msg.success().add("pageInfo", pageInfo);
 	}
 
+	
 	/**
 	 * @throws UnsupportedEncodingException
 	 * @Title: findAllCoursesByCourseName

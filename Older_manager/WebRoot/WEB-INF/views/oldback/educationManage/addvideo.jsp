@@ -18,7 +18,7 @@
 <meta http-equiv="description" content="This is my page">
 <!-- 引入jquery -->
 <script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <!-- 引入样式 -->
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
@@ -49,13 +49,15 @@
 								<input type="hidden" name="id" />
 								<td>标题 <span style="color:red">*</span></td>
 								<td class="col-xs-2"><input type="text"
-									class="form-control" required="required" name="title" id="title"></td>
+									class="form-control" required="required" name="title"
+									id="title"></td>
 								<td>副标题 <span style="color:red">*</span></td>
 								<td class="col-xs-2"><input type="text"
-									class="form-control" required="required" name="subtitle" id="subtitle"></td>
-								<td>创作人</td>
+									class="form-control" required="required" name="subtitle"
+									id="subtitle"></td>
+								<td>创作人 <span style="color:red">*</span></td>
 								<td class="col-xs-2"><input type="text"
-									class="form-control" name="creators"></td>
+									class="form-control" name="creators" id="creators"></td>
 								<td rowspan="1" class="active">视频 <span style="color:red">*</span></td>
 								<td rowspan="1" class="col-xs-2"><input type="hidden"
 									id="videopath" name="path" /> <input class="btn btn-default"
@@ -95,7 +97,7 @@
 								<td colspan="2"><input class="btn btn-success"
 									type="button" value="上传视频" name="addvideo"
 									onclick="uploadFile()">
-									<div id="progress" style=" margin-top: 20 "></td>
+									<div id="progress" style=" margin-top: 20 " class="progress-bar"></td>
 							</tr>
 							<tr>
 								<td>标记</td>
@@ -173,45 +175,67 @@
 	</div>
 
 	<script type="text/javascript">
-		$("#saveVideo")
-				.click(
+		$("#saveVideo").click(
 
-						function() {
-							
-							var subtitle=$('#subtitle').val(); 
-							var title=$('#title').val(); 
-							var createtime=$('#createtime').val(); 
-							var lenght =$('#lenght').val(); 
-							var video = $('#video').val(); 
-							var path = document.getElementById("videopath").value;
-							if(jQuery.trim(video) == ''||jQuery.trim(title)== '' ||jQuery.trim(subtitle)== ''||jQuery.trim(createtime)== ''||jQuery.trim(lenght)== '') {
-								alert("请按照红色*号提示填写资料！");
-							} 
-							else if (path.replace(/(^s*)|(s*$)/g, "").length == 0|| path == null) {
-								alert("视频还没有上传成功！");
-							} else {
-								$.ajax({
-									url : "video/addVideo",
-									data : $("#VideoForm").serialize(),
-									type : "post",
-									success : function(result) {
+				function() {
 
-										if (result.code == 100) {
-											alert("添加成功!");
-										} else {
-											alert("添加失败!");
-										}
-									}
-								});
+					var subtitle = $('#subtitle').val();
+					var title = $('#title').val();
+					var createtime = $('#createtime').val();
+					var creators = $('#creators').val();
+					var lenght = $('#lenght').val();
+					var video = $('#video').val();
+					var path = document.getElementById("videopath").value;
+					if (jQuery.trim(video) == '' || jQuery.trim(title) == ''
+							|| jQuery.trim(creators) == ''
+							|| jQuery.trim(subtitle) == ''
+							|| jQuery.trim(createtime) == ''
+							|| jQuery.trim(lenght) == '') {
+						alert("请按照红色*号提示填写资料！");
+					} else if (path.replace(/(^s*)|(s*$)/g, "").length == 0
+							|| path == null) {
+						alert("视频还没有上传成功！");
+					} else {
+						$.ajax({
+							url : "video/addVideo",
+							data : $("#VideoForm").serialize(),
+							type : "post",
+							success : function(result) {
+
+								if (result.code == 100) {
+									alert("添加成功!");
+								} else {
+									alert("添加失败!");
+								}
 							}
+						});
+					}
 
-						}
+				}
 
-				);
+		);
 
 		function showPic() {
 			var videoUrl = $("#video").get(0).files[0];
-			$("video").prop("src", window.URL.createObjectURL(videoUrl));
+			var regImg = /\.(mp4|webm|ogg)$/;
+			if (!regImg.test($("#video").val())) {
+				alert("视频目前只支持.mp4,webm,ogg这三种类型.");
+				//清空文件域
+				var file = $("#video");
+				file.after(file.clone().val(""));
+				file.remove();
+				return false;
+			}else{
+				if(!getPhotoSize()){
+					
+				}else{
+					$("video").prop("src", window.URL.createObjectURL(videoUrl));
+				}
+				
+			};
+			
+			
+			
 		};
 
 		function uploadFile() {
@@ -261,6 +285,33 @@
 			var per = Math.floor(100 * loaded / tot); //已经上传的百分比 
 			$("#progress").html(per + "%");
 			$("#progress").css("width", per + "%");
+		}
+		
+		
+		//判断视频大小和格式
+		function getPhotoSize() {
+			var obj = document.getElementById("video");
+			
+			var fileSize = 0;
+			var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
+			if (isIE && !obj.files) {
+				var filePath = obj.value;
+				var fileSystem = new ActiveXObject("Scripting.FileSystemObject");
+				var file = fileSystem.GetFile(filePath);
+				fileSize = file.Size;
+			} else {
+				fileSize = obj.files[0].size;
+			}
+			fileSize = Math.round(fileSize / 1024 * 100 ) / 100; //单位为KB
+			if (fileSize >= 300000) {
+				alert("单个视频最大为300MB，请重新上传!");
+				var file = $("#video");
+				file.after(file.clone().val(""));
+				file.remove();
+				return false;
+			}else{
+				return true;
+			}
 		}
 	</script>
 </body>

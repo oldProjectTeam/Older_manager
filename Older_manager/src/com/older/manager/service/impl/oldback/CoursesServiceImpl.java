@@ -16,6 +16,7 @@ import com.older.manager.service.oldback.CourseService;
 
 /**
  * @author ym
+ * 修改：杨明 修改时间：2017/10/29 修改内容：添加注解
  * 
  */
 @Service()
@@ -58,7 +59,7 @@ public class CoursesServiceImpl implements CourseService {
 
 	/**
 	 * @Title: finAllCoursesByTeacher
-	 * @Description: TODO
+	 * @Description: 根据老师名称来查询课程
 	 * @param: @param teacherName
 	 * @param: @return
 	 * @throws
@@ -73,7 +74,7 @@ public class CoursesServiceImpl implements CourseService {
 
 	/**
 	 * @Title: deleteCoursesById
-	 * @Description: TODO
+	 * @Description: 通过id来查询课程
 	 * @param: @param id
 	 * @throws
 	 */
@@ -85,7 +86,7 @@ public class CoursesServiceImpl implements CourseService {
 
 	/**
 	 * @Title: modifyCourses
-	 * @Description: TODO
+	 * @Description: 修改课程
 	 * @param: @param courses
 	 * @param: @return
 	 * @return: int

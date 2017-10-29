@@ -26,12 +26,16 @@ public class VideoSeviceImplTest {
 	
 	@Test
 	public void insertVideoTest(){
-		Video video = new Video();
-		video.setTitle("S7");
-		video.setLenght("258");
-		video.setPath("鸟巢");
-		video.setCreatetime(new Date());
-		videoService.insertVideo(video);
+		for (int i = 0; i < 20; i++) {
+			Video video = new Video();
+			video.setTitle("测试"+i);
+			video.setLenght("258");
+			video.setPath("哈哈哈哈哈哈哈");
+			video.setVcount(1);
+			video.setCreatetime(new Date());
+			videoService.insertVideo(video);
+		}
+		
 	}
 	
 	@Test
@@ -48,5 +52,26 @@ public class VideoSeviceImplTest {
 	@Test
 	public void deleteByIdTest(){
 		videoService.deleteById(2);
+	}
+	
+	@Test
+	public void findAllVideoByVCount(){
+		System.out.println("测试。。。。。"+videoService.findAllVideoByVCount(1));
+	}
+	
+	@Test
+	public void findAllVideoByCreatorsAndVCountTest(){
+		System.out.println("测试。。。。。"+videoService.findAllVideoByCreatorsAndVCount("哈", 1));
+	}
+	
+	@Test
+	public void findAllVideoByNameAndVCountTest(){
+		System.out.println("测试。。。。。"+videoService.findAllVideoByNameAndVCount("测", 1));
+	}
+	
+	
+	@Test
+	public void findAllVideoByCreatorsAndNameAndVCountTest(){
+		System.out.println("测试。。。。。"+videoService.findAllVideoByCreatorsAndNameAndVCount("测","哈", 1));
 	}
 }
