@@ -158,7 +158,8 @@
       #{numone,jdbcType=VARCHAR}, #{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Oldman" >
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Oldman"  useGeneratedKeys="true" keyProperty="id" >
+           
     insert into oldman
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -368,6 +369,9 @@
         #{numthree,jdbcType=VARCHAR},
       </if>
     </trim>
+          <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
   </insert>
   <select id="countByExample" parameterType="com.older.manager.bean.OldmanExample" resultType="java.lang.Integer" >
     select count(*) from oldman

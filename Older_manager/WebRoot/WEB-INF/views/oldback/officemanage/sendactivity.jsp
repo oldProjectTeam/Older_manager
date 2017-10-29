@@ -38,7 +38,7 @@
 		<div class="col-md-12">
 			<ol class="breadcrumb">
 				<li><b>位置：<a
-						href="static/oldback/educationManage/educationIndex.html">办公管理</a></b></li>
+						href="officemanage/officemanageIndex">办公管理</a></b></li>
 				<li class="active">发布活动</li>
 			</ol>
 		</div>

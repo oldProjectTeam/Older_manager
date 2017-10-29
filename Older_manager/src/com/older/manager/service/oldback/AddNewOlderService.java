@@ -60,5 +60,10 @@ public interface AddNewOlderService {
 	 * @return
 	 */
 	public boolean batchImport(String name, MultipartFile file);
-	
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+    public void deleteBatch(List<Integer> ids);
+
 }

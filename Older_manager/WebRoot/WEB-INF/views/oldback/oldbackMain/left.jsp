@@ -44,12 +44,12 @@
 					href="${APP_PATH }/old/addOldManInfo" target="rightFrame">档案管理</a>
 			</div>
 			<ul class="menuson">
-				<li><cite></cite><a href="${APP_PATH }/old/addOldManInfo"
+				<li><cite></cite><a href="${APP_PATH }/old/insertnewolder"
 					target="rightFrame">新增老人</a><i></i></li>
 				<li><cite></cite><a href="${APP_PATH }/old/batchImport"
 					target="rightFrame">批量导入</a><i></i></li>
 
-				<li><cite></cite><a href="${APP_PATH }/old/skipolderinfo/"
+				<li><cite></cite><a href="${APP_PATH }/old/skipolderinfo/1"
 					target="rightFrame">老人列表</a><i></i></li>
 			</ul>
 		</dd>

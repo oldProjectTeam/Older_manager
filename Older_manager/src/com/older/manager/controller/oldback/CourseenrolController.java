@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.mail.Flags.Flag;
 import javax.servlet.http.HttpServletRequest;
@@ -201,10 +202,15 @@ public class CourseenrolController {
 			throws IllegalStateException, IOException {
 
 		if (file != null) {
-
+			String fileName = file.getOriginalFilename();
+			//判断是不是图片
+			String extName=fileName.substring(fileName.lastIndexOf(".")+1,fileName.length());
+			String regex="(gif|jpg|jpeg|png|GIF|JPG|PNG)";
+			if(!Pattern.matches(regex, extName)){
+				return Msg.fail();
+			}
 			String savePath = request.getServletContext().getRealPath(
 					"/upload");
-			String fileName = file.getOriginalFilename();
 			fileName =FileUtil.uploadFile(file, savePath, fileName);
 			/*String path = uploadPath + File.separator + fileName;
 			File newFile = new File(path);

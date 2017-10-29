@@ -1,15 +1,16 @@
 package com.older.manager.controller.oldback;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.enterprise.inject.New;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,25 +23,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-
-
-
-
-
-
-
-
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.fasterxml.jackson.core.sym.Name;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.older.manager.bean.Oldman;
+import com.older.manager.bean.Relatives;
 import com.older.manager.service.oldback.AddNewOlderService;
+import com.older.manager.service.oldback.OldRelativesService;
 import com.older.manager.utils.Msg;
-
+import com.older.manager.utils.SaveFile;
 /**
  * 新增老人
  * @author 疯癫
@@ -52,7 +45,8 @@ public class AddNewOlderControl {
 	
     @Autowired
 	private AddNewOlderService addNewOlderService;
-    
+    @Autowired
+    private OldRelativesService oldRelativesService;
     
     @InitBinder  
 	public void initBinder(WebDataBinder binder) {  
@@ -61,18 +55,49 @@ public class AddNewOlderControl {
 		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
 		}; //true:允许输入空值，false:不能为空值  
 
+		
+		   /**
+	     * 跳转老人列表
+	     * @return
+	     */
+	   @RequestMapping("/skipolderinfo/{pn}") 
+	   public String skipolderinfo (@PathVariable("pn")Integer id){
+		return "oldback/oldManInfoMange/selectallolderwith";
+		   
+		   
+	   }
+	   
     
     /**
      * 增加老人
      * @param oldman
      * @return
+     * @throws IOException 
+     * @throws IllegalStateException 
      */
-    @RequestMapping("/addnewolder")
-    public String addNewOlder(Oldman oldman){
-    	oldman.setPhoto("照片");
-       addNewOlderService.addNewOlder(oldman);
+    @RequestMapping("/addnewolder/{pn}")
+    public String addNewOlder(Oldman oldman,@PathVariable("pn")Integer pn, MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
+    	String imgUrl=null;
+    	if (file!=null) {
+			imgUrl=SaveFile.saveImg(file, request);	
+		}
+    	if (oldman!=null) {
+			oldman.setPhoto(imgUrl);
+			addNewOlderService.addNewOlder(oldman);
+			Relatives relatives=new Relatives();
+	    	relatives.setName(oldman.getUrgencycontact());
+	    	relatives.setSex(oldman.getSex());
+	    	relatives.setPhone(oldman.getPhone());
+	    	relatives.setRelation(oldman.getRelation());
+	    	relatives.setIslive(oldman.getLiveinfo());
+	    	relatives.setAddress(oldman.getAddress());
+	    	relatives.setOldmanId(oldman.getId());
+	    	oldRelativesService.addOlderRelative(relatives);
+		}
+      
     	return "oldback/oldManInfoMange/selectallolderwith"; 
     }
+    
     /**
      * 跳转到插入老人页面
      * @return
@@ -94,6 +119,7 @@ public class AddNewOlderControl {
     @ResponseBody
     public Msg deleteOlder(@PathVariable("id") Integer id){
     	
+    	
     	addNewOlderService.deleteOlder(id);
    
     	return Msg.success();
@@ -104,13 +130,30 @@ public class AddNewOlderControl {
     /**
      * 更新老人
      * @param oldman
-     * @return
+     * @return  
+     * @throws IOException 
+     * @throws IllegalStateException 
      */
-    @RequestMapping("/upateolder")
-    public String updateOlder(Oldman oldman){
+    @RequestMapping(value="/upateolder/{id}&{pn}",method=RequestMethod.POST)
+    public String updateOlder(Oldman oldman,@PathVariable("pn")Integer pn,MultipartFile file,HttpServletRequest request) throws IllegalStateException, IOException{
     	
+    	String imgUrl=null;
+    	if (file!=null) {
+			imgUrl=SaveFile.saveImg(file, request);	
+		}
+    	if (oldman!=null) {
+    	
+    	/*Relatives relatives=new Relatives();
+    	relatives.setName(oldman.getUrgencycontact());
+    	relatives.setSex(oldman.getSex());
+    	relatives.setPhone(oldman.getPhone());
+    	relatives.setRelation(oldman.getRelation());
+    	relatives.setIslive(oldman.getLiveinfo());
+    	relatives.setAddress(oldman.getAddress());*/
     	addNewOlderService.updateOlder(oldman);
-    	return "oldback/oldManInfoMange/addnewolder";
+    	}
+       // oldRelativesService.updateOlderRelative(relatives);
+    	return "oldback/oldManInfoMange/selectallolderwith";
     }
     
     /**
@@ -125,6 +168,25 @@ public class AddNewOlderControl {
     	model.addAttribute("oldman", oldman);
     	return "oldback/oldManInfoMange/oldManInfoView";
     }
+    
+    
+    /**
+     * 通过id查看一个老人进行显示到页面上
+     * @param id
+     * @return
+     */
+    @RequestMapping(value="/selectolderwithedit/{id}&{pn}")
+    public String selectOlderWithEdit(@PathVariable("id") Integer id,Model model,@PathVariable("pn") Integer pn){
+    	
+    	Oldman oldman=addNewOlderService.selectOlder(id);
+    	model.addAttribute("oldman", oldman);
+    	return "oldback/oldManInfoMange/editOlderInfo";
+    }
+    
+    
+    
+    
+    
      /**
       * 查询所有老人
       * @param pn
@@ -159,29 +221,20 @@ public class AddNewOlderControl {
      * @param pn
      * @param str
      * @return
+     * @throws UnsupportedEncodingException 
      */
     
     @RequestMapping("/selectallolderwith")
     @ResponseBody
     public Msg  selectAllOlderWithJson(@RequestParam(value="pn",defaultValue="1") Integer pn, 
-    		@RequestParam(value="str",defaultValue="") String str){
+    		@RequestParam(value="str",defaultValue="") String str) throws Exception{
     	PageHelper.startPage(pn, 5);
-    	List<Oldman> allolder=addNewOlderService.selectAllOlderWith(str);
+    	List<Oldman> allolder=addNewOlderService.selectAllOlderWith(new String(str.getBytes("iso-8859-1"), "utf-8"));
     	PageInfo pageInfo=new PageInfo(allolder,5);
     	return Msg.success().add("pageInfo", pageInfo);
     	
     }
-    /**
-     * 跳转老人列表
-     * @return
-     */
-   @RequestMapping("skipolderinfo") 
-   public String skipolderinfo (){
-	return "oldback/oldManInfoMange/selectallolderwith";
-	   
-	   
-   }
-   
+ 
 
    /**
 	 * 老人批量导入
@@ -221,20 +274,26 @@ public class AddNewOlderControl {
     	return "oldback/oldManInfoMange/batchImport";
     }
     /**
-     * 跳转到新增老人
+     * 批量删除
+     * @param ids
      * @return
      */
-     @RequestMapping("/addOldManInfo")
-     public String addOldManInfo(){
-     	return "oldback/oldManInfoMange/addOldManInfo";
-     }
-     /**
-      * 跳转到亲属信息
-      * @return
-      */
-      @RequestMapping("/relativeInfo")
-      public String relativeInfo(){
-      	return "oldback/oldManInfoMange/relativeInfo";
-      }
-    
+    @RequestMapping(value="/deleteallolder/{ids}",method=RequestMethod.DELETE)
+    @ResponseBody
+	public Msg deleteEmp(@PathVariable("ids")String ids){
+		if(ids.contains("-")){
+			List<Integer> del_ids=new ArrayList<Integer>();
+			String[] str_ids=ids.split("-");
+			
+			for (String string : str_ids) {
+				del_ids.add(Integer.parseInt(string));
+			}
+			addNewOlderService.deleteBatch(del_ids);
+		}else {
+			Integer id=Integer.parseInt(ids);
+			addNewOlderService.deleteOlder(id);
+		}
+		
+		return Msg.success();
+	} 
 }

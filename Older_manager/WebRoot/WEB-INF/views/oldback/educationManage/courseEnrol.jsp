@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</style>
   </head>
   
-<body >
+<body style="margin-left:15px">
   <!--路劲导航  -->
    <div>
   	<div class="row">
@@ -411,6 +411,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    
  //点击编辑，加载数据，弹出模态框
    $(document).on("click",".edit_btn",function(){
+	   
+	   //判断图片是否遗留，有则删除
+	   var isImg=$("#cs1").val();
+	    if(isImg!=undefined&&isImg!=''){//如果cs1已在，先删除
+	    	$("#cs1").remove();
+	    }
+	   
 	   $("#imgDiv").hide();
 	    //清空文件域
 	   var file = $("#photofile") ;
@@ -472,27 +479,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				   alert("修改成功！");
 				   //1.关闭模态框
 				   $("#courseenrol_edit_modal").modal('hide');
-				   //2.重新加载当页
+				   //2.
+				   var isImg=$("#cs1").val();
+				    if(isImg!=undefined&&isImg!=''){//如果图片已上传，那么关闭之前将图片文本框删除
+				    	$("#cs1").remove();			    	 
+				    }
+				   //3.重新加载当页
 				   go(currentPage);
 			   }else{
 				   alert("修改失败，请再重试一遍吧！");
 				   $("#courseenrol_edit_modal").modal('hide');
+				   var isImg=$("#cs1").val();
+				    if(isImg!=undefined&&isImg!=''){//如果图片已上传，那么关闭之前将图片删除
+				    	$("#cs1").remove();
+				    	removeImg(isImg);
+				    }
 			   }
+			   
 		   }
 	   });
    });
    
-   //编辑模态框点击关闭，查看是否
+   
+   //删除上传但没保存的图片
+   function removeImg(imgName){
+	   $.ajax({
+   		url:"${APP_PATH}/courseenrol/checkImg.action?isImg="+imgName,    		 
+   		type:"post",
+   		success:function(result){
+   		}
+   	});
+   }
+   //编辑模态框点击关闭，查看是否已上传图片但没保存
    $("#close_btn").click(function(){
 	   //获取图片
 	   var isImg=$("#cs1").val();
-	    if(isImg!=undefined){//如果图片已上传，那么关闭之前将图片删除
-	    	$.ajax({
-	    		url:"${APP_PATH}/courseenrol/checkImg.action?isImg="+isImg,    		 
-	    		type:"post",
-	    		success:function(result){
-	    		}
-	    	});
+	    if(isImg!=undefined&&isImg!=''){//如果图片已上传，那么关闭之前将图片删除
+	    	$("#cs1").remove();
+	    	removeImg(isImg);
 	    }
    });
    
@@ -553,15 +577,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </script>
 <script type="text/javascript">
 
+//首先隐藏进度条
 $(function(){
 	 $("#imgDiv").hide();
 });
+
+//判断选择的是否是
+
+
 //上传图片，加载进度条
  function showPic(){
   var pic = $("#photofile").get(0).files[0];
+  var regImg=/\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/;
+   if(!regImg.test($("#photofile").val())){
+	   alert("图片类型必须是.gif,jpeg,jpg,png中的一种");
+	 //清空文件域
+	   var file = $("#photofile") ;
+	   file.after(file.clone().val(""));      
+	   file.remove();
+       return false;
+   }
   $("#son").css("width" ,"0%");
   $("#imgDiv").hide();
-  $("#img").prop("src" , window.URL.createObjectURL(pic) );
+  $("#img").prop("src" , window.URL.createObjectURL(pic));
  // uploadFile();
  }
  function uploadFile(){
@@ -594,6 +632,17 @@ $(function(){
   	   },
   	 success:function(result){
   		 if(result.code==100){
+  			 //返回图片路径创建文本框之前，先判断之前是否已经上传过了，如果是，先删除再创建
+  			var isImg=$("#cs1").val();
+		    if(isImg!=undefined&&isImg!=''){//如果图片已上传，那么创建之前将图片删除
+		    	$("#cs1").remove();
+		    	removeImg(isImg);
+		    }
+		  //清空文件域
+			 var file = $("#photofile") ;
+			 file.after(file.clone().val(""));      
+			 file.remove();
+			 //存放文件名
 			 var inputPath=$("<input type='hidden' name='courseenrol1' id='cs1'/>" );
 			 inputPath.attr("value",result.extend.fileName);
 			 inputPath.appendTo("#tr5");
@@ -605,6 +654,9 @@ $(function(){
 	 }
   });
  }
+ 
+
+ 
  /**
   * 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
   */

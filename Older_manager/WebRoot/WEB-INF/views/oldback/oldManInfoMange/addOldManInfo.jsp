@@ -1,12 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%
-	pageContext.setAttribute("APP_PATH", request.getContextPath());
+ pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -20,38 +18,32 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
 <!-- 引入jquery -->
 <script type="text/javascript"
 	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
 <!-- 引入样式 -->
+<script language="JavaScript"
+	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script language="JavaScript"
-	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 </head>
 
-<body style="margin: 15px;">
+<body>
 	<!--路劲导航  -->
 	<div class="row">
 		<div class="col-md-12">
 			<ol class="breadcrumb">
-				<li><b>位置：<a href="${APP_PATH }/old/addOldManInfo">老人档案管理</a></b></li>
+				<li><b>位置：<a
+						href="static/oldback/oldManInfoMange/index.html">老人档案管理</a></b></li>
 				<li class="active">新增老人</li>
 			</ol>
-		</div>
-	</div>
-	<!--页内导航栏  -->
-	<div class="row">
-		<div class="col-md-12">
-			<ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a
-					href="${APP_PATH }/old/addOldManInfo">老人基本信息</a></li>
-				<li role="presentation"><a href="${APP_PATH }/old/relativeInfo">亲属信息</a></li>
-			</ul>
 		</div>
 	</div>
 
@@ -60,8 +52,8 @@
 		<div class="col-md-12">
 			&nbsp;&nbsp;
 			<div class="table-responsive">
-				<form class="form-horizontal" method="post"
-					action="${APP_PATH}/old/addnewolder">
+				<form class="form-horizontal" enctype="multipart/form-data"
+					method="post" action="${APP_PATH}/old/addnewolder/99999">
 					<table class="table text-center table-bordered">
 						<tr>
 							<td><font color=red>*</font>老人姓名:</td>
@@ -76,8 +68,11 @@
 									<option>女</option>
 							</select></td>
 							<td rowspan="4" style="width:80px">图片</td>
-							<td rowspan="4"><input type="file" id="up_img" name="file" />
-								<img id="imgShow" class="img-responsive" /></td>
+							<td rowspan="4"><input type="hidden" name="photo">
+								<input type="file" multiple="multiple" class="btn btn-default"
+								value="图片管理" name="file" id="up_img" /> <img
+								src="${pageContext.request.contextPath}/upload/${user.image==null?'failure.png':user.image}"
+								id="imgShow" class="img-responsive"></td>
 						</tr>
 						<tr>
 							<td><font color=red>*</font>联系手机号：</td>
@@ -142,11 +137,17 @@
 							<td><input type="text" name="urgencycontactphone"
 								required="required" style="width:120px" /></td>
 							<td>关系：</td>
-							<td colspan="2"><select style="width:70px" name="relation">
+							<td><select style="width:70px" name="relation">
 									<option>父子</option>
 									<option>母子</option>
 									<option>兄弟</option>
 									<option>儿子</option>
+							</select></td>
+							<td>是否同住</td>
+							<td><select style="width:70px" name="liveinfo">
+									<option>是</option>
+									<option>否</option>
+
 							</select></td>
 						</tr>
 						<tr>
@@ -216,6 +217,7 @@
 									<option>B型</option>
 									<option>O型</option>
 									<option>特殊血型</option>
+									<option>test</option>
 							</select></td>
 							<td>失能情况：</td>
 							<td><select style="width:120px" name="disabilitysituation">
@@ -223,6 +225,7 @@
 									<option>轻度失能</option>
 									<option>中度失能</option>
 									<option>重度失能</option>
+									<option>test</option>
 							</select></td>
 							<td>残疾情况：</td>
 							<td><select style="width:120px" name="disability">
@@ -230,6 +233,7 @@
 									<option>轻度残疾</option>
 									<option>中度残疾</option>
 									<option>重度残疾</option>
+									<option>test</option>
 							</select></td>
 						</tr>
 						<tr>
@@ -269,10 +273,15 @@
 		</div>
 	</div>
 	<script type="text/javascript">
-		new uploadPreview({
-			UpBtn : "up_img",
-			ImgShow : "imgShow"
-		});
+	 
+		window.onload = function() {
+			new uploadPreview({
+				UpBtn : "up_img",
+				ImgShow : "imgShow"
+			});
+		}
 	</script>
+
+
 </body>
 </html>

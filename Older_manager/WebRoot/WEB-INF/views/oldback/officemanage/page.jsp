@@ -75,14 +75,14 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="activitymanager" class="list-group-item text-center"><img
+					<a href="activity/queryActivity" class="list-group-item text-center"><img
 						src="static/images/hdmanage.png" alt="..." class="img-rounded">
 						<br> <br>活动管理 </a>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="sendactivity" class="list-group-item text-center"><img
+					<a href="activity/sendactivity" class="list-group-item text-center"><img
 						src="static/images/sendhd.png" alt="..." class="img-rounded">
 						<br> <br>发布活动 </a>
 				</div>
