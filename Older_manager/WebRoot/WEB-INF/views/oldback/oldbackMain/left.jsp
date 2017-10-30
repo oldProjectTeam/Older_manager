@@ -41,7 +41,7 @@
 				<span><img
 					src="${APP_PATH}/static/images/oldback/images/info.png" width="30"
 					height="30" style="margin-top: -8px;" /></span> <a
-					href="${APP_PATH }/old/addOldManInfo" target="rightFrame">档案管理</a>
+					href="${APP_PATH }/old/insertnewolder" target="rightFrame">档案管理</a>
 			</div>
 			<ul class="menuson">
 				<li><cite></cite><a href="${APP_PATH }/old/insertnewolder"
@@ -77,7 +77,8 @@
 			<div class="title">
 				<span><img
 					src="${APP_PATH}/static/images/oldback/images/relative.png"
-					width="30" height="30" style="margin-top: -8px;" /></span>客户关系管理
+					width="30" height="30" style="margin-top: -8px;" /></span> <a href=""
+					target="rightFrame">客户关系管理</a>
 			</div>
 			<ul class="menuson">
 				<li><cite></cite><a href="into.html" target="rightFrame">参加活动</a><i></i></li>
@@ -121,7 +122,10 @@
 			<ul class="menuson">
 
 				<li><cite></cite><a href="listinto.html" target="rightFrame">回访时间</a><i></i></li>
-				<li><cite></cite><a href="list.html" target="rightFrame">活动统计</a><i></i></li>
+				<li><cite></cite><a href="data/oldDataCount"
+					target="rightFrame">老人统计</a><i></i></li>
+				<li><cite></cite><a href="activity/activityDataCount"
+					target="rightFrame">活动统计</a><i></i></li>
 			</ul>
 		</dd>
 
@@ -130,8 +134,8 @@
 			<div class="title">
 				<span><img
 					src="${APP_PATH}/static/images/oldback/images/office.png"
-					width="30" height="30" style="margin-top: -8px;" /></span> <a href="officemanage/officemanageIndex"
-					target="rightFrame">办公管理</a>
+					width="30" height="30" style="margin-top: -8px;" /></span> <a
+					href="officemanage/officemanageIndex" target="rightFrame">办公管理</a>
 			</div>
 			<ul class="menuson">
 
@@ -141,8 +145,10 @@
 				<li><cite></cite><a href="sendnotice" target="rightFrame">发布公告</a><i></i></li>
 				<li><cite></cite><a href="addressbookmanager"
 					target="rightFrame">通讯录管理</a><i></i></li>
-				<li><cite></cite><a href="activity/queryActivity" target="rightFrame">活动管理</a><i></i></li>
-				<li><cite></cite><a href="activity/sendactivity" target="rightFrame">发布活动</a><i></i></li>
+				<li><cite></cite><a href="activity/queryActivity"
+					target="rightFrame">活动管理</a><i></i></li>
+				<li><cite></cite><a href="activity/sendactivity"
+					target="rightFrame">发布活动</a><i></i></li>
 			</ul>
 		</dd>
 

@@ -46,6 +46,8 @@
 		<form action="old/addOldManBatch" method="post"
 			enctype="multipart/form-data" id="importBatchForm">
 			<div class="row">
+				<!-- 模板下载 -->
+				<button onclick="downloadFile('sample.xls')" class="btn btn-info">模板下载</button>
 				<div class="col-md-4 col-md-offset-4">
 					<input type="file" name="file" id="excel" class="form-control">
 				</div>
@@ -59,6 +61,25 @@
 	</div>
 
 	<script type="text/javascript">
+		/* 模板下载 */
+		function downloadFile(fileName) {
+			if (fileName) {
+				var form = $("<form>");//定义一个form表单
+				form.attr("style", "display:none");
+				form.attr("target", "");
+				form.attr("method", "post");
+				form.attr("action", "old/sample");
+				var fileInput = $("<input>");
+				fileInput.attr("type", "hidden");
+				fileInput.attr("id", "fileName");//设置属性的名字
+				fileInput.attr("name", "fileName");//设置属性的名字
+				fileInput.attr("value", fileName);//设置属性的值
+				$("body").append(form);//将表单放置在web中
+				form.append(fileInput);
+				form.submit();//表单提交   
+			}
+		}
+		/* 批量导入 */
 		$("#importBatch").click(function() {
 			$("#msg").empty();
 			var file = $("#excel").val();

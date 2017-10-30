@@ -59,7 +59,7 @@
 					<th class="col-sm-3">地址</th>
 					<th class="col-sm-2">电话</th>
 					<th class="col-sm-3">所属服务区</th>
-					<th class="col-sm-2">操作</th>
+					<th>操作</th>
 				</tr>
 				<tr>
 					<td>1</td>
@@ -67,8 +67,8 @@
 					<td>太空</td>
 					<td>12345678909</td>
 					<td>火星</td>
-					<td><a href="" onclick="javascript:return del()"
-						class="col-sm-6">删除</a></td>
+					<td><button class="btn btn-sm btn-danger"
+							style="margin-left: 40px;" onclick="javascript:return del()">删除</button></td>
 				</tr>
 				<tr>
 					<td>2</td>
@@ -76,8 +76,8 @@
 					<td>太空</td>
 					<td>12345678909</td>
 					<td>火星</td>
-					<td><a href="" class="col-sm-6"
-						onclick="javascript:return del()">删除</a></td>
+					<td><button class="btn btn-sm btn-danger"
+							style="margin-left: 40px;" onclick="javascript:return del()">删除</button></td>
 				</tr>
 				<tr>
 					<td>3</td>
@@ -85,8 +85,8 @@
 					<td>太空</td>
 					<td>12345678909</td>
 					<td>火星</td>
-					<td><a href="" class="col-sm-6"
-						onclick="javascript:return del()">删除</a></td>
+					<td><button class="btn btn-sm btn-danger"
+							style="margin-left: 40px;" onclick="javascript:return del()">删除</button></td>
 				</tr>
 				<tr>
 					<td>4</td>
@@ -94,8 +94,8 @@
 					<td>太空</td>
 					<td>12345678909</td>
 					<td>火星</td>
-					<td><a href="" class="col-sm-6"
-						onclick="javascript:return del()">删除</a></td>
+					<td><button class="btn btn-sm btn-danger"
+							style="margin-left: 40px;" onclick="javascript:return del()">删除</button></td>
 				</tr>
 			</table>
 		</div>

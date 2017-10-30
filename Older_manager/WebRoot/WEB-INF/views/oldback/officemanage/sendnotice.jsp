@@ -33,20 +33,29 @@
 
 <body style="margin: 15px;">
 	<div style="width:98%;margin-left:12px">
-		<div style="background:#fdfdfd">
-			<br> <span>发布公告</span> <br>
-			<div>
-				<form action="">
-					<br> 公告标题：<input type="text" style="width:220px"
-						placeholder="公告标题"> &nbsp;&nbsp;&nbsp;&nbsp;发布人：<input
-						type="text" style="width:210px" placeholder="发布人姓名"><br>
-					<br> 发布内容：<br>
-					<textarea rows="10" cols="150" style="margin-top:10px"></textarea>
-					<button type="button" class="col-sm-offset-9"
-						style="font-size:20px;margin-top:20px">提交</button>
-				</form>
-			</div>
+
+
+		<div class="page-header">
+			<h4>发布公告</h4>
 		</div>
+
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="exampleInputEmail2">公告标题:</label> <input type="text"
+					class="form-control" placeholder="公告标题">
+			</div>
+			<div class="form-group">
+				<label for="exampleInputEmail2">发布人:</label> <input type="text"
+					class="form-control" placeholder="发布人姓名">
+			</div>
+			<br /> <br /> <br /> <label>发布内容:</label><br />
+			<div class="form-group">
+				<textarea class="form-control" placeholder="发布内容" rows="10"
+					cols="128"></textarea>
+			</div>
+			<br /> <br />
+			<button type="button" class="col-sm-offset-8 btn btn-info">发送</button>
+		</form>
 	</div>
 </body>
 </html>

@@ -27,7 +27,7 @@
 	<frameset cols="187,*" frameborder="no" border="0" framespacing="0">
 		<frame src="left" name="leftFrame" scrolling="no"
 			noresize="noresize" id="leftFrame" title="leftFrame" />
-		<frame src="oldManInfoView" name="rightFrame" id="rightFrame"
+		<frame src="oldBackMainIndex" name="rightFrame" id="rightFrame"
 			title="rightFrame" />
 	</frameset>
 </frameset>

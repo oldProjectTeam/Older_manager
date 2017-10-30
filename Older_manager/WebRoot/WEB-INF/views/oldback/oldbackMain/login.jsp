@@ -32,8 +32,8 @@
 	<section class="login-contain"> <header>
 	<h1>老人后台管理系统</h1>
 	<p>management system</p>
-	</header>
-	<form method="post" action="system/login">
+	</header> <font color="red" id="msg" style="margin-left: 180px;">${msg}</font>
+	<form method="post" action="system/login" id="loginForm">
 		<div class="form-content">
 			<ul>
 				<li>
@@ -59,10 +59,9 @@
 							align='absMiddle' /> <a href="system/index">刷新</a>
 					</div>
 				</li>
-				<li><input value="立即登录" type="submit"
+				<li><input value="立即登录" type="button"
 					class="btn btn-lg btn-block" id="login"
 					style="background-color: #30C37C;" /></li>
-				<font color="red" id="msg" style="margin-left: 120px;">${msg}</font>
 				<li>
 					<p class="btm-info">
 						©Copyright<a href="#" target="_blank" title="孝和集团"
@@ -80,8 +79,11 @@
 			var pwd = $("#password").val();
 			var code = $("#code").val();
 			if (user == '' || pwd == '' || code == '') {
+				$("#msg").empty();
 				$("#msg").append("请先输入信息");
 				return;
+			} else {
+				$("#loginForm").submit();
 			}
 		});
 	</script>

@@ -33,22 +33,29 @@
 
 <body style="margin: 15px;">
 	<div style="width:98%;margin-left:4px"">
+
+		<div class="page-header">
+			<h4>通知公告表</h4>
+		</div>
 		<div style="background:#fdfdfd;margin-top:15px;">
-			<span class="col-sm-12 backstyle">通知公告表</span> <br> <br> <br>
 			<ul class="list-unstyle list-inline">
 				<li><a
 					href="/Older_manager/static/oldback/officemanage/sendnotice.jsp"><button
-							type="button" class="btn btn-default">发布新公告</button></a></li>
+							type="button" class="btn btn-info">发布新公告</button></a></li>
+				<li><a href=""><button type="button" class="btn btn-danger">删除公告</button></a></li>
 				<li><a href=""><button type="button"
-							class="btn btn-default">删除公告</button></a></li>
-				<li><a href=""><button type="button"
-							class="btn btn-default">推送到手机</button></a></li>
+							class="btn btn-success">推送到手机</button></a></li>
 			</ul>
-			<form action="" class="form-inline">
-				&nbsp;&nbsp;&nbsp;通告标题：<input type="text" placeholder="通告标题">&nbsp;&nbsp;&nbsp;
-				发布部门：<input type="text" placeholder="发布人">&nbsp;&nbsp;&nbsp;
-				<input type="submit" value="查询">&nbsp;&nbsp;&nbsp; <input
-					type="submit" value="重置">
+			<form class="form-inline">
+				<div class="form-group">
+					<label for="exampleInputName2">通告标题:</label> <input type="text"
+						class="form-control" placeholder="通告标题">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail2">发布部门:</label> <input type="email"
+						class="form-control" placeholder="发布部门">
+				</div>
+				<button type="submit" class="btn btn-info">发布</button>
 			</form>
 			<table class="table table-bordered table-hover">
 				<tr>
@@ -69,12 +76,12 @@
 					<td>123</td>
 					<td>
 						<ul class="list-unstyle list-inline">
-							<li class="col-sm-4 text-center"><a href=""
-								data-toggle="modal" data-target="#alter">修改</a></li>
-							<li class="col-sm-4 text-center"><a href=""
-								onclick="javascript:return del()">删除</a></li>
-							<li class="col-sm-4 text-center"><a
-								href="/Older_manager/static/oldback/officemanage/noticeinformation.jsp">查看</a></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">修改</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-danger" onclick="javascript:return del()">删除</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">查看</button></li>
 						</ul>
 					</td>
 				</tr>
@@ -88,12 +95,12 @@
 					<td>123</td>
 					<td>
 						<ul class="list-unstyle list-inline">
-							<li class="col-sm-4 text-center"><a href=""
-								data-toggle="modal" data-target="#alter">修改</a></li>
-							<li class="col-sm-4 text-center"><a href=""
-								onclick="javascript:return del()">删除</a></li>
-							<li class="col-sm-4 text-center"><a
-								href="/Older_manager/static/oldback/officemanage/noticeinformation.jsp">查看</a></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">修改</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-danger" onclick="javascript:return del()">删除</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">查看</button></li>
 						</ul>
 					</td>
 				</tr>
@@ -106,12 +113,12 @@
 					<td>123</td>
 					<td>
 						<ul class="list-unstyle list-inline">
-							<li class="col-sm-4 text-center"><a href=""
-								data-toggle="modal" data-target="#alter">修改</a></li>
-							<li class="col-sm-4 text-center"><a href=""
-								onclick="javascript:return del()">删除</a></li>
-							<li class="col-sm-4 text-center"><a
-								href="/Older_manager/static/oldback/officemanage/noticeinformation.jsp">查看</a></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">修改</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-danger" onclick="javascript:return del()">删除</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">查看</button></li>
 						</ul>
 					</td>
 				</tr>
@@ -124,12 +131,12 @@
 					<td>123</td>
 					<td>
 						<ul class="list-unstyle list-inline">
-							<li class="col-sm-4 text-center"><a href=""
-								data-toggle="modal" data-target="#alter">修改</a></li>
-							<li class="col-sm-4 text-center"><a href=""
-								onclick="javascript:return del()">删除</a></li>
-							<li class="col-sm-4 text-center"><a
-								href="/Older_manager/static/workmanage/page/noticeinformation.jsp">查看</a></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">修改</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-danger" onclick="javascript:return del()">删除</button></li>
+							<li class="col-sm-4 text-center"><button
+									class="btn btn-sm btn-info">查看</button></li>
 						</ul>
 					</td>
 				</tr>
