@@ -222,7 +222,7 @@
 						btn : [ '是', '否' ],//按钮
 						icon : 2,
 					}, function() {
-						location.href = "login.html";
+						location.href = "back_shopping_login";
 
 					});
 				});
@@ -240,10 +240,10 @@
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
 				<a href="#" class="navbar-brand"> <small> <img
-						src="${APP_PATH}/static/shop/images/logo.png">
+						src="${APP_PATH}/static/shop/images/logo.png" width="240"
+						style="margin-top: 15px;" height="50">
 				</small>
 				</a>
-				<!-- /.brand -->
 			</div>
 			<!-- /.navbar-header -->
 			<div class="navbar-header pull-right" role="navigation">
@@ -353,8 +353,8 @@
 							class="icon-cogs"></i><span class="menu-text"> 系统管理 </span><b
 							class="arrow icon-angle-down"></b></a>
 						<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)"
-								name="Systems" title="系统设置" class="iframeurl"><i
+							<li class="home"><a href="javascript:void(0)" name="Systems"
+								title="系统设置" class="iframeurl"><i
 									class="icon-double-angle-right"></i>系统设置</a></li>
 
 						</ul></li>

@@ -20,10 +20,13 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
-<link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
-<link href="${APP_PATH}/static/shop/assets/css/codemirror.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
+<link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
+	rel="stylesheet">
 <script src="${APP_PATH}/static/shop/assets/js/ace-extra.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/jquery.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/dist/echarts.js"></script>
@@ -37,7 +40,7 @@
 			<button type="button" class="close" data-dismiss="alert">
 				<i class="icon-remove"></i>
 			</button>
-			<i class="icon-ok green"></i>欢迎使用<strong class="green">后台管理系统<small>(v1.2)</small></strong>,你本次登陆时间为2016年7月12日13时34分，登陆IP:192.168.1.110.
+			<i class="icon-ok green"></i>欢迎使用<strong class="green">后台管理系统</strong>,你本次登陆时间为2016年7月12日13时34分，登陆IP:192.168.1.110.
 		</div>
 		<div class="state-overview clearfix">
 			<div class="col-lg-3 col-sm-6">
