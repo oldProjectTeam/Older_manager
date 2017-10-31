@@ -10,12 +10,13 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.older.manager.bean.ActiveUser;
+import com.older.manager.bean.Permission;
 import com.older.manager.utils.ResourcesUtil;
 
 /**
- * 用户身份认证拦截器
+ * 授权拦截器
  */
-public class LoginInterceptor implements HandlerInterceptor {
+public class PermissionInterceptor implements HandlerInterceptor {
 
 	// 在执行handler之前来执行的
 	// 用于用户认证校验、用户权限校验
@@ -39,17 +40,33 @@ public class LoginInterceptor implements HandlerInterceptor {
 			}
 		}
 
-		// 判断用户身份在session中是否存在
+		// 从配置文件中获取公共访问地址
+		List<String> common_urls = ResourcesUtil.gekeyList("commonURL");
+		// 遍历公用 地址，如果是公用 地址则放行
+		for (String common_url : common_urls) {
+			if (url.indexOf(common_url) >= 0) {
+				// 如果是公开 地址则放行
+				return true;
+			}
+		}
+
+		// 获取session
 		HttpSession session = request.getSession();
 		ActiveUser activeUser = (ActiveUser) session.getAttribute("activeUser");
-		// 如果用户身份在session中存在放行
-		if (activeUser != null) {
-			return true;
+		// 从session中取权限范围的url
+		List<Permission> permissions = activeUser.getPermissions();
+		for (Permission sysPermission : permissions) {
+			// 权限的url
+			String permission_url = sysPermission.getUrl();
+			if (url.indexOf(permission_url) >= 0) {
+				// 如果是权限的url 地址则放行
+				return true;
+			}
 		}
-		// 执行到这里拦截，跳转到登陆页面，用户进行身份认证
-		request.getRequestDispatcher(
-				"/WEB-INF/views/oldback/oldbackMain/login.jsp").forward(
-				request, response);
+
+		// 执行到这里拦截，跳转到无权访问的提示页面
+		request.getRequestDispatcher("/WEB-INF/views/oldback/error/refuse.jsp")
+				.forward(request, response);
 
 		// 如果返回false表示拦截不继续执行handler，如果返回true表示放行
 		return false;

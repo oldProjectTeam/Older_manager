@@ -1,10 +1,12 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <%
- pageContext.setAttribute("APP_PATH", request.getContextPath());
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -35,7 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body style="margin: 15px;">
 	<!--路劲导航  -->
 	<div class="row">
 		<div class="col-md-12">
@@ -68,8 +70,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<option>女</option>
 							</select></td>
 							<td rowspan="4" style="width:80px">图片</td>
-							<td rowspan="4"><input type="hidden" name="photo">
-								<input type="file" multiple="multiple" class="btn btn-default"
+							<td rowspan="4"><input type="hidden" name="photo"> <input
+								type="file" multiple="multiple" class="btn btn-default"
 								value="图片管理" name="file" id="up_img" /> <img
 								src="${pageContext.request.contextPath}/upload/${user.image==null?'failure.png':user.image}"
 								id="imgShow" class="img-responsive"></td>
@@ -273,7 +275,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>
 	<script type="text/javascript">
-	 
 		window.onload = function() {
 			new uploadPreview({
 				UpBtn : "up_img",

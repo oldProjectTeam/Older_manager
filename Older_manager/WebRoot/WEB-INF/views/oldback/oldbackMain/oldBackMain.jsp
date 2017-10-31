@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
@@ -36,84 +37,19 @@
 <body style="margin: 15px;">
 	<!--菜单列表  -->
 	<div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="${APP_PATH }/old/insertnewolder"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/info.png" alt="档案管理"
-						class="img-rounded"> <br> <br>档案管理 </a>
-				</div>
+		<c:if test="${activeUser.listMenus!=null}">
+			<div class="row">
+				<c:forEach items="${activeUser.listMenus}" var="menu">
+					<div class="col-md-3">
+						<div class="list-group">
+							<a href="${menu.menuUrl}" class="list-group-item text-center"><img
+								src="${menu.menuImg}" alt="${menu.menuName}" class="img-rounded">
+								<br> <br>${menu.menuName} </a>
+						</div>
+					</div>
+				</c:forEach>
 			</div>
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="${APP_PATH}/health/health"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/health.png"
-						alt="健康管理" class="img-rounded"> <br> <br>健康管理 </a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="coursemanager.jsp" class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/relative.png"
-						alt="客户关系管理" class="img-rounded"> <br> <br>客户关系管理
-					</a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="education/educationIndex"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/education.png"
-						alt="教育管理" class="img-rounded"> <br> <br>教育管理 </a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="courseenrol/searchCourseenrol"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/count.png"
-						alt="数据统计" class="img-rounded"> <br> <br>数据统计 </a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="officemanage/officemanageIndex"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/office.png"
-						alt="办公管理" class="img-rounded"> <br> <br>办公管理 </a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="accountmanage"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/old.png"
-						alt="老人账户管理" class="img-rounded"> <br> <br>老人账户管理 </a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="systemManageindex"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/system.png"
-						alt="系统管理" class="img-rounded"> <br> <br>系统管理 </a>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="courseenrol/searchCourseenrol"
-						class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/oldback/images/location.png" width="100" height="75"
-						alt="定位管理" class="img-rounded"> <br> <br>定位管理</a>
-				</div>
-			</div>
-		</div>
+		</c:if>
 	</div>
 </body>
 </html>

@@ -33,7 +33,7 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!--table指定每个表的生成策略 -->
-		<table tableName="activity" domainObjectName="Activity">
+		<!-- <table tableName="activity" domainObjectName="Activity">
 		</table>
 		<table tableName="activityenrol" domainObjectName="Activityenrol">
 		</table>
@@ -117,19 +117,19 @@
 		</table>
 		<table tableName="shippingaddress" domainObjectName="Shippingaddress">
 		</table>
-		<table tableName="users" domainObjectName="Users">
-		</table>
-		<table tableName="sys_parent_menu" domainObjectName="ParentMenu">
-		</table>
+		<table tableName="users" domainObjectName="Users"> 
+		</table>-->
+		<!-- <table tableName="sys_menu" domainObjectName="Menu">
+		</table> -->
 		<table tableName="sys_permission" domainObjectName="Permission">
 		</table>
-		<table tableName="sys_role" domainObjectName="Role">
+		<!-- <table tableName="sys_role" domainObjectName="Role">
 		</table>
 		<table tableName="sys_role_permission" domainObjectName="RolePermission">
 		</table>
 		<table tableName="sys_user" domainObjectName="User">
 		</table>
 		<table tableName="sys_user_role" domainObjectName="UserRole">
-		</table>
+		</table> -->
 	</context>
 </generatorConfiguration>

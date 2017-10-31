@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ParentMenuMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.ParentMenu" >
+<mapper namespace="com.older.manager.mapper.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Menu" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sys_permission_id" property="sysPermissionId" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -64,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name
+    id, name, sys_permission_id, url
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ParentMenuExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.MenuExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sys_parent_menu
+    from sys_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -83,31 +85,39 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from sys_parent_menu
+    from sys_menu
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from sys_parent_menu
+    delete from sys_menu
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ParentMenuExample" >
-    delete from sys_parent_menu
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.MenuExample" >
+    delete from sys_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.ParentMenu" >
-    insert into sys_parent_menu (id, name)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.older.manager.bean.Menu" >
+    insert into sys_menu (id, name, sys_permission_id, 
+      url)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{sysPermissionId,jdbcType=INTEGER}, 
+      #{url,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.ParentMenu" >
-    insert into sys_parent_menu
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Menu" >
+    insert into sys_menu
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
       <if test="name != null" >
         name,
+      </if>
+      <if test="sysPermissionId != null" >
+        sys_permission_id,
+      </if>
+      <if test="url != null" >
+        url,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -117,16 +127,22 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="sysPermissionId != null" >
+        #{sysPermissionId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ParentMenuExample" resultType="java.lang.Integer" >
-    select count(*) from sys_parent_menu
+  <select id="countByExample" parameterType="com.older.manager.bean.MenuExample" resultType="java.lang.Integer" >
+    select count(*) from sys_menu
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update sys_parent_menu
+    update sys_menu
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
@@ -134,31 +150,47 @@
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.sysPermissionId != null" >
+        sys_permission_id = #{record.sysPermissionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.url != null" >
+        url = #{record.url,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update sys_parent_menu
+    update sys_menu
     set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR}
+      name = #{record.name,jdbcType=VARCHAR},
+      sys_permission_id = #{record.sysPermissionId,jdbcType=INTEGER},
+      url = #{record.url,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ParentMenu" >
-    update sys_parent_menu
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Menu" >
+    update sys_menu
     <set >
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="sysPermissionId != null" >
+        sys_permission_id = #{sysPermissionId,jdbcType=INTEGER},
+      </if>
+      <if test="url != null" >
+        url = #{url,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ParentMenu" >
-    update sys_parent_menu
-    set name = #{name,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Menu" >
+    update sys_menu
+    set name = #{name,jdbcType=VARCHAR},
+      sys_permission_id = #{sysPermissionId,jdbcType=INTEGER},
+      url = #{url,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -32,15 +32,15 @@
 	<section class="login-contain"> <header>
 	<h1>老人后台管理系统</h1>
 	<p>management system</p>
-	</header> <font color="red" id="msg" style="margin-left: 180px;">${msg}</font>
-	<form method="post" action="system/login" id="loginForm">
+	</header> <font color="red" id="msg" style="margin-left: 180px;">${message}</font>
+	<form method="post" action="login" id="loginForm">
 		<div class="form-content">
 			<ul>
 				<li>
 					<div class="form-group">
 						<label class="control-label">管理员账号：</label> <input type="text"
 							placeholder="管理员账号..." class="form-control form-underlined"
-							name="username" id="username" />
+							name="usercode" id="username" />
 					</div>
 				</li>
 				<li>
@@ -53,7 +53,7 @@
 				<li>
 					<div class="form-group">
 						<label class="control-label">验证码：</label> <input type="text"
-							id="code" name="code" size="8" placeholder="验证码..."
+							id="code" name="randomcode" size="8" placeholder="验证码..."
 							class="form-underlined" /> <img id="randomcode_img"
 							src="validatecode.jsp" alt="" width="56" height="20"
 							align='absMiddle' /> <a href="system/index">刷新</a>

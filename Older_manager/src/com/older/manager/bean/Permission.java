@@ -13,6 +13,8 @@ public class Permission {
 
     private Integer parentId;
 
+    private String img;
+
     public Integer getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class Permission {
 
     public void setParentId(Integer parentId) {
         this.parentId = parentId;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
     }
 }

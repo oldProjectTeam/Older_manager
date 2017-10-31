@@ -45,11 +45,11 @@
 					src="${APP_PATH}/static/images/oldback/images/help.png" title="帮助"
 					class="helpimg" /></span><a href="#">帮助</a></li>
 			<li><a href="#">关于</a></li>
-			<li><a href="system/logout" target="_parent">退出</a></li>
+			<li><a href="logout" target="_parent">退出</a></li>
 		</ul>
 
 		<div class="user">
-			<span>${currentUser.username}</span>
+			<span><font color="white" style="font-size: 16px;">当前管理员:${activeUser.username}</font></span>
 		</div>
 	</div>
 </body>

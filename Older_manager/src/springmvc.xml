@@ -31,19 +31,18 @@
 	<mvc:default-servlet-handler />
 	<!-- 能支持springMVC的更高级的功能，JSR303效验，快捷的ajax...映射动态请求 -->
 	<mvc:annotation-driven />
-	<!-- 不对静态资源进行扫描 -->
-	<mvc:default-servlet-handler />
-	<mvc:resources location="/" mapping="/**/*.js" />
-	<mvc:resources location="/" mapping="/**/*.css" />
-	<mvc:resources location="/assets/" mapping="/assets/**/*" />
-	<mvc:resources location="/images/" mapping="/images/*"
-		cache-period="360000" />
-	<!-- springmvc 拦截器的配置 -->
+	<!-- 定义统一异常处理器 -->
+	<bean class="com.older.manager.exception.UserExceptionResolver"></bean>
+	<!--拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
+			<!-- 用户认证拦截 -->
 			<mvc:mapping path="/**" />
-			<bean class="com.older.manager.interceptor.LoginInterceptor">
-			</bean>
+			<bean class="com.older.manager.interceptor.LoginInterceptor"></bean>
 		</mvc:interceptor>
+		<!-- <mvc:interceptor> -->
+		<!-- 授权拦截 -->
+		<!-- <mvc:mapping path="/**" /> <bean class="com.older.manager.interceptor.PermissionInterceptor"></bean> 
+			</mvc:interceptor> -->
 	</mvc:interceptors>
 </beans>

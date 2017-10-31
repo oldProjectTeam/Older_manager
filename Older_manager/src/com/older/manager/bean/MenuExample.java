@@ -3,14 +3,14 @@ package com.older.manager.bean;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParentMenuExample {
+public class MenuExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ParentMenuExample() {
+    public MenuExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -231,6 +231,136 @@ public class ParentMenuExample {
 
         public Criteria andNameNotBetween(String value1, String value2) {
             addCriterion("name not between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdIsNull() {
+            addCriterion("sys_permission_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdIsNotNull() {
+            addCriterion("sys_permission_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdEqualTo(Integer value) {
+            addCriterion("sys_permission_id =", value, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdNotEqualTo(Integer value) {
+            addCriterion("sys_permission_id <>", value, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdGreaterThan(Integer value) {
+            addCriterion("sys_permission_id >", value, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sys_permission_id >=", value, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdLessThan(Integer value) {
+            addCriterion("sys_permission_id <", value, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("sys_permission_id <=", value, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdIn(List<Integer> values) {
+            addCriterion("sys_permission_id in", values, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdNotIn(List<Integer> values) {
+            addCriterion("sys_permission_id not in", values, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdBetween(Integer value1, Integer value2) {
+            addCriterion("sys_permission_id between", value1, value2, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andSysPermissionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("sys_permission_id not between", value1, value2, "sysPermissionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIsNull() {
+            addCriterion("url is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIsNotNull() {
+            addCriterion("url is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlEqualTo(String value) {
+            addCriterion("url =", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotEqualTo(String value) {
+            addCriterion("url <>", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlGreaterThan(String value) {
+            addCriterion("url >", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("url >=", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLessThan(String value) {
+            addCriterion("url <", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLessThanOrEqualTo(String value) {
+            addCriterion("url <=", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlLike(String value) {
+            addCriterion("url like", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotLike(String value) {
+            addCriterion("url not like", value, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlIn(List<String> values) {
+            addCriterion("url in", values, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotIn(List<String> values) {
+            addCriterion("url not in", values, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlBetween(String value1, String value2) {
+            addCriterion("url between", value1, value2, "url");
+            return (Criteria) this;
+        }
+
+        public Criteria andUrlNotBetween(String value1, String value2) {
+            addCriterion("url not between", value1, value2, "url");
             return (Criteria) this;
         }
     }
