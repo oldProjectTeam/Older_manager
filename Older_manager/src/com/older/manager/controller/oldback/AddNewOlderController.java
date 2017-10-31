@@ -11,10 +11,13 @@ import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -23,6 +26,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -84,28 +89,46 @@ public class AddNewOlderController {
 	 * @throws IllegalStateException
 	 */
 	@RequestMapping("/addnewolder/{pn}")
-	public String addNewOlder(Oldman oldman, @PathVariable("pn") Integer pn,
-			MultipartFile file, HttpServletRequest request)
-			throws IllegalStateException, IOException {
-		String imgUrl = null;
-		if (file != null) {
-			imgUrl = SaveFile.saveImg(file, request);
-		}
-		if (oldman != null) {
-			oldman.setPhoto(imgUrl);
-			addNewOlderService.addNewOlder(oldman);
-			Relatives relatives = new Relatives();
-			relatives.setName(oldman.getUrgencycontact());
-			relatives.setSex(oldman.getSex());
-			relatives.setPhone(oldman.getPhone());
-			relatives.setRelation(oldman.getRelation());
-			relatives.setIslive(oldman.getLiveinfo());
-			relatives.setAddress(oldman.getAddress());
-			relatives.setOldmanId(oldman.getId());
-			oldRelativesService.addOlderRelative(relatives);
-		}
+	public String addNewOlder(@Valid Oldman oldman, BindingResult result,
+			@PathVariable("pn") Integer pn, MultipartFile file,
+			HttpServletRequest request) throws IllegalStateException,
+			IOException {
+		List<Map<String, Object>> errorList = new ArrayList<Map<String, Object>>();
+		if (result.hasErrors()) {
+			for (FieldError fieldError : result.getFieldErrors()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("fieldName", fieldError.getField());
+				map.put("errorMessage", fieldError.getDefaultMessage());
+				errorList.add(map);
+				System.out.println("出错的字段名为:------------->"
+						+ fieldError.getField());
+				System.out.println("出错信息为:---------------->"
+						+ fieldError.getDefaultMessage());
+			}
+		} else {
+			String imgUrl = null;
+			if (file != null) {
+				imgUrl = SaveFile.saveImg(file, request);
+			}
+			if (oldman != null) {
+				oldman.setPhoto(imgUrl);
+				addNewOlderService.addNewOlder(oldman);
+				Relatives relatives = new Relatives();
+				relatives.setName(oldman.getUrgencycontact());
+				relatives.setSex(oldman.getSex());
+				relatives.setPhone(oldman.getPhone());
+				relatives.setRelation(oldman.getRelation());
+				relatives.setIslive(oldman.getLiveinfo());
+				relatives.setAddress(oldman.getAddress());
+				relatives.setOldmanId(oldman.getId());
+				oldRelativesService.addOlderRelative(relatives);
+			}
 
-		return "oldback/oldManInfoMange/selectallolderwith";
+			return "oldback/oldManInfoMange/selectallolderwith";
+		}
+		request.setAttribute("errorList", errorList);
+		return "oldback/oldManInfoMange/addOldManInfo";
+
 	}
 
 	/**
