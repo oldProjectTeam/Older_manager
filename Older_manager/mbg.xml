@@ -121,7 +121,7 @@
 		</table>-->
 		<!-- <table tableName="sys_menu" domainObjectName="Menu">
 		</table> -->
-		<table tableName="sys_permission" domainObjectName="Permission">
+		<table tableName="systemLog" domainObjectName="SystemLog">
 		</table>
 		<!-- <table tableName="sys_role" domainObjectName="Role">
 		</table>

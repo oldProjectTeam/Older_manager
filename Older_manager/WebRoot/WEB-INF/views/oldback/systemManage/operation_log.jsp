@@ -33,8 +33,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
-					<li><b>位置：<a
-							href="systemManageindex">系统管理</a></b></li>
+					<li><b>位置：<a href="systemManageindex">系统管理</a></b></li>
 					<li class="active">操作日志</li>
 				</ol>
 			</div>
@@ -46,7 +45,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				&nbsp;
-				<button type="button" class="btn btn-danger">
+				<button type="button" class="btn btn-danger" id="old_delete_all_btn">
 					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					批量删除
 				</button>
@@ -57,10 +56,10 @@
 			<div class="col-md-12">
 				<form class="form-inline">
 					<div class="form-group">
-						&nbsp;&nbsp;<label for="exampleInputName2">管理员账户</label> <input
-							type="text" class="form-control" placeholder="请输入管理员账户">
+						&nbsp;&nbsp;<label>管理员账户</label> <input
+							type="text" class="form-control" id="adminText" placeholder="请输入管理员账户">
 					</div>
-					<button type="submit" class="btn btn-default">
+					<button type="submit" class="btn btn-default" id="selectwith">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						查询
 					</button>
@@ -73,133 +72,267 @@
 			<div class="col-md-12">
 				<div class="table-responsive">
 					<table class="table table-hover table-bordered text-center">
-						<thead>
-							<tr>
-								<td><input type="checkbox" id='admin_all_check'></td>
-								<td>#</td>
-								<td>登录账户</td>
-								<td>企业名称</td>
-								<td>角色名称</td>
-								<td>最近登录IP</v>
-								<td>最近登录时间</td>
-								<td>登录次数</td>
-								<td>操作说明</td>
-								<td>操作类型</td>
-								<td>操作</td>
-							</tr>
+						<thead id="head">
 						</thead>
-						<tbody>
-							<tr>
-								<td class="text-center"><input type="checkbox"
-									class="admin_item_check"></td>
-								<td>1</td>
-								<td>admin</td>
-								<td>孝和集团</td>
-								<td>分店主管</td>
-								<td>122.120.12.76</td>
-								<td>2017年10月8日</td>
-								<td>100</td>
-								<td>登录进入系统</td>
-								<td>PC端登录</td>
-								<td>
-									<button type="button" class="btn btn-danger btn-sm">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										删除
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center"><input type="checkbox"
-									class="admin_item_check"></td>
-								<td>2</td>
-								<td>admin</td>
-								<td>孝和集团</td>
-								<td>分店主管</td>
-								<td>122.120.12.76</td>
-								<td>2017年10月8日</td>
-								<td>100</td>
-								<td>登录进入系统</td>
-								<td>PC端登录</td>
-								<td>
-									<button type="button" class="btn btn-danger btn-sm">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										删除
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center"><input type="checkbox"
-									class="admin_item_check"></td>
-								<td>3</td>
-								<td>admin</td>
-								<td>孝和集团</td>
-								<td>分店主管</td>
-								<td>122.120.12.76</td>
-								<td>2017年10月8日</td>
-								<td>100</td>
-								<td>登录进入系统</td>
-								<td>PC端登录</td>
-								<td>
-									<button type="button" class="btn btn-danger btn-sm">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										删除
-									</button>
-								</td>
-							</tr>
-							<tr>
-								<td class="text-center"><input type="checkbox"
-									class="admin_item_check"></td>
-								<td>4</td>
-								<td>admin</td>
-								<td>孝和集团</td>
-								<td>分店主管</td>
-								<td>122.120.12.76</td>
-								<td>2017年10月8日</td>
-								<td>100</td>
-								<td>登录进入系统</td>
-								<td>PC端登录</td>
-								<td>
-									<button type="button" class="btn btn-danger btn-sm">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										删除
-									</button>
-								</td>
-							</tr>
+						<tbody id="table_data">
+
+
 						</tbody>
-						<thead>
 					</table>
 				</div>
 			</div>
 		</div>
 		<!--分页信息  -->
 		<div class="row">
-			<div class="col-md-7">&nbsp;&nbsp;当前第1页，共20页，总计100条记录</div>
-			<div class="col-md-4 col-md-offset-1">
-				<nav aria-label="Page navigation">
-					<ul class="pagination">
-						<li><a href="#">首页 </a></li>
-						<li><a href="#" aria-label="Previous"> <span
-								aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li class="active"><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#" aria-label="Next"> <span
-								aria-hidden="true">&raquo;</span>
-						</a></li>
-						<li><a href="#">末页 </a></li>
-					</ul>
-				</nav>
-			</div>
+			<div class="col-md-7" id="page_text"></div>
+			<div class="col-md-5" id="page_nav"></div>
 		</div>
 	</div>
 
 	<script type="text/javascript">
-		//全选
-		$("#admin_all_check").click(function() {
-			$(".admin_item_check").prop("checked", $(this).prop("checked"));
+		var totalRecord, currentNum;
+		/* 分页 */
+		$(function() {
+			$("#old_delete_all_btn").attr("disabled", true);
+			go(1, "");
+		});
+		function go(pn, str) {
+			$.ajax({
+				url : "${APP_PATH}/log/list",
+				data : {
+					"pn" : pn,
+					"str" : $("#adminText").val()
+				},
+				type : "GET",
+				success : function(result) {
+					if (result.code == 100) {
+						//console.log(result.extend.pageInfo);
+						//构建分页信息
+						build_page_text(result);
+						//构建分页条
+						build_page_nav(result);
+						//构建表格数据
+						build_table_data(result);
+					}
+				}
+			});
+		}
+		function build_page_text(result) {
+			$("#page_text").empty();
+			$("#page_text").append(
+					"当前第" + result.extend.pageInfo.pageNum + "页，共"
+							+ result.extend.pageInfo.pages + "页，总计"
+							+ result.extend.pageInfo.total + "条记录");
+			totalRecord = result.extend.pageInfo.total;
+			currentNum = result.extend.pageInfo.pageNum;
+		}
+		//解析显示分页条信息
+		function build_page_nav(result) {
+			$("#page_nav").empty();
+			var ul = $("<ul></ul>").addClass("pagination");
+			var firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
+			firstPageLi.click(function() {
+				go(1, strs);
+			});
+			var prePageLi = $("<li></li>").append(
+					$("<a></a>").append("&laquo;"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
+				firstPageLi.addClass("disabled");
+				prePageLi.addClass("disabled");
+			} else {
+				//为元素添加点击翻页事件
+				prePageLi.click(function() {
+					go(result.extend.pageInfo.pageNum - 1, strs);
+				});
+			}
+			var nextPageLi = $("<li></li>").append(
+					$("<a></a>").append("&raquo;"));
+			var lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
+			lastPageLi.click(function() {
+				go(result.extend.pageInfo.pages, strs);
+			});
+			if (result.extend.pageInfo.hasNextPage == false) {
+				nextPageLi.addClass("disabled");
+				lastPageLi.addClass("disabled");
+			} else {
+				//为元素添加点击翻页事件
+				nextPageLi.click(function() {
+					go(result.extend.pageInfo.pageNum + 1, strs);
+				});
+			}
+			//添加首页和前一页的提示
+			ul.append(firstPageLi).append(prePageLi);
+			//遍历给ul中添加页码提示
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("active");
+				}
+				numLi.click(function() {
+					go(item, strs);
+				});
+				ul.append(numLi);
+			});
+			//添加下一页和末页的提示
+			ul.append(nextPageLi).append(lastPageLi);
+			//把ul加到nav 
+			var navEle = $("<nav></nav>").append(ul);
+			navEle.appendTo("#page_nav");
+		}
+
+		function build_table_data(result) {
+			$("#head").empty();
+			$("#table_data").empty();
+			var headTR = $("<tr></tr>");
+			var checkBox = $("<td></td>").append(
+					$("<input type='checkbox' id='check_item_all'/>"));
+
+			var Td1 = $("<td></td>").append("#");
+			var Td2 = $("<td></td>").append("登录账户");
+			var Td3 = $("<td></td>").append("企业名称");
+			var Td4 = $("<td></td>").append("角色名称");
+			var Td5 = $("<td></td>").append("最近登录IP");
+			var Td6 = $("<td></td>").append("最近登录时间");
+			var Td7 = $("<td></td>").append("登录次数");
+			var Td8 = $("<td></td>").append("操作说明");
+			var Td9 = $("<td></td>").append("操作类型");
+			var Td10 = $("<td></td>").append("操作");
+			headTR.append(checkBox).append(Td1).append(Td2).append(Td3).append(
+					Td4).append(Td5).append(Td6).append(Td7).append(Td8)
+					.append(Td9).append(Td10).appendTo($("#head"));
+
+			$
+					.each(
+							result.extend.pageInfo.list,
+							function(index, item) {
+								var checkBoxTd = $("<td><input type='checkbox' class='check_item'/></td>");
+								var olderid = $("<td></td>").append(item.id);
+								all_olderid = olderid;
+								var oldername = $("<td></td>").append(
+										item.username);
+								var oldersex = $("<td></td>").append(
+										item.companyname);
+								var olderage = $("<td></td>").append(
+										item.rolename);
+								var olderphone = $("<td></td>").append(item.ip);
+								var olderidcar = $("<td></td>").append(
+										item.logintime);
+								var olderliveinfo = $("<td></td>").append(
+										item.logincount);
+								var olderservice = $("<td></td>").append(
+										item.logindescription);
+								var type = $("<td></td>")
+										.append(item.logintype);
+								var delBtn = $("<button></button>")
+										.addClass(
+												"btn btn-danger btn-sm delete_btn")
+										.append(
+												$("<span></span>")
+														.addClass(
+																"glyphicon glyphicon-trash"))
+										.append("删除");
+
+								//为删除按钮添加一个自定义的属性，来表示当前删除员工的id
+								delBtn.attr("del-id", item.id);
+								var btnTd = $("<td></td>").append(" ").append(
+										delBtn);
+								//append方法执行完成以后还是返回原来的元素							              								              
+								$("<tr></tr>").append(checkBoxTd).append(
+										olderid).append(oldername).append(
+										oldersex).append(olderage).append(
+										olderphone).append(olderidcar).append(
+										olderliveinfo).append(olderservice)
+										.append(type).append(btnTd).appendTo(
+												"#table_data");
+							});
+		}
+		//點擊刪除
+		$(document).on("click", ".delete_btn", function() {
+			var delid = $(this).attr("del-id");
+			var oldername = $(this).parents("tr").find("td:eq(2)").text();
+			if (confirm("确认删除【" + oldername + "】吗")) {
+				$.ajax({
+					url : "${APP_PATH}/old/deleteolder/" + delid,
+					type : "DELETE",
+					success : function(result) {
+						go(currentNum, strs);
+					}
+				});
+			}
+		});
+		//完成全选、全部选功能
+		$(document).on("click", "#check_item_all", function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+
+			if ($("#check_item_all").prop("checked") == true) {
+				$("#old_delete_all_btn").attr("disabled", false);
+			} else {
+				$("#old_delete_all_btn").attr("disabled", true);
+			}
+		});
+
+		$(document)
+				.on(
+						"click",
+						".check_item",
+						function() {
+
+							var flag = $(".check_item:checked").length == $(".check_item").length;
+							$("#check_item_all").prop("checked", flag);
+							if ($(".check_item:checked").length > 0) {
+								$("#old_delete_all_btn")
+										.attr("disabled", false);
+							} else {
+								$("#old_delete_all_btn").attr("disabled", true);
+							}
+						});
+		//点击删除全部，就批量删除
+		$("#old_delete_all_btn").click(
+				function() {
+					//alert();
+					var empNames = "";
+					var del_idstr = "";
+					$.each($(".check_item:checked"), function() {
+						//索引为2，就是第3个td.
+						empNames += $(this).parents("tr").find("td:eq(2)")
+								.text()
+								+ ",";
+						//alert(empNames);
+						//组装员工id字符串
+						del_idstr += $(this).parents("tr").find("td:eq(1)")
+								.text()
+								+ "-";
+						//alert($(this).parents("tr").find("td:eq(2)").text());
+						//alert(del_idstr);
+
+					});
+
+					//去除empNames多去的逗号
+					empNames = empNames.substring(0, empNames.length - 1);
+					//去除多余的删除员工-
+					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
+					if (confirm("确认删除【" + empNames + "】吗")) {
+						//发送ajax请求
+						$
+								.ajax({
+									url : "${APP_PATH}/old/deleteallolder/"
+											+ del_idstr,
+									type : "DELETE",
+									success : function(result) {
+										//alert(result.msg);
+										//回到当前页面
+										go(currentNum, strs);
+
+									}
+								});
+					}
+				});
+
+		//搜索
+		$("#selectwith").click(function() {
+			go(1, strs);
+
 		});
 	</script>
 </body>

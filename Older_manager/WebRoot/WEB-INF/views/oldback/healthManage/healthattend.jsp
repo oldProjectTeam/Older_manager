@@ -269,15 +269,15 @@
 
 		//新增按钮
 		$("#addvedio_btn").click(function() {
-			window.location.href = "addAttend.html";
+			window.location.href = "health/addhealthInfo";
 		});
 		//修改按钮
 		$(".update-btn").click(function() {
-			window.location.href = "updateAttend.html";
+			window.location.href = "health/updateAttend";
 		});
 		//查看按钮
 		$(".vedioview-btn").click(function() {
-			window.location.href = "selectAttend.html";
+			window.location.href = "health/selectAttend";
 		});
 	</SCRIPT>
 </body>

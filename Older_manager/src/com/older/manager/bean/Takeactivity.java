@@ -3,103 +3,127 @@ package com.older.manager.bean;
 import java.util.Date;
 
 public class Takeactivity {
-    private Integer id;
+	private Integer id;
 
-    private Integer activityId;
+	private Integer activityId;
 
-    private Date taketime;
+	private Date taketime;
 
-    private String ispresent;
+	private String ispresent;
 
-    private String remak;
+	private String remak;
 
-    private Integer oldmanId;
+	private Integer oldmanId;
 
-    private String takeactivity1;
+	private String takeactivity1;
 
-    private String takeactivity2;
+	private String takeactivity2;
 
-    private String takeactivity3;
+	private String takeactivity3;
 
-    private String takeactivity4;
+	private String takeactivity4;
 
-    public Integer getId() {
-        return id;
-    }
+	private Activity activity;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	private Oldman oldman;
 
-    public Integer getActivityId() {
-        return activityId;
-    }
+	public Activity getActivity() {
+		return activity;
+	}
 
-    public void setActivityId(Integer activityId) {
-        this.activityId = activityId;
-    }
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
 
-    public Date getTaketime() {
-        return taketime;
-    }
+	public Oldman getOldman() {
+		return oldman;
+	}
 
-    public void setTaketime(Date taketime) {
-        this.taketime = taketime;
-    }
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
 
-    public String getIspresent() {
-        return ispresent;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setIspresent(String ispresent) {
-        this.ispresent = ispresent == null ? null : ispresent.trim();
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getRemak() {
-        return remak;
-    }
+	public Integer getActivityId() {
+		return activityId;
+	}
 
-    public void setRemak(String remak) {
-        this.remak = remak == null ? null : remak.trim();
-    }
+	public void setActivityId(Integer activityId) {
+		this.activityId = activityId;
+	}
 
-    public Integer getOldmanId() {
-        return oldmanId;
-    }
+	public Date getTaketime() {
+		return taketime;
+	}
 
-    public void setOldmanId(Integer oldmanId) {
-        this.oldmanId = oldmanId;
-    }
+	public void setTaketime(Date taketime) {
+		this.taketime = taketime;
+	}
 
-    public String getTakeactivity1() {
-        return takeactivity1;
-    }
+	public String getIspresent() {
+		return ispresent;
+	}
 
-    public void setTakeactivity1(String takeactivity1) {
-        this.takeactivity1 = takeactivity1 == null ? null : takeactivity1.trim();
-    }
+	public void setIspresent(String ispresent) {
+		this.ispresent = ispresent == null ? null : ispresent.trim();
+	}
 
-    public String getTakeactivity2() {
-        return takeactivity2;
-    }
+	public String getRemak() {
+		return remak;
+	}
 
-    public void setTakeactivity2(String takeactivity2) {
-        this.takeactivity2 = takeactivity2 == null ? null : takeactivity2.trim();
-    }
+	public void setRemak(String remak) {
+		this.remak = remak == null ? null : remak.trim();
+	}
 
-    public String getTakeactivity3() {
-        return takeactivity3;
-    }
+	public Integer getOldmanId() {
+		return oldmanId;
+	}
 
-    public void setTakeactivity3(String takeactivity3) {
-        this.takeactivity3 = takeactivity3 == null ? null : takeactivity3.trim();
-    }
+	public void setOldmanId(Integer oldmanId) {
+		this.oldmanId = oldmanId;
+	}
 
-    public String getTakeactivity4() {
-        return takeactivity4;
-    }
+	public String getTakeactivity1() {
+		return takeactivity1;
+	}
 
-    public void setTakeactivity4(String takeactivity4) {
-        this.takeactivity4 = takeactivity4 == null ? null : takeactivity4.trim();
-    }
+	public void setTakeactivity1(String takeactivity1) {
+		this.takeactivity1 = takeactivity1 == null ? null : takeactivity1
+				.trim();
+	}
+
+	public String getTakeactivity2() {
+		return takeactivity2;
+	}
+
+	public void setTakeactivity2(String takeactivity2) {
+		this.takeactivity2 = takeactivity2 == null ? null : takeactivity2
+				.trim();
+	}
+
+	public String getTakeactivity3() {
+		return takeactivity3;
+	}
+
+	public void setTakeactivity3(String takeactivity3) {
+		this.takeactivity3 = takeactivity3 == null ? null : takeactivity3
+				.trim();
+	}
+
+	public String getTakeactivity4() {
+		return takeactivity4;
+	}
+
+	public void setTakeactivity4(String takeactivity4) {
+		this.takeactivity4 = takeactivity4 == null ? null : takeactivity4
+				.trim();
+	}
 }

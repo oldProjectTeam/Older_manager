@@ -397,4 +397,17 @@ public class AddNewOlderController {
 			}
 		}
 	}
+	
+    /**
+     * 查询所有老人信息
+     * @return
+     */
+    
+    @RequestMapping("/selectallolderskiptakeactivity")
+    @ResponseBody
+    public Msg selectAllOlderSkipTakeActivity(){
+    	List<Oldman> oldman=addNewOlderService.selectAllOlder();
+		return Msg.success().add("oldman", oldman);
+    	
+    }
 }

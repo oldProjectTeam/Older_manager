@@ -96,7 +96,7 @@
 		<!--分页信息  -->
 		<div class="row">
 			<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
-			<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
+			<div class="col-md-5" id="page_nav"></div>
 		</div>
 	</div>
 

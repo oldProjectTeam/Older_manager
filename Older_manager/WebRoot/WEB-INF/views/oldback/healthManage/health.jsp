@@ -52,7 +52,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="addvedio.jsp" class="list-group-item text-center"><img
+					<a href="health/healthInfo" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/jiangkang.png" alt="..." class="img-rounded">
 						<br> <br>基本健康信息 </a>
 				</div>
@@ -82,7 +82,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="addvedio.jsp" class="list-group-item text-center"><img
+					<a href="health/healthattend" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/jiuzhen.png" alt="..." class="img-rounded">
 						<br> <br>就诊记录 </a>
 				</div>

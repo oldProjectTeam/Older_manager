@@ -13,6 +13,53 @@
     <result column="takeActivity3" property="takeactivity3" jdbcType="VARCHAR" />
     <result column="takeActivity4" property="takeactivity4" jdbcType="VARCHAR" />
   </resultMap>
+  <!-- 修改后的联合查询 -->
+   <resultMap id="WithOldmanAndActivity" type="com.older.manager.bean.Takeactivity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="takeTime" property="taketime" jdbcType="TIMESTAMP" />
+    <result column="isPresent" property="ispresent" jdbcType="VARCHAR" />
+    <result column="remak" property="remak" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="takeActivity1" property="takeactivity1" jdbcType="VARCHAR" />
+    <result column="takeActivity2" property="takeactivity2" jdbcType="VARCHAR" />
+    <result column="takeActivity3" property="takeactivity3" jdbcType="VARCHAR" />
+    <result column="takeActivity4" property="takeactivity4" jdbcType="VARCHAR" />
+ 
+    <!-- 联合查询老人的姓名封装 -->
+    <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oldMan_id" property="id"/>
+    	<result column="name" property="name"/>
+    	<result column="sex" property="sex"/>
+    	<result column="age" property="age"/>
+    </association>
+    
+    <!-- 联合查询活动的封装 -->
+    <association property="activity" javaType="com.older.manager.bean.Activity">
+    	<id column="Activity_id" property="id"/>
+    	<result column="title" property="title"/>
+    	<result column="releasetime" property="releasetime"/>
+    	<result column="activitytime" property="activitytime"/>
+    	<result column="place" property="place"/>
+    	<result column="releasepeople" property="releasepeople"/>
+    	<result column="type" property="type"/>
+    	<result column="content" property="content"/>
+    	<result column="state" property="state"/>
+    </association>
+    
+  </resultMap>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -75,6 +122,12 @@
     id, Activity_id, takeTime, isPresent, remak, oldMan_id, takeActivity1, takeActivity2, 
     takeActivity3, takeActivity4
   </sql>
+   <sql id="With_OldmanAndActivity_List" >
+    t.id, t.Activity_id, t.takeTime, t.isPresent, t.remak, t.oldman_id, t.takeActivity1, t.takeActivity2, 
+    t.takeActivity3, t.takeActivity4,o.id,o.name,o.sex,o.age,a.id,a.title,a.releasetime,
+    a.activitytime,a.place,a.releasepeople,a.type,a.content,a.state
+  </sql>
+     
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.TakeactivityExample" >
     select
     <if test="distinct" >
@@ -95,6 +148,42 @@
     from takeactivity
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <!--  带有其他老人与活动的****************-->
+  <select id="selectByExampleWithOldmanAndActivity" resultMap="WithOldmanAndActivity" parameterType="com.older.manager.bean.Takeactivity">
+      select
+    
+    <include refid="With_OldmanAndActivity_List" />
+       FROM  takeactivity t ,oldman o, activity a  where  t.oldMan_id=o.id  
+        and t.Activity_id=a.id
+        <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+        <if test="activity!=null">
+        	<if test="activity.title!=null and activity.title!=''">
+        		and a.title like '%${activity.title}%'
+        	</if>
+        	<if test="activity.type!=null and activity.type!=''">
+        		and a.type like '%${activity.type}%'
+        	</if>
+        </if>
+  </select>
+  <select id="selectByPrimaryKeyWithOldmanAndActivity" resultMap="WithOldmanAndActivity" parameterType="java.lang.Integer">
+    select 
+    <include refid="With_OldmanAndActivity_List" />
+   
+      FROM  takeactivity t  LEFT JOIN oldman o  ON t.oldMan_id=o.id  
+       LEFT  JOIN activity a ON t.Activity_id=a.id 
+    
+    
+    where t.id = #{id,jdbcType=INTEGER} 
+  </select>
+  <!--  带有其他老人与活动的*****************-->
+  
+  
+ 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from takeactivity
     where id = #{id,jdbcType=INTEGER}
