@@ -48,14 +48,14 @@
 	<div class="row">
 		<div class="col-md-3">
 			<div class="list-group">
-				<a href="accountmanage.jsp" class="list-group-item text-center"><img
+				<a href="oldmanaccount/queryAllAccount" class="list-group-item text-center"><img
 					src="../images/accountmanage.png" alt="..." class="img-rounded">
-					<br> <br>老人账户管理 </a>
+					<br> <br>老人账户列表 </a>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="list-group">
-				<a href="giftmanage.jsp" class="list-group-item text-center"><img
+				<a href="giftmanagement/queryAllGift" class="list-group-item text-center"><img
 					src="../images/gift.png" alt="..." class="img-rounded"> <br>
 					<br>老人礼品管理 </a>
 			</div>
@@ -69,7 +69,7 @@
 		</div>
 		<div class="col-md-3">
 			<div class="list-group">
-				<a href="integralexchane.jsp" class="list-group-item text-center"><img
+				<a href="integral/integralexchane.action" class="list-group-item text-center"><img
 					src="../images/integral.png" alt="..." class="img-rounded"> <br>
 					<br>积分变动记录 </a>
 			</div>

@@ -14,9 +14,14 @@ public class Integral {
     private Integer afterchangeintegral;
 
     private Date changetime;
+    
+    private Date changetime1;
+    
+    private Date changetime2;
 
     private String operator;
 
+    private Oldman oldman;
     public Integer getId() {
         return id;
     }
@@ -72,4 +77,28 @@ public class Integral {
     public void setOperator(String operator) {
         this.operator = operator == null ? null : operator.trim();
     }
+
+	public Date getChangetime1() {
+		return changetime1;
+	}
+
+	public void setChangetime1(Date changetime1) {
+		this.changetime1 = changetime1;
+	}
+
+	public Date getChangetime2() {
+		return changetime2;
+	}
+
+	public void setChangetime2(Date changetime2) {
+		this.changetime2 = changetime2;
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
 }

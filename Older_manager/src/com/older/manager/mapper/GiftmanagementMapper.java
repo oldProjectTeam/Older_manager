@@ -15,6 +15,13 @@ public interface GiftmanagementMapper {
     int insert(Giftmanagement record);
 
     int insertSelective(Giftmanagement record);
+    
+    /**
+     * 根据条件查询所有礼品信息
+     * @param giftmanagement
+     * @return
+     */
+    public List<Giftmanagement>selectByCondiction(Giftmanagement giftmanagement);
 
     List<Giftmanagement> selectByExample(GiftmanagementExample example);
 

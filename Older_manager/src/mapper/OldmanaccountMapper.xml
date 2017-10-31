@@ -98,6 +98,75 @@
     from oldmanaccount
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  <resultMap id="selectAccountAndOldmanByCondictionResultMap" type="com.older.manager.bean.Oldmanaccount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="account" property="account" jdbcType="VARCHAR" />
+    <result column="loginIP" property="loginip" jdbcType="VARCHAR" />
+    <result column="loginTime" property="logintime" jdbcType="TIMESTAMP" />
+    <result column="loginCount" property="logincount" jdbcType="INTEGER" />
+    <result column="oldManAccount1" property="oldmanaccount1" jdbcType="VARCHAR" />
+    <result column="oldManAccount2" property="oldmanaccount2" jdbcType="VARCHAR" />
+    <result column="oldManAccount3" property="oldmanaccount3" jdbcType="VARCHAR" />
+    <result column="oldManAccount4" property="oldmanaccount4" jdbcType="VARCHAR" />
+    <result column="userType" property="usertype" jdbcType="VARCHAR" />
+    <association property="oldman" javaType="oldman">
+    	<id column="oldmanId" property="id" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="sex" property="sex" jdbcType="VARCHAR" />
+	    <result column="phone" property="phone" jdbcType="VARCHAR" />
+	   	<result column="address" property="address" jdbcType="VARCHAR" />
+	   	<result column="service" property="service" jdbcType="VARCHAR" />
+	   	<result column="servicestatu" property="servicestatu" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  
+  <sql id="account_oldman_Column_List" >
+    ac.id, ac.oldMan_id, ac.password, ac.account, ac.loginIP, ac.loginTime, ac.loginCount, ac.oldManAccount1, 
+    ac.oldManAccount2, ac.oldManAccount3, ac.oldManAccount4, ac.userType,
+    o.id oldmanId,o.name,o.sex,o.address,o.phone,o.service,o.servicestatu
+  </sql>
+  <!--查询账户信息，关联老人信息，可模糊查询（根据老人姓名、账号）  -->
+  <select id="selectAccountAndOldmanByCondiction" resultMap="selectAccountAndOldmanByCondictionResultMap" parameterType="oldmanaccount" >
+    select 
+    <include refid="account_oldman_Column_List" />
+    from oldmanaccount ac,oldman o where ac.oldman_id=o.id
+    <if test="oldman!=null and oldman.name!=null and oldman.name!=''">
+    	and o.name like '%${oldman.name}%'
+    </if>
+    <if test="account!=null and account!=''">
+    	 and ac.account=#{account}
+    </if>
+     
+  </select>
+  
+   <!--查询不存在于账户管理表的老人ResultMap  -->
+  <resultMap type="com.older.manager.bean.Oldman" id="selectOldManNotAccountResultMap">   	 
+   	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+   	<result column="address" property="address" jdbcType="VARCHAR" />
+   	<result column="service" property="service" jdbcType="VARCHAR" />
+  </resultMap>
+   
+  <!--查询不存在于账户管理表的老人  -->
+  <select id="selectOldManNotAccount" resultMap="selectOldManNotAccountResultMap" parameterType="com.older.manager.bean.Oldman">
+  	 select o.id, o.name, o.sex, o.phone,o.address,o.service
+      
+     from oldman o where 
+      <if test="name!=null and name!=''">
+      	o.name like '%${name}%' and
+      </if>
+        o.phone not in (
+		select account
+		from oldmanaccount as ol 
+	    )
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from oldmanaccount
     where id = #{id,jdbcType=INTEGER}

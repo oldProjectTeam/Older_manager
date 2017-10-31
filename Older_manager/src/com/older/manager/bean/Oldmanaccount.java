@@ -28,7 +28,10 @@ public class Oldmanaccount {
     private String oldmanaccount4;
 
     private String usertype;
-
+    
+    //关联老人表
+    private Oldman oldman;
+    
     public Integer getId() {
         return id;
     }
@@ -132,4 +135,12 @@ public class Oldmanaccount {
     public void setUsertype(String usertype) {
         this.usertype = usertype == null ? null : usertype.trim();
     }
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
 }

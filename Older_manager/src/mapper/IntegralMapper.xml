@@ -92,6 +92,71 @@
     from integral
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+   <!--查询所有不在积分表的老人ResultMap  -->
+  <resultMap type="com.older.manager.bean.Oldman" id="selectOldManNotIntegralResultMap">   	 
+   	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+   	<result column="address" property="address" jdbcType="VARCHAR" />
+   	<result column="service" property="service" jdbcType="VARCHAR" />
+  </resultMap>
+   
+  <!--查询所有不在积分表的老人，可模糊查询（根据老人姓名）  -->
+  <select id="selectOldManNotIntegral" resultMap="selectOldManNotIntegralResultMap" parameterType="com.older.manager.bean.Oldman">
+  	 select o.id, o.name, o.sex, o.phone,o.address,o.service
+      
+     from oldman o where 
+      <if test="name!=null and name!=''">
+      	o.name like '%${name}%' and
+      </if>
+        o.id not in (
+		select ol.oldMan_id
+		from integral as ol 
+	    )
+  </select>
+  
+   <!--查询老人积分信息和关联的老人信息结果集  -->
+  <resultMap id="selectIntegralAndOldmanResultMap" type="com.older.manager.bean.Integral" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="beforeChangeIntegral" property="beforechangeintegral" jdbcType="INTEGER" />
+    <result column="currentIntegral" property="currentintegral" jdbcType="INTEGER" />
+    <result column="afterChangeIntegral" property="afterchangeintegral" jdbcType="INTEGER" />
+    <result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <association property="oldman" javaType="oldman">
+    	<id column="oldmanId" property="id" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="sex" property="sex" jdbcType="VARCHAR" />
+	    <result column="phone" property="phone" jdbcType="VARCHAR" />
+	   	<result column="address" property="address" jdbcType="VARCHAR" />
+	   	<result column="service" property="service" jdbcType="VARCHAR" />
+	   	<result column="servicestatu" property="servicestatu" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  <sql id="integral_oldman_Column_List" >
+    i.id, i.oldMan_id, i.beforeChangeIntegral, i.currentIntegral, i.afterChangeIntegral, i.changeTime, 
+    i.operator,o.id oldmanId,o.name,o.sex,o.address,o.service,o.phone,o.servicestatu
+  </sql>
+  <!--查询老人积分信息和关联的老人信息  -->
+  <select id="selectIntegralAndOldmanByCondition" resultMap="selectIntegralAndOldmanResultMap" parameterType="integral" >
+    select 
+    <include refid="integral_oldman_Column_List" />
+    from integral i,oldman o
+    where  i.oldMan_id=o.id
+    <if test="oldman!=null">
+    	<if test="oldman.name!=null and oldman.name!=''">
+    	and o.name like '%${oldman.name}%'
+    	</if>
+    </if>
+    <if test="changetime1!=null and changetime2!=null">
+     and i.changetime between #{changetime1} and #{changetime2}
+    </if>
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from integral
     where id = #{id,jdbcType=INTEGER}

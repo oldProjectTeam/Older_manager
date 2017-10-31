@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.older.manager.bean.Giftmanagement" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="giftName" property="giftname" jdbcType="VARCHAR" />
-    <result column="giftNumber" property="giftnumber" jdbcType="INTEGER" />
+    <result column="giftNumber" property="giftnumber" jdbcType="VARCHAR" />
     <result column="giftType" property="gifttype" jdbcType="VARCHAR" />
     <result column="giftState" property="giftstate" jdbcType="VARCHAR" />
     <result column="giftUnit" property="giftunit" jdbcType="VARCHAR" />
@@ -100,6 +100,26 @@
     from giftmanagement
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  <!--根据条件（模糊）查询所有礼品信息  -->
+  <select id="selectByCondiction" resultMap="BaseResultMap" parameterType="giftmanagement" >
+    select 
+    <include refid="Base_Column_List" />
+    from giftmanagement g
+    <where>
+    	<if test="giftname!=null and giftname!=''">
+    	and g.giftName like '%${giftname}%'
+    	</if>
+    	<if test="giftnumber!=null and giftnumber!=''">
+    	and g.giftnumber=#{giftnumber}
+    	</if>
+    	<if test="giftstate!=null and giftstate!=''">
+    	and g.giftstate=#{giftstate}
+    	</if>
+    </where> 
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from giftmanagement
     where id = #{id,jdbcType=INTEGER}
@@ -117,7 +137,7 @@
       lowerNumber, remake, image, 
       giftManagement1, giftManagement2, giftManagement3
       )
-    values (#{id,jdbcType=INTEGER}, #{giftname,jdbcType=VARCHAR}, #{giftnumber,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{giftname,jdbcType=VARCHAR}, #{giftnumber,jdbcType=VARCHAR}, 
       #{gifttype,jdbcType=VARCHAR}, #{giftstate,jdbcType=VARCHAR}, #{giftunit,jdbcType=VARCHAR}, 
       #{giftprice,jdbcType=DOUBLE}, #{integral,jdbcType=INTEGER}, #{inventory,jdbcType=INTEGER}, 
       #{lowernumber,jdbcType=INTEGER}, #{remake,jdbcType=VARCHAR}, #{image,jdbcType=VARCHAR}, 
@@ -181,7 +201,7 @@
         #{giftname,jdbcType=VARCHAR},
       </if>
       <if test="giftnumber != null" >
-        #{giftnumber,jdbcType=INTEGER},
+        #{giftnumber,jdbcType=VARCHAR},
       </if>
       <if test="gifttype != null" >
         #{gifttype,jdbcType=VARCHAR},
@@ -237,7 +257,7 @@
         giftName = #{record.giftname,jdbcType=VARCHAR},
       </if>
       <if test="record.giftnumber != null" >
-        giftNumber = #{record.giftnumber,jdbcType=INTEGER},
+        giftNumber = #{record.giftnumber,jdbcType=VARCHAR},
       </if>
       <if test="record.gifttype != null" >
         giftType = #{record.gifttype,jdbcType=VARCHAR},
@@ -284,7 +304,7 @@
     update giftmanagement
     set id = #{record.id,jdbcType=INTEGER},
       giftName = #{record.giftname,jdbcType=VARCHAR},
-      giftNumber = #{record.giftnumber,jdbcType=INTEGER},
+      giftNumber = #{record.giftnumber,jdbcType=VARCHAR},
       giftType = #{record.gifttype,jdbcType=VARCHAR},
       giftState = #{record.giftstate,jdbcType=VARCHAR},
       giftUnit = #{record.giftunit,jdbcType=VARCHAR},
@@ -308,7 +328,7 @@
         giftName = #{giftname,jdbcType=VARCHAR},
       </if>
       <if test="giftnumber != null" >
-        giftNumber = #{giftnumber,jdbcType=INTEGER},
+        giftNumber = #{giftnumber,jdbcType=VARCHAR},
       </if>
       <if test="gifttype != null" >
         giftType = #{gifttype,jdbcType=VARCHAR},
@@ -352,7 +372,7 @@
   <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Giftmanagement" >
     update giftmanagement
     set giftName = #{giftname,jdbcType=VARCHAR},
-      giftNumber = #{giftnumber,jdbcType=INTEGER},
+      giftNumber = #{giftnumber,jdbcType=VARCHAR},
       giftType = #{gifttype,jdbcType=VARCHAR},
       giftState = #{giftstate,jdbcType=VARCHAR},
       giftUnit = #{giftunit,jdbcType=VARCHAR},

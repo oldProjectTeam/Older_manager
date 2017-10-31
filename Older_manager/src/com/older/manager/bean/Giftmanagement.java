@@ -5,7 +5,7 @@ public class Giftmanagement {
 
     private String giftname;
 
-    private Integer giftnumber;
+    private String giftnumber;
 
     private String gifttype;
 
@@ -47,11 +47,11 @@ public class Giftmanagement {
         this.giftname = giftname == null ? null : giftname.trim();
     }
 
-    public Integer getGiftnumber() {
+    public String getGiftnumber() {
         return giftnumber;
     }
 
-    public void setGiftnumber(Integer giftnumber) {
+    public void setGiftnumber(String giftnumber) {
         this.giftnumber = giftnumber;
     }
 
