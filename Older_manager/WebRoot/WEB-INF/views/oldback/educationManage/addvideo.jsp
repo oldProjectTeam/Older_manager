@@ -32,8 +32,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ol class="breadcrumb">
-				<li><b>位置：<a
-						href="static/oldback/educationManage/educationIndex.html">教育管理</a></b></li>
+				<li><b>位置：教育管理</b></li>
 				<li class="active">新增视频</li>
 			</ol>
 		</div>

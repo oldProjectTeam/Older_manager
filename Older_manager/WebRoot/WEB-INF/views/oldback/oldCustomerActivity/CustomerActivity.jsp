@@ -35,8 +35,8 @@
 		<div class="row">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
-					<li><b>位置：<a href="CustomerActivity.html">客户关系管理</a></b></li>
-					<li><a href="CustomerActivity.html">参加活动</a></li>
+					<li><b>位置：客户关系管理</b></li>
+					<li>参加活动</li>
 				</ol>
 			</div>
 		</div>

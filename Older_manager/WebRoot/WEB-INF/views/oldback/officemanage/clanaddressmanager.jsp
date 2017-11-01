@@ -35,10 +35,8 @@
 	<div style="width:98%;margin-left:4px">
 		<ul class="list-unstyle list-inline nav nav-tabs"
 			style="margin-top:10px">
-			<li style="font-size:20px;"><a
-				href="/Older_manager/static/oldback/officemanage/addressbookmanager.jsp">老人</a></li>
-			<li class="active" style="font-size:20px;"><a
-				href="/Older_manager/static/oldback/officemanage/clanaddressmanager.jsp">亲属</a></li>
+			<li style="font-size:20px;">老人</li>
+			<li class="active" style="font-size:20px;">亲属</li>
 		</ul>
 		<div>
 			<table class="table table-bordered table-hover"

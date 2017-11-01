@@ -42,8 +42,7 @@
 		<div class="row">
 			<div class="col-md-12">
 				<ol class="breadcrumb">
-					<li><b>位置：<a
-							href="static/oldback/oldManInfoMange/index.html">老人档案管理</a></b></li>
+					<li><b>位置：老人档案管理</b></li>
 					<li class="active">老人列表</li>
 				</ol>
 			</div>

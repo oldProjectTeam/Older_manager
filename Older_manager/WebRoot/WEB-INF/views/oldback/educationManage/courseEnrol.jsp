@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	<div class="row">
 	  <div class="col-md-12" >
 		<ol class="breadcrumb">
-		  <li><b>位置：<a href="education/educationIndex">教育管理</a></b></li>
+		  <li><b>位置：教育管理</b></li>
 		  <li class="active">课程报名</li>
 		</ol>
 	  </div>
