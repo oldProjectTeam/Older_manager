@@ -45,7 +45,7 @@
 		<div class="row">
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="videoManager.jsp" class="list-group-item text-center"><img
+					<a href="physical/PEInfo" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/tice.png" alt="..."
 						class="img-rounded"> <br> <br>体检记录 </a>
 				</div>
@@ -59,7 +59,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="coursemanager.jsp" class="list-group-item text-center"><img
+					<a href="visit/selectvisitPlan" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/suifang.png" alt="..."
 						class="img-rounded"> <br> <br>随访记录 </a>
 				</div>
@@ -89,7 +89,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="addcourse.jsp" class="list-group-item text-center"><img
+					<a href="drug/takeDrugDetails" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/yao.png" alt="..."
 						class="img-rounded"> <br> <br>用药记录 </a>
 				</div>

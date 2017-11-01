@@ -47,38 +47,22 @@
 			enctype="multipart/form-data" id="importBatchForm">
 			<div class="row">
 				<!-- 模板下载 -->
-				<button onclick="downloadFile('sample.xls')" class="btn btn-info">模板下载</button>
+				<a href="old/sample" class="btn btn-info">模板下载</a>
 				<div class="col-md-4 col-md-offset-4">
-					<input type="file" name="file" id="excel" class="form-control">
+					<input type="file" name="file" id="excel" class="btn btn-success">
 				</div>
 				<br> <br>
 				<div class="col-md-4 col-md-offset-5">
 					<button type="button" class="btn btn-success" id="importBatch">批量导入</button>
 					<br /> <br /> <font color="blue" id="msg">${msg}</font> <span></span>
 				</div>
+				<br> <br>
+				<img src="${APP_PATH}/static/images/sample.png" class="img-responsive img-rounded">
 			</div>
 		</form>
 	</div>
 
 	<script type="text/javascript">
-		/* 模板下载 */
-		function downloadFile(fileName) {
-			if (fileName) {
-				var form = $("<form>");//定义一个form表单
-				form.attr("style", "display:none");
-				form.attr("target", "");
-				form.attr("method", "post");
-				form.attr("action", "old/sample");
-				var fileInput = $("<input>");
-				fileInput.attr("type", "hidden");
-				fileInput.attr("id", "fileName");//设置属性的名字
-				fileInput.attr("name", "fileName");//设置属性的名字
-				fileInput.attr("value", fileName);//设置属性的值
-				$("body").append(form);//将表单放置在web中
-				form.append(fileInput);
-				form.submit();//表单提交   
-			}
-		}
 		/* 批量导入 */
 		$("#importBatch").click(function() {
 			$("#msg").empty();

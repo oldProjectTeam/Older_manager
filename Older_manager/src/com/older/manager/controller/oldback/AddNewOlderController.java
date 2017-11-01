@@ -15,13 +15,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -53,7 +57,7 @@ import com.older.manager.utils.SaveFile;
  * 
  */
 @Controller
-@RequestMapping("/old")
+@RequestMapping("old")
 public class AddNewOlderController {
 
 	@Autowired
@@ -344,70 +348,39 @@ public class AddNewOlderController {
 		return Msg.success();
 	}
 
+	/**
+	 * 老人批量导入的模板下载
+	 * 
+	 * @param session
+	 * @return
+	 * @throws IOException
+	 */
 	@RequestMapping("/sample")
-	@ResponseBody
-	public void download(HttpServletRequest request,
-			HttpServletResponse response) {
-		OutputStream os = null;
-		InputStream inputStream = null;
-		try {
-			// 设置头部信息
-			String fileName = java.net.URLDecoder.decode(
-					request.getParameter("fileName"), "utf-8");
-			/*
-			 * String fileRealName = java.net.URLDecoder.decode(
-			 * request.getParameter("fileRealName"), "utf-8");
-			 */
-			response.setCharacterEncoding("UTF-8");
-			response.setContentType("multipart/form-data");
-			/*
-			 * response.setHeader("Content-Disposition", "attachment;fileName="
-			 * + new String(fileRealName.getBytes("gb2312"), "iso8859-1"));
-			 */
-
-			// 拼接下载路径
-			String path = request.getSession().getServletContext()
-					.getRealPath("/upload")
-					+ fileName;
-
-			// 创建读取流
-			inputStream = new FileInputStream(new File(path));
-			os = response.getOutputStream();
-
-			// 读取数据
-			byte[] b = new byte[2048];
-			int length;
-			while ((length = inputStream.read(b)) > 0) {
-				os.write(b, 0, length);
-			}
-		} catch (IOException e) {
-		} finally {
-			// 关闭
-			if (os != null) {
-				try {
-					os.close();
-				} catch (IOException e) {
-				}
-			}
-			if (inputStream != null) {
-				try {
-					inputStream.close();
-				} catch (IOException e) {
-				}
-			}
-		}
+	public ResponseEntity<byte[]> download(HttpServletRequest request)
+			throws IOException {
+		String path = request.getSession().getServletContext()
+				.getRealPath("upload/sample/sample.xls");
+		File file = new File(path);
+		HttpHeaders headers = new HttpHeaders();
+		String fileName = new String("sample.xls".getBytes("UTF-8"),
+				"iso-8859-1");// 为了解决中文名称乱码问题
+		headers.setContentDispositionFormData("attachment", fileName);
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
+				headers, HttpStatus.CREATED);
 	}
-	
-    /**
-     * 查询所有老人信息
-     * @return
-     */
-    
-    @RequestMapping("/selectallolderskiptakeactivity")
-    @ResponseBody
-    public Msg selectAllOlderSkipTakeActivity(){
-    	List<Oldman> oldman=addNewOlderService.selectAllOlder();
+
+	/**
+	 * 查询所有老人信息
+	 * 
+	 * @return
+	 */
+
+	@RequestMapping("/selectallolderskiptakeactivity")
+	@ResponseBody
+	public Msg selectAllOlderSkipTakeActivity() {
+		List<Oldman> oldman = addNewOlderService.selectAllOlder();
 		return Msg.success().add("oldman", oldman);
-    	
-    }
+
+	}
 }
