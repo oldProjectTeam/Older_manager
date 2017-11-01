@@ -3,15 +3,20 @@ package com.older.manager.controller.oldback;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import javax.ws.rs.Path;
 
 import org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter.Magenta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -135,9 +140,18 @@ public class GiftmanagementController {
 	@SuppressWarnings("finally")
 	@RequestMapping("/insertGift")
 	@ResponseBody
-	public Msg insertGift(Giftmanagement giftmanagement){
+	public Msg insertGift(@Valid Giftmanagement giftmanagement,BindingResult result){
 		boolean flag=false;
-		try {
+		//校验数据是否不符合规则
+		if(result.hasErrors()){
+			List<FieldError>list=result.getFieldErrors();
+			Map<String, Object>map=new HashMap<String, Object>();
+			for(FieldError fieldError:list){
+				map.put(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			return Msg.fail().add("error", map);
+		}
+		try {	
 			giftmanagementService.insertGift(giftmanagement);
 			flag=true;
 		} catch (Exception e) {
@@ -159,8 +173,18 @@ public class GiftmanagementController {
 	@SuppressWarnings("finally")
 	@RequestMapping("/updateGift")
 	@ResponseBody
-	public Msg updateGift(Giftmanagement giftmanagement,HttpServletRequest request){
+	public Msg updateGift(@Valid Giftmanagement giftmanagement,BindingResult result,
+			HttpServletRequest request){
 		boolean flag=false;
+		//校验数据是否不符合规则
+		if(result.hasErrors()){
+			List<FieldError>list=result.getFieldErrors();
+			Map<String, Object>map=new HashMap<String, Object>();
+			for(FieldError fieldError:list){
+				map.put(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			return Msg.fail().add("error", map);
+		}
 		try {
 			//先判断是否存在图片，有则删除
 			if(giftmanagement.getImage()!=null&&!"".equals(giftmanagement.getImage())){

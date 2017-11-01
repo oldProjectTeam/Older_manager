@@ -1,16 +1,5 @@
  
-//删除上传但没保存的图片
- function removeImg(imgName){
-	   $.ajax({
-   		url:"giftmanagement/checkImg.action?isImg="+imgName,    		 
-   		type:"post",
-   		success:function(result){
-   			if(result.code==100){
-   				 
-   			}
-   		}
-   	});
-}
+
  
 //-----------新增模态框处理图片部门开始---------------
  
@@ -92,8 +81,8 @@
 	  var loaded = evt.loaded;     //已经上传大小情况 
 	  var tot = evt.total;      //附件总大小 
 	  var per = Math.floor(100*loaded/tot);  //已经上传的百分比 
-	  $("#son").html( per +"%" );
-	  $("#son").css("width" , per +"%");
+	  $("#son").html(per+"%");
+	  $("#son").css("width",per+"%");
 	  if($("#son").text()=="100%"){
 		  $("#son").html("上传成功");
 	  }
@@ -144,7 +133,7 @@
 	   xhr: function(){
 	    var xhr = $.ajaxSettings.xhr();
 	    if(onprogress && xhr.upload) {
-	     	xhr.upload.addEventListener("progress" , onprogress, false);
+	     	xhr.upload.addEventListener("progress" , onprogress1, false);
 	     return xhr;
 	    }
   	   },
@@ -176,7 +165,7 @@
  /**
   * 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
   */
- function onprogress(evt){
+ function onprogress1(evt){
 	  var loaded = evt.loaded;     //已经上传大小情况 
 	  var tot = evt.total;      //附件总大小 
 	  var per = Math.floor(100*loaded/tot);  //已经上传的百分比 

@@ -49,28 +49,28 @@
 		<div class="col-md-3">
 			<div class="list-group">
 				<a href="oldmanaccount/queryAllAccount" class="list-group-item text-center"><img
-					src="../images/accountmanage.png" alt="..." class="img-rounded">
+					src="${APP_PATH}/static/images/oldback/images/accountmanage.png" alt="..." class="img-rounded">
 					<br> <br>老人账户列表 </a>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="list-group">
 				<a href="giftmanagement/queryAllGift" class="list-group-item text-center"><img
-					src="../images/gift.png" alt="..." class="img-rounded"> <br>
+					src="${APP_PATH}/static/images/oldback/images/gift.png" alt="..." class="img-rounded"> <br>
 					<br>老人礼品管理 </a>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="list-group">
-				<a href="giftexchange.jsp" class="list-group-item text-center"><img
-					src="../images/exchange.png" alt="..." class="img-rounded"> <br>
+				<a href="${APP_PATH}/giftexchange/findAllGiftexchange" class="list-group-item text-center"><img
+					src="${APP_PATH}/static/images/oldback/images/exchange.png" alt="..." class="img-rounded"> <br>
 					<br>礼品兑换记录 </a>
 			</div>
 		</div>
 		<div class="col-md-3">
 			<div class="list-group">
 				<a href="integral/integralexchane.action" class="list-group-item text-center"><img
-					src="../images/integral.png" alt="..." class="img-rounded"> <br>
+					src="${APP_PATH}/static/images/oldback/images/integral.png" alt="..." class="img-rounded"> <br>
 					<br>积分变动记录 </a>
 			</div>
 		</div>

@@ -27,6 +27,7 @@ public class GiftmanagementServiceImpl implements IGiftmanagementService {
 	public void insertGift(Giftmanagement giftmanagement) {
 		// TODO Auto-generated method stub
 		giftmanagement.setGiftnumber(UUIDTools.getUUId());
+		giftmanagement.setLowernumber(0);
 		giftmanagementMapper.insertSelective(giftmanagement);
 	}
 

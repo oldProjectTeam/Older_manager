@@ -18,6 +18,13 @@ public interface GiftexchangeMapper {
 
     List<Giftexchange> selectByExample(GiftexchangeExample example);
 
+    /**
+     * 模糊查询所有礼品兑换记录，关联老人账户表，老人信息表、礼品信息表
+     * @param giftexchange
+     * @return
+     */
+    List<Giftexchange>selectGiftExchangeAndOldmanByCondition(Giftexchange giftexchange);
+    
     Giftexchange selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") Giftexchange record, @Param("example") GiftexchangeExample example);

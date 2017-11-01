@@ -25,6 +25,12 @@ public class Giftexchange {
 
     private String giftexchange3;
 
+    //关联老人账户
+    private Oldmanaccount oldmanaccount;
+    
+    //关联礼品
+    private Giftmanagement giftmanagement;
+    
     public Integer getId() {
         return id;
     }
@@ -112,4 +118,34 @@ public class Giftexchange {
     public void setGiftexchange3(String giftexchange3) {
         this.giftexchange3 = giftexchange3 == null ? null : giftexchange3.trim();
     }
+
+
+
+	public Giftmanagement getGiftmanagement() {
+		return giftmanagement;
+	}
+
+	public void setGiftmanagement(Giftmanagement giftmanagement) {
+		this.giftmanagement = giftmanagement;
+	}
+
+	public Oldmanaccount getOldmanaccount() {
+		return oldmanaccount;
+	}
+
+	public void setOldmanaccount(Oldmanaccount oldmanaccount) {
+		this.oldmanaccount = oldmanaccount;
+	}
+
+	@Override
+	public String toString() {
+		return "Giftexchange [id=" + id + ", oldmanaccountId="
+				+ oldmanaccountId + ", giftmanagementId=" + giftmanagementId
+				+ ", exchangetime=" + exchangetime + ", staffId=" + staffId
+				+ ", exchangeno=" + exchangeno + ", exchangenum=" + exchangenum
+				+ ", exchangeintegral=" + exchangeintegral + ", giftexchange1="
+				+ giftexchange1 + ", giftexchange2=" + giftexchange2
+				+ ", giftexchange3=" + giftexchange3 + ", oldmanaccount="
+				+ oldmanaccount + ", giftmanagement=" + giftmanagement + "]";
+	}
 }

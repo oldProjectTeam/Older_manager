@@ -1,28 +1,61 @@
 package com.older.manager.bean;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Giftmanagement {
     private Integer id;
 
+     
+    @NotEmpty(message="礼品名称:长度不能超过50个字符且不能为空")
+    @Size(min=1,max=50)
     private String giftname;
-
+    
+    
     private String giftnumber;
-
+     
+   @NotEmpty(message="礼品类型：礼品类型长度不能超过30个字符且不能为空")
+   @Size(min=1,max=30)
     private String gifttype;
-
+    
+   @NotEmpty(message="礼品状态：礼品状态必须是[上架]|[下架]")
+    @Size(min=2,max=2)
     private String giftstate;
-
+    
+   @NotEmpty(message="礼品单位：礼品单位长度不能超过20个字符或不能为空！")
+    @Size(min=1,max=20)
     private String giftunit;
 
+     
+    @NotNull(message="礼品单价：礼品单价必须是1-8位纯数字且不能为空！")
+    @Digits(integer=8,fraction=2)
+    @Min(value=0)
     private Double giftprice;
 
+    
+    @NotNull(message="所需积分：所需积分必须是1-6位正整数且不能为空！")
+    @Min(value=0)
     private Integer integral;
 
+    
+    @NotNull(message="库存数量：库存数量必须是1-6位正整数且不能为空！")
+    @Min(value=0)
     private Integer inventory;
 
+    
+    @NotNull(message="兑换数量：兑换数量必须是1-6位正整数且不能为空！")
+    @Min(value=0)
     private Integer lowernumber;
-
+    
+     
+    @Size(min=0,max=500,message="备注信息：备注信息长度不能超过500个字符！")
     private String remake;
-
+    
     private String image;
 
     private String giftmanagement1;
@@ -150,4 +183,17 @@ public class Giftmanagement {
     public void setGiftmanagement3(String giftmanagement3) {
         this.giftmanagement3 = giftmanagement3 == null ? null : giftmanagement3.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Giftmanagement [id=" + id + ", giftname=" + giftname
+				+ ", giftnumber=" + giftnumber + ", gifttype=" + gifttype
+				+ ", giftstate=" + giftstate + ", giftunit=" + giftunit
+				+ ", giftprice=" + giftprice + ", integral=" + integral
+				+ ", inventory=" + inventory + ", lowernumber=" + lowernumber
+				+ ", remake=" + remake + ", image=" + image
+				+ ", giftmanagement1=" + giftmanagement1 + ", giftmanagement2="
+				+ giftmanagement2 + ", giftmanagement3=" + giftmanagement3
+				+ "]";
+	}
 }

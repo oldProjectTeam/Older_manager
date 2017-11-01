@@ -196,19 +196,17 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					 
 					<h4 class="modal-title">新增礼品信息</h4>
 				</div>
 				<div class="modal-body">
 				 <form id="add_gift_form">
 					<table class="table-striped table-bordered text-center">
 						<tr>
-							<td class="col-xs-2">礼品名称</td>
+							<td class="col-xs-2">礼品名称<font color=red>*</font></td>
 							<td>
-							 <input type="text" name="giftname" class="form-control" required="required">
+							 <input type="text" id="add_giftname" name="giftname" 
+							 class="form-control" maxlength="50">
 							 </td>
 							<td rowspan="7" class="col-xs-7">
 								<input class="btn btn-default" type="file" id="photofile" onchange="showPic()">
@@ -222,54 +220,60 @@
 								   	</div>
 									</div>
 								</div>
-			   	  		        <img class="img-rounded" id="img" width="150px" height="145px">
+			   	  		        <img class="img-rounded" alt="暂无图片" id="img" width="150px" height="145px">
 							</td>
 						</tr>
 						 
 						<tr>
-							<td>礼品类型</td>
-							<td><input type="text" name="gifttype" class="form-control"
-								required="required"></td>
+							<td>礼品类型<font color=red>*</font></td>
+							<td><input type="text" id="add_gifttype"  name="gifttype" class="form-control"
+								maxlength="30"></td>
 						</tr>
 						<tr>
-							<td>礼品状态</td>
+							<td>礼品状态<font color=red>*</font></td>
 							<td>
-							 <select class="form-control" name="giftstate">
+							 <select class="form-control" name="giftstate" id="add_giftstate">
 									<option value="下架">下架</option>
 									<option value="上架">上架</option>
 							 </select>
 							</td>
 						</tr>
 						<tr>
-							<td>礼品单位</td>
+							<td>礼品单位<font color=red>*</font></td>
 							<td>
-							  <input type="text" name="giftunit" class="form-control" required="required">
+							  <input type="text" id="add_giftunit" name="giftunit"
+							   class="form-control" maxlength="20">
 							</td>
 						</tr>
 						<tr>
-							<td>礼品单价</td>
+							<td>礼品单价<font color=red>*</font></td>
 							<td>
-							  <input type="text" name="giftprice" class="form-control" required="required">
+							  <input type="number" id="add_giftprice" name="giftprice"
+							   class="form-control" maxlength="6">
 							</td>
 						</tr>
 						<tr>
-							<td>所需积分</td>
+							<td>所需积分<font color=red>*</font></td>
 							<td>
-							  <input type="number" name="integral" class="form-control" required="required"></td>
+							  <input type="number" id="add_integral" name="integral" 
+							  class="form-control" maxlength="6">
+							</td>
 						</tr>
 						<tr>
-							<td>库存数量</td>
+							<td>库存数量<font color=red>*</font></td>
 							<td>
-							  <input type="number" name="inventory" class="form-control" required="required">
-							  <input type="hidden" name="lowernumber" value="0" class="form-control" required="required">
+							  <input type="number" id="add_inventory" name="inventory"
+							   class="form-control" maxlength="8">
 							 </td>
 						</tr>
 						 
 						<tr id="tr8">
 							<td>备注</td>
 							<td colspan="2">
-							  <textarea class="form-control" rows="2" name="remake"
-									required="required"></textarea>
+							  <textarea class="form-control" rows="2" id='add_remake' name="remake"
+									maxlength="500">
+							  </textarea>
+							  <input type="hidden"  name="lowernumber" value="0">
 							 </td>
 						</tr>
 					</table>
@@ -292,10 +296,7 @@
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
+					 
 					<h4 class="modal-title">修改礼品信息</h4>
 				</div>
 				<div class="modal-body">
@@ -366,7 +367,7 @@
 						</tr>
 						<tr>
 							<td>兑换数量</td>
-							<td><input type="text" class="form-control" name="lowernumber" id="lowernumber"
+							<td><input type="number" class="form-control" name="lowernumber" id="lowernumber"
 								required="required">
 							</td>
 						</tr>
@@ -391,9 +392,141 @@
 		<!-- /.modal-dialog -->
 	</div>
 	<!-- /.modal -->
+	
 	<script type="text/javascript">
+	 
+		//验证新增礼品表单数据
+		function validate_add_from(){
+			//礼品名称
+			var giftname=$("#add_giftname").val();
+			var regx1=/^[\u4e00-\u9fa5]{1,50}|[a-zA-Z0-9]{1,50}$/;
+			 if(!regx1.test(giftname)){
+				 alert("礼品名称：礼品名称必须是1-50个中文字符、英文和数字的组合");
+				 return false;
+			 } 
+			 //礼品类型
+			 var gifttype=$("#add_gifttype").val();
+				var regx2=/^[\u4e00-\u9fa5]{1,30}|[a-zA-Z0-9]{1,30}$/;
+				 if(!regx2.test(gifttype)){
+					 alert("礼品类型：礼品类型必须是1-30个中文字符、英文和数字的组合");
+					 return false;
+			  } 
+			 //礼品单位
+			  var giftunit=$("#add_giftunit").val();
+				 
+				if(!giftunit.length>20||giftunit.length<1){
+					 alert("礼品单位：礼品单位长度不能超过20个字符或不能为空！");
+					 return false;
+			   } 
+			//礼品单价
+			  var giftprice=$("#add_giftprice").val();
+				var regx4=/^([\d.]{1,7})$/;
+				if(!regx4.test(giftprice)){
+					 alert("礼品单价：礼品单价必须是1-6位纯数字或不能为空！");
+					 return false;
+			   }
+			//所需积分
+			  var integral=$("#add_integral").val();
+				var regx5=/^([\d]{1,6})$/;
+				if(!regx5.test(integral)){
+					 alert("所需积分：所需积分必须是1-6位纯数字或不能为空！");
+					 return false;
+			   }
+			//库存数量
+			  var inventory=$("#add_inventory").val();
+				var regx6=/^([\d]{1,6})$/;
+				if(!regx6.test(inventory)){
+					 alert("库存数量：库存数量必须是1-6位纯数字或不能为空！");
+					 return false;
+			   }
+			//备注信息
+			var remake=$("#add_remake").val();
+			if(remake.length>500){
+				 alert("备注信息：备注信息长度不能超过500个字符");
+				 return false;
+			}
+			
+			
+			return true;
+		}	
+		//验证修改礼品表单数据
+		function validate_update_from(){
+			//礼品名称
+			var giftname=$("#giftname").val();
+			var regx1=/^[\u4e00-\u9fa5]{1,50}|[a-zA-Z0-9]{1,50}$/;
+			 if(!regx1.test(giftname)){
+				 alert("礼品名称：礼品名称必须是1-50个中文字符、英文和数字的组合");
+				 return false;
+			 } 
+			 //礼品类型
+			 var gifttype=$("#gifttype").val();
+				var regx2=/^[\u4e00-\u9fa5]{1,30}|[a-zA-Z0-9]{1,30}$/;
+				 if(!regx2.test(gifttype)){
+					 alert("礼品类型：礼品类型必须是1-30个中文字符、英文和数字的组合");
+					 return false;
+			  } 
+			 //礼品单位
+			  var giftunit=$("#giftunit").val();
+				 
+				if(!giftunit.length>20||giftunit.length<1){
+					 alert("礼品单位：礼品单位长度不能超过20个字符或不能为空！");
+					 return false;
+			   } 
+			//礼品单价
+			  var giftprice=$("#giftprice").val();
+				var regx4=/^([\d.]{1,6})$/;
+				if(!regx4.test(giftprice)){
+					 alert("礼品单价：礼品单价必须是1-6位纯数字或不能为空！");
+					 return false;
+			   }
+			//所需积分
+			  var integral=$("#integral").val();
+				var regx5=/^([\d]{1,6})$/;
+				if(!regx5.test(integral)){
+					 alert("所需积分：所需积分必须是1-6位纯数字或不能为空！");
+					 return false;
+			   }
+			//库存数量
+			  var inventory=$("#inventory").val();
+				var regx6=/^([\d]{1,6})$/;
+				if(!regx6.test(inventory)){
+					 alert("库存数量：库存数量必须是1-6位纯数字或不能为空！");
+					 return false;
+			   }
+			//备注信息
+			var remake=$("#remake").val();
+			if(remake.length>500){
+				 alert("备注信息：备注信息长度不能超过500个字符");
+				 return false;
+			}
+			var lowernumber=$("#lowernumber").val();
+			var regx7=/^([\d]{1,6})$/;
+			if(!regx7.test(lowernumber)){
+				 alert("兑换数量：兑换数量必须是1-6位正数字或不能为空！");
+				 return false;
+		   }
+			 
+			return true;
+		}	
+	</script>
+	<script type="text/javascript">
+	
 		var pages="${pageInfo.pages}";
 		var currentPage="${pageInfo.pageNum}";
+		
+		
+		//删除上传但没保存的图片
+		 function removeImg(imgName){
+			   $.ajax({
+		   		url:"${APP_PATH}/giftmanagement/checkImg.action?isImg="+imgName,    		 
+		   		type:"post",
+		   		success:function(result){
+		   			if(result.code==100){
+		   				 
+		   			}
+		   		}
+		   	});
+		}
 		//显示信息全选
 		$("#gift_all_check").click(function() {
 			$(".gift_item_check").prop("checked", $(this).prop("checked"));
@@ -427,13 +560,16 @@
 		
 		//新增礼品保存按钮
 		$("#add_gift_save_btn").click(function(){
-			
+			 if(!validate_add_from()){
+				return false;
+			}  
 			$.ajax({
 				url:"${APP_PATH}/giftmanagement/insertGift",
 				data:$("#add_gift_form").serialize(),
 				type:"POST",
 				success:function(result){
 					if(result.code==100){
+						$("#add_gift_modal").modal('hide');
 						var isImg=$("#image").val();
 					    if(isImg!=undefined&&isImg!=''){//将图片文本框组建删除
 					    	$("#image").remove();
@@ -446,9 +582,10 @@
 					    	$("#image").remove();
 					    	removeImg(isImg);
 					    }
-					    alert("添加失败！");
+					     
+					     alert("数据校验不成功，添加失败");
 					}
-					$("#add_gift_modal").modal('hide');
+					
 						 
 				}
 			});
@@ -503,6 +640,9 @@
 		
 		//修改模态框，保存按钮
 		 $("#update_gift_btn").click(function(){
+			 if(!validate_update_from()){
+					return false;
+				} 
 			 $.ajax({
 				 url:"${APP_PATH}/giftmanagement/updateGift",
 				 type:"POST",
@@ -533,7 +673,9 @@
 			var isImg=$("#image1").val();
 		    if(isImg!=undefined&&isImg!=''){//如果图片已上传，那么关闭之前将图片删除，以免占用空间
 		    	$("#image1").remove();
+		   
 		    	removeImg(isImg);
+		    	 
 		    }
 		});
 		

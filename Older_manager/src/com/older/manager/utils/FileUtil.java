@@ -52,7 +52,7 @@ public class FileUtil {
 
 	public static void deleteFile(String filePath, String fileName)
 			throws Exception {
-		File file = new File(filePath + fileName);
+		File file = new File(filePath +File.separator+ fileName);
 		if (file.exists()) {
 			file.delete();
 		}

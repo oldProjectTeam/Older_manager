@@ -96,6 +96,76 @@
     from giftexchange
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  <resultMap id="selectGiftExchangeResultMap" type="com.older.manager.bean.Giftexchange" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="oldManAccount_id" property="oldmanaccountId" jdbcType="INTEGER" />
+    <result column="giftManagement_id" property="giftmanagementId" jdbcType="INTEGER" />
+    <result column="exchangeTime" property="exchangetime" jdbcType="TIMESTAMP" />
+    <result column="exchangeNo" property="exchangeno" jdbcType="VARCHAR" />
+    <result column="exchangeNum" property="exchangenum" jdbcType="INTEGER" />
+    <result column="exchangeIntegral" property="exchangeintegral" jdbcType="INTEGER" />
+    <result column="giftExchange1" property="giftexchange1" jdbcType="VARCHAR" />
+    <result column="giftExchange2" property="giftexchange2" jdbcType="VARCHAR" />
+    <result column="giftExchange3" property="giftexchange3" jdbcType="VARCHAR" />
+    <collection property="oldmanaccount" ofType="oldmanaccount">
+    	<id column="oaId" property="id" jdbcType="INTEGER" />
+	    <result column="oldmanId" property="oldmanId" jdbcType="INTEGER" />
+	    <result column="account" property="account" jdbcType="VARCHAR" />
+	    <association property="oldman" javaType="oldman">
+	    	<id column="oId" property="id" jdbcType="INTEGER" />
+		    <result column="name" property="name" jdbcType="VARCHAR" />
+		    <result column="sex" property="sex" jdbcType="VARCHAR" />
+		    <result column="phone" property="phone" jdbcType="VARCHAR" />
+		    <result column="address" property="address" jdbcType="VARCHAR" />
+		    <result column="service" property="service" jdbcType="VARCHAR" />
+	    </association>
+    </collection>
+    <collection property="giftmanagement" ofType="giftmanagement">
+    	<id column="gmId" property="id" jdbcType="INTEGER" />
+	    <result column="giftName" property="giftname" jdbcType="VARCHAR" />
+	    <result column="giftNumber" property="giftnumber" jdbcType="VARCHAR" />
+	    <result column="giftType" property="gifttype" jdbcType="VARCHAR" />
+	    <result column="giftState" property="giftstate" jdbcType="VARCHAR" />
+	    <result column="giftUnit" property="giftunit" jdbcType="VARCHAR" />
+	    <result column="giftPrice" property="giftprice" jdbcType="DOUBLE" />
+	    <result column="integral" property="integral" jdbcType="INTEGER" />
+    </collection>
+  </resultMap>
+  <sql id="giftExchange_oldmanaccount_giftmanagement_Column_List" >
+    ge.id, ge.oldManAccount_id, ge.giftManagement_id, ge.exchangeTime, ge.exchangeNo, ge.exchangeNum, 
+    ge.exchangeIntegral, ge.giftExchange1, ge.giftExchange2, ge.giftExchange3,
+    oa.id oaId, oa.oldMan_id oldmanId,oa.account,o.id oId, o.name, o.sex, o.phone,o.address,o.service,
+    gm.id gmId,gm.giftName,gm.giftNumber,gm.giftType,gm.giftState,gm.giftUnit,gm.giftPrice,gm.integral
+  </sql>
+  <!--模糊查询礼品兑换信息，关联老人信息、礼品信息  -->
+  <select id="selectGiftExchangeAndOldmanByCondition" resultMap="selectGiftExchangeResultMap" parameterType="giftexchange" >
+    select 
+    <include refid="giftExchange_oldmanaccount_giftmanagement_Column_List" />
+    from giftexchange ge,giftmanagement gm,oldmanaccount oa,oldman o
+    where ge.oldManAccount_id=oa.id and ge.giftManagement_id=gm.id and oa.oldMan_id=o.id
+    <if test="giftmanagement!=null">
+    	<if test="giftmanagement.giftname!=null and giftmanagement.giftname!=''">
+    	and gm.giftName like '%${giftmanagement.giftname}%'
+    	</if>
+    	<if test="giftmanagement.gifttype!=null and giftmanagement.gifttype!=''">
+    	and	gm.giftType like '%${giftmanagement.gifttype}%'
+    	</if>
+    </if>
+    <if test="exchangeno!=null and exchangeno!=''">
+    	and ge.exchangeNo=#{exchangeno}
+    </if>
+    <if test="oldmanaccount!=null">
+    	<if test="oldmanaccount.oldman!=null">
+    		<if test="oldmanaccount.oldman.name!=null and oldmanaccount.oldman.name!=''">
+    		and o.name like '%${oldmanaccount.oldman.name}%'
+    		</if>
+    	</if>
+    </if>
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from giftexchange
     where id = #{id,jdbcType=INTEGER}
