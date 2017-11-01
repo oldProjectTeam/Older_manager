@@ -50,15 +50,15 @@
 		<form class="form-inline">
 			<div class="form-group">
 				<label for="exampleInputName2">发送人:</label> <input type="text"
-					class="form-control" id="sender">
+					class="form-control" placeholder="发送人" id="sender">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputName2">收信人号码:</label> <input type="text"
-					class="form-control" id="receiverphone">
+					class="form-control" placeholder="收信人号码" id="receiverphone">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputEmail2">收信人姓名:</label> <input type="text"
-					class="form-control" id="receivername">
+					class="form-control" placeholder="收信人姓名" id="receivername">
 			</div>
 			<button type="button" class="btn btn-info" id="search">查询</button>
 			<button type="reset" class="btn btn-warning">重置</button>

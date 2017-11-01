@@ -1,26 +1,43 @@
 package com.older.manager.controller.oldback;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -37,9 +54,10 @@ import com.older.manager.utils.SaveFile;
  * 新增老人
  * 
  * @author 疯癫 再次编写：杨明 编写内容：添加一个查询所有老人电话的接口，和跳转到修改页面接口
+ * 
  */
 @Controller
-@RequestMapping("/old")
+@RequestMapping("old")
 public class AddNewOlderController {
 
 	@Autowired
@@ -75,28 +93,46 @@ public class AddNewOlderController {
 	 * @throws IllegalStateException
 	 */
 	@RequestMapping("/addnewolder/{pn}")
-	public String addNewOlder(Oldman oldman, @PathVariable("pn") Integer pn,
-			MultipartFile file, HttpServletRequest request)
-			throws IllegalStateException, IOException {
-		String imgUrl = null;
-		if (file != null) {
-			imgUrl = SaveFile.saveImg(file, request);
-		}
-		if (oldman != null) {
-			oldman.setPhoto(imgUrl);
-			addNewOlderService.addNewOlder(oldman);
-			Relatives relatives = new Relatives();
-			relatives.setName(oldman.getUrgencycontact());
-			relatives.setSex(oldman.getSex());
-			relatives.setPhone(oldman.getPhone());
-			relatives.setRelation(oldman.getRelation());
-			relatives.setIslive(oldman.getLiveinfo());
-			relatives.setAddress(oldman.getAddress());
-			relatives.setOldmanId(oldman.getId());
-			oldRelativesService.addOlderRelative(relatives);
-		}
+	public String addNewOlder(@Valid Oldman oldman, BindingResult result,
+			@PathVariable("pn") Integer pn, MultipartFile file,
+			HttpServletRequest request) throws IllegalStateException,
+			IOException {
+		List<Map<String, Object>> errorList = new ArrayList<Map<String, Object>>();
+		if (result.hasErrors()) {
+			for (FieldError fieldError : result.getFieldErrors()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("fieldName", fieldError.getField());
+				map.put("errorMessage", fieldError.getDefaultMessage());
+				errorList.add(map);
+				System.out.println("出错的字段名为:------------->"
+						+ fieldError.getField());
+				System.out.println("出错信息为:---------------->"
+						+ fieldError.getDefaultMessage());
+			}
+		} else {
+			String imgUrl = null;
+			if (file != null) {
+				imgUrl = SaveFile.saveImg(file, request);
+			}
+			if (oldman != null) {
+				oldman.setPhoto(imgUrl);
+				addNewOlderService.addNewOlder(oldman);
+				Relatives relatives = new Relatives();
+				relatives.setName(oldman.getUrgencycontact());
+				relatives.setSex(oldman.getSex());
+				relatives.setPhone(oldman.getPhone());
+				relatives.setRelation(oldman.getRelation());
+				relatives.setIslive(oldman.getLiveinfo());
+				relatives.setAddress(oldman.getAddress());
+				relatives.setOldmanId(oldman.getId());
+				oldRelativesService.addOlderRelative(relatives);
+			}
 
-		return "oldback/oldManInfoMange/selectallolderwith";
+			return "oldback/oldManInfoMange/selectallolderwith";
+		}
+		request.setAttribute("errorList", errorList);
+		return "oldback/oldManInfoMange/addOldManInfo";
+
 	}
 
 	/**
@@ -143,6 +179,15 @@ public class AddNewOlderController {
 		}
 		if (oldman != null) {
 
+			/*
+			 * Relatives relatives=new Relatives();
+			 * relatives.setName(oldman.getUrgencycontact());
+			 * relatives.setSex(oldman.getSex());
+			 * relatives.setPhone(oldman.getPhone());
+			 * relatives.setRelation(oldman.getRelation());
+			 * relatives.setIslive(oldman.getLiveinfo());
+			 * relatives.setAddress(oldman.getAddress());
+			 */
 			addNewOlderService.updateOlder(oldman);
 		}
 		// oldRelativesService.updateOlderRelative(relatives);
@@ -232,7 +277,6 @@ public class AddNewOlderController {
 		List<Oldman> allolder = addNewOlderService
 				.selectAllOlderWith(new String(str.getBytes("iso-8859-1"),
 						"utf-8"));
-		@SuppressWarnings("unchecked")
 		PageInfo pageInfo = new PageInfo(allolder, 5);
 		return Msg.success().add("pageInfo", pageInfo);
 
@@ -302,6 +346,42 @@ public class AddNewOlderController {
 		}
 
 		return Msg.success();
+	}
+
+	/**
+	 * 老人批量导入的模板下载
+	 * 
+	 * @param session
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping("/sample")
+	public ResponseEntity<byte[]> download(HttpServletRequest request)
+			throws IOException {
+		String path = request.getSession().getServletContext()
+				.getRealPath("upload/sample/sample.xls");
+		File file = new File(path);
+		HttpHeaders headers = new HttpHeaders();
+		String fileName = new String("sample.xls".getBytes("UTF-8"),
+				"iso-8859-1");// 为了解决中文名称乱码问题
+		headers.setContentDispositionFormData("attachment", fileName);
+		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+		return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file),
+				headers, HttpStatus.CREATED);
+	}
+
+	/**
+	 * 查询所有老人信息
+	 * 
+	 * @return
+	 */
+
+	@RequestMapping("/selectallolderskiptakeactivity")
+	@ResponseBody
+	public Msg selectAllOlderSkipTakeActivity() {
+		List<Oldman> oldman = addNewOlderService.selectAllOlder();
+		return Msg.success().add("oldman", oldman);
+
 	}
 
 	/**
