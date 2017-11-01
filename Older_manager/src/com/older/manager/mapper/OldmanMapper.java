@@ -19,6 +19,8 @@ public interface OldmanMapper {
     List<Oldman> selectByExample(OldmanExample example);
 
     Oldman selectByPrimaryKey(Integer id);
+    
+    Oldman selectBaseInfoById(int id);
 
     int updateByExampleSelective(@Param("record") Oldman record, @Param("example") OldmanExample example);
 
@@ -27,4 +29,6 @@ public interface OldmanMapper {
     int updateByPrimaryKeySelective(Oldman record);
 
     int updateByPrimaryKey(Oldman record);
+    
+    List<Oldman> selectAllPhone();
 }

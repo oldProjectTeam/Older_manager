@@ -92,4 +92,9 @@ public class OldRelativesTest {
 		System.out.println(list+"*****************************");
 	}
 	
+	@Test
+	public void selectAllOlderRelativeIncludeOldManNameTest(){
+		System.out.println(oldRelativesService.selectAllOlderRelativeIncludeOldManName());
+	}
+	
 }

@@ -22,7 +22,7 @@
 <meta content="width=device-width,initial-scale=1">
 <!-- 引入jquery -->
 <script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <!-- 引入样式 -->
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
@@ -42,18 +42,36 @@ a {
 		<div
 			style="border:1px solid #F00;margin-top:10px;margin-bottom:10px;padding:10px;width:90%;height:220px">
 			<ul class="list-unstyled">
-				<li class="col-sm-offset-5" style="font-size:18px">保龄球比赛</li>
-				<li>&nbsp;&nbsp;&nbsp;&nbsp; 书店近来窃贼颇多，多在讲座，签售会，团体活动时伺机作案。
-					专寻年轻女士挎包下手，店内无监控，忘各位读者朋友多多留心，大家共同防范，和先锋一起快乐。
-					另对之前被窃女生表示歉意，世风日下，小贼实在可恶。</li>
+				<li class="col-sm-offset-5" style="font-size:18px">${notice.title}</li>
+				<li>&nbsp;&nbsp;&nbsp;&nbsp; ${notice.content}</li>
 				<br>
-				<li class="col-sm-offset-8">发送人：琴琴 &nbsp;&nbsp;&nbsp;&nbsp;
-					发送时间：2017-10-22</li>
+				<li class="col-sm-offset-8">发送人：<a>${notice.releasepeople}</a> &nbsp;&nbsp;&nbsp;&nbsp;
+					发送时间：<b>ChangeDateFormat(${notice.time})</b></li>
 			</ul>
 		</div>
 		<a class="col-sm-offset-10"
 			href="/Older_manager/static/oldback/officemanage/informnotice.jsp"><button
-				type="button">返回</button></a>
+				type="button" onClick="javascript :history.back(-1);">返回</button></a>
 	</div>
+	<script type="text/javascript">
+	function ChangeDateFormat(d) {
+		//将时间戳转为int类型，构造Date类型
+		if (d != null) {
+			var date = new Date(parseInt(d));
+
+			//月份得+1，且只有个位数时在前面+0
+			var month = date.getMonth() + 1 + "月";
+
+			//日期为个位数时在前面+0
+			var currentDate = date.getDate() + "日";
+
+			//getFullYear得到4位数的年份 ，返回一串字符串
+			return date.getFullYear() + "年" + month + currentDate;
+		} else {
+			return null;
+		}
+
+	}
+	</script>
 </body>
 </html>

@@ -425,143 +425,143 @@ public class SmsExample {
             return (Criteria) this;
         }
 
-        public Criteria andSms1IsNull() {
-            addCriterion("SMS1 is null");
+        public Criteria andReceiverphoneIsNull() {
+            addCriterion("receiverphone is null");
             return (Criteria) this;
         }
 
-        public Criteria andSms1IsNotNull() {
-            addCriterion("SMS1 is not null");
+        public Criteria andReceiverphoneIsNotNull() {
+            addCriterion("receiverphone is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSms1EqualTo(String value) {
-            addCriterion("SMS1 =", value, "sms1");
+        public Criteria andReceiverphoneEqualTo(String value) {
+            addCriterion("receiverphone =", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1NotEqualTo(String value) {
-            addCriterion("SMS1 <>", value, "sms1");
+        public Criteria andReceiverphoneNotEqualTo(String value) {
+            addCriterion("receiverphone <>", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1GreaterThan(String value) {
-            addCriterion("SMS1 >", value, "sms1");
+        public Criteria andReceiverphoneGreaterThan(String value) {
+            addCriterion("receiverphone >", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1GreaterThanOrEqualTo(String value) {
-            addCriterion("SMS1 >=", value, "sms1");
+        public Criteria andReceiverphoneGreaterThanOrEqualTo(String value) {
+            addCriterion("receiverphone >=", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1LessThan(String value) {
-            addCriterion("SMS1 <", value, "sms1");
+        public Criteria andReceiverphoneLessThan(String value) {
+            addCriterion("receiverphone <", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1LessThanOrEqualTo(String value) {
-            addCriterion("SMS1 <=", value, "sms1");
+        public Criteria andReceiverphoneLessThanOrEqualTo(String value) {
+            addCriterion("receiverphone <=", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1Like(String value) {
-            addCriterion("SMS1 like", value, "sms1");
+        public Criteria andReceiverphoneLike(String value) {
+            addCriterion("receiverphone like", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1NotLike(String value) {
-            addCriterion("SMS1 not like", value, "sms1");
+        public Criteria andReceiverphoneNotLike(String value) {
+            addCriterion("receiverphone not like", value, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1In(List<String> values) {
-            addCriterion("SMS1 in", values, "sms1");
+        public Criteria andReceiverphoneIn(List<String> values) {
+            addCriterion("receiverphone in", values, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1NotIn(List<String> values) {
-            addCriterion("SMS1 not in", values, "sms1");
+        public Criteria andReceiverphoneNotIn(List<String> values) {
+            addCriterion("receiverphone not in", values, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1Between(String value1, String value2) {
-            addCriterion("SMS1 between", value1, value2, "sms1");
+        public Criteria andReceiverphoneBetween(String value1, String value2) {
+            addCriterion("receiverphone between", value1, value2, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms1NotBetween(String value1, String value2) {
-            addCriterion("SMS1 not between", value1, value2, "sms1");
+        public Criteria andReceiverphoneNotBetween(String value1, String value2) {
+            addCriterion("receiverphone not between", value1, value2, "receiverphone");
             return (Criteria) this;
         }
 
-        public Criteria andSms2IsNull() {
-            addCriterion("SMS2 is null");
+        public Criteria andReceivernameIsNull() {
+            addCriterion("receivername is null");
             return (Criteria) this;
         }
 
-        public Criteria andSms2IsNotNull() {
-            addCriterion("SMS2 is not null");
+        public Criteria andReceivernameIsNotNull() {
+            addCriterion("receivername is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSms2EqualTo(String value) {
-            addCriterion("SMS2 =", value, "sms2");
+        public Criteria andReceivernameEqualTo(String value) {
+            addCriterion("receivername =", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2NotEqualTo(String value) {
-            addCriterion("SMS2 <>", value, "sms2");
+        public Criteria andReceivernameNotEqualTo(String value) {
+            addCriterion("receivername <>", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2GreaterThan(String value) {
-            addCriterion("SMS2 >", value, "sms2");
+        public Criteria andReceivernameGreaterThan(String value) {
+            addCriterion("receivername >", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2GreaterThanOrEqualTo(String value) {
-            addCriterion("SMS2 >=", value, "sms2");
+        public Criteria andReceivernameGreaterThanOrEqualTo(String value) {
+            addCriterion("receivername >=", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2LessThan(String value) {
-            addCriterion("SMS2 <", value, "sms2");
+        public Criteria andReceivernameLessThan(String value) {
+            addCriterion("receivername <", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2LessThanOrEqualTo(String value) {
-            addCriterion("SMS2 <=", value, "sms2");
+        public Criteria andReceivernameLessThanOrEqualTo(String value) {
+            addCriterion("receivername <=", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2Like(String value) {
-            addCriterion("SMS2 like", value, "sms2");
+        public Criteria andReceivernameLike(String value) {
+            addCriterion("receivername like", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2NotLike(String value) {
-            addCriterion("SMS2 not like", value, "sms2");
+        public Criteria andReceivernameNotLike(String value) {
+            addCriterion("receivername not like", value, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2In(List<String> values) {
-            addCriterion("SMS2 in", values, "sms2");
+        public Criteria andReceivernameIn(List<String> values) {
+            addCriterion("receivername in", values, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2NotIn(List<String> values) {
-            addCriterion("SMS2 not in", values, "sms2");
+        public Criteria andReceivernameNotIn(List<String> values) {
+            addCriterion("receivername not in", values, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2Between(String value1, String value2) {
-            addCriterion("SMS2 between", value1, value2, "sms2");
+        public Criteria andReceivernameBetween(String value1, String value2) {
+            addCriterion("receivername between", value1, value2, "receivername");
             return (Criteria) this;
         }
 
-        public Criteria andSms2NotBetween(String value1, String value2) {
-            addCriterion("SMS2 not between", value1, value2, "sms2");
+        public Criteria andReceivernameNotBetween(String value1, String value2) {
+            addCriterion("receivername not between", value1, value2, "receivername");
             return (Criteria) this;
         }
 

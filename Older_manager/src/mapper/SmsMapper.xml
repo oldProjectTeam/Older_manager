@@ -7,8 +7,8 @@
     <result column="sendTime" property="sendtime" jdbcType="TIMESTAMP" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="number" property="number" jdbcType="INTEGER" />
-    <result column="SMS1" property="sms1" jdbcType="VARCHAR" />
-    <result column="SMS2" property="sms2" jdbcType="VARCHAR" />
+    <result column="receiverphone" property="receiverphone" jdbcType="VARCHAR" />
+    <result column="receivername" property="receivername" jdbcType="VARCHAR" />
     <result column="SMS3" property="sms3" jdbcType="VARCHAR" />
     <result column="SMS4" property="sms4" jdbcType="VARCHAR" />
     <result column="SMS5" property="sms5" jdbcType="VARCHAR" />
@@ -74,7 +74,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, sender, sendTime, content, number, SMS1, SMS2, SMS3, SMS4, SMS5, SMS6, SMS7
+    id, sender, sendTime, content, number, receiverphone, receivername, SMS3, SMS4, SMS5, SMS6, SMS7
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.SmsExample" >
     select
@@ -108,12 +108,11 @@
   </delete>
   <insert id="insert" parameterType="com.older.manager.bean.Sms" >
     insert into sms (id, sender, sendTime, 
-      content, number, SMS1, 
-      SMS2, SMS3, SMS4, SMS5, 
+      content, number,  receiverphone, receivername, SMS3, SMS4, SMS5, 
       SMS6, SMS7)
     values (#{id,jdbcType=INTEGER}, #{sender,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, 
-      #{content,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{sms1,jdbcType=VARCHAR}, 
-      #{sms2,jdbcType=VARCHAR}, #{sms3,jdbcType=VARCHAR}, #{sms4,jdbcType=VARCHAR}, #{sms5,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{receiverphone,jdbcType=VARCHAR}, 
+      #{receivername,jdbcType=VARCHAR}, #{sms3,jdbcType=VARCHAR}, #{sms4,jdbcType=VARCHAR}, #{sms5,jdbcType=VARCHAR}, 
       #{sms6,jdbcType=VARCHAR}, #{sms7,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Sms" >
@@ -134,11 +133,11 @@
       <if test="number != null" >
         number,
       </if>
-      <if test="sms1 != null" >
-        SMS1,
+      <if test="receiverphone != null" >
+        receiverphone,
       </if>
-      <if test="sms2 != null" >
-        SMS2,
+      <if test="receivername != null" >
+        receivername,
       </if>
       <if test="sms3 != null" >
         SMS3,
@@ -172,11 +171,11 @@
       <if test="number != null" >
         #{number,jdbcType=INTEGER},
       </if>
-      <if test="sms1 != null" >
-        #{sms1,jdbcType=VARCHAR},
+      <if test="receiverphone != null" >
+        #{receiverphone,jdbcType=VARCHAR},
       </if>
-      <if test="sms2 != null" >
-        #{sms2,jdbcType=VARCHAR},
+      <if test="receivername != null" >
+        #{receivername,jdbcType=VARCHAR},
       </if>
       <if test="sms3 != null" >
         #{sms3,jdbcType=VARCHAR},
@@ -219,11 +218,11 @@
       <if test="record.number != null" >
         number = #{record.number,jdbcType=INTEGER},
       </if>
-      <if test="record.sms1 != null" >
-        SMS1 = #{record.sms1,jdbcType=VARCHAR},
+      <if test="record.receiverphone != null" >
+        SMS1 = #{record.receiverphone,jdbcType=VARCHAR},
       </if>
-      <if test="record.sms2 != null" >
-        SMS2 = #{record.sms2,jdbcType=VARCHAR},
+      <if test="record.receiverphone != null" >
+        SMS2 = #{record.receivername,jdbcType=VARCHAR},
       </if>
       <if test="record.sms3 != null" >
         SMS3 = #{record.sms3,jdbcType=VARCHAR},
@@ -252,8 +251,8 @@
       sendTime = #{record.sendtime,jdbcType=TIMESTAMP},
       content = #{record.content,jdbcType=VARCHAR},
       number = #{record.number,jdbcType=INTEGER},
-      SMS1 = #{record.sms1,jdbcType=VARCHAR},
-      SMS2 = #{record.sms2,jdbcType=VARCHAR},
+      receiverphone = #{record.receiverphone,jdbcType=VARCHAR},
+      receivername = #{record.receivername,jdbcType=VARCHAR},
       SMS3 = #{record.sms3,jdbcType=VARCHAR},
       SMS4 = #{record.sms4,jdbcType=VARCHAR},
       SMS5 = #{record.sms5,jdbcType=VARCHAR},
@@ -278,11 +277,11 @@
       <if test="number != null" >
         number = #{number,jdbcType=INTEGER},
       </if>
-      <if test="sms1 != null" >
-        SMS1 = #{sms1,jdbcType=VARCHAR},
+      <if test="receiverphone != null" >
+        receiverphone = #{receiverphone,jdbcType=VARCHAR},
       </if>
-      <if test="sms2 != null" >
-        SMS2 = #{sms2,jdbcType=VARCHAR},
+      <if test="receivername != null" >
+        receivername = #{receivername,jdbcType=VARCHAR},
       </if>
       <if test="sms3 != null" >
         SMS3 = #{sms3,jdbcType=VARCHAR},
@@ -308,8 +307,8 @@
       sendTime = #{sendtime,jdbcType=TIMESTAMP},
       content = #{content,jdbcType=VARCHAR},
       number = #{number,jdbcType=INTEGER},
-      SMS1 = #{sms1,jdbcType=VARCHAR},
-      SMS2 = #{sms2,jdbcType=VARCHAR},
+      receiverphone = #{receiverphone,jdbcType=VARCHAR},
+      receivername = #{receivername,jdbcType=VARCHAR},
       SMS3 = #{sms3,jdbcType=VARCHAR},
       SMS4 = #{sms4,jdbcType=VARCHAR},
       SMS5 = #{sms5,jdbcType=VARCHAR},

@@ -53,7 +53,7 @@ public class OfficeController {
 	 */
 	@RequestMapping("/informnotice")
 	public String informnotice() {
-		return "oldback/officemanage/informnotice";
+		return "oldback/officemanage/noticeManager";
 	}
 
 	/**

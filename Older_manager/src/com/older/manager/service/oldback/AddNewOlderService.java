@@ -65,5 +65,14 @@ public interface AddNewOlderService {
 	 * @param ids
 	 */
     public void deleteBatch(List<Integer> ids);
+    
+    /**
+     * @Title:   findOldManPhone
+     * @Description:  查询所有老人的电话信息
+     * @param:    @return   
+     * @return:   List<Oldman>   
+     * @throws
+     */
+    public List<Oldman> findOldManPhone();
 
 }

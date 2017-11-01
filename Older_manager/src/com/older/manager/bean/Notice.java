@@ -132,4 +132,15 @@ public class Notice {
     public void setNotice7(String notice7) {
         this.notice7 = notice7 == null ? null : notice7.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Notice [id=" + id + ", title=" + title + ", time=" + time
+				+ ", releasepeople=" + releasepeople + ", type=" + type
+				+ ", content=" + content + ", notice1=" + notice1
+				+ ", notice2=" + notice2 + ", notice3=" + notice3
+				+ ", notice4=" + notice4 + ", notice5=" + notice5
+				+ ", notice6=" + notice6 + ", notice7=" + notice7 + "]";
+	}
+    
 }

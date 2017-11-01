@@ -77,5 +77,10 @@ public class AddNewOlderImplTest {
 		
 	}
 	
+	@Test
+	public void selectAllPhoneTest(){
+		System.out.println(addNewOlderService.findOldManPhone());
+	}
+	
 
 }

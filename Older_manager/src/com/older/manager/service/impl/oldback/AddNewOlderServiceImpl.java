@@ -1,8 +1,6 @@
 package com.older.manager.service.impl.oldback;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.older.manager.bean.Oldman;
 import com.older.manager.bean.OldmanExample;
 import com.older.manager.bean.OldmanExample.Criteria;
-import com.older.manager.bean.Relatives;
 import com.older.manager.bean.RelativesExample;
 import com.older.manager.mapper.OldmanMapper;
 import com.older.manager.mapper.RelativesMapper;
@@ -78,7 +75,6 @@ public class AddNewOlderServiceImpl implements AddNewOlderService{
     * 查看老人
     */
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public Oldman selectOlder(Integer id) {
 		return  oldmanMapper.selectByPrimaryKey(id);
@@ -98,7 +94,6 @@ public class AddNewOlderServiceImpl implements AddNewOlderService{
      */
 	@Override
 	public List<Oldman> selectAllOlderWith(String str) {
-		List<Oldman> list = null;
 		OldmanExample example = new OldmanExample();
 		Criteria criteria = example.createCriteria();
        
@@ -194,6 +189,19 @@ public class AddNewOlderServiceImpl implements AddNewOlderService{
 		criteria.andIdIn(ids);
 		oldmanMapper.deleteByExample(example);
 		
+	}
+
+
+	/**
+	 * @Title:   findOldManPhone
+	 * @Description:  TODO
+	 * @param:    @return     
+	 * @throws
+	 */
+	@Override
+	public List<Oldman> findOldManPhone() {
+		// TODO Auto-generated method stub
+		return oldmanMapper.selectAllPhone();
 	}
 
 

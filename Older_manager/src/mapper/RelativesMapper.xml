@@ -14,6 +14,26 @@
     <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
     <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+   <resultMap id="ResulMixtMap" type="com.older.manager.bean.OldManRelativesShow" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="relation" property="relation" jdbcType="VARCHAR" />
+    <result column="isLive" property="islive" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
+    <association property="oldman" column="oldMan_id" select="com.older.manager.mapper.OldmanMapper.selectBaseInfoById" javaType="com.older.manager.bean.Oldman"/>
+  </resultMap>
+  
+  <select id="selectAllRelativesIncludeOldManName" resultMap="ResulMixtMap">
+  	select * from relatives
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >

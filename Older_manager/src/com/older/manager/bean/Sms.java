@@ -2,6 +2,10 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+/**
+ * @author ym
+ *
+ */
 public class Sms {
     private Integer id;
 
@@ -13,9 +17,9 @@ public class Sms {
 
     private Integer number;
 
-    private String sms1;
+    private String receiverphone;
 
-    private String sms2;
+    private String receivername;
 
     private String sms3;
 
@@ -67,23 +71,24 @@ public class Sms {
         this.number = number;
     }
 
-    public String getSms1() {
-        return sms1;
-    }
 
-    public void setSms1(String sms1) {
-        this.sms1 = sms1 == null ? null : sms1.trim();
-    }
+    public String getReceiverphone() {
+		return receiverphone;
+	}
 
-    public String getSms2() {
-        return sms2;
-    }
+	public void setReceiverphone(String receiverphone) {
+		this.receiverphone = receiverphone;
+	}
 
-    public void setSms2(String sms2) {
-        this.sms2 = sms2 == null ? null : sms2.trim();
-    }
+	public String getReceivername() {
+		return receivername;
+	}
 
-    public String getSms3() {
+	public void setReceivername(String receivername) {
+		this.receivername = receivername;
+	}
+
+	public String getSms3() {
         return sms3;
     }
 
@@ -122,4 +127,15 @@ public class Sms {
     public void setSms7(String sms7) {
         this.sms7 = sms7 == null ? null : sms7.trim();
     }
+
+	/*@Override
+	public String toString() {
+		return "Sms [id=" + id + ", sender=" + sender + ", sendtime="
+				+ sendtime + ", content=" + content + ", number=" + number
+				+ ", receiverphone=" + receiverphone + ", receivername="
+				+ receivername + ", sms3=" + sms3 + ", sms4=" + sms4
+				+ ", sms5=" + sms5 + ", sms6=" + sms6 + ", sms7=" + sms7 + "]";
+	}*/
+    
+    
 }

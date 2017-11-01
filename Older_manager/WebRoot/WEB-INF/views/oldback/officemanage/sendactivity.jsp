@@ -37,7 +37,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ol class="breadcrumb">
-				<li><b>位置：<a href="officemanage/officemanageIndex">办公管理</a></b></li>
+				<li><b>位置：<a href="page">办公管理</a></b></li>
 				<li class="active">发布活动</li>
 			</ol>
 		</div>
@@ -76,7 +76,7 @@
 						<font color=red><span id="errorMsg"></span></font>
 					</h5>
 				</div>
-				<div class="col-md-8">
+				<div class="col-md-6">
 					<button type="button" class="btn btn-sm btn-success" id="save_btn">确定发布</button>
 					<span id="msg"></span>
 				</div>

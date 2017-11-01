@@ -2,6 +2,7 @@ package com.older.manager.service.oldback;
 
 import java.util.List;
 
+import com.older.manager.bean.OldManRelativesShow;
 import com.older.manager.bean.Relatives;
 
 
@@ -50,4 +51,14 @@ public interface OldRelativesService {
 	 * @param ids
 	 */
     public void deleteBatch(List<Integer> ids);
+    
+    /**
+     * @Title:   selectAllOlderRelativeIncludeOldManName
+     * @Description:  查询所有的亲属信息包含老人姓名
+     * @param:    @return   
+     * @return:   List<OldManRelativesShow>   
+     * @throws
+     */
+    public List<OldManRelativesShow> selectAllOlderRelativeIncludeOldManName();
+   
 }

@@ -22,7 +22,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <!-- 引入jquery -->
 <script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <!-- 引入样式 -->
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
@@ -32,30 +32,69 @@
 </head>
 
 <body style="margin: 15px;">
-	<div style="width:98%;margin-left:12px">
 
-
-		<div class="page-header">
-			<h4>发布公告</h4>
+	<!--路径导航  -->
+	<div>
+		<div class="row">
+			<div class="col-md-12">
+				<ol class="breadcrumb">
+					<li><b>位置：<a href="page">办公管理</a></b></li>
+					<li class="active">发布公告</li>
+				</ol>
+			</div>
 		</div>
-
-		<form class="form-inline">
+	</div>
+	<div style="width:98%;margin-left:12px">
+		<form class="form-inline" id="noticeForm">
 			<div class="form-group">
-				<label for="exampleInputEmail2">公告标题:</label> <input type="text"
-					class="form-control" placeholder="公告标题">
+				<input type="hidden" id="id" name="id"> <label
+					for="exampleInputEmail2">公告标题:</label> <input type="text"
+					class="form-control" id="title" name="title" placeholder="公告标题">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputEmail2">发布人:</label> <input type="text"
-					class="form-control" placeholder="发布人姓名">
+					class="form-control" id="releasepeople" name="releasepeople" placeholder="发布人姓名">
 			</div>
-			<br /> <br /> <br /> <label>发布内容:</label><br />
+			<div class="form-group">
+				<label for="exampleInputEmail2">发布时间:</label> <input type="datetime-local"
+					class="form-control" id="time" name="time" >
+			</div>
+			<div>
+				<label for="exampleInputEmail2">通告类型:</label> <select id="type"
+					name="type">
+					<option value="通知类型">通知类型</option>
+					<option value="会议通知">会议通知</option>
+					<option value="指示通知">指示通知</option>
+					<option value="转发通知">转发通知</option>
+					<option value="重大通知">重大通知</option>
+				</select>
+			</div>
+			<br /> <label>发布内容:</label><br />
 			<div class="form-group">
 				<textarea class="form-control" placeholder="发布内容" rows="10"
-					cols="128"></textarea>
+					id="content" name="content" cols="128"></textarea>
 			</div>
 			<br /> <br />
-			<button type="button" class="col-sm-offset-8 btn btn-info">发送</button>
+			<button type="button" class="col-sm-offset-8 btn btn-info" id="sendNotice">发送</button>
 		</form>
 	</div>
+	<script type="text/javascript">
+	
+	//点击保存按钮，修改报名信息
+	$("#sendNotice").click(function() {
+		$.ajax({
+			url : "${APP_PATH}/notice/addNotice",
+			type : "post",
+			data : $("#noticeForm").serialize(),
+			success : function(result) {
+				if (result.code == 100) {
+					alert(result.extend.msg);
+				} else {
+					alert(result.extend.msg);
+				}
+			}
+		});
+	});
+	</script>
 </body>
 </html>
