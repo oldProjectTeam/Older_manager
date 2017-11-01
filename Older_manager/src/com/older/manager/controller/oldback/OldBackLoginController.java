@@ -32,7 +32,8 @@ public class OldBackLoginController {
 	 */
 	@RequestMapping("/login")
 	public String login(HttpSession session, String randomcode,
-			String usercode, String password) throws Exception {
+			String usercode, String password, Integer loginType)
+			throws Exception {
 
 		// 校验验证码，防止恶性攻击
 		// 从session获取正确验证码
@@ -43,12 +44,20 @@ public class OldBackLoginController {
 			// 抛出异常
 			throw new UserException("验证码输入错误");
 		}
+		System.out.println("登录类型----------------------------->" + loginType);
 		// 调用service校验用户账号和密码的正确性
-		ActiveUser activeUser = sysService.authenticat(usercode, password);
-
-		// 如果service校验通过，将用户身份记录到session
-		session.setAttribute("activeUser", activeUser);
-		return "oldback/oldbackMain/main";
+		ActiveUser activeUser = sysService.authenticat(usercode, password,
+				loginType);
+		if (activeUser != null) {
+			// 如果service校验通过，将用户身份记录到session
+			session.setAttribute("activeUser", activeUser);
+		}
+		if (loginType == 1) {
+			// 登录到老人后台管理系统
+			return "oldback/oldbackMain/main";
+		}
+		// 登录到电商后台管理系统
+		return "oldback/oldbackshopping/shopping_main";
 	}
 
 	// 用户退出

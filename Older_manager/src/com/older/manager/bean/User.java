@@ -13,6 +13,8 @@ public class User {
 
     private String locked;
 
+    private Integer type;
+
     public Integer getId() {
         return id;
     }
@@ -59,5 +61,13 @@ public class User {
 
     public void setLocked(String locked) {
         this.locked = locked == null ? null : locked.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

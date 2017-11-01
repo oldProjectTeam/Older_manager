@@ -59,6 +59,14 @@
 							align='absMiddle' /> <a href="system/index">刷新</a>
 					</div>
 				</li>
+				<!-- 类型,1表示登录老人后台,2表示登录电商后台 -->
+				<li>
+					<div class="form-group">
+						<label class="control-label">选择类型:</label> <input type="radio"
+							name="loginType" value="1" checked="checked" />老人后台管理员 <input
+							type="radio" name="loginType" value="0" />电商后台管理员
+					</div>
+				</li>
 				<li><input value="立即登录" type="button"
 					class="btn btn-lg btn-block" id="login"
 					style="background-color: #30C37C;" /></li>

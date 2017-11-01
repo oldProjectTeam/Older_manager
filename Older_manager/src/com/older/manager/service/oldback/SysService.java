@@ -14,11 +14,12 @@ import com.older.manager.bean.User;
 public interface SysService {
 
 	// 根据用户的身份和密码 进行认证，如果认证通过，返回用户身份信息
-	public ActiveUser authenticat(String userCode, String password)
+	public ActiveUser authenticat(String userCode, String password, Integer type)
 			throws Exception;
 
 	// 根据用户账号查询用户信息
-	public User findSysUserByUserCode(String userCode) throws Exception;
+	public User findSysUserByUserCode(String userCode, Integer type)
+			throws Exception;
 
 	// 根据用户id查询权限范围的菜单
 	public List<Permission> findMenuListByUserId(int userid) throws Exception;

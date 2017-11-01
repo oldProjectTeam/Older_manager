@@ -6,16 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class OldShoppingMainController {
 	/**
-	 * 电商后台登录
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/back_shopping_login")
-	public String oldShoppingLogin() {
-		return "oldback/oldbackshopping/back_shopping_login";
-	}
-
-	/**
 	 * 电商后台主界面
 	 * 
 	 * @return
@@ -114,7 +104,7 @@ public class OldShoppingMainController {
 	public String productCategoryAdd() {
 		return "oldback/oldbackshopping/product-category-add";
 	}
-	
+
 	/**
 	 * 电商后台广告管理
 	 * 
@@ -124,7 +114,7 @@ public class OldShoppingMainController {
 	public String advertising() {
 		return "oldback/oldbackshopping/advertising";
 	}
-	
+
 	/**
 	 * 电商后台分类管理
 	 * 
@@ -134,7 +124,7 @@ public class OldShoppingMainController {
 	public String Sort_ads() {
 		return "oldback/oldbackshopping/Sort_ads";
 	}
-	
+
 	/**
 	 * 电商后台分类管理
 	 * 
@@ -144,7 +134,7 @@ public class OldShoppingMainController {
 	public String Ads_list() {
 		return "oldback/oldbackshopping/Ads_list";
 	}
-	
+
 	/**
 	 * 电商后台交易信息
 	 * 
@@ -154,7 +144,7 @@ public class OldShoppingMainController {
 	public String transaction() {
 		return "oldback/oldbackshopping/transaction";
 	}
-	
+
 	/**
 	 * 电商后台订单管理
 	 * 
@@ -164,7 +154,7 @@ public class OldShoppingMainController {
 	public String Orderform() {
 		return "oldback/oldbackshopping/Orderform";
 	}
-	
+
 	/**
 	 * 电商后台订单明细
 	 * 
@@ -174,7 +164,7 @@ public class OldShoppingMainController {
 	public String order_detailed() {
 		return "oldback/oldbackshopping/order_detailed";
 	}
-	
+
 	/**
 	 * 电商后台会员列表
 	 * 
@@ -184,7 +174,7 @@ public class OldShoppingMainController {
 	public String user_list() {
 		return "oldback/oldbackshopping/user_list";
 	}
-	
+
 	/**
 	 * 电商后台等级管理
 	 * 
@@ -194,7 +184,7 @@ public class OldShoppingMainController {
 	public String memberGrading() {
 		return "oldback/oldbackshopping/member-Grading";
 	}
-	
+
 	/**
 	 * 电商后台会员记录管理
 	 * 
@@ -204,7 +194,7 @@ public class OldShoppingMainController {
 	public String integration() {
 		return "oldback/oldbackshopping/integration";
 	}
-	
+
 	/**
 	 * 电商后台系统设置
 	 * 
@@ -214,7 +204,7 @@ public class OldShoppingMainController {
 	public String Systems() {
 		return "oldback/oldbackshopping/Systems";
 	}
-	
+
 	/**
 	 * 电商后台权限管理
 	 * 
@@ -224,7 +214,7 @@ public class OldShoppingMainController {
 	public String admin_Competence() {
 		return "oldback/oldbackshopping/admin_Competence";
 	}
-	
+
 	/**
 	 * 电商后台管理员列表
 	 * 
@@ -234,7 +224,7 @@ public class OldShoppingMainController {
 	public String administrator() {
 		return "oldback/oldbackshopping/administrator";
 	}
-	
+
 	/**
 	 * 电商后台个人信息
 	 * 

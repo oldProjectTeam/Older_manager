@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -222,7 +223,7 @@
 						btn : [ '是', '否' ],//按钮
 						icon : 2,
 					}, function() {
-						location.href = "back_shopping_login";
+						location.href = "logout";
 
 					});
 				});
@@ -250,8 +251,8 @@
 				<ul class="nav ace-nav">
 					<li><a data-toggle="dropdown" href="#" class="dropdown-toggle">
 							<span class="time"><em id="time"></em></span><span
-							class="user-info" style="margin-top: 12px;">管理员 </span> <i
-							class="icon-caret-down"></i>
+							class="user-info" style="margin-top: 12px;">${activeUser.username}</span>
+							<i class="icon-caret-down"></i>
 					</a>
 						<ul
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
@@ -268,7 +269,7 @@
 	<div class="main-container" id="main-container">
 		<script type="text/javascript">
 			try {
-				ace.settings.check('main-container', 'fixed')
+				ace.settings.check('main-container', 'fixed');
 			} catch (e) {
 			}
 		</script>
@@ -293,86 +294,21 @@
 				</div>
 				<!-- #sidebar-shortcuts -->
 				<ul class="nav nav-list" id="nav_list">
-					<li class="home"><a href="javascript:void(0)" name="home"
-						class="iframeurl" title=""><i class="icon-dashboard"></i><span
-							class="menu-text"> 系统首页 </span></a></li>
-					<li><a href="#" class="dropdown-toggle"><i
-							class="icon-desktop"></i><span class="menu-text"> 产品管理 </span><b
-							class="arrow icon-angle-down"></b></a>
-						<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)"
-								name="Products_List" title="产品类表" class="iframeurl"><i
-									class="icon-double-angle-right"></i>产品类表</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="Brand_Manage" title="品牌管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>品牌管理</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="Category_Manage" title="分类管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>分类管理</a></li>
 
-						</ul></li>
-					<li><a href="#" class="dropdown-toggle"><i
-							class="icon-picture "></i><span class="menu-text"> 图片管理 </span><b
-							class="arrow icon-angle-down"></b></a>
-						<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)"
-								name="advertising" title="广告管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>广告管理</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="Sort_ads" title="分类管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>分类管理</a></li>
-						</ul></li>
-					<li><a href="#" class="dropdown-toggle"><i
-							class="icon-list"></i><span class="menu-text"> 交易管理 </span><b
-							class="arrow icon-angle-down"></b></a>
-						<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)"
-								name="transaction" title="交易信息" class="iframeurl"><i
-									class="icon-double-angle-right"></i>交易信息</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="Orderform" title="订单管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>订单管理</a></li>
-
-						</ul></li>
-					<li><a href="#" class="dropdown-toggle"><i
-							class="icon-user"></i><span class="menu-text"> 会员管理 </span><b
-							class="arrow icon-angle-down"></b></a>
-						<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)"
-								name="user_list" title="会员列表" class="iframeurl"><i
-									class="icon-double-angle-right"></i>会员列表</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="member-Grading" title="等级管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>等级管理</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="integration" title="会员记录管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>会员记录管理</a></li>
-
-						</ul></li>
-					<li><a href="#" class="dropdown-toggle"><i
-							class="icon-cogs"></i><span class="menu-text"> 系统管理 </span><b
-							class="arrow icon-angle-down"></b></a>
-						<ul class="submenu">
-							<li class="home"><a href="javascript:void(0)" name="Systems"
-								title="系统设置" class="iframeurl"><i
-									class="icon-double-angle-right"></i>系统设置</a></li>
-
-						</ul></li>
-					<li><a href="#" class="dropdown-toggle"><i
-							class="icon-group"></i><span class="menu-text"> 管理员管理 </span><b
-							class="arrow icon-angle-down"></b></a>
-						<ul class="submenu">
-
-							<li class="home"><a href="javascript:void(0)"
-								name="admin_Competence" title="权限管理" class="iframeurl"><i
-									class="icon-double-angle-right"></i>权限管理</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="administrator" title="管理员列表" class="iframeurl"><i
-									class="icon-double-angle-right"></i>管理员列表</a></li>
-							<li class="home"><a href="javascript:void(0)"
-								name="admin_info" title="个人信息" class="iframeurl"><i
-									class="icon-double-angle-right"></i>个人信息</a></li>
-						</ul></li>
+					<c:if test="${activeUser.listMenus!=null}">
+						<c:forEach items="${activeUser.listMenus}" var="menu">
+							<li><a href="#" class="dropdown-toggle"> <i
+									class="${menu.menuImg}"></i><span class="menu-text">
+										${menu.menuName} </span><b class="arrow icon-angle-down"></b></a>
+								<ul class="submenu">
+									<c:forEach items="${menu.menus}" var="childMenu">
+										<li class="home"><a href="javascript:void(0)"
+											name="${childMenu.url}" title="${childMenu.name}"
+											class="iframeurl"><i class="icon-double-angle-right"></i>${childMenu.name}</a></li>
+									</c:forEach>
+								</ul></li>
+						</c:forEach>
+					</c:if>
 				</ul>
 				<div class="sidebar-collapse" id="sidebar-collapse">
 					<i class="icon-double-angle-left"

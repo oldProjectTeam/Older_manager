@@ -34,11 +34,10 @@
 </head>
 <body
 	style="background:url(${APP_PATH}/static/images/oldback/images/topbg.gif) repeat-x;">
-	<div class="topleft" style="margin-top:-10px">
-		<a href="main.jsp" target="_parent"><img
-			src="${APP_PATH}/static/images/oldback/images/logo.jpg" width="200px"
-			height="80px" title="系统首页" /></a>
-	</div>
+	<a href="main.jsp" target="_parent"><img
+		src="${APP_PATH}/static/images/oldback/images/logo.png" width="200px"
+		height="70px" title="系统首页" class="img-responsive"
+		style=" margin-top:10px" /></a>
 	<div class="topright">
 		<ul>
 			<li><span><img

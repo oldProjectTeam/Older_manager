@@ -52,13 +52,13 @@ public class SysServiceImpl implements SysService {
 	private RoleMapper roleMapper;
 
 	@Override
-	public ActiveUser authenticat(String userCode, String password)
+	public ActiveUser authenticat(String userCode, String password, Integer type)
 			throws Exception {
 		/**
 		 * 认证过程： 根据用户身份（账号）查询数据库，如果查询不到用户不存在 对输入的密码 和数据库密码 进行比对，如果一致，认证通过
 		 */
 		// 根据用户账号查询数据库
-		User user = this.findSysUserByUserCode(userCode);
+		User user = this.findSysUserByUserCode(userCode, type);
 
 		if (user == null) {
 			// 抛出异常
@@ -208,10 +208,12 @@ public class SysServiceImpl implements SysService {
 	}
 
 	// 根据用户账号查询用户信息
-	public User findSysUserByUserCode(String userCode) throws Exception {
+	public User findSysUserByUserCode(String userCode, Integer type)
+			throws Exception {
 		UserExample userExample = new UserExample();
 		UserExample.Criteria criteria = userExample.createCriteria();
 		criteria.andUsercodeEqualTo(userCode);
+		criteria.andTypeEqualTo(type);
 
 		List<User> list = userMapper.selectByExample(userExample);
 

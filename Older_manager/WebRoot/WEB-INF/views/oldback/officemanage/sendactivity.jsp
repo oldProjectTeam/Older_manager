@@ -76,7 +76,7 @@
 						<font color=red><span id="errorMsg"></span></font>
 					</h5>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8">
 					<button type="button" class="btn btn-sm btn-success" id="save_btn">确定发布</button>
 					<span id="msg"></span>
 				</div>
