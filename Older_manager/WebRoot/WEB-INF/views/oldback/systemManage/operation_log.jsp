@@ -56,10 +56,10 @@
 			<div class="col-md-12">
 				<form class="form-inline">
 					<div class="form-group">
-						&nbsp;&nbsp;<label>管理员账户</label> <input
-							type="text" class="form-control" id="adminText" placeholder="请输入管理员账户">
+						&nbsp;&nbsp;<label>管理员账户</label> <input type="text"
+							class="form-control" id="adminText" placeholder="请输入管理员账户">
 					</div>
-					<button type="submit" class="btn btn-default" id="selectwith">
+					<button type="button" class="btn btn-success" id="selectwith">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 						查询
 					</button>
@@ -101,7 +101,7 @@
 				url : "${APP_PATH}/log/list",
 				data : {
 					"pn" : pn,
-					"str" : $("#adminText").val()
+					"str" : str
 				},
 				type : "GET",
 				success : function(result) {
@@ -253,10 +253,10 @@
 			var oldername = $(this).parents("tr").find("td:eq(2)").text();
 			if (confirm("确认删除【" + oldername + "】吗")) {
 				$.ajax({
-					url : "${APP_PATH}/old/deleteolder/" + delid,
+					url : "${APP_PATH}/log/deleteLog/" + delid,
 					type : "DELETE",
 					success : function(result) {
-						go(currentNum, strs);
+						go(currentNum, $("#adminText").val());
 					}
 				});
 			}
@@ -298,41 +298,37 @@
 						empNames += $(this).parents("tr").find("td:eq(2)")
 								.text()
 								+ ",";
-						//alert(empNames);
-						//组装员工id字符串
 						del_idstr += $(this).parents("tr").find("td:eq(1)")
 								.text()
 								+ "-";
-						//alert($(this).parents("tr").find("td:eq(2)").text());
-						//alert(del_idstr);
-
 					});
 
-					//去除empNames多去的逗号
+					//去除empNames多余的,
 					empNames = empNames.substring(0, empNames.length - 1);
-					//去除多余的删除员工-
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
-					if (confirm("确认删除【" + empNames + "】吗")) {
-						//发送ajax请求
-						$
-								.ajax({
-									url : "${APP_PATH}/old/deleteallolder/"
-											+ del_idstr,
-									type : "DELETE",
-									success : function(result) {
-										//alert(result.msg);
-										//回到当前页面
-										go(currentNum, strs);
-
+					if (empNames != null && empNames.length != 0) {
+						if (confirm("确认删除【" + empNames + "】吗?")) {
+							//发送ajax请求删除
+							$.ajax({
+								url : "${APP_PATH}/log/deleteLog/" + del_idstr,
+								type : "DELETE",
+								success : function(result) {
+									if (result.code == 100) {
+										alert(result.msg);
+										go(currentNum, $("#adminText").val());
 									}
-								});
+								}
+							});
+						}
+					} else {
+						alert("请选择要删除的日志");
 					}
+
 				});
 
 		//搜索
 		$("#selectwith").click(function() {
-			go(1, strs);
-
+			go(1, $("#adminText").val());
 		});
 	</script>
 </body>

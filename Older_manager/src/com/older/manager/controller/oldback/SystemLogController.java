@@ -1,11 +1,14 @@
 package com.older.manager.controller.oldback;
 
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -37,6 +40,30 @@ public class SystemLogController {
 		}
 		PageInfo<SystemLog> pageInfo = new PageInfo<SystemLog>(logList, 6);
 		return Msg.success().add("pageInfo", pageInfo);
+	}
+	
+	/**
+	 * 批量删除
+	 * 
+	 * @param ids
+	 * @return
+	 */
+	@RequestMapping(value = "/deleteLog/{ids}", method = RequestMethod.DELETE)
+	@ResponseBody
+	public Msg deleteLog(@PathVariable("ids") String ids) {
+		if (ids.contains("-")) {
+			List<Integer> del_ids = new ArrayList<Integer>();
+			String[] str_ids = ids.split("-");
+
+			for (String string : str_ids) {
+				del_ids.add(Integer.parseInt(string));
+			}
+			systemLogService.deleteBatch(del_ids);
+		} else {
+			Integer id = Integer.parseInt(ids);
+			systemLogService.deleteLog(id);
+		}
+		return Msg.success();
 	}
 
 }

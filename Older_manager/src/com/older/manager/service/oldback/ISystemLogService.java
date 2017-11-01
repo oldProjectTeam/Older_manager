@@ -12,4 +12,16 @@ public interface ISystemLogService {
 	 */
 	List<SystemLog> getAllSystemLogList(String str);
 
+	/**
+	 * 批量删除
+	 * @param del_ids
+	 */
+	void deleteBatch(List<Integer> del_ids);
+
+	/**
+	 * 删除单个
+	 * @param id
+	 */
+	void deleteLog(Integer id);
+
 }

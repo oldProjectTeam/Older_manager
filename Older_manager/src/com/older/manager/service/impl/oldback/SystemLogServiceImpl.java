@@ -34,4 +34,18 @@ public class SystemLogServiceImpl implements ISystemLogService {
 		return systemLogs;
 	}
 
+	@Override
+	public void deleteBatch(List<Integer> del_ids) {
+		SystemLogExample example = new SystemLogExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andIdIn(del_ids);
+		systemLogMapper.deleteByExample(example);
+
+	}
+
+	@Override
+	public void deleteLog(Integer id) {
+		systemLogMapper.deleteByPrimaryKey(id);
+	}
+
 }

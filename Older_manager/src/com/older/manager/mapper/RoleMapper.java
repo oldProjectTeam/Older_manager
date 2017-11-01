@@ -2,7 +2,9 @@ package com.older.manager.mapper;
 
 import com.older.manager.bean.Role;
 import com.older.manager.bean.RoleExample;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface RoleMapper {
@@ -27,4 +29,6 @@ public interface RoleMapper {
     int updateByPrimaryKeySelective(Role record);
 
     int updateByPrimaryKey(Role record);
+
+	Role getRoleName(Integer id);
 }

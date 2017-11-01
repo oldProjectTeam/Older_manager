@@ -27,4 +27,5 @@ public interface SystemLogMapper {
     int updateByPrimaryKeySelective(SystemLog record);
 
     int updateByPrimaryKey(SystemLog record);
+
 }

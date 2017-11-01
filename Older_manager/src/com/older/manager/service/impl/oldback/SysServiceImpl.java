@@ -1,9 +1,15 @@
 package com.older.manager.service.impl.oldback;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.enterprise.inject.New;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,10 +18,16 @@ import com.older.manager.bean.ActiveUser;
 import com.older.manager.bean.ChildMenu;
 import com.older.manager.bean.Menu;
 import com.older.manager.bean.Permission;
+import com.older.manager.bean.Role;
+import com.older.manager.bean.SystemLog;
+import com.older.manager.bean.SystemLogExample;
+import com.older.manager.bean.SystemLogExample.Criteria;
 import com.older.manager.bean.User;
 import com.older.manager.bean.UserExample;
 import com.older.manager.exception.UserException;
 import com.older.manager.mapper.MenuMapper;
+import com.older.manager.mapper.RoleMapper;
+import com.older.manager.mapper.SystemLogMapper;
 import com.older.manager.mapper.UserMapper;
 import com.older.manager.mapper.UserPermissionMapper;
 import com.older.manager.service.oldback.SysService;
@@ -32,6 +44,12 @@ public class SysServiceImpl implements SysService {
 
 	@Autowired
 	private UserPermissionMapper userPermissionMapper;
+
+	@Autowired
+	private SystemLogMapper systemLogMapper;
+
+	@Autowired
+	private RoleMapper roleMapper;
 
 	@Override
 	public ActiveUser authenticat(String userCode, String password)
@@ -97,7 +115,96 @@ public class SysServiceImpl implements SysService {
 		activeUser.setPermissions(permissions);
 		activeUser.setListMenus(childMenus);
 
+		// 登录成功之后,将日志记录到数据库
+		// 先去查询数据库,看是否存在这条日志
+		SystemLog systemLog = null;
+		systemLog = this.queryLogByUserName(userCode);
+		if (systemLog != null) {
+			// 更新这一条数据
+			String ip = this.getIp();
+			systemLog.setIp(ip);
+			systemLog.setLogintime(new SimpleDateFormat().format(new Date()));
+			systemLog.setLogincount(systemLog.getLogincount() + 1);
+			systemLog.setLogindescription("正常登录");
+			systemLog.setLogintype("PC端登录");
+			this.updateLog(systemLog);
+		} else {
+			// 新增这一条日志
+			systemLog = new SystemLog();
+			systemLog.setUsername(userCode);
+			systemLog.setCompanyname("孝和集团");
+			// 查询用户对应的角色
+			String rolename = this.getRoleName(user.getId());
+			systemLog.setRolename(rolename);
+			String ip = this.getIp();
+			systemLog.setIp(ip);
+			systemLog.setLogintime(new SimpleDateFormat().format(new Date()));
+			systemLog.setLogincount(1);
+			systemLog.setLogindescription("正常登录");
+			systemLog.setLogintype("PC端登录");
+			this.insertLog(systemLog);
+		}
 		return activeUser;
+	}
+
+	/**
+	 * 通过ID查询到角色名称
+	 * 
+	 * @param id
+	 * @return
+	 */
+	private String getRoleName(Integer id) {
+		Role role = roleMapper.getRoleName(id);
+		return role.getName();
+	}
+
+	/**
+	 * 新增一条日志
+	 * 
+	 * @param systemLog
+	 */
+	private void insertLog(SystemLog systemLog) {
+		systemLogMapper.insertSelective(systemLog);
+	}
+
+	/**
+	 * 获取当前的IP地址
+	 * 
+	 * @return
+	 */
+	private String getIp() {
+		InetAddress addr = null;
+		try {
+			addr = InetAddress.getLocalHost();
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		}
+		return addr.getHostAddress();
+	}
+
+	/**
+	 * 更新日志
+	 * 
+	 * @param systemLog
+	 */
+	private void updateLog(SystemLog systemLog) {
+		systemLogMapper.updateByPrimaryKeySelective(systemLog);
+	}
+
+	/**
+	 * 通过用户名查询日志
+	 * 
+	 * @return
+	 */
+	private SystemLog queryLogByUserName(String userCode) {
+		SystemLogExample example = new SystemLogExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andUsernameEqualTo(userCode);
+		List<SystemLog> list = systemLogMapper.selectByExample(example);
+		if (list != null && list.size() == 1) {
+			return list.get(0);
+		}
+		return null;
 	}
 
 	// 根据用户账号查询用户信息
