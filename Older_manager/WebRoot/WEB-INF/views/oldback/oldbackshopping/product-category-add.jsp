@@ -90,12 +90,12 @@
 		</div>
 	</div>
 	</div>
-	<script type="text/javascript" src="Widget/icheck/jquery.icheck.min.js"></script>
+	<script type="text/javascript" src="${APP_PATH}/static/shop/Widget/icheck/jquery.icheck.min.js"></script>
 	<script type="text/javascript"
-		src="Widget/Validform/5.3.2/Validform.min.js"></script>
-	<script type="text/javascript" src="assets/layer/layer.js"></script>
-	<script type="text/javascript" src="js/H-ui.js"></script>
-	<script type="text/javascript" src="js/H-ui.admin.js"></script>
+		src="${APP_PATH}/static/shop/Widget/Validform/5.3.2/Validform.min.js"></script>
+	<script type="text/javascript" src="${APP_PATH}/static/shop/assets/layer/layer.js"></script>
+	<script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.js"></script>
+	<script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.admin.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$('.skin-minimal input').iCheck({

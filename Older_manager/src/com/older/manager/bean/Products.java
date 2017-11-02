@@ -1,15 +1,45 @@
 package com.older.manager.bean;
 
+import java.util.Date;
+
 public class Products {
     private Integer id;
 
     private String name;
 
+    private String number;
+
+    private Double orprice;
+
+    private String region;
+
+    private Double nowprice;
+
+    private Date addtime;
+
+    private Integer auditstatus;
+
+    private Integer state;
+
+    private String imagetitle;
+
+    private String placeorigin;
+
+    private Integer brandId;
+
+    private String texture;
+
+    private Double weight;
+
+    private String unit;
+
+    private String synopsis;
+
     private String description;
 
     private Integer inventory;
 
-    private Double price;
+    private Integer sales;
 
     private String paral1;
 
@@ -45,6 +75,8 @@ public class Products {
 
     private Double paral17;
 
+    private String images;
+
     public Integer getId() {
         return id;
     }
@@ -59,6 +91,118 @@ public class Products {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number == null ? null : number.trim();
+    }
+
+    public Double getOrprice() {
+        return orprice;
+    }
+
+    public void setOrprice(Double orprice) {
+        this.orprice = orprice;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region == null ? null : region.trim();
+    }
+
+    public Double getNowprice() {
+        return nowprice;
+    }
+
+    public void setNowprice(Double nowprice) {
+        this.nowprice = nowprice;
+    }
+
+    public Date getAddtime() {
+        return addtime;
+    }
+
+    public void setAddtime(Date addtime) {
+        this.addtime = addtime;
+    }
+
+    public Integer getAuditstatus() {
+        return auditstatus;
+    }
+
+    public void setAuditstatus(Integer auditstatus) {
+        this.auditstatus = auditstatus;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public void setState(Integer state) {
+        this.state = state;
+    }
+
+    public String getImagetitle() {
+        return imagetitle;
+    }
+
+    public void setImagetitle(String imagetitle) {
+        this.imagetitle = imagetitle == null ? null : imagetitle.trim();
+    }
+
+    public String getPlaceorigin() {
+        return placeorigin;
+    }
+
+    public void setPlaceorigin(String placeorigin) {
+        this.placeorigin = placeorigin == null ? null : placeorigin.trim();
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(Integer brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getTexture() {
+        return texture;
+    }
+
+    public void setTexture(String texture) {
+        this.texture = texture == null ? null : texture.trim();
+    }
+
+    public Double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Double weight) {
+        this.weight = weight;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit == null ? null : unit.trim();
+    }
+
+    public String getSynopsis() {
+        return synopsis;
+    }
+
+    public void setSynopsis(String synopsis) {
+        this.synopsis = synopsis == null ? null : synopsis.trim();
     }
 
     public String getDescription() {
@@ -77,12 +221,12 @@ public class Products {
         this.inventory = inventory;
     }
 
-    public Double getPrice() {
-        return price;
+    public Integer getSales() {
+        return sales;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setSales(Integer sales) {
+        this.sales = sales;
     }
 
     public String getParal1() {
@@ -219,5 +363,13 @@ public class Products {
 
     public void setParal17(Double paral17) {
         this.paral17 = paral17;
+    }
+
+    public String getImages() {
+        return images;
+    }
+
+    public void setImages(String images) {
+        this.images = images == null ? null : images.trim();
     }
 }

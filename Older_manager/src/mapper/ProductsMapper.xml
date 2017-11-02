@@ -4,9 +4,23 @@
   <resultMap id="BaseResultMap" type="com.older.manager.bean.Products" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="orPrice" property="orprice" jdbcType="DOUBLE" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+    <result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="auditStatus" property="auditstatus" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+    <result column="placeOrigin" property="placeorigin" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="texture" property="texture" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="synopsis" property="synopsis" jdbcType="VARCHAR" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="inventory" property="inventory" jdbcType="INTEGER" />
-    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="sales" property="sales" jdbcType="INTEGER" />
     <result column="paral1" property="paral1" jdbcType="VARCHAR" />
     <result column="paral2" property="paral2" jdbcType="VARCHAR" />
     <result column="paral3" property="paral3" jdbcType="VARCHAR" />
@@ -24,6 +38,9 @@
     <result column="paral15" property="paral15" jdbcType="DOUBLE" />
     <result column="paral16" property="paral16" jdbcType="DOUBLE" />
     <result column="paral17" property="paral17" jdbcType="DOUBLE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.older.manager.bean.Products" extends="BaseResultMap" >
+    <result column="images" property="images" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -84,10 +101,30 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, description, inventory, price, paral1, paral2, paral3, paral4, paral5, 
-    paral6, paral7, paral8, paral9, paral10, paral11, paral12, paral13, paral14, paral15, 
-    paral16, paral17
+    id, name, number, orPrice, region, nowPrice, addTime, auditStatus, state, imageTitle, 
+    placeOrigin, brand_id, texture, weight, unit, synopsis, description, inventory, sales, 
+    paral1, paral2, paral3, paral4, paral5, paral6, paral7, paral8, paral9, paral10, 
+    paral11, paral12, paral13, paral14, paral15, paral16, paral17
   </sql>
+  <sql id="Blob_Column_List" >
+    images
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.older.manager.bean.ProductsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from products
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ProductsExample" >
     select
     <if test="distinct" >
@@ -102,9 +139,11 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from products
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -119,22 +158,32 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.older.manager.bean.Products" >
-    insert into products (id, name, description, 
-      inventory, price, paral1, 
-      paral2, paral3, paral4, 
-      paral5, paral6, paral7, 
-      paral8, paral9, paral10, 
-      paral11, paral12, paral13, 
-      paral14, paral15, paral16, 
-      paral17)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
-      #{inventory,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{paral1,jdbcType=VARCHAR}, 
-      #{paral2,jdbcType=VARCHAR}, #{paral3,jdbcType=VARCHAR}, #{paral4,jdbcType=VARCHAR}, 
-      #{paral5,jdbcType=VARCHAR}, #{paral6,jdbcType=VARCHAR}, #{paral7,jdbcType=VARCHAR}, 
-      #{paral8,jdbcType=VARCHAR}, #{paral9,jdbcType=VARCHAR}, #{paral10,jdbcType=VARCHAR}, 
-      #{paral11,jdbcType=DOUBLE}, #{paral12,jdbcType=DOUBLE}, #{paral13,jdbcType=DOUBLE}, 
-      #{paral14,jdbcType=DOUBLE}, #{paral15,jdbcType=DOUBLE}, #{paral16,jdbcType=DOUBLE}, 
-      #{paral17,jdbcType=DOUBLE})
+    insert into products (id, name, number, 
+      orPrice, region, nowPrice, 
+      addTime, auditStatus, state, 
+      imageTitle, placeOrigin, brand_id, 
+      texture, weight, unit, 
+      synopsis, description, inventory, 
+      sales, paral1, paral2, 
+      paral3, paral4, paral5, 
+      paral6, paral7, paral8, 
+      paral9, paral10, paral11, 
+      paral12, paral13, paral14, 
+      paral15, paral16, paral17, 
+      images)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{number,jdbcType=VARCHAR}, 
+      #{orprice,jdbcType=DOUBLE}, #{region,jdbcType=VARCHAR}, #{nowprice,jdbcType=DOUBLE}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{auditstatus,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{imagetitle,jdbcType=VARCHAR}, #{placeorigin,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, 
+      #{texture,jdbcType=VARCHAR}, #{weight,jdbcType=DOUBLE}, #{unit,jdbcType=VARCHAR}, 
+      #{synopsis,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{inventory,jdbcType=INTEGER}, 
+      #{sales,jdbcType=INTEGER}, #{paral1,jdbcType=VARCHAR}, #{paral2,jdbcType=VARCHAR}, 
+      #{paral3,jdbcType=VARCHAR}, #{paral4,jdbcType=VARCHAR}, #{paral5,jdbcType=VARCHAR}, 
+      #{paral6,jdbcType=VARCHAR}, #{paral7,jdbcType=VARCHAR}, #{paral8,jdbcType=VARCHAR}, 
+      #{paral9,jdbcType=VARCHAR}, #{paral10,jdbcType=VARCHAR}, #{paral11,jdbcType=DOUBLE}, 
+      #{paral12,jdbcType=DOUBLE}, #{paral13,jdbcType=DOUBLE}, #{paral14,jdbcType=DOUBLE}, 
+      #{paral15,jdbcType=DOUBLE}, #{paral16,jdbcType=DOUBLE}, #{paral17,jdbcType=DOUBLE}, 
+      #{images,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.older.manager.bean.Products" >
     insert into products
@@ -145,14 +194,56 @@
       <if test="name != null" >
         name,
       </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="orprice != null" >
+        orPrice,
+      </if>
+      <if test="region != null" >
+        region,
+      </if>
+      <if test="nowprice != null" >
+        nowPrice,
+      </if>
+      <if test="addtime != null" >
+        addTime,
+      </if>
+      <if test="auditstatus != null" >
+        auditStatus,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="imagetitle != null" >
+        imageTitle,
+      </if>
+      <if test="placeorigin != null" >
+        placeOrigin,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="texture != null" >
+        texture,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="unit != null" >
+        unit,
+      </if>
+      <if test="synopsis != null" >
+        synopsis,
+      </if>
       <if test="description != null" >
         description,
       </if>
       <if test="inventory != null" >
         inventory,
       </if>
-      <if test="price != null" >
-        price,
+      <if test="sales != null" >
+        sales,
       </if>
       <if test="paral1 != null" >
         paral1,
@@ -205,6 +296,9 @@
       <if test="paral17 != null" >
         paral17,
       </if>
+      <if test="images != null" >
+        images,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -213,14 +307,56 @@
       <if test="name != null" >
         #{name,jdbcType=VARCHAR},
       </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="orprice != null" >
+        #{orprice,jdbcType=DOUBLE},
+      </if>
+      <if test="region != null" >
+        #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="nowprice != null" >
+        #{nowprice,jdbcType=DOUBLE},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditstatus != null" >
+        #{auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="imagetitle != null" >
+        #{imagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="placeorigin != null" >
+        #{placeorigin,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="texture != null" >
+        #{texture,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="synopsis != null" >
+        #{synopsis,jdbcType=VARCHAR},
+      </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
       </if>
       <if test="inventory != null" >
         #{inventory,jdbcType=INTEGER},
       </if>
-      <if test="price != null" >
-        #{price,jdbcType=DOUBLE},
+      <if test="sales != null" >
+        #{sales,jdbcType=INTEGER},
       </if>
       <if test="paral1 != null" >
         #{paral1,jdbcType=VARCHAR},
@@ -273,6 +409,9 @@
       <if test="paral17 != null" >
         #{paral17,jdbcType=DOUBLE},
       </if>
+      <if test="images != null" >
+        #{images,jdbcType=LONGVARCHAR},
+      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.older.manager.bean.ProductsExample" resultType="java.lang.Integer" >
@@ -290,14 +429,56 @@
       <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orprice != null" >
+        orPrice = #{record.orprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.region != null" >
+        region = #{record.region,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nowprice != null" >
+        nowPrice = #{record.nowprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.addtime != null" >
+        addTime = #{record.addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.auditstatus != null" >
+        auditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=INTEGER},
+      </if>
+      <if test="record.imagetitle != null" >
+        imageTitle = #{record.imagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.placeorigin != null" >
+        placeOrigin = #{record.placeorigin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brandId != null" >
+        brand_id = #{record.brandId,jdbcType=INTEGER},
+      </if>
+      <if test="record.texture != null" >
+        texture = #{record.texture,jdbcType=VARCHAR},
+      </if>
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.unit != null" >
+        unit = #{record.unit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.synopsis != null" >
+        synopsis = #{record.synopsis,jdbcType=VARCHAR},
+      </if>
       <if test="record.description != null" >
         description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.inventory != null" >
         inventory = #{record.inventory,jdbcType=INTEGER},
       </if>
-      <if test="record.price != null" >
-        price = #{record.price,jdbcType=DOUBLE},
+      <if test="record.sales != null" >
+        sales = #{record.sales,jdbcType=INTEGER},
       </if>
       <if test="record.paral1 != null" >
         paral1 = #{record.paral1,jdbcType=VARCHAR},
@@ -350,7 +531,53 @@
       <if test="record.paral17 != null" >
         paral17 = #{record.paral17,jdbcType=DOUBLE},
       </if>
+      <if test="record.images != null" >
+        images = #{record.images,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update products
+    set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      orPrice = #{record.orprice,jdbcType=DOUBLE},
+      region = #{record.region,jdbcType=VARCHAR},
+      nowPrice = #{record.nowprice,jdbcType=DOUBLE},
+      addTime = #{record.addtime,jdbcType=TIMESTAMP},
+      auditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      imageTitle = #{record.imagetitle,jdbcType=VARCHAR},
+      placeOrigin = #{record.placeorigin,jdbcType=VARCHAR},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      texture = #{record.texture,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=DOUBLE},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      synopsis = #{record.synopsis,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      inventory = #{record.inventory,jdbcType=INTEGER},
+      sales = #{record.sales,jdbcType=INTEGER},
+      paral1 = #{record.paral1,jdbcType=VARCHAR},
+      paral2 = #{record.paral2,jdbcType=VARCHAR},
+      paral3 = #{record.paral3,jdbcType=VARCHAR},
+      paral4 = #{record.paral4,jdbcType=VARCHAR},
+      paral5 = #{record.paral5,jdbcType=VARCHAR},
+      paral6 = #{record.paral6,jdbcType=VARCHAR},
+      paral7 = #{record.paral7,jdbcType=VARCHAR},
+      paral8 = #{record.paral8,jdbcType=VARCHAR},
+      paral9 = #{record.paral9,jdbcType=VARCHAR},
+      paral10 = #{record.paral10,jdbcType=VARCHAR},
+      paral11 = #{record.paral11,jdbcType=DOUBLE},
+      paral12 = #{record.paral12,jdbcType=DOUBLE},
+      paral13 = #{record.paral13,jdbcType=DOUBLE},
+      paral14 = #{record.paral14,jdbcType=DOUBLE},
+      paral15 = #{record.paral15,jdbcType=DOUBLE},
+      paral16 = #{record.paral16,jdbcType=DOUBLE},
+      paral17 = #{record.paral17,jdbcType=DOUBLE},
+      images = #{record.images,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -359,9 +586,23 @@
     update products
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=VARCHAR},
+      orPrice = #{record.orprice,jdbcType=DOUBLE},
+      region = #{record.region,jdbcType=VARCHAR},
+      nowPrice = #{record.nowprice,jdbcType=DOUBLE},
+      addTime = #{record.addtime,jdbcType=TIMESTAMP},
+      auditStatus = #{record.auditstatus,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=INTEGER},
+      imageTitle = #{record.imagetitle,jdbcType=VARCHAR},
+      placeOrigin = #{record.placeorigin,jdbcType=VARCHAR},
+      brand_id = #{record.brandId,jdbcType=INTEGER},
+      texture = #{record.texture,jdbcType=VARCHAR},
+      weight = #{record.weight,jdbcType=DOUBLE},
+      unit = #{record.unit,jdbcType=VARCHAR},
+      synopsis = #{record.synopsis,jdbcType=VARCHAR},
       description = #{record.description,jdbcType=VARCHAR},
       inventory = #{record.inventory,jdbcType=INTEGER},
-      price = #{record.price,jdbcType=DOUBLE},
+      sales = #{record.sales,jdbcType=INTEGER},
       paral1 = #{record.paral1,jdbcType=VARCHAR},
       paral2 = #{record.paral2,jdbcType=VARCHAR},
       paral3 = #{record.paral3,jdbcType=VARCHAR},
@@ -389,14 +630,56 @@
       <if test="name != null" >
         name = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="orprice != null" >
+        orPrice = #{orprice,jdbcType=DOUBLE},
+      </if>
+      <if test="region != null" >
+        region = #{region,jdbcType=VARCHAR},
+      </if>
+      <if test="nowprice != null" >
+        nowPrice = #{nowprice,jdbcType=DOUBLE},
+      </if>
+      <if test="addtime != null" >
+        addTime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="auditstatus != null" >
+        auditStatus = #{auditstatus,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="imagetitle != null" >
+        imageTitle = #{imagetitle,jdbcType=VARCHAR},
+      </if>
+      <if test="placeorigin != null" >
+        placeOrigin = #{placeorigin,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="texture != null" >
+        texture = #{texture,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="unit != null" >
+        unit = #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="synopsis != null" >
+        synopsis = #{synopsis,jdbcType=VARCHAR},
+      </if>
       <if test="description != null" >
         description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="inventory != null" >
         inventory = #{inventory,jdbcType=INTEGER},
       </if>
-      <if test="price != null" >
-        price = #{price,jdbcType=DOUBLE},
+      <if test="sales != null" >
+        sales = #{sales,jdbcType=INTEGER},
       </if>
       <if test="paral1 != null" >
         paral1 = #{paral1,jdbcType=VARCHAR},
@@ -449,15 +732,72 @@
       <if test="paral17 != null" >
         paral17 = #{paral17,jdbcType=DOUBLE},
       </if>
+      <if test="images != null" >
+        images = #{images,jdbcType=LONGVARCHAR},
+      </if>
     </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.Products" >
+    update products
+    set name = #{name,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      orPrice = #{orprice,jdbcType=DOUBLE},
+      region = #{region,jdbcType=VARCHAR},
+      nowPrice = #{nowprice,jdbcType=DOUBLE},
+      addTime = #{addtime,jdbcType=TIMESTAMP},
+      auditStatus = #{auditstatus,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      imageTitle = #{imagetitle,jdbcType=VARCHAR},
+      placeOrigin = #{placeorigin,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      texture = #{texture,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      unit = #{unit,jdbcType=VARCHAR},
+      synopsis = #{synopsis,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      inventory = #{inventory,jdbcType=INTEGER},
+      sales = #{sales,jdbcType=INTEGER},
+      paral1 = #{paral1,jdbcType=VARCHAR},
+      paral2 = #{paral2,jdbcType=VARCHAR},
+      paral3 = #{paral3,jdbcType=VARCHAR},
+      paral4 = #{paral4,jdbcType=VARCHAR},
+      paral5 = #{paral5,jdbcType=VARCHAR},
+      paral6 = #{paral6,jdbcType=VARCHAR},
+      paral7 = #{paral7,jdbcType=VARCHAR},
+      paral8 = #{paral8,jdbcType=VARCHAR},
+      paral9 = #{paral9,jdbcType=VARCHAR},
+      paral10 = #{paral10,jdbcType=VARCHAR},
+      paral11 = #{paral11,jdbcType=DOUBLE},
+      paral12 = #{paral12,jdbcType=DOUBLE},
+      paral13 = #{paral13,jdbcType=DOUBLE},
+      paral14 = #{paral14,jdbcType=DOUBLE},
+      paral15 = #{paral15,jdbcType=DOUBLE},
+      paral16 = #{paral16,jdbcType=DOUBLE},
+      paral17 = #{paral17,jdbcType=DOUBLE},
+      images = #{images,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Products" >
     update products
     set name = #{name,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      orPrice = #{orprice,jdbcType=DOUBLE},
+      region = #{region,jdbcType=VARCHAR},
+      nowPrice = #{nowprice,jdbcType=DOUBLE},
+      addTime = #{addtime,jdbcType=TIMESTAMP},
+      auditStatus = #{auditstatus,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      imageTitle = #{imagetitle,jdbcType=VARCHAR},
+      placeOrigin = #{placeorigin,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      texture = #{texture,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      unit = #{unit,jdbcType=VARCHAR},
+      synopsis = #{synopsis,jdbcType=VARCHAR},
       description = #{description,jdbcType=VARCHAR},
       inventory = #{inventory,jdbcType=INTEGER},
-      price = #{price,jdbcType=DOUBLE},
+      sales = #{sales,jdbcType=INTEGER},
       paral1 = #{paral1,jdbcType=VARCHAR},
       paral2 = #{paral2,jdbcType=VARCHAR},
       paral3 = #{paral3,jdbcType=VARCHAR},
