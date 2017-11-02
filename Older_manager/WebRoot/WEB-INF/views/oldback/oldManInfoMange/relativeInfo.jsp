@@ -225,6 +225,7 @@
 			go(1, ${id});
 		});
 		function go(pn, id) {
+		$("#old_delete_all_btn").attr("disabled", true);
 			$.ajax({
 				url : "${APP_PATH}/rel/selectAllRelatives",
 				data : {
@@ -515,7 +516,7 @@
 				});
 
 		//点击删除全部，就批量删除
-		$("#relatives_delete_all_btn").click(
+		$("#old_delete_all_btn").click(
 				function() {
 					//alert();
 					var empNames = "";

@@ -117,6 +117,7 @@
 			go(${pn}, "");
 		});
 		function go(pn, str) {
+		$("#old_delete_all_btn").attr("disabled", true);
 			$.ajax({
 				url : "${APP_PATH}/old/selectallolderwith",
 				data : {
