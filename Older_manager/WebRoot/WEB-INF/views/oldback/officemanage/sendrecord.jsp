@@ -161,13 +161,13 @@
 						//构建分页信息
 						build_page_text(result);
 						//构建分页条
-						build_page_nav(result);
+						build_page_nav(result,0);
 						//构建表格数据
 						build_table_data(result);
 					}
 				}
 			});
-		}
+		} 
 
 		function build_page_text(result) {
 			$("#page_text").empty();
@@ -179,11 +179,19 @@
 			currentNum = result.extend.pageInfo.pageNum;
 		}
 		//解析显示分页条信息
-		function build_page_nav(result) {
+		function build_page_nav(result,code) {
+			var firstPageLi;
+			var lastPageLi;
 			$("#page_nav").empty();
 			var ul = $("<ul></ul>").addClass("pagination");
-			var firstPageLi = $("<li></li>").append(
-					$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+			if(code==1){
+				firstPageLi = $("<li></li>").append(
+						$("<a></a>").append("首页").attr("href", "javascript:search(1)"));
+			}else{
+				firstPageLi = $("<li></li>").append(
+						$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+			}
+			
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
 			if (result.extend.pageInfo.hasPreviousPage == false) {
@@ -192,23 +200,42 @@
 			} else {
 				//为元素添加点击翻页事件
 				prePageLi.click(function() {
-					go(result.extend.pageInfo.pageNum - 1);
+					
+					if(code==1){
+						search(result.extend.pageInfo.pageNum - 1);
+					}else{
+						go(result.extend.pageInfo.pageNum - 1);
+					}
 				});
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
-			var lastPageLi = $("<li></li>").append(
-					$("<a></a>").append("末页").attr(
-							"href",
-							"javascript:go(" + result.extend.pageInfo.pages
-									+ ")"));
+			if(code==1){
+				lastPageLi = $("<li></li>").append(
+						$("<a></a>").append("末页").attr(
+								"href",
+								"javascript:search(" + result.extend.pageInfo.pages
+										+ ")"));
+			}else{
+				lastPageLi = $("<li></li>").append(
+						$("<a></a>").append("末页").attr(
+								"href",
+								"javascript:go(" + result.extend.pageInfo.pages
+										+ ")"));
+			}
+			
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
 				lastPageLi.addClass("disabled");
 			} else {
 				//为元素添加点击翻页事件
 				nextPageLi.click(function() {
-					go(result.extend.pageInfo.pageNum + 1);
+					if(code==1){
+						search(result.extend.pageInfo.pageNum + 1);
+					}else{
+						go(result.extend.pageInfo.pageNum + 1);
+					}
+					
 				});
 			}
 			//添加首页和前一页的提示
@@ -221,7 +248,11 @@
 					numLi.addClass("active");
 				}
 				numLi.click(function() {
-					go(item);
+					if(code==1){
+						search(item);
+					}else{
+						go(item);
+					}
 				});
 				ul.append(numLi);
 			});
@@ -389,38 +420,45 @@
 
 		//搜索按钮
 		$("#search").click(function() {
-			var sender = $('#sender').val();//获取值
-			var receiverphone = $('#receiverphone').val();
-			var receivername = $('#receivername').val();
-			search(sender, receiverphone, receivername);
-
+			
+			search(1);
 		});
 
-		function search(dsender, dreceiverphone, dreceivername) {
-			$.ajax({
-				url : "Sms/findAllSmsBySearch",
-				data : {
-					"sender" : dsender,
-					"receiverphone" : dreceiverphone,
-					"receivername" : dreceivername
-				},
-				type : "get",
-				success : function(result) {
-					if (result.code == 100) {
-						if (result.extend.pageInfo.list == null) {
-							alert("查询不到相关数据！");
-						} else {
-							//构建分页信息
-							build_page_text(result);
-							//构建分页条
-							build_page_nav(result);
-							//构建表格数据
-							build_table_data(result);
-						}
+		function search(pn) {
+			var dsender = $('#sender').val();//获取值
+			var dreceiverphone = $('#receiverphone').val();
+			var dreceivername = $('#receivername').val();
+			if(dsender.length==0&&dreceiverphone.length==0&&dreceivername.length==0){
+				alert("请输入数据在执行搜索！");
+				go(1);
+			}else{
+				$.ajax({
+					url : "Sms/findAllSmsBySearch",
+					data : {
+						"sender" : dsender,
+						"receiverphone" : dreceiverphone,
+						"receivername" : dreceivername,
+						"pn":pn
+					},
+					type : "get",
+					success : function(result) {
+						if (result.code == 100) {
+							if (result.extend.pageInfo.list == null) {
+								alert("查询不到相关数据！");
+							} else {
+								//构建分页信息
+								build_page_text(result);
+								//构建分页条
+								build_page_nav(result,1);
+								//构建表格数据
+								build_table_data(result);
+							}
 
+						}
 					}
-				}
-			});
+				});
+			}
+			
 		}
 
 		function ChangeDateFormat(d) {

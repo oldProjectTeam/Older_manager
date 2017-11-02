@@ -37,7 +37,7 @@
 	<a href="main.jsp" target="_parent"><img
 		src="${APP_PATH}/static/images/oldback/images/logo.png" width="200px"
 		height="70px" title="系统首页" class="img-responsive"
-		style=" margin-top:10px" /></a>
+		style=" margin-top:10px;margin-left:10px" /></a>
 	<div class="topright">
 		<ul>
 			<li><span><img

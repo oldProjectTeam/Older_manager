@@ -209,9 +209,9 @@
 		</div>
 		<script type="text/javascript">
 			var totalRecord, currentNum;
-			$(function() {
+			 $(function() {
 				go(1);
-			});
+			}); 
 			function go(pn) {
 				$.ajax({
 					url : "notice/findAllNoticeByPage",
@@ -222,7 +222,7 @@
 							//构建分页信息
 							build_page_text(result);
 							//构建分页条
-							build_page_nav(result);
+							build_page_nav(result,0);
 							//构建表格数据
 							build_table_data(result);
 						}
@@ -240,12 +240,21 @@
 				currentNum = result.extend.pageInfo.pageNum;
 			}
 			//解析显示分页条信息
-			function build_page_nav(result) {
+			function build_page_nav(result,code) {
+				var firstPageLi;
+				var lastPageLi;
 				$("#page_nav").empty();
 				var ul = $("<ul></ul>").addClass("pagination");
-				var firstPageLi = $("<li></li>").append(
-						$("<a></a>").append("首页").attr("href",
-								"javascript:go(1)"));
+				if(code==1){
+					firstPageLi = $("<li></li>").append(
+							$("<a></a>").append("首页").attr("href",
+									"javascript:search(1)"));
+				}else{
+					firstPageLi = $("<li></li>").append(
+							$("<a></a>").append("首页").attr("href",
+									"javascript:go(1)"));
+				}
+				
 				var prePageLi = $("<li></li>").append(
 						$("<a></a>").append("&laquo;"));
 				if (result.extend.pageInfo.hasPreviousPage == false) {
@@ -259,18 +268,34 @@
 				}
 				var nextPageLi = $("<li></li>").append(
 						$("<a></a>").append("&raquo;"));
-				var lastPageLi = $("<li></li>").append(
-						$("<a></a>").append("末页").attr(
-								"href",
-								"javascript:go(" + result.extend.pageInfo.pages
-										+ ")"));
+				if(code==1){
+					lastPageLi = $("<li></li>").append(
+							$("<a></a>").append("末页").attr(
+									"href",
+									"javascript:search(" + result.extend.pageInfo.pages
+											+ ")"));
+				}else{
+					lastPageLi = $("<li></li>").append(
+							$("<a></a>").append("末页").attr(
+									"href",
+									"javascript:go(" + result.extend.pageInfo.pages
+											+ ")"));
+				}
+				
 				if (result.extend.pageInfo.hasNextPage == false) {
 					nextPageLi.addClass("disabled");
 					lastPageLi.addClass("disabled");
 				} else {
-					nextPageLi.click(function() {
-						go(result.extend.pageInfo.pageNum + 1);
-					});
+					if(code==1){
+						nextPageLi.click(function() {
+							search(result.extend.pageInfo.pageNum + 1);
+						});
+					}else{
+						nextPageLi.click(function() {
+							go(result.extend.pageInfo.pageNum + 1);
+						});
+					}
+					
 				}
 				//添加首页和前一页的提示
 				ul.append(firstPageLi).append(prePageLi);
@@ -283,7 +308,11 @@
 						numLi.addClass("active");
 					}
 					numLi.click(function() {
-						go(item);
+						if(code==1){
+							search(item);
+						}else{
+							go(item);
+						}
 					});
 					ul.append(numLi);
 				});
@@ -523,46 +552,46 @@
 
 			//搜索按钮
 			$("#search").click(function() {
-				var title = $('#stitle').val();//获取值
-				var releasepeople = $('#sreleasepeople').val();
+				search(1);
+			});
+
+			function search(pn) {
+				var dtitle = $('#stitle').val();//获取值
+				var dreleasepeople = $('#sreleasepeople').val();
 				
-				if (title.length == 0 && releasepeople.length == 0) {
+				if (dtitle.length == 0 && dreleasepeople.length == 0) {
 					alert("请输入搜索数据！");
 					go(1);
 				} else {
-					search(title, releasepeople);
+					$.ajax({
+						url : "notice/findAllNoticeBySearch",
+						data : {
+							"title" : dtitle,
+							"releasepeople" : dreleasepeople,
+							"pn":pn
+						},
+						type : "get",
+						success : function(result) {
+							if (result.code == 100) {
+								if (result.extend.pageInfo.list == null) {
+									alert("查询不到相关数据！");
+								} else {
+									//构建分页信息
+									build_page_text(result);
+									//构建分页条
+									build_page_nav(result,1);
+									//构建表格数据
+									build_table_data(result);
+								}
+
+							}else{
+								alert(result.extend.msg);
+							}
+						}
+					});
 				}
 				
-
-			});
-
-			function search(dtitle, dreleasepeople) {
-				$.ajax({
-					url : "notice/findAllNoticeBySearch",
-					data : {
-						"title" : dtitle,
-						"releasepeople" : dreleasepeople
-					},
-					type : "get",
-					success : function(result) {
-						if (result.code == 100) {
-							if (result.extend.pageInfo.list == null) {
-								alert("查询不到相关数据！");
-							} else {
-								
-								//构建分页信息
-								build_page_text(result);
-								//构建分页条
-								build_page_nav(result);
-								//构建表格数据
-								build_table_data(result);
-							}
-
-						}else{
-							alert(result.extend.msg);
-						}
-					}
-				});
+				
 			}
 
 			function ChangeDateFormat(d) {

@@ -102,9 +102,9 @@
 	<script type="text/javascript">
 		var totalRecord, currentNum;
 		/* 分页 */
-		$(function() {
+		 $(function() {
 			go(1);
-		});
+		}); 
 		function go(pn) {
 			$.ajax({
 				url : "Course/getCoursePage",
@@ -116,7 +116,7 @@
 						//构建分页信息
 						build_page_text(result);
 						//构建分页条
-						build_page_nav(result);
+						build_page_nav(result,0);
 						//构建表格数据
 						build_table_data(result);
 					}
@@ -134,11 +134,19 @@
 			currentNum = result.extend.pageInfo.pageNum;
 		}
 		//解析显示分页条信息
-		function build_page_nav(result) {
+		function build_page_nav(result,code) {
+			var firstPageLi;
+			var lastPageLi;
 			$("#page_nav").empty();
 			var ul = $("<ul></ul>").addClass("pagination");
-			var firstPageLi = $("<li></li>").append(
-					$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+			if(code==1){
+				firstPageLi = $("<li></li>").append(
+						$("<a></a>").append("首页").attr("href", "javascript:search(1)"));
+			}else{
+				firstPageLi = $("<li></li>").append(
+						$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+			}
+			
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
 			if (result.extend.pageInfo.hasPreviousPage == false) {
@@ -147,23 +155,42 @@
 			} else {
 				//为元素添加点击翻页事件
 				prePageLi.click(function() {
-					go(result.extend.pageInfo.pageNum - 1);
+					if(code==1){
+						search(result.extend.pageInfo.pageNum - 1);
+					}else{
+						go(result.extend.pageInfo.pageNum - 1);
+					}
+					
 				});
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
-			var lastPageLi = $("<li></li>").append(
-					$("<a></a>").append("末页").attr(
-							"href",
-							"javascript:go(" + result.extend.pageInfo.pages
-									+ ")"));
+			if(code==1){
+				lastPageLi = $("<li></li>").append(
+						$("<a></a>").append("末页").attr(
+								"href",
+								"javascript:search(" + result.extend.pageInfo.pages
+										+ ")"));
+			}else{
+				lastPageLi = $("<li></li>").append(
+						$("<a></a>").append("末页").attr(
+								"href",
+								"javascript:go(" + result.extend.pageInfo.pages
+										+ ")"));
+			}
+			
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
 				lastPageLi.addClass("disabled");
 			} else {
 				//为元素添加点击翻页事件
 				nextPageLi.click(function() {
-					go(result.extend.pageInfo.pageNum + 1);
+					if(code==1){
+						search(result.extend.pageInfo.pageNum + 1);
+					}else{
+						go(result.extend.pageInfo.pageNum + 1);
+					}
+					
 				});
 			}
 			//添加首页和前一页的提示
@@ -176,7 +203,12 @@
 					numLi.addClass("active");
 				}
 				numLi.click(function() {
-					go(item);
+					if(code==1){
+						search(item);
+					}else{
+						go(item);
+					}
+					
 				});
 				ul.append(numLi);
 			});
@@ -190,6 +222,7 @@
 		function build_table_data(result) {
 			$("#head").empty();
 			$("#table_data").empty();
+			
 			var headTR = $("<tr></tr>");
 			var checkBox = $("<td></td>").append(
 					$("<input type='checkbox' id='check_item_all'/>"));
@@ -361,37 +394,39 @@
 
 		//搜索按钮
 		$("#search").click(function() {
-			var coursename = $('#coursename').val();//获取值
-			var teacher = $('#teacher').val();
-			if (coursename.length == 0 && teacher.length == 0) {
-				alert("请输入数据");
-			} else {
-				search(coursename, teacher);
-			}
-
+			search(1);
 		});
-		function search(coursename, Teacher) {
-			$.ajax({
-				url : "Course/findAllCoursesByCourseName",
-				data : {
-					"CoursesName" : coursename,
-					"teacher" : Teacher
-				},
-				type : "get",
-				success : function(result) {
+		function search(pn) {
+			var coursename = $('#coursename').val();//获取值
+			var Teacher = $('#teacher').val();
+			if (coursename.length == 0 && Teacher.length == 0) {
+				alert("请输入数据");
+				go(1);
+			} else {
+				$.ajax({
+					url : "Course/findAllCoursesByCourseName",
+					data : {
+						"CoursesName" : coursename,
+						"teacher" : Teacher,
+						"pn":pn
+					},
+					type : "get",
+					success : function(result) {
 
-					if (result.code == 100) {
-						//console.log(result.extend.pageInfo);
-						//构建分页信息
-						build_page_text(result);
-						//构建分页条
-						build_page_nav(result);
-						//构建表格数据
-						build_table_data(result);
+						if (result.code == 100) {
+							//console.log(result.extend.pageInfo);
+							//构建分页信息
+							build_page_text(result);
+							//构建分页条
+							build_page_nav(result,1);
+							//构建表格数据
+							build_table_data(result);
 
+						}
 					}
-				}
-			});
+				});
+			}
+			
 		}
 		function ChangeDateFormat(d) {
 			//将时间戳转为int类型，构造Date类型

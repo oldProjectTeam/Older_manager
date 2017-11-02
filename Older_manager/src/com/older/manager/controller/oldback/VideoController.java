@@ -227,18 +227,21 @@ public class VideoController {
 		PageHelper.startPage(pn, pageSize);
 		List<Video> list = null;
 		if ((title != null && !title.equals(""))
-				&& (vcount != null && !vcount.equals(""))) {
+				&& (vcount != null && !vcount.equals(""))&&(creator==null||creator.equals(""))) {
+			System.out.println("...............进入4");
 			list = videoService.findAllVideoByNameAndVCount(
 					new String(title.getBytes("iso-8859-1"), "utf-8"),
 					Integer.valueOf(vcount));
 		} else if ((creator != null && !creator.equals(""))
-				&& (vcount != null && !vcount.equals(""))) {
+				&& (vcount != null && !vcount.equals(""))&&(title==null||title.equals(""))) {
+			System.out.println("...............进入3");
 			list = videoService.findAllVideoByCreatorsAndVCount(new String(
 					creator.getBytes("iso-8859-1"), "utf-8"), Integer
 					.valueOf(vcount));
 		} else if ((creator != null && !creator.equals(""))
 				&& (vcount != null && !vcount.equals(""))
 				&& (title != null && !title.equals(""))) {
+			System.out.println("...............进入2");
 			list = videoService.findAllVideoByCreatorsAndNameAndVCount(
 					new String(title.getBytes("iso-8859-1"), "utf-8"),
 					new String(creator.getBytes("iso-8859-1"), "utf-8"),

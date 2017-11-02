@@ -16,7 +16,7 @@
 <meta name="content-type" content="text/html; charset=UTF-8">
 <!-- 引入jquery -->
 <script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <!-- 引入样式 -->
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
@@ -122,7 +122,7 @@
 						//构建分页信息
 						build_page_text(result);
 						//构建分页条
-						build_page_nav(result);
+						build_page_nav(result,0);
 						//构建表格数据
 						build_table_data(result);
 					}
@@ -140,11 +140,19 @@
 			currentNum = result.extend.pageInfo.pageNum;
 		}
 		//解析显示分页条信息
-		function build_page_nav(result) {
+		function build_page_nav(result,code) {
+			var firstPageLi;
+			var lastPageLi;
 			$("#page_nav").empty();
 			var ul = $("<ul></ul>").addClass("pagination");
-			var firstPageLi = $("<li></li>").append(
-					$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+			if(code==1){
+				firstPageLi = $("<li></li>").append(
+						$("<a></a>").append("首页").attr("href", "javascript:search(1)"));
+			}else{
+				firstPageLi = $("<li></li>").append(
+						$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+			}
+			
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
 			if (result.extend.pageInfo.hasPreviousPage == false) {
@@ -153,23 +161,42 @@
 			} else {
 				//为元素添加点击翻页事件
 				prePageLi.click(function() {
-					go(result.extend.pageInfo.pageNum - 1);
+					if(code==1){
+						search(result.extend.pageInfo.pageNum - 1);
+					}else{
+						go(result.extend.pageInfo.pageNum - 1);
+					}
+					
 				});
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
-			var lastPageLi = $("<li></li>").append(
-					$("<a></a>").append("末页").attr(
-							"href",
-							"javascript:go(" + result.extend.pageInfo.pages
-									+ ")"));
+			if(code==1){
+				lastPageLi = $("<li></li>").append(
+						$("<a></a>").append("末页").attr(
+								"href",
+								"javascript:search(" + result.extend.pageInfo.pages
+										+ ")"));
+			}else{
+				lastPageLi = $("<li></li>").append(
+						$("<a></a>").append("末页").attr(
+								"href",
+								"javascript:go(" + result.extend.pageInfo.pages
+										+ ")"));
+			}
+			
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
 				lastPageLi.addClass("disabled");
 			} else {
 				//为元素添加点击翻页事件
 				nextPageLi.click(function() {
-					go(result.extend.pageInfo.pageNum + 1);
+					if(code==1){
+						search(result.extend.pageInfo.pageNum + 1);
+					}else{
+						go(result.extend.pageInfo.pageNum + 1);
+					}
+					
 				});
 			}
 			//添加首页和前一页的提示
@@ -182,7 +209,12 @@
 					numLi.addClass("active");
 				}
 				numLi.click(function() {
-					go(item);
+					if(code==1){
+						search(item);
+					}else{
+						go(item);
+					}
+					
 				});
 				ul.append(numLi);
 			});
@@ -359,21 +391,21 @@
 
 		//搜索按钮
 		$("#searchvideo").click(function() {
+			search(1);
+		});
+
+		function search(pn) {
 			var dtitle = $('#videotitle').val();//获取值
 			var dcreator = $('#creator').val();
 			var dvcount = $('#selectCount').val();
 			
-			search(dtitle, dcreator,dvcount);
-
-		});
-
-		function search(dtitle, dcreator,dvcount) {
 			$.ajax({
 				url : "video/findAllVideoBySearch",
 				data : {
 					"title" : dtitle,
 					"creator" : dcreator,
-					"vcount" : dvcount
+					"vcount" : dvcount,
+					"pn":pn
 				},
 				type : "get",
 				success : function(result) {
@@ -381,7 +413,7 @@
 						//构建分页信息
 						build_page_text(result);
 						//构建分页条
-						build_page_nav(result);
+						build_page_nav(result,1);
 						//构建表格数据
 						build_table_data(result);
 

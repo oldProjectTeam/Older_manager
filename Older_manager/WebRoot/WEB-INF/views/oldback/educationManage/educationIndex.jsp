@@ -21,7 +21,7 @@
 <meta http-equiv="description" content="This is my page">
 <!-- 引入jquery -->
 <script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <!-- 引入样式 -->
 
 <link
