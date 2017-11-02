@@ -48,19 +48,20 @@
 		<form class="form-inline" id="noticeForm">
 			<div class="form-group">
 				<input type="hidden" id="id" name="id"> <label
-					for="exampleInputEmail2">公告标题:</label> <input type="text"
-					class="form-control" id="title" name="title" placeholder="公告标题">
+					for="exampleInputEmail2">公告标题:<span style="color:red">*</span></label> <input type="text"
+					class="form-control" id="title" name="title" placeholder="公告标题" onchange="checkStr(this.value)">
 			</div>
 			<div class="form-group">
-				<label for="exampleInputEmail2">发布人:</label> <input type="text"
-					class="form-control" id="releasepeople" name="releasepeople" placeholder="发布人姓名">
+				<label for="exampleInputEmail2">发布人:<span style="color:red">*</span></label> <input type="text"
+					class="form-control" id="releasepeople" name="releasepeople" placeholder="发布人姓名" onchange="checkStr(this.value)">
+					<input type="hidden" id="time" name="time"> 
 			</div>
-			<div class="form-group">
-				<label for="exampleInputEmail2">发布时间:</label> <input type="datetime-local"
+			<!-- <div class="form-group">
+				<label for="exampleInputEmail2">发布时间:<span style="color:red">*</span></label> <input type="datetime-local"
 					class="form-control" id="time" name="time" >
-			</div>
+			</div> -->
 			<div>
-				<label for="exampleInputEmail2">通告类型:</label> <select id="type"
+				<label for="exampleInputEmail2">通告类型:<span style="color:red">*</span></label> <select id="type"
 					name="type">
 					<option value="通知类型">通知类型</option>
 					<option value="会议通知">会议通知</option>
@@ -69,32 +70,54 @@
 					<option value="重大通知">重大通知</option>
 				</select>
 			</div>
-			<br /> <label>发布内容:</label><br />
+			<br /> <label>发布内容:<span style="color:red">*</span></label><br />
 			<div class="form-group">
 				<textarea class="form-control" placeholder="发布内容" rows="10"
 					id="content" name="content" cols="128"></textarea>
 			</div>
 			<br /> <br />
-			<button type="button" class="col-sm-offset-8 btn btn-info" id="sendNotice">发送</button>
+			<button type="button" class="col-sm-offset-8 btn btn-info" id="sendNotice">发布</button>
 		</form>
 	</div>
 	<script type="text/javascript">
 	
 	//点击保存按钮，修改报名信息
 	$("#sendNotice").click(function() {
-		$.ajax({
-			url : "${APP_PATH}/notice/addNotice",
-			type : "post",
-			data : $("#noticeForm").serialize(),
-			success : function(result) {
-				if (result.code == 100) {
-					alert(result.extend.msg);
-				} else {
-					alert(result.extend.msg);
+		//var time=document.getElementById("time").val;
+		var releasepeople=$("#releasepeople").val();
+		var type=$("#type").val();
+		var content=$("#content").val();
+		var title=$("#title").val();
+		if(title==''||releasepeople==''||type==''||content==''){
+			alert("请填写完整信息再发布");
+		}else{
+			$.ajax({
+				url : "${APP_PATH}/notice/addNotice",
+				type : "post",
+				data : $("#noticeForm").serialize(),
+				success : function(result) {
+					if (result.code == 100) {
+						alert(result.extend.msg);
+					} else {
+						alert(result.extend.msg);
+					}
 				}
-			}
-		});
+			});
+		}
+		
 	});
+	function checkStr(str) {
+		// [\u4E00-\uFA29]|[\uE7C7-\uE7F3]汉字编码范围 
+		var re1 = new RegExp(
+				"^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
+		if (!re1.test(str)) {
+			alert("请输入中文字符");
+			
+			return false;
+		} else {
+			return true;
+		}
+	}
 	</script>
 </body>
 </html>

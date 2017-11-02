@@ -50,15 +50,18 @@
 		<form class="form-inline">
 			<div class="form-group">
 				<label for="exampleInputName2">发送人:</label> <input type="text"
-					class="form-control" placeholder="发送人" id="sender">
+					class="form-control" placeholder="发送人" id="sender"
+					onchange="checkStr(this.value)">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputName2">收信人号码:</label> <input type="text"
-					class="form-control" placeholder="收信人号码" id="receiverphone">
+					class="form-control" placeholder="收信人号码" id="receiverphone"
+					onchange="checkPhone(this.value)">
 			</div>
 			<div class="form-group">
 				<label for="exampleInputEmail2">收信人姓名:</label> <input type="text"
-					class="form-control" placeholder="收信人姓名" id="receivername">
+					class="form-control" placeholder="收信人姓名" id="receivername"
+					onchange="checkStr(this.value)">
 			</div>
 			<button type="button" class="btn btn-info" id="search">查询</button>
 			<button type="reset" class="btn btn-warning">重置</button>
@@ -85,7 +88,7 @@
 			<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
 			<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
 		</div>
-		
+
 	</div>
 
 	<!--查看模态框  -->
@@ -122,7 +125,7 @@
 										<td>发送时间</td>
 										<td id="Ssendtime"></td>
 									</tr>
-									
+
 								</table>
 								<div class="panel-heading">发送内容</div>
 								<div class="panel-body">
@@ -283,7 +286,7 @@
 					var id = $(this).parents("tr").find("td:eq(1)").text();
 					$("#activity_view_modal").modal();
 					$.ajax({
-						url : "Sms/findSmsById?id="+ find_btn.attr("SmsId"),
+						url : "Sms/findSmsById?id=" + find_btn.attr("SmsId"),
 						type : "get",
 						success : function(result) {
 							if (result.code == 100) {
@@ -291,9 +294,10 @@
 								$("#Sreceivername").html(SMS.receivername);
 								$("#Sreceiverphone").html(SMS.receiverphone);
 								$("#Ssender").html(SMS.sender);
-								$("#Ssendtime").html(ChangeDateFormat(SMS.sendtime));
+								$("#Ssendtime").html(
+										ChangeDateFormat(SMS.sendtime));
 								$("#Scontent").html(SMS.content);
-								
+
 							} else {
 								alert("获取失败，请重试！");
 							}
@@ -330,9 +334,6 @@
 										del_btn)).appendTo($("#table_data"));
 			});
 		}
-
-		
-		
 
 		//全选
 		$(document).on("click", "#check_item_all", function() {
@@ -391,7 +392,6 @@
 			var sender = $('#sender').val();//获取值
 			var receiverphone = $('#receiverphone').val();
 			var receivername = $('#receivername').val();
-			
 			search(sender, receiverphone, receivername);
 
 		});
@@ -407,9 +407,9 @@
 				type : "get",
 				success : function(result) {
 					if (result.code == 100) {
-						if(result.extend.pageInfo.list==null){
+						if (result.extend.pageInfo.list == null) {
 							alert("查询不到相关数据！");
-						}else{
+						} else {
 							//构建分页信息
 							build_page_text(result);
 							//构建分页条
@@ -417,7 +417,6 @@
 							//构建表格数据
 							build_table_data(result);
 						}
-						
 
 					}
 				}
@@ -428,19 +427,49 @@
 			//将时间戳转为int类型，构造Date类型
 			if (d != null) {
 				var date = new Date(parseInt(d));
-
 				//月份得+1，且只有个位数时在前面+0
 				var month = date.getMonth() + 1 + "月";
-
 				//日期为个位数时在前面+0
 				var currentDate = date.getDate() + "日";
-
 				//getFullYear得到4位数的年份 ，返回一串字符串
 				return date.getFullYear() + "年" + month + currentDate;
 			} else {
 				return null;
 			}
 
+		}
+
+		function checkPhone(val) {
+			if (val.length == 0) {
+				alert('请输入手机号码！');
+				$("#receiverphone").focus();
+				return false;
+			}
+			if (val.length != 11) {
+				alert('请输入有效的手机号码！');
+				$("#receiverphone").focus();
+				return false;
+			}
+
+			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+			if (!myreg.test(val)) {
+				alert('请输入有效的手机号码！');
+				$("#receiverphone").focus();
+				return false;
+			}
+		}
+
+		function checkStr(str) {
+			// [\u4E00-\uFA29]|[\uE7C7-\uE7F3]汉字编码范围 
+			var re1 = new RegExp(
+					"^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
+			if (!re1.test(str)) {
+				alert("请输入中文字符");
+				
+				return false;
+			} else {
+				return true;
+			}
 		}
 	</script>
 </body>

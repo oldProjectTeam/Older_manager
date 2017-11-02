@@ -2,23 +2,32 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 /**
  * @author ym
  *
  */
 public class Sms {
     private Integer id;
-
+    
+    @NotNull
+	@Pattern(regexp = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)", message = "姓名不合法")
     private String sender;
 
     private Date sendtime;
 
+    @NotNull
     private String content;
 
     private Integer number;
-
+    
+    @NotNull
+	@Pattern(regexp = "(^1[0-9]{10}$)", message = "接收的手机号码格式不正确")
     private String receiverphone;
 
+    @Pattern(regexp = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)", message = "姓名不合法")
     private String receivername;
 
     private String sms3;

@@ -5,13 +5,20 @@ package com.older.manager.controller.oldback;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,13 +72,33 @@ public class SmsController {
 	 */
 	@RequestMapping("/addSms")
 	@ResponseBody
-	public Msg addSms(Sms sms) {
-		int state = smsService.addSms(sms);
-		if (state == 0) {
+	public Msg addSms(@Valid Sms sms, BindingResult result) {
+		if (sms!=null) {
+			List<Map<String, Object>> errorList = new ArrayList<Map<String, Object>>();
+			if (result.hasErrors()) {
+				for (FieldError fieldError : result.getFieldErrors()) {
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("fieldName", fieldError.getField());
+					map.put("errorMessage", fieldError.getDefaultMessage());
+					errorList.add(map);
+					System.out.println("出错的字段名为:------------->"
+							+ fieldError.getField());
+					System.out.println("出错信息为:---------------->"
+							+ fieldError.getDefaultMessage());
+				}
+				return Msg.fail().add("msg", "发送短信失败");
+			} else {
+				int state = smsService.addSms(sms);
+				if (state == 0) {
+					return Msg.fail().add("msg", "发送短信失败");
+				} else {
+					return Msg.success().add("msg", "发送失败");
+				}
+			}
+		}else {
 			return Msg.fail().add("msg", "发送短信失败");
-		} else {
-			return Msg.success().add("msg", "发送失败");
 		}
+		
 	}
 
 	/**

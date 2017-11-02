@@ -57,11 +57,11 @@
 			<form class="form-inline">
 				<div class="form-group">
 					<label for="exampleInputName2">通告标题:</label> <input type="text"
-						class="form-control" placeholder="通告标题" id="stitle">
+						class="form-control" placeholder="通告标题" id="stitle" onchange="checkStr(this.value)">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail2">发布人:</label> <input type="email"
-						class="form-control" placeholder="发布人" id="sreleasepeople">
+						class="form-control" placeholder="发布人" id="sreleasepeople" onchange="checkStr(this.value)">
 				</div>
 				<button type="button" class="btn btn-info" id="search">搜索</button>
 			</form>
@@ -113,16 +113,18 @@
 										<tr>
 											<td>发布时间</td>
 											<td>
-												<div class="col-sm-7">
-													<input type="datetime" class="form-control" id="time"
+												<label class="col-sm-7 control-label" id="timet"></label>
+												<div class="col-sm-1">
+													<input type="hidden" class="form-control" id="time"
 														name="time">
-												</div> <label class="col-sm-3 control-label" ></label>
+													
+												</div> 
 											</td>
 										</tr>
 										<tr>
 											<td>发布人</td>
 											<td><input type="text" 
-												id="releasepeople" name="releasepeople"></td>
+												id="releasepeople" name="releasepeople" onchange="checkStr(this.value)"></td>
 										</tr>
 										<tr>
 											<td>通知类型</td>
@@ -295,6 +297,7 @@
 			function build_table_data(result) {
 				$("#head").empty();
 				$("#table_data").empty();
+				
 				var headTR = $("<tr></tr>");
 				var checkBox = $("<td></td>").append(
 						$("<input type='checkbox' id='check_item_all'/>"));
@@ -380,6 +383,7 @@
 									var notice = result.extend.notice;
 									$("#releasepeople").val(notice.releasepeople);
 									$("#time").val(ChangeDateFormat2(notice.time));
+									$("#timet").html(ChangeDateFormat2(notice.time));
 									$("#title").val(notice.title);
 									$("#content").val(notice.content);
 									$("#id").val(notice.id);
@@ -439,23 +443,34 @@
 			
 			//点击保存按钮，修改通知信息
 			$("#editnotice_button").click(function() {
-				$.ajax({
-					url : "${APP_PATH}/notice/updateNotice",
-					type : "post",
-					data : $("#noticeForm").serialize(),
-					success : function(result) {
-						if (result.code == 100) {
-							alert("修改成功！");
-							//1.关闭模态框
-							$("#activity_edit_modal").modal('hide');
-							//2.重新加载当页
-							go(currentNum);
-						} else {
-							alert("修改失败，请再重试一遍吧！");
-							//$("#activity_edit_modal").modal('hide');
+				var time=$("#time").val();
+				var releasepeople=$("#releasepeople").val();
+				var type=$("#type").val();
+				var content=$("#content").val();
+				var title=$("#title").val();
+				if(title==''||releasepeople==''||type==''||content=='' ||time==''){
+					alert("请填写完整信息再发布");
+				}else{
+					$.ajax({
+						url : "${APP_PATH}/notice/updateNotice",
+						type : "post",
+						data : $("#noticeForm").serialize(),
+						success : function(result) {
+							if (result.code == 100) {
+								alert("修改成功！");
+								//1.关闭模态框
+								$("#activity_edit_modal").modal('hide');
+								//2.重新加载当页
+								go(currentNum);
+							} else {
+								alert("修改失败，请再重试一遍吧！");
+								//$("#activity_edit_modal").modal('hide');
+							}
 						}
-					}
-				});
+					});
+				}
+				
+				
 			});
 			
 			//点击批量删除
@@ -534,6 +549,7 @@
 							if (result.extend.pageInfo.list == null) {
 								alert("查询不到相关数据！");
 							} else {
+								
 								//构建分页信息
 								build_page_text(result);
 								//构建分页条
@@ -580,12 +596,26 @@
 					var currenthours=date.getHours();
 					
 					var currentminut=date.getMinutes();
+					
+					var currentSeconds=date.getSeconds();
 					//getFullYear得到4位数的年份 ，返回一串字符串
-					return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut;
+					return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut+":"+currentSeconds;
 				} else {
 					return null;
 				}
-
+			}
+			
+			function checkStr(str) {
+				// [\u4E00-\uFA29]|[\uE7C7-\uE7F3]汉字编码范围 
+				var re1 = new RegExp(
+						"^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
+				if (!re1.test(str)) {
+					alert("请输入中文字符");
+					
+					return false;
+				} else {
+					return true;
+				}
 			}
 		</script>
 </body>

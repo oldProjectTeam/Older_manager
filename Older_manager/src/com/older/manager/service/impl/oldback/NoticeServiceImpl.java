@@ -15,20 +15,19 @@ import com.older.manager.service.oldback.NoticeService;
 
 /**
  * @author ym
- *
+ * 
  */
 @Service
-public class NoticeServiceImpl implements NoticeService{
-	
-	
+public class NoticeServiceImpl implements NoticeService {
+
 	@Autowired
 	NoticeMapper noticeMapper;
 
 	/**
-	 * @Title:   findNoticeById
-	 * @Description:  通过id查询通知
-	 * @param:    @param id
-	 * @param:    @return     
+	 * @Title: findNoticeById
+	 * @Description: 通过id查询通知
+	 * @param: @param id
+	 * @param: @return
 	 * @throws
 	 */
 	@Override
@@ -38,9 +37,9 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	/**
-	 * @Title:   findAllNotices
-	 * @Description:  查询所有的通知
-	 * @param:    @return     
+	 * @Title: findAllNotices
+	 * @Description: 查询所有的通知
+	 * @param: @return
 	 * @throws
 	 */
 	@Override
@@ -50,38 +49,44 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	/**
-	 * @Title:   findAllNoticesBySearch
-	 * @Description:  通过搜索信息查询所有的通知
-	 * @param:    @param title
-	 * @param:    @param releasePeople
-	 * @param:    @return     
+	 * @Title: findAllNoticesBySearch
+	 * @Description: 通过搜索信息查询所有的通知
+	 * @param: @param title
+	 * @param: @param releasePeople
+	 * @param: @return
 	 * @throws
 	 */
 	@Override
 	public List<Notice> findAllNoticesBySearch(String title,
 			String releasePeople) {
 		// TODO Auto-generated method stub
-		NoticeExample example=new NoticeExample();
-		if (title!=null&&! title.equals("")&& (releasePeople==null ||releasePeople.equals(""))) {
+		NoticeExample example = new NoticeExample();
+		if (title != null && !title.equals("")
+				&& (releasePeople == null || releasePeople.equals(""))) {
 			System.out.println("。。。。。。。。。。进入1");
+			example.createCriteria().andTitleLike("%" + title + "%");
 			return noticeMapper.selectByExample(example);
-		}else if ((title==null||title.equals(""))&&! releasePeople.equals("")&& releasePeople!=null) {
-			example.createCriteria().andReleasepeopleLike("%"+releasePeople+"%");
+		} else if ((title == null || title.equals(""))
+				&& !releasePeople.equals("") && releasePeople != null) {
+			example.createCriteria().andReleasepeopleLike(
+					"%" + releasePeople + "%");
 			return noticeMapper.selectByExample(example);
-		}else if (title!=null&&! title.equals("")&& releasePeople!=null && !releasePeople.equals("") ){
-			example.createCriteria().andTitleLike("%"+title+"%").andReleasepeopleLike("%"+releasePeople+"%");
+		} else if (title != null && !title.equals("") && releasePeople != null
+				&& !releasePeople.equals("")) {
+			example.createCriteria().andTitleLike("%" + title + "%")
+					.andReleasepeopleLike("%" + releasePeople + "%");
 			return noticeMapper.selectByExample(example);
-		}else {
+		} else {
 			return null;
 		}
-		
+
 	}
 
 	/**
-	 * @Title:   AddNotice
-	 * @Description:  增加一个通知
-	 * @param:    @param notice
-	 * @param:    @return     
+	 * @Title: AddNotice
+	 * @Description: 增加一个通知
+	 * @param: @param notice
+	 * @param: @return
 	 * @throws
 	 */
 	@Override
@@ -91,10 +96,10 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	/**
-	 * @Title:   updateNotice
-	 * @Description:  更新通知
-	 * @param:    @param notice
-	 * @param:    @return     
+	 * @Title: updateNotice
+	 * @Description: 更新通知
+	 * @param: @param notice
+	 * @param: @return
 	 * @throws
 	 */
 	@Override
@@ -104,10 +109,10 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	/**
-	 * @Title:   delectNoticeById
-	 * @Description:  通过id删除通知
-	 * @param:    @param id
-	 * @param:    @return     
+	 * @Title: delectNoticeById
+	 * @Description: 通过id删除通知
+	 * @param: @param id
+	 * @param: @return
 	 * @throws
 	 */
 	@Override
