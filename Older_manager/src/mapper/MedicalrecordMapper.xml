@@ -27,6 +27,55 @@
     <result column="medicalRecord9" property="medicalrecord9" jdbcType="VARCHAR" />
     <result column="medicalRecord10" property="medicalrecord10" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+  <!-- 修改后的 -->
+  
+   <resultMap id="BaseResultMapWithOlder" type="com.older.manager.bean.Medicalrecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="hospital" property="hospital" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="doctor" property="doctor" jdbcType="VARCHAR" />
+    <result column="clinicalTime" property="clinicaltime" jdbcType="TIMESTAMP" />
+    <result column="appointmentTime" property="appointmenttime" jdbcType="TIMESTAMP" />
+    <result column="chekContent" property="chekcontent" jdbcType="VARCHAR" />
+    <result column="ancillaryCheckContent" property="ancillarycheckcontent" jdbcType="VARCHAR" />
+    <result column="realCheckContent" property="realcheckcontent" jdbcType="VARCHAR" />
+    <result column="normalUseDrug" property="normalusedrug" jdbcType="VARCHAR" />
+    <result column="diagnosis" property="diagnosis" jdbcType="VARCHAR" />
+    <result column="treatmentCarePrescription" property="treatmentcareprescription" jdbcType="VARCHAR" />
+    <result column="tabooltems" property="tabooltems" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="medicalRecord1" property="medicalrecord1" jdbcType="VARCHAR" />
+    <result column="medicalRecord2" property="medicalrecord2" jdbcType="VARCHAR" />
+    <result column="medicalRecord3" property="medicalrecord3" jdbcType="VARCHAR" />
+    <result column="medicalRecord4" property="medicalrecord4" jdbcType="VARCHAR" />
+    <result column="medicalRecord5" property="medicalrecord5" jdbcType="VARCHAR" />
+    <result column="medicalRecord6" property="medicalrecord6" jdbcType="VARCHAR" />
+    <result column="medicalRecord7" property="medicalrecord7" jdbcType="VARCHAR" />
+    <result column="medicalRecord8" property="medicalrecord8" jdbcType="VARCHAR" />
+    <result column="medicalRecord9" property="medicalrecord9" jdbcType="VARCHAR" />
+    <result column="medicalRecord10" property="medicalrecord10" jdbcType="VARCHAR" />
+    
+    <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oid" property="id"/>
+    	<result column="oname" property="name"/>
+    	<result column="osex" property="sex"/>
+    	<result column="oage" property="age"/>
+    </association>
+  </resultMap>
+  
+   
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -91,6 +140,10 @@
     oldMan_id, medicalRecord1, medicalRecord2, medicalRecord3, medicalRecord4, medicalRecord5, 
     medicalRecord6, medicalRecord7, medicalRecord8, medicalRecord9, medicalRecord10
   </sql>
+  
+ 
+
+  
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.MedicalrecordExample" >
     select
     <if test="distinct" >
@@ -111,6 +164,54 @@
     from medicalrecord
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  <!-- 模糊查询所有的******************************************* -->
+  
+   <select id="selectByExampleWithOlder" resultMap="BaseResultMapWithOlder" parameterType="com.older.manager.bean.Medicalrecord" >
+    select  m.*,o.id as oid, o.name as  oname, o.age as oage
+    from medicalrecord m,oldman as o
+       where  m.oldMan_id=o.id
+       
+	       <if test="hospital!=null and hospital!=''">
+	            and m.hospital like '%${hospital}%'
+	       </if>
+	       <if test="doctor!=null and  doctor!=''">
+	            and m.doctor like '%${doctor}%'
+	       </if>
+	      
+     <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+
+
+  
+  </select>
+  
+  
+  
+   <select id="selectByPrimaryKeyWithOlder" resultMap="BaseResultMapWithOlder" parameterType="java.lang.Integer" >
+    select  m.*,o.id as oid, o.name as  oname, o.age as oage
+   
+     from medicalrecord m,oldman o
+    where m.id = #{id,jdbcType=INTEGER} and m.oldMan_id=o.id
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from medicalrecord
     where id = #{id,jdbcType=INTEGER}

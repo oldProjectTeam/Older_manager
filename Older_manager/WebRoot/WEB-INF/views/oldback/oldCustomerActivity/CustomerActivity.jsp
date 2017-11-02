@@ -302,13 +302,14 @@
 	</div>
 
 	<script type="text/javascript">
-		var totalRecord, currentNum;
+		var totalRecord, currentNum, name1="", type1="",title1="";
 		/* 分页 */
 		$(function() {
 			go(1, "", "", "");
 			$("#old_delete_all_btn").attr("disabled", true);
 		});
 		function go(pn, name1, type1, title1) {
+		$("#old_delete_all_btn").attr("disabled", true);
 			$.ajax({
 				url : "${APP_PATH}/take/selectallcustomeractivitywith",
 				data : {
@@ -347,8 +348,7 @@
 			var ul = $("<ul></ul>").addClass("pagination");
 			var firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
 			firstPageLi.click(function() {
-				go(1, $("#name1").val(), type1 = $("#type1").val(),
-						$("#title1").val());
+				go(1,  name1, type1,title1);
 			});
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
@@ -358,16 +358,14 @@
 			} else {
 				//为元素添加点击翻页事件
 				prePageLi.click(function() {
-					go(result.extend.pageInfo.pageNum - 1, $("#name1").val(),
-							type1 = $("#type1").val(), $("#title1").val());
+					go(result.extend.pageInfo.pageNum - 1,  name1, type1,title1);
 				});
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
 			var lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
 			lastPageLi.click(function() {
-				go(result.extend.pageInfo.pages, $("#name1").val(), type1 = $(
-						"#type1").val(), $("#title1").val());
+				go(result.extend.pageInfo.pages, name1, type1,title1);
 			});
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
@@ -375,8 +373,7 @@
 			} else {
 				//为元素添加点击翻页事件
 				nextPageLi.click(function() {
-					go(result.extend.pageInfo.pageNum + 1, $("#name1").val(),
-							type1 = $("#type1").val(), $("#title1").val());
+					go(result.extend.pageInfo.pageNum + 1,  name1, type1,title1);
 				});
 			}
 			//添加首页和前一页的提示
@@ -389,8 +386,7 @@
 					numLi.addClass("active");
 				}
 				numLi.click(function() {
-					go(item, $("#name1").val(), type1 = $("#type1").val(), $(
-							"#title1").val());
+					go(item,  name1, type1,title1);
 				});
 				ul.append(numLi);
 			});
@@ -488,11 +484,11 @@
 		//搜索
 		$("#selectwith").click(function() {
 
-			var name1 = $("#name1").val();
-			var title1 = $("#title1").val();
-			var type1 = $("#type1").val();
+		      name1 = $("#name1").val();
+			 title1 = $("#title1").val();
+			 type1 = $("#type1").val();
 
-			go(1, name1, type1, title1);
+			go(1, name1, type1, title1);    
 
 		});
 
@@ -537,8 +533,7 @@
 									+ delid,
 							type : "DELETE",
 							success : function(result) {
-								go(currentNum, $("#name1").val(), type1 = $(
-										"#type1").val(), $("#title1").val());
+								go(currentNum,  name1, type1,title1);
 							}
 						});
 					}
@@ -578,8 +573,7 @@
 							success : function(result) {
 								//alert(result.msg);
 								//回到当前页面
-								go(currentNum, $("#name1").val(), type1 = $(
-										"#type1").val(), $("#title1").val());
+								go(currentNum,  name1, type1,title1);
 
 							}
 						});
@@ -659,8 +653,7 @@
 							if (result.code == 100) {
 								//1.关闭模态框
 								$("#add_old_takeactivity_modal").modal('hide');
-								go(totalRecord, $("#name1").val(), type1 = $(
-										"#type1").val(), $("#title1").val());
+								go(totalRecord,  name1, type1,title1);
 							}
 						}
 
@@ -781,8 +774,7 @@
 								//1.关闭模态框
 								$("#update_old_takeactivity_modal").modal(
 										'hide');
-								go(currentNum, $("#name1").val(), type1 = $(
-										"#type1").val(), $("#title1").val());
+								go(currentNum,  name1, type1,title1);
 							}
 						}
 

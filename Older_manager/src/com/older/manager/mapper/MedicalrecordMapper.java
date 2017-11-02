@@ -20,6 +20,13 @@ public interface MedicalrecordMapper {
 
     Medicalrecord selectByPrimaryKey(Integer id);
 
+    
+    //自己修改的查询还带模糊查询
+    List<Medicalrecord> selectByExampleWithOlder(Medicalrecord medicalrecord);
+    Medicalrecord selectByPrimaryKeyWithOlder(Integer id);
+    
+    
+    
     int updateByExampleSelective(@Param("record") Medicalrecord record, @Param("example") MedicalrecordExample example);
 
     int updateByExample(@Param("record") Medicalrecord record, @Param("example") MedicalrecordExample example);
