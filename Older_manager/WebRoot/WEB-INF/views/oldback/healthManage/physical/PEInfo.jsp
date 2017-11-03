@@ -62,7 +62,7 @@
 					class="form-control" id="hospitalname" placeholder="请输入体检医院名称"> 
 
 
-				<button class="btn btn-default" id="selectwith">
+				<button class="btn btn-success" id="selectwith">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					查询
 				</button>
@@ -445,7 +445,7 @@
 							editBtn.attr("edit-id", item.id);
 							var serchBtn = $("<button></button>")
 									.addClass(
-											"btn btn-danger btn-sm serchBtn")
+											"btn btn-info btn-sm serchBtn")
 									.append(
 											$("<span></span>")
 													.addClass(

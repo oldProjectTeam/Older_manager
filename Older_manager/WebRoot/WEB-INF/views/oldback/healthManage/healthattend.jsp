@@ -63,7 +63,7 @@
 					type="text" class="form-control" id="doctor1" placeholder="请输入医生姓名">
 
 
-				<button class="btn btn-default" id="selectwith">
+				<button class="btn btn-success" id="selectwith">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					查询
 				</button>
@@ -447,7 +447,7 @@
 				                                  .append("编辑");
 			//为编辑按钮添加一个自定义的属性，来表示当前查看老人的id
 			editBtn.attr("edit-id",item.id);
-			 var serchBtn=$("<button></button>").addClass("btn btn-danger btn-sm serchBtn")
+			 var serchBtn=$("<button></button>").addClass("btn btn-info btn-sm serchBtn")
 									              .append($("<span></span>")
 									              .addClass("glyphicon glyphicon-search"))
 									              .append("查看");

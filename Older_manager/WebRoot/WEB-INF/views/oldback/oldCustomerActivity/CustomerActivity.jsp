@@ -68,7 +68,7 @@
 					<option>比赛</option>
 					<option>休闲</option>
 				</select>
-				<button class="btn btn-default" id="selectwith">
+				<button class="btn btn-info" id="selectwith">
 					<span class="glyphicon glyphicon-search"></span> 查询
 				</button>
 
@@ -294,7 +294,8 @@
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-sm btn-warning" data-dismiss="modal">取消</button>
+					<button type="button" class="btn btn-sm btn-warning"
+						data-dismiss="modal">取消</button>
 
 				</div>
 			</div>
@@ -302,14 +303,14 @@
 	</div>
 
 	<script type="text/javascript">
-		var totalRecord, currentNum, name1="", type1="",title1="";
+		var totalRecord, currentNum, name1 = "", type1 = "", title1 = "";
 		/* 分页 */
 		$(function() {
 			go(1, "", "", "");
 			$("#old_delete_all_btn").attr("disabled", true);
 		});
 		function go(pn, name1, type1, title1) {
-		$("#old_delete_all_btn").attr("disabled", true);
+			$("#old_delete_all_btn").attr("disabled", true);
 			$.ajax({
 				url : "${APP_PATH}/take/selectallcustomeractivitywith",
 				data : {
@@ -348,7 +349,7 @@
 			var ul = $("<ul></ul>").addClass("pagination");
 			var firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
 			firstPageLi.click(function() {
-				go(1,  name1, type1,title1);
+				go(1, name1, type1, title1);
 			});
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
@@ -357,24 +358,28 @@
 				prePageLi.addClass("disabled");
 			} else {
 				//为元素添加点击翻页事件
-				prePageLi.click(function() {
-					go(result.extend.pageInfo.pageNum - 1,  name1, type1,title1);
-				});
+				prePageLi
+						.click(function() {
+							go(result.extend.pageInfo.pageNum - 1, name1,
+									type1, title1);
+						});
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
 			var lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
 			lastPageLi.click(function() {
-				go(result.extend.pageInfo.pages, name1, type1,title1);
+				go(result.extend.pageInfo.pages, name1, type1, title1);
 			});
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
 				lastPageLi.addClass("disabled");
 			} else {
 				//为元素添加点击翻页事件
-				nextPageLi.click(function() {
-					go(result.extend.pageInfo.pageNum + 1,  name1, type1,title1);
-				});
+				nextPageLi
+						.click(function() {
+							go(result.extend.pageInfo.pageNum + 1, name1,
+									type1, title1);
+						});
 			}
 			//添加首页和前一页的提示
 			ul.append(firstPageLi).append(prePageLi);
@@ -386,7 +391,7 @@
 					numLi.addClass("active");
 				}
 				numLi.click(function() {
-					go(item,  name1, type1,title1);
+					go(item, name1, type1, title1);
 				});
 				ul.append(numLi);
 			});
@@ -450,7 +455,7 @@
 								editBtn.attr("edit-id", item.id);
 								var serchBtn = $("<button></button>")
 										.addClass(
-												"btn btn-danger btn-sm serchBtn")
+												"btn btn-success btn-sm serchBtn")
 										.append(
 												$("<span></span>")
 														.addClass(
@@ -484,11 +489,11 @@
 		//搜索
 		$("#selectwith").click(function() {
 
-		      name1 = $("#name1").val();
-			 title1 = $("#title1").val();
-			 type1 = $("#type1").val();
+			name1 = $("#name1").val();
+			title1 = $("#title1").val();
+			type1 = $("#type1").val();
 
-			go(1, name1, type1, title1);    
+			go(1, name1, type1, title1);
 
 		});
 
@@ -520,24 +525,19 @@
 						});
 
 		//點擊刪除
-		$(document).on(
-				"click",
-				".delete_btn",
-				function() {
-					var delid = $(this).attr("del-id");
-					var oldername = $(this).parents("tr").find("td:eq(2)")
-							.text();
-					if (confirm("确认删除【" + oldername + "】吗")) {
-						$.ajax({
-							url : "${APP_PATH}/take/deleteTakeActivity/"
-									+ delid,
-							type : "DELETE",
-							success : function(result) {
-								go(currentNum,  name1, type1,title1);
-							}
-						});
+		$(document).on("click", ".delete_btn", function() {
+			var delid = $(this).attr("del-id");
+			var oldername = $(this).parents("tr").find("td:eq(2)").text();
+			if (confirm("确认删除【" + oldername + "】吗")) {
+				$.ajax({
+					url : "${APP_PATH}/take/deleteTakeActivity/" + delid,
+					type : "DELETE",
+					success : function(result) {
+						go(currentNum, name1, type1, title1);
 					}
 				});
+			}
+		});
 
 		//点击删除全部，就批量删除
 		$("#old_delete_all_btn").click(
@@ -573,7 +573,7 @@
 							success : function(result) {
 								//alert(result.msg);
 								//回到当前页面
-								go(currentNum,  name1, type1,title1);
+								go(currentNum, name1, type1, title1);
 
 							}
 						});
@@ -641,25 +641,23 @@
 						});
 
 		//点击保存
-		$("#save_activities_btn").click(
-				function() {
-					$.ajax({
-						url : "${APP_PATH}/take/addtackactivity",
-						type : "POST",
-						data : $("#add_old_takeactivity_modal form")
-								.serialize(),
-						success : function(result) {
+		$("#save_activities_btn").click(function() {
+			$.ajax({
+				url : "${APP_PATH}/take/addtackactivity",
+				type : "POST",
+				data : $("#add_old_takeactivity_modal form").serialize(),
+				success : function(result) {
 
-							if (result.code == 100) {
-								//1.关闭模态框
-								$("#add_old_takeactivity_modal").modal('hide');
-								go(totalRecord,  name1, type1,title1);
-							}
-						}
+					if (result.code == 100) {
+						//1.关闭模态框
+						$("#add_old_takeactivity_modal").modal('hide');
+						go(totalRecord, name1, type1, title1);
+					}
+				}
 
-					});
+			});
 
-				});
+		});
 
 		//编辑信息按钮，弹出模态框
 		$(document)
@@ -760,83 +758,57 @@
 		}
 
 		//点击修改 
-		$("#update_activities_btn").click(
-				function() {
-					var edit = $(this).attr("edit-id");
-					$.ajax({
-						url : "${APP_PATH}/take/updatetackactivity/" + edit,
-						type : "POST",
-						data : $("#update_old_takeactivity_modal form")
-								.serialize(),
-						success : function(result) {
+		$("#update_activities_btn").click(function() {
+			var edit = $(this).attr("edit-id");
+			$.ajax({
+				url : "${APP_PATH}/take/updatetackactivity/" + edit,
+				type : "POST",
+				data : $("#update_old_takeactivity_modal form").serialize(),
+				success : function(result) {
 
-							if (result.code == 100) {
-								//1.关闭模态框
-								$("#update_old_takeactivity_modal").modal(
-										'hide');
-								go(currentNum,  name1, type1,title1);
-							}
-						}
+					if (result.code == 100) {
+						//1.关闭模态框
+						$("#update_old_takeactivity_modal").modal('hide');
+						go(currentNum, name1, type1, title1);
+					}
+				}
 
-					});
+			});
 
-				});
+		});
 
 		//点击查看
-		$(document)
-				.on(
-						"click",
-						".serchBtn",
-						function() {
+		$(document).on("click", ".serchBtn", function() {
 
-							var serch = $(this).attr("serch-id");
-							$
-									.ajax({
-										url : "${APP_PATH}/take/selecttackactivity/"
-												+ serch,
-										type : "GET",
+			var serch = $(this).attr("serch-id");
+			$.ajax({
+				url : "${APP_PATH}/take/selecttackactivity/" + serch,
+				type : "GET",
 
-										success : function(result) {
+				success : function(result) {
 
-											if (result.code == 100) {
-												$(
-														"#select_old_takeactivity_modal")
-														.modal();
-												//console.log(result);
-												var rel = result.extend.takeactivity;
-												$("#select_name").text(
-														rel.oldman.name);
-												$("#select_sex").text(
-														rel.oldman.sex);
-												$("#select_age").text(
-														rel.oldman.age);
-												$("#select_time")
-														.text(
-																ChangeDateFormat(rel.taketime));
-												$("#select_ispresent").text(
-														rel.ispresent);
-												$("#select_address").text(
-														rel.activity.place);
-												$("#select_title").text(
-														rel.activity.title);
-												$("#select_type").text(
-														rel.activity.type);
-												$("#select_content").text(
-														rel.activity.content);
-												$("#select_activity2").text(
-														rel.takeactivity2);
-												$("#select_activity1").text(
-														rel.takeactivity1);
-												$("#select_state").text(
-														rel.activity.state);
-												$("#select_remak").text(
-														rel.remak);
-											}
-										}
-									});
+					if (result.code == 100) {
+						$("#select_old_takeactivity_modal").modal();
+						//console.log(result);
+						var rel = result.extend.takeactivity;
+						$("#select_name").text(rel.oldman.name);
+						$("#select_sex").text(rel.oldman.sex);
+						$("#select_age").text(rel.oldman.age);
+						$("#select_time").text(ChangeDateFormat(rel.taketime));
+						$("#select_ispresent").text(rel.ispresent);
+						$("#select_address").text(rel.activity.place);
+						$("#select_title").text(rel.activity.title);
+						$("#select_type").text(rel.activity.type);
+						$("#select_content").text(rel.activity.content);
+						$("#select_activity2").text(rel.takeactivity2);
+						$("#select_activity1").text(rel.takeactivity1);
+						$("#select_state").text(rel.activity.state);
+						$("#select_remak").text(rel.remak);
+					}
+				}
+			});
 
-
-						});
+		});
 	</script>
 
 </body>

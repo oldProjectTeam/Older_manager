@@ -1,416 +1,435 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.VisitplanMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Visitplan" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
-    <result column="visiPlanTime" property="visiplantime" jdbcType="TIMESTAMP" />
-    <result column="plannedVisits" property="plannedvisits" jdbcType="VARCHAR" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="remindVistitPlanTime" property="remindvistitplantime" jdbcType="TIMESTAMP" />
-    <result column="remindPeople" property="remindpeople" jdbcType="VARCHAR" />
-    <result column="pendingEvent" property="pendingevent" jdbcType="VARCHAR" />
-    <result column="actualTime" property="actualtime" jdbcType="TIMESTAMP" />
-    <result column="actualPlannedVisits" property="actualplannedvisits" jdbcType="VARCHAR" />
-    <result column="visitRecord" property="visitrecord" jdbcType="VARCHAR" />
-    <result column="images" property="images" jdbcType="VARCHAR" />
-    <result column="video" property="video" jdbcType="VARCHAR" />
-    <result column="recording" property="recording" jdbcType="VARCHAR" />
-    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="visitPlan1" property="visitplan1" jdbcType="VARCHAR" />
-    <result column="visitPlan2" property="visitplan2" jdbcType="VARCHAR" />
-    <result column="visitPlan3" property="visitplan3" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, oldMan_id, visiPlanTime, plannedVisits, state, remindVistitPlanTime, remindPeople, 
-    pendingEvent, actualTime, actualPlannedVisits, visitRecord, images, video, recording, 
-    createTime, visitPlan1, visitPlan2, visitPlan3
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.VisitplanExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from visitplan
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-      order by id DESC
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from visitplan
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from visitplan
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.VisitplanExample" >
-    delete from visitplan
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Visitplan" >
-    insert into visitplan (id, oldMan_id, visiPlanTime, 
-      plannedVisits, state, remindVistitPlanTime, 
-      remindPeople, pendingEvent, actualTime, 
-      actualPlannedVisits, visitRecord, images, 
-      video, recording, createTime, 
-      visitPlan1, visitPlan2, visitPlan3
-      )
-    values (#{id,jdbcType=INTEGER}, #{oldmanId,jdbcType=INTEGER}, #{visiplantime,jdbcType=TIMESTAMP}, 
-      #{plannedvisits,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{remindvistitplantime,jdbcType=TIMESTAMP}, 
-      #{remindpeople,jdbcType=VARCHAR}, #{pendingevent,jdbcType=VARCHAR}, #{actualtime,jdbcType=TIMESTAMP}, 
-      #{actualplannedvisits,jdbcType=VARCHAR}, #{visitrecord,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR}, 
-      #{video,jdbcType=VARCHAR}, #{recording,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{visitplan1,jdbcType=VARCHAR}, #{visitplan2,jdbcType=VARCHAR}, #{visitplan3,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Visitplan" >
-    insert into visitplan
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="oldmanId != null" >
-        oldMan_id,
-      </if>
-      <if test="visiplantime != null" >
-        visiPlanTime,
-      </if>
-      <if test="plannedvisits != null" >
-        plannedVisits,
-      </if>
-      <if test="state != null" >
-        state,
-      </if>
-      <if test="remindvistitplantime != null" >
-        remindVistitPlanTime,
-      </if>
-      <if test="remindpeople != null" >
-        remindPeople,
-      </if>
-      <if test="pendingevent != null" >
-        pendingEvent,
-      </if>
-      <if test="actualtime != null" >
-        actualTime,
-      </if>
-      <if test="actualplannedvisits != null" >
-        actualPlannedVisits,
-      </if>
-      <if test="visitrecord != null" >
-        visitRecord,
-      </if>
-      <if test="images != null" >
-        images,
-      </if>
-      <if test="video != null" >
-        video,
-      </if>
-      <if test="recording != null" >
-        recording,
-      </if>
-      <if test="createtime != null" >
-        createTime,
-      </if>
-      <if test="visitplan1 != null" >
-        visitPlan1,
-      </if>
-      <if test="visitplan2 != null" >
-        visitPlan2,
-      </if>
-      <if test="visitplan3 != null" >
-        visitPlan3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="oldmanId != null" >
-        #{oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="visiplantime != null" >
-        #{visiplantime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="plannedvisits != null" >
-        #{plannedvisits,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="remindvistitplantime != null" >
-        #{remindvistitplantime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remindpeople != null" >
-        #{remindpeople,jdbcType=VARCHAR},
-      </if>
-      <if test="pendingevent != null" >
-        #{pendingevent,jdbcType=VARCHAR},
-      </if>
-      <if test="actualtime != null" >
-        #{actualtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="actualplannedvisits != null" >
-        #{actualplannedvisits,jdbcType=VARCHAR},
-      </if>
-      <if test="visitrecord != null" >
-        #{visitrecord,jdbcType=VARCHAR},
-      </if>
-      <if test="images != null" >
-        #{images,jdbcType=VARCHAR},
-      </if>
-      <if test="video != null" >
-        #{video,jdbcType=VARCHAR},
-      </if>
-      <if test="recording != null" >
-        #{recording,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="visitplan1 != null" >
-        #{visitplan1,jdbcType=VARCHAR},
-      </if>
-      <if test="visitplan2 != null" >
-        #{visitplan2,jdbcType=VARCHAR},
-      </if>
-      <if test="visitplan3 != null" >
-        #{visitplan3,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.VisitplanExample" resultType="java.lang.Integer" >
-    select count(*) from visitplan
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update visitplan
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.oldmanId != null" >
-        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="record.visiplantime != null" >
-        visiPlanTime = #{record.visiplantime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.plannedvisits != null" >
-        plannedVisits = #{record.plannedvisits,jdbcType=VARCHAR},
-      </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remindvistitplantime != null" >
-        remindVistitPlanTime = #{record.remindvistitplantime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.remindpeople != null" >
-        remindPeople = #{record.remindpeople,jdbcType=VARCHAR},
-      </if>
-      <if test="record.pendingevent != null" >
-        pendingEvent = #{record.pendingevent,jdbcType=VARCHAR},
-      </if>
-      <if test="record.actualtime != null" >
-        actualTime = #{record.actualtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.actualplannedvisits != null" >
-        actualPlannedVisits = #{record.actualplannedvisits,jdbcType=VARCHAR},
-      </if>
-      <if test="record.visitrecord != null" >
-        visitRecord = #{record.visitrecord,jdbcType=VARCHAR},
-      </if>
-      <if test="record.images != null" >
-        images = #{record.images,jdbcType=VARCHAR},
-      </if>
-      <if test="record.video != null" >
-        video = #{record.video,jdbcType=VARCHAR},
-      </if>
-      <if test="record.recording != null" >
-        recording = #{record.recording,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createtime != null" >
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.visitplan1 != null" >
-        visitPlan1 = #{record.visitplan1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.visitplan2 != null" >
-        visitPlan2 = #{record.visitplan2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.visitplan3 != null" >
-        visitPlan3 = #{record.visitplan3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update visitplan
-    set id = #{record.id,jdbcType=INTEGER},
-      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-      visiPlanTime = #{record.visiplantime,jdbcType=TIMESTAMP},
-      plannedVisits = #{record.plannedvisits,jdbcType=VARCHAR},
-      state = #{record.state,jdbcType=VARCHAR},
-      remindVistitPlanTime = #{record.remindvistitplantime,jdbcType=TIMESTAMP},
-      remindPeople = #{record.remindpeople,jdbcType=VARCHAR},
-      pendingEvent = #{record.pendingevent,jdbcType=VARCHAR},
-      actualTime = #{record.actualtime,jdbcType=TIMESTAMP},
-      actualPlannedVisits = #{record.actualplannedvisits,jdbcType=VARCHAR},
-      visitRecord = #{record.visitrecord,jdbcType=VARCHAR},
-      images = #{record.images,jdbcType=VARCHAR},
-      video = #{record.video,jdbcType=VARCHAR},
-      recording = #{record.recording,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      visitPlan1 = #{record.visitplan1,jdbcType=VARCHAR},
-      visitPlan2 = #{record.visitplan2,jdbcType=VARCHAR},
-      visitPlan3 = #{record.visitplan3,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Visitplan" >
-    update visitplan
-    <set >
-      <if test="oldmanId != null" >
-        oldMan_id = #{oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="visiplantime != null" >
-        visiPlanTime = #{visiplantime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="plannedvisits != null" >
-        plannedVisits = #{plannedvisits,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="remindvistitplantime != null" >
-        remindVistitPlanTime = #{remindvistitplantime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remindpeople != null" >
-        remindPeople = #{remindpeople,jdbcType=VARCHAR},
-      </if>
-      <if test="pendingevent != null" >
-        pendingEvent = #{pendingevent,jdbcType=VARCHAR},
-      </if>
-      <if test="actualtime != null" >
-        actualTime = #{actualtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="actualplannedvisits != null" >
-        actualPlannedVisits = #{actualplannedvisits,jdbcType=VARCHAR},
-      </if>
-      <if test="visitrecord != null" >
-        visitRecord = #{visitrecord,jdbcType=VARCHAR},
-      </if>
-      <if test="images != null" >
-        images = #{images,jdbcType=VARCHAR},
-      </if>
-      <if test="video != null" >
-        video = #{video,jdbcType=VARCHAR},
-      </if>
-      <if test="recording != null" >
-        recording = #{recording,jdbcType=VARCHAR},
-      </if>
-      <if test="createtime != null" >
-        createTime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="visitplan1 != null" >
-        visitPlan1 = #{visitplan1,jdbcType=VARCHAR},
-      </if>
-      <if test="visitplan2 != null" >
-        visitPlan2 = #{visitplan2,jdbcType=VARCHAR},
-      </if>
-      <if test="visitplan3 != null" >
-        visitPlan3 = #{visitplan3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Visitplan" >
-    update visitplan
-    set oldMan_id = #{oldmanId,jdbcType=INTEGER},
-      visiPlanTime = #{visiplantime,jdbcType=TIMESTAMP},
-      plannedVisits = #{plannedvisits,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
-      remindVistitPlanTime = #{remindvistitplantime,jdbcType=TIMESTAMP},
-      remindPeople = #{remindpeople,jdbcType=VARCHAR},
-      pendingEvent = #{pendingevent,jdbcType=VARCHAR},
-      actualTime = #{actualtime,jdbcType=TIMESTAMP},
-      actualPlannedVisits = #{actualplannedvisits,jdbcType=VARCHAR},
-      visitRecord = #{visitrecord,jdbcType=VARCHAR},
-      images = #{images,jdbcType=VARCHAR},
-      video = #{video,jdbcType=VARCHAR},
-      recording = #{recording,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      visitPlan1 = #{visitplan1,jdbcType=VARCHAR},
-      visitPlan2 = #{visitplan2,jdbcType=VARCHAR},
-      visitPlan3 = #{visitplan3,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.older.manager.mapper.VisitplanMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.Visitplan">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+		<result column="visiPlanTime" property="visiplantime" jdbcType="TIMESTAMP" />
+		<result column="plannedVisits" property="plannedvisits"
+			jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="remindVistitPlanTime" property="remindvistitplantime"
+			jdbcType="TIMESTAMP" />
+		<result column="remindPeople" property="remindpeople" jdbcType="VARCHAR" />
+		<result column="pendingEvent" property="pendingevent" jdbcType="VARCHAR" />
+		<result column="actualTime" property="actualtime" jdbcType="TIMESTAMP" />
+		<result column="actualPlannedVisits" property="actualplannedvisits"
+			jdbcType="VARCHAR" />
+		<result column="visitRecord" property="visitrecord" jdbcType="VARCHAR" />
+		<result column="images" property="images" jdbcType="VARCHAR" />
+		<result column="video" property="video" jdbcType="VARCHAR" />
+		<result column="recording" property="recording" jdbcType="VARCHAR" />
+		<result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="visitPlan1" property="visitplan1" jdbcType="VARCHAR" />
+		<result column="visitPlan2" property="visitplan2" jdbcType="VARCHAR" />
+		<result column="visitPlan3" property="visitplan3" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, oldMan_id, visiPlanTime, plannedVisits, state, remindVistitPlanTime,
+		remindPeople,
+		pendingEvent, actualTime, actualPlannedVisits, visitRecord, images, video,
+		recording,
+		createTime, visitPlan1, visitPlan2, visitPlan3
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.VisitplanExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from visitplan
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		order by id DESC
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from visitplan
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from visitplan
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.VisitplanExample">
+		delete from visitplan
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.Visitplan">
+		insert into visitplan (id, oldMan_id, visiPlanTime,
+		plannedVisits, state, remindVistitPlanTime,
+		remindPeople, pendingEvent, actualTime,
+		actualPlannedVisits, visitRecord, images,
+		video, recording, createTime,
+		visitPlan1, visitPlan2, visitPlan3
+		)
+		values (#{id,jdbcType=INTEGER}, #{oldmanId,jdbcType=INTEGER},
+		#{visiplantime,jdbcType=TIMESTAMP},
+		#{plannedvisits,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+		#{remindvistitplantime,jdbcType=TIMESTAMP},
+		#{remindpeople,jdbcType=VARCHAR}, #{pendingevent,jdbcType=VARCHAR},
+		#{actualtime,jdbcType=TIMESTAMP},
+		#{actualplannedvisits,jdbcType=VARCHAR},
+		#{visitrecord,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR},
+		#{video,jdbcType=VARCHAR}, #{recording,jdbcType=VARCHAR},
+		#{createtime,jdbcType=TIMESTAMP},
+		#{visitplan1,jdbcType=VARCHAR}, #{visitplan2,jdbcType=VARCHAR}, #{visitplan3,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.Visitplan">
+		insert into visitplan
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="oldmanId != null">
+				oldMan_id,
+			</if>
+			<if test="visiplantime != null">
+				visiPlanTime,
+			</if>
+			<if test="plannedvisits != null">
+				plannedVisits,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="remindvistitplantime != null">
+				remindVistitPlanTime,
+			</if>
+			<if test="remindpeople != null">
+				remindPeople,
+			</if>
+			<if test="pendingevent != null">
+				pendingEvent,
+			</if>
+			<if test="actualtime != null">
+				actualTime,
+			</if>
+			<if test="actualplannedvisits != null">
+				actualPlannedVisits,
+			</if>
+			<if test="visitrecord != null">
+				visitRecord,
+			</if>
+			<if test="images != null">
+				images,
+			</if>
+			<if test="video != null">
+				video,
+			</if>
+			<if test="recording != null">
+				recording,
+			</if>
+			<if test="createtime != null">
+				createTime,
+			</if>
+			<if test="visitplan1 != null">
+				visitPlan1,
+			</if>
+			<if test="visitplan2 != null">
+				visitPlan2,
+			</if>
+			<if test="visitplan3 != null">
+				visitPlan3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="oldmanId != null">
+				#{oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="visiplantime != null">
+				#{visiplantime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="plannedvisits != null">
+				#{plannedvisits,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="remindvistitplantime != null">
+				#{remindvistitplantime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remindpeople != null">
+				#{remindpeople,jdbcType=VARCHAR},
+			</if>
+			<if test="pendingevent != null">
+				#{pendingevent,jdbcType=VARCHAR},
+			</if>
+			<if test="actualtime != null">
+				#{actualtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="actualplannedvisits != null">
+				#{actualplannedvisits,jdbcType=VARCHAR},
+			</if>
+			<if test="visitrecord != null">
+				#{visitrecord,jdbcType=VARCHAR},
+			</if>
+			<if test="images != null">
+				#{images,jdbcType=VARCHAR},
+			</if>
+			<if test="video != null">
+				#{video,jdbcType=VARCHAR},
+			</if>
+			<if test="recording != null">
+				#{recording,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="visitplan1 != null">
+				#{visitplan1,jdbcType=VARCHAR},
+			</if>
+			<if test="visitplan2 != null">
+				#{visitplan2,jdbcType=VARCHAR},
+			</if>
+			<if test="visitplan3 != null">
+				#{visitplan3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.VisitplanExample"
+		resultType="java.lang.Integer">
+		select count(*) from visitplan
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update visitplan
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.oldmanId != null">
+				oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="record.visiplantime != null">
+				visiPlanTime = #{record.visiplantime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.plannedvisits != null">
+				plannedVisits = #{record.plannedvisits,jdbcType=VARCHAR},
+			</if>
+			<if test="record.state != null">
+				state = #{record.state,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remindvistitplantime != null">
+				remindVistitPlanTime =
+				#{record.remindvistitplantime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.remindpeople != null">
+				remindPeople = #{record.remindpeople,jdbcType=VARCHAR},
+			</if>
+			<if test="record.pendingevent != null">
+				pendingEvent = #{record.pendingevent,jdbcType=VARCHAR},
+			</if>
+			<if test="record.actualtime != null">
+				actualTime = #{record.actualtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.actualplannedvisits != null">
+				actualPlannedVisits = #{record.actualplannedvisits,jdbcType=VARCHAR},
+			</if>
+			<if test="record.visitrecord != null">
+				visitRecord = #{record.visitrecord,jdbcType=VARCHAR},
+			</if>
+			<if test="record.images != null">
+				images = #{record.images,jdbcType=VARCHAR},
+			</if>
+			<if test="record.video != null">
+				video = #{record.video,jdbcType=VARCHAR},
+			</if>
+			<if test="record.recording != null">
+				recording = #{record.recording,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createtime != null">
+				createTime = #{record.createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.visitplan1 != null">
+				visitPlan1 = #{record.visitplan1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.visitplan2 != null">
+				visitPlan2 = #{record.visitplan2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.visitplan3 != null">
+				visitPlan3 = #{record.visitplan3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update visitplan
+		set id = #{record.id,jdbcType=INTEGER},
+		oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+		visiPlanTime = #{record.visiplantime,jdbcType=TIMESTAMP},
+		plannedVisits = #{record.plannedvisits,jdbcType=VARCHAR},
+		state = #{record.state,jdbcType=VARCHAR},
+		remindVistitPlanTime = #{record.remindvistitplantime,jdbcType=TIMESTAMP},
+		remindPeople = #{record.remindpeople,jdbcType=VARCHAR},
+		pendingEvent = #{record.pendingevent,jdbcType=VARCHAR},
+		actualTime = #{record.actualtime,jdbcType=TIMESTAMP},
+		actualPlannedVisits = #{record.actualplannedvisits,jdbcType=VARCHAR},
+		visitRecord = #{record.visitrecord,jdbcType=VARCHAR},
+		images = #{record.images,jdbcType=VARCHAR},
+		video = #{record.video,jdbcType=VARCHAR},
+		recording = #{record.recording,jdbcType=VARCHAR},
+		createTime = #{record.createtime,jdbcType=TIMESTAMP},
+		visitPlan1 = #{record.visitplan1,jdbcType=VARCHAR},
+		visitPlan2 = #{record.visitplan2,jdbcType=VARCHAR},
+		visitPlan3 = #{record.visitplan3,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Visitplan">
+		update visitplan
+		<set>
+			<if test="oldmanId != null">
+				oldMan_id = #{oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="visiplantime != null">
+				visiPlanTime = #{visiplantime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="plannedvisits != null">
+				plannedVisits = #{plannedvisits,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="remindvistitplantime != null">
+				remindVistitPlanTime = #{remindvistitplantime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remindpeople != null">
+				remindPeople = #{remindpeople,jdbcType=VARCHAR},
+			</if>
+			<if test="pendingevent != null">
+				pendingEvent = #{pendingevent,jdbcType=VARCHAR},
+			</if>
+			<if test="actualtime != null">
+				actualTime = #{actualtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="actualplannedvisits != null">
+				actualPlannedVisits = #{actualplannedvisits,jdbcType=VARCHAR},
+			</if>
+			<if test="visitrecord != null">
+				visitRecord = #{visitrecord,jdbcType=VARCHAR},
+			</if>
+			<if test="images != null">
+				images = #{images,jdbcType=VARCHAR},
+			</if>
+			<if test="video != null">
+				video = #{video,jdbcType=VARCHAR},
+			</if>
+			<if test="recording != null">
+				recording = #{recording,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="visitplan1 != null">
+				visitPlan1 = #{visitplan1,jdbcType=VARCHAR},
+			</if>
+			<if test="visitplan2 != null">
+				visitPlan2 = #{visitplan2,jdbcType=VARCHAR},
+			</if>
+			<if test="visitplan3 != null">
+				visitPlan3 = #{visitplan3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Visitplan">
+		update visitplan
+		set oldMan_id = #{oldmanId,jdbcType=INTEGER},
+		visiPlanTime = #{visiplantime,jdbcType=TIMESTAMP},
+		plannedVisits = #{plannedvisits,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR},
+		remindVistitPlanTime = #{remindvistitplantime,jdbcType=TIMESTAMP},
+		remindPeople = #{remindpeople,jdbcType=VARCHAR},
+		pendingEvent = #{pendingevent,jdbcType=VARCHAR},
+		actualTime = #{actualtime,jdbcType=TIMESTAMP},
+		actualPlannedVisits = #{actualplannedvisits,jdbcType=VARCHAR},
+		visitRecord = #{visitrecord,jdbcType=VARCHAR},
+		images = #{images,jdbcType=VARCHAR},
+		video = #{video,jdbcType=VARCHAR},
+		recording = #{recording,jdbcType=VARCHAR},
+		createTime = #{createtime,jdbcType=TIMESTAMP},
+		visitPlan1 = #{visitplan1,jdbcType=VARCHAR},
+		visitPlan2 = #{visitplan2,jdbcType=VARCHAR},
+		visitPlan3 = #{visitplan3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

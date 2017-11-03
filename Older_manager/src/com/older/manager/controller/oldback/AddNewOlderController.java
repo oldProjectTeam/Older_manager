@@ -302,12 +302,19 @@ public class AddNewOlderController {
 		if (name == null || ("").equals(name) && size == 0)
 			return null;
 		// 批量导入。参数：文件名，文件。
-		boolean b = addNewOlderService.batchImport(name, file);
+		String excelForm = file.getOriginalFilename().substring(
+				file.getOriginalFilename().indexOf(".") + 1,
+				file.getOriginalFilename().length());
 		String msg = "";
-		if (b) {
-			msg = "批量导入EXCEL成功";
+		if (excelForm.equals("xlsx") || excelForm.equals("xls")) {
+			boolean b = addNewOlderService.batchImport(name, file);
+			if (b) {
+				msg = "批量导入老人成功";
+			} else {
+				msg = "批量导入老人失败";
+			}
 		} else {
-			msg = "批量导入EXCEL失败";
+			msg = "请导入Excel格式的文件";
 		}
 		model.addAttribute("msg", msg);
 		return "oldback/oldManInfoMange/batchImport";

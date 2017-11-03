@@ -45,7 +45,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<form class="form-horizontal" id="addForm"
-				enctype="multipart/form-data" <%-- action="${APP_PATH}/Course/addCourse"
+				enctype="multipart/form-data"<%-- action="${APP_PATH}/Course/addCourse"
 				method="post" --%>>
 				<div class="table-responsive">
 					<table class="table table-bordered table-striped text-center">
@@ -66,11 +66,11 @@
 									class="form-control" required="required" name="teacher">
 								</td>
 								<td rowspan="3" class="active" style="padding-top:50px">宣传图片:</td>
-								<td rowspan="3" class="col-xs-2"><input type="file" multiple="multiple"
-									class="btn btn-default" value="图片管理" name="file" id="up_img" />
-									<img
-									src="${pageContext.request.contextPath}/upload/${user.image==null?'failure.png':user.image}"
-									id="imgShow" class="img-responsive"></td>
+								<td rowspan="3" class="col-xs-2"><input type="file"
+									multiple="multiple" class="btn btn-default" value="图片管理"
+									name="file" id="up_img" /><br /> <img
+									src="${pageContext.request.contextPath}/upload/${user.image==null?'course.png':user.image}"
+									id="imgShow" width="300" height="200"></td>
 							</tr>
 							<tr>
 								<td>课程介绍</td>
@@ -119,16 +119,16 @@
 				ImgShow : "imgShow"
 			});
 		};
-		
+
 		$("#addCourse").click(function() {
 
 			$.ajax({
 				url : "Course/addCourse",
-				data: new FormData($("#addForm")[0]),
+				data : new FormData($("#addForm")[0]),
 				type : "post",
-				cache: false,
-				processData: false,
-				contentType: false,
+				cache : false,
+				processData : false,
+				contentType : false,
 				success : function(result) {
 
 					if (result.code == 100) {

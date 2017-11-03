@@ -96,9 +96,7 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
+    order by id DESC
   </select>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.BrandExample" >
     select

@@ -71,7 +71,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -103,7 +104,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -121,21 +123,27 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, name, sex, phone, nation, marriage, type, birthday, age, address,
+		id, name, sex, phone, nation, marriage, type, birthday,
+		age, address,
 		photo, service,
-		urgencyContact, urgencyContactPhone, relation, serviceType, serviceStatu,
+		urgencyContact, urgencyContactPhone,
+		relation, serviceType, serviceStatu,
 		economicSource,
-		monthlyIncome, healthCare, socialSecurityNo, chronicDiseases, bloodType,
+		monthlyIncome,
+		healthCare, socialSecurityNo, chronicDiseases, bloodType,
 		disabilitySituation,
-		disability, educationLevel, majors, title, unitOrignal, idcar, liveinfo, numone,
+		disability, educationLevel, majors, title,
+		unitOrignal, idcar, liveinfo, numone,
 		numtwo, numthree
 	</sql>
 	<select id="selectAllPhone" resultMap="PhoneResultMap">
-		select id, name, sex, nation,birthday,phone, address,
+		select id, name, sex,
+		nation,birthday,phone, address,
 		photo, service from oldman
 	</select>
-	
-	<select id="selectBaseInfoById" resultMap="PhoneResultMap" parameterType="java.lang.Integer">
+
+	<select id="selectBaseInfoById" resultMap="PhoneResultMap"
+		parameterType="java.lang.Integer">
 		select id, name, sex, nation,birthday,phone, address,
 		photo, service from oldman where id = #{id,jdbcType=INTEGER}
 	</select>
@@ -150,9 +158,7 @@
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
-		<if test="orderByClause != null">
-			order by ${orderByClause}
-		</if>
+		order by id DESC
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -172,36 +178,49 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.older.manager.bean.Oldman">
-		insert into oldman (id, name, sex,
+		insert into oldman (id, name,
+		sex,
 		phone, nation, marriage,
 		type, birthday, age, address,
-		photo, service, urgencyContact,
+		photo,
+		service, urgencyContact,
 		urgencyContactPhone, relation, serviceType,
 		serviceStatu, economicSource, monthlyIncome,
-		healthCare, socialSecurityNo, chronicDiseases,
-		bloodType, disabilitySituation, disability,
+		healthCare,
+		socialSecurityNo, chronicDiseases,
+		bloodType, disabilitySituation,
+		disability,
 		educationLevel, majors, title,
 		unitOrignal, idcar, liveinfo,
 		numone, numtwo, numthree
 		)
-		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		values (#{id,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
 		#{sex,jdbcType=VARCHAR},
-		#{phone,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{marriage,jdbcType=VARCHAR},
-		#{type,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE},
-		#{age,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR},
-		#{photo,jdbcType=VARCHAR}, #{service,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR},
+		#{marriage,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR},
+		#{birthday,jdbcType=DATE},
+		#{age,jdbcType=INTEGER},
+		#{address,jdbcType=VARCHAR},
+		#{photo,jdbcType=VARCHAR},
+		#{service,jdbcType=VARCHAR},
 		#{urgencycontact,jdbcType=VARCHAR},
 		#{urgencycontactphone,jdbcType=VARCHAR}, #{relation,jdbcType=VARCHAR},
 		#{servicetype,jdbcType=VARCHAR},
-		#{servicestatu,jdbcType=VARCHAR}, #{economicsource,jdbcType=VARCHAR}, #{monthlyincome,jdbcType=DOUBLE},
+		#{servicestatu,jdbcType=VARCHAR},
+		#{economicsource,jdbcType=VARCHAR}, #{monthlyincome,jdbcType=DOUBLE},
 		#{healthcare,jdbcType=VARCHAR}, #{socialsecurityno,jdbcType=VARCHAR},
 		#{chronicdiseases,jdbcType=VARCHAR},
-		#{bloodtype,jdbcType=VARCHAR}, #{disabilitysituation,jdbcType=VARCHAR},
+		#{bloodtype,jdbcType=VARCHAR},
+		#{disabilitysituation,jdbcType=VARCHAR},
 		#{disability,jdbcType=VARCHAR},
-		#{educationlevel,jdbcType=VARCHAR}, #{majors,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
+		#{educationlevel,jdbcType=VARCHAR},
+		#{majors,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},
 		#{unitorignal,jdbcType=VARCHAR}, #{idcar,jdbcType=VARCHAR},
 		#{liveinfo,jdbcType=VARCHAR},
-		#{numone,jdbcType=VARCHAR}, #{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR}
+		#{numone,jdbcType=VARCHAR},
+		#{numtwo,jdbcType=VARCHAR}, #{numthree,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.older.manager.bean.Oldman"
@@ -468,10 +487,12 @@
 				service = #{record.service,jdbcType=VARCHAR},
 			</if>
 			<if test="record.urgencycontact != null">
-				urgencyContact = #{record.urgencycontact,jdbcType=VARCHAR},
+				urgencyContact =
+				#{record.urgencycontact,jdbcType=VARCHAR},
 			</if>
 			<if test="record.urgencycontactphone != null">
-				urgencyContactPhone = #{record.urgencycontactphone,jdbcType=VARCHAR},
+				urgencyContactPhone =
+				#{record.urgencycontactphone,jdbcType=VARCHAR},
 			</if>
 			<if test="record.relation != null">
 				relation = #{record.relation,jdbcType=VARCHAR},
@@ -483,7 +504,8 @@
 				serviceStatu = #{record.servicestatu,jdbcType=VARCHAR},
 			</if>
 			<if test="record.economicsource != null">
-				economicSource = #{record.economicsource,jdbcType=VARCHAR},
+				economicSource =
+				#{record.economicsource,jdbcType=VARCHAR},
 			</if>
 			<if test="record.monthlyincome != null">
 				monthlyIncome = #{record.monthlyincome,jdbcType=DOUBLE},
@@ -492,22 +514,26 @@
 				healthCare = #{record.healthcare,jdbcType=VARCHAR},
 			</if>
 			<if test="record.socialsecurityno != null">
-				socialSecurityNo = #{record.socialsecurityno,jdbcType=VARCHAR},
+				socialSecurityNo =
+				#{record.socialsecurityno,jdbcType=VARCHAR},
 			</if>
 			<if test="record.chronicdiseases != null">
-				chronicDiseases = #{record.chronicdiseases,jdbcType=VARCHAR},
+				chronicDiseases =
+				#{record.chronicdiseases,jdbcType=VARCHAR},
 			</if>
 			<if test="record.bloodtype != null">
 				bloodType = #{record.bloodtype,jdbcType=VARCHAR},
 			</if>
 			<if test="record.disabilitysituation != null">
-				disabilitySituation = #{record.disabilitysituation,jdbcType=VARCHAR},
+				disabilitySituation =
+				#{record.disabilitysituation,jdbcType=VARCHAR},
 			</if>
 			<if test="record.disability != null">
 				disability = #{record.disability,jdbcType=VARCHAR},
 			</if>
 			<if test="record.educationlevel != null">
-				educationLevel = #{record.educationlevel,jdbcType=VARCHAR},
+				educationLevel =
+				#{record.educationlevel,jdbcType=VARCHAR},
 			</if>
 			<if test="record.majors != null">
 				majors = #{record.majors,jdbcType=VARCHAR},
@@ -541,39 +567,68 @@
 	<update id="updateByExample" parameterType="map">
 		update oldman
 		set id = #{record.id,jdbcType=INTEGER},
-		name = #{record.name,jdbcType=VARCHAR},
+		name =
+		#{record.name,jdbcType=VARCHAR},
 		sex = #{record.sex,jdbcType=VARCHAR},
 		phone = #{record.phone,jdbcType=VARCHAR},
-		nation = #{record.nation,jdbcType=VARCHAR},
-		marriage = #{record.marriage,jdbcType=VARCHAR},
-		type = #{record.type,jdbcType=VARCHAR},
-		birthday = #{record.birthday,jdbcType=DATE},
+		nation =
+		#{record.nation,jdbcType=VARCHAR},
+		marriage =
+		#{record.marriage,jdbcType=VARCHAR},
+		type =
+		#{record.type,jdbcType=VARCHAR},
+		birthday =
+		#{record.birthday,jdbcType=DATE},
 		age = #{record.age,jdbcType=INTEGER},
 		address = #{record.address,jdbcType=VARCHAR},
-		photo = #{record.photo,jdbcType=VARCHAR},
-		service = #{record.service,jdbcType=VARCHAR},
-		urgencyContact = #{record.urgencycontact,jdbcType=VARCHAR},
-		urgencyContactPhone = #{record.urgencycontactphone,jdbcType=VARCHAR},
-		relation = #{record.relation,jdbcType=VARCHAR},
-		serviceType = #{record.servicetype,jdbcType=VARCHAR},
-		serviceStatu = #{record.servicestatu,jdbcType=VARCHAR},
-		economicSource = #{record.economicsource,jdbcType=VARCHAR},
-		monthlyIncome = #{record.monthlyincome,jdbcType=DOUBLE},
-		healthCare = #{record.healthcare,jdbcType=VARCHAR},
-		socialSecurityNo = #{record.socialsecurityno,jdbcType=VARCHAR},
-		chronicDiseases = #{record.chronicdiseases,jdbcType=VARCHAR},
-		bloodType = #{record.bloodtype,jdbcType=VARCHAR},
-		disabilitySituation = #{record.disabilitysituation,jdbcType=VARCHAR},
-		disability = #{record.disability,jdbcType=VARCHAR},
-		educationLevel = #{record.educationlevel,jdbcType=VARCHAR},
-		majors = #{record.majors,jdbcType=VARCHAR},
-		title = #{record.title,jdbcType=VARCHAR},
-		unitOrignal = #{record.unitorignal,jdbcType=VARCHAR},
-		idcar = #{record.idcar,jdbcType=VARCHAR},
-		liveinfo = #{record.liveinfo,jdbcType=VARCHAR},
-		numone = #{record.numone,jdbcType=VARCHAR},
-		numtwo = #{record.numtwo,jdbcType=VARCHAR},
-		numthree = #{record.numthree,jdbcType=VARCHAR}
+		photo =
+		#{record.photo,jdbcType=VARCHAR},
+		service =
+		#{record.service,jdbcType=VARCHAR},
+		urgencyContact =
+		#{record.urgencycontact,jdbcType=VARCHAR},
+		urgencyContactPhone =
+		#{record.urgencycontactphone,jdbcType=VARCHAR},
+		relation =
+		#{record.relation,jdbcType=VARCHAR},
+		serviceType =
+		#{record.servicetype,jdbcType=VARCHAR},
+		serviceStatu =
+		#{record.servicestatu,jdbcType=VARCHAR},
+		economicSource =
+		#{record.economicsource,jdbcType=VARCHAR},
+		monthlyIncome =
+		#{record.monthlyincome,jdbcType=DOUBLE},
+		healthCare =
+		#{record.healthcare,jdbcType=VARCHAR},
+		socialSecurityNo =
+		#{record.socialsecurityno,jdbcType=VARCHAR},
+		chronicDiseases =
+		#{record.chronicdiseases,jdbcType=VARCHAR},
+		bloodType =
+		#{record.bloodtype,jdbcType=VARCHAR},
+		disabilitySituation =
+		#{record.disabilitysituation,jdbcType=VARCHAR},
+		disability =
+		#{record.disability,jdbcType=VARCHAR},
+		educationLevel =
+		#{record.educationlevel,jdbcType=VARCHAR},
+		majors =
+		#{record.majors,jdbcType=VARCHAR},
+		title =
+		#{record.title,jdbcType=VARCHAR},
+		unitOrignal =
+		#{record.unitorignal,jdbcType=VARCHAR},
+		idcar =
+		#{record.idcar,jdbcType=VARCHAR},
+		liveinfo =
+		#{record.liveinfo,jdbcType=VARCHAR},
+		numone =
+		#{record.numone,jdbcType=VARCHAR},
+		numtwo =
+		#{record.numtwo,jdbcType=VARCHAR},
+		numthree =
+		#{record.numthree,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -618,7 +673,8 @@
 				urgencyContact = #{urgencycontact,jdbcType=VARCHAR},
 			</if>
 			<if test="urgencycontactphone != null">
-				urgencyContactPhone = #{urgencycontactphone,jdbcType=VARCHAR},
+				urgencyContactPhone =
+				#{urgencycontactphone,jdbcType=VARCHAR},
 			</if>
 			<if test="relation != null">
 				relation = #{relation,jdbcType=VARCHAR},
@@ -648,7 +704,8 @@
 				bloodType = #{bloodtype,jdbcType=VARCHAR},
 			</if>
 			<if test="disabilitysituation != null">
-				disabilitySituation = #{disabilitysituation,jdbcType=VARCHAR},
+				disabilitySituation =
+				#{disabilitysituation,jdbcType=VARCHAR},
 			</if>
 			<if test="disability != null">
 				disability = #{disability,jdbcType=VARCHAR},
@@ -685,38 +742,57 @@
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Oldman">
 		update oldman
-		set name = #{name,jdbcType=VARCHAR},
+		set
+		name = #{name,jdbcType=VARCHAR},
 		sex = #{sex,jdbcType=VARCHAR},
-		phone = #{phone,jdbcType=VARCHAR},
+		phone =
+		#{phone,jdbcType=VARCHAR},
 		nation = #{nation,jdbcType=VARCHAR},
 		marriage = #{marriage,jdbcType=VARCHAR},
-		type = #{type,jdbcType=VARCHAR},
+		type =
+		#{type,jdbcType=VARCHAR},
 		birthday = #{birthday,jdbcType=DATE},
-		age = #{age,jdbcType=INTEGER},
+		age =
+		#{age,jdbcType=INTEGER},
 		address = #{address,jdbcType=VARCHAR},
-		photo = #{photo,jdbcType=VARCHAR},
+		photo =
+		#{photo,jdbcType=VARCHAR},
 		service = #{service,jdbcType=VARCHAR},
 		urgencyContact = #{urgencycontact,jdbcType=VARCHAR},
 		urgencyContactPhone = #{urgencycontactphone,jdbcType=VARCHAR},
 		relation = #{relation,jdbcType=VARCHAR},
-		serviceType = #{servicetype,jdbcType=VARCHAR},
-		serviceStatu = #{servicestatu,jdbcType=VARCHAR},
-		economicSource = #{economicsource,jdbcType=VARCHAR},
-		monthlyIncome = #{monthlyincome,jdbcType=DOUBLE},
-		healthCare = #{healthcare,jdbcType=VARCHAR},
-		socialSecurityNo = #{socialsecurityno,jdbcType=VARCHAR},
-		chronicDiseases = #{chronicdiseases,jdbcType=VARCHAR},
-		bloodType = #{bloodtype,jdbcType=VARCHAR},
-		disabilitySituation = #{disabilitysituation,jdbcType=VARCHAR},
-		disability = #{disability,jdbcType=VARCHAR},
-		educationLevel = #{educationlevel,jdbcType=VARCHAR},
-		majors = #{majors,jdbcType=VARCHAR},
+		serviceType =
+		#{servicetype,jdbcType=VARCHAR},
+		serviceStatu =
+		#{servicestatu,jdbcType=VARCHAR},
+		economicSource =
+		#{economicsource,jdbcType=VARCHAR},
+		monthlyIncome =
+		#{monthlyincome,jdbcType=DOUBLE},
+		healthCare =
+		#{healthcare,jdbcType=VARCHAR},
+		socialSecurityNo =
+		#{socialsecurityno,jdbcType=VARCHAR},
+		chronicDiseases =
+		#{chronicdiseases,jdbcType=VARCHAR},
+		bloodType =
+		#{bloodtype,jdbcType=VARCHAR},
+		disabilitySituation =
+		#{disabilitysituation,jdbcType=VARCHAR},
+		disability =
+		#{disability,jdbcType=VARCHAR},
+		educationLevel =
+		#{educationlevel,jdbcType=VARCHAR},
+		majors =
+		#{majors,jdbcType=VARCHAR},
 		title = #{title,jdbcType=VARCHAR},
 		unitOrignal = #{unitorignal,jdbcType=VARCHAR},
-		idcar = #{idcar,jdbcType=VARCHAR},
+		idcar =
+		#{idcar,jdbcType=VARCHAR},
 		liveinfo = #{liveinfo,jdbcType=VARCHAR},
 		numone = #{numone,jdbcType=VARCHAR},
-		numtwo = #{numtwo,jdbcType=VARCHAR},
+		numtwo =
+		#{numtwo,jdbcType=VARCHAR},
 		numthree = #{numthree,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>

@@ -242,7 +242,7 @@ public class ReadExcel {
 					}
 				}
 				//设置默认图片
-				oldman.setPhoto("default.png");
+				oldman.setPhoto("upload/default.png");
 				// 添加客户
 				oldmans.add(oldman);
 			}

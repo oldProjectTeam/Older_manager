@@ -88,9 +88,7 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
+    order by id DESC
   </select>
   
   <!--查询课程报名信息和老人信息和课程信息ResultMap  -->

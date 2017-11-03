@@ -80,7 +80,7 @@
 						<option value="女">女</option>
 					</select>
 
-					<button class="btn btn-default" id="selectwith">
+					<button class="btn btn-success" id="selectwith">
 						<span class="glyphicon glyphicon-search"></span> 查询
 					</button>
 
@@ -253,7 +253,7 @@
 								editBtn.attr("edit-id", item.id);
 								var serchBtn = $("<button></button>")
 										.addClass(
-												"btn btn-danger btn-sm serchBtn")
+												"btn btn-info btn-sm serchBtn")
 										.append(
 												$("<span></span>")
 														.addClass(

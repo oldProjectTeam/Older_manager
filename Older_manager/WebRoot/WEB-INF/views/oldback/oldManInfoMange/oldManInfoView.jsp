@@ -78,8 +78,9 @@
 							<td>${oldman.idcar}</td>
 							<td>性别:</td>
 							<td>${oldman.sex}</td>
-							<td rowspan="4"><img src=${oldman.photo
-								}  class="img-responsive"></td>
+							<td rowspan="4"><img
+								src="${pageContext.request.contextPath}/${oldman.photo==null?'upload/default.png':oldman.photo}"
+								width="200" height="150"></td>
 						</tr>
 						<tr>
 							<td>联系手机号：</td>
