@@ -35,7 +35,8 @@ public class OldBackLoginController {
 	 */
 	@RequestMapping("/SysUserLogin")
 	public String login(HttpSession session, String randomcode,
-			String usercode, String password, Integer loginType)
+			String usercode, String password, Integer loginType,
+			HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 
 		// 校验验证码，防止恶性攻击
@@ -43,23 +44,30 @@ public class OldBackLoginController {
 		String validateCode = (String) session.getAttribute("validateCode");
 
 		// 输入的验证和session中的验证进行对比
-		if (!randomcode.equals(validateCode)) {
-			// 抛出异常
-			throw new UserException("验证码输入错误");
+		if (validateCode != null) {
+			if (!validateCode.equals(randomcode)) {
+				// 抛出异常
+				throw new UserException("验证码输入错误");
+			}
 		}
 		// 调用service校验用户账号和密码的正确性
-		ActiveUser activeUser = sysService.authenticat(usercode, password,
-				loginType);
-		if (activeUser != null) {
-			// 如果service校验通过，将用户身份记录到session
-			session.setAttribute("activeUser", activeUser);
+		if (usercode != null) {
+			ActiveUser activeUser = sysService.authenticat(usercode, password,
+					loginType);
+			if (activeUser != null) {
+				// 如果service校验通过，将用户身份记录到session
+				session.setAttribute("activeUser", activeUser);
+				if (loginType == 1) {
+					// 登录到老人后台管理系统
+					return "redirect:backOldMain";
+				} else if (loginType == 0) {
+					// 登录到电商后台管理系统
+					return "redirect:backShopMain";
+				}
+			}
 		}
-		if (loginType == 1) {
-			// 登录到老人后台管理系统
-			return "redirect:backOldMain";
-		}
-		// 登录到电商后台管理系统
-		return "redirect:backShopMain";
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
+		return null;
 	}
 
 	@RequestMapping("/backOldMain")
