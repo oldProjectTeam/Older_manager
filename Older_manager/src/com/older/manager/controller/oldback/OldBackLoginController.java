@@ -82,11 +82,4 @@ public class OldBackLoginController {
 		return "redirect:login";
 
 	}
-
-	@RequestMapping("/getUserInfo")
-	@ResponseBody
-	public Msg getUserInfo(Integer id) throws Exception {
-		return Msg.success().add("activeUser", sysService.getUserInfo(id));
-	}
-
 }

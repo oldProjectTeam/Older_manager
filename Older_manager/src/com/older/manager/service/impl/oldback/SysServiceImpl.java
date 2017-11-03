@@ -109,16 +109,6 @@ public class SysServiceImpl implements SysService {
 		}
 		// 放入权限范围的菜单和url
 
-		for (int i = 0; i < menus.size(); i++) {
-			// System.out.println("父菜单----------------------------------------");
-			System.out.println(menus.get(i).getName());
-			// System.out.println("子菜单--------------------------------------");
-			for (int j = 0; j < childMenus.get(i).getMenus().size(); j++) {
-				System.out.println(childMenus.get(i).getMenus().get(j)
-						.getName());
-			}
-		}
-
 		// 认证通过，返回用户身份信息
 		ActiveUser activeUser = new ActiveUser();
 		activeUser.setUserid(user.getId());
@@ -308,44 +298,6 @@ public class SysServiceImpl implements SysService {
 	@Override
 	public List<Menu> findMenuByPermissionId(int id) {
 		return userPermissionMapper.findMenuByPermissionId(id);
-	}
-
-	/**
-	 * 返回用户信息,json形式
-	 */
-	@Override
-	public ActiveUser getUserInfo(Integer userid) throws Exception {
-		// 根据用户id查询菜单
-		List<Permission> menus = this.findMenuListByUserId(userid);
-
-		// 根据用户id查询权限url
-		List<Permission> permissions = this.findPermissionListByUserId(userid);
-
-		List<ChildMenu> childMenus = new ArrayList<ChildMenu>();
-		for (int i = 0; i < menus.size(); i++) {
-			int id = menus.get(i).getId();
-			List<Menu> list = this.findMenuByPermissionId(id);
-			ChildMenu childMenu = new ChildMenu();
-			childMenu.setMenuName(menus.get(i).getName());
-			childMenu.setMenus(list);
-			childMenus.add(childMenu);
-		}
-		// 放入权限范围的菜单和url
-		ActiveUser activeUser = new ActiveUser();
-		activeUser.setMenus(menus);
-		activeUser.setPermissions(permissions);
-		activeUser.setListMenus(childMenus);
-
-		for (int i = 0; i < menus.size(); i++) {
-			System.out.println("父菜单----------------------------------------");
-			System.out.println(menus.get(i).getName());
-			System.out.println("子菜单--------------------------------------");
-			for (int j = 0; j < childMenus.get(i).getMenus().size(); j++) {
-				System.out.println(childMenus.get(i).getMenus().get(j)
-						.getName());
-			}
-		}
-		return activeUser;
 	}
 
 }

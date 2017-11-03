@@ -31,5 +31,4 @@ public interface SysService {
 	// 通过菜单查询子菜单
 	public List<Menu> findMenuByPermissionId(int id);
 
-	public ActiveUser getUserInfo(Integer id) throws Exception;
 }

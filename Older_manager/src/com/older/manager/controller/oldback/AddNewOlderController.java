@@ -178,19 +178,8 @@ public class AddNewOlderController {
 			imgUrl = SaveFile.saveImg(file, request);
 		}
 		if (oldman != null) {
-
-			/*
-			 * Relatives relatives=new Relatives();
-			 * relatives.setName(oldman.getUrgencycontact());
-			 * relatives.setSex(oldman.getSex());
-			 * relatives.setPhone(oldman.getPhone());
-			 * relatives.setRelation(oldman.getRelation());
-			 * relatives.setIslive(oldman.getLiveinfo());
-			 * relatives.setAddress(oldman.getAddress());
-			 */
 			addNewOlderService.updateOlder(oldman);
 		}
-		// oldRelativesService.updateOlderRelative(relatives);
 		return "oldback/oldManInfoMange/selectallolderwith";
 	}
 
@@ -238,26 +227,6 @@ public class AddNewOlderController {
 		model.addAttribute("pageInfo", pageInfo);
 		return "oldback/oldManInfoMange/addnewolder";
 	}
-
-	/**
-	 * 模糊查询所有老人
-	 * 
-	 * @param pn
-	 * @param model
-	 * @param str
-	 * @return
-	 */
-	// @RequestParam(value="str",defaultValue="")
-	// @RequestMapping("/selectallolderwith/{pn}&{str}")
-	public String selectAllOlderWith(@PathVariable Integer pn, Model model,
-			String str) {
-		PageHelper.startPage(pn, 5);
-		List<Oldman> allolder = addNewOlderService.selectAllOlderWith(str);
-		PageInfo pageInfo = new PageInfo(allolder, 5);
-		model.addAttribute("pageInfo", pageInfo);
-		return "oldback/oldManInfoMange/selectallolderwith";
-	}
-
 	/**
 	 * 模糊查询返回json数据
 	 * 
