@@ -19,6 +19,14 @@ public interface TakedrugdetailsMapper {
     List<Takedrugdetails> selectByExample(TakedrugdetailsExample example);
 
     Takedrugdetails selectByPrimaryKey(Integer id);
+    
+    
+    //修改够的模糊查询
+    List<Takedrugdetails> selectByExampleWithOlder(Takedrugdetails takedrugdetails);
+
+    Takedrugdetails selectByPrimaryKeyWithOlder(Integer id);
+    
+    
 
     int updateByExampleSelective(@Param("record") Takedrugdetails record, @Param("example") TakedrugdetailsExample example);
 

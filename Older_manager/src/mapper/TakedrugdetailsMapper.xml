@@ -21,6 +21,36 @@
     <result column="takeDrugDetails9" property="takedrugdetails9" jdbcType="VARCHAR" />
     <result column="takeDrugDetails10" property="takedrugdetails10" jdbcType="VARCHAR" />
   </resultMap>
+  <!-- 自己修改的 -->
+  <resultMap id="BaseResultMapWithOlder" type="com.older.manager.bean.Takedrugdetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="medicines" property="medicines" jdbcType="VARCHAR" />
+    <result column="startTakingDate" property="starttakingdate" jdbcType="TIMESTAMP" />
+    <result column="endTakingDate" property="endtakingdate" jdbcType="TIMESTAMP" />
+    <result column="dosage" property="dosage" jdbcType="VARCHAR" />
+    <result column="methodUse" property="methoduse" jdbcType="VARCHAR" />
+    <result column="role" property="role" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="takeDrugDetails1" property="takedrugdetails1" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails2" property="takedrugdetails2" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails3" property="takedrugdetails3" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails4" property="takedrugdetails4" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails5" property="takedrugdetails5" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails6" property="takedrugdetails6" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails7" property="takedrugdetails7" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails8" property="takedrugdetails8" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails9" property="takedrugdetails9" jdbcType="VARCHAR" />
+    <result column="takeDrugDetails10" property="takedrugdetails10" jdbcType="VARCHAR" />
+    
+    
+    <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oldMan_id" property="id"/>
+    	<result column="name" property="name"/>
+    </association>
+  </resultMap>
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -104,6 +134,43 @@
     from takedrugdetails
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  
+  
+  
+  <!-- 带老人姓名的查询 -->
+   <select id="selectByExampleWithOlder" resultMap="BaseResultMapWithOlder" parameterType="com.older.manager.bean.Takedrugdetails" >
+    SELECT t.*,o.id,o.name FROM takedrugdetails t , oldman o WHERE  t.oldMan_id=o.id
+    
+        <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+       
+             <if test="medicines!=null and  medicines!=''">
+                  and   t.medicines  like  '%${medicines}%'
+             </if>
+       
+    
+                    
+
+  </select>
+  
+  <select id="selectByPrimaryKeyWithOlder" resultMap="BaseResultMapWithOlder" parameterType="java.lang.Integer" >
+     SELECT t.*,o.id,o.name FROM takedrugdetails t , oldman o WHERE  t.oldMan_id=o.id
+    and t.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from takedrugdetails
     where id = #{id,jdbcType=INTEGER}

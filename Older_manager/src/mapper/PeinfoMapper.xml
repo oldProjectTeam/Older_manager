@@ -121,7 +121,7 @@
       #{peinfo3,jdbcType=VARCHAR}, #{peinfo4,jdbcType=VARCHAR}, #{peinfo5,jdbcType=VARCHAR}, 
       #{peinfo6,jdbcType=VARCHAR}, #{peinfo7,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Peinfo" >
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Peinfo" useGeneratedKeys="true" keyProperty="id">
     insert into peinfo
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -211,6 +211,10 @@
         #{peinfo7,jdbcType=VARCHAR},
       </if>
     </trim>
+    <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
   </insert>
   <select id="countByExample" parameterType="com.older.manager.bean.PeinfoExample" resultType="java.lang.Integer" >
     select count(*) from peinfo

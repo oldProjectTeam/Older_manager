@@ -31,7 +31,17 @@ public class Peinfo {
 
     private String peinfo7;
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Peinfo [id=" + id + ", hospital=" + hospital + ", petime="
+				+ petime + ", nexttime=" + nexttime + ", remark=" + remark
+				+ ", photo=" + photo + ", oldmanId=" + oldmanId + ", peinfo1="
+				+ peinfo1 + ", peinfo2=" + peinfo2 + ", peinfo3=" + peinfo3
+				+ ", peinfo4=" + peinfo4 + ", peinfo5=" + peinfo5
+				+ ", peinfo6=" + peinfo6 + ", peinfo7=" + peinfo7 + "]";
+	}
+
+	public Integer getId() {
         return id;
     }
 

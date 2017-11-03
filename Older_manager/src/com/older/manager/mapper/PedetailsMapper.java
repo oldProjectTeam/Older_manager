@@ -19,6 +19,13 @@ public interface PedetailsMapper {
     List<Pedetails> selectByExample(PedetailsExample example);
 
     Pedetails selectByPrimaryKey(Integer id);
+    
+    
+    
+    //模糊查询
+    List<Pedetails> selectByExampleWithOldAndPe(Pedetails pedetails);
+    Pedetails selectByPrimaryKeyWithOldAndPe(Integer id);
+    
 
     int updateByExampleSelective(@Param("record") Pedetails record, @Param("example") PedetailsExample example);
 

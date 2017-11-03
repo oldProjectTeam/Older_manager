@@ -38,8 +38,41 @@ public class Takedrugdetails {
     private String takedrugdetails9;
 
     private String takedrugdetails10;
+    
+    
+    
+    private  Oldman oldman;
+    
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Takedrugdetails [id=" + id + ", medicines=" + medicines
+				+ ", starttakingdate=" + starttakingdate + ", endtakingdate="
+				+ endtakingdate + ", dosage=" + dosage + ", methoduse="
+				+ methoduse + ", role=" + role + ", oldmanId=" + oldmanId
+				+ ", takedrugdetails1=" + takedrugdetails1
+				+ ", takedrugdetails2=" + takedrugdetails2
+				+ ", takedrugdetails3=" + takedrugdetails3
+				+ ", takedrugdetails4=" + takedrugdetails4
+				+ ", takedrugdetails5=" + takedrugdetails5
+				+ ", takedrugdetails6=" + takedrugdetails6
+				+ ", takedrugdetails7=" + takedrugdetails7
+				+ ", takedrugdetails8=" + takedrugdetails8
+				+ ", takedrugdetails9=" + takedrugdetails9
+				+ ", takedrugdetails10=" + takedrugdetails10 + ", oldman="
+				+ oldman + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

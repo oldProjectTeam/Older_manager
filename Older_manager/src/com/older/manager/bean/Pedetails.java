@@ -26,8 +26,42 @@ public class Pedetails {
     private String pedetails6;
 
     private String pedetails7;
+    
+    
+    private Oldman oldman;
+    private Peinfo peinfo;
+    
+    
 
-    public Integer getId() {
+    public Peinfo getPeinfo() {
+		return peinfo;
+	}
+
+	public void setPeinfo(Peinfo peinfo) {
+		this.peinfo = peinfo;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedetails [id=" + id + ", peproject=" + peproject
+				+ ", pevalue=" + pevalue + ", peresult=" + peresult
+				+ ", resultanalysis=" + resultanalysis + ", peinfoId="
+				+ peinfoId + ", pedetails1=" + pedetails1 + ", pedetails2="
+				+ pedetails2 + ", pedetails3=" + pedetails3 + ", pedetails4="
+				+ pedetails4 + ", pedetails5=" + pedetails5 + ", pedetails6="
+				+ pedetails6 + ", pedetails7=" + pedetails7 + ", oldman="
+				+ oldman + ", peinfo=" + peinfo + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

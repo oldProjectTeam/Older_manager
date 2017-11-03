@@ -16,6 +16,88 @@
     <result column="PEDetails6" property="pedetails6" jdbcType="VARCHAR" />
     <result column="PEDetails7" property="pedetails7" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+  <!--修改后的  -->
+ 
+  <resultMap id="BaseResultMapWithOlderandPeinfo" type="com.older.manager.bean.Pedetails" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="peProject" property="peproject" jdbcType="VARCHAR" />
+    <result column="peValue" property="pevalue" jdbcType="VARCHAR" />
+    <result column="peResult" property="peresult" jdbcType="VARCHAR" />
+    <result column="resultAnalysis" property="resultanalysis" jdbcType="VARCHAR" />
+    <result column="peInfo_id" property="peinfoId" jdbcType="INTEGER" />
+    <result column="PEDetails1" property="pedetails1" jdbcType="VARCHAR" />
+    <result column="PEDetails2" property="pedetails2" jdbcType="VARCHAR" />
+    <result column="PEDetails3" property="pedetails3" jdbcType="VARCHAR" />
+    <result column="PEDetails4" property="pedetails4" jdbcType="VARCHAR" />
+    <result column="PEDetails5" property="pedetails5" jdbcType="VARCHAR" />
+    <result column="PEDetails6" property="pedetails6" jdbcType="VARCHAR" />
+    <result column="PEDetails7" property="pedetails7" jdbcType="VARCHAR" />
+    
+    
+    
+    <association property="peinfo" javaType="com.older.manager.bean.Peinfo">
+    <id column="peInfo_id" property="id" jdbcType="INTEGER" />
+    <result column="hospital" property="hospital" jdbcType="VARCHAR" />
+    <result column="peTime" property="petime" jdbcType="TIMESTAMP" />
+    <result column="nextTime" property="nexttime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="photo" property="photo" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="PEInfo1" property="peinfo1" jdbcType="VARCHAR" />
+    <result column="PEInfo2" property="peinfo2" jdbcType="VARCHAR" />
+    <result column="PEInfo3" property="peinfo3" jdbcType="VARCHAR" />
+    <result column="PEInfo4" property="peinfo4" jdbcType="VARCHAR" />
+    <result column="PEInfo5" property="peinfo5" jdbcType="VARCHAR" />
+    <result column="PEInfo6" property="peinfo6" jdbcType="VARCHAR" />
+    <result column="PEInfo7" property="peinfo7" jdbcType="VARCHAR" />
+  </association>
+  
+  <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oldMan_id" property="id"/>
+    	<result column="name" property="name"/>
+    </association>
+  </resultMap>
+  
+  
+  <!-- 模糊查询 -->
+ <select id="selectByExampleWithOldAndPe" resultMap="BaseResultMapWithOlderandPeinfo" parameterType="com.older.manager.bean.Pedetails" >
+    select p.*,e.*,o.id,o.name from pedetails p,peinfo e,oldman o where p.peInfo_id=e.id and e.oldMan_id=o.id
+    
+    <if test="peinfo!=null">
+         <if test="peinfo.hospital!=null and peinfo.hospital!=''">
+                and  e.hospital like  '%${peinfo.hospital}%'
+          
+         </if>
+    
+    </if>
+    
+       <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+   
+  </select>
+<select id="selectByPrimaryKeyWithOldAndPe" resultMap="BaseResultMapWithOlderandPeinfo" parameterType="java.lang.Integer" >
+   select p.*,e.*,o.id,o.name from pedetails p,peinfo e,oldman o where p.peInfo_id=e.id and e.oldMan_id=o.id
+    and p.id = #{id,jdbcType=INTEGER}
+  </select>
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
