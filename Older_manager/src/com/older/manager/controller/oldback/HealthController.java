@@ -36,7 +36,7 @@ public class HealthController {
 	public String health() {
 		return "oldback/healthManage/health";
 	}
-	
+
 	/**
 	 * 基本健康信息,新增
 	 * 
@@ -46,7 +46,7 @@ public class HealthController {
 	public String addhealthInfo() {
 		return "oldback/healthManage/addhealthInfo";
 	}
-	
+
 	/**
 	 * 基本健康信息,修改
 	 * 
@@ -56,7 +56,7 @@ public class HealthController {
 	public String updateAttend() {
 		return "oldback/healthManage/updateAttend";
 	}
-	
+
 	/**
 	 * 基本健康信息,查看
 	 * 
@@ -65,5 +65,85 @@ public class HealthController {
 	@RequestMapping("/selectAttend")
 	public String selectAttend() {
 		return "oldback/healthManage/selectAttend";
+	}
+
+	/**
+	 * 健康履历
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/bloodTransfusion")
+	public String bloodTransfusion() {
+		return "oldback/healthManage/bloodTransfusion";
+	}
+
+	/**
+	 * 购买能力
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/BuyAbility")
+	public String BuyAbility() {
+		return "oldback/healthManage/BuyAbility";
+	}
+
+	/**
+	 * 疾病列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/Disease")
+	public String Disease() {
+		return "oldback/healthManage/Disease";
+	}
+
+	/**
+	 * 家族史列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/familyHistory")
+	public String familyHistory() {
+		return "oldback/healthManage/familyHistory";
+	}
+
+	/**
+	 * 感染病史
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/geneticHistory")
+	public String geneticHistory() {
+		return "oldback/healthManage/geneticHistory";
+	}
+
+	/**
+	 * 健康评估
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/healthAccess")
+	public String healthAccess() {
+		return "oldback/healthManage/healthAccess";
+	}
+
+	/**
+	 * 手术列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/surgery")
+	public String surgery() {
+		return "oldback/healthManage/surgery";
+	}
+
+	/**
+	 * 外伤列表
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/trauma")
+	public String trauma() {
+		return "oldback/healthManage/trauma";
 	}
 }

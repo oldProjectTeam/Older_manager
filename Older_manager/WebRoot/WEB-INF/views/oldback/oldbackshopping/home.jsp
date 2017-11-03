@@ -40,19 +40,19 @@
 			<button type="button" class="close" data-dismiss="alert">
 				<i class="icon-remove"></i>
 			</button>
-			<i class="icon-ok green"></i>欢迎使用<strong class="green">后台管理系统</strong>,你本次登陆时间为2016年7月12日13时34分，登陆IP:192.168.1.110.
+			<i class="icon-ok green"></i>欢迎使用<strong class="green">后台管理系统</strong>,你本次登陆时间为${activeUser.shopIndexInfo.loginTime}，登陆IP:${activeUser.shopIndexInfo.loginIP}.
 		</div>
 		<div class="state-overview clearfix">
 			<div class="col-lg-3 col-sm-6">
-				<section class="panel"> <a href="#" title="商城会员">
-					<div class="symbol terques">
-						<i class="icon-user"></i>
-					</div>
-					<div class="value">
-						<h1>34522</h1>
-						<p>商城用户</p>
-					</div>
-				</a> </section>
+				<section class="panel">
+				<div class="symbol terques">
+					<i class="icon-user"></i>
+				</div>
+				<div class="value">
+					<h1>${activeUser.shopIndexInfo.shopUsers}</h1>
+					<p>商城用户</p>
+				</div>
+				</section>
 			</div>
 			<div class="col-lg-3 col-sm-6">
 				<section class="panel">
@@ -60,7 +60,7 @@
 					<i class="icon-tags"></i>
 				</div>
 				<div class="value">
-					<h1>140</h1>
+					<h1>${activeUser.shopIndexInfo.saleRecord}</h1>
 					<p>分销记录</p>
 				</div>
 				</section>
@@ -71,7 +71,7 @@
 					<i class="icon-shopping-cart"></i>
 				</div>
 				<div class="value">
-					<h1>345</h1>
+					<h1>${activeUser.shopIndexInfo.shopOrders}</h1>
 					<p>商城订单</p>
 				</div>
 				</section>
@@ -82,7 +82,7 @@
 					<i class="icon-bar-chart"></i>
 				</div>
 				<div class="value">
-					<h1>￥34,500</h1>
+					<h1>￥${activeUser.shopIndexInfo.tradeRecord}</h1>
 					<p>交易记录</p>
 				</div>
 				</section>

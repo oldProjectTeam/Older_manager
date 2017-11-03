@@ -30,7 +30,7 @@ public class OldBackLoginController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/SysUserLogin")
 	public String login(HttpSession session, String randomcode,
 			String usercode, String password, Integer loginType)
 			throws Exception {
@@ -44,7 +44,6 @@ public class OldBackLoginController {
 			// 抛出异常
 			throw new UserException("验证码输入错误");
 		}
-		System.out.println("登录类型----------------------------->" + loginType);
 		// 调用service校验用户账号和密码的正确性
 		ActiveUser activeUser = sysService.authenticat(usercode, password,
 				loginType);
@@ -54,10 +53,25 @@ public class OldBackLoginController {
 		}
 		if (loginType == 1) {
 			// 登录到老人后台管理系统
-			return "oldback/oldbackMain/main";
+			return "redirect:backOldMain";
 		}
 		// 登录到电商后台管理系统
+		return "redirect:backShopMain";
+	}
+
+	@RequestMapping("/backOldMain")
+	public String backOldMian() {
+		return "oldback/oldbackMain/main";
+	}
+
+	@RequestMapping("/backShopMain")
+	public String backShopMian() {
 		return "oldback/oldbackshopping/shopping_main";
+	}
+
+	@RequestMapping("/login")
+	public String login() {
+		return "oldback/oldbackMain/login";
 	}
 
 	// 用户退出
@@ -65,8 +79,7 @@ public class OldBackLoginController {
 	public String logout(HttpSession session) throws Exception {
 		// session失效
 		session.removeAttribute("activeUser");
-		session.invalidate();
-		return "oldback/oldbackMain/login";
+		return "redirect:login";
 
 	}
 

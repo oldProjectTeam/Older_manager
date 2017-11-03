@@ -33,7 +33,7 @@
 	<h1>老人后台管理系统</h1>
 	<p>management system</p>
 	</header> <font color="red" id="msg" style="margin-left: 180px;">${message}</font>
-	<form method="post" action="login" id="loginForm">
+	<form method="post" action="SysUserLogin" id="loginForm">
 		<div class="form-content">
 			<ul>
 				<li>

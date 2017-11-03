@@ -3,183 +3,211 @@ package com.older.manager.bean;
 import java.util.Date;
 
 public class Visitplan {
-    private Integer id;
+	private Integer id;
 
-    private Integer oldmanId;
+	private Integer oldmanId;
 
-    private Date visiplantime;
+	private Date visiplantime;
 
-    private String plannedvisits;
+	private String plannedvisits;
 
-    private String state;
+	private String state;
 
-    private Date remindvistitplantime;
+	private Date remindvistitplantime;
 
-    private String remindpeople;
+	private String remindpeople;
 
-    private String pendingevent;
+	private String pendingevent;
 
-    private Date actualtime;
+	private Date actualtime;
 
-    private String actualplannedvisits;
+	private String actualplannedvisits;
 
-    private String visitrecord;
+	private String visitrecord;
 
-    private String images;
+	private String images;
 
-    private String video;
+	private String video;
 
-    private String recording;
+	private String recording;
 
-    private Date createtime;
+	private Date createtime;
 
-    private String visitplan1;
+	private String visitplan1;
 
-    private String visitplan2;
+	private String visitplan2;
 
-    private String visitplan3;
+	private String visitplan3;
 
-    public Integer getId() {
-        return id;
-    }
+	private Oldman oldman;
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	@Override
+	public String toString() {
+		return "Visitplan [id=" + id + ", oldmanId=" + oldmanId
+				+ ", visiplantime=" + visiplantime + ", plannedvisits="
+				+ plannedvisits + ", state=" + state
+				+ ", remindvistitplantime=" + remindvistitplantime
+				+ ", remindpeople=" + remindpeople + ", pendingevent="
+				+ pendingevent + ", actualtime=" + actualtime
+				+ ", actualplannedvisits=" + actualplannedvisits
+				+ ", visitrecord=" + visitrecord + ", images=" + images
+				+ ", video=" + video + ", recording=" + recording
+				+ ", createtime=" + createtime + ", visitplan1=" + visitplan1
+				+ ", visitplan2=" + visitplan2 + ", visitplan3=" + visitplan3
+				+ ", oldman=" + oldman + "]";
+	}
 
-    public Integer getOldmanId() {
-        return oldmanId;
-    }
+	public Oldman getOldman() {
+		return oldman;
+	}
 
-    public void setOldmanId(Integer oldmanId) {
-        this.oldmanId = oldmanId;
-    }
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
 
-    public Date getVisiplantime() {
-        return visiplantime;
-    }
+	public Integer getId() {
+		return id;
+	}
 
-    public void setVisiplantime(Date visiplantime) {
-        this.visiplantime = visiplantime;
-    }
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public String getPlannedvisits() {
-        return plannedvisits;
-    }
+	public Integer getOldmanId() {
+		return oldmanId;
+	}
 
-    public void setPlannedvisits(String plannedvisits) {
-        this.plannedvisits = plannedvisits == null ? null : plannedvisits.trim();
-    }
+	public void setOldmanId(Integer oldmanId) {
+		this.oldmanId = oldmanId;
+	}
 
-    public String getState() {
-        return state;
-    }
+	public Date getVisiplantime() {
+		return visiplantime;
+	}
 
-    public void setState(String state) {
-        this.state = state == null ? null : state.trim();
-    }
+	public void setVisiplantime(Date visiplantime) {
+		this.visiplantime = visiplantime;
+	}
 
-    public Date getRemindvistitplantime() {
-        return remindvistitplantime;
-    }
+	public String getPlannedvisits() {
+		return plannedvisits;
+	}
 
-    public void setRemindvistitplantime(Date remindvistitplantime) {
-        this.remindvistitplantime = remindvistitplantime;
-    }
+	public void setPlannedvisits(String plannedvisits) {
+		this.plannedvisits = plannedvisits == null ? null : plannedvisits
+				.trim();
+	}
 
-    public String getRemindpeople() {
-        return remindpeople;
-    }
+	public String getState() {
+		return state;
+	}
 
-    public void setRemindpeople(String remindpeople) {
-        this.remindpeople = remindpeople == null ? null : remindpeople.trim();
-    }
+	public void setState(String state) {
+		this.state = state == null ? null : state.trim();
+	}
 
-    public String getPendingevent() {
-        return pendingevent;
-    }
+	public Date getRemindvistitplantime() {
+		return remindvistitplantime;
+	}
 
-    public void setPendingevent(String pendingevent) {
-        this.pendingevent = pendingevent == null ? null : pendingevent.trim();
-    }
+	public void setRemindvistitplantime(Date remindvistitplantime) {
+		this.remindvistitplantime = remindvistitplantime;
+	}
 
-    public Date getActualtime() {
-        return actualtime;
-    }
+	public String getRemindpeople() {
+		return remindpeople;
+	}
 
-    public void setActualtime(Date actualtime) {
-        this.actualtime = actualtime;
-    }
+	public void setRemindpeople(String remindpeople) {
+		this.remindpeople = remindpeople == null ? null : remindpeople.trim();
+	}
 
-    public String getActualplannedvisits() {
-        return actualplannedvisits;
-    }
+	public String getPendingevent() {
+		return pendingevent;
+	}
 
-    public void setActualplannedvisits(String actualplannedvisits) {
-        this.actualplannedvisits = actualplannedvisits == null ? null : actualplannedvisits.trim();
-    }
+	public void setPendingevent(String pendingevent) {
+		this.pendingevent = pendingevent == null ? null : pendingevent.trim();
+	}
 
-    public String getVisitrecord() {
-        return visitrecord;
-    }
+	public Date getActualtime() {
+		return actualtime;
+	}
 
-    public void setVisitrecord(String visitrecord) {
-        this.visitrecord = visitrecord == null ? null : visitrecord.trim();
-    }
+	public void setActualtime(Date actualtime) {
+		this.actualtime = actualtime;
+	}
 
-    public String getImages() {
-        return images;
-    }
+	public String getActualplannedvisits() {
+		return actualplannedvisits;
+	}
 
-    public void setImages(String images) {
-        this.images = images == null ? null : images.trim();
-    }
+	public void setActualplannedvisits(String actualplannedvisits) {
+		this.actualplannedvisits = actualplannedvisits == null ? null
+				: actualplannedvisits.trim();
+	}
 
-    public String getVideo() {
-        return video;
-    }
+	public String getVisitrecord() {
+		return visitrecord;
+	}
 
-    public void setVideo(String video) {
-        this.video = video == null ? null : video.trim();
-    }
+	public void setVisitrecord(String visitrecord) {
+		this.visitrecord = visitrecord == null ? null : visitrecord.trim();
+	}
 
-    public String getRecording() {
-        return recording;
-    }
+	public String getImages() {
+		return images;
+	}
 
-    public void setRecording(String recording) {
-        this.recording = recording == null ? null : recording.trim();
-    }
+	public void setImages(String images) {
+		this.images = images == null ? null : images.trim();
+	}
 
-    public Date getCreatetime() {
-        return createtime;
-    }
+	public String getVideo() {
+		return video;
+	}
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
-    }
+	public void setVideo(String video) {
+		this.video = video == null ? null : video.trim();
+	}
 
-    public String getVisitplan1() {
-        return visitplan1;
-    }
+	public String getRecording() {
+		return recording;
+	}
 
-    public void setVisitplan1(String visitplan1) {
-        this.visitplan1 = visitplan1 == null ? null : visitplan1.trim();
-    }
+	public void setRecording(String recording) {
+		this.recording = recording == null ? null : recording.trim();
+	}
 
-    public String getVisitplan2() {
-        return visitplan2;
-    }
+	public Date getCreatetime() {
+		return createtime;
+	}
 
-    public void setVisitplan2(String visitplan2) {
-        this.visitplan2 = visitplan2 == null ? null : visitplan2.trim();
-    }
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
+	}
 
-    public String getVisitplan3() {
-        return visitplan3;
-    }
+	public String getVisitplan1() {
+		return visitplan1;
+	}
 
-    public void setVisitplan3(String visitplan3) {
-        this.visitplan3 = visitplan3 == null ? null : visitplan3.trim();
-    }
+	public void setVisitplan1(String visitplan1) {
+		this.visitplan1 = visitplan1 == null ? null : visitplan1.trim();
+	}
+
+	public String getVisitplan2() {
+		return visitplan2;
+	}
+
+	public void setVisitplan2(String visitplan2) {
+		this.visitplan2 = visitplan2 == null ? null : visitplan2.trim();
+	}
+
+	public String getVisitplan3() {
+		return visitplan3;
+	}
+
+	public void setVisitplan3(String visitplan3) {
+		this.visitplan3 = visitplan3 == null ? null : visitplan3.trim();
+	}
 }

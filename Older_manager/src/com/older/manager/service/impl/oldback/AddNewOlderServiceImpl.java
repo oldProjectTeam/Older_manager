@@ -97,7 +97,7 @@ public class AddNewOlderServiceImpl implements AddNewOlderService{
 		OldmanExample example = new OldmanExample();
 		Criteria criteria = example.createCriteria();
        
-		if (str == "") {
+		if (str.equals("")) {
 			
 			return oldmanMapper.selectByExample(null);
 		} else {

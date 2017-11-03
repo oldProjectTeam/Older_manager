@@ -5,12 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class OldMainController {
-
-	@RequestMapping("/oldBackMain")
-	public String oldBackMain() {
-		return "oldback/oldbackMain/main";
-	}
-
 	@RequestMapping("/left")
 	public String oldBackLeft() {
 		return "oldback/oldbackMain/left";

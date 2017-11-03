@@ -21,17 +21,24 @@
 <meta http-equiv="description" content="This is my page">
 <!-- 引入jquery -->
 <script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <!-- 引入样式 -->
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script language="JavaScript"
+	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 <STYLE type="text/css">
-.table th,.table td {
+.table td {
 	text-align: center;
 	vertical-align: middle !important;
+}
+
+.text {
+	width: 150px !important;
+	height: 100px !important;
 }
 </STYLE>
 </head>
@@ -45,104 +52,263 @@
 				</ol>
 			</div>
 		</div>
+
+		<!-- 小模态框,显示老人信息 -->
+		<div class="modal fade bs-example-modal-sm" tabindex="-1"
+			role="dialog" aria-labelledby="mySmallModalLabel">
+			<div class="modal-dialog modal-sm" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="mySmallModalLabel">请选择老人</h4>
+					</div>
+					<div class="modal-body">
+						<div class="list-group">
+							<table class="table" id="oldManNameDiv"></table>
+						</div>
+						<div style="text-align: center;">
+							<button class="btn btn-sm btn-info" id="preBtn"
+								style="margin-right: 15px;">上一页</button>
+							<button class="btn btn-sm btn-info" id="nextBtn">下一页</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- 表格 -->
 		<div class="row">
 			<div class="col-md-12">
-				<table class="table table-bordered">
-					<tr class="active">
-						<th>老人姓名：</th>
-						<th><select>
-								<OPTION class="form-control">罗先生</OPTION>
-						</select></th>
-						
-						<th>计划回访事务：</th>
-						<th colspan="1"><textarea class="form-control" rows="1"></textarea></th>
-						<th>计划回访时间：</th>
-						<th><INPUT type="date" class="form-control"></th>
-					</tr>
-					<tr>
-						<th>老人ID：</th>
-						<th><select>
-								<OPTION class="form-control">22222</OPTION>
-						</select></th>
-						<th>实际回访事务：</th>
-						<th colspan="1"><textarea class="form-control" rows="1"></textarea></th>
-						<th>实际回访时间：</th>
-						<th><INPUT type="date" class="form-control"></th>
-					</tr>
-					<tr class="active">
-						<th>提醒人员：</th>
-						<th><select>
-								<OPTION class="form-control">罗先生</OPTION>
-						</select></th>
-						
-						<th>回访状态：</th>
-						<th colspan="1"><textarea class="form-control" rows="1"></textarea></th>
-						<th>提醒回访时间：</th>
-						<th><INPUT type="date" class="form-control"></th>
-					</tr>
-					<tr class="active">
-						<th></th>
-						<th></th>
-						
-						<th></th>
-						<th colspan="1"></th>
-						<th>创建时间</th>
-						<th><INPUT type="date" class="form-control"></th>
-					</tr>
-					<tr>
-						<th>待提醒事务：</th>
-						<th colspan="2"><textarea class="form-control" rows="3"></textarea></th>
-						<th>回访记录：</th>
-						<th colspan="2"><textarea class="form-control" rows="3"></textarea></th>
-					</tr>
-					<tr class="active">
-						<td rowspan="1" class="active">视频 </td>
-								<td rowspan="1" class="col-xs-3"><input type="hidden"
-									id="videopath" name="path" /> <input class="form-control"
-									type="file" id="video" onchange="showPic()"></td>
-						
-						<td rowspan="1" class="active">图片</td>
-								<td rowspan="1" class="col-xs-3"><input type="hidden"
-									id="videopath" name="path" /> <input class="form-control"
-									type="file" id="video" onchange="showPic()"></td>
-						
-						<td rowspan="1" class="active">录音 </td>
-								<td rowspan="1" class="col-xs-3"><input type="hidden"
-									id="videopath" name="path" /> <input class="form-control"
-									type="file" id="video" onchange="showPic()"></td>						
-						
-					</tr>
-					
-					<tr>
-						<td colspan="2"><input class="btn btn-success"
-									type="button" value="上传视频" name="addvideo"
-									onclick="uploadFile()">
-									<div id="progress" style=" margin-top: 20 " class="progress-bar"></td>
-						<td colspan="2"><input class="btn btn-success"
-									type="button" value="上传图片" name="addvideo"
-									onclick="uploadFile()">
-									<div id="progress" style=" margin-top: 20 " class="progress-bar"></td>
-						<td colspan="2"><input class="btn btn-success"
-									type="button" value="上传录音" name="addvideo"
-									onclick="uploadFile()">
-									<div id="progress" style=" margin-top: 20 " class="progress-bar"></td>			
-					</tr>
-					<tr>
-						
-						<th colspan="6" ></th>
-						
-					</tr>
-				</table>
+				<form action="plan/addVisitPlan" method="post" id="saveForm"
+					enctype="multipart/form-data">
+					<table class="table table-bordered">
+						<tr class="active">
+							<td class="text" id="oldmanIdText">老人姓名:</td>
+							<td><input type="text" disabled="disabled"
+								class="form-control" id="selectName" /> <br />
+								<button class="btn btn-sm btn-info" data-toggle="modal"
+									data-target=".bs-example-modal-sm">选择老人</button></td>
+
+							<td class="text"><font color="red">*</font>计划回访:</td>
+							<td><textarea class="form-control" rows="3"
+									name="plannedvisits" id="plannedvisits"></textarea><span
+								id="plannedvisitsHelpBlock" class="help-block"
+								style="color: red;"></span></td>
+							<td class="text"><font color="red">*</font>计划时间：</td>
+							<td class="col-xs-1"><input type="date" class="form-control"
+								name="visiplantime" id="visiplantime" /> <span
+								id="visiplantimeHelpBlock" class="help-block"
+								style="color: red;"></span></td>
+						</tr>
+						<tr>
+							<td class="text">身份证:</td>
+							<td><input type="text" disabled="disabled" id="IdCard"
+								class="form-control" /></td>
+							<td class="text"><font color="red">*</font>实际回访:</td>
+							<td><textarea class="form-control" rows="3"
+									name="actualplannedvisits" id="actualplannedvisits"></textarea>
+								<span id="actualplannedvisitsHelpBlock" class="help-block"
+								style="color: red;"></span></td>
+							<td class="text"><font color="red">*</font>实际时间:</td>
+							<td><INPUT type="date" class="form-control"
+								name="actualtime" id="actualtime" /> <span
+								id="actualtimeHelpBlock" class="help-block" style="color: red;"></span>
+							</td>
+						</tr>
+						<tr class="active">
+							<td class="text">提醒人员:</td>
+							<td><input type="text" readonly="readonly"
+								value="${activeUser.username}" class="form-control"
+								name="remindpeople" /></td>
+
+							<td class="text"><font color="red">*</font>回访状态:</td>
+							<td><select name="state" class="form-control">
+									<option>已回访</option>
+									<option>未回访</option>
+							</select></td>
+							<td class="text"><font color="red">*</font>提醒时间:</td>
+							<td><INPUT type="date" class="form-control"
+								name="remindvistitplantime" id="remindvistitplantime"> <span
+								id="remindvistitplantimeHelpBlock" class="help-block"
+								style="color: red;"></span></td>
+						</tr>
+						<tr class="active">
+							<td></td>
+							<td></td>
+							<td></td>
+							<td colspan="1"></td>
+							<td class="text"><font color="red">*</font>创建时间</td>
+							<td><INPUT type="date" class="form-control"
+								name="createtime" id="createtime"> <span
+								id="createtimeHelpBlock" class="help-block" style="color: red;"></span>
+							</td>
+						</tr>
+						<tr>
+							<td class="text"><font color="red">*</font>待提醒:</td>
+							<td colspan="2"><textarea class="form-control" rows="4"
+									name="pendingevent" id="pendingevent"></textarea> <span
+								id="pendingeventHelpBlock" class="help-block"
+								style="color: red;"></span></td>
+							<td class="text"><font color="red">*</font>回访记录:</td>
+							<td colspan="2"><textarea class="form-control" rows="4"
+									name="visitrecord" id="visitrecord"></textarea> <span
+								id="visitrecordHelpBlock" class="help-block" style="color: red;"></span>
+							</td>
+						</tr>
+						<tr class="active">
+							<td rowspan="1" class="active" class="text"><font
+								color="red">*</font>图片</td>
+							<td rowspan="1" class="col-xs-3"><input type="hidden"
+								id="videopath" name="path" /> <input class="form-control"
+								type="file" multiple="multiple" class="btn btn-info"
+								value="图片管理" name="file" id="up_img" required="true"> <br />
+								<input class="btn btn-sm btn-success" type="button" value="上传图片"
+								name="addvideo" onclick="uploadFile()"> <br /> <br />
+								<div id="progress" style=" margin-top: 20 " class="progress-bar"></div>
+								<img src="" id="imgShow" height="160" width="210"
+								class="img-rounded" /></td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
 		<!-- 按钮 -->
 		<div class="row">
 			<div align="center">
-				<BUTTON class="btn btn-success">保存</BUTTON>
-				<BUTTON class="btn btn-defualt">返回</BUTTON>
+				<BUTTON class="btn btn-sm btn-success" id="save">保存</BUTTON>
+				<BUTTON class="btn btn-sm btn-defualt"
+					onclick="javascript:history.back(-1);">返回</BUTTON>
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		/* 加载所有的老人 */
+		var currentNum;
+		$(function() {
+			go(1, "");
+		});
+		function go(pn, str) {
+			$.ajax({
+				url : "${APP_PATH}/old/selectallolderwith",
+				data : {
+					"pn" : pn,
+					"str" : str
+				},
+				type : "GET",
+				success : function(result) {
+					if (result.code == 100) {
+						console.log(result.extend.pageInfo);
+						currentNum = result.extend.pageInfo.pageNum;
+						$("#oldManNameDiv").empty();
+						$.each(result.extend.pageInfo.list, function(index,
+								item) {
+							var oldMan = $("<button></button>").addClass(
+									"list-group-item selectMan");
+							//添加老人的id
+							oldMan.attr("oldManId", item.id);
+							//添加老人的姓名
+							oldMan.attr("oldManName", item.name);
+							//添加老人的身份证号码
+							oldMan.attr("oldManIdCard", item.idcar);
+							oldMan.append(item.name);
+							$("<tr></tr>")
+									.append($("<td></td>").append(oldMan))
+									.appendTo($("#oldManNameDiv"));
+						});
+
+						//上一页
+						if (result.extend.pageInfo.hasPreviousPage) {
+							$("#preBtn").removeAttr("disabled");
+							$("#preBtn").click(function() {
+								go(currentNum - 1, "");
+							});
+						} else {
+							$("#preBtn").attr("disabled", "disabled");
+						}
+						//下一页
+						if (result.extend.pageInfo.hasNextPage) {
+							$("#nextBtn").removeAttr("disabled");
+							$("#nextBtn").click(function() {
+								go(currentNum + 1, "");
+							});
+						} else {
+							$("#nextBtn").attr("disabled", "disabled");
+						}
+					}
+				}
+			});
+		}
+		$(document).on(
+				"click",
+				".selectMan",
+				function() {
+					//alert($(this).attr("oldManId"));
+					$("#selectName").val("");
+					$("#IdCard").val("");
+					var IdText = $("<input type='hidden'/>").attr("name",
+							"oldmanId").val($(this).attr("oldManId"));
+					$("#oldmanIdText").append(IdText);
+					$("#selectName").val($(this).attr("oldManName"));
+					$("#IdCard").val($(this).attr("oldManIdCard"));
+					$(".bs-example-modal-sm").modal("hide");
+				});
+		window.onload = function() {
+			new uploadPreview({
+				UpBtn : "up_img",
+				ImgShow : "imgShow"
+			});
+		};
+		/* 保存 */
+		$("#save").click(function() {
+			if ($("#plannedvisits").val() == '') {
+				$("#plannedvisitsHelpBlock").text("");
+				$("#plannedvisitsHelpBlock").append("计划回访不能为空");
+
+			}
+			if ($("#visiplantime").val() == '') {
+				$("#visiplantimeHelpBlock").text("");
+				$("#visiplantimeHelpBlock").append("计划时间不能为空");
+			}
+			if ($("#actualplannedvisits").val() == '') {
+				$("#actualplannedvisitsHelpBlock").text("");
+				$("#actualplannedvisitsHelpBlock").append("实际回访不能为空");
+
+			}
+			if ($("#actualtime").val() == '') {
+				$("#actualtimeHelpBlock").text("");
+				$("#actualtimeHelpBlock").append("实际时间不能为空");
+			}
+			if ($("#remindvistitplantime").val() == '') {
+				$("#remindvistitplantimeHelpBlock").text("");
+				$("#remindvistitplantimeHelpBlock").append("提醒时间不能为空");
+			}
+			if ($("#createtime").val() == '') {
+				$("#createtimeHelpBlock").text("");
+				$("#createtimeHelpBlock").append("创建时间不能为空");
+
+			}
+			if ($("#pendingevent").val() == '') {
+				$("#pendingeventHelpBlock").text("");
+				$("#pendingeventHelpBlock").append("待提醒不能为空");
+			}
+			if ($("#visitrecord").val() == '') {
+				$("#visitrecordHelpBlock").text("");
+				$("#visitrecordHelpBlock").append("回访记录不能为空");
+			} else {
+				$("#plannedvisitsHelpBlock").text("");
+				$("#visiplantimeHelpBlock").text("");
+				$("#actualplannedvisitsHelpBlock").text("");
+				$("#actualtimeHelpBlock").text("");
+				$("#remindvistitplantimeHelpBlock").text("");
+				$("#createtimeHelpBlock").text("");
+				$("#pendingeventHelpBlock").text("");
+				$("#visitrecordHelpBlock").text("");
+				$("#saveForm").submit();
+			}
+		});
+	</script>
 </body>
 </html>

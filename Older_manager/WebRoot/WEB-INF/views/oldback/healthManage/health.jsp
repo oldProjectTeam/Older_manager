@@ -66,7 +66,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="addcourse.jsp" class="list-group-item text-center"><img
+					<a href="health/healthAccess" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/pinggu.png" alt="..."
 						class="img-rounded"> <br> <br>评估报告 </a>
 				</div>
@@ -82,7 +82,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="coursemanager.jsp" class="list-group-item text-center"><img
+					<a href="health/bloodTransfusion" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/lvli.png" alt="..."
 						class="img-rounded"> <br> <br>健康履历 </a>
 				</div>

@@ -1,5 +1,6 @@
 package com.older.manager.service.impl.oldback;
 
+import java.math.BigInteger;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
@@ -17,19 +18,25 @@ import org.springframework.stereotype.Service;
 import com.older.manager.bean.ActiveUser;
 import com.older.manager.bean.ChildMenu;
 import com.older.manager.bean.Menu;
+import com.older.manager.bean.Orders;
+import com.older.manager.bean.OrdersExample;
 import com.older.manager.bean.Permission;
 import com.older.manager.bean.Role;
+import com.older.manager.bean.ShopIndexInfo;
 import com.older.manager.bean.SystemLog;
 import com.older.manager.bean.SystemLogExample;
 import com.older.manager.bean.SystemLogExample.Criteria;
 import com.older.manager.bean.User;
 import com.older.manager.bean.UserExample;
+import com.older.manager.bean.Users;
 import com.older.manager.exception.UserException;
 import com.older.manager.mapper.MenuMapper;
+import com.older.manager.mapper.OrdersMapper;
 import com.older.manager.mapper.RoleMapper;
 import com.older.manager.mapper.SystemLogMapper;
 import com.older.manager.mapper.UserMapper;
 import com.older.manager.mapper.UserPermissionMapper;
+import com.older.manager.mapper.UsersMapper;
 import com.older.manager.service.oldback.SysService;
 import com.older.manager.utils.MD5;
 
@@ -50,6 +57,12 @@ public class SysServiceImpl implements SysService {
 
 	@Autowired
 	private RoleMapper roleMapper;
+
+	@Autowired
+	private UsersMapper usersMapper;
+
+	@Autowired
+	private OrdersMapper ordersMapper;
 
 	@Override
 	public ActiveUser authenticat(String userCode, String password, Integer type)
@@ -97,9 +110,9 @@ public class SysServiceImpl implements SysService {
 		// 放入权限范围的菜单和url
 
 		for (int i = 0; i < menus.size(); i++) {
-			System.out.println("父菜单----------------------------------------");
+			// System.out.println("父菜单----------------------------------------");
 			System.out.println(menus.get(i).getName());
-			System.out.println("子菜单--------------------------------------");
+			// System.out.println("子菜单--------------------------------------");
 			for (int j = 0; j < childMenus.get(i).getMenus().size(); j++) {
 				System.out.println(childMenus.get(i).getMenus().get(j)
 						.getName());
@@ -114,6 +127,29 @@ public class SysServiceImpl implements SysService {
 		activeUser.setMenus(menus);
 		activeUser.setPermissions(permissions);
 		activeUser.setListMenus(childMenus);
+
+		if (type == 0) {
+			// 登录到商城
+			// 记录商城首页的信息
+			ShopIndexInfo shopIndexInfo = new ShopIndexInfo();
+			shopIndexInfo.setLoginIP(this.getIp());
+			shopIndexInfo.setLoginTime(new SimpleDateFormat()
+					.format(new Date()));
+			BigInteger shopUsers = this.getAllShopUser();
+			// 查询出所有的商城用户数
+			shopIndexInfo.setShopUsers(shopUsers);
+			// 查询出分销记录
+
+			// 查询出商城订单
+			BigInteger shopOrders = this.getAllOrders();
+			shopIndexInfo.setShopOrders(shopOrders);
+
+			// 查询出所有的交易记录
+			BigInteger tradeRecord = this.getAllTradeRecord();
+			shopIndexInfo.setTradeRecord(tradeRecord);
+
+			activeUser.setShopIndexInfo(shopIndexInfo);
+		}
 
 		// 登录成功之后,将日志记录到数据库
 		// 先去查询数据库,看是否存在这条日志
@@ -145,6 +181,38 @@ public class SysServiceImpl implements SysService {
 			this.insertLog(systemLog);
 		}
 		return activeUser;
+	}
+
+	private BigInteger getAllTradeRecord() {
+		OrdersExample example = new OrdersExample();
+		com.older.manager.bean.OrdersExample.Criteria criteria = example
+				.createCriteria();
+		criteria.andStateEqualTo("交易成功");
+		List<Orders> list = ordersMapper.selectByExample(example);
+		BigInteger sum = BigInteger.valueOf(0);
+		if (list != null) {
+			for (Orders orders : list) {
+				sum = BigInteger.valueOf(Math.round(orders.getCost())).add(sum);
+			}
+			return sum;
+		}
+		return BigInteger.valueOf(0);
+	}
+
+	private BigInteger getAllOrders() {
+		List<Orders> list = ordersMapper.selectByExample(null);
+		if (list != null) {
+			return BigInteger.valueOf(list.size());
+		}
+		return BigInteger.valueOf(0);
+	}
+
+	private BigInteger getAllShopUser() {
+		List<Users> list = usersMapper.selectByExample(null);
+		if (list != null) {
+			return BigInteger.valueOf(list.size());
+		}
+		return BigInteger.valueOf(0);
 	}
 
 	/**

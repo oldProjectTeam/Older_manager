@@ -280,7 +280,7 @@
 				UpBtn : "up_img",
 				ImgShow : "imgShow"
 			});
-		}
+		};
 	</script>
 
 

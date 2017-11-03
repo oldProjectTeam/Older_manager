@@ -277,7 +277,7 @@ public class AddNewOlderController {
 		List<Oldman> allolder = addNewOlderService
 				.selectAllOlderWith(new String(str.getBytes("iso-8859-1"),
 						"utf-8"));
-		PageInfo pageInfo = new PageInfo(allolder, 5);
+		PageInfo<Oldman> pageInfo = new PageInfo<Oldman>(allolder, 5);
 		return Msg.success().add("pageInfo", pageInfo);
 
 	}
@@ -407,20 +407,19 @@ public class AddNewOlderController {
 			return Msg.success().add("pageInfo", pageInfo);
 		}
 	}
-	
-	
+
 	/**
-	 * @Title:   intoUpdateOldManInfo
-	 * @Description:  跳转到修改老年人信息界面
-	 * @param:    @param id
-	 * @param:    @param model
-	 * @param:    @return   
-	 * @return:   String   
+	 * @Title: intoUpdateOldManInfo
+	 * @Description: 跳转到修改老年人信息界面
+	 * @param: @param id
+	 * @param: @param model
+	 * @param: @return
+	 * @return: String
 	 * @throws
 	 */
 	@RequestMapping(value = "/intoUpdateOldManInfo")
-	public String intoUpdateOldManInfo(String id,Model model) {
-		Oldman oldman=addNewOlderService.selectOlder(Integer.valueOf(id));
+	public String intoUpdateOldManInfo(String id, Model model) {
+		Oldman oldman = addNewOlderService.selectOlder(Integer.valueOf(id));
 		model.addAttribute("oldman", oldman);
 		return "oldback/oldManInfoMange/editOlderInfo";
 	}

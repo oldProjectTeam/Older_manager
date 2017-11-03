@@ -53,7 +53,6 @@
 	</aop:config>
 	<!-- 配置事务增强 事务如何切入 -->
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
-
 		<tx:attributes>
 			<!-- 所有的方法都是事务方法 -->
 			<tx:method name="*" />

@@ -13,6 +13,16 @@ public class ActiveUser implements java.io.Serializable {
 	private String usercode;// 用户账号
 	private String username;// 用户名称
 
+	private ShopIndexInfo shopIndexInfo;// 记录商城首页的信息
+
+	public ShopIndexInfo getShopIndexInfo() {
+		return shopIndexInfo;
+	}
+
+	public void setShopIndexInfo(ShopIndexInfo shopIndexInfo) {
+		this.shopIndexInfo = shopIndexInfo;
+	}
+
 	private List<Permission> menus;// 菜单
 	private List<Permission> permissions;// 权限
 	private List<ChildMenu> listMenus;// 子菜单

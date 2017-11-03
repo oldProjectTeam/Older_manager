@@ -6,16 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class OldShoppingMainController {
 	/**
-	 * 电商后台主界面
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/shopping_main")
-	public String oldShoppingMain() {
-		return "oldback/oldbackshopping/shopping_main";
-	}
-
-	/**
 	 * 电商后台首页
 	 * 
 	 * @return
