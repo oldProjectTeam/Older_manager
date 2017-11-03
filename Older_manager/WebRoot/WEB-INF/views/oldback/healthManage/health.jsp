@@ -59,30 +59,24 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="visit/selectvisitPlan" class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/suifang.png" alt="..."
-						class="img-rounded"> <br> <br>随访记录 </a>
+					<a href="health/healthAccess" class="list-group-item text-center"><img
+						src="${APP_PATH}/static/images/pinggu.png" alt="..."
+						class="img-rounded"> <br> <br>健康评估 </a>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="health/healthAccess" class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/pinggu.png" alt="..."
-						class="img-rounded"> <br> <br>评估报告 </a>
+					<a href="health/healthInfo" class="list-group-item text-center"><img
+						src="${APP_PATH}/static/images/jiangkang.png" alt="..."
+						class="img-rounded"> <br> <br>健康信息列表 </a>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="health/healthInfo" class="list-group-item text-center"><img
-						src="${APP_PATH}/static/images/jiangkang.png" alt="..."
-						class="img-rounded"> <br> <br>基本健康信息 </a>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="health/bloodTransfusion" class="list-group-item text-center"><img
+					<a href="health/bloodTransfusion"
+						class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/lvli.png" alt="..."
 						class="img-rounded"> <br> <br>健康履历 </a>
 				</div>

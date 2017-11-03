@@ -47,10 +47,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 			return true;
 		}
 		// 执行到这里拦截，跳转到登陆页面，用户进行身份认证
-		request.getRequestDispatcher(
-				"/WEB-INF/views/oldback/oldbackMain/login.jsp").forward(
-				request, response);
-
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
 		// 如果返回false表示拦截不继续执行handler，如果返回true表示放行
 		return false;
 	}
@@ -61,8 +58,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		System.out.println("HandlerInterceptor1...postHandle");
-
 	}
 
 	// 执行handler之后执行此方法
@@ -73,7 +68,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 	public void afterCompletion(HttpServletRequest request,
 			HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		System.out.println("HandlerInterceptor1...afterCompletion");
 	}
 
 }
