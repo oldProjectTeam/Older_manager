@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-
+		boolean flag = true;
 		// 得到请求的url
 		String url = request.getRequestURI();
 
@@ -38,7 +38,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 				return true;
 			}
 		}
-
 		// 判断用户身份在session中是否存在
 		HttpSession session = request.getSession();
 		ActiveUser activeUser = (ActiveUser) session.getAttribute("activeUser");
@@ -46,9 +45,17 @@ public class LoginInterceptor implements HandlerInterceptor {
 		if (activeUser != null) {
 			return true;
 		}
+		if (null == request.getSession(false)) {
+			if (true == request.getSession(true).isNew()) {
+			} else {
+				request.setAttribute("message", "登录失效,请你重新登录");
+				response.sendRedirect(request.getContextPath() + "/login.jsp");
+				return false;
+			}
+		}
 		// 执行到这里拦截，跳转到登陆页面，用户进行身份认证
-		response.sendRedirect(request.getContextPath() + "/login.jsp");
 		// 如果返回false表示拦截不继续执行handler，如果返回true表示放行
+		response.sendRedirect(request.getContextPath() + "/login.jsp");
 		return false;
 	}
 
