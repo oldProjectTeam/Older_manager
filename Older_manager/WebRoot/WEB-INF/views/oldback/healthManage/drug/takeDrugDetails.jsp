@@ -374,7 +374,7 @@
 			//为元素添加点击翻页事件
 			nextPageLi
 					.click(function() {
-						go(result.extend.pageInfo.pageNum + 1, noldmanname,drugname);
+						go(result.extend.pageInfo.pageNum + 1, oldmanname,drugname);
 					});
 		}
 		//添加首页和前一页的提示

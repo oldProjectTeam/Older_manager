@@ -175,76 +175,93 @@ public class ReadExcel {
 
 		List<Oldman> oldmans = new ArrayList<Oldman>();
 		Oldman oldman;
-		// 循环Excel行数,从第二行开始。标题不入库
-		for (int r = 1; r < totalRows; r++) {
-			Row row = sheet.getRow(r);
-			if (row != null) {
-				oldman = new Oldman();
-				// 循环Excel的列
-				for (int c = 0; c < this.totalCells; c++) {
-					Cell cell = row.getCell(c);
-					cell.setCellType(Cell.CELL_TYPE_STRING);
-					if (cell != null) {
-						if (c == 0) {// 第一列不读
-							// 老人的姓名
-							oldman.setName(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 1) {
-							// 老人的性别
-							oldman.setSex(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 2) {
-							// 老人的电话
-							oldman.setPhone(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 3) {
-							// 老人的民族
-							oldman.setNation(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 4) {
-							// 老人的出生年月
-							Calendar calendar = new GregorianCalendar(1900, 0,
-									-1);
-							Date d = calendar.getTime();
-							Date birthday = DateUtils
-									.addDays(d, Integer.parseInt(cell
-											.getStringCellValue()));
-							System.out.println(birthday.toString());
-							oldman.setBirthday(birthday);
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 5) {
-							// 老人的年龄
-							oldman.setAge(Integer.parseInt(cell
-									.getStringCellValue()));
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 6) {
-							// 老人的地址
-							oldman.setAddress(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 7) {
-							// 老人的服务点
-							oldman.setService(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 8) {
-							// 紧急联系人
-							oldman.setUrgencycontact(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 9) {
-							// 紧急联系人电话
-							oldman.setUrgencycontactphone(cell
-									.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
-						} else if (c == 10) {
-							// 老人的服务状态
-							oldman.setServicestatu(cell.getStringCellValue());
-							System.out.println(cell.getStringCellValue());
+		// 标题行
+		Row titleRow = null;
+		String name = "";
+		if (sheet != null) {
+			titleRow = sheet.getRow(0);
+		}
+		if (titleRow != null) {
+			Cell cell = titleRow.getCell(0);
+			if (cell != null) {
+				name = cell.getStringCellValue();
+			}
+		}
+		if (!name.equals("老人的姓名")) {
+			oldmans = null;
+		} else {
+			// 循环Excel行数,从第二行开始。标题不入库
+			for (int r = 1; r < totalRows; r++) {
+				Row row = sheet.getRow(r);
+				if (row != null) {
+					oldman = new Oldman();
+					// 循环Excel的列
+					for (int c = 0; c < this.totalCells; c++) {
+						Cell cell = row.getCell(c);
+						cell.setCellType(Cell.CELL_TYPE_STRING);
+						if (cell != null) {
+							if (c == 0) {// 第一列不读
+								// 老人的姓名
+								oldman.setName(cell.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 1) {
+								// 老人的性别
+								oldman.setSex(cell.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 2) {
+								// 老人的电话
+								oldman.setPhone(cell.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 3) {
+								// 老人的民族
+								oldman.setNation(cell.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 4) {
+								// 老人的出生年月
+								Calendar calendar = new GregorianCalendar(1900,
+										0, -1);
+								Date d = calendar.getTime();
+								Date birthday = DateUtils.addDays(d, Integer
+										.parseInt(cell.getStringCellValue()));
+								System.out.println(birthday.toString());
+								oldman.setBirthday(birthday);
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 5) {
+								// 老人的年龄
+								oldman.setAge(Integer.parseInt(cell
+										.getStringCellValue()));
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 6) {
+								// 老人的地址
+								oldman.setAddress(cell.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 7) {
+								// 老人的服务点
+								oldman.setService(cell.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 8) {
+								// 紧急联系人
+								oldman.setUrgencycontact(cell
+										.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 9) {
+								// 紧急联系人电话
+								oldman.setUrgencycontactphone(cell
+										.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							} else if (c == 10) {
+								// 老人的服务状态
+								oldman.setServicestatu(cell
+										.getStringCellValue());
+								System.out.println(cell.getStringCellValue());
+							}
 						}
 					}
+					// 设置默认图片
+					oldman.setPhoto("upload/default.png");
+					// 添加客户
+					oldmans.add(oldman);
 				}
-				//设置默认图片
-				oldman.setPhoto("upload/default.png");
-				// 添加客户
-				oldmans.add(oldman);
 			}
 		}
 		return oldmans;
