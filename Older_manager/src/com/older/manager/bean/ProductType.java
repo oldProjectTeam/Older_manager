@@ -2,13 +2,23 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class ProductType {
     private Integer id;
 
+    @NotNull(message="类型名称不能为空或不能超过50个字符!")
+    @Size(min=1,max=50)
     private String name;
 
+    @NotNull(message="排序不能为空且必须是大于0的整数")
+    @Min(value=1)
     private Integer sort;
 
+    @NotNull(message="父级类型ID不能为空！")
     private Integer parentid;
 
     private Integer state;
@@ -27,6 +37,8 @@ public class ProductType {
 
     private Integer type5;
 
+    @NotNull(message="备注信息至少为10个字符且长度不能超过100")
+    @Size(min=10,max=100)
     private String remark;
 
     public Integer getId() {
@@ -132,4 +144,13 @@ public class ProductType {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	@Override
+	public String toString() {
+		return "ProductType [id=" + id + ", name=" + name + ", sort=" + sort
+				+ ", parentid=" + parentid + ", state=" + state + ", grade="
+				+ grade + ", createtime=" + createtime + ", type1=" + type1
+				+ ", type2=" + type2 + ", type3=" + type3 + ", type4=" + type4
+				+ ", type5=" + type5 + ", remark=" + remark + "]";
+	}
 }
