@@ -1,10 +1,10 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
-	pageContext.setAttribute("APP_PATH", request.getContextPath());
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -19,68 +19,81 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<!-- 引入jquery -->
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link href="${APP_PATH}/static/h-ui/css/H-ui.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="${APP_PATH}/static/h-ui.admin/css/H-ui.login.css"
+	rel="stylesheet" type="text/css" />
+<link href="${APP_PATH}/static/h-ui.admin/css/style.css"
+	rel="stylesheet" type="text/css" />
+<link href="${APP_PATH}/lib/Hui-iconfont/1.0.8/iconfont.css"
+	rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="${APP_PATH}/static/js/jquery.js"></script>
-<!-- 引入样式 -->
-<link href="${APP_PATH}/static/css/login_style.css" rel="stylesheet">
-<script src="${APP_PATH}/static/js/public.js"></script>
-<script src="${APP_PATH}/static/js/customScrollbar.min.js"></script>
-<script src="${APP_PATH}/static/js/login.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/h-ui/js/H-ui.min.js"></script>
 </head>
-
-<body class="login-page">
-	<section class="login-contain"> <header>
-	<h1>老人后台管理系统</h1>
-	<p>management system</p>
-	</header> <font color="red" id="msg" style="margin-left: 180px;">${message}</font>
-	<form method="post" action="SysUserLogin" id="loginForm">
-		<div class="form-content">
-			<ul>
-				<li>
-					<div class="form-group">
-						<label class="control-label">管理员账号：</label> <input type="text"
-							placeholder="管理员账号..." class="form-control form-underlined"
-							name="usercode" id="username" />
+<body>
+	<div class="loginWraper">
+		<div class="loginBox">
+			<span><font color="red" id="msg" size="3"
+				style="margin-left: 300px;">${message}</font></span>
+			<form class="form form-horizontal" action="SysUserLogin"
+				id="loginForm" method="post">
+				<div class="row cl">
+					<label class="form-label col-xs-3"><img
+						src="static/images/person.png" width="40" height="40"></label>
+					<div class="formControls col-xs-8">
+						<input name="usercode" id="username" type="text" placeholder="账户"
+							class="input-text size-L">
 					</div>
-				</li>
-				<li>
-					<div class="form-group">
-						<label class="control-label">管理员密码：</label> <input type="password"
-							placeholder="管理员密码..." class="form-control form-underlined"
-							name="password" id="password" />
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3"><img
+						src="static/images/pwd.png" width="40" height="40"></label>
+					<div class="formControls col-xs-8">
+						<input name="password" id="password" type="password"
+							placeholder="密码" class="input-text size-L">
 					</div>
-				</li>
-				<li>
-					<div class="form-group">
-						<label class="control-label">验证码：</label> <input type="text"
-							id="code" name="randomcode" size="8" placeholder="验证码..."
-							class="form-underlined" /> <img id="randomcode_img"
-							src="validatecode.jsp" alt="" width="56" height="20"
-							align='absMiddle' /> <a href="system/index">刷新</a>
+				</div>
+				<div class="row cl">
+					<label class="form-label col-xs-3"><img
+						src="static/images/code.png" width="40" height="40"></label>
+					<div class="formControls col-xs-8" style="margin-top: 8px;">
+						<input id="code" name="randomcode" class="input-text size-L"
+							placeholder="验证码"
+							style="width: 100px !important;height: 30px !important;" /> <img
+							id="randomcode_img" src="validatecode.jsp" width="60" height="30"
+							align='absMiddle' /> <a href="codeRefresh">刷新</a>
 					</div>
-				</li>
-				<!-- 类型,1表示登录老人后台,2表示登录电商后台 -->
-				<li>
-					<div class="form-group">
-						<label class="control-label">选择类型:</label> <input type="radio"
-							name="loginType" value="1" checked="checked" />老人后台管理员 <input
-							type="radio" name="loginType" value="0" />电商后台管理员
+				</div>
+				<div class="row cl">
+					<!-- 类型,1表示登录老人后台,2表示登录电商后台 -->
+					<label class="form-label col-xs-3"></label>
+					<div class="formControls col-xs-8">
+						<input type="radio" name="loginType" value="1" checked="checked"
+							style="margin-top: 2px;" /><font color="black" size="3">老人后台管理员</font>
+						<input type="radio" name="loginType" value="0"
+							style="margin-top: 2px;" /><font color="black" size="3">电商后台管理员</font>
 					</div>
-				</li>
-				<li><input value="立即登录" type="button"
-					class="btn btn-lg btn-block" id="login"
-					style="background-color: #30C37C;" /></li>
-				<li>
-					<p class="btm-info">
-						©Copyright<a href="#" target="_blank" title="孝和集团"
-							style="font-size: 16px;">&nbsp;&nbsp;孝和集团</a>
-					</p>
-					<address class="btm-info" style="font-size: 12px;">贵州省贵阳市</address>
-				</li>
-			</ul>
+				</div>
+				<div class="row cl">
+					<div class="formControls col-xs-8 col-xs-offset-3">
+						<input id="login" type="button"
+							class="btn btn-success radius size-L"
+							value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> <input
+							name="" type="reset" class="btn btn-default radius size-L"
+							value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+					</div>
+				</div>
+			</form>
 		</div>
-	</form>
-	</section>
+	</div>
+	<div class="footer">Copyright 孝和集团</div>
 	<script type="text/javascript">
 		$("#login").click(function() {
 			var user = $("#username").val();

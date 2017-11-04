@@ -28,25 +28,22 @@ public class UserExceptionResolver implements HandlerExceptionResolver {
 		// 针对系统自定义的CustomException异常，就可以直接从异常类中获取异常信息，将异常处理在错误页面展示
 		// 异常信息
 		String message = null;
-		UserException customException = null;
+		UserException userException = null;
 		// 如果ex是系统 自定义的异常，直接取出异常信息
 		if (ex instanceof UserException) {
-			customException = (UserException) ex;
+			userException = (UserException) ex;
 		} else {
-			// 针对非CustomException异常，对这类重新构造成一个CustomException，异常信息为“未知错误”
-			customException = new UserException("未知错误");
+			// 针对非UserException异常，对这类重新构造成一个UserException，异常信息为“未知错误”
+			userException = new UserException("未知错误");
 		}
 
 		// 错误 信息
-		message = customException.getMessage();
+		message = userException.getMessage();
 
 		request.setAttribute("message", message);
-
 		try {
-			// 转向到错误 页面
-			request.getRequestDispatcher(
-					"/WEB-INF/views/oldback/oldbackMain/login.jsp").forward(
-					request, response);
+			request.getRequestDispatcher("login.jsp")
+					.forward(request, response);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

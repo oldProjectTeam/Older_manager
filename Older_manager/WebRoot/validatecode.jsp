@@ -1,5 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Random"%>
 <%@ page import="java.io.OutputStream"%>
 <%@ page import="java.awt.Color"%>
@@ -11,7 +11,8 @@
 	int width = 60;
 	int height = 32;
 	//create the image
-	BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+	BufferedImage image = new BufferedImage(width, height,
+	BufferedImage.TYPE_INT_RGB);
 	Graphics g = image.getGraphics();
 	// set the background color
 	g.setColor(new Color(0xDCDCDC));
@@ -22,7 +23,7 @@
 	// create a random instance to generate the codes
 	Random rdm = new Random();
 	String hash1 = Integer.toHexString(rdm.nextInt());
-	System.out.print(hash1);
+	//System.out.print(hash1);
 	// make some confusion
 	for (int i = 0; i < 50; i++) {
 		int x = rdm.nextInt(width);

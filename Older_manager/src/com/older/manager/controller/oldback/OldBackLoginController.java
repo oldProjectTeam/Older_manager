@@ -1,5 +1,7 @@
 package com.older.manager.controller.oldback;
 
+import java.io.IOException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -50,6 +52,9 @@ public class OldBackLoginController {
 				throw new UserException("验证码输入错误");
 			}
 		}
+		if (usercode.equals("") || password.equals("")) {
+			throw new UserException("请输入信息");
+		}
 		// 调用service校验用户账号和密码的正确性
 		if (usercode != null) {
 			ActiveUser activeUser = sysService.authenticat(usercode, password,
@@ -89,5 +94,16 @@ public class OldBackLoginController {
 		response.sendRedirect(request.getContextPath() + "/login.jsp");
 		return null;
 
+	}
+
+	@RequestMapping("/codeRefresh")
+	public String codeRefresh(HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			response.sendRedirect(request.getContextPath() + "/login.jsp");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
