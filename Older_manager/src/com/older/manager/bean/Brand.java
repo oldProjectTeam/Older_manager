@@ -15,7 +15,8 @@ public class Brand {
 
     private Date addtime;
 
-    private String state;
+    private String addtimeStr;
+    private Integer state;
 
     private String brand1;
 
@@ -26,7 +27,8 @@ public class Brand {
     private Double brand4;
 
     private String brand5;
-
+   
+    
     public Integer getId() {
         return id;
     }
@@ -75,12 +77,12 @@ public class Brand {
         this.addtime = addtime;
     }
 
-    public String getState() {
+    public Integer getState() {
         return state;
     }
 
-    public void setState(String state) {
-        this.state = state == null ? null : state.trim();
+    public void setState(Integer state) {
+        this.state = state;
     }
 
     public String getBrand1() {
@@ -122,4 +124,21 @@ public class Brand {
     public void setBrand5(String brand5) {
         this.brand5 = brand5 == null ? null : brand5.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Brand [id=" + id + ", brandid=" + brandid + ", name=" + name
+				+ ", sort=" + sort + ", region=" + region + ", addtime="
+				+ addtime + ", state=" + state + ", brand1=" + brand1
+				+ ", brand2=" + brand2 + ", brand3=" + brand3 + ", brand4="
+				+ brand4 + ", brand5=" + brand5 + "]";
+	}
+
+	public String getAddtimeStr() {
+		return addtimeStr;
+	}
+
+	public void setAddtimeStr(String addtimeStr) {
+		this.addtimeStr = addtimeStr;
+	}
 }

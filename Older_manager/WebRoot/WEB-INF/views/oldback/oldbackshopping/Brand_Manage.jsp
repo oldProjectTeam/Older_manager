@@ -109,189 +109,8 @@
 								<th width="200px">操作</th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">45631</td>
-								<td width="50px"><input type="text"
-									class="input-text text-c" value="1" style="width:60px"></td>
-								<td><img src="${APP_PATH}/static/shop/products/logo/156.jpg" width="130" /></td>
-								<td><a href="javascript:ovid()" name="Brand_detailed.html"
-									style="cursor:pointer" class="text-primary brond_name"
-									onclick="generateOrders('561');" title="玉兰油OLAY">玉兰油OLAY</a></td>
-								<td>法国</td>
-								<td class="text-l">玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......</td>
-								<td>2014-6-11 11:11:42</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>2045</td>
-								<td><input type="text" class="input-text text-c" value="2"
-									style="width:60px"></td>
-								<td><img src="${APP_PATH}/static/shop/products/logo/34.jpg" width="130" /></td>
-								<td><u style="cursor:pointer"
-									class="text-primary brond_name"
-									onclick="generateOrders('5621');" title="玉兰油OLAY">玉兰油OLAY</u></td>
-								<td>法国</td>
-								<td class="text-l">玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......</td>
-								<td>2014-6-11 11:11:42</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>2045</td>
-								<td><input type="text" class="input-text text-c" value="2"
-									style="width:60px"></td>
-								<td><img src="${APP_PATH}/static/shop/products/logo/245.jpg" width="130" /></td>
-								<td><u style="cursor:pointer"
-									class="text-primary brond_name"
-									onclick="generateOrders('461');" title="御泥坊">御泥坊</u></td>
-								<td>法国</td>
-								<td class="text-l">玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......</td>
-								<td>2014-6-11 11:11:42</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>2045</td>
-								<td><input type="text" class="input-text text-c" value="2"
-									style="width:60px"></td>
-								<td><img src="${APP_PATH}/static/shop/products/logo/199.jpg" width="130" /></td>
-								<td><u style="cursor:pointer"
-									class="text-primary brond_name"
-									onclick="member_show('张三','member-show.html','10001','360','400')">薇姿</u></td>
-								<td>法国</td>
-								<td class="text-l">玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......</td>
-								<td>2014-6-11 11:11:42</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>2045</td>
-								<td><input type="text" class="input-text text-c" value="2"
-									style="width:60px"></td>
-								<td><img src="${APP_PATH}/static/shop/products/logo/152.jpg" width="130" /></td>
-								<td><u style="cursor:pointer"
-									class="text-primary brond_name"
-									onclick="member_show('张三','member-show.html','10001','360','400')">丝塔芙</u></td>
-								<td>法国</td>
-								<td class="text-l">玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......</td>
-								<td>2014-6-11 11:11:42</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>2045</td>
-								<td><input type="text" class="input-text text-c" value="2"
-									style="width:60px"></td>
-								<td><img src="${APP_PATH}/static/shop/products/logo/42.jpg" width="130" /></td>
-								<td><u style="cursor:pointer"
-									class="text-primary brond_name"
-									onclick="member_show('张三','member-show.html','10001','360','400')">比克度</u></td>
-								<td>法国</td>
-								<td class="text-l">玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......</td>
-								<td>2014-6-11 11:11:42</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>2045</td>
-								<td><input type="text" class="input-text text-c" value="2"
-									style="width:60px"></td>
-								<td><img src="${APP_PATH}/static/shop/products/logo/42.jpg" width="130" /></td>
-								<td><u style="cursor:pointer"
-									class="text-primary brond_name"
-									onclick="member_show('张三','member-show.html','10001','360','400')">比克度</u></td>
-								<td>法国</td>
-								<td class="text-l">玉兰油OLAY，是宝洁公司全球著名的护肤品牌，OLAY以全球高科技护肤研发技术为后盾......</td>
-								<td>2014-6-11 11:11:42</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
+						<tbody id="brand_table_tbody">
+							 
 						</tbody>
 					</table>
 				</div>
@@ -299,6 +118,95 @@
 
 		</div>
 	</div>
+
+<script type="text/javascript">
+	//开始进入页面，默认加载数据
+	$(function(){
+		to_page(1,10);
+	});
+	function to_page(pageNum,pageSize){
+		$.ajax({
+			url:"${APP_PATH}/brand/findAllBrand.action?pageNum="+pageNum+"&pageSize="+pageSize,
+			type:"POST",
+			success:function(result){
+				if(result.code==100){
+					//构建表格信息
+					 build_table(result);
+					//构建分页信息
+					//build_page_info(result);
+				}
+			}
+		});
+	}
+   function build_table(result){
+	   //先清空表格
+	   $("#brand_table_tbody").empty();
+	   $.each(result.extend.pageInfo.list,function(index,item){
+		   
+		   //第一列
+		   var input=$("<input type='checkbox' class='ace' />").attr("id",item.id);
+		   var lable=$("<label></lable>");
+		   var span=$("<span class='lbl'></span>");
+		   lable.append(input).append(span);
+		   var td1=$("<td width='25px'></td>");
+		   td1.append(lable);
+		   //第二列
+		   var td2=$("<td width='80px'></td>").append(item.brandid);
+		   
+		   //第三列
+		   var input2=$("<input type='text' class='input-text text-c' style='width:60px'>").val(item.sort);
+		   var td3=$("<td width='50px'></td>").append(input2);
+		   
+		   //第四列
+		   var td4=$("<td></td>");
+		   var img=$("<img width='130' />");
+		   if(item.logoimage==undefined||item.logoimage==''||item.logoimage==null){
+			   img.attr("src","${APP_PATH}/upload/152.jpg");
+		   }else{
+			   img.attr("src","${APP_PATH}/"+item.logoimage);
+		   }
+		   td4.append(img);
+		   
+		   //第五列
+		   var td5=$("<td></td>");
+		   var a=$("<a href='javascript:ovid()' name='Brand_detailed.html'"+
+					"style='cursor:pointer' class='text-primary brond_name'"+
+					"onclick='generateOrders('561');' title='玉兰油OLAY'></a>").append(item.name);
+		    td5.append(a);
+		    
+		  //第六列
+		   var td6=$("<td></td>").append(item.region);
+		   //第七列
+		   var td7=$("<td class='text-l'></td>").append(item.description);
+		   //第八列
+		   var td8=$("<td></td>").append(ChangeDateFormat2(item.addtime));
+		   var td9=$("<td class='td-status'></td>")
+		   .append($("<span  class='label label-success radius'>已启用</span>"));
+		   
+		   var td10=$("<td class='td-manage'></td>");
+		   var a1=$("<a onClick='member_stop(this,'10001')' href='javascript:;'"+
+			"title='停用' class='btn btn-xs btn-success'><i "+
+			"class='icon-ok bigger-120'></i></a>");
+		   var a2=$("<a title='编辑' onclick='member_edit('编辑','member-add.html','4','','510')'"+
+						"href='javascript:;' class='btn btn-xs btn-info'><i "+
+							"class='icon-edit bigger-120'></i></a>");
+			 
+	 		var a3=$("<a title='删除' href='javascript:;' onclick='member_del(this,'1')' "+
+	 					"class='btn btn-xs btn-warning'><i "+
+	 						"class='icon-trash  bigger-120'></i></a>");
+	 		td10.append(a1).append(a2).append(a3);
+	 		
+	 		var tr=$("<tr></tr>").append(td1).append(td2).append(td3)
+	 		.append(td4).append(td5).append(td6).append(td7).append(td8)
+	 		.append(td9).append(td10);
+	 		$("#brand_table_tbody").append(tr);
+   });
+	  	 
+   }
+
+</script>
+
+
 
 	<script>
 		jQuery(function($) {
@@ -534,6 +442,29 @@
 			};
 			myChart.setOption(option);
 		});
+		function ChangeDateFormat2(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
+
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "-";
+
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate();
+				
+				var currenthours=date.getHours();
+				
+				var currentminut=date.getMinutes();
+				
+				var currentSeconds=date.getSeconds();
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut+":"+currentSeconds;
+			} else {
+				return null;
+			}
+		}
 	</script>
+	
 </body>
 </html>

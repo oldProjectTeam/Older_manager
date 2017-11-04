@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,44 +15,40 @@ public class FileUtil {
 	/**
 	 * 保存文件功能
 	 * 
-	 * @param orgFile
-	 *            要保存的文件
-	 * @param savePath
-	 *            保存的路径(物理路径)
-	 * @param orgFileName
-	 *            原文件名
-	 * @return
-	 * @throws Exception
+	 *  
 	 */
-	public static String saveFile(File orgFile, String savePath,
-			String orgFileName) throws Exception {
-		// 生成文件名
+	public static String saveFile(MultipartFile file,HttpServletRequest request) throws Exception {
+		if(file==null) return null;
+		String rootPath = request.getSession().getServletContext()
+				.getRealPath("upload/img/");
+		String originalFileName = file.getOriginalFilename();
+		String extName=originalFileName.substring(originalFileName.lastIndexOf("."));
 		String fileName = UUID.randomUUID().toString();
-		// 处理扩展名
-		String extName = orgFileName.substring(orgFileName.lastIndexOf("."));
-		FileOutputStream os = new FileOutputStream(new File(savePath + fileName
-				+ extName));
-		FileInputStream is = new FileInputStream(orgFile);
-		byte[] data = new byte[1024];
-		int length = 0;
-		try {
-			while ((length = is.read(data)) != -1) {
-				os.write(data, 0, length);
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (is != null) {
-				is.close();
-			}
-			if (os != null) {
-				os.close();
-			}
+		// 创建年月文件夹
+		Calendar date = Calendar.getInstance();
+		File dateDirs = new File(date.get(Calendar.YEAR) + File.separator
+				+ (date.get(Calendar.MONTH) + 1));
+		File newFile = new File(rootPath + File.separator + dateDirs
+				+ File.separator + fileName+extName);
+		// 判断目标文件所在目录是否存在
+		if (!newFile.getParentFile().exists()) {
+			// 如果目标文件所在的目录不存在，则创建父目录
+			newFile.getParentFile().mkdirs();
+			// System.out.println("文件夹创建成功：");
 		}
-		return fileName + extName;
+		file.transferTo(newFile);
+		String url="upload/img/"+date.get(Calendar.YEAR) + "/"
+				+ (date.get(Calendar.MONTH) + 1) + "/" +fileName+extName;
+	   //返回完成的路劲名
+		return url;
 	}
 
+	/**
+	 * 
+	 * @param filePath
+	 * @param fileName
+	 * @throws Exception
+	 */
 	public static void deleteFile(String filePath, String fileName)
 			throws Exception {
 		File file = new File(filePath +File.separator+ fileName);
@@ -58,6 +57,21 @@ public class FileUtil {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param filePath
+	 * @param 
+	 * @throws Exception
+	 */
+	public static void deleteFile(String fileName,HttpServletRequest request)
+			throws Exception {
+		String rootPath = request.getSession().getServletContext()
+				.getRealPath(fileName);
+		File file = new File(rootPath);
+		if (file.exists()) {
+			file.delete();
+		}
+	}
 	/**
 	 * 上传文件
 	 * @param file：上传的问价
