@@ -46,7 +46,7 @@
 				id="loginForm" method="post">
 				<div class="row cl">
 					<label class="form-label col-xs-3"><img
-						src="static/images/person.png" width="40" height="40"></label>
+						src="static/images/user.png" width="40" height="40"></label>
 					<div class="formControls col-xs-8">
 						<input name="usercode" id="username" type="text" placeholder="账户"
 							class="input-text size-L">
@@ -84,9 +84,10 @@
 				<div class="row cl">
 					<div class="formControls col-xs-8 col-xs-offset-3">
 						<input id="login" type="button"
+							style="background-color: #1296db;border-color: #1296db;"
 							class="btn btn-success radius size-L"
 							value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;"> <input
-							name="" type="reset" class="btn btn-default radius size-L"
+							type="reset" class="btn btn-default radius size-L"
 							value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
 					</div>
 				</div>

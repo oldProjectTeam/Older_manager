@@ -89,7 +89,7 @@
 			</div>
 		</div>
 		<!--实时交易记录-->
-		<div class="clearfix">
+		<div>
 			<div class="t_Record">
 				<div id="main"
 					style="height:300px; overflow:hidden; width:100%; overflow:auto"></div>
@@ -97,17 +97,102 @@
 			<div class="news_style">
 				<div class="title_name">最新消息</div>
 				<ul class="list">
-					<li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-					<li><i class="icon-bell red"></i><a href="#">6月共处理订单3451比，作废为...</a></li>
-					<li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-					<li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
-					<li><i class="icon-bell red"></i><a href="#">后台系统找那个是开通了。</a></li>
+					<li><i class="icon-bell red"></i><a href="#">暂时没有最新消息。</a></li>
 				</ul>
 			</div>
 		</div>
 
 		<script type="text/javascript">
-			$(document).ready(function() {
+			$().ready(function() {
+				$(".t_Record").width($(window).width() - 320);
+				//当文档窗口发生改变时 触发  
+				$(window).resize(function() {
+					$(".t_Record").width($(window).width() - 320);
+				});
+			});
+
+			require.config({
+				paths : {
+					echarts : './static/shop/assets/dist'
+				}
+			});
+			require([ 'echarts', 'echarts/theme/macarons',
+					'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+					'echarts/chart/bar' ], function(ec, theme) {
+				var myChart = ec.init(document.getElementById('main'), theme);
+				//图表显示提示信息
+				myChart.showLoading();
+				//定义图表options
+				var options = {
+					title : {
+						text : '月购买订单交易记录',
+						subtext : '实时获取用户订单购买记录'
+					},
+					tooltip : {
+						trigger : 'axis'
+					},
+					legend : {
+						data : []
+					},
+					toolbox : {
+						show : true,
+						feature : {
+							mark : {
+								show : true
+							},
+							dataView : {
+								show : true,
+								readOnly : false
+							},
+							magicType : {
+								show : true,
+								type : [ 'line', 'bar' ]
+							},
+							restore : {
+								show : true
+							},
+							saveAsImage : {
+								show : true
+							}
+						}
+					},
+					calculable : true,
+					xAxis : [ {
+						type : 'category',
+						data : []
+					} ],
+					yAxis : [ {
+						type : 'value'
+					} ],
+					series : []
+				};
+
+				//通过Ajax获取数据
+				$.ajax({
+					type : "post",
+					async : false, //同步执行
+					url : "shop/orderInfo",
+					dataType : "json", //返回数据形式为json
+					success : function(result) {
+						console.log(result);
+						if (result!=null) {
+							//将返回的category和series对象赋值给options对象内的category和series
+							//因为xAxis是一个数组 这里需要是xAxis[i]的形式
+							options.xAxis[0].data = result.category;
+							options.series = result.serie;
+							options.legend.data = result.legend;
+
+							myChart.hideLoading();
+							myChart.setOption(options);
+						}
+					},
+					error : function(errorMsg) {
+						alert("图表请求数据失败啦!");
+					}
+				});
+			}); 
+
+			 /* $(document).ready(function() {
 
 				$(".t_Record").width($(window).width() - 320);
 				//当文档窗口发生改变时 触发  
@@ -199,7 +284,8 @@
 										name : '年最低',
 										value : 23,
 										xAxis : 11,
-										yAxis : 3
+										yAxis : 3,
+										symbolSize : 18
 									} ]
 								},
 
@@ -220,7 +306,8 @@
 										name : '年最低',
 										value : 23,
 										xAxis : 11,
-										yAxis : 3
+										yAxis : 3,
+										symbolSize : 18
 									} ]
 								},
 
@@ -241,7 +328,8 @@
 										name : '年最低',
 										value : 22,
 										xAxis : 11,
-										yAxis : 3
+										yAxis : 3,
+										symbolSize : 18
 									} ]
 								},
 
@@ -249,7 +337,7 @@
 				};
 
 				myChart.setOption(option);
-			});
+			});  */
 		</script>
 	</div>
 </body>

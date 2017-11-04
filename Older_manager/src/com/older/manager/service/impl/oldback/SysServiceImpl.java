@@ -129,6 +129,12 @@ public class SysServiceImpl implements SysService {
 			// 查询出所有的商城用户数
 			shopIndexInfo.setShopUsers(shopUsers);
 			// 查询出分销记录
+			BigInteger saleRecord = null;
+			if (saleRecord == null) {
+				shopIndexInfo.setSaleRecord(BigInteger.valueOf(0));
+			} else {
+				shopIndexInfo.setSaleRecord(saleRecord);
+			}
 
 			// 查询出商城订单
 			BigInteger shopOrders = this.getAllOrders();
@@ -177,7 +183,7 @@ public class SysServiceImpl implements SysService {
 		OrdersExample example = new OrdersExample();
 		com.older.manager.bean.OrdersExample.Criteria criteria = example
 				.createCriteria();
-		criteria.andStateEqualTo("交易成功");
+		criteria.andStateEqualTo("已付款");
 		List<Orders> list = ordersMapper.selectByExample(example);
 		BigInteger sum = BigInteger.valueOf(0);
 		if (list != null) {

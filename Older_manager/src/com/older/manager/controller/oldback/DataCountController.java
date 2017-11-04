@@ -33,6 +33,7 @@ public class DataCountController {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping("/oldManPieData")
 	@ResponseBody
 	public EchartData oldManPieData() {
@@ -53,6 +54,7 @@ public class DataCountController {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping("/oldManBarData")
 	@ResponseBody
 	public EchartData oldManBarData() {
@@ -80,6 +82,7 @@ public class DataCountController {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping("/oldManPieDataRegion")
 	@ResponseBody
 	public EchartData oldManPieDataRegion() {
@@ -100,6 +103,7 @@ public class DataCountController {
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping("/oldManBarDataRegion")
 	@ResponseBody
 	public EchartData oldManBarDataRegion() {

@@ -240,7 +240,7 @@
 		</script>
 		<div class="navbar-container" id="navbar-container">
 			<div class="navbar-header pull-left">
-				<a href="#" class="navbar-brand"> <small> <img
+				<a href="backShopMain" class="navbar-brand"> <small> <img
 						src="${APP_PATH}/static/shop/images/logo.png" width="240"
 						style="margin-top: 15px;" height="50">
 				</small>
