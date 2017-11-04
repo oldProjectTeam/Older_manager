@@ -34,7 +34,7 @@
 </head>
 <body
 	style="background:url(${APP_PATH}/static/images/oldback/images/topbg.gif) repeat-x;">
-	<a href="main.jsp" target="_parent"><img
+	<a href="backOldMain" target="_parent"><img
 		src="${APP_PATH}/static/images/oldback/images/logo.png" width="200px"
 		height="70px" title="系统首页" class="img-responsive"
 		style=" margin-top:10px;margin-left:10px" /></a>
@@ -44,7 +44,8 @@
 					src="${APP_PATH}/static/images/oldback/images/help.png" title="帮助"
 					class="helpimg" /></span><a href="#">帮助</a></li>
 			<li><a href="#">关于</a></li>
-			<li><a href="logout" target="_parent">退出</a></li>
+			<li><a href="logout" onclick="javascript:return confirm('你确定要退出吗?')"
+				target="_parent">退出</a></li>
 		</ul>
 
 		<div class="user">
