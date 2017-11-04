@@ -86,7 +86,8 @@
 			<!---->
 			<iframe ID="testIframe" Name="testIframe" FRAMEBORDER=0
 				SCROLLING=AUTO SRC="product-category-add"
-				class="page_right_style"></iframe>
+				class="page_right_style">
+			</iframe>
 		</div>
 	</div>
 
@@ -146,10 +147,13 @@
 		var zNodes=[];
 		
 		function types(){
+			
 			$.ajax({
 				url:"${APP_PATH}/productType/findAllProductType",
 				type:"POST",
-				success:function(result){ 										
+				success:function(result){
+					$("#treeDemo").empty();
+					zNodes=[];
 					$.each(result.extend.productTypes,function(index,item){
 						 if(item.id==1){
 							 zNodes.push({"id":item.id,"pId":item.parentid,"name":item.name,"open":true});
@@ -158,9 +162,11 @@
 						 }
 					});
 					var t = $("#treeDemo");
+					
 					t = $.fn.zTree.init(t, setting, zNodes);
+					
 					demoIframe = $("#testIframe");
-					demoIframe.bind("load", loadReady);
+					//demoIframe.bind("load", loadReady);
 					var zTree = $.fn.zTree.getZTreeObj("tree");
 					zTree.selectNode(zTree.getNodeByParam("id", '14'));
 				}

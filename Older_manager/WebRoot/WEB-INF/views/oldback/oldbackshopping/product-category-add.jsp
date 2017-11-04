@@ -174,9 +174,14 @@
 		});
 		//设置删除按钮，点击删除类型信息
 		$("#del_btn").click(function(){
+			
 			var id=$("#typeId").val();
 			if(id==undefined||id==''){
 				alert("请先选择产品类型！");
+				return false;
+			}
+			var name=$("#name").val();
+			if(!confirm("确定要删除类型【"+name+"】?")){
 				return false;
 			}
 			$.ajax({
@@ -186,7 +191,8 @@
 				success:function(result){
 					if(result.code==100){
 						 alert("删除成功！"); 
-						 window.location.href="Category_Manage";
+						 //刷新父类页面
+						 parent.location.reload();  
 					}
 				}
 			});
@@ -430,6 +436,9 @@
 						$("#add_msg").css("color","green");
 						$("#add_msg").html("新增子类型成功！");
 						$("#add_type_form")[0].reset();
+						//刷新父类页面
+						 //parent.location.reload();
+						window.parent.frames.types();
 					}else{
 						$("#add_msg").css("color","red");
 						$("#add_msg").html("新增子类型失败！");
