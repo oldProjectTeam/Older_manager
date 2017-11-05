@@ -64,6 +64,7 @@ public class SysServiceImpl implements SysService {
 	@Autowired
 	private OrdersMapper ordersMapper;
 
+	@SuppressWarnings("unused")
 	@Override
 	public ActiveUser authenticat(String userCode, String password, Integer type)
 			throws Exception {

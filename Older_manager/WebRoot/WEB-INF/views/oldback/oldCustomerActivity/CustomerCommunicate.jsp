@@ -187,10 +187,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	        	</tbody>
 	    	</table>
 	    	
-		    <div class="pagin">
-		    	<div class="message">共<i class="blue">258</i>条记录，当前显示第&nbsp;<i class="blue">1&nbsp;</i>页</div>
-		        1 2 3 5
-		    </div>
+		     <!--分页信息  -->
+		    <div class="row" >
+		      <div class="col-md-7">
+		      	&nbsp;&nbsp;当前第1页，共3页，总计15条记录
+		      </div>
+			  <div class="col-md-4 col-md-offset-1">
+				 <nav aria-label="Page navigation">
+					  <ul class="pagination">
+					    <li >
+					      <a href="recom/skipconmmunctionolder" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+					    <li class="active"><a href="recom/skipconmmunctionolder">1</a></li>
+					    <li><a href="recom/skipconmmunctionolder">2</a></li>
+					    <li><a href="recom/skipconmmunctionolder">3</a></li>
+					    <li><a href="recom/skipconmmunctionolder">4</a></li>
+					    <li><a href="recom/skipconmmunctionolder">5</a></li>
+					    <li>
+					      <a href="recom/skipconmmunctionolder" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
+				 
+			  </div>
+    </div>
 	    
 
 	    </div>

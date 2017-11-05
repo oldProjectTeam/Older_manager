@@ -231,6 +231,55 @@
 </script>
 </head>
 <body>
+	<!--个人资料模态框 -->
+	<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="myModalLabel">个人资料</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">用户名:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"
+									value="${activeUser.usercode}" disabled="disabled">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">所属角色:</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control"
+									value="${activeUser.username}" disabled="disabled">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">具有权限:</label>
+							<div class="col-sm-10">
+								<table class="table table-bordered">
+									<tr>
+										<td>权限名称</td>
+									</tr>
+									<c:forEach items="${activeUser.menus}" var="menu">
+										<tr>
+											<td>${menu.name}</td>
+										</tr>
+									</c:forEach>
+								</table>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 个人资料 -->
 	<div class="navbar navbar-default" id="navbar">
 		<script type="text/javascript">
 			try {
@@ -251,13 +300,13 @@
 				<ul class="nav ace-nav">
 					<li><a data-toggle="dropdown" href="#" class="dropdown-toggle">
 							<span class="time"><em id="time"></em></span><span
-							class="user-info" style="margin-top: 12px;">${activeUser.username}</span>
+							class="user-info" style="margin-top: 12px;">${activeUser.usercode}</span>
 							<i class="icon-caret-down"></i>
 					</a>
 						<ul
 							class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
-							<li><a href="#"><i class="icon-cog"></i>设置</a></li>
-							<li><a href="#"><i class="icon-user"></i>个人资料</a></li>
+							<li><a href="#" data-toggle="modal" data-target="#myModal"><i
+									class="icon-user"></i>个人资料</a></li>
 							<li class="divider"></li>
 							<li><a href="javascript:ovid(0)" id="Exit_system"><i
 									class="icon-off"></i>退出</a></li>
@@ -294,7 +343,6 @@
 				</div>
 				<!-- #sidebar-shortcuts -->
 				<ul class="nav nav-list" id="nav_list">
-
 					<c:if test="${activeUser.listMenus!=null}">
 						<c:forEach items="${activeUser.listMenus}" var="menu">
 							<li><a href="#" class="dropdown-toggle"> <i
@@ -332,7 +380,7 @@
 				<div class="breadcrumbs" id="breadcrumbs">
 					<ul class="breadcrumb">
 						<li><i class="icon-home home-icon"></i> <a
-							href="shopping_main" style="margin-top: 10px;">首页</a></li>
+							href="backShopMain" style="margin-top: 10px;">首页</a></li>
 						<li class="active"><span class="Current_page iframeurl"></span></li>
 						<li class="active" id="parentIframe"><span
 							class="parentIframe iframeurl"></span></li>

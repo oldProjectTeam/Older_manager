@@ -260,7 +260,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			        </tr> 
 	        	</tbody>
 	    	</table>
-	    
+	     <div class="row" >
+		      <div class="col-md-7">
+		      	&nbsp;&nbsp;当前第1页，共3页，总计15条记录
+		      </div>
+			  <div class="col-md-4 col-md-offset-1">
+				 <nav aria-label="Page navigation">
+					  <ul class="pagination">
+					    <li >
+					      <a href="recom/skipconmmunctionolder" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+					    <li class="active"><a href="recom/skipconmmunctionolder">1</a></li>
+					    <li><a href="recom/skipconmmunctionolder">2</a></li>
+					    <li><a href="recom/skipconmmunctionolder">3</a></li>
+					    <li><a href="recom/skipconmmunctionolder">4</a></li>
+					    <li><a href="recom/skipconmmunctionolder">5</a></li>
+					    <li>
+					      <a href="recom/skipconmmunctionolder" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
+				 
+			  </div>
 		    
 	    <!-- 查询弹框 -->
 	    <div id="Modal" class="modal fade" tabindex="-1" role="dialog">

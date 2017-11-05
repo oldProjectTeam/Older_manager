@@ -132,22 +132,32 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<LABEL class="floatlast"> 显示1到5，共10000条记录 </LABEL>
 		</div>
 		<!-- 分页条 -->
-		<div class="col-md-offset-4 col-md-4">
-			<nav aria-label="Page navigation">
-			<ul class="pagination pagination-lg">
-				<li><a href="#" aria-label="Previous"> <span
-						aria-hidden="true">&laquo;</span>
-				</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">4</a></li>
-				<li><a href="#">5</a></li>
-				<li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-				</a></li>
-			</ul>
-			</nav>
-		</div>
+		 <div class="row" >
+		      <div class="col-md-7">
+		      	&nbsp;&nbsp;当前第1页，共3页，总计15条记录
+		      </div>
+			  <div class="col-md-4 col-md-offset-1">
+				 <nav aria-label="Page navigation">
+					  <ul class="pagination">
+					    <li >
+					      <a href="recom/skipconmmunctionolder" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+					    <li class="active"><a href="recom/skipconmmunctionolder">1</a></li>
+					    <li><a href="recom/skipconmmunctionolder">2</a></li>
+					    <li><a href="recom/skipconmmunctionolder">3</a></li>
+					    <li><a href="recom/skipconmmunctionolder">4</a></li>
+					    <li><a href="recom/skipconmmunctionolder">5</a></li>
+					    <li>
+					      <a href="recom/skipconmmunctionolder" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
+				 
+			  </div>
 	</div>  
 
 <!-- 新增模态框 --> 

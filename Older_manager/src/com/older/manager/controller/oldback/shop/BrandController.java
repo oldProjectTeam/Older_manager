@@ -1,23 +1,31 @@
 package com.older.manager.controller.oldback.shop;
 
  
+import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.inject.Model;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -33,21 +41,31 @@ public class BrandController {
 	@Autowired
 	IBrandService brandService;
 	
+	@InitBinder  
+	public void initBinder(WebDataBinder binder) {  
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
+		dateFormat.setLenient(false);  
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+	}; //true:允许输入空值，false:不能为空值  
+	
+	
 	/**
 	 * 分页查询所有品牌信息
 	 * @param pageNum
 	 * @param pageSize
 	 * @param brand
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping("/findAllBrand")
-	@ResponseBody
-	public Msg findAllBrand(@RequestParam(value="pageNum",defaultValue="1")Integer pageNum,
-			@RequestParam(value="pageSize",defaultValue="10")Integer pageSize,BrandWithBLOBs brand){
-		PageHelper.startPage(pageNum, pageSize);
+	public ModelAndView findAllBrand(@RequestParam(value="pageNum",defaultValue="1")Integer pageNum,
+			@RequestParam(value="pageSize",defaultValue="10")Integer pageSize,BrandWithBLOBs brand,ModelAndView modal) throws Exception{
+		PageHelper.startPage(pageNum,pageSize);
 		List<BrandWithBLOBs>brands=brandService.findAllBrand(brand);
 		PageInfo pageInfo=new PageInfo(brands,5);
-		return Msg.success().add("pageInfo", pageInfo);
+		modal.addObject("pageInfo",pageInfo);
+		modal.setViewName("/oldback/oldbackshopping/Brand_Manage");
+		return modal;
 	}
 	
 	/**
