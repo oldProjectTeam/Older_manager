@@ -20,8 +20,29 @@ public class Surgery {
     private String numtwo;
 
     private String numthree;
+    
+    private Oldman oldman;
+    
+    
+    
+    @Override
+	public String toString() {
+		return "Surgery [id=" + id + ", surgeryname=" + surgeryname
+				+ ", surgerytime=" + surgerytime + ", hospitalname="
+				+ hospitalname + ", remark=" + remark + ", oldmanId="
+				+ oldmanId + ", numone=" + numone + ", numtwo=" + numtwo
+				+ ", numthree=" + numthree + ", oldman=" + oldman + "]";
+	}
 
-    public Integer getId() {
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -16,6 +16,37 @@
     <result column="num6" property="num6" jdbcType="VARCHAR" />
     <result column="num7" property="num7" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+  <!--修改后的  -->
+  <resultMap id="BaseResultMapWithOlder" type="com.older.manager.bean.Assess" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="doctor" property="doctor" jdbcType="VARCHAR" />
+    <result column="health" property="health" jdbcType="VARCHAR" />
+    <result column="healthDataAssessment" property="healthdataassessment" jdbcType="VARCHAR" />
+    <result column="suggest" property="suggest" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="num1" property="num1" jdbcType="VARCHAR" />
+    <result column="num2" property="num2" jdbcType="VARCHAR" />
+    <result column="num3" property="num3" jdbcType="VARCHAR" />
+    <result column="num4" property="num4" jdbcType="VARCHAR" />
+    <result column="num5" property="num5" jdbcType="VARCHAR" />
+    <result column="num6" property="num6" jdbcType="VARCHAR" />
+    <result column="num7" property="num7" jdbcType="VARCHAR" />
+      <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oldMan_id" property="id"/>
+    	<result column="name" property="name"/>
+    </association>
+  </resultMap>
+
+  
+  
+  
+  
+  
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -88,7 +119,9 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-   order by id DESC
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -96,6 +129,55 @@
     from assess
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  
+  
+  
+  <!-- 模糊查询 -->
+  <select id="selectByExampleWithOlder" resultMap="BaseResultMapWithOlder" parameterType="com.older.manager.bean.Assess" >
+    select a.*,o.id,o.name from  assess a,oldman o where a.oldMan_id=o.id
+       <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+        <if test="health!=null and health!=''">
+                and a.health like '%${health}%'
+        </if>
+ 
+ 
+  </select>
+  <select id="selectByPrimaryKeyWithOlder" resultMap="BaseResultMapWithOlder" parameterType="java.lang.Integer" >
+    select a.*,o.id,o.name from  assess a,oldman o where a.oldMan_id=o.id
+    and a.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from assess
     where id = #{id,jdbcType=INTEGER}

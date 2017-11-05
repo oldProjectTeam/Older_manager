@@ -26,8 +26,31 @@ public class Assess {
     private String num6;
 
     private String num7;
+    
+    private Oldman oldman;
+    
+    
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Assess [id=" + id + ", doctor=" + doctor + ", health=" + health
+				+ ", healthdataassessment=" + healthdataassessment
+				+ ", suggest=" + suggest + ", oldmanId=" + oldmanId + ", num1="
+				+ num1 + ", num2=" + num2 + ", num3=" + num3 + ", num4=" + num4
+				+ ", num5=" + num5 + ", num6=" + num6 + ", num7=" + num7
+				+ ", oldman=" + oldman + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

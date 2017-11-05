@@ -19,7 +19,13 @@ public interface SurgeryMapper {
     List<Surgery> selectByExample(SurgeryExample example);
 
     Surgery selectByPrimaryKey(Integer id);
+    //模糊查询
+    List<Surgery> selectByExampleWithOlder(Surgery surgery);
 
+    Surgery selectByPrimaryKeyWithOlder(Integer id);
+    
+    
+    
     int updateByExampleSelective(@Param("record") Surgery record, @Param("example") SurgeryExample example);
 
     int updateByExample(@Param("record") Surgery record, @Param("example") SurgeryExample example);

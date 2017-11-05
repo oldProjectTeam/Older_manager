@@ -19,6 +19,13 @@ public interface DiseaseMapper {
     List<Disease> selectByExample(DiseaseExample example);
 
     Disease selectByPrimaryKey(Integer id);
+    
+    //模糊查询
+    List<Disease> selectByExampleWithOlder(Disease disease);
+
+    Disease selectByPrimaryKeyWithOlder(Integer id);
+    
+    
 
     int updateByExampleSelective(@Param("record") Disease record, @Param("example") DiseaseExample example);
 

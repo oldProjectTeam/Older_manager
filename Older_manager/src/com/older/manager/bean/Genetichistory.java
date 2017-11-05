@@ -34,8 +34,33 @@ public class Genetichistory {
     private String genetichistory9;
 
     private String genetichistory10;
+    private Oldman oldman;
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Genetichistory [id=" + id + ", diseasename=" + diseasename
+				+ ", infectiontime=" + infectiontime + ", place=" + place
+				+ ", remark=" + remark + ", oldmanId=" + oldmanId
+				+ ", genetichistory1=" + genetichistory1 + ", genetichistory2="
+				+ genetichistory2 + ", genetichistory3=" + genetichistory3
+				+ ", genetichistory4=" + genetichistory4 + ", genetichistory5="
+				+ genetichistory5 + ", genetichistory6=" + genetichistory6
+				+ ", genetichistory7=" + genetichistory7 + ", genetichistory8="
+				+ genetichistory8 + ", genetichistory9=" + genetichistory9
+				+ ", genetichistory10=" + genetichistory10 + ", oldman="
+				+ oldman + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

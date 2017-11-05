@@ -19,6 +19,11 @@ public interface TraumaMapper {
     List<Trauma> selectByExample(TraumaExample example);
 
     Trauma selectByPrimaryKey(Integer id);
+    
+    //模糊查询
+    List<Trauma> selectByExampleWithOlder(Trauma trauma);
+
+    Trauma selectByPrimaryKeyWithOlder(Integer id);
 
     int updateByExampleSelective(@Param("record") Trauma record, @Param("example") TraumaExample example);
 

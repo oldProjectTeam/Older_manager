@@ -20,8 +20,27 @@ public class Trauma {
     private String numtwo;
 
     private String numthree;
+    private Oldman oldman;
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Trauma [id=" + id + ", traumaname=" + traumaname
+				+ ", occurrencetime=" + occurrencetime + ", hospitalname="
+				+ hospitalname + ", remark=" + remark + ", oldmanId="
+				+ oldmanId + ", numone=" + numone + ", numtwo=" + numtwo
+				+ ", numthree=" + numthree + ", oldman=" + oldman + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

@@ -57,6 +57,19 @@ public class RecomActivityController {
 	public   String skipBuyAbility(){
 		return "oldback/oldCustomerActivity/CustomerRecommendationActivities";
 	}
+	/**
+	 * 跳到健康履历
+	 * @return
+	 */
+	@RequestMapping("/skiphealthtwo")
+	public String skipHealthtwo(){
+		return "oldback/healthManage/healthtwo";
+		
+	}
+	
+	
+	
+	
 //*****************跳转专区*****************
 	
 	

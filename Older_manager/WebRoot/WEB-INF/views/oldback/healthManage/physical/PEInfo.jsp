@@ -62,7 +62,7 @@
 					class="form-control" id="hospitalname" placeholder="请输入体检医院名称"> 
 
 
-				<button class="btn btn-success" id="selectwith">
+				<button class="btn btn-default" id="selectwith">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					查询
 				</button>
@@ -379,7 +379,7 @@
 			//为元素添加点击翻页事件
 			nextPageLi
 					.click(function() {
-						go(result.extend.pageInfo.pageNum + 1, noldmanname,hospitalname);
+						go(result.extend.pageInfo.pageNum + 1, oldmanname,hospitalname);
 					});
 		}
 		//添加首页和前一页的提示
@@ -445,7 +445,7 @@
 							editBtn.attr("edit-id", item.id);
 							var serchBtn = $("<button></button>")
 									.addClass(
-											"btn btn-info btn-sm serchBtn")
+											"btn btn-danger btn-sm serchBtn")
 									.append(
 											$("<span></span>")
 													.addClass(

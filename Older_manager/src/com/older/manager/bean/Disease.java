@@ -24,8 +24,29 @@ public class Disease {
     private String numtwo;
 
     private String numthree;
+    private Oldman oldman;
+    
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Disease [id=" + id + ", diseasename=" + diseasename
+				+ ", confirmedtime=" + confirmedtime + ", place=" + place
+				+ ", nowstate=" + nowstate + ", remark=" + remark
+				+ ", oldmanId=" + oldmanId + ", recordtime=" + recordtime
+				+ ", numone=" + numone + ", numtwo=" + numtwo + ", numthree="
+				+ numthree + ", oldman=" + oldman + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

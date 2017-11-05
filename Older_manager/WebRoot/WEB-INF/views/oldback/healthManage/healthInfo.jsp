@@ -73,7 +73,7 @@
 
 
 
-				<button class="btn btn-success">
+				<button class="btn btn-default">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					查询
 				</button>

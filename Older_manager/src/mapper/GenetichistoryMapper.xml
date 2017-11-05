@@ -19,6 +19,29 @@
     <result column="geneticHistory9" property="genetichistory9" jdbcType="VARCHAR" />
     <result column="geneticHistory10" property="genetichistory10" jdbcType="VARCHAR" />
   </resultMap>
+  <!-- 修改过的-->
+    <resultMap id="BaseResultMapWithOlder" type="com.older.manager.bean.Genetichistory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="DiseaseName" property="diseasename" jdbcType="VARCHAR" />
+    <result column="infectionTime" property="infectiontime" jdbcType="TIMESTAMP" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="geneticHistory1" property="genetichistory1" jdbcType="VARCHAR" />
+    <result column="geneticHistory2" property="genetichistory2" jdbcType="VARCHAR" />
+    <result column="geneticHistory3" property="genetichistory3" jdbcType="VARCHAR" />
+    <result column="geneticHistory4" property="genetichistory4" jdbcType="VARCHAR" />
+    <result column="geneticHistory5" property="genetichistory5" jdbcType="VARCHAR" />
+    <result column="geneticHistory6" property="genetichistory6" jdbcType="VARCHAR" />
+    <result column="geneticHistory7" property="genetichistory7" jdbcType="VARCHAR" />
+    <result column="geneticHistory8" property="genetichistory8" jdbcType="VARCHAR" />
+    <result column="geneticHistory9" property="genetichistory9" jdbcType="VARCHAR" />
+    <result column="geneticHistory10" property="genetichistory10" jdbcType="VARCHAR" />
+     <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oldMan_id" property="id"/>
+    	<result column="name" property="name"/>
+    </association>
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -92,7 +115,9 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-   order by id DESC
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -100,6 +125,34 @@
     from genetichistory
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  <!-- 模糊查询 -->
+  <select id="selectByExampleWithOlder" resultMap="BaseResultMapWithOlder" parameterType="com.older.manager.bean.Genetichistory" >
+    select g.*,o.id,o.name from genetichistory g,oldman o where g.oldMan_id=o.id
+    <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+        <if test="diseasename!=null and diseasename!=''">
+               and g.diseasename like '%${diseasename}%'
+        </if>
+
+  </select>
+  <select id="selectByPrimaryKeyWithOlder" resultMap="BaseResultMapWithOlder" parameterType="java.lang.Integer" >
+      select g.*,o.id,o.name from genetichistory g,oldman o where g.oldMan_id=o.id
+    and g.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from genetichistory
     where id = #{id,jdbcType=INTEGER}

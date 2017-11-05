@@ -19,6 +19,11 @@ public interface GenetichistoryMapper {
     List<Genetichistory> selectByExample(GenetichistoryExample example);
 
     Genetichistory selectByPrimaryKey(Integer id);
+    
+    //模糊查询
+    List<Genetichistory> selectByExampleWithOlder(Genetichistory genetichistory);
+
+    Genetichistory selectByPrimaryKeyWithOlder(Integer id);
 
     int updateByExampleSelective(@Param("record") Genetichistory record, @Param("example") GenetichistoryExample example);
 

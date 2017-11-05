@@ -12,6 +12,29 @@
     <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
     <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+  <!-- 修改过 -->
+  <resultMap id="BaseResultMapWithOlder" type="com.older.manager.bean.Surgery" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="surgeryName" property="surgeryname" jdbcType="VARCHAR" />
+    <result column="surgeryTime" property="surgerytime" jdbcType="DATE" />
+    <result column="hospitalName" property="hospitalname" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
+    <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oldMan_id" property="id"/>
+    	<result column="name" property="name"/>
+    </association>
+  </resultMap>
+  
+  
+  
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -83,7 +106,9 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-   order by id DESC
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -91,6 +116,40 @@
     from surgery
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  
+  <!-- 模糊查询 -->
+  <select id="selectByExampleWithOlder" resultMap="BaseResultMapWithOlder" parameterType="com.older.manager.bean.Surgery" >
+    select s.*,o.id,o.name from surgery s,oldman o where s.oldMan_id=o.id
+      <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+        <if test="surgeryname!=null and surgeryname!=''">
+                and s.surgeryname like '%${surgeryname}%'
+        </if>
+    
+   
+  </select>
+  <select id="selectByPrimaryKeyWithOlder" resultMap="BaseResultMapWithOlder" parameterType="java.lang.Integer" >
+    select s.*,o.id,o.name from surgery s,oldman o where s.oldMan_id=o.id
+   and s.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from surgery
     where id = #{id,jdbcType=INTEGER}

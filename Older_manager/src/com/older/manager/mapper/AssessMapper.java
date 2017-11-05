@@ -15,10 +15,18 @@ public interface AssessMapper {
     int insert(Assess record);
 
     int insertSelective(Assess record);
-
+          
     List<Assess> selectByExample(AssessExample example);
 
     Assess selectByPrimaryKey(Integer id);
+    
+    
+    //模糊查询
+    List<Assess> selectByExampleWithOlder(Assess assess);
+
+    Assess selectByPrimaryKeyWithOlder(Integer id);
+    
+    
 
     int updateByExampleSelective(@Param("record") Assess record, @Param("example") AssessExample example);
 

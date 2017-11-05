@@ -20,8 +20,29 @@ public class Bloodtransfusion {
     private String numtwo;
 
     private String numthree;
+    
+    private Oldman oldman;
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Bloodtransfusion [id=" + id + ", bloodtransfusionwhy="
+				+ bloodtransfusionwhy + ", occurrencetime=" + occurrencetime
+				+ ", bloodtransfusionamount=" + bloodtransfusionamount
+				+ ", remark=" + remark + ", oldmanId=" + oldmanId + ", numone="
+				+ numone + ", numtwo=" + numtwo + ", numthree=" + numthree
+				+ ", oldman=" + oldman + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

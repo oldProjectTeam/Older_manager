@@ -19,6 +19,10 @@ public interface BloodtransfusionMapper {
     List<Bloodtransfusion> selectByExample(BloodtransfusionExample example);
 
     Bloodtransfusion selectByPrimaryKey(Integer id);
+    //模糊查询
+    List<Bloodtransfusion> selectByExampleWithOlder(Bloodtransfusion bloodtransfusion);
+
+    Bloodtransfusion selectByPrimaryKeyWithOlder(Integer id);
 
     int updateByExampleSelective(@Param("record") Bloodtransfusion record, @Param("example") BloodtransfusionExample example);
 
