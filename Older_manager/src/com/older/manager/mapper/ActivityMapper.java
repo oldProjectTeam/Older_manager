@@ -15,6 +15,8 @@ public interface ActivityMapper {
     int insert(Activity record);
 
     int insertSelective(Activity record);
+    
+    
 
     List<Activity> selectByExampleWithBLOBs(ActivityExample example);
 

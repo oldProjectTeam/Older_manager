@@ -203,4 +203,24 @@ public class ActivityController {
 		return Msg.success().add("activities", activities);
 
 	}
+	
+	/**
+	 * @Title:   findAllActivitiesByState
+	 * @Description:  查询所有没有举行的活动
+	 * @param:    @return   
+	 * @return:   Msg   
+	 * @throws
+	 */
+	@RequestMapping("/findAllActivitiesByState")
+	@ResponseBody
+	public Msg findAllActivitiesByState(){
+		List<Activity> activities = activityService.findAllActivitiesByNoReleaseregion();
+		if (activities!=null) {
+			return Msg.success().add("activities", activities);
+		}else {
+			return Msg.fail().add("msg", "查询不到相关的数据！");
+		}
+	}
+	
+	
 }

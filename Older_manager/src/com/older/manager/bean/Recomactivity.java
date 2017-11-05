@@ -24,8 +24,20 @@ public class Recomactivity {
     private String recomactivity3;
 
     private String remark;
+    
+    private Activity activity;
+    
+    
 
-    public Integer getId() {
+    public Activity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -112,4 +124,26 @@ public class Recomactivity {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Recomactivity [id=" + id + ", activityId=" + activityId
+				+ ", recomtime=" + recomtime + ", recompeople=" + recompeople
+				+ ", number=" + number + ", state=" + state + ", recomid="
+				+ recomid + ", recomactivity1=" + recomactivity1
+				+ ", recomactivity2=" + recomactivity2 + ", recomactivity3="
+				+ recomactivity3 + ", remark=" + remark + ", activity="
+				+ activity + ", getActivity()=" + getActivity() + ", getId()="
+				+ getId() + ", getActivityId()=" + getActivityId()
+				+ ", getRecomtime()=" + getRecomtime() + ", getRecompeople()="
+				+ getRecompeople() + ", getNumber()=" + getNumber()
+				+ ", getState()=" + getState() + ", getRecomid()="
+				+ getRecomid() + ", getRecomactivity1()=" + getRecomactivity1()
+				+ ", getRecomactivity2()=" + getRecomactivity2()
+				+ ", getRecomactivity3()=" + getRecomactivity3()
+				+ ", getRemark()=" + getRemark() + "]";
+	}
+
+	
+    
 }

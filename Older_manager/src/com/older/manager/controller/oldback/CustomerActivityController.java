@@ -90,7 +90,7 @@ public class CustomerActivityController {
 	@RequestMapping("/skipcustomeractivity")
 	public String  skipCustomerActivity(){
 
-		return "oldback/oldCustomerActivity/CustomerActivity";
+		return "oldback/oldCustomerActivity/AddActivity";
 		
 	}
 	

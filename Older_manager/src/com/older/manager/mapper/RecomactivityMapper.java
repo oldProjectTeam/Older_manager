@@ -15,6 +15,8 @@ public interface RecomactivityMapper {
     int insert(Recomactivity record);
 
     int insertSelective(Recomactivity record);
+    
+    Recomactivity SelectBaseRecommActivityById(Integer id);
 
     List<Recomactivity> selectByExample(RecomactivityExample example);
 

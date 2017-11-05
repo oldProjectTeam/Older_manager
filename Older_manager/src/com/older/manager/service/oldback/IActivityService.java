@@ -45,4 +45,13 @@ public interface IActivityService {
 	 * @param activity
 	 */
 	public void updateActivity(Activity activity);
+	
+	/**
+	 * @Title:   findAllActivitiesByNoReleaseregion
+	 * @Description:  查询所有没有举行的活动
+	 * @param:    @return   
+	 * @return:   List<Activity>   
+	 * @throws
+	 */
+	public List<Activity> findAllActivitiesByNoReleaseregion();
 }

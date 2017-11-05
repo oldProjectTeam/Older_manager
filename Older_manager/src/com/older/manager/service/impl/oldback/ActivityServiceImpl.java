@@ -62,4 +62,17 @@ public class ActivityServiceImpl implements IActivityService {
 		activityMapper.updateByPrimaryKeySelective(activity);
 	}
 
+	/**
+	 * @Title:   findAllActivitiesByNoReleaseregion
+	 * @Description:  查询所有没有举行的活动
+	 * @param:    @return     
+	 * @throws
+	 */
+	@Override
+	public List<Activity> findAllActivitiesByNoReleaseregion() {
+		ActivityExample example=new ActivityExample();
+		example.createCriteria().andStateLike("%未进行%");
+		return activityMapper.selectByExample(example);
+	}
+
 }

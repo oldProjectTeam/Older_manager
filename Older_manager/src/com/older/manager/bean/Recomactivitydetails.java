@@ -20,6 +20,36 @@ public class Recomactivitydetails {
     private String recomactivitydetails2;
 
     private String recomactivitydetails3;
+    
+    private Oldman oldman;
+    
+    private Recomactivity recomactivity;
+    
+    public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Recomactivity getRecomactivity() {
+		return recomactivity;
+	}
+
+	public void setRecomactivity(Recomactivity recomactivity) {
+		this.recomactivity = recomactivity;
+	}
+
+	public Activity getActivity() {
+		return activity;
+	}
+
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+
+	private Activity activity;
 
     public Integer getId() {
         return id;
@@ -92,4 +122,19 @@ public class Recomactivitydetails {
     public void setRecomactivitydetails3(String recomactivitydetails3) {
         this.recomactivitydetails3 = recomactivitydetails3 == null ? null : recomactivitydetails3.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Recomactivitydetails [id=" + id + ", recomactivityId="
+				+ recomactivityId + ", recomtime=" + recomtime + ", number="
+				+ number + ", result=" + result + ", oldmanId=" + oldmanId
+				+ ", recomactivitydetails1=" + recomactivitydetails1
+				+ ", recomactivitydetails2=" + recomactivitydetails2
+				+ ", recomactivitydetails3=" + recomactivitydetails3
+				+ ", oldman=" + oldman + ", recomactivity=" + recomactivity
+				+ ", activity=" + activity + "]";
+	}
+
+	
+    
 }

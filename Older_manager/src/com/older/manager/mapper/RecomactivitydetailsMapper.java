@@ -27,4 +27,8 @@ public interface RecomactivitydetailsMapper {
     int updateByPrimaryKeySelective(Recomactivitydetails record);
 
     int updateByPrimaryKey(Recomactivitydetails record);
+    
+    Recomactivitydetails selectBaseRecomActivitydetails(Integer id);
+    
+    List<Recomactivitydetails> selectAllBaseRecomActivitydetails();
 }

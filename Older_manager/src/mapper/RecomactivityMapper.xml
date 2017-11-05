@@ -1,304 +1,374 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.RecomactivityMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Recomactivity" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
-    <result column="recomTime" property="recomtime" jdbcType="TIMESTAMP" />
-    <result column="recomPeople" property="recompeople" jdbcType="VARCHAR" />
-    <result column="number" property="number" jdbcType="INTEGER" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="recomId" property="recomid" jdbcType="INTEGER" />
-    <result column="recomActivity1" property="recomactivity1" jdbcType="VARCHAR" />
-    <result column="recomActivity2" property="recomactivity2" jdbcType="VARCHAR" />
-    <result column="recomActivity3" property="recomactivity3" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, activity_id, recomTime, recomPeople, number, state, recomId, recomActivity1, 
-    recomActivity2, recomActivity3, remark
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.RecomactivityExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from recomactivity
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    order by id DESC
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from recomactivity
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from recomactivity
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.RecomactivityExample" >
-    delete from recomactivity
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Recomactivity" >
-    insert into recomactivity (id, activity_id, recomTime, 
-      recomPeople, number, state, 
-      recomId, recomActivity1, recomActivity2, 
-      recomActivity3, remark)
-    values (#{id,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER}, #{recomtime,jdbcType=TIMESTAMP}, 
-      #{recompeople,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
-      #{recomid,jdbcType=INTEGER}, #{recomactivity1,jdbcType=VARCHAR}, #{recomactivity2,jdbcType=VARCHAR}, 
-      #{recomactivity3,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Recomactivity" >
-    insert into recomactivity
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="activityId != null" >
-        activity_id,
-      </if>
-      <if test="recomtime != null" >
-        recomTime,
-      </if>
-      <if test="recompeople != null" >
-        recomPeople,
-      </if>
-      <if test="number != null" >
-        number,
-      </if>
-      <if test="state != null" >
-        state,
-      </if>
-      <if test="recomid != null" >
-        recomId,
-      </if>
-      <if test="recomactivity1 != null" >
-        recomActivity1,
-      </if>
-      <if test="recomactivity2 != null" >
-        recomActivity2,
-      </if>
-      <if test="recomactivity3 != null" >
-        recomActivity3,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="activityId != null" >
-        #{activityId,jdbcType=INTEGER},
-      </if>
-      <if test="recomtime != null" >
-        #{recomtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="recompeople != null" >
-        #{recompeople,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null" >
-        #{number,jdbcType=INTEGER},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="recomid != null" >
-        #{recomid,jdbcType=INTEGER},
-      </if>
-      <if test="recomactivity1 != null" >
-        #{recomactivity1,jdbcType=VARCHAR},
-      </if>
-      <if test="recomactivity2 != null" >
-        #{recomactivity2,jdbcType=VARCHAR},
-      </if>
-      <if test="recomactivity3 != null" >
-        #{recomactivity3,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.RecomactivityExample" resultType="java.lang.Integer" >
-    select count(*) from recomactivity
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update recomactivity
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.activityId != null" >
-        activity_id = #{record.activityId,jdbcType=INTEGER},
-      </if>
-      <if test="record.recomtime != null" >
-        recomTime = #{record.recomtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.recompeople != null" >
-        recomPeople = #{record.recompeople,jdbcType=VARCHAR},
-      </if>
-      <if test="record.number != null" >
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=VARCHAR},
-      </if>
-      <if test="record.recomid != null" >
-        recomId = #{record.recomid,jdbcType=INTEGER},
-      </if>
-      <if test="record.recomactivity1 != null" >
-        recomActivity1 = #{record.recomactivity1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.recomactivity2 != null" >
-        recomActivity2 = #{record.recomactivity2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.recomactivity3 != null" >
-        recomActivity3 = #{record.recomactivity3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remark != null" >
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update recomactivity
-    set id = #{record.id,jdbcType=INTEGER},
-      activity_id = #{record.activityId,jdbcType=INTEGER},
-      recomTime = #{record.recomtime,jdbcType=TIMESTAMP},
-      recomPeople = #{record.recompeople,jdbcType=VARCHAR},
-      number = #{record.number,jdbcType=INTEGER},
-      state = #{record.state,jdbcType=VARCHAR},
-      recomId = #{record.recomid,jdbcType=INTEGER},
-      recomActivity1 = #{record.recomactivity1,jdbcType=VARCHAR},
-      recomActivity2 = #{record.recomactivity2,jdbcType=VARCHAR},
-      recomActivity3 = #{record.recomactivity3,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Recomactivity" >
-    update recomactivity
-    <set >
-      <if test="activityId != null" >
-        activity_id = #{activityId,jdbcType=INTEGER},
-      </if>
-      <if test="recomtime != null" >
-        recomTime = #{recomtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="recompeople != null" >
-        recomPeople = #{recompeople,jdbcType=VARCHAR},
-      </if>
-      <if test="number != null" >
-        number = #{number,jdbcType=INTEGER},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="recomid != null" >
-        recomId = #{recomid,jdbcType=INTEGER},
-      </if>
-      <if test="recomactivity1 != null" >
-        recomActivity1 = #{recomactivity1,jdbcType=VARCHAR},
-      </if>
-      <if test="recomactivity2 != null" >
-        recomActivity2 = #{recomactivity2,jdbcType=VARCHAR},
-      </if>
-      <if test="recomactivity3 != null" >
-        recomActivity3 = #{recomactivity3,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Recomactivity" >
-    update recomactivity
-    set activity_id = #{activityId,jdbcType=INTEGER},
-      recomTime = #{recomtime,jdbcType=TIMESTAMP},
-      recomPeople = #{recompeople,jdbcType=VARCHAR},
-      number = #{number,jdbcType=INTEGER},
-      state = #{state,jdbcType=VARCHAR},
-      recomId = #{recomid,jdbcType=INTEGER},
-      recomActivity1 = #{recomactivity1,jdbcType=VARCHAR},
-      recomActivity2 = #{recomactivity2,jdbcType=VARCHAR},
-      recomActivity3 = #{recomactivity3,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.older.manager.mapper.RecomactivityMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.Recomactivity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="activityId" property="activityId" jdbcType="INTEGER" />
+		<result column="recomTime" property="recomtime" jdbcType="TIMESTAMP" />
+		<result column="recomPeople" property="recompeople" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="recomId" property="recomid" jdbcType="INTEGER" />
+		<result column="recomActivity1" property="recomactivity1"
+			jdbcType="VARCHAR" />
+		<result column="recomActivity2" property="recomactivity2"
+			jdbcType="VARCHAR" />
+		<result column="recomActivity3" property="recomactivity3"
+			jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="detailMap" type="com.older.manager.bean.Recomactivity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="activityId" property="activityId" jdbcType="INTEGER" />
+		<result column="recomTime" property="recomtime" jdbcType="TIMESTAMP" />
+		<result column="recomPeople" property="recompeople" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="recomId" property="recomid" jdbcType="INTEGER" />
+		<result column="recomActivity1" property="recomactivity1"
+			jdbcType="VARCHAR" />
+		<result column="recomActivity2" property="recomactivity2"
+			jdbcType="VARCHAR" />
+		<result column="recomActivity3" property="recomactivity3"
+			jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<association property="activity" column="activityId"
+			javaType="com.older.manager.bean.Activity" select="com.older.manager.mapper.ActivityMapper.selectByPrimaryKey" />
+	</resultMap>
+	<select id="SelectBaseRecommActivityById" resultMap="detailMap"
+		parameterType="java.lang.Integer">
+		select * from recomactivity where id = #{id,jdbcType=INTEGER}
+	</select>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, activityId, recomTime, recomPeople, number, state,
+		recomId,
+		recomActivity1,
+		recomActivity2, recomActivity3, remark
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.RecomactivityExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from recomactivity
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from recomactivity
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		recomactivity
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.RecomactivityExample">
+		delete from recomactivity
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.Recomactivity">
+		insert into recomactivity (id,
+		activityId, recomTime,
+		recomPeople, number, state,
+		recomId,
+		recomActivity1, recomActivity2,
+		recomActivity3, remark)
+		values
+		(#{id,jdbcType=INTEGER}, #{activityId,jdbcType=INTEGER},
+		#{recomtime,jdbcType=TIMESTAMP},
+		#{recompeople,jdbcType=VARCHAR},
+		#{number,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR},
+		#{recomid,jdbcType=INTEGER}, #{recomactivity1,jdbcType=VARCHAR},
+		#{recomactivity2,jdbcType=VARCHAR},
+		#{recomactivity3,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.Recomactivity"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into recomactivity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="activityId != null">
+				activityId,
+			</if>
+			<if test="recomtime != null">
+				recomTime,
+			</if>
+			<if test="recompeople != null">
+				recomPeople,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="recomid != null">
+				recomId,
+			</if>
+			<if test="recomactivity1 != null">
+				recomActivity1,
+			</if>
+			<if test="recomactivity2 != null">
+				recomActivity2,
+			</if>
+			<if test="recomactivity3 != null">
+				recomActivity3,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="activityId != null">
+				#{activityId,jdbcType=INTEGER},
+			</if>
+			<if test="recomtime != null">
+				#{recomtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="recompeople != null">
+				#{recompeople,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="recomid != null">
+				#{recomid,jdbcType=INTEGER},
+			</if>
+			<if test="recomactivity1 != null">
+				#{recomactivity1,jdbcType=VARCHAR},
+			</if>
+			<if test="recomactivity2 != null">
+				#{recomactivity2,jdbcType=VARCHAR},
+			</if>
+			<if test="recomactivity3 != null">
+				#{recomactivity3,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+		</selectKey>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.RecomactivityExample"
+		resultType="java.lang.Integer">
+		select count(*) from recomactivity
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update recomactivity
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.activityId != null">
+				activityId = #{record.activityId,jdbcType=INTEGER},
+			</if>
+			<if test="record.recomtime != null">
+				recomTime = #{record.recomtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.recompeople != null">
+				recomPeople = #{record.recompeople,jdbcType=VARCHAR},
+			</if>
+			<if test="record.number != null">
+				number = #{record.number,jdbcType=INTEGER},
+			</if>
+			<if test="record.state != null">
+				state = #{record.state,jdbcType=VARCHAR},
+			</if>
+			<if test="record.recomid != null">
+				recomId = #{record.recomid,jdbcType=INTEGER},
+			</if>
+			<if test="record.recomactivity1 != null">
+				recomActivity1 =
+				#{record.recomactivity1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.recomactivity2 != null">
+				recomActivity2 =
+				#{record.recomactivity2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.recomactivity3 != null">
+				recomActivity3 =
+				#{record.recomactivity3,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark != null">
+				remark = #{record.remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update recomactivity
+		set id = #{record.id,jdbcType=INTEGER},
+		activityId
+		= #{record.activityId,jdbcType=INTEGER},
+		recomTime =
+		#{record.recomtime,jdbcType=TIMESTAMP},
+		recomPeople =
+		#{record.recompeople,jdbcType=VARCHAR},
+		number =
+		#{record.number,jdbcType=INTEGER},
+		state =
+		#{record.state,jdbcType=VARCHAR},
+		recomId =
+		#{record.recomid,jdbcType=INTEGER},
+		recomActivity1 =
+		#{record.recomactivity1,jdbcType=VARCHAR},
+		recomActivity2 =
+		#{record.recomactivity2,jdbcType=VARCHAR},
+		recomActivity3 =
+		#{record.recomactivity3,jdbcType=VARCHAR},
+		remark =
+		#{record.remark,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Recomactivity">
+		update recomactivity
+		<set>
+			<if test="activityId != null">
+				activityId = #{activityId,jdbcType=INTEGER},
+			</if>
+			<if test="recomtime != null">
+				recomTime = #{recomtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="recompeople != null">
+				recomPeople = #{recompeople,jdbcType=VARCHAR},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="recomid != null">
+				recomId = #{recomid,jdbcType=INTEGER},
+			</if>
+			<if test="recomactivity1 != null">
+				recomActivity1 = #{recomactivity1,jdbcType=VARCHAR},
+			</if>
+			<if test="recomactivity2 != null">
+				recomActivity2 = #{recomactivity2,jdbcType=VARCHAR},
+			</if>
+			<if test="recomactivity3 != null">
+				recomActivity3 = #{recomactivity3,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Recomactivity">
+		update
+		recomactivity
+		set activityId = #{activityId,jdbcType=INTEGER},
+		recomTime = #{recomtime,jdbcType=TIMESTAMP},
+		recomPeople =
+		#{recompeople,jdbcType=VARCHAR},
+		number = #{number,jdbcType=INTEGER},
+		state = #{state,jdbcType=VARCHAR},
+		recomId =
+		#{recomid,jdbcType=INTEGER},
+		recomActivity1 =
+		#{recomactivity1,jdbcType=VARCHAR},
+		recomActivity2 =
+		#{recomactivity2,jdbcType=VARCHAR},
+		recomActivity3 =
+		#{recomactivity3,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

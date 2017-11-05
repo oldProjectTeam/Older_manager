@@ -14,7 +14,7 @@ public class RecomActivityController {
 	 */
 	@RequestMapping("/skiprecomactivity")
 	public   String skipRecomActivity(){
-		return "oldback/oldCustomerActivity/CustomerRecommendationActivities";
+		return "oldback/oldCustomerActivity/RecommendActivities";
 	}
 	/**
 	 * 跳到提醒记录
@@ -25,12 +25,12 @@ public class RecomActivityController {
 		return "oldback/oldCustomerActivity/CustomerRemind";
 	}
 	/**
-	 * 跳到沟通老人
+	 * 跳到沟通记录
 	 * @return
 	 */
 	@RequestMapping("/skipconmmunctionolder")
 	public   String skipConmmunctionOlder(){
-		return "oldback/oldCustomerActivity/CustomerCommunicate";
+		return "oldback/oldCustomerActivity/CommunicateWithOldMan";
 	}
 	/**
 	 * 跳到购买商品
@@ -38,7 +38,7 @@ public class RecomActivityController {
 	 */
 	@RequestMapping("/skipbuycommodity")
 	public   String skipBuyCommodity(){
-		return "oldback/oldCustomerActivity/CustomerCommodity";
+		return "oldback/oldCustomerActivity/BuyGoodsByOldMen";
 	}
 	/**
 	 * 跳到推荐商品
@@ -46,7 +46,7 @@ public class RecomActivityController {
 	 */
 	@RequestMapping("/skiprecomcommodity")
 	public   String skipRecomCommodity(){
-		return "oldback/oldCustomerActivity/CustomerRecommendC";
+		return "oldback/oldCustomerActivity/recomProducts";
 	}
 	
 	/**
@@ -55,21 +55,8 @@ public class RecomActivityController {
 	 */
 	@RequestMapping("/skipbuyability")
 	public   String skipBuyAbility(){
-		return "oldback/oldCustomerActivity/CustomerRecommendationActivities";
+		return "oldback/oldCustomerActivity/RecommendActivities";
 	}
-	/**
-	 * 跳到健康履历
-	 * @return
-	 */
-	@RequestMapping("/skiphealthtwo")
-	public String skipHealthtwo(){
-		return "oldback/healthManage/healthtwo";
-		
-	}
-	
-	
-	
-	
 //*****************跳转专区*****************
 	
 	
