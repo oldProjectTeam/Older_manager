@@ -121,8 +121,8 @@
 		</table>-->
 		<!-- <table tableName="sys_menu" domainObjectName="Menu">
 		</table> -->
-		<table tableName="systemLog" domainObjectName="SystemLog">
-		</table>
+		<!-- <table tableName="systemLog" domainObjectName="SystemLog">
+		</table> -->
 		<!-- <table tableName="sys_role" domainObjectName="Role">
 		</table>
 		<table tableName="sys_role_permission" domainObjectName="RolePermission">
@@ -131,5 +131,9 @@
 		</table>
 		<table tableName="sys_user_role" domainObjectName="UserRole">
 		</table> -->
+			<table tableName="recomproducts" domainObjectName="RecomProducts">
+		</table>
+		<table tableName="recomproductsdetails" domainObjectName="RecomProductsDetails">
+		</table> 
 	</context>
 </generatorConfiguration>

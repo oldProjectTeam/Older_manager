@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.RecomProductsMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.RecomProducts" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="products _id" property="productsId" jdbcType="INTEGER" />
+    <result column="recomTime" property="recomtime" jdbcType="TIMESTAMP" />
+    <result column="recomPeople" property="recompeople" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="recomId" property="recomid" jdbcType="VARCHAR" />
+    <result column="recomProducts1" property="recomproducts1" jdbcType="VARCHAR" />
+    <result column="recomProducts2" property="recomproducts2" jdbcType="VARCHAR" />
+    <result column="recomProducts3" property="recomproducts3" jdbcType="VARCHAR" />
+    <result column="recomProducts4" property="recomproducts4" jdbcType="VARCHAR" />
+    <result column="recomProducts5" property="recomproducts5" jdbcType="VARCHAR" />
+    <result column="recomProducts6" property="recomproducts6" jdbcType="VARCHAR" />
+    <result column="recomProducts7" property="recomproducts7" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, "products _id", recomTime, recomPeople, number, state, recomId, recomProducts1, 
+    recomProducts2, recomProducts3, recomProducts4, recomProducts5, recomProducts6, recomProducts7
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.RecomProductsExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from recomproducts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from recomproducts
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from recomproducts
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.RecomProductsExample" >
+    delete from recomproducts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.RecomProducts" >
+    insert into recomproducts (id, "products _id", recomTime, 
+      recomPeople, number, state, 
+      recomId, recomProducts1, recomProducts2, 
+      recomProducts3, recomProducts4, recomProducts5, 
+      recomProducts6, recomProducts7)
+    values (#{id,jdbcType=INTEGER}, #{productsId,jdbcType=INTEGER}, #{recomtime,jdbcType=TIMESTAMP}, 
+      #{recompeople,jdbcType=VARCHAR}, #{number,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, 
+      #{recomid,jdbcType=VARCHAR}, #{recomproducts1,jdbcType=VARCHAR}, #{recomproducts2,jdbcType=VARCHAR}, 
+      #{recomproducts3,jdbcType=VARCHAR}, #{recomproducts4,jdbcType=VARCHAR}, #{recomproducts5,jdbcType=VARCHAR}, 
+      #{recomproducts6,jdbcType=VARCHAR}, #{recomproducts7,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.RecomProducts" >
+    insert into recomproducts
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productsId != null" >
+        "products _id",
+      </if>
+      <if test="recomtime != null" >
+        recomTime,
+      </if>
+      <if test="recompeople != null" >
+        recomPeople,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="recomid != null" >
+        recomId,
+      </if>
+      <if test="recomproducts1 != null" >
+        recomProducts1,
+      </if>
+      <if test="recomproducts2 != null" >
+        recomProducts2,
+      </if>
+      <if test="recomproducts3 != null" >
+        recomProducts3,
+      </if>
+      <if test="recomproducts4 != null" >
+        recomProducts4,
+      </if>
+      <if test="recomproducts5 != null" >
+        recomProducts5,
+      </if>
+      <if test="recomproducts6 != null" >
+        recomProducts6,
+      </if>
+      <if test="recomproducts7 != null" >
+        recomProducts7,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productsId != null" >
+        #{productsId,jdbcType=INTEGER},
+      </if>
+      <if test="recomtime != null" >
+        #{recomtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recompeople != null" >
+        #{recompeople,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="recomid != null" >
+        #{recomid,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts1 != null" >
+        #{recomproducts1,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts2 != null" >
+        #{recomproducts2,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts3 != null" >
+        #{recomproducts3,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts4 != null" >
+        #{recomproducts4,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts5 != null" >
+        #{recomproducts5,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts6 != null" >
+        #{recomproducts6,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts7 != null" >
+        #{recomproducts7,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.RecomProductsExample" resultType="java.lang.Integer" >
+    select count(*) from recomproducts
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update recomproducts
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.productsId != null" >
+        "products _id" = #{record.productsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.recomtime != null" >
+        recomTime = #{record.recomtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.recompeople != null" >
+        recomPeople = #{record.recompeople,jdbcType=VARCHAR},
+      </if>
+      <if test="record.number != null" >
+        number = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomid != null" >
+        recomId = #{record.recomid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomproducts1 != null" >
+        recomProducts1 = #{record.recomproducts1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomproducts2 != null" >
+        recomProducts2 = #{record.recomproducts2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomproducts3 != null" >
+        recomProducts3 = #{record.recomproducts3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomproducts4 != null" >
+        recomProducts4 = #{record.recomproducts4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomproducts5 != null" >
+        recomProducts5 = #{record.recomproducts5,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomproducts6 != null" >
+        recomProducts6 = #{record.recomproducts6,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recomproducts7 != null" >
+        recomProducts7 = #{record.recomproducts7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update recomproducts
+    set id = #{record.id,jdbcType=INTEGER},
+      "products _id" = #{record.productsId,jdbcType=INTEGER},
+      recomTime = #{record.recomtime,jdbcType=TIMESTAMP},
+      recomPeople = #{record.recompeople,jdbcType=VARCHAR},
+      number = #{record.number,jdbcType=INTEGER},
+      state = #{record.state,jdbcType=VARCHAR},
+      recomId = #{record.recomid,jdbcType=VARCHAR},
+      recomProducts1 = #{record.recomproducts1,jdbcType=VARCHAR},
+      recomProducts2 = #{record.recomproducts2,jdbcType=VARCHAR},
+      recomProducts3 = #{record.recomproducts3,jdbcType=VARCHAR},
+      recomProducts4 = #{record.recomproducts4,jdbcType=VARCHAR},
+      recomProducts5 = #{record.recomproducts5,jdbcType=VARCHAR},
+      recomProducts6 = #{record.recomproducts6,jdbcType=VARCHAR},
+      recomProducts7 = #{record.recomproducts7,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.RecomProducts" >
+    update recomproducts
+    <set >
+      <if test="productsId != null" >
+        "products _id" = #{productsId,jdbcType=INTEGER},
+      </if>
+      <if test="recomtime != null" >
+        recomTime = #{recomtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recompeople != null" >
+        recomPeople = #{recompeople,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="recomid != null" >
+        recomId = #{recomid,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts1 != null" >
+        recomProducts1 = #{recomproducts1,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts2 != null" >
+        recomProducts2 = #{recomproducts2,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts3 != null" >
+        recomProducts3 = #{recomproducts3,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts4 != null" >
+        recomProducts4 = #{recomproducts4,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts5 != null" >
+        recomProducts5 = #{recomproducts5,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts6 != null" >
+        recomProducts6 = #{recomproducts6,jdbcType=VARCHAR},
+      </if>
+      <if test="recomproducts7 != null" >
+        recomProducts7 = #{recomproducts7,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.RecomProducts" >
+    update recomproducts
+    set "products _id" = #{productsId,jdbcType=INTEGER},
+      recomTime = #{recomtime,jdbcType=TIMESTAMP},
+      recomPeople = #{recompeople,jdbcType=VARCHAR},
+      number = #{number,jdbcType=INTEGER},
+      state = #{state,jdbcType=VARCHAR},
+      recomId = #{recomid,jdbcType=VARCHAR},
+      recomProducts1 = #{recomproducts1,jdbcType=VARCHAR},
+      recomProducts2 = #{recomproducts2,jdbcType=VARCHAR},
+      recomProducts3 = #{recomproducts3,jdbcType=VARCHAR},
+      recomProducts4 = #{recomproducts4,jdbcType=VARCHAR},
+      recomProducts5 = #{recomproducts5,jdbcType=VARCHAR},
+      recomProducts6 = #{recomproducts6,jdbcType=VARCHAR},
+      recomProducts7 = #{recomproducts7,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
