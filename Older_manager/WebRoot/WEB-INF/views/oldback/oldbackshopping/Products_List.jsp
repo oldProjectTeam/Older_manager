@@ -40,7 +40,7 @@
 		<![endif]-->
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
-<script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
+ <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
 <!-- page specific plugin scripts -->
 <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
@@ -59,24 +59,26 @@
 		<div id="products_style">
 			<div class="search_style">
 				<div class="title_names">搜索查询</div>
-				<ul class="search_content clearfix">
-					<li><label class="l_f">产品名称</label><input name="" type="text"
-						class="text_add" placeholder="输入品牌名称" style=" width:250px" /></li>
-					<li><label class="l_f">添加时间</label><input
-						class="inline laydate-icon" id="start" style=" margin-left:10px;"></li>
-					<li style="width:90px;"><button type="button"
-							class="btn_search">
+				<form  id="select_produts_form" method="post">
+					<label>产品名称</label>
+					<input name="name" type="text" class="text_add" placeholder="输入品牌名称" style=" width:250px" />
+					<label>添加时间区为</label>
+					<input class="inline laydate-icon " name="addtime" type="date" id="start" style=" margin-left:10px;">
+					<label>—></label>
+					<input class="inline laydate-icon " name="addtime1" type="date"  style=" margin-left:10px;">
+					<button type="button" id="btn_select" >
 							<i class="icon-search"></i>查询
-						</button></li>
-				</ul>
+					</button>
+				</form>
 			</div>
 			<div class="border clearfix">
-				<span class="l_f"> <a href="picture-add" title="添加商品"
+				<span class="l_f"> 
+					<a href="picture-add" title="添加商品"
 					class="btn btn-warning Order_form"><i class="icon-plus"></i>添加商品</a>
-					<a href="javascript:ovid()" class="btn btn-danger"><i
-						class="icon-trash"></i>批量删除</a>
-				</span> <span class="r_f">共：<b>2334</b>件商品
-				</span>
+					<a  class="btn btn-danger" id="delete_products_info">
+					<i class="icon-trash"></i>批量删除</a>
+				</span> 
+				<span class="r_f" id="shopNum"></span>
 			</div>
 			<!--产品列表展示-->
 			<div class="h_products_list clearfix" id="products_list">
@@ -105,7 +107,7 @@
 						id="sample-table">
 						<thead>
 							<tr>
-								<th width="25px"><label><input type="checkbox"
+								<th width="25px"><label><input type="checkbox" class="all_check"
 										class="ace"><span class="lbl"></span></label></th>
 								<th width="80px">产品编号</th>
 								<th width="250px">产品名称</th>
@@ -119,285 +121,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">45631</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">45631</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">45631</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">543346</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">987767</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">54343</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">786554</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">32122</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">767544</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">23466</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-
-							<tr>
-								<td width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></td>
-								<td width="80px">54533</td>
-								<td width="250px"><u style="cursor:pointer"
-									class="text-primary" onclick="">小米 Max 全网通 高配版 3GB内存 64GB
-										ROM 金色 移动联通电信4G手机Y</u></td>
-								<td width="100px">5467</td>
-								<td width="100px">4525</td>
-								<td width="100px">法国</td>
-								<td width="180px">2014-6-11 11:11:42</td>
-								<td class="text-l">通过</td>
-								<td class="td-status"><span
-									class="label label-success radius">已启用</span></td>
-								<td class="td-manage"><a
-									onClick="member_stop(this,'10001')" href="javascript:;"
-									title="停用" class="btn btn-xs btn-success"><i
-										class="icon-ok bigger-120"></i></a> <a title="编辑"
-									onclick="member_edit('编辑','member-add.html','4','','510')"
-									href="javascript:;" class="btn btn-xs btn-info"><i
-										class="icon-edit bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="member_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="icon-trash  bigger-120"></i></a></td>
-							</tr>
-
+					
 						</tbody>
 					</table>
 				</div>
@@ -462,6 +186,8 @@
 			spacingw : 30,//设置隐藏时的距离
 			spacingh : 260,//设置显示时间距
 		});
+		
+		
 	});
 </script>
 <script type="text/javascript">
@@ -582,6 +308,9 @@
 	}
 
 	$(document).ready(function() {
+		$("#sample-table_info").empty();
+		$("#sample-table_paginate").empty();
+		$("#sample-table_length").empty();
 		var t = $("#treeDemo");
 		t = $.fn.zTree.init(t, setting, zNodes);
 		demoIframe = $("#testIframe");
@@ -589,6 +318,8 @@
 		var zTree = $.fn.zTree.getZTreeObj("tree");
 		zTree.selectNode(zTree.getNodeByParam("id", '11'));
 	});
+		
+		
 	/*产品-停用*/
 	function member_stop(obj, id) {
 		layer
@@ -673,6 +404,221 @@
 		//parent.$('.Current_page').html("<a href='javascript:void(0)' name="+herf+" class='iframeurl'>" + cnames + "</a>");
 		parent.layer.close(index);
 
+	});
+	
+	//加载商品信息
+	
+	function products_info(result){
+		$("#sample-table tbody").empty();
+		$.each(result.extend.pageInfo.list,function(index,item){
+			var checktd=$("<td><input type='checkbox' class='item_check'/></td>");
+			var proNum=$("<td></td>").append(item.number).attr("state_num",item.state);
+			var proName=$("<td></td>").append(item.name);
+			var proOrPrice=$("<td></td>").append(item.orprice);
+			var proNowPrice=$("<td></td>").append(item.nowprice);
+			var proRegion=$("<td></td>").append(item.region);
+			var proAddtime=$("<td></td>").append(item.addtime);
+			var proAuditStatus=$("<td></td>").append(item.auditstatus==1?"通过":"等待审核");
+			var	proState=$("<td></td>").append(item.state==1?"已启用":"已停用");
+			var startBtn=$("<button></button>").addClass("btn btn-primary btn-sm block_btn").append("停用");
+			var updatBtn=$("<button></button>").addClass("btn btn-warning btn-sm compile_btn").append("编辑");
+			var deleteBtn=$("<button></button>").addClass("btn btn-danger btn-sm delet_produt_btn").append("删除");
+			var btntd=$("<td></td>").append(startBtn).append(updatBtn).append(deleteBtn);
+			$("<tr></tr>").append(checktd).append(proNum).append(proName)
+					  .append(proOrPrice).append(proNowPrice)
+					  .append(proRegion).append(proAddtime)
+					  .append(proAuditStatus).append(proState)
+					  .append(btntd)
+					  .appendTo("#sample-table tbody");
+		});
+	}
+	//分页信息
+	function page_info(result){
+		$("#sample-table_info").empty();
+		$("#shopNum").empty();
+		$("#sample-table_info").append("第&nbsp;&nbsp;"+result.extend.pageInfo.pageNum+"&nbsp;&nbsp;页");
+		$("#shopNum").append("共：<b>"+result.extend.pageInfo.total+"</b>件商品");
+	}
+	//分页条
+	function prod_page_num(result){
+		$("#sample-table_paginate").empty();
+		var pageUl=$("<ul></ul>").addClass("pagination");
+		var firsPage=$("<li></li>").append($("<a></a>").append("首页"));
+		var prePage=$("<li></li>").append($("<a></a>").append("&laquo;"));
+		
+		if(result.extend.pageInfo.hasPreviousPage==false){
+			firsPage.addClass("disabled");
+			prePage.addClass("disabled");
+		}else{//点击跳到上一页或首页
+			firsPage.click(function(){
+				page_send_info(1);
+			});
+			prePage.click(function(){
+				page_send_info(result.extend.pageInfo.pageNum-1);
+			});
+		}
+		
+		pageUl.append(firsPage).append(prePage);
+		$.each(result.extend.pageInfo.navigatepageNums,function(index,item){
+			var pagenumli=$("<li></li>").append($("<a></a>").append(item));
+			if(result.extend.pageInfo.pageNum==item){
+				pagenumli.addClass("active");
+			}
+			//点击跳到该页
+			pagenumli.click(function(){
+				page_send_info(item);
+			});
+		   pageUl.append(pagenumli);
+		});
+		
+		var lastPrePage=$("<li></li>").append($("<a></a>").append("&raquo;"));
+		var lastPage=$("<li></li>").append($("<a></a>").append("末页"));
+		if(result.extend.pageInfo.hasNextPage==false){
+			lastPrePage.addClass("disabled");
+			lastPage.addClass("disabled");
+		}else{
+			//点击跳到下一页或尾页
+			lastPrePage.click(function(){
+				page_send_info(result.extend.pageInfo.pageNum+1);
+				page_send_info(result.extend.pageInfo.pages);
+			});
+		}
+		pageUl.append(lastPrePage).append(lastPage).appendTo("#sample-table_paginate");
+	}
+	
+	//点击停用
+	$(document).on("click",".block_btn",function(){
+		var state=$(this).parents("tr").find("td:eq(1)").attr("state_num");
+		var produtNumber=$(this).parents("tr").find("td:eq(1)").text();
+		
+		if(state==1){
+			if(confirm("你确定要停用吗")){
+				$.ajax({
+					url:"${APP_PATH}/shopping/updateProduct/"+produtNumber,
+					data:"state=0",
+					type:"POST",
+					success:function(result){
+						alert(result.msg);
+					}
+				});
+			}
+		}else{
+			if(confirm("你确定要启用吗")){
+				$.ajax({
+					url:"${APP_PATH}/shopping/updateProduct/"+produtNumber,
+					data:"state=1",
+					type:"POST",
+					success:function(result){
+						alert(result.msg);
+					}
+				});
+			}
+		}
+	});
+	
+	//页面打开就加载数据
+	 $.ajax({
+		url:"${APP_PATH}/shopping/products",
+		type:"GET",
+		success:function(result){
+			//console.log(result);
+			//加载商品信息
+			products_info(result);
+			//分页信息
+			page_info(result);
+			//分页条
+			prod_page_num(result);
+		}
+	}); 
+	
+	//点击分页发送ajax
+	function page_send_info(pn){
+		 $.ajax({
+				url:"${APP_PATH}/shopping/products",
+				type:"GET",
+				data:"pn"+pn,
+				success:function(result){
+					//console.log(result);
+					//加载商品信息
+					products_info(result);
+					//分页信息
+					page_info(result);
+					//分页条
+					prod_page_num(result);
+				}
+			}); 
+	}
+	
+	//点击查询提交信息并查询
+	$("#btn_select").click(function(){
+		 
+		$.ajax({
+			url:"${APP_PATH}/shopping/proCondition.action?pn=1",
+			type:"POST",
+			data: $("#select_produts_form").serialize(),
+			success:function(result){
+				 
+				console.log(result);
+			 	 //加载商品信息
+				products_info(result);
+				//分页信息
+				page_info(result);
+				//分页条
+				prod_page_num(result);  
+			}
+		});
+	});
+	//全选或全不选
+	$(".all_check").click(function(){
+		$(".item_check").prop("checked",$(".all_check").prop("checked"));
+	});
+	//当有一个复选框没有被选中就不全选，全选时复选框为全选
+	$(document).on("click",".item_check",function(){
+		var flag=$(".item_check:checked").length==$(".item_check").length;
+		
+		$(".all_check").prop("checked",flag);
+		
+	});
+	
+	//批量删除
+	$("#delete_products_info").click(function(){
+		if($(".item_check:checked").length!=0){
+		var prodName="";
+		var prodNumber="";
+		$.each($(".item_check:checked"),function(){
+			prodName+=$(this).parents("tr").find("td:eq(2)").text()+",";
+			prodNumber+=$(this).parents("tr").find("td:eq(1)").text()+"-";
+		});
+		prodName.substring(0,prodName.length-1);
+		prodNumber.substring(0,prodNumber.length-1);
+		
+		if(confirm("你确定要删除{"+prodName+"}吗？")){
+			$.ajax({
+				url:"${APP_PATH}/shopping/deleteProduct/"+prodNumber,
+				type:"DELETE",
+				success:function(result){
+					alert(result.msg);
+				}
+			});
+		}
+		}else{
+			alert("亲，请选择要删除的产品");
+		}
+	});
+	
+	//点击删除
+	$(document).on("click",".delet_produt_btn",function(){
+		var produName=$(this).parents("tr").find("td:eq(2)").text();
+		var produNumber=$(this).parents("tr").find("td:eq(1)").text();
+		if(confirm("你确定要删除{"+produName+"}吗?")){
+			$.ajax({
+				url:"${APP_PATH}/shopping/deleteProduct/"+produNumber,
+				type:"DELETE",
+				success:function(result){
+					alert(result.msg);
+				}
+			});
+		}
 	});
 </script>
 </body>

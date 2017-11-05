@@ -16,8 +16,18 @@ public class Products {
     private Double nowprice;
 
     private Date addtime;
+    
+    private Date addtime1;
 
-    private Integer auditstatus;
+    public Date getAddtime1() {
+		return addtime1;
+	}
+
+	public void setAddtime1(Date addtime1) {
+		this.addtime1 = addtime1;
+	}
+
+	private Integer auditstatus;
 
     private Integer state;
 

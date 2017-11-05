@@ -15,7 +15,13 @@ public interface ProductsMapper {
     int insert(Products record);
 
     int insertSelective(Products record);
-
+    
+    //根据名字和时间查询
+    List<Products> selectCondition(Products products);
+    //根据number更改
+    void updateByNumber(Products products);
+    
+    
     List<Products> selectByExampleWithBLOBs(ProductsExample example);
 
     List<Products> selectByExample(ProductsExample example);

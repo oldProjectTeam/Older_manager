@@ -137,6 +137,18 @@
       order by ${orderByClause}
     </if>
   </select>
+  <!-- 根据名字和时间查询 -->
+  <select id="selectCondition" parameterType="com.older.manager.bean.Products" resultMap="BaseResultMap">
+  	select * from products p
+  	<where>
+  		<if test="name!=null and name!=''">
+  			and p.name like '%${name}%'
+  		</if>
+  		<if test="addtime!=null">
+  			and p.addtime between #{addtime} and #{addtime1}
+  		</if>
+  	</where>
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -418,6 +430,122 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+   <!-- 根据number修改 -->
+  <update id="updateByNumber" parameterType="com.older.manager.bean.Products">
+	  update products
+	    <set >
+	      <if test="name != null" >
+	        name = #{name,jdbcType=VARCHAR},
+	      </if>
+	      <if test="number != null" >
+	        number = #{number,jdbcType=VARCHAR},
+	      </if>
+	      <if test="orprice != null" >
+	        orPrice = #{orprice,jdbcType=DOUBLE},
+	      </if>
+	      <if test="region != null" >
+	        region = #{region,jdbcType=VARCHAR},
+	      </if>
+	      <if test="nowprice != null" >
+	        nowPrice = #{nowprice,jdbcType=DOUBLE},
+	      </if>
+	      <if test="addtime != null" >
+	        addTime = #{addtime,jdbcType=TIMESTAMP},
+	      </if>
+	      <if test="auditstatus != null" >
+	        auditStatus = #{auditstatus,jdbcType=INTEGER},
+	      </if>
+	      <if test="state != null" >
+	        state = #{state,jdbcType=INTEGER},
+	      </if>
+	      <if test="imagetitle != null" >
+	        imageTitle = #{imagetitle,jdbcType=VARCHAR},
+	      </if>
+	      <if test="placeorigin != null" >
+	        placeOrigin = #{placeorigin,jdbcType=VARCHAR},
+	      </if>
+	      <if test="brandId != null" >
+	        brand_id = #{brandId,jdbcType=INTEGER},
+	      </if>
+	      <if test="texture != null" >
+	        texture = #{texture,jdbcType=VARCHAR},
+	      </if>
+	      <if test="weight != null" >
+	        weight = #{weight,jdbcType=DOUBLE},
+	      </if>
+	      <if test="unit != null" >
+	        unit = #{unit,jdbcType=VARCHAR},
+	      </if>
+	      <if test="synopsis != null" >
+	        synopsis = #{synopsis,jdbcType=VARCHAR},
+	      </if>
+	      <if test="description != null" >
+	        description = #{description,jdbcType=VARCHAR},
+	      </if>
+	      <if test="inventory != null" >
+	        inventory = #{inventory,jdbcType=INTEGER},
+	      </if>
+	      <if test="sales != null" >
+	        sales = #{sales,jdbcType=INTEGER},
+	      </if>
+	      <if test="paral1 != null" >
+	        paral1 = #{paral1,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral2 != null" >
+	        paral2 = #{paral2,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral3 != null" >
+	        paral3 = #{paral3,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral4 != null" >
+	        paral4 = #{paral4,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral5 != null" >
+	        paral5 = #{paral5,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral6 != null" >
+	        paral6 = #{paral6,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral7 != null" >
+	        paral7 = #{paral7,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral8 != null" >
+	        paral8 = #{paral8,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral9 != null" >
+	        paral9 = #{paral9,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral10 != null" >
+	        paral10 = #{paral10,jdbcType=VARCHAR},
+	      </if>
+	      <if test="paral11 != null" >
+	        paral11 = #{paral11,jdbcType=DOUBLE},
+	      </if>
+	      <if test="paral12 != null" >
+	        paral12 = #{paral12,jdbcType=DOUBLE},
+	      </if>
+	      <if test="paral13 != null" >
+	        paral13 = #{paral13,jdbcType=DOUBLE},
+	      </if>
+	      <if test="paral14 != null" >
+	        paral14 = #{paral14,jdbcType=DOUBLE},
+	      </if>
+	      <if test="paral15 != null" >
+	        paral15 = #{paral15,jdbcType=DOUBLE},
+	      </if>
+	      <if test="paral16 != null" >
+	        paral16 = #{paral16,jdbcType=DOUBLE},
+	      </if>
+	      <if test="paral17 != null" >
+	        paral17 = #{paral17,jdbcType=DOUBLE},
+	      </if>
+	      <if test="images != null" >
+	        images = #{images,jdbcType=LONGVARCHAR},
+	      </if>
+	    </set>
+	    where number = #{number}
+  </update>
+  
   <update id="updateByExampleSelective" parameterType="map" >
     update products
     <set >
