@@ -42,7 +42,7 @@
 <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
-<%-- <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script> --%>
+ <%-- <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script> --%>
 <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.js"></script>
 <script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.admin.js"></script>
@@ -86,8 +86,8 @@
 			<div class="border clearfix">
 				<span class="l_f"> <a href="Add_Brand" title="添加品牌"
 					class="btn btn-warning Order_form"><i class="icon-plus"></i>添加品牌</a>
-					<a href="javascript:ovid()" class="btn btn-danger"><i
-						class="icon-trash"></i>批量删除</a>
+					<a href="javascript:ovid()" id="batchDel_btn" class="btn btn-danger"><i
+						class="icon-trash" ></i>批量删除</a>
 				</span> <span class="r_f">共：<b>${pageInfo.total }</b>个品牌
 				</span>
 			</div>
@@ -106,13 +106,17 @@
 			</div>
 			<div class="row" style="margin-top:5px">  
 				<!--品牌列表-->
-				<div class="col-sm-12 table-responsive">
+				 <div class="col-sm-12 table-responsive">
 					<table class="table table-striped table-bordered table-hover" 
 						id="sample-table">
 						<thead>
 							<tr>
-								<th width="25px"><label><input type="checkbox"
-										class="ace"><span class="lbl"></span></label></th>
+								<th width="25px">
+								   <label>
+								   <input type="checkbox" class="ace" id='check_item_all'>
+								   <span class="lbl"></span>
+								   </label>
+								</th>
 								<th width="90px">品牌编号</th>
 								<th width="50px">排序</th>
 								<th width="120px">品牌LOGO</th>
@@ -130,7 +134,7 @@
 						    </c:if>
 							<c:forEach items="${pageInfo.list}" var="b">
 							<tr>
-					          <td><label><input type="checkbox"  class="ace" ><span class="lbl"></span></label></td>
+					          <td value="${b.id}"><label><input type="checkbox"  class="ace item_check" ><span class="lbl"></span></label></td>
 					          <td>${b.brandid }</td>
 					          <td><input type="text" class="form-control" value="${b.sort}" style="width:40px"></td>
 					          <td><img src="upload/152.jpg"  width="130"/></td>
@@ -141,18 +145,30 @@
 					          <td>${b.region }</td>
 					          <td class="text-l">${b.description}</td>
 					          <td><fmt:formatDate value="${b.addtime}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
-					          <td class="td-status"><span class="label label-success radius">已启用</span></td>
+					          <td class="td-status">
+					          		<c:if test="${b.state==0}">
+					          			<span class="label label-defaunt radius">已停用</span>
+					          		</c:if>
+					          		<c:if test="${b.state==1}">
+					          			<span class="label label-success radius">已启用</span>
+					          		</c:if>
+					          </td>
 					          <td class="td-manage">
-					          <a onClick="member_stop(this,'10001')"  href="javascript:;" title="停用"  class="btn btn-xs btn-success"><i class="icon-ok bigger-120"></i></a> 
-					          <a title="编辑" onclick="member_edit('编辑','member-add.html','4','','510')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-					          <a title="删除" href="javascript:;"  onclick="member_del(this,'1')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
+					            <c:if test="${b.state==0}">
+					            	<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,'${b.id}','${b.state}')" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>
+					            </c:if>
+					             <c:if test="${b.state==1}">
+					            	<a style='text-decoration:none' class='btn btn-xs btn-success' onClick="member_stop(this,'${b.id}','${b.state}')" href='javascript:;' title='停用'><i class='icon-ok bigger-120'></i></a>
+					            </c:if>
+					          <a title="编辑" onclick="edit_brand('${b.id}')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
+					          <a title="删除" href="javascript:;"  onclick="member_del('${b.id}')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
 					          </td>
 							</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 					
-				</div>
+				</div> 
 			</div>
             <!--分页信息  -->
             <div class="row">
@@ -207,12 +223,208 @@
 		</div>
 		</div>
 	</div>
+	
+ <!--编辑模态框  -->
+ <div class="modal fade  bs-example-modal-lg" tabindex="-1" role="dialog" id="edit_brand_modal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+         
+        <h4 class="modal-title">编辑品牌信息</h4>
+      </div>
+      <div class="modal-body">
+        
+        <form class="form-horizontal" id="edit_brand_form">
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label"><font color="red">*</font>品牌名称:</label>
+		    <div class="col-sm-4">
+		      <input type="text" id="name" name="name" class="form-control">
+		      <input type="hidden" id="bId" name="id">
+		    </div>
+		     <label class="col-sm-2 control-label"><font color="red">*</font>品牌序号:</label>
+		    <div class="col-sm-3">
+		      <input type="number" id="sort" name="sort" class="form-control">
+		    </div>
+		  </div>
+   		 
+   		 <div class="form-group">
+		    <label class="col-sm-2 control-label">品牌图片:</label>
+		    <div class="col-sm-4">
+		       <img src="${APP_PATH}/upload/152.jpg" alt="..." class="img-rounded">
+		       
+		    </div>
+		    
+		    <div class="col-sm-4">
+		      <p>图片大小<b>120px*60px</b>图片大小小于5MB,</p>
+				<p>支持.jpg;.gif;.png;.jpeg格式的图片</p>
+		    </div>
+		    
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-2 col-md-offset-3">
+		      <button type="button" class="btn btn-success">上传图片</button>
+		    </div>
+		    <div class="col-sm-4 col-md-offset-1" style="line-height:20px">
+		       <div class="progress">
+			  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+			    <span class="sr-only">20% Complete</span>
+			  </div>
+			</div>
+		    </div>
+		    
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label"><font color="red">*</font>所属地区</label>
+		    <div class="col-sm-4">
+		      <input type="text" id="region" name="region" class="form-control">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label"><font color="red">*</font>品牌描述:</label>
+		    <div class="col-sm-8">
+		      <textarea onkeyup="checkLength(this);" name="description" id="description" class="form-control" rows="3"></textarea>
+		             剩余字数：<span id="sy" style="color:Red;">500</span>字
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label class="col-sm-2 control-label"><font color="red">*</font>显示状态</label>
+		    <div class="col-sm-4">
+		      <label class="radio-inline">
+			   <input type="radio" name="state" id="inlineRadio1" value="1">显示
+				</label>
+				<label class="radio-inline">
+				  <input type="radio" name="state" id="inlineRadio2" value="0">不显示
+				</label>
+		     </div>
+		  </div>
+		</form>  
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="save_btn">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 <script type="text/javascript">
+$("#check_item_all").click(function(){
+	   $(".item_check").prop("checked",$(this).prop("checked"));
+});
+//如果复选框全部选中，全选复选框应该也要选中
+$(document).on("click",".item_check",function(){
+	   var flag=$(".item_check:checked").length==$(".item_check").length;
+	   $("#check_item_all").prop("checked",flag);
+});
+//批量删除按钮batchDel_btn
+$("#batchDel_btn").click(function(){
+	    
+	   var Ids_str="";
+	   $.each($(".item_check:checked"),function(){
+		    
+		   Ids_str+=$(this).parents("tr").find("td:eq(0)").attr("value")+"-";
+	   });
+	   
+	   Ids_str=Ids_str.substring(0,Ids_str.length-1);
+	   if(Ids_str.length<1){ 
+		   return false;
+	   }
+	   
+	   layer.confirm('确定要批量删除这些品牌信息吗？', {
+			  offset: ['35%', '45%'],
+			}, function(index){
+				 $.ajax({
+					   url:"${APP_PATH}/brand/deleteBrand/"+Ids_str,
+					   type:"delete",
+					   success:function(result){
+						   if(result.code==100){
+							   layer.msg('删除成功!', {
+									icon : 6,
+									time : 1000,
+									offset: ['35%', '45%']
+								});
+							   window.location.href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
+						   }else{
+							   layer.msg('删除失败!', {
+									icon : 6,
+									time : 1000,
+									offset: ['35%', '45%']
+								});
+						   }	
+					   }
+				   });
+			}
+		);
+	    
+	  
+});
+
   $("#pageSize_select").change(function(){
 	   
 	  window.location.href="${APP_PATH}/brand/findAllBrand.action?pageSize="+$(this).val();
   });
 
+  $("#batchDel_btn").click(function(){
+	  
+  });
+  $("#save_btn").click(function(){
+	  $.ajax({
+		  url:"${APP_PATH}/brand/updateBrand",
+		  data:$("#edit_brand_form").serialize(),
+		  type:"post",
+		  success:function(result){
+			  if(result.code==100){
+				  layer.msg('修改成功!', {
+						icon : 6,
+						time : 1000,
+						offset: ['35%', '45%']
+					});
+				  window.location.href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
+			  }else{
+				  layer.msg('修改失败！', {icon: 5,time : 1000,offset: ['35%', '45%']});
+			  }
+			  $("#edit_brand_modal").modal('hide');
+		  }
+	  });
+  });
+  
+  
+  //监听文本框字数
+  function checkLength(which) {
+		var maxChars = 500;
+		if (which.value.length > maxChars) {
+			layer.open({
+				icon : 2,
+				title : '提示框',
+				content : '您出入的字数超多限制!',
+			});
+			// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
+			which.value = which.value.substring(0, maxChars);
+			return false;
+		} else {
+			var curr = maxChars - which.value.length; // 减去 当前输入的
+			document.getElementById("sy").innerHTML = curr.toString();
+			return true;
+		}
+	}
+   function edit_brand(id){
+	   $.ajax({
+		   url:"${APP_PATH}/brand/findBrand",
+		   data:"id="+id,
+		   type:"POST",
+		   success:function(result){
+			   var b=result.extend.brand;
+			   $("#edit_brand_modal").modal();
+			   $("#bId").val(b.id);
+			   $("#name").val(b.name);
+			   $("#region").val(b.region);
+			   $("#sort").val(b.sort);
+			   $("#description").val(b.description);
+			   $("#edit_brand_form input[name=state]").val([b.state]);
+			   
+			   
+		   }
+	   });
+   }
 </script>
 
 
@@ -220,10 +432,6 @@
 <script type="text/javascript">
 	 
     
-
-
-
-	<script>
 		jQuery(function($) {
 			var oTable1 = $('#sample-table').dataTable({
 				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
@@ -237,19 +445,21 @@
 				]
 			});
 
-			$('table th input:checkbox').on('click',
+			/* $('table th input:checkbox').on('click',
 					function() {
 						var that = this;
 						$(this).closest('table').find(
 								'tr > td:first-child input:checkbox').each(
 								function() {
 									this.checked = that.checked;
-									$(this).closest('tr').toggleClass(
-											'selected');
+									$(this).closest('tr').toggleClass('selected');
 								});
 
-					});
-
+					
+			});
+ */
+ 
+ 
 			$('[data-rel="tooltip"]').tooltip({
 				placement : tooltip_placement
 			});
@@ -267,32 +477,10 @@
 					return 'right';
 				return 'left';
 			}
-		});
-
-		//初始化宽度、高度  
-		$(".chart_style").height($(window).height() - 215);
-		$(".table_menu_list").height($(window).height() - 215);
-		$(".table_menu_list ").width($(window).width() - 440);
-		//当文档窗口发生改变时 触发  
-		$(window).resize(function() {
-			$(".chart_style").height($(window).height() - 215);
-			$(".table_menu_list").height($(window).height() - 215);
-			$(".table_menu_list").width($(window).width() - 440);
-		});
-		//图层隐藏限时参数		 
-		$(function() {
-			$("#category").fix({
-				float : 'left',
-				//minStatue : true,
-				skin : 'green',
-				durationTime : false,
-				stylewidth : '400',
-				spacingw : 30,//设置隐藏时的距离
-				spacingh : 440,//设置显示时间距
-			});
-		});
+		});	 
+		 
 		//面包屑返回值
-		var index = parent.layer.getFrameIndex(window.name);
+		/* var index = parent.layer.getFrameIndex(window.name);
 		parent.layer.iframeAuto(index);
 		$('.Order_form ,.brond_name').on('click', function() {
 			var cname = $(this).attr("title");
@@ -307,7 +495,7 @@
 			//parent.$('.Current_page').html("<a href='javascript:void(0)' name="+herf+">" + cnames + "</a>");
 			parent.layer.close(index);
 
-		});
+		}); */
 		function generateOrders(id) {
 			window.location.href = "Brand_detailed.html?=" + id;
 		};
@@ -315,152 +503,134 @@
 		function member_show(title, url, id, w, h) {
 			layer_show(title, url, w, h);
 		}
+	
+	//停止或启用品牌
+	function stop_start_btn(id,state){
+		if(id==undefined||state==undefined){
+			alert("获取参数失败");
+			return false;
+		}
+		$.ajax({
+			url:"${APP_PATH}/brand/updateState.action?id="+id+"&state="+state,
+			type:"POST",
+			success:function(result){
+				if(result.code==100){
+					return true;
+				}else{
+					return false;
+				}
+			}
+		});
+	}	
+    
 		/*品牌-停用*/
-		function member_stop(obj, id) {
-			layer.confirm('确认要停用吗？',function(index) {
-					$(obj).parents("tr").find(".td-manage")
-						.prepend('<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,id)" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>');
+	function member_stop(obj,id,state){
+		layer.confirm('确定要停用吗？', {
+			  offset: ['35%', '45%'],
+			}, function(index){
+				stop_start_btn(id,state);
+				if(state==1){
+					state=0;
+				}else{
+					state=1;
+				}
+				$(obj).parents("tr").find(".td-manage")
+				.prepend("<a style='text-decoration:none' class='btn btn-xs' onClick='member_start(this,"+id+","+state+")' href='javascript:;' title='启用'><i class='icon-ok bigger-120'></i></a>");
+		        $(obj).parents("tr").find(".td-status")
+				.html('<span class="label label-defaunt radius">已停用</span>');
+				$(obj).remove();
+			  	layer.msg('已停用', {icon: 5,time : 1000,offset: ['35%', '45%']});
+			}
+		);
+	}
+
+	/*用户-启用*/
+	function member_start(obj,id,state) {
+		layer.confirm('确认要启用吗？',{
+			offset: ['35%', '45%'],
+		   },
+			function(index) {
+			   stop_start_btn(id,state);
+			   if(state==1){
+					state=0;
+				}else{
+					state=1;
+				}
+				$(obj).parents("tr").find(".td-manage")
+					.prepend("<a style='text-decoration:none' class='btn btn-xs btn-success' onClick='member_stop(this,"+id+","+state+")' href='javascript:;' title='停用'><i class='icon-ok bigger-120'></i></a>");
 					$(obj).parents("tr").find(".td-status")
-							.html('<span class="label label-defaunt radius">已停用</span>');
+				    .html('<span class="label label-success radius">已启用</span>');
 					$(obj).remove();
-					layer.msg('已停用!', {
-						icon : 5,
-						time : 1000
-					});
+					layer.msg('已启用!', {
+					icon : 6,
+					time : 1000,
+					offset: ['35%', '45%']
 				});
-		}
-
-		/*用户-启用*/
-		function member_start(obj, id) {
-			layer.confirm('确认要启用吗？',function(index) {
-								$(obj).parents("tr").find(".td-manage")
-									.prepend('<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="停用"><i class="icon-ok bigger-120"></i></a>');
-								$(obj).parents("tr").find(".td-status")
-									.html('<span class="label label-success radius">已启用</span>');
-								$(obj).remove();
-								layer.msg('已启用!',{
-									icon : 6,
-									time : 1000
-							    });
-				});
-		}
-		/*品牌-编辑*/
-		function member_edit(title, url, id, w, h) {
-			layer_show(title, url, w, h);
-		}
-
-		/*品牌-删除*/
-		function member_del(obj, id) {
-			layer.confirm('确认要删除吗？', function(index) {
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!', {
-					icon : 1,
-					time : 1000
-				});
-			});
-		}
-		laydate({
-			elem : '#start',
-			event : 'focus'
 		});
-	</script>
-	<script type="text/javascript">
-		/* require.config({
-			paths : {
-				echarts : './static/shop/assets/dist'
-			}
-		});
-		require([ 'echarts', 'echarts/chart/pie', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
-		'echarts/chart/funnel' ], function(ec) {
-			var myChart = ec.init(document.getElementById('main'));
+	}
+	/*品牌-编辑*/
+	function member_edit(title, url, id, w, h) {
+		layer_show(title, url, w, h);
+	}
 
-			option = {
-				title : {
-					text : '国内国外品牌比例',
-					subtext : '',
-					x : 'center'
-				},
-				tooltip : {
-					trigger : 'item',
-					formatter : "{a} <br/>{b} : {c} ({d}%)"
-				},
-				legend : {
-					orient : 'vertical',
-					x : 'left',
-					data : [ '国内品牌', '国外品牌' ]
-				},
-				toolbox : {
-					show : false,
-					feature : {
-						mark : {
-							show : false
-						},
-						dataView : {
-							show : false,
-							readOnly : false
-						},
-						magicType : {
-							show : true,
-							type : [ 'pie', 'funnel' ],
-							option : {
-								funnel : {
-									x : '25%',
-									width : '50%',
-									funnelAlign : 'left',
-									max : 545
-								}
-							}
-						},
-						restore : {
-							show : true
-						},
-						saveAsImage : {
-							show : true
-						}
+	/*品牌-删除*/
+	function member_del(id) {
+		layer.confirm('确认要删除吗？',{
+			offset: ['35%', '45%']
+		}, function(index) {
+			$.ajax({
+				url:"${APP_PATH}/brand/deleteBrand/"+id,
+				type:"POST",
+				success:function(result){
+					if(result.code==100){
+						
+					   window.location.href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
+					   layer.msg('已删除!', {
+							icon : 1,
+							time : 6000,
+							offset: ['35%', '45%']
+						});
+					}else{
+						layer.msg('删除失败!', {
+							icon : 1,
+							time : 3000,
+							offset: ['35%', '45%']
+						});
 					}
-				},
-				calculable : true,
-				series : [ {
-					name : '品牌数量',
-					type : 'pie',
-					radius : '55%',
-					center : [ '50%', '60%' ],
-					data : [ {
-						value : 335,
-						name : '国内品牌'
-					}, {
-						value : 210,
-						name : '国外品牌'
-					},
+				}
+			});
+		});
+	}
+	laydate({
+		elem : '#start',
+		event : 'focus'
+	});
+</script>
+<script type="text/javascript">
+	 
+	function ChangeDateFormat2(d) {
+		//将时间戳转为int类型，构造Date类型
+		if (d != null) {
+			var date = new Date(parseInt(d));
 
-					]
-				} ]
-			};
-			myChart.setOption(option);
-		}); */
-		function ChangeDateFormat2(d) {
-			//将时间戳转为int类型，构造Date类型
-			if (d != null) {
-				var date = new Date(parseInt(d));
+			//月份得+1，且只有个位数时在前面+0
+			var month = date.getMonth() + 1 + "-";
 
-				//月份得+1，且只有个位数时在前面+0
-				var month = date.getMonth() + 1 + "-";
-
-				//日期为个位数时在前面+0
-				var currentDate = date.getDate();
-				
-				var currenthours=date.getHours();
-				
-				var currentminut=date.getMinutes();
-				
-				var currentSeconds=date.getSeconds();
-				//getFullYear得到4位数的年份 ，返回一串字符串
-				return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut+":"+currentSeconds;
-			} else {
-				return null;
-			}
+			//日期为个位数时在前面+0
+			var currentDate = date.getDate();
+			
+			var currenthours=date.getHours();
+			
+			var currentminut=date.getMinutes();
+			
+			var currentSeconds=date.getSeconds();
+			//getFullYear得到4位数的年份 ，返回一串字符串
+			return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut+":"+currentSeconds;
+		} else {
+			return null;
 		}
-	</script>
+	}
+</script>
 	
 </body>
 </html>

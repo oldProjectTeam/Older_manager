@@ -39,4 +39,12 @@ public interface IBrandService {
 	 * @return
 	 */
 	public List<BrandWithBLOBs>findAllBrand(BrandWithBLOBs brand);
+	
+	/**
+	 * 修改状态
+	 * @param id：ID
+	 * @param state:0;1
+	 */
+	public void updateState(BrandWithBLOBs brand);
+	 
 }

@@ -72,4 +72,14 @@ public class BrandServiceImpl implements IBrandService {
 		return brandMapper.selectByExampleWithBLOBs(example);
 	}
 
+	@Override
+	public void updateState(BrandWithBLOBs brand) {
+			if(brand.getState()==1){
+				brand.setState(0);
+			}else{
+				brand.setState(1);
+			}
+			brandMapper.updateByPrimaryKeySelective(brand);
+	}
+
 }

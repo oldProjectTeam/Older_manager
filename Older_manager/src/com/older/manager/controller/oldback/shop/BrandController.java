@@ -103,6 +103,7 @@ public class BrandController {
 	public Msg findBrand( Integer id){
 		boolean flag=false;
 		BrandWithBLOBs brand=null;
+		 
 		try {
 			brand=brandService.findBrandById(id);
 			flag=true;
@@ -110,8 +111,10 @@ public class BrandController {
 			e.printStackTrace();
 		}finally{
 			if(flag){
+				 
 				return Msg.success().add("brand", brand);
 			}else{
+				 
 				return Msg.fail();
 			}
 		}
@@ -173,6 +176,25 @@ public class BrandController {
 				Integer id = Integer.parseInt(ids);
 				brandService.deleteBrand(id);
 			}
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+				return Msg.success();
+			} else {
+				return Msg.fail();
+			}
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	@RequestMapping("/updateState")
+	@ResponseBody
+	public Msg updateState(BrandWithBLOBs brand){
+		boolean flag = false;
+		try {
+			 brandService.updateState(brand);
 			flag = true;
 		} catch (Exception e) {
 			e.printStackTrace();
