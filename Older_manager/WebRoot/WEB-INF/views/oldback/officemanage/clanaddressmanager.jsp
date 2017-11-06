@@ -29,6 +29,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -70,7 +72,7 @@
 		<!--分页信息  -->
 		<div class="row">
 			<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
-			<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
+			<div class="col-md-5" id="page_nav"></div>
 		</div>
 	</div>
 
@@ -93,13 +95,11 @@
 							<tr>
 								<td><font color=red>*</font>姓名</td>
 								<td><p class="form-control-static"
-										id="update_old_relatives_name"></p> <br>
-								</td>
+										id="update_old_relatives_name"></p> <br></td>
 								<td class="text-center">性别</td>
-								<td class="text-center"><input type="radio" name="sex" value="男"
-									id="update_old_relatives_boy" />男<input type="radio" name="sex"
-									value="女" id="update_old_relatives_girl" />女
-								</td>
+								<td class="text-center"><input type="radio" name="sex"
+									value="男" id="update_old_relatives_boy" />男<input type="radio"
+									name="sex" value="女" id="update_old_relatives_girl" />女</td>
 							</tr>
 							<tr>
 								<td class="text-center">关系</td>
@@ -144,6 +144,10 @@
 			go(1);
 		});
 		function go(pn) {
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 			$.ajax({
 				url : "rel/selectallrelativesIncludeOldManNameByPage",
 				data : "pn=" + pn,
@@ -239,93 +243,146 @@
 			headTR.append(checkBox).append(Td1).append(Td2).append(Td3).append(
 					Td4).append(Td5).append(Td7).appendTo($("#head"));
 
-			$.each(result.extend.pageInfo.list, function(index, item) {
+			$
+					.each(
+							result.extend.pageInfo.list,
+							function(index, item) {
 
-				var dataTR = $("<tr></tr>");
-				var checkBoxData = $("<td></td>").addClass("text-center")
-						.append(
-								$("<input type='checkbox'/>").addClass(
-										"item_check"));
-				var dataTd1 = $("<td></td>").append(item.id);
-				var dataTd2 = $("<td></td>").append(item.name);
-				var dataTd3 = $("<td></td>").append(item.relation);
-				var dataTd4 = $("<td></td>").append(item.phone);
-				var dataTd5 = $("<td></td>").append(item.oldman.name);
+								var dataTR = $("<tr></tr>");
+								var checkBoxData = $("<td></td>").addClass(
+										"text-center").append(
+										$("<input type='checkbox'/>").addClass(
+												"item_check"));
+								var dataTd1 = $("<td></td>").append(item.id);
+								var dataTd2 = $("<td></td>").append(item.name);
+								var dataTd3 = $("<td></td>").append(
+										item.relation);
+								var dataTd4 = $("<td></td>").append(item.phone);
+								var dataTd5 = $("<td></td>").append(
+										item.oldman.name);
 
-				var edit_btn = $("<button type='button'></button>").addClass(
-						"btn btn-sm btn-success  courseview-btn").append(
-						$("<span></span>").addClass(
-								"glyphicon glyphicon-search")).append("修改 ");
-				var sent_btn = $("<button type='button'></button>").addClass(
-						"btn btn-sm btn-info").append(
-						$("<span></span>").addClass(
-								"glyphicon glyphicon-comment")).append("发送短信");
-				edit_btn.attr("SmsId", item.id);
-				sent_btn.attr("SmsId", item.id);
-				sent_btn.attr("receiverphone", item.phone);
+								var edit_btn = $(
+										"<button type='button'></button>")
+										.addClass(
+												"btn btn-sm btn-success  courseview-btn")
+										.append(
+												$("<span></span>")
+														.addClass(
+																"glyphicon glyphicon-search"))
+										.append("修改 ");
+								var sent_btn = $(
+										"<button type='button'></button>")
+										.addClass("btn btn-sm btn-info")
+										.append(
+												$("<span></span>")
+														.addClass(
+																"glyphicon glyphicon-comment"))
+										.append("发送短信");
+								edit_btn.attr("SmsId", item.id);
+								sent_btn.attr("SmsId", item.id);
+								sent_btn.attr("receiverphone", item.phone);
 
-				
-				//编辑信息按钮，弹出模态框
-				
-				edit_btn.click(function() {
-					var edit=$(this).attr("SmsId");
-					  //3.把老人的id传递给模态框的编辑按钮
-					  $("#update_save_btn").attr("edit-id",$(this).attr("SmsId"));
-					  //发送请求获取
-					  $.ajax({
-							url:"${APP_PATH}/rel/selectrelativesbyid/"+edit,
-							type:"GET",
-							
-							success:function(result){
-								
-								if(result.code==100){
-									$("#update_old_relative_modal").modal();
-									//console.log(result);
-									var rel=result.extend.relatives;
-									$("#update_old_relatives_name").text(rel.name);
-									$("#update_old_relative_modal input[name=sex]").val([rel.sex]);
-									$("#update_old_relatives_phone").val(rel.phone);
-									$("#update_old_relative_modal select").val([rel.islive]);
-									
-									$("#update_old_relatives_relation").val([rel.relation]);
-						
-									$("#update_old_relatives_address").val(rel.address);
-								}
-							   }
+								//编辑信息按钮，弹出模态框
+
+								edit_btn
+										.click(function() {
+											var edit = $(this).attr("SmsId");
+											//3.把老人的id传递给模态框的编辑按钮
+											$("#update_save_btn").attr(
+													"edit-id",
+													$(this).attr("SmsId"));
+											//发送请求获取
+											$
+													.ajax({
+														url : "${APP_PATH}/rel/selectrelativesbyid/"
+																+ edit,
+														type : "GET",
+
+														success : function(
+																result) {
+
+															if (result.code == 100) {
+																$(
+																		"#update_old_relative_modal")
+																		.modal();
+																//console.log(result);
+																var rel = result.extend.relatives;
+																$(
+																		"#update_old_relatives_name")
+																		.text(
+																				rel.name);
+																$(
+																		"#update_old_relative_modal input[name=sex]")
+																		.val(
+																				[ rel.sex ]);
+																$(
+																		"#update_old_relatives_phone")
+																		.val(
+																				rel.phone);
+																$(
+																		"#update_old_relative_modal select")
+																		.val(
+																				[ rel.islive ]);
+
+																$(
+																		"#update_old_relatives_relation")
+																		.val(
+																				[ rel.relation ]);
+
+																$(
+																		"#update_old_relatives_address")
+																		.val(
+																				rel.address);
+															}
+														}
+													});
+										});
+
+								//单个item发送短信事件
+								sent_btn
+										.click(function() {
+											window.location.href = "Sms/intoSendSms?phone="
+													+ sent_btn
+															.attr("receiverphone");
+										});
+								dataTR
+										.append(checkBoxData)
+										.append(dataTd1)
+										.append(dataTd2)
+										.append(dataTd3)
+										.append(dataTd4)
+										.append(dataTd5)
+										.append(
+												$("<td></td>")
+														.append(edit_btn)
+														.append(
+																"&nbsp;&nbsp;&nbsp;&nbsp;")
+														.append(sent_btn))
+										.appendTo($("#table_data"));
 							});
-				});
-			
-				//单个item发送短信事件
-				sent_btn.click(function() {
-					window.location.href = "Sms/intoSendSms?phone="
-						+ sent_btn.attr("receiverphone");
-				});
-				dataTR.append(checkBoxData).append(dataTd1).append(dataTd2)
-						.append(dataTd3).append(dataTd4).append(dataTd5)
-						.append(
-								$("<td></td>").append(edit_btn).append(
-										"&nbsp;&nbsp;&nbsp;&nbsp;").append(
-										sent_btn)).appendTo($("#table_data"));
-			});
 		}
 
 		//点击修改按钮
-		  $("#update_save_btn").click(function(){
-			  $.ajax({
-				    url:"${APP_PATH}/rel/updaterelatives/"+$(this).attr("edit-id"),
-					type:"POST",
-					data:$("#update_old_relative_modal form").serialize(),
-				    success:function(result){
-				    	if(result.code==100){
-				    		$("#update_old_relative_modal").modal('hide');
-							go(currentNum,${id});
-				    	}
-				    }
-			  });
-			  
-			  
-		  });
-		
+		$("#update_save_btn").click(
+				function() {
+					$
+							.ajax({
+								url : "${APP_PATH}/rel/updaterelatives/"
+										+ $(this).attr("edit-id"),
+								type : "POST",
+								data : $("#update_old_relative_modal form")
+										.serialize(),
+								success : function(result) {
+									if (result.code == 100) {
+										$("#update_old_relative_modal").modal(
+												'hide');
+										go(currentNum, ${id});
+									}
+								}
+							});
+
+				});
+
 		//全选
 		$(document).on("click", "#check_item_all", function() {
 			$(".item_check").prop("checked", $(this).prop("checked"));

@@ -28,6 +28,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 <STYLE type="text/css">
 .table th,.table td {
 	text-align: center;
@@ -117,6 +119,10 @@
 			go(1, "");
 		});
 		function go(pn, str) {
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 			$.ajax({
 				url : "${APP_PATH}/plan/selectAllOldBackPlan",
 				data : {
@@ -272,15 +278,16 @@
 		$(document).on("click", ".delete_btn", function() {
 			var delid = $(this).attr("del-id");
 			var oldername = $(this).parents("tr").find("td:eq(2)").text();
-			if (confirm("确认删除【" + oldername + "】吗")) {
+			layer.confirm("确认删除【" + oldername + "】吗", function(index) {
 				$.ajax({
 					url : "${APP_PATH}/plan/deleteAllVisitPlan/" + delid,
 					type : "DELETE",
 					success : function(result) {
 						go(currentNum, strs);
+						layer.msg(result.msg);
 					}
 				});
-			}
+			});
 		});
 
 		//点击查看详细
@@ -342,7 +349,7 @@
 					empNames = empNames.substring(0, empNames.length - 1);
 					//去除多余的删除员工-
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
-					if (confirm("确认删除【" + empNames + "】吗")) {
+					layer.confirm("确认删除【" + empNames + "】吗", function(index) {
 						//发送ajax请求
 						$.ajax({
 							url : "${APP_PATH}/plan/deleteAllVisitPlan/"
@@ -351,10 +358,10 @@
 							success : function(result) {
 								//回到当前页面
 								go(currentNum, strs);
-
+								layer.msg(result.msg);
 							}
 						});
-					}
+					});
 				});
 
 		//搜索

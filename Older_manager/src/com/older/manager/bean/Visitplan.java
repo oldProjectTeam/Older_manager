@@ -2,27 +2,44 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 public class Visitplan {
 	private Integer id;
 
+	@NotNull
 	private Integer oldmanId;
 
+	@NotNull
 	private Date visiplantime;
 
+	@NotNull
+	@Pattern(regexp = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)", message = "请输入中文")
 	private String plannedvisits;
 
+	@NotNull
 	private String state;
 
+	@NotNull
 	private Date remindvistitplantime;
 
+	@NotNull
 	private String remindpeople;
 
+	@NotNull
+	@Pattern(regexp = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)", message = "请输入中文")
 	private String pendingevent;
 
+	@NotNull
 	private Date actualtime;
 
+	@NotNull
+	@Pattern(regexp = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)", message = "请输入中文")
 	private String actualplannedvisits;
 
+	@NotNull
+	@Pattern(regexp = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)", message = "请输入中文")
 	private String visitrecord;
 
 	private String images;

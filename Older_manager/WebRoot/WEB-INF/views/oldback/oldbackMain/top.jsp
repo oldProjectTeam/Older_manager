@@ -22,6 +22,8 @@
 <link href="${APP_PATH}/static/css/oldbackstyle.css" rel="stylesheet"
 	type="text/css" />
 <script language="JavaScript" src="${APP_PATH}/static/js/jquery.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 <script type="text/javascript">
 	$(function() {
 		//顶部导航切换

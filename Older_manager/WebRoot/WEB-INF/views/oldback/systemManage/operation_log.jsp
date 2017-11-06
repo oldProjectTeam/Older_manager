@@ -24,7 +24,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -97,6 +98,10 @@
 			go(1, "");
 		});
 		function go(pn, str) {
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 			$.ajax({
 				url : "${APP_PATH}/log/list",
 				data : {
@@ -251,15 +256,16 @@
 		$(document).on("click", ".delete_btn", function() {
 			var delid = $(this).attr("del-id");
 			var oldername = $(this).parents("tr").find("td:eq(2)").text();
-			if (confirm("确认删除【" + oldername + "】吗")) {
+			layer.confirm("确认删除【" + oldername + "】吗", function(index) {
 				$.ajax({
 					url : "${APP_PATH}/log/deleteLog/" + delid,
 					type : "DELETE",
 					success : function(result) {
 						go(currentNum, $("#adminText").val());
+						layer.msg("删除成功");
 					}
 				});
-			}
+			});
 		});
 		//完成全选、全部选功能
 		$(document).on("click", "#check_item_all", function() {
@@ -290,7 +296,7 @@
 		//点击删除全部，就批量删除
 		$("#old_delete_all_btn").click(
 				function() {
-					//alert();
+					//layer.msg();
 					var empNames = "";
 					var del_idstr = "";
 					$.each($(".check_item:checked"), function() {
@@ -307,21 +313,22 @@
 					empNames = empNames.substring(0, empNames.length - 1);
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
 					if (empNames != null && empNames.length != 0) {
-						if (confirm("确认删除【" + empNames + "】吗?")) {
+						layer.confirm("确认删除【" + empNames + "】吗?", function(
+								index) {
 							//发送ajax请求删除
 							$.ajax({
 								url : "${APP_PATH}/log/deleteLog/" + del_idstr,
 								type : "DELETE",
 								success : function(result) {
 									if (result.code == 100) {
-										alert(result.msg);
 										go(currentNum, $("#adminText").val());
+										layer.msg("删除成功");
 									}
 								}
 							});
-						}
+						});
 					} else {
-						alert("请选择要删除的日志");
+						layer.msg("请选择要删除的日志");
 					}
 
 				});

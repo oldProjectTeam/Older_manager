@@ -28,6 +28,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -55,8 +57,8 @@
 					<button type="button" class="btn btn-success" id="importBatch">批量导入</button>
 					<br /> <br /> <font color="blue" id="msg">${msg}</font> <span></span>
 				</div>
-				<br> <br>
-				<img src="${APP_PATH}/static/images/sample.png" class="img-responsive img-rounded">
+				<br> <br> <img src="${APP_PATH}/static/images/sample.png"
+					class="img-responsive img-rounded">
 			</div>
 		</form>
 	</div>
@@ -67,7 +69,7 @@
 			$("#msg").empty();
 			var file = $("#excel").val();
 			if (file == '') {
-				$("#msg").append("请先选择文件");
+				layer.msg("请先选择文件");
 			} else {
 				$("#importBatchForm").submit();
 			}

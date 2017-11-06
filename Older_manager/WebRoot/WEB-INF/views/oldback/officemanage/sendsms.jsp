@@ -29,6 +29,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 <body style="margin: 15px;">
 
@@ -65,13 +67,13 @@
 	{
 		 if(val.length==0) 
 	       { 
-	          alert('请输入手机号码！'); 
+	          layer.msg('请输入手机号码！'); 
 	          $("#receiverphone").focus(); 
 	          return false; 
 	       }     
 	       if(val.length!=11) 
 	       { 
-	           alert('请输入有效的手机号码！'); 
+	           layer.msg('请输入有效的手机号码！'); 
 	           $("#receiverphone").focus(); 
 	           return false; 
 	       } 
@@ -79,7 +81,7 @@
 	       var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
 	       if(!myreg.test(val)) 
 	       { 
-	           alert('请输入有效的手机号码！'); 
+	           layer.msg('请输入有效的手机号码！'); 
 	           $("#receiverphone").focus(); 
 	           return false; 
 	       } 
@@ -88,9 +90,9 @@
 		var content=document.getElementById("content").val;
 		var phone=document.getElementById("receiverphone").val;
 		if(content==null||phone==null){
-			alert("信息填写不完整，请填写完整信息");
+			layer.msg("信息填写不完整，请填写完整信息");
 		};
-	})
+	});
 	
 	</script>
 </body>

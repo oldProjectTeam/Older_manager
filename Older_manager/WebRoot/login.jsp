@@ -36,6 +36,8 @@
 <script type="text/javascript" src="${APP_PATH}/static/js/jquery.js"></script>
 <script type="text/javascript"
 	src="${APP_PATH}/static/h-ui/js/H-ui.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 <body>
 	<div class="loginWraper">
@@ -106,6 +108,7 @@
 				return;
 			} else {
 				$("#loginForm").submit();
+				layer.load();
 			}
 		});
 	</script>

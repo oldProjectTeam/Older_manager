@@ -148,6 +148,7 @@ public class VisitPlanController {
 			}
 			if (visitplan != null) {
 				visitplan.setImages(imgUrl);
+				visitplan.setCreatetime(new Date());
 				visitPlanService.addVisitPlan(visitplan);
 			}
 

@@ -26,6 +26,8 @@
 <script language="JavaScript"
 	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <script language="JavaScript" src="${APP_PATH}/static/js/echarts.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 </head>
 
@@ -57,6 +59,10 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+		layer.msg('数据加载中...', {
+			icon : 16,
+			shade : 0.01
+		});
 		//饼状图获取数据
 		$().ready(function() {
 			var myChart = echarts.init(document.getElementById('main'));

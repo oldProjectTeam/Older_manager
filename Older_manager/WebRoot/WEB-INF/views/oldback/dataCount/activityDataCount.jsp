@@ -26,6 +26,8 @@
 <script language="JavaScript"
 	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <script language="JavaScript" src="${APP_PATH}/static/js/echarts.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -89,6 +91,10 @@
 			};
 
 			//通过Ajax获取数据
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 			$.ajax({
 				type : "post",
 				async : false, //同步执行

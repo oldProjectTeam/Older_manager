@@ -29,6 +29,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 <style>
 a {
 	color: black;
@@ -45,8 +47,8 @@ a {
 				<li class="col-sm-offset-5" style="font-size:18px">${notice.title}</li>
 				<li>&nbsp;&nbsp;&nbsp;&nbsp; ${notice.content}</li>
 				<br>
-				<li class="col-sm-offset-8">发送人：<a>${notice.releasepeople}</a> &nbsp;&nbsp;&nbsp;&nbsp;
-					发送时间：<b>ChangeDateFormat(${notice.time})</b></li>
+				<li class="col-sm-offset-8">发送人：<a>${notice.releasepeople}</a>
+					&nbsp;&nbsp;&nbsp;&nbsp; 发送时间：<b>ChangeDateFormat(${notice.time})</b></li>
 			</ul>
 		</div>
 		<a class="col-sm-offset-10"
@@ -54,24 +56,24 @@ a {
 				type="button" onClick="javascript :history.back(-1);">返回</button></a>
 	</div>
 	<script type="text/javascript">
-	function ChangeDateFormat(d) {
-		//将时间戳转为int类型，构造Date类型
-		if (d != null) {
-			var date = new Date(parseInt(d));
+		function ChangeDateFormat(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
 
-			//月份得+1，且只有个位数时在前面+0
-			var month = date.getMonth() + 1 + "月";
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "月";
 
-			//日期为个位数时在前面+0
-			var currentDate = date.getDate() + "日";
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate() + "日";
 
-			//getFullYear得到4位数的年份 ，返回一串字符串
-			return date.getFullYear() + "年" + month + currentDate;
-		} else {
-			return null;
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "年" + month + currentDate;
+			} else {
+				return null;
+			}
+
 		}
-
-	}
 	</script>
 </body>
 </html>

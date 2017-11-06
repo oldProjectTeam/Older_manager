@@ -134,17 +134,6 @@
 								id="remindvistitplantimeHelpBlock" class="help-block"
 								style="color: red;"></span></td>
 						</tr>
-						<tr class="active">
-							<td></td>
-							<td></td>
-							<td></td>
-							<td colspan="1"></td>
-							<td class="text"><font color="red">*</font>创建时间</td>
-							<td><INPUT type="date" class="form-control"
-								name="createtime" id="createtime"> <span
-								id="createtimeHelpBlock" class="help-block" style="color: red;"></span>
-							</td>
-						</tr>
 						<tr>
 							<td class="text"><font color="red">*</font>待提醒:</td>
 							<td colspan="2"><textarea class="form-control" rows="4"
@@ -241,20 +230,18 @@
 				}
 			});
 		}
-		$(document).on(
-				"click",
-				".selectMan",
-				function() {
-					//alert($(this).attr("oldManId"));
-					$("#selectName").val("");
-					$("#IdCard").val("");
-					var IdText = $("<input type='hidden'/>").attr("name",
-							"oldmanId").val($(this).attr("oldManId"));
-					$("#oldmanIdText").append(IdText);
-					$("#selectName").val($(this).attr("oldManName"));
-					$("#IdCard").val($(this).attr("oldManIdCard"));
-					$(".bs-example-modal-sm").modal("hide");
-				});
+		$(document).on("click", ".selectMan", function() {
+			$("#oldmanIdText").empty();
+			$("#selectName").val("");
+			$("#IdCard").val("");
+			var IdText;
+			IdText = $("<input type='hidden'/>").attr("name", "oldmanId");
+			IdText.val($(this).attr("oldManId"));
+			$("#oldmanIdText").append(IdText);
+			$("#selectName").val($(this).attr("oldManName"));
+			$("#IdCard").val($(this).attr("oldManIdCard"));
+			$(".bs-example-modal-sm").modal("hide");
+		});
 		window.onload = function() {
 			new uploadPreview({
 				UpBtn : "up_img",
@@ -270,7 +257,7 @@
 			}
 			if ($("#visiplantime").val() == '') {
 				$("#visiplantimeHelpBlock").text("");
-				$("#visiplantimeHelpBlock").append("计划时间不能为空");
+				$("#visiplantimeHelpBlock").append("计划回访时间不能为空");
 			}
 			if ($("#actualplannedvisits").val() == '') {
 				$("#actualplannedvisitsHelpBlock").text("");
@@ -279,16 +266,11 @@
 			}
 			if ($("#actualtime").val() == '') {
 				$("#actualtimeHelpBlock").text("");
-				$("#actualtimeHelpBlock").append("实际时间不能为空");
+				$("#actualtimeHelpBlock").append("实际回访时间不能为空");
 			}
 			if ($("#remindvistitplantime").val() == '') {
 				$("#remindvistitplantimeHelpBlock").text("");
 				$("#remindvistitplantimeHelpBlock").append("提醒时间不能为空");
-			}
-			if ($("#createtime").val() == '') {
-				$("#createtimeHelpBlock").text("");
-				$("#createtimeHelpBlock").append("创建时间不能为空");
-
 			}
 			if ($("#pendingevent").val() == '') {
 				$("#pendingeventHelpBlock").text("");
@@ -298,12 +280,12 @@
 				$("#visitrecordHelpBlock").text("");
 				$("#visitrecordHelpBlock").append("回访记录不能为空");
 			} else {
+				if($("#visiplantime").val())
 				$("#plannedvisitsHelpBlock").text("");
 				$("#visiplantimeHelpBlock").text("");
 				$("#actualplannedvisitsHelpBlock").text("");
 				$("#actualtimeHelpBlock").text("");
 				$("#remindvistitplantimeHelpBlock").text("");
-				$("#createtimeHelpBlock").text("");
 				$("#pendingeventHelpBlock").text("");
 				$("#visitrecordHelpBlock").text("");
 				$("#saveForm").submit();

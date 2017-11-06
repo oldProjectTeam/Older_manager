@@ -21,9 +21,6 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
 <!-- 引入jquery -->
 <script type="text/javascript"
 	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
@@ -34,6 +31,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body>
@@ -115,9 +114,14 @@
 		$(function(pn) {
 			$("#old_delete_all_btn").attr("disabled", true);
 			go(${pn}, "");
+
 		});
 		function go(pn, str) {
-		$("#old_delete_all_btn").attr("disabled", true);
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
+			$("#old_delete_all_btn").attr("disabled", true);
 			$.ajax({
 				url : "${APP_PATH}/old/selectallolderwith",
 				data : {
@@ -251,13 +255,10 @@
 										.append("编辑");
 								//为编辑按钮添加一个自定义的属性，来表示当前查看老人的id
 								editBtn.attr("edit-id", item.id);
-								var serchBtn = $("<button></button>")
-										.addClass(
-												"btn btn-info btn-sm serchBtn")
-										.append(
-												$("<span></span>")
-														.addClass(
-																"glyphicon glyphicon-search"))
+								var serchBtn = $("<button></button>").addClass(
+										"btn btn-info btn-sm serchBtn").append(
+										$("<span></span>").addClass(
+												"glyphicon glyphicon-search"))
 										.append("查看");
 								//为查看按钮添加一个自定义的属性，来表示当前查看老人的id
 								serchBtn.attr("serch-id", item.id);
@@ -284,19 +285,22 @@
 										.append(btnTd).appendTo("#table_data");
 							});
 		}
-		//點擊刪除
+		//点击刪除
 		$(document).on("click", ".delete_btn", function() {
 			var delid = $(this).attr("del-id");
 			var oldername = $(this).parents("tr").find("td:eq(2)").text();
-			if (confirm("确认删除【" + oldername + "】吗")) {
+
+			layer.confirm("确认删除【" + oldername + "】吗", function(index) {
 				$.ajax({
 					url : "${APP_PATH}/old/deleteolder/" + delid,
 					type : "DELETE",
 					success : function(result) {
+						layer.close(index);
 						go(currentNum, strs);
+						layer.msg(result.msg);
 					}
 				});
-			}
+			});
 		});
 
 		//点击查看详细
@@ -353,7 +357,7 @@
 			var namestr = /^[\u2E80-\u9FFF]{2,5}/;
 			var name = $("#nameck").val();
 			if (!namestr.test(name)) {
-				alert("姓名不符合要求");
+				layer.msg("姓名不符合要求");
 				$("#nameck").addClass("has-error");
 			}
 
@@ -362,7 +366,6 @@
 		//点击删除全部，就批量删除
 		$("#old_delete_all_btn").click(
 				function() {
-					//alert();
 					var empNames = "";
 					var del_idstr = "";
 					$.each($(".check_item:checked"), function() {
@@ -370,13 +373,10 @@
 						empNames += $(this).parents("tr").find("td:eq(2)")
 								.text()
 								+ ",";
-						//alert(empNames);
 						//组装员工id字符串
 						del_idstr += $(this).parents("tr").find("td:eq(1)")
 								.text()
 								+ "-";
-						//alert($(this).parents("tr").find("td:eq(2)").text());
-						//alert(del_idstr);
 
 					});
 
@@ -384,21 +384,23 @@
 					empNames = empNames.substring(0, empNames.length - 1);
 					//去除多余的删除员工-
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
-					if (confirm("确认删除【" + empNames + "】吗")) {
-						//发送ajax请求
+					layer.confirm("确认删除【" + empNames + "】吗?", function(index) {
 						$
 								.ajax({
 									url : "${APP_PATH}/old/deleteallolder/"
 											+ del_idstr,
 									type : "DELETE",
 									success : function(result) {
-										//alert(result.msg);
-										//回到当前页面
-										go(currentNum, strs);
-
+										if (result.code == 100) {
+											layer.close(index);
+											//回到本页
+											go(currentNum, strs);
+											layer.msg(result.msg);
+										}
+										//回到当前页
 									}
 								});
-					}
+					});
 				});
 
 		//搜索
@@ -407,26 +409,20 @@
 			//名字表达式
 			var regNamezz = /^[\u4e00-\u9fa5]{1,}$/;
 			//身份证
-			// var idcarzz=/^\d{15}|\d{18}$/;
 			var idcarzz = /^(5[0-9]*$)/;
 			//电话
 			var phonezz = /^(1[358][0-9]*$)/;
 			if (regNamezz.test($("#name").val())) {
 				strs = $("#name").val() + "-";
-				alert("名字证符合" + strs);
 			}
 			if (idcarzz.test($("#idcar").val())) {
-
-				alert("身份证符合" + strs);
 				strs = strs + $("#idcar").val() + "-";
 			}
 			if (phonezz.test($("#phone").val())) {
 				strs = strs + $("#phone").val() + "-";
-				alert("电话符合" + strs);
 			}
 			if ($("#sex").val().length == 1) {
 				strs = strs + $("#sex").val() + "-";
-				alert("性别符合" + strs);
 			}
 
 			strs = strs.substring(0, strs.length - 1);

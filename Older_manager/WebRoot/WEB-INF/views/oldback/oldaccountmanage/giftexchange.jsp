@@ -25,8 +25,9 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
-
 <body style="margin: 15px;">
 	<!--路劲导航  -->
 	<div>
@@ -55,26 +56,25 @@
 		<!--条件查询  -->
 		<div class="row" style="margin-top:5px">
 			<div class="col-md-12">
-				<form class="form-inline" action="${APP_PATH}/giftexchange/findAllGiftexchange.action" method="post">
+				<form class="form-inline"
+					action="${APP_PATH}/giftexchange/findAllGiftexchange.action"
+					method="post">
 					<div class="form-group">
-						&nbsp;&nbsp;<label>礼品名称</label>
-						<input type="text" name="giftmanagement.giftname"
-							class="form-control" placeholder="请输入礼品名称">
-					</div>
-					<div class="form-group"> 
-						<label>兑换单号</label>
-						<input type="text" class="form-control" name="exchangeno"
-							placeholder="请输入兑换单号">
+						&nbsp;&nbsp;<label>礼品名称</label> <input type="text"
+							name="giftmanagement.giftname" class="form-control"
+							placeholder="请输入礼品名称">
 					</div>
 					<div class="form-group">
-						<label>老人姓名</label>
-						<input type="text" class="form-control" name="oldmanaccount.oldman.name"
-							placeholder="请输入老人姓名">
+						<label>兑换单号</label> <input type="text" class="form-control"
+							name="exchangeno" placeholder="请输入兑换单号">
 					</div>
 					<div class="form-group">
-						<label>礼品类型</label>
-						<input type="text" class="form-control" name="giftmanagement.gifttype"
-							placeholder="请输入礼品类型">
+						<label>老人姓名</label> <input type="text" class="form-control"
+							name="oldmanaccount.oldman.name" placeholder="请输入老人姓名">
+					</div>
+					<div class="form-group">
+						<label>礼品类型</label> <input type="text" class="form-control"
+							name="giftmanagement.gifttype" placeholder="请输入礼品类型">
 					</div>
 					<button type="submit" class="btn btn-default">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -107,82 +107,80 @@
 							</tr>
 						</thead>
 						<tbody>
-						  <c:forEach items="${pageInfo.list }" var="gex">
-						  	<tr>
-								<td class="text-center"><input type="checkbox"
-									class="gift_item_check"></td>
-								<td>${gex.id }</td>
-								<td>${gex.exchangeno}</td>
-								<td>${gex.oldmanaccount.oldman.name}</td>
-								<td>${gex.oldmanaccount.oldman.phone}</td>
-								<td>${gex.oldmanaccount.oldman.address}</td>
-								<td>${gex.giftmanagement.giftname}</td>
-								<td>${gex.giftmanagement.gifttype}</td>
-								<td>${gex.exchangenum}</td>
-								<td>${gex.exchangeintegral}</td>
-								<td><fmt:formatDate value="${gex.exchangetime}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
-								<td>${gex.giftexchange1}</td>
-								<td>
-									<button type="button" class="btn btn-danger btn-sm del_btn">
-										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-										删除
-									</button>
-								</td>
-							</tr>
-						  </c:forEach>
+							<c:forEach items="${pageInfo.list }" var="gex">
+								<tr>
+									<td class="text-center"><input type="checkbox"
+										class="gift_item_check"></td>
+									<td>${gex.id }</td>
+									<td>${gex.exchangeno}</td>
+									<td>${gex.oldmanaccount.oldman.name}</td>
+									<td>${gex.oldmanaccount.oldman.phone}</td>
+									<td>${gex.oldmanaccount.oldman.address}</td>
+									<td>${gex.giftmanagement.giftname}</td>
+									<td>${gex.giftmanagement.gifttype}</td>
+									<td>${gex.exchangenum}</td>
+									<td>${gex.exchangeintegral}</td>
+									<td><fmt:formatDate value="${gex.exchangetime}"
+											pattern='yyyy-MM-dd HH:mm:ss' /></td>
+									<td>${gex.giftexchange1}</td>
+									<td>
+										<button type="button" class="btn btn-danger btn-sm del_btn">
+											<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+											删除
+										</button>
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 						<thead>
 					</table>
 				</div>
 			</div>
 		</div>
-		 
+
 		<!--分页信息  -->
 		<div class="row">
 			<div class="col-md-7">&nbsp;&nbsp;当前第${pageInfo.pageNum }页，共${pageInfo.pages}页，总计${pageInfo.total}条记录</div>
 			<div class="col-md-4 col-md-offset-1">
 				<nav aria-label="Page navigation">
 					<ul class="pagination">
-					   <c:if test="${pageInfo.hasPreviousPage==false}">
-					    	<li class="disabled">
-					    	   <a>首页</a>
-					    	 </li>
-					    	<li class="disabled"> 
-					           <span aria-hidden="true">&laquo;</span>
-					        </li>
-					    </c:if>
-					    <c:if test="${pageInfo.hasPreviousPage==true}">
-					    	<li>
-					    	  <a href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${1}">首页</a>
-					    	</li>
-					    	<li> 
-					    	   <a href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pageNum-1}">
-					           <span aria-hidden="true">&laquo;</span></a>
-					        </li>
-					    </c:if>		    
-					    <c:forEach items="${pageInfo.navigatepageNums}" var="p">
-					       <c:if test="${p==pageInfo.pageNum}">
-					       		<li class="active"><a href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pageNum}">${p}</a></li>
-					       </c:if>
-					       <c:if test="${p!=pageInfo.pageNum}">
-					       		<li><a href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${p}">${p}</a></li>
-					       </c:if>
-					    </c:forEach>
-					    <c:if test="${pageInfo.hasNextPage==false}">
-					      <li class="disabled"> 
-					         <span aria-hidden="true">&raquo;</span>
-					      </li>
-					      <li class="disabled"><a>末页</a></li>
-					    </c:if>	
-					    <c:if test="${pageInfo.hasNextPage!=false}">
-					      <li> 
-					         <a href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pageNum+1}" aria-label="Next">
-					         <span aria-hidden="true">&raquo;</span></a>
-					      </li>
-					      <li>
-					        <a href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pages}">末页</a>
-					       </li>
-					    </c:if>		
+						<c:if test="${pageInfo.hasPreviousPage==false}">
+							<li class="disabled"><a>首页</a></li>
+							<li class="disabled"><span aria-hidden="true">&laquo;</span>
+							</li>
+						</c:if>
+						<c:if test="${pageInfo.hasPreviousPage==true}">
+							<li><a
+								href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${1}">首页</a>
+							</li>
+							<li><a
+								href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pageNum-1}">
+									<span aria-hidden="true">&laquo;</span>
+							</a></li>
+						</c:if>
+						<c:forEach items="${pageInfo.navigatepageNums}" var="p">
+							<c:if test="${p==pageInfo.pageNum}">
+								<li class="active"><a
+									href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pageNum}">${p}</a></li>
+							</c:if>
+							<c:if test="${p!=pageInfo.pageNum}">
+								<li><a
+									href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${p}">${p}</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pageInfo.hasNextPage==false}">
+							<li class="disabled"><span aria-hidden="true">&raquo;</span>
+							</li>
+							<li class="disabled"><a>末页</a></li>
+						</c:if>
+						<c:if test="${pageInfo.hasNextPage!=false}">
+							<li><a
+								href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pageNum+1}"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+							<li><a
+								href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=${pageInfo.pages}">末页</a>
+							</li>
+						</c:if>
 					</ul>
 				</nav>
 			</div>
@@ -193,65 +191,95 @@
 		$("#giftexchange_all_check").click(function() {
 			$(".gift_item_check").prop("checked", $(this).prop("checked"));
 		});
-		$(document).on("click",".gift_item_check",function(){
-        	var flag=$(".gift_item_check:checked").length==$(".gift_item_check").length;
-        	$("#giftexchange_all_check").prop("checked",flag);
-        });
-		
+		$(document)
+				.on(
+						"click",
+						".gift_item_check",
+						function() {
+							var flag = $(".gift_item_check:checked").length == $(".gift_item_check").length;
+							$("#giftexchange_all_check").prop("checked", flag);
+						});
+
 		//单选删除按钮
-		   $(document).on("click",".del_btn",function(){
-			   var id=$(this).parents("tr").find("td:eq(1)").text();
-			   var name=$(this).parents("tr").find("td:eq(3)").text();
-			   if(!confirm("您确定要删除老人【"+name+"】的礼品兑换记录吗？")){
-				   return false;
-			   }else{
-				   $.ajax({
-					   url:"${APP_PATH}/giftexchange/deleteGIftexchange/"+id,
-					   type:"delete",
-					   success:function(result){
-						   if(result.code==100){
-							   alert("删除成功！");
-							   window.location.href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=1";
-						   }else{
-							   alert("删除失败，请再重试一遍吧！");
-						   }		   
-					   }
-					   
-				   });
-			   }
-		   });
-		   
-		   //批量删除按钮
-		   $("#batch_del_btn").click(function(){
-			   var oldManStr="";
-			   var Ids_str="";
-			   $.each($(".gift_item_check:checked"),function(){
-				   oldManStr+=$(this).parents("tr").find("td:eq(3)").text()+",";
-				   Ids_str+=$(this).parents("tr").find("td:eq(1)").text()+"-";
-			   });
-			   oldManStr=oldManStr.substring(0,oldManStr.length-1);
-			   Ids_str=Ids_str.substring(0,Ids_str.length-1);
-			   if(Ids_str.length<1){
-				   alert("您还没选中要删除的记录！");
-				   return false;
-			   }
-			   if(!confirm("您确定要删除老人【"+oldManStr+"】的礼品兑换记录吗？")){
-				   return false;
-			   }
-			   
-			   $.ajax({
-				   url:"${APP_PATH}/giftexchange/deleteGIftexchange/"+Ids_str,
-				   type:"delete",
-				   success:function(result){
-					   if(result.code==100){
-						   alert("删除成功！");
-						   window.location.href="${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=1";
-					   }else{
-						   alert("删除失败，请再重试一遍吧！");
-					   }	
-				   }
-			   });
-		   });
+		$(document)
+				.on(
+						"click",
+						".del_btn",
+						function() {
+							var id = $(this).parents("tr").find("td:eq(1)")
+									.text();
+							var name = $(this).parents("tr").find("td:eq(3)")
+									.text();
+							layer
+									.confirm(
+											"您确定要删除老人【" + name + "】的礼品兑换记录吗？",
+											function(index) {
+												$
+														.ajax({
+															url : "${APP_PATH}/giftexchange/deleteGIftexchange/"
+																	+ id,
+															type : "delete",
+															success : function(
+																	result) {
+																if (result.code == 100) {
+																	layer
+																			.msg("删除成功！");
+																	window.location.href = "${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=1";
+																} else {
+																	layer
+																			.msg("删除失败，请再重试一遍吧！");
+																}
+															}
+
+														});
+											});
+						});
+
+		//批量删除按钮
+		$("#batch_del_btn")
+				.click(
+						function() {
+							var oldManStr = "";
+							var Ids_str = "";
+							$.each($(".gift_item_check:checked"), function() {
+								oldManStr += $(this).parents("tr").find(
+										"td:eq(3)").text()
+										+ ",";
+								Ids_str += $(this).parents("tr").find(
+										"td:eq(1)").text()
+										+ "-";
+							});
+							oldManStr = oldManStr.substring(0,
+									oldManStr.length - 1);
+							Ids_str = Ids_str.substring(0, Ids_str.length - 1);
+							if (Ids_str.length < 1) {
+								layer.msg("您还没选中要删除的记录！");
+								return false;
+							}
+							layer
+									.confirm(
+											"您确定要删除老人【" + oldManStr
+													+ "】的礼品兑换记录吗？",
+											function() {
+												$
+														.ajax({
+															url : "${APP_PATH}/giftexchange/deleteGIftexchange/"
+																	+ Ids_str,
+															type : "delete",
+															success : function(
+																	result) {
+																if (result.code == 100) {
+																	layer
+																			.msg("删除成功！");
+																	window.location.href = "${APP_PATH}/giftexchange/findAllGiftexchange.action?pn=1";
+																} else {
+																	layer
+																			.msg("删除失败，请再重试一遍吧！");
+																}
+															}
+														});
+											});
+						});
 	</script>
 </body>
 </html>

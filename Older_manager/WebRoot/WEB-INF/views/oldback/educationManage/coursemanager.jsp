@@ -26,6 +26,8 @@
 <script type="text/javascript"
 	src="static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script language="JavaScript" src="static/js/jquery-3.2.1.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -102,10 +104,14 @@
 	<script type="text/javascript">
 		var totalRecord, currentNum;
 		/* 分页 */
-		 $(function() {
+		$(function() {
 			go(1);
-		}); 
+		});
 		function go(pn) {
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 			$.ajax({
 				url : "Course/getCoursePage",
 				data : "pn=" + pn,
@@ -116,7 +122,7 @@
 						//构建分页信息
 						build_page_text(result);
 						//构建分页条
-						build_page_nav(result,0);
+						build_page_nav(result, 0);
 						//构建表格数据
 						build_table_data(result);
 					}
@@ -134,19 +140,21 @@
 			currentNum = result.extend.pageInfo.pageNum;
 		}
 		//解析显示分页条信息
-		function build_page_nav(result,code) {
+		function build_page_nav(result, code) {
 			var firstPageLi;
 			var lastPageLi;
 			$("#page_nav").empty();
 			var ul = $("<ul></ul>").addClass("pagination");
-			if(code==1){
+			if (code == 1) {
 				firstPageLi = $("<li></li>").append(
-						$("<a></a>").append("首页").attr("href", "javascript:search(1)"));
-			}else{
+						$("<a></a>").append("首页").attr("href",
+								"javascript:search(1)"));
+			} else {
 				firstPageLi = $("<li></li>").append(
-						$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+						$("<a></a>").append("首页").attr("href",
+								"javascript:go(1)"));
 			}
-			
+
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
 			if (result.extend.pageInfo.hasPreviousPage == false) {
@@ -155,42 +163,42 @@
 			} else {
 				//为元素添加点击翻页事件
 				prePageLi.click(function() {
-					if(code==1){
+					if (code == 1) {
 						search(result.extend.pageInfo.pageNum - 1);
-					}else{
+					} else {
 						go(result.extend.pageInfo.pageNum - 1);
 					}
-					
+
 				});
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
-			if(code==1){
+			if (code == 1) {
 				lastPageLi = $("<li></li>").append(
 						$("<a></a>").append("末页").attr(
 								"href",
-								"javascript:search(" + result.extend.pageInfo.pages
-										+ ")"));
-			}else{
+								"javascript:search("
+										+ result.extend.pageInfo.pages + ")"));
+			} else {
 				lastPageLi = $("<li></li>").append(
 						$("<a></a>").append("末页").attr(
 								"href",
 								"javascript:go(" + result.extend.pageInfo.pages
 										+ ")"));
 			}
-			
+
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
 				lastPageLi.addClass("disabled");
 			} else {
 				//为元素添加点击翻页事件
 				nextPageLi.click(function() {
-					if(code==1){
+					if (code == 1) {
 						search(result.extend.pageInfo.pageNum + 1);
-					}else{
+					} else {
 						go(result.extend.pageInfo.pageNum + 1);
 					}
-					
+
 				});
 			}
 			//添加首页和前一页的提示
@@ -203,12 +211,12 @@
 					numLi.addClass("active");
 				}
 				numLi.click(function() {
-					if(code==1){
+					if (code == 1) {
 						search(item);
-					}else{
+					} else {
 						go(item);
 					}
-					
+
 				});
 				ul.append(numLi);
 			});
@@ -222,7 +230,7 @@
 		function build_table_data(result) {
 			$("#head").empty();
 			$("#table_data").empty();
-			
+
 			var headTR = $("<tr></tr>");
 			var checkBox = $("<td></td>").append(
 					$("<input type='checkbox' id='check_item_all'/>"));
@@ -293,10 +301,9 @@
 
 				//单个item删除事件
 				del_btn.click(function() {
-					if (confirm("确认删除【" + "id=" + del_btn.attr("courseId")
+					layer.confirm("确认删除【" + "id=" + del_btn.attr("courseId")
 							+ ",课程名称为 " + del_btn.attr("courseTitle")
-							+ "】的课程数据吗?")) {
-						//确认,发送ajax请求即可
+							+ "】的课程数据吗?", function(index) {
 						$.ajax({
 							url : "Course/delectCourseById/",
 							data : {
@@ -304,12 +311,13 @@
 							},
 							type : "GET",
 							success : function(result) {
-								alert(result.msg);
+								layer.close(index);
 								//回到本页
 								go(currentNum);
+								layer.msg(result.msg);
 							}
 						});
-					}
+					});
 				});
 				dataTR.append(checkBoxData).append(dataTd1).append(dataTd2)
 						.append(dataTd3).append(dataTd4).append(dataTd5)
@@ -325,8 +333,7 @@
 				});
 			});
 		}
-		
-	
+
 		//全选
 		$(document).on("click", "#check_item_all", function() {
 			$(".item_check").prop("checked", $(this).prop("checked"));
@@ -335,7 +342,6 @@
 		//点击批量删除
 		$("#course_delete_all_btn").click(
 				function() {
-					//$(".check_item:checked")
 					var empNames = "";
 					var del_idstr = "";
 					$.each($(".item_check:checked"), function(index, item) {
@@ -351,8 +357,9 @@
 					empNames = empNames.substring(0, empNames.length - 1);
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
 					if (empNames != null && empNames.length != 0) {
-						if (confirm("确认删除【" + empNames + "】吗?")) {
-							//发送ajax请求删除
+
+						layer.confirm("确认删除【" + empNames + "】吗?", function(
+								index) {
 							$.ajax({
 								url : "Course/delectCourseByListId/",
 								data : {
@@ -361,16 +368,17 @@
 								type : "GET",
 								success : function(result) {
 									if (result.code == 100) {
-										alert(result.msg);
+										layer.close(index);
+										//回到本页
 										go(currentNum);
+										layer.msg(result.msg);
 									}
 									//回到当前页
-
 								}
 							});
-						}
+						});
 					} else {
-						alert("请选择要删除的课程！");
+						layer.msg("请选择要删除的课程");
 					}
 
 				});
@@ -400,15 +408,19 @@
 			var coursename = $('#coursename').val();//获取值
 			var Teacher = $('#teacher').val();
 			if (coursename.length == 0 && Teacher.length == 0) {
-				alert("请输入数据");
+				layer.msg("请输入数据");
 				go(1);
 			} else {
+				layer.msg('数据加载中...', {
+					icon : 16,
+					shade : 0.01
+				});
 				$.ajax({
 					url : "Course/findAllCoursesByCourseName",
 					data : {
 						"CoursesName" : coursename,
 						"teacher" : Teacher,
-						"pn":pn
+						"pn" : pn
 					},
 					type : "get",
 					success : function(result) {
@@ -418,7 +430,7 @@
 							//构建分页信息
 							build_page_text(result);
 							//构建分页条
-							build_page_nav(result,1);
+							build_page_nav(result, 1);
 							//构建表格数据
 							build_table_data(result);
 
@@ -426,7 +438,7 @@
 					}
 				});
 			}
-			
+
 		}
 		function ChangeDateFormat(d) {
 			//将时间戳转为int类型，构造Date类型

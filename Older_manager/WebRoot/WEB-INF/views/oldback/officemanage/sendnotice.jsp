@@ -29,6 +29,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -91,7 +93,7 @@
 					var title = $("#title").val();
 					if (title == '' || releasepeople == '' || type == ''
 							|| content == '') {
-						alert("请填写完整信息再发布");
+						layer.msg("请填写完整信息再发布");
 					} else {
 						$.ajax({
 							url : "${APP_PATH}/notice/addNotice",
@@ -112,8 +114,7 @@
 			// [\u4E00-\uFA29]|[\uE7C7-\uE7F3]汉字编码范围 
 			var re1 = new RegExp("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
 			if (!re1.test(str)) {
-				alert("请输入中文字符");
-
+				layer.msg("请输入中文字符");
 				return false;
 			} else {
 				return true;

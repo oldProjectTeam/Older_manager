@@ -29,7 +29,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -86,7 +87,7 @@
 		<!--分页信息  -->
 		<div class="row">
 			<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
-			<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
+			<div class="col-md-5" id="page_nav"></div>
 		</div>
 
 	</div>
@@ -152,6 +153,10 @@
 		});
 
 		function go(pn) {
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 			$.ajax({
 				url : "Sms/findAllSmsByPage",
 				data : "pn=" + pn,
@@ -161,13 +166,13 @@
 						//构建分页信息
 						build_page_text(result);
 						//构建分页条
-						build_page_nav(result,0);
+						build_page_nav(result, 0);
 						//构建表格数据
 						build_table_data(result);
 					}
 				}
 			});
-		} 
+		}
 
 		function build_page_text(result) {
 			$("#page_text").empty();
@@ -179,19 +184,21 @@
 			currentNum = result.extend.pageInfo.pageNum;
 		}
 		//解析显示分页条信息
-		function build_page_nav(result,code) {
+		function build_page_nav(result, code) {
 			var firstPageLi;
 			var lastPageLi;
 			$("#page_nav").empty();
 			var ul = $("<ul></ul>").addClass("pagination");
-			if(code==1){
+			if (code == 1) {
 				firstPageLi = $("<li></li>").append(
-						$("<a></a>").append("首页").attr("href", "javascript:search(1)"));
-			}else{
+						$("<a></a>").append("首页").attr("href",
+								"javascript:search(1)"));
+			} else {
 				firstPageLi = $("<li></li>").append(
-						$("<a></a>").append("首页").attr("href", "javascript:go(1)"));
+						$("<a></a>").append("首页").attr("href",
+								"javascript:go(1)"));
 			}
-			
+
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
 			if (result.extend.pageInfo.hasPreviousPage == false) {
@@ -200,42 +207,42 @@
 			} else {
 				//为元素添加点击翻页事件
 				prePageLi.click(function() {
-					
-					if(code==1){
+
+					if (code == 1) {
 						search(result.extend.pageInfo.pageNum - 1);
-					}else{
+					} else {
 						go(result.extend.pageInfo.pageNum - 1);
 					}
 				});
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
-			if(code==1){
+			if (code == 1) {
 				lastPageLi = $("<li></li>").append(
 						$("<a></a>").append("末页").attr(
 								"href",
-								"javascript:search(" + result.extend.pageInfo.pages
-										+ ")"));
-			}else{
+								"javascript:search("
+										+ result.extend.pageInfo.pages + ")"));
+			} else {
 				lastPageLi = $("<li></li>").append(
 						$("<a></a>").append("末页").attr(
 								"href",
 								"javascript:go(" + result.extend.pageInfo.pages
 										+ ")"));
 			}
-			
+
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
 				lastPageLi.addClass("disabled");
 			} else {
 				//为元素添加点击翻页事件
 				nextPageLi.click(function() {
-					if(code==1){
+					if (code == 1) {
 						search(result.extend.pageInfo.pageNum + 1);
-					}else{
+					} else {
 						go(result.extend.pageInfo.pageNum + 1);
 					}
-					
+
 				});
 			}
 			//添加首页和前一页的提示
@@ -248,9 +255,9 @@
 					numLi.addClass("active");
 				}
 				numLi.click(function() {
-					if(code==1){
+					if (code == 1) {
 						search(item);
-					}else{
+					} else {
 						go(item);
 					}
 				});
@@ -330,7 +337,7 @@
 								$("#Scontent").html(SMS.content);
 
 							} else {
-								alert("获取失败，请重试！");
+								layer.msg("获取失败，请重试！");
 							}
 						}
 					});
@@ -339,9 +346,9 @@
 
 				//单个item删除事件
 				del_btn.click(function() {
-					if (confirm("确认删除【" + "id=" + del_btn.attr("SmsId")
+					layer.confirm("确认删除【" + "id=" + del_btn.attr("SmsId")
 							+ ",短信接收方为 " + del_btn.attr("receiverphone")
-							+ "】的短信数据吗?")) {
+							+ "】的短信数据吗?", function(index) {
 						//确认,发送ajax请求即可
 						$.ajax({
 							url : "Sms/deleteSmsById/",
@@ -350,12 +357,12 @@
 							},
 							type : "GET",
 							success : function(result) {
-								alert(result.msg);
 								//回到本页
 								go(currentNum);
+								layer.msg(result.msg);
 							}
 						});
-					}
+					});
 				});
 				dataTR.append(checkBoxData).append(dataTd1).append(dataTd2)
 						.append(dataTd3).append(dataTd4).append(dataTd5)
@@ -389,7 +396,8 @@
 					empNames = empNames.substring(0, empNames.length - 1);
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
 					if (empNames != null && empNames.length != 0) {
-						if (confirm("确认删除【" + empNames + "】吗?")) {
+						layer.confirm("确认删除【" + empNames + "】吗?", function(
+								index) {
 							//发送ajax请求删除
 							$.ajax({
 								url : "Sms/delectSmsByListId/",
@@ -399,16 +407,15 @@
 								type : "GET",
 								success : function(result) {
 									if (result.code == 100) {
-										alert(result.msg);
 										go(currentNum);
+										layer.msg(result.msg);
 									}
 									//回到当前页
-
 								}
 							});
-						}
+						});
 					} else {
-						alert("请选择要删除的视频！");
+						layer.msg("请选择要删除的记录");
 					}
 
 				});
@@ -420,7 +427,7 @@
 
 		//搜索按钮
 		$("#search").click(function() {
-			
+
 			search(1);
 		});
 
@@ -428,28 +435,32 @@
 			var dsender = $('#sender').val();//获取值
 			var dreceiverphone = $('#receiverphone').val();
 			var dreceivername = $('#receivername').val();
-			if(dsender.length==0&&dreceiverphone.length==0&&dreceivername.length==0){
-				alert("请输入数据在执行搜索！");
-				go(1);
-			}else{
+			if (dsender.length == 0 && dreceiverphone.length == 0
+					&& dreceivername.length == 0) {
+				layer.msg("请输入数据后再查询");
+			} else {
+				layer.msg('数据加载中...', {
+					icon : 16,
+					shade : 0.01
+				});
 				$.ajax({
 					url : "Sms/findAllSmsBySearch",
 					data : {
 						"sender" : dsender,
 						"receiverphone" : dreceiverphone,
 						"receivername" : dreceivername,
-						"pn":pn
+						"pn" : pn
 					},
 					type : "get",
 					success : function(result) {
 						if (result.code == 100) {
 							if (result.extend.pageInfo.list == null) {
-								alert("查询不到相关数据！");
+								layer.msg("查询不到相关数据！");
 							} else {
 								//构建分页信息
 								build_page_text(result);
 								//构建分页条
-								build_page_nav(result,1);
+								build_page_nav(result, 1);
 								//构建表格数据
 								build_table_data(result);
 							}
@@ -458,7 +469,7 @@
 					}
 				});
 			}
-			
+
 		}
 
 		function ChangeDateFormat(d) {
@@ -479,19 +490,19 @@
 
 		function checkPhone(val) {
 			if (val.length == 0) {
-				alert('请输入手机号码！');
+				layer.msg('请输入手机号码！');
 				$("#receiverphone").focus();
 				return false;
 			}
 			if (val.length != 11) {
-				alert('请输入有效的手机号码！');
+				layer.msg('请输入有效的手机号码！');
 				$("#receiverphone").focus();
 				return false;
 			}
 
 			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
 			if (!myreg.test(val)) {
-				alert('请输入有效的手机号码！');
+				layer.msg('请输入有效的手机号码！');
 				$("#receiverphone").focus();
 				return false;
 			}
@@ -499,11 +510,9 @@
 
 		function checkStr(str) {
 			// [\u4E00-\uFA29]|[\uE7C7-\uE7F3]汉字编码范围 
-			var re1 = new RegExp(
-					"^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
+			var re1 = new RegExp("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
 			if (!re1.test(str)) {
-				alert("请输入中文字符");
-				
+				layer.msg("请输入中文字符");
 				return false;
 			} else {
 				return true;

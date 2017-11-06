@@ -2092,7 +2092,6 @@ if(!Array.prototype.indexOf){
 		svg.Element.glyph.prototype = new svg.Element.path;
 		
 		// text element
-		svg.Element.text = function(node) {
 			this.base = svg.Element.RenderedElementBase;
 			this.base(node);
 			

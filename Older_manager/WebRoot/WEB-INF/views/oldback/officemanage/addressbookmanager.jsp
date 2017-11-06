@@ -29,7 +29,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -70,7 +71,7 @@
 		<!--分页信息  -->
 		<div class="row">
 			<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
-			<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
+			<div class="col-md-5" id="page_nav"></div>
 		</div>
 	</div>
 
@@ -82,6 +83,10 @@
 		});
 
 		function go(pn) {
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 			$.ajax({
 				url : "old/findAllOldManPhone",
 				data : "pn=" + pn,
@@ -206,13 +211,12 @@
 					window.location.href = "Sms/intoSendSms?phone="
 							+ sent_btn.attr("receiverphone");
 				});
-				
+
 				//单个item修改事件
 				edit_btn.click(function() {
 					window.location.href = "old/intoUpdateOldManInfo?id="
-							+ edit_btn.attr("SmsId"); 
+							+ edit_btn.attr("SmsId");
 				});
-
 
 				dataTR.append(checkBoxData).append(dataTd2).append(dataTd3)
 						.append(dataTd4).append(dataTd6).append(
