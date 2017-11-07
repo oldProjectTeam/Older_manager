@@ -34,12 +34,13 @@ public class FileUtil {
 		if (!newFile.getParentFile().exists()) {
 			// 如果目标文件所在的目录不存在，则创建父目录
 			newFile.getParentFile().mkdirs();
-			// System.out.println("文件夹创建成功：");
+			 System.out.println("文件夹创建成功：");
 		}
 		file.transferTo(newFile);
 		String url="upload/img/"+date.get(Calendar.YEAR) + "/"
 				+ (date.get(Calendar.MONTH) + 1) + "/" +fileName+extName;
 	   //返回完成的路劲名
+		 System.out.println("完成的路径名："+url);
 		return url;
 	}
 

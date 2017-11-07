@@ -243,12 +243,11 @@
 								<td>正常上课</td>
 								<td><input type="text" class="form-control"
 									name="isnormalclass" id="isnormalclass"></td>
-								<td colspan="2" rowspan="3"><input type="file"
-									class="form-control" id="photofile" onchange="showPic()">
+								<td colspan="2" rowspan="3">
+								    <input type="file" class="form-control" id="photofile" onchange="showPic()">
 									<input class="btn btn-success" type="button" value="上传图片"
 									onclick="uploadFile()"><br>
 									<div class="col-md-6 col-md-offset-2" id="imgDiv">
-
 										<div class="progress" id="parent">
 											<div id="son"
 												class="progress-bar progress-bar-success progress-bar-striped"
@@ -257,10 +256,6 @@
 												<span class="sr-only"></span>
 											</div>
 										</div>
-
-										<!-- <div id="parent">
- 							<div id="son"></div>
- 						   </div> -->
 									</div> <img class="img-rounded" id="img" width="150" height="150">
 
 								</td>

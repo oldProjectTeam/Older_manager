@@ -237,7 +237,7 @@
         <form class="form-horizontal" id="edit_brand_form">
 		  <div class="form-group">
 		    <label class="col-sm-2 control-label"><font color="red">*</font>品牌名称:</label>
-		    <div class="col-sm-4">
+		    <div class="col-sm-4" id="firstDiv">
 		      <input type="text" id="name" name="name" class="form-control">
 		      <input type="hidden" id="bId" name="id">
 		    </div>
@@ -250,8 +250,7 @@
    		 <div class="form-group">
 		    <label class="col-sm-2 control-label">品牌图片:</label>
 		    <div class="col-sm-4">
-		       <img src="${APP_PATH}/upload/152.jpg" alt="..." class="img-rounded">
-		       
+		       <img id="img" alt="图片显示失败" class="img-rounded" width="150" height="150">
 		    </div>
 		    
 		    <div class="col-sm-4">
@@ -262,14 +261,18 @@
 		  </div>
 		  <div class="form-group">
 		    <div class="col-sm-2 col-md-offset-3">
-		      <button type="button" class="btn btn-success">上传图片</button>
+		      <input type="file" id="photofile" onchange="showPic()"  style="display:none">
+		      <button type="button" class="btn btn-success" onclick="upload_btn()">上传图片</button>
 		    </div>
-		    <div class="col-sm-4 col-md-offset-1" style="line-height:20px">
-		       <div class="progress">
-			  <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-			    <span class="sr-only">20% Complete</span>
+		    <div class="col-sm-4 col-md-offset-1" style="line-height:20px" id="imgDiv">
+		       <div class="progress" id="parent">
+				  <div id="son"
+				    class="progress-bar progress-bar-info progress-bar-striped" 
+				    role="progressbar" aria-valuenow="20" aria-valuemin="0" 
+				      aria-valuemax="100" style="width: 20%">
+				    <span class="sr-only">20% Complete</span>
+				  </div>
 			  </div>
-			</div>
 		    </div>
 		    
 		  </div>
@@ -300,7 +303,7 @@
 		</form>  
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="close_btn">关闭</button>
         <button type="button" class="btn btn-primary" id="save_btn">保存</button>
       </div>
     </div><!-- /.modal-content -->
@@ -363,10 +366,66 @@ $("#batchDel_btn").click(function(){
 	  window.location.href="${APP_PATH}/brand/findAllBrand.action?pageSize="+$(this).val();
   });
 
-  $("#batchDel_btn").click(function(){
-	  
-  });
+  
+  
+  
+  function show_vaildate_msg(ele,status,msg){
+		$(ele).parent().removeClass("has-success has-error");
+		if("success"==status){
+			$(ele).parent().addClass("has-success"); 
+		}else if("error"==status){
+			layer.msg(msg, {icon: 5,time : 1000,offset: ['15%', '45%']});
+			$(ele).parent().addClass("has-error");
+		}
+		
+	}
+  
+  //模态框关闭按钮
+   $("#close_btn").click(function(){
+	   var isImg = $("#cs1").val();
+		if (isImg != undefined && isImg != '') {//如果图片已上传，那么关闭之前将图片删除
+			$("#cs1").remove();
+			removeImg(isImg);
+		}
+   });
   $("#save_btn").click(function(){
+	  var name=$("#name").val();
+	   if(name.length<1){
+		   show_vaildate_msg("#name","error",'品牌名称不能为空！');
+		   return false;
+	   }else if(name.length>50){
+		   show_vaildate_msg("#name","error",'品牌名称长度不能超过50！');
+		   return false;
+	   }else{
+		   show_vaildate_msg("#name","success",'');
+	   }
+	   var sort=$("#sort").val();
+	   if(sort==''||sort<0){
+		   show_vaildate_msg("#sort","error",'排序不能为空且不能为负数！');
+		   return false;
+	   }else{
+		   show_vaildate_msg("#sort","success",'');
+	   }
+	   var region=$("#region").val();
+	   if(region.length<1){
+		   show_vaildate_msg("#region","error",'地区不能为空！');
+		   return false;
+	   }else if(region.length>100){
+		   show_vaildate_msg("#region","error",'地区长度不能超过100！');
+		   return false;
+	   }else{
+		   show_vaildate_msg("#region","success",'');
+	   }
+	   var remark=$("#description").val();
+	   if(remark.length<1){
+		   show_vaildate_msg("#description","error",'品牌描述不能为空！');
+		   return false;
+	   }else if(remark.length>500){
+		   show_vaildate_msg("#description","error",'描述长度不能超过500！');
+		   return false;
+  		}else{
+  			show_vaildate_msg("#description","success",'');
+  		}
 	  $.ajax({
 		  url:"${APP_PATH}/brand/updateBrand",
 		  data:$("#edit_brand_form").serialize(),
@@ -383,6 +442,10 @@ $("#batchDel_btn").click(function(){
 				  layer.msg('修改失败！', {icon: 5,time : 1000,offset: ['35%', '45%']});
 			  }
 			  $("#edit_brand_modal").modal('hide');
+			  var isImg = $("#cs1").val();
+				if (isImg != undefined && isImg != '') {//如果有图片上传痕迹，则清理掉
+					$("#cs1").remove();
+				}
 		  }
 	  });
   });
@@ -406,21 +469,30 @@ $("#batchDel_btn").click(function(){
 			return true;
 		}
 	}
+  
    function edit_brand(id){
+	   $("#imgDiv").hide();
 	   $.ajax({
 		   url:"${APP_PATH}/brand/findBrand",
 		   data:"id="+id,
 		   type:"POST",
 		   success:function(result){
 			   var b=result.extend.brand;
-			   $("#edit_brand_modal").modal();
+			   $("#edit_brand_modal").modal({
+				   backdrop:"static"
+			   });
 			   $("#bId").val(b.id);
 			   $("#name").val(b.name);
 			   $("#region").val(b.region);
 			   $("#sort").val(b.sort);
 			   $("#description").val(b.description);
 			   $("#edit_brand_form input[name=state]").val([b.state]);
-			   
+			   if(b.logoimage==''||b.logoimage==null){
+				   $("#img").prop("src","${APP_PATH}/static/shop/images/image.png");
+				    
+			   }else{
+				   $("#img").prop("src",b.logoimage);
+			   }
 			   
 		   }
 	   });
@@ -608,29 +680,109 @@ $("#batchDel_btn").click(function(){
 	});
 </script>
 <script type="text/javascript">
-	 
-	function ChangeDateFormat2(d) {
-		//将时间戳转为int类型，构造Date类型
-		if (d != null) {
-			var date = new Date(parseInt(d));
 
-			//月份得+1，且只有个位数时在前面+0
-			var month = date.getMonth() + 1 + "-";
+ 
 
-			//日期为个位数时在前面+0
-			var currentDate = date.getDate();
-			
-			var currenthours=date.getHours();
-			
-			var currentminut=date.getMinutes();
-			
-			var currentSeconds=date.getSeconds();
-			//getFullYear得到4位数的年份 ，返回一串字符串
-			return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut+":"+currentSeconds;
-		} else {
-			return null;
+//删除上传但没保存的图片
+function removeImg(imgName) {
+	$.ajax({
+		url : "${APP_PATH}/file/checkImg.action?isImg="+ imgName,
+		type : "post",
+		success : function(result) {
 		}
+	});
+}
+
+//上传图片，加载进度条
+function showPic() {
+	
+	var pic = $("#photofile").get(0).files[0];
+	var regImg = /\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/;
+	if (!regImg.test($("#photofile").val())) {
+		layer.msg("图片类型必须是.gif,jpeg,jpg,png中的一种");
+		//清空文件域
+		var file = $("#photofile");
+		file.after(file.clone().val(""));
+		file.remove();
+		return false;
 	}
+	$("#son").css("width", "0%");
+	$("#imgDiv").hide();
+	$("#img").prop("src", window.URL.createObjectURL(pic));
+	uploadFile();
+}
+
+function upload_btn(){
+	$("#photofile").click();
+}
+function uploadFile() {
+	var pic = $("#photofile").get(0).files[0];
+	if (pic == undefined) {
+		layer.msg("您还没选择上传的文件！");
+		return false;
+	}
+	//显示进度条
+	$("#imgDiv").show();
+	var formData = new FormData();
+	formData.append("file", pic);
+	/** 
+	 * 必须false才会避开jQuery对 formdata 的默认处理 
+	 * XMLHttpRequest会对 formdata 进行正确的处理 
+	 */
+	$
+			.ajax({
+				type : "POST",
+				url : "${APP_PATH}/file/upload.action",
+				data : formData,
+				processData : false,
+				//必须false才会自动加上正确的Content-Type 
+				contentType : false,
+				xhr : function() {
+					var xhr = $.ajaxSettings.xhr();
+					if (onprogress && xhr.upload) {
+						xhr.upload.addEventListener("progress",
+								onprogress, false);
+						return xhr;
+					}
+				},
+				success : function(result) {
+					if (result.code == 100) {
+						//返回图片路径创建文本框之前，先判断之前是否已经上传过了，如果是，先删除再创建
+						var isImg = $("#cs1").val();
+						if (isImg != undefined && isImg != '') {//如果图片已上传，那么创建之前将图片删除
+							$("#cs1").remove();
+							removeImg(isImg);
+						}
+						//清空文件域
+						var file = $("#photofile");
+						file.after(file.clone().val(""));
+						file.remove();
+						//存放文件名
+						var inputPath = $("<input type='hidden' name='logoimage' id='cs1'/>");
+						inputPath.attr("value", result.extend.fileName);
+						inputPath.appendTo("#firstDiv");
+					} else {
+						$("#son").html("上传失败");
+						$("#son").css("font-size", "0.6em");
+						$("#son").css("color", "red");
+					}
+				}
+			});
+}
+
+/**
+* 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
+*/
+function onprogress(evt) {
+	var loaded = evt.loaded; //已经上传大小情况 
+	var tot = evt.total; //附件总大小 
+	var per = Math.floor(100 * loaded / tot); //已经上传的百分比 
+	$("#son").html(per + "%");
+	$("#son").css("width", per + "%");
+	if ($("#son").text() == "100%") {
+		$("#son").html("上传成功");
+	}
+}
 </script>
 	
 </body>

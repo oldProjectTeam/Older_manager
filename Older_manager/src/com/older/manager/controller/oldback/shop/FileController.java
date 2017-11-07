@@ -26,6 +26,7 @@ public class FileController {
 	@ResponseBody
 	public Msg upload(MultipartFile file, HttpServletRequest request)
 			throws Exception {
+		System.out.println("文件名："+file.getOriginalFilename());
 		if (file != null) {
 			String fileName = file.getOriginalFilename();
 			//判断是不是图片
