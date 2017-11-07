@@ -29,6 +29,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body>
@@ -97,8 +99,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ol class="breadcrumb">
-				<li><b>位置：<a
-						href="static/oldback/oldManInfoMange/index.html">老人档案管理</a></b></li>
+				<li><b>位置：老人档案管理</b></li>
 				<li class="active">新增老人</li>
 			</ol>
 		</div>
@@ -107,11 +108,8 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
-				<li role="presentation">
-					<!-- <button type="button" class="btn btn-info" onClick="javascript :history.back(-1);">返回</button> -->
-					<a onClick="javascript :history.back(-1);">老人基本信息</a>
-				</li>
-				<li role="presentation" class="active"><a href="#">亲属信息</a></li>
+				<li role="presentation"><a href="javascript:history.back(-1);">老人基本信息</a></li>
+				<li role="presentation" class="active"><a>亲属信息</a></li>
 			</ul>
 		</div>
 	</div>
@@ -125,8 +123,7 @@
 				<button type="button" class="btn btn-primary" id="addrelativesbtn">
 					<span class="glyphicon glyphicon-plus"></span> 新增
 				</button>
-				<button type="button" class="btn btn-danger"
-					id="old_delete_all_btn">
+				<button type="button" class="btn btn-danger" id="old_delete_all_btn">
 					<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 					批量删除
 				</button>
@@ -151,7 +148,7 @@
 		<!--分页信息  -->
 		<div class="row">
 			<div class="col-md-7" id="page_text"></div>
-			<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
+			<div class="col-md-5" id="page_nav"></div>
 		</div>
 	</div>
 
@@ -225,7 +222,7 @@
 			go(1, ${id});
 		});
 		function go(pn, id) {
-		$("#old_delete_all_btn").attr("disabled", true);
+			$("#old_delete_all_btn").attr("disabled", true);
 			$.ajax({
 				url : "${APP_PATH}/rel/selectAllRelatives",
 				data : {
@@ -383,15 +380,16 @@
 		$(document).on("click", ".delete_btn", function() {
 			var delid = $(this).attr("del-id");
 			var oldername = $(this).parents("tr").find("td:eq(2)").text();
-			if (confirm("确认删除【" + oldername + "】吗")) {
+			layer.confirm("确认删除【" + oldername + "】吗", function(index) {
 				$.ajax({
 					url : "${APP_PATH}/rel/deleterelativesbyid/" + delid,
 					type : "DELETE",
 					success : function(result) {
 						go(currentNum, ${id});
+						layer.msg(result.msg);
 					}
 				});
-			}
+			});
 		});
 
 		//点击保存
@@ -540,20 +538,19 @@
 					empNames = empNames.substring(0, empNames.length - 1);
 					//去除多余的删除员工-
 					del_idstr = del_idstr.substring(0, del_idstr.length - 1);
-					if (confirm("确认删除【" + empNames + "】吗")) {
+					layer.confirm("确认删除【" + empNames + "】吗", function(index) {
 						//发送ajax请求
 						$.ajax({
 							url : "${APP_PATH}/rel/deleterelativesall/"
 									+ del_idstr,
 							type : "DELETE",
 							success : function(result) {
-								//alert(result.msg);
 								//回到当前页面
 								go(currentNum, ${id});
-
+								layer.msg(result.msg);
 							}
 						});
-					}
+					});
 				});
 	</script>
 </body>

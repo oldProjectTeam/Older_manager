@@ -105,8 +105,8 @@
 			if (user == '' || pwd == '' || code == '') {
 				$("#msg").empty();
 				$("#msg").append("请先输入信息");
-				return;
 			} else {
+				$("#msg").empty();
 				$("#loginForm").submit();
 				layer.load();
 			}

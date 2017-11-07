@@ -119,40 +119,40 @@
 							<form id="formid">
 								<table class="table table-bordered table-hover text-center">
 									<tr>
-										<td>老人姓名</td>
+										<td><font color="red">*</font>老人姓名</td>
 										<td><select id="oldman_name" class="form-control"
 											name="oldman.id">
 										</select></td>
-										<td>体检医院</td>
+										<td><font color="red">*</font>体检医院</td>
 										<td><input name="peinfo.hospital" type="text"
-											class="form-control"></td>
+											class="form-control" id="hospital"></td>
 									</tr>
 									<tr>
 
-										<td>体检时间</td>
+										<td><font color="red">*</font>体检时间</td>
 										<td><input name="peinfo.petime" type="date"
-											class="form-control"></td>
-										<td>下次体检时间</td>
+											class="form-control" id="peTime"></td>
+										<td><font color="red">*</font>下次体检时间</td>
 										<td><input name="peinfo.nexttime" type="date"
-											class="form-control"></td>
+											class="form-control" id="peNextTime"></td>
 									</tr>
 									<tr>
 
-										<td>体检项目</td>
+										<td><font color="red">*</font>体检项目</td>
 										<td><textarea class="form-control" rows="2"
-												name="peproject"></textarea></td>
-										<td>体检值</td>
+												name="peproject" id="project"></textarea></td>
+										<td><font color="red">*</font>体检值</td>
 										<td><textarea class="form-control" rows="2"
-												name="pevalue"></textarea></td>
+												name="pevalue" id="pevalue"></textarea></td>
 									</tr>
 									<tr>
 
-										<td>体检结果</td>
+										<td><font color="red">*</font>体检结果</td>
 										<td><textarea class="form-control" rows="2"
-												name="peresult"></textarea></td>
-										<td>结果分析</td>
+												name="peresult" id="result"></textarea></td>
+										<td><font color="red">*</font>结果分析</td>
 										<td><textarea class="form-control" rows="2"
-												name="resultanalysis"></textarea></td>
+												name="resultanalysis" id="resultAnysis"></textarea></td>
 									</tr>
 									<tr>
 										<td>备注</td>
@@ -523,7 +523,6 @@
 		$("#selectwith").click(function() {
 			oldmanname = $("#oldmanname").val();
 			hospitalname = $("#hospitalname").val();
-
 			go(1, oldmanname, hospitalname);
 
 		});
@@ -609,11 +608,9 @@
 						});
 					});
 				});
-
 		//点击新增
 		$("#add_btn").click(
 				function() {
-
 					//获取老人的名字
 					$.ajax({
 						url : "${APP_PATH}/old/selectallolderskiptakeactivity",
@@ -636,24 +633,39 @@
 				});
 
 		//点击保存	
-		$("#save_pe_btn").click(function() {
-			// alert($("#formid").serialize());
-			$.ajax({
-				url : "${APP_PATH}/pe/addpe",
-				type : "POST",
-				data : $("#formid").serialize(),
-				success : function(result) {
+		$("#save_pe_btn").click(
+				function() {
+					if ($("#hospital").val() == '' || $("#peTime").val() == ''
+							|| $("#peNextTime").val() == ''
+							|| $("#project").val() == ''
+							|| $("#pevalue").val() == ''
+							|| $("#result").val() == ''
+							|| $("#resultAnysis").val() == '') {
+						layer.msg("请填写完必填项再保存");
+					} else {
+						if ($("#peTime").val() > $("#peNextTime").val()) {
+							layer.msg("下次体检时间应该在这次体检时间之后");
+						} else {
+							$.ajax({
+								url : "${APP_PATH}/pe/addpe",
+								type : "POST",
+								data : $("#formid").serialize(),
+								success : function(result) {
 
-					if (result.code == 100) {
-						//1.关闭模态框
-						$("#add_modal").modal('hide');
-						go(totalRecord, oldmanname, hospitalname);
+									if (result.code == 100) {
+										//1.关闭模态框
+										$("#add_modal").modal('hide');
+										go(totalRecord, oldmanname,
+												hospitalname);
+										layer.msg("添加成功");
+										$("#formid")[0].reset();
+									}
+								}
+
+							});
+						}
 					}
-				}
-
-			});
-
-		});
+				});
 
 		//点击编辑
 		//编辑信息按钮，弹出模态框

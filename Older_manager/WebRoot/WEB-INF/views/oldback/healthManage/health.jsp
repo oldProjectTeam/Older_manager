@@ -69,7 +69,7 @@
 				<div class="list-group">
 					<a href="health/healthInfo" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/jiangkang.png" alt="..."
-						class="img-rounded"> <br> <br>基本健康信息 </a>
+						class="img-rounded"> <br> <br>健康数据 </a>
 				</div>
 			</div>
 		</div>

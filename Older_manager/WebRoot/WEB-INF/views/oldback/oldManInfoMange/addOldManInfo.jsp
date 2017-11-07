@@ -36,6 +36,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -55,15 +57,15 @@
 			&nbsp;&nbsp;
 			<div class="table-responsive">
 				<form class="form-horizontal" enctype="multipart/form-data"
-					method="post" action="${APP_PATH}/old/addnewolder/99999">
+					method="post" action="${APP_PATH}/old/addnewolder/1" id="addForm">
 					<table class="table text-center table-bordered">
 						<tr>
 							<td style="width:180px"><font color=red>*</font>老人姓名:</td>
 							<td><input type="text" required="required" name="name"
-								style="width:120px" class="form-control" /></td>
+								id="name" style="width:120px" class="form-control" /></td>
 							<td style="width:140px"><font color=red>*</font>身份证号:</td>
 							<td><input type="text" required="required" name="idcar"
-								class="form-control" /></td>
+								id="idcard" class="form-control" /></td>
 							<td style="width:120px"><font color=red>*</font>性别:</td>
 							<td><select name="sex" class="form-control"
 								style="width:80px">
@@ -73,15 +75,15 @@
 							<td style="width:130px">图片</td>
 							<td rowspan="4"><input type="hidden" name="photo"> <input
 								type="file" multiple="multiple" class="btn btn-info"
-								value="图片管理" name="file" id="up_img" class="form-control" />
-								<br/> <img
+								value="图片管理" name="file" id="up_img" class="form-control" /> <br />
+								<img
 								src="${pageContext.request.contextPath}/upload/${user.image==null?'default.png':user.image}"
 								id="imgShow" width="300" height="200"></td>
 						</tr>
 						<tr>
 							<td><font color=red>*</font>联系手机号:</td>
 							<td><input type="text" required="required" name="phone"
-								class="form-control" /></td>
+								id="phone" class="form-control" /></td>
 							<td>婚姻状况:</td>
 							<td><select name="marriage" class="form-control">
 									<option>已婚</option>
@@ -112,16 +114,16 @@
 									<option>孤寡老人</option>
 							</select></td>
 							<td><font color=red>*</font>出生日期:</td>
-							<td><input type="date" name="birthday" required="required"
-								class="form-control" /></td>
+							<td><input type="date" name="birthday" id="birthday"
+								required="required" class="form-control" /></td>
 							<td><font color=red>*</font>年龄:</td>
 							<td><input type="text" required="required" name="age"
-								class="form-control" /></td>
+								id="age" class="form-control" readonly="readonly" /></td>
 						</tr>
 						<tr>
 							<td><font color=red>*</font>地址:</td>
 							<td colspan="2"><input type="text" name="address"
-								required="required" class="form-control" /></td>
+								required="required" class="form-control" id="address" /></td>
 							<td><font color=red>*</font>服务点:</td>
 							<td colspan="2"><select name="service" class="form-control">
 									<option>贵阳分部</option>
@@ -135,11 +137,11 @@
 						</tr>
 						<tr>
 							<td><font color=red>*</font>紧急联系人:</td>
-							<td><input type="text" name="urgencycontact"
+							<td><input type="text" name="urgencycontact" id="urgency"
 								required="required" style="width:120px" class="form-control" /></td>
 							<td><font color=red>*</font>联系电话:</td>
 							<td><input type="text" name="urgencycontactphone"
-								required="required" class="form-control" /></td>
+								id="urgency_phone" required="required" class="form-control" /></td>
 							<td>关系:</td>
 							<td><select name="relation" class="form-control">
 									<option>父子</option>
@@ -166,7 +168,6 @@
 							</select></td>
 							<td><font color=red>*</font>服务状态:</td>
 							<td><select class="form-control" name="servicestatu">
-									<option>请选择</option>
 									<option>迁出服务区</option>
 									<option>去世</option>
 									<option>停止服务</option>
@@ -264,7 +265,7 @@
 						</tr>
 						<tr>
 							<td colspan="8">
-								<button type="submit" class="btn btn-success">保存</button>
+								<button type="button" id="save" class="btn btn-success">保存</button>
 
 								<button type="button" class="btn btn-info"
 									onClick="javascript :history.back(-1);">返回</button>
@@ -282,6 +283,134 @@
 				ImgShow : "imgShow"
 			});
 		};
+		//计算年龄
+		$("#birthday").change(
+				function() {
+					var today = new Date();//获取当前时间(没有格式化)  
+					var year = today.getFullYear();
+					//获取年份, 四位数
+					var month = today.getMonth() + 1;
+					//获取月份, 0 - 11
+					var day = today.getDate();
+					//获取几号
+					if (month <= 9) {//格式化  
+						month = "0" + month;
+					}
+					if (day <= 9) {
+						day = "0" + day;
+					}
+					today = year + "-" + month + "-" + day;
+					if ($("#birthday").val() > today) {
+						layer.msg("出生日期不能大于当前日期");
+					} else if ($("#birthday").val() < "1947-01-01"
+							&& $("#birthday").val() > "1907-01-01") {
+						$("#age").val(jsGetAge($("#birthday").val()));
+					} else {
+						layer.msg("年龄在70-110岁才符合");
+					}
+				});
+		var nameMatch = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)";
+		var idcardMatch = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		var phoneMatch = "(^1[0-9]{10}$)";
+		$("#name").change(function() {
+			if (!$("#name").val().match(nameMatch)) {
+				layer.msg("姓名格式不正确");
+			}
+		});
+		$("#urgency").change(function() {
+			if (!$("#urgency").val().match(nameMatch)) {
+				layer.msg("紧急联系人姓名格式不正确");
+			}
+		});
+		$("#idcard").change(function() {
+			if (!$("#idcard").val().match(idcardMatch)) {
+				layer.msg("身份证格式不正确");
+			}
+		});
+		$("#phone").change(function() {
+			if (!$("#phone").val().match(phoneMatch)) {
+				layer.msg("电话号码格式不正确");
+			}
+		});
+		$("#urgency_phone").change(function() {
+			if (!$("#urgency_phone").val().match(phoneMatch)) {
+				layer.msg("电话号码格式不正确");
+			}
+		});
+		$("#save")
+				.click(
+						function() {
+							if ($("#name").val() == ''
+									|| $("#idcard").val() == ''
+									|| $("#phone").val() == ''
+									|| $("#birthday").val() == ''
+									|| $("#age").val() == ''
+									|| $("#address").val() == ''
+									|| $("#urgency").val() == ''
+									|| $("#urgency_phone").val() == '') {
+								layer.msg("请把必填的项填写完");
+							} else {
+								if (!$("#name").val().match(nameMatch)) {
+									layer.msg("姓名格式不正确");
+								} else if (!$("#idcard").val().match(
+										idcardMatch)) {
+									layer.msg("身份证格式不正确");
+								} else if (!$("#phone").val().match(phoneMatch)) {
+									layer.msg("电话号码格式不正确");
+								} else if (!$("#urgency_phone").val().match(
+										phoneMatch)) {
+									layer.msg("电话号码格式不正确");
+								} else if (!$("#urgency").val()
+										.match(nameMatch)) {
+									layer.msg("紧急联系人姓名格式不正确");
+								}
+								if ($("#birthday").val() > "1947-01-01") {
+									layer.msg("年龄" + $("#age").val() + "不符合要求");
+								} else {
+									$("#addForm").submit();
+								}
+							}
+						});
+
+		/*根据出生日期算出年龄*/
+		function jsGetAge(strBirthday) {
+			var returnAge;
+			var strBirthdayArr = strBirthday.split("-");
+			var birthYear = strBirthdayArr[0];
+			var birthMonth = strBirthdayArr[1];
+			var birthDay = strBirthdayArr[2];
+
+			d = new Date();
+			var nowYear = d.getFullYear();
+			var nowMonth = d.getMonth() + 1;
+			var nowDay = d.getDate();
+
+			if (nowYear == birthYear) {
+				returnAge = 0;//同年 则为0岁  
+			} else {
+				var ageDiff = nowYear - birthYear; //年之差  
+				if (ageDiff > 0) {
+					if (nowMonth == birthMonth) {
+						var dayDiff = nowDay - birthDay;//日之差  
+						if (dayDiff < 0) {
+							returnAge = ageDiff - 1;
+						} else {
+							returnAge = ageDiff;
+						}
+					} else {
+						var monthDiff = nowMonth - birthMonth;//月之差  
+						if (monthDiff < 0) {
+							returnAge = ageDiff - 1;
+						} else {
+							returnAge = ageDiff;
+						}
+					}
+				} else {
+					returnAge = -1;//返回-1 表示出生日期输入错误 晚于今天  
+				}
+			}
+			return returnAge;//返回周岁年龄  
+		}
 	</script>
 
 

@@ -35,6 +35,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body onload="test()">
@@ -53,8 +55,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
-				<li role="presentation" class="active"><a
-					href="static/oldback/oldManInfoMange/addOldManInfo.jsp">老人基本信息</a></li>
+				<li role="presentation" class="active"><a>老人基本信息</a></li>
 				<li role="presentation"><a
 					href="${APP_PATH}/rel/skipallrelatives/${oldman.id}">亲属信息</a></li>
 			</ul>

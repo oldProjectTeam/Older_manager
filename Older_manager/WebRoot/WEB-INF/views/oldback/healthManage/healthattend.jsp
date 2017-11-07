@@ -123,56 +123,58 @@
 							<form id="formid">
 								<table class="table table-bordered table-hover text-center">
 									<tr class="active">
-										<td>老人姓名：</td>
+										<td><font color="red">*</font>老人姓名:</td>
 										<td><select class="form-control" id="oldman_name"
 											name="oldmanId">
 										</select></td>
-										<td>就诊医院：</td>
+										<td width="100"><font color="red">*</font>就诊医院:</td>
 										<td><input type="text" class="form-control"
-											name="hospital"></td>
-										<td>就诊科室：</td>
+											name="hospital" id="hospital"></td>
+										<td width="100"><font color="red">*</font>就诊科室:</td>
 										<td><input type="text" class="form-control"
-											name="department"></td>
+											name="department" id="department"></td>
 									</tr>
 									<tr>
-										<td>医生姓名：</td>
-										<td><input type="text" class="form-control" name="doctor"></td>
-										<td>就诊时间：</td>
+										<td><font color="red">*</font>医生姓名:</td>
+										<td><input type="text" class="form-control" id="doctor"
+											name="doctor"></td>
+										<td><font color="red">*</font>就诊时间:</td>
 										<td><INPUT type="date" class="form-control"
-											name="clinicaltime"></td>
-										<td>复诊时间：</td>
+											name="clinicaltime" id="clinicaltime"></td>
+										<td><font color="red">*</font>复诊时间:</td>
 										<td><INPUT type="date" class="form-control"
-											name="appointmenttime"></td>
+											name="appointmenttime" id="appointmenttime"></td>
 									</tr>
 									<tr class="active">
-										<td class="">主诉内容：</td>
+										<td class=""><font color="red">*</font>主诉内容:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
-												name="medicalrecord1"></textarea></td>
-										<td>体格检查内容：</td>
+												name="medicalrecord1" id="medicalrecord1"></textarea></td>
+										<td><font color="red">*</font>体格检查内容:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
-												name="chekcontent"></textarea></td>
+												name="chekcontent" id="chekcontent"></textarea></td>
 									</tr>
 									<tr>
-										<td>辅助检查内容：</td>
+										<td>辅助检查内容:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="ancillarycheckcontent"></textarea></td>
-										<td>实际检查内容：</td>
+										<td><font color="red">*</font>实际检查内容:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
-												name="realcheckcontent"></textarea></td>
+												name="realcheckcontent" id="realcheckcontent"></textarea></td>
 									</tr>
 									<tr class="active">
-										<td>正常使用药物：</td>
+										<td><font color="red">*</font>正常使用药物:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
-												name="normalusedrug"></textarea></td>
-										<td>本次诊断结果：</td>
+												name="normalusedrug" id="normalusedrug"></textarea></td>
+										<td><font color="red">*</font>本次诊断结果:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
-												name="diagnosis"></textarea></td>
+												name="diagnosis" id="diagnosis"></textarea></td>
 									</tr>
 									<tr>
-										<td>治疗处方和保健处方：</td>
+										<td width="180"><font color="red">*</font>治疗处方和保健处方:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
-												name="treatmentcareprescription"></textarea></td>
-										<td>相关禁忌事项：</td>
+												name="treatmentcareprescription"
+												id="treatmentcareprescription"></textarea></td>
+										<td>相关禁忌事项:</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="tabooltems"></textarea></td>
 									</tr>
@@ -524,13 +526,10 @@
 										.append("编辑");
 								//为编辑按钮添加一个自定义的属性，来表示当前查看老人的id
 								editBtn.attr("edit-id", item.id);
-								var serchBtn = $("<button></button>")
-										.addClass(
-												"btn btn-info btn-sm serchBtn")
-										.append(
-												$("<span></span>")
-														.addClass(
-																"glyphicon glyphicon-search"))
+								var serchBtn = $("<button></button>").addClass(
+										"btn btn-info btn-sm serchBtn").append(
+										$("<span></span>").addClass(
+												"glyphicon glyphicon-search"))
 										.append("查看");
 								//为查看按钮添加一个自定义的属性，来表示当前查看老人的id
 								serchBtn.attr("serch-id", item.id);
@@ -717,24 +716,45 @@
 		}
 
 		//点击保存
-		$("#save_healthrecord_btn").click(function() {
-			// alert($("#formid").serialize());
-			$.ajax({
-				url : "${APP_PATH}/health/addhealthrecord",
-				type : "POST",
-				data : $("#formid").serialize(),
-				success : function(result) {
+		$("#save_healthrecord_btn").click(
+				function() {
+					if ($("#hospital").val() == ''
+							|| $("#department").val() == ''
+							|| $("#doctor").val() == ''
+							|| $("#clinicaltime").val() == ''
+							|| $("#appointmenttime").val() == ''
+							|| $("#medicalrecord1").val() == ''
+							|| $("#chekcontent").val() == ''
+							|| $("#realcheckcontent").val() == ''
+							|| $("#normalusedrug").val() == ''
+							|| $("#diagnosis").val() == ''
+							|| $("#treatmentcareprescription").val() == '') {
+						layer.msg("请先填写必填项");
+					} else {
+						if ($("#clinicaltime").val() > $("#appointmenttime")
+								.val()) {
+							layer.msg("复查时间不能在就诊时间之前");
+						} else {
+							$.ajax({
+								url : "${APP_PATH}/health/addhealthrecord",
+								type : "POST",
+								data : $("#formid").serialize(),
+								success : function(result) {
 
-					if (result.code == 100) {
-						//1.关闭模态框
-						$("#add_modal").modal('hide');
-						go(totalRecord, hospital1, oldmanname, doctor1);
+									if (result.code == 100) {
+										//1.关闭模态框
+										$("#add_modal").modal('hide');
+										go(totalRecord, hospital1, oldmanname,
+												doctor1);
+										layer.msg("添加成功");
+										$("#formid")[0].reset();
+									}
+								}
+
+							});
+						}
 					}
-				}
-
-			});
-
-		});
+				});
 
 		//编辑信息按钮，弹出模态框
 		$(document).on(

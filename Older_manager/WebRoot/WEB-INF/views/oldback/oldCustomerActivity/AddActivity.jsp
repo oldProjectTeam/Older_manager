@@ -109,28 +109,26 @@
 					<h4 class="modal-title">新增参加活动记录信息</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-inline" id="add_activity_form">
+					<form id="add_activity_form">
 						<div class="">
 							<table class="table table-bordered table-hover">
 
 								<tr>
-									<td>老人姓名</td>
+									<td><font color="red">*</font>老人姓名</td>
 									<td><select id="oldman_name" class="form-control"
 										name="oldmanId">
-
 									</select></td>
-									<td>活动名称</td>
+									<td><font color="red">*</font>活动名称</td>
 									<td><select id="activity_title" class="form-control"
-										name="activityId">
+										name="activityId" id="activity_title">
 
 									</select></td>
 								</tr>
 								<tr>
-
-									<td>参加时间</td>
+									<td><font color="red">*</font>参加时间</td>
 									<td><input name="taketime" type="date"
-										class="form-control"></td>
-									<td>是否到场</td>
+										class="form-control" id="taketime"></td>
+									<td><font color="red">*</font>是否到场</td>
 									<td><select id="" class="form-control" name="ispresent">
 											<option>是</option>
 											<option>否</option>
@@ -249,56 +247,45 @@
 					<h4 class="modal-title">编辑推荐活动信息</h4>
 				</div>
 				<div class="modal-body">
-					<form class="form-inline" id="add_recomactivity_form">
-						<div class="row">
-							<table
-								class="table table-bordered table-hover table-condensed table-responsive">
-								<tr>
-									<input type="hidden" name="id" id="id">
-									<input type="hidden" name="activityId" id="activity_id">
-									<input type="hidden" name="recomtime" id="recomtime">
-
-									<td>老人姓名</td>
-									<td colspan="1"><p class="form-control-static"
-											id="recommang_oldman_name"></p></td>
-									<td>性别</td>
-									<td>
-										<p class="form-control-static" id="oldman_sex"></p>
-									</td>
-									<td colspan="1">年龄</td>
-									<td colspan="2"><p class="form-control-static"
-											id="oldman_age"></p></td>
-
-								</tr>
-								<tr>
-									<td>活动名称</td>
-									<td calss=".col-xs-2"><select
-										id="recommand_activity_title">
-									</select></td>
-									<td>活动时间</td>
-									<td><p id="recommand_activity_time"></p></td>
-									<td>活动地点</td>
-									<td><p class="form-control-static"
-											id="recommand_activity_place"></p></td>
-								</tr>
-								<tr>
-									<td>推荐人</td>
-									<td><input name="recompeople" type="text" id="recompeople"></td>
-
-									<input type="hidden" name="number" id="number">
-									<input type="hidden" name="state" id="state">
-									<input type="hidden" name="recomId" id="recomId">
-									<input type="hidden" name="recomActivity1" id="recomActivity1">
-									<input type="hidden" name="recomActivity2" id="recomActivity2">
-									<input type="hidden" name="recomActivity3" id="recomActivity3">
-									<input type="hidden" name="recomActivity4" id="recomActivity4">
-									<td>备注</td>
-									<td><input name="remark" type="text" id="remark"></td>
-
-
-								</tr>
-							</table>
-						</div>
+					<form id="add_recomactivity_form">
+						<input type="hidden" name="id" id="id" /> <input type="hidden"
+							name="activityId" id="activity_id" /> <input type="hidden"
+							name="recomtime" id="recomtime" /> <input type="hidden"
+							name="number" id="number"> <input type="hidden"
+							name="state" id="state"> <input type="hidden"
+							name="recomId" id="recomId"> <input type="hidden"
+							name="recomActivity1" id="recomActivity1"> <input
+							type="hidden" name="recomActivity2" id="recomActivity2">
+						<input type="hidden" name="recomActivity3" id="recomActivity3">
+						<input type="hidden" name="recomActivity4" id="recomActivity4">
+						<table class="table table-bordered">
+							<tr>
+								<td width="120">老人姓名</td>
+								<td id="recommang_oldman_name"></td>
+								<td width="60">性别</td>
+								<td id="oldman_sex"></td>
+								<td width="60">年龄</td>
+								<td id="oldman_age"></td>
+							</tr>
+							<tr>
+								<td>活动名称</td>
+								<td><select id="recommand_activity_title"
+									class="form-control">
+								</select></td>
+								<td>时间</td>
+								<td id="recommand_activity_time"></td>
+								<td>地点</td>
+								<td id="recommand_activity_place"></td>
+							</tr>
+							<tr>
+								<td>推荐人</td>
+								<td><input name="recompeople" class="form-control"
+									type="text" id="recompeople"></td>
+								<td>备注</td>
+								<td><input name="remark" type="text" class="form-control"
+									id="remark"></td>
+							</tr>
+						</table>
 					</form>
 				</div>
 
@@ -743,21 +730,24 @@
 
 		//点击保存
 		$("#save_activities_btn").click(function() {
-			$.ajax({
-				url : "${APP_PATH}/take/addtackactivity",
-				type : "POST",
-				data : $("#add_old_takeactivity_modal form").serialize(),
-				success : function(result) {
-
-					if (result.code == 100) {
-						//1.关闭模态框
-						$("#add_old_takeactivity_modal").modal('hide');
-						go(totalRecord, name1, type1, title1);
+			if ($("#taketime").val() == '') {
+				layer.msg("请填写必填信息");
+			} else {
+				$.ajax({
+					url : "${APP_PATH}/take/addtackactivity",
+					type : "POST",
+					data : $("#add_old_takeactivity_modal form").serialize(),
+					success : function(result) {
+						if (result.code == 100) {
+							//1.关闭模态框
+							$("#add_old_takeactivity_modal").modal('hide');
+							go(totalRecord, name1, type1, title1);
+							layer.msg("添加成功");
+						}
 					}
-				}
 
-			});
-
+				});
+			}
 		});
 
 		//点击推荐，弹出模态框
@@ -772,7 +762,6 @@
 					// $("#update_activities_btn").attr("edit-id", $(this).attr("edit-id"));
 
 					//发请求获得活动类型
-					var activity_result;
 					$.ajax({
 						url : "${APP_PATH}/activity/findAllActivitiesByState",
 						type : "GET",
@@ -812,7 +801,6 @@
 								$("#recomactivity_modal").modal();
 								/* $("#recommand_activity_place").val(activity_result.place);
 								$("#activitytime").val(ChangeDateFormat(activity_result.activitytime)); */
-
 							}
 						}
 					});
@@ -982,7 +970,6 @@
 				type : "GET",
 
 				success : function(result) {
-
 					if (result.code == 100) {
 						$("#select_old_takeactivity_modal").modal();
 						//console.log(result);

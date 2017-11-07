@@ -104,10 +104,6 @@ public class AddNewOlderController {
 				map.put("fieldName", fieldError.getField());
 				map.put("errorMessage", fieldError.getDefaultMessage());
 				errorList.add(map);
-				System.out.println("出错的字段名为:------------->"
-						+ fieldError.getField());
-				System.out.println("出错信息为:---------------->"
-						+ fieldError.getDefaultMessage());
 			}
 		} else {
 			String imgUrl = null;
@@ -227,6 +223,7 @@ public class AddNewOlderController {
 		model.addAttribute("pageInfo", pageInfo);
 		return "oldback/oldManInfoMange/addnewolder";
 	}
+
 	/**
 	 * 模糊查询返回json数据
 	 * 

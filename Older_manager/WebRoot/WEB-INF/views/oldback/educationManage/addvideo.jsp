@@ -25,6 +25,8 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body onload>
@@ -96,7 +98,8 @@
 								<td colspan="2"><input class="btn btn-success"
 									type="button" value="上传视频" name="addvideo"
 									onclick="uploadFile()">
-									<div id="progress" style=" margin-top: 20 " class="progress-bar"></td>
+									<div id="progress" style=" margin-top: 20 "
+										class="progress-bar"></div></td>
 							</tr>
 							<tr>
 								<td>标记</td>
@@ -190,10 +193,10 @@
 							|| jQuery.trim(subtitle) == ''
 							|| jQuery.trim(createtime) == ''
 							|| jQuery.trim(lenght) == '') {
-						alert("请按照红色*号提示填写资料！");
+						layer.msg("请按照红色*号提示填写资料！");
 					} else if (path.replace(/(^s*)|(s*$)/g, "").length == 0
 							|| path == null) {
-						alert("视频还没有上传成功！");
+						layer.msg("视频还没有上传成功！");
 					} else {
 						$.ajax({
 							url : "video/addVideo",
@@ -202,9 +205,9 @@
 							success : function(result) {
 
 								if (result.code == 100) {
-									alert("添加成功!");
+									layer.msg("添加成功!");
 								} else {
-									alert("添加失败!");
+									layer.msg("添加失败!");
 								}
 							}
 						});
@@ -218,30 +221,30 @@
 			var videoUrl = $("#video").get(0).files[0];
 			var regImg = /\.(mp4|webm|ogg)$/;
 			if (!regImg.test($("#video").val())) {
-				alert("视频目前只支持.mp4,webm,ogg这三种类型.");
+				layer.msg("视频目前只支持.mp4,webm,ogg这三种类型.");
 				//清空文件域
 				var file = $("#video");
 				file.after(file.clone().val(""));
 				file.remove();
 				return false;
-			}else{
-				if(!getPhotoSize()){
-					
-				}else{
-					$("video").prop("src", window.URL.createObjectURL(videoUrl));
+			} else {
+				if (!getPhotoSize()) {
+
+				} else {
+					$("video")
+							.prop("src", window.URL.createObjectURL(videoUrl));
 				}
-				
-			};
-			
-			
-			
+
+			}
+			;
+
 		};
 
 		function uploadFile() {
 
 			var video = $("#video").get(0).files[0];
 			if (video == null) {
-				alert("请选择上传的视频再进行上传操作！");
+				layer.msg("请选择上传的视频再进行上传操作！");
 			} else {
 				var formData = new FormData();
 				formData.append("file", video);
@@ -266,9 +269,9 @@
 						if (result.code == 100) {
 							var path = document.getElementById("videopath");
 							path.value = result.extend.path;
-							alert("视频上传成功!");
+							layer.msg("视频上传成功!");
 						} else {
-							alert("视频上传失败!");
+							layer.msg("视频上传失败!");
 						}
 					}
 				});
@@ -285,12 +288,11 @@
 			$("#progress").html(per + "%");
 			$("#progress").css("width", per + "%");
 		}
-		
-		
+
 		//判断视频大小和格式
 		function getPhotoSize() {
 			var obj = document.getElementById("video");
-			
+
 			var fileSize = 0;
 			var isIE = /msie/i.test(navigator.userAgent) && !window.opera;
 			if (isIE && !obj.files) {
@@ -301,14 +303,14 @@
 			} else {
 				fileSize = obj.files[0].size;
 			}
-			fileSize = Math.round(fileSize / 1024 * 100 ) / 100; //单位为KB
+			fileSize = Math.round(fileSize / 1024 * 100) / 100; //单位为KB
 			if (fileSize >= 300000) {
-				alert("单个视频最大为300MB，请重新上传!");
+				layer.msg("单个视频最大为300MB，请重新上传!");
 				var file = $("#video");
 				file.after(file.clone().val(""));
 				file.remove();
 				return false;
-			}else{
+			} else {
 				return true;
 			}
 		}

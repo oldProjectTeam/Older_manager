@@ -383,20 +383,6 @@
 		$("#addvideo_btn").click(function() {
 			location.href = "${APP_PATH }/video/intoAddVideo/";
 		});
-
-		//修改按钮
-		$(".update-btn")
-				.click(
-						function() {
-							window.location.href = "static/oldback/educationManage/updatecourse.jsp";
-						});
-		//查看按钮
-		$(".courseview-btn")
-				.click(
-						function() {
-							window.location.href = "static/oldback/educationManage/courseview.jsp";
-						});
-
 		//搜索按钮
 		$("#searchvideo").click(function() {
 			search(1);

@@ -116,28 +116,28 @@
 							<form id="formid">
 								<table class="table table-bordered table-hover text-center">
 									<tr>
-										<td>老人姓名</td>
+										<td><font color="red">*</font>老人姓名</td>
 										<td><select id="oldman_name" class="form-control"
 											name="oldmanId">
 										</select></td>
-										<td>医生姓名</td>
-										<td><input name="doctor" type="text" class="form-control">
-										</td>
+										<td><font color="red">*</font>医生姓名</td>
+										<td><input name="doctor" type="text" class="form-control"
+											id="doctorName"></td>
 									</tr>
 									<tr>
 
-										<td>健康状况</td>
-										<td><textarea class="form-control" rows="2" name="health"></textarea></td>
-										<td>健康评估</td>
+										<td><font color="red">*</font>健康状况</td>
+										<td><textarea class="form-control" rows="2" name="health"
+												id="healthInfo"></textarea></td>
+										<td><font color="red">*</font>健康评估</td>
 										<td><textarea class="form-control" rows="2"
-												name="healthdataassessment"></textarea></td>
+												name="healthdataassessment" id="healthUltimate"></textarea></td>
 									</tr>
 									<tr>
-										<td>医生建议</td>
+										<td><font color="red">*</font>医生建议</td>
 										<td colspan="3"><textarea class="form-control" rows="2"
-												name="suggest"></textarea></td>
+												name="suggest" id="doctorSuggest"></textarea></td>
 									</tr>
-
 								</table>
 							</form>
 						</div>
@@ -555,24 +555,32 @@
 				});
 
 		//点击保存	
-		$("#save_assess_btn").click(function() {
-			// alert($("#formid").serialize());
-			$.ajax({
-				url : "${APP_PATH}/access/addhealthassess",
-				type : "POST",
-				data : $("#formid").serialize(),
-				success : function(result) {
+		$("#save_assess_btn").click(
+				function() {
+					if ($("#doctorName").val() == ''
+							|| $("#healthInfo").val() == ''
+							|| $("#healthUltimate").val() == ''
+							|| $("#doctorSuggest").val() == '') {
+						layer.msg("请填写完必填项再保存");
+					} else {
+						$.ajax({
+							url : "${APP_PATH}/access/addhealthassess",
+							type : "POST",
+							data : $("#formid").serialize(),
+							success : function(result) {
 
-					if (result.code == 100) {
-						//1.关闭模态框
-						$("#add_modal").modal('hide');
-						go(totalRecord, oldmanname, healthname);
+								if (result.code == 100) {
+									//1.关闭模态框
+									$("#add_modal").modal('hide');
+									go(totalRecord, oldmanname, healthname);
+									layer.msg("添加成功");
+									$("#formid")[0].reset();
+								}
+							}
+
+						});
 					}
-				}
-
-			});
-
-		});
+				});
 
 		//编辑信息按钮，弹出模态框
 		$(document).on(
