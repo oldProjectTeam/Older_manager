@@ -206,4 +206,15 @@ public class BrandController {
 			}
 		}
 	}
+
+	@RequestMapping("/Brand_Details")
+	 public String Brand_Details(Integer id,HttpServletRequest request){
+		BrandWithBLOBs brand=brandService.findBrandById(id);
+		request.setAttribute("brand", brand);
+		 return "/oldback/oldbackshopping/Brand_detailed";
+	 }
+
 }
+
+
+

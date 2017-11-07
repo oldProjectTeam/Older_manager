@@ -497,7 +497,8 @@ $("#batchDel_btn").click(function(){
 
 		}); */
 		function generateOrders(id) {
-			window.location.href = "Brand_detailed.html?=" + id;
+			 
+			window.location.href = "${APP_PATH}/brand/Brand_Details.action?id=" + id;
 		};
 		/*品牌-查看*/
 		function member_show(title, url, id, w, h) {
