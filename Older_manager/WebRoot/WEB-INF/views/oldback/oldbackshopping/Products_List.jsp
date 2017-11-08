@@ -322,8 +322,7 @@
 		
 	/*产品-停用*/
 	function member_stop(obj, id) {
-		layer
-				.confirm(
+		layer.confirm(
 						'确认要停用吗？',
 						function(index) {
 							$(obj)
@@ -407,9 +406,10 @@
 	});
 	
 	//加载商品信息
-	
+	var pageNum="";
 	function products_info(result){
 		$("#sample-table tbody").empty();
+		pageNum=result.extend.pageInfo.pageNum;
 		$.each(result.extend.pageInfo.list,function(index,item){
 			var checktd=$("<td><input type='checkbox' class='item_check'/></td>");
 			var proNum=$("<td></td>").append(item.number).attr("state_num",item.state);
@@ -420,9 +420,28 @@
 			var proAddtime=$("<td></td>").append(item.addtime);
 			var proAuditStatus=$("<td></td>").append(item.auditstatus==1?"通过":"等待审核");
 			var	proState=$("<td></td>").append(item.state==1?"已启用":"已停用");
-			var startBtn=$("<button></button>").addClass("btn btn-primary btn-sm block_btn").append("停用");
-			var updatBtn=$("<button></button>").addClass("btn btn-warning btn-sm compile_btn").append("编辑");
-			var deleteBtn=$("<button></button>").addClass("btn btn-danger btn-sm delet_produt_btn").append("删除");
+			var startBtn='';
+			if(item.state==1){
+				startBtn=$("<button title='停用'></button>").addClass("btn btn-success btn-sm block_btn")
+				.append("<span class='icon-ok' aria-hidden='true'></span>");
+				 
+				startBtn.click(function(){
+					product_stop(this,item.number);
+				});
+			}else{
+				startBtn=$("<button title='启用'></button>").addClass("btn btn-default btn-sm block_btn")
+				.append("<span class='icon-remove' aria-hidden='true'></span>");
+				 
+				startBtn.click(function(){
+					product_start(this,item.number);
+				});
+				
+			}
+			
+			var updatBtn=$("<button title='编辑'></button>").addClass("btn btn-warning btn-sm compile_btn")
+			.append("<span class='icon-edit' aria-hidden='true'></span>");
+			var deleteBtn=$("<button title='删除'></button>").addClass("btn btn-danger btn-sm delet_produt_btn")
+			.append("<span class='icon-trash' aria-hidden='true'></span>");;
 			var btntd=$("<td></td>").append(startBtn).append(updatBtn).append(deleteBtn);
 			$("<tr></tr>").append(checktd).append(proNum).append(proName)
 					  .append(proOrPrice).append(proNowPrice)
@@ -486,36 +505,98 @@
 		pageUl.append(lastPrePage).append(lastPage).appendTo("#sample-table_paginate");
 	}
 	
-	//点击停用
-	$(document).on("click",".block_btn",function(){
-		var state=$(this).parents("tr").find("td:eq(1)").attr("state_num");
-		var produtNumber=$(this).parents("tr").find("td:eq(1)").text();
-		
-		if(state==1){
-			if(confirm("你确定要停用吗")){
-				$.ajax({
-					url:"${APP_PATH}/shopping/updateProduct/"+produtNumber,
-					data:"state=0",
-					type:"POST",
-					success:function(result){
-						alert(result.msg);
-					}
+	//产品停用
+	function product_stop(obj,produtNumber){
+		 
+		layer.confirm("你确定要停用吗",{
+			offset:['25%']
+		},function(index){
+			layer.msg('正在停用', {
+				  icon: 16,
+				  offset:['25%']
+				  ,shade: 0.01
 				});
-			}
-		}else{
-			if(confirm("你确定要启用吗")){
-				$.ajax({
-					url:"${APP_PATH}/shopping/updateProduct/"+produtNumber,
-					data:"state=1",
-					type:"POST",
-					success:function(result){
-						alert(result.msg);
+			$.ajax({
+				url:"${APP_PATH}/shopping/updateProduct/"+produtNumber,
+				data:"state=0",
+				type:"POST",
+				success:function(result){	
+					if(result.code==100){
+						layer.msg('已停用!', {
+							icon : 5,
+							offset:['25%'],
+							time : 1000
+						});
+					  $(obj).parents("tr").find("td:eq(8)").html("已停用");
+					  $(obj).unbind("click");
+					  $(obj).find("span").removeClass("icon-ok");
+					  $(obj).find("span").addClass("icon-remove");
+					  $(obj).removeClass("btn-success");
+					  $(obj).addClass("btn-default");
+					   
+					  
+					  $(obj).click(function(){
+						  product_start(obj,produtNumber);
+					  });
+						
+					}else{
+						layer.msg('修改失败!', {
+							icon : 5,
+							offset:['25%'],
+							time : 1000
+						});
 					}
-				});
-			}
-		}
-	});
+								
+				}
+			});
+			
+		});
+	}
 	
+	//产品启用
+	function product_start(obj,produtNumber){
+		layer.confirm("你确定要启用吗?",{
+			offset:['25%']
+		},function(index){
+			layer.msg('正在启用', {
+				  icon: 16
+				  ,shade: 0.01,
+				  offset:['25%'],
+			 });
+			$.ajax({
+				url:"${APP_PATH}/shopping/updateProduct/"+produtNumber,
+				data:"state=1",
+				type:"POST",
+				success:function(result){
+					if(result.code==100){
+						$(obj).parents("tr").find("td:eq(8)").html("已启用");
+						$(obj).addClass("btn-success");
+						$(obj).removeClass("btn-default");
+						$(obj).find("span").removeClass("icon-remove");
+					    $(obj).find("span").addClass("icon-ok");
+						$(obj).unbind("click");
+						$(obj).click(function(){
+							  product_stop(obj,produtNumber);
+						  });
+						layer.msg('已启用!', {
+							icon :6,
+							offset:['25%'],
+							time : 1000
+						});
+					}else{
+						layer.msg('修改失败!', {
+							icon : 5,
+							offset:['25%'],
+							time : 1000
+						});
+					}
+				}
+			});
+		});
+	}
+	
+	 
+	 
 	//页面打开就加载数据
 	 $.ajax({
 		url:"${APP_PATH}/shopping/products",
@@ -530,13 +611,12 @@
 			prod_page_num(result);
 		}
 	}); 
-	
 	//点击分页发送ajax
 	function page_send_info(pn){
 		 $.ajax({
 				url:"${APP_PATH}/shopping/products",
 				type:"GET",
-				data:"pn"+pn,
+				data:"pn="+pn,
 				success:function(result){
 					//console.log(result);
 					//加载商品信息
@@ -583,26 +663,44 @@
 	//批量删除
 	$("#delete_products_info").click(function(){
 		if($(".item_check:checked").length!=0){
-		var prodName="";
-		var prodNumber="";
-		$.each($(".item_check:checked"),function(){
-			prodName+=$(this).parents("tr").find("td:eq(2)").text()+",";
-			prodNumber+=$(this).parents("tr").find("td:eq(1)").text()+"-";
-		});
-		prodName.substring(0,prodName.length-1);
-		prodNumber.substring(0,prodNumber.length-1);
-		
-		if(confirm("你确定要删除{"+prodName+"}吗？")){
-			$.ajax({
-				url:"${APP_PATH}/shopping/deleteProduct/"+prodNumber,
-				type:"DELETE",
-				success:function(result){
-					alert(result.msg);
-				}
+			var prodName="";
+			var prodNumber="";
+			$.each($(".item_check:checked"),function(){
+				prodName+=$(this).parents("tr").find("td:eq(2)").text()+",";
+				prodNumber+=$(this).parents("tr").find("td:eq(1)").text()+"-";
 			});
-		}
+			prodName.substring(0,prodName.length-1);
+			prodNumber.substring(0,prodNumber.length-1);
+			
+			if(confirm("你确定要删除{"+prodName+"}吗？")){
+				$.ajax({
+					url:"${APP_PATH}/shopping/deleteProduct/"+prodNumber,
+					type:"DELETE",
+					success:function(result){
+						if(result.code==100){
+							layer.msg("删除成功！",{
+								icon:6,
+								offset:["25%"],
+								time:1000
+							});
+							
+						}else{
+							layer.msg('删除失败!', {
+								icon : 5,
+								offset:['25%'],
+								time : 1000
+							});
+						}
+					}
+				});
+			}
 		}else{
-			alert("亲，请选择要删除的产品");
+			layer.msg("亲，请选择要删除的产品！",{
+				icon:6,
+				offset:["25%"],
+				time:1000
+			});
+			 
 		}
 	});
 	
@@ -610,15 +708,31 @@
 	$(document).on("click",".delet_produt_btn",function(){
 		var produName=$(this).parents("tr").find("td:eq(2)").text();
 		var produNumber=$(this).parents("tr").find("td:eq(1)").text();
-		if(confirm("你确定要删除{"+produName+"}吗?")){
+		layer.confirm("你确定要删除{"+produName+"}吗?",{
+			offset:['20%']
+		},function(index){
 			$.ajax({
 				url:"${APP_PATH}/shopping/deleteProduct/"+produNumber,
 				type:"DELETE",
 				success:function(result){
-					alert(result.msg);
+					if(result.code==100){
+						layer.msg("删除成功！",{
+							icon:6,
+							offset:["25%"],
+							time:1000
+						});
+						
+					}else{
+						layer.msg('删除失败!', {
+							icon : 5,
+							offset:['25%'],
+							time : 1000
+						});
+					}
 				}
 			});
-		}
+		});
+		
 	});
 </script>
 </body>

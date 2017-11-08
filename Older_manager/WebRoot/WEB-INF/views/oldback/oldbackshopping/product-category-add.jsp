@@ -177,7 +177,12 @@
 			
 			var id=$("#typeId").val();
 			if(id==undefined||id==''){
-				alert("请先选择产品类型！");
+				 
+				layer.msg('请先选择产品类型！!', {
+					icon : 6,
+					time : 1000,
+					offset: ['35%']
+				});
 				return false;
 			}
 			var name=$("#name").val();
@@ -190,7 +195,11 @@
 				type:"POST",
 				success:function(result){
 					if(result.code==100){
-						 alert("删除成功！"); 
+						layer.msg('删除成功!', {
+							icon : 6,
+							time : 1000,
+							offset: ['35%']
+						}); 
 						 //刷新父类页面
 						 parent.location.reload();  
 					}
@@ -219,7 +228,11 @@
 		$("#stop_add").click(function(){
 			var id=$("#typeId").val();
 			if(id==undefined||id==''){
-				alert("请先选择产品类型！");
+				layer.msg('请先选择产品类型！!', {
+					icon : 6,
+					time : 1000,
+					offset: ['35%']
+				});
 				return false;
 			}
 			 
@@ -229,6 +242,7 @@
 				type:"POST",
 				success:function(result){
 					if(result.code==100){
+						 
 						 if(state==0){
 							 state=1;
 							$("#flag").html("禁用该类型");
@@ -277,7 +291,12 @@
 			
 			var id=$("#typeId").val();
 			if(id==undefined ||id==''){
-				alert("此类型ID已失效，重新选择类型！");
+				 
+				layer.msg('此类型ID已失效，重新选择类型!', {
+					icon : 6,
+					time : 1000,
+					offset: ['35%']
+				});
 				return false;
 				
 			}
@@ -378,7 +397,12 @@
 		function vail_add_form(){
 			var pId=$("#parentid").val();
 			if(pId==undefined ||pId==''){
-				 alert("产品父类型Id失效,请重新选择类型！");
+				  
+				 layer.msg('产品父类型Id失效,请重新选择类型!', {
+						icon : 6,
+						time : 1000,
+						offset: ['35%']
+				 });
 				return false;
 			}
 			var name=$("#name1").val();
@@ -452,7 +476,12 @@
 		$("#add_btn").click(function(){
 			var pId=$("#parentid").val();
 			if(pId==undefined ||pId==''){
-				alert("请先选择产品类型！");
+				 
+				 layer.msg('请先选择产品类型！', {
+						icon : 6,
+						time : 1000,
+						offset: ['35%']
+				 });
 				return false;
 			}
 			

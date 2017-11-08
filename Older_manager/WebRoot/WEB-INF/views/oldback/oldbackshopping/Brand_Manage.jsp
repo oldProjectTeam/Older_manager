@@ -458,6 +458,7 @@ $("#batchDel_btn").click(function(){
 			layer.open({
 				icon : 2,
 				title : '提示框',
+				offset: ['35%', '45%'],
 				content : '您出入的字数超多限制!',
 			});
 			// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
@@ -471,6 +472,19 @@ $("#batchDel_btn").click(function(){
 	}
   
    function edit_brand(id){
+	   
+	   /* layer.open({
+		   type:3,
+		   icon:3,
+		   offset:['20%'],
+		   time:2000
+	   }); */
+	    layer.msg('加载中', {
+		   icon: 16
+		   ,shade: 0.01,
+		   time:1000,
+		   offset:['20%'],
+		 }); 
 	   $("#imgDiv").hide();
 	   $.ajax({
 		   url:"${APP_PATH}/brand/findBrand",

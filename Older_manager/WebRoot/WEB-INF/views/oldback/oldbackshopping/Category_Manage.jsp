@@ -58,6 +58,7 @@
 <script type="text/javascript"
 	src="${APP_PATH}/static/shop/Widget/zTree/js/jquery.ztree.all-3.5.min.js"></script>
 <script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -129,9 +130,14 @@
 			callback : {
 				beforeClick : function(treeId, treeNode) {
 					var zTree = $.fn.zTree.getZTreeObj("tree");
-					 
+					 layer.msg('加载中', {
+						   icon: 16
+						   ,shade: 0.01,
+						   time:1000,
+						   offset:['20%'],
+					 });
 					demoIframe.attr("src","productType/product-category-add.action?id="+treeNode.id);
-					 
+					
 					if (treeNode.isParent) {
 						
 						zTree.expandNode(treeNode);

@@ -69,6 +69,37 @@ public class BrandController {
 	}
 	
 	/**
+	 * 返回所有品牌信息，JSON数据
+	 * @param pn
+	 * @param brand
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("finally")
+	@RequestMapping("/getAllBrand")
+	@ResponseBody
+	public Msg getAllBrand(@RequestParam(value="pn",defaultValue="1")Integer pn,BrandWithBLOBs brand) throws Exception{
+		PageHelper.startPage(pn,4);
+		List<BrandWithBLOBs>brands=null;
+		PageInfo pageInfo=null;
+		boolean flag=false;
+		try {
+			brands=brandService.findAllBrand(brand);
+			pageInfo=new PageInfo(brands,3);
+			flag=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			if(flag){
+				return Msg.success().add("pageInfo",pageInfo);
+			}else{
+				return Msg.fail();
+			}
+		}
+	}
+	
+	
+	/**
 	 * 插入品牌信息
 	 * @param brand
 	 * @return
