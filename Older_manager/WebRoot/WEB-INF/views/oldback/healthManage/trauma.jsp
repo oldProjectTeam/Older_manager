@@ -18,6 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- 引入样式 -->
 <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
  <script src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+ <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
   </head>
   <body>
     <div class="col-sm-12">
@@ -247,6 +249,10 @@ var totalRecord, currentNum,oldmanname="", traumaname="";
 	});
 	function go(pn,oldmanname,traumaname ) {
 		$("#old_delete_all_btn").attr("disabled", true);
+		layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
 		$.ajax({
 			url : "${APP_PATH}/trauma/selectalltrauma",
 			data : {
