@@ -1,6 +1,7 @@
 package com.older.manager.controller.oldback;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -12,8 +13,8 @@ public class HealthController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/healthInfo")
-	public String healthInfo() {
+	@RequestMapping("/healthInfo/{pn}")
+	public String healthInfo(@PathVariable("pn") Integer pn) {
 		return "oldback/healthManage/healthInfo";
 	}
 

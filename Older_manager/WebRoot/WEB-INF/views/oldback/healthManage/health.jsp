@@ -67,7 +67,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="list-group">
-					<a href="health/healthInfo" class="list-group-item text-center"><img
+					<a href="health/healthInfo/1" class="list-group-item text-center"><img
 						src="${APP_PATH}/static/images/jiangkang.png" alt="..."
 						class="img-rounded"> <br> <br>健康数据 </a>
 				</div>

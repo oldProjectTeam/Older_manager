@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'addhealthInfo.jsp' starting page</title>
+<title>My JSP 'healthInfo.jsp' starting page</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -26,9 +26,12 @@
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
 	rel="stylesheet">
+<script
+	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
 </head>
+
 <body>
 	<!-- 头部 -->
 	<div class="col-md-12">
@@ -42,230 +45,289 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-			     <center><font color="red" ><i id="errormsg"></i></font></center>
+			  <center><font color="red" ><i id="errormsg"></i></font></center>
 				<form action="" id="addhealthinfo_form">
 					<table class="table table-bordered">
-						<tr align="center">
+						<tr>
 							<td colspan="8">基本信息</td>
 						</tr>
 						<tr>
-							<td><font color=red>*</font>老人姓名：</td>
-							<td><SELECT id="oldman_name" class="form-control"
-								name="oldmanId">
-							</SELECT></td>
+							<td>老人姓名：</td>
+							<td><p>${healthinfo.oldman.name}</p></td>
 
 							<td><font color=red>*</font>身高:</td>
 							<td>
 								<div class="form-inline">
 									<input class="form-control" style="width:70%" id="heightid"
-										required="required" placeholder="列如：165.00" name="height">cm
-								</div> <font color="red" size="1"><i id="msg"></i></font>
+										required="required" value="${healthinfo.height}"
+										placeholder="列如：165.00" name="height">cm
+								</div>
+								<font color="red" size="1"><i id="msgheightid"></i></font>
 							</td>
 							<td><font color=red>*</font>体重：</td>
 							<td>
 								<div class="form-inline">
 									<input class="form-control" style="width:70%" id="bodyweightid"
-										required="required" placeholder="列如58.00" name="bodyweight">kg
+										required="required" value="${healthinfo.bodyweight}"
+										placeholder="列如58.00" name="bodyweight">kg
 								</div><font color="red" size="1"><i id="msgbodyweightid"></i></font>
 							</td>
 							<td>臀围：</td>
-							<td>
-							    <div class="form-inline">
+							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="numtwoid"
-										placeholder="列如：33.00" name="numtwo">cm
-							    </div>
-								  <font color="red" size="1"><i id="msgnumtwoid"></i></font>
-								</td>
+										value="${healthinfo.numtwo}" placeholder="列如：33.00"
+										name="numtwo">cm
+								</div><font color="red" size="1"><i id="msgnumtwoid"></i></font></td>
 						</tr>
 						<tr>
 							<td>胸围：</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="numoneid"
-										placeholder="列如：28.00" name="numone">cm
+										value="${healthinfo.numone}" placeholder="列如：28.00"
+										name="numone">cm
 								</div><font color="red" size="1"><i id="msgnumoneid"></i></font></td>
 							<td>腰臂围比值:</td>
 							<td><input class="form-control" name="armcirumferenceratio" id="armcirumferenceratioid"
-								placeholder="列如：0.50"><font color="red" size="1"><i id="msgarmcirumferenceratioid"></i></font></td>
+								value="${healthinfo.armcirumferenceratio}" placeholder="列如：0.50">
+								<font color="red" size="1"><i id="msgarmcirumferenceratioid"></i></font>
+								</td>
 							<td>个体指数：</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" name="bmi" id="bmiid"
-										placeholder="列如：0.50">kg/m2
-								</div><font color="red" size="1"><i id="msgbmiid"></i></font></td>
+										value="${healthinfo.bmi}" placeholder="列如：0.50">kg/m2
+								</div>
+								<font color="red" size="1"><i id="msgbmiid"></i></font>
+								</td>
 							<td>腰围</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="waistcircumferenceid"
-										name="waistcircumference" placeholder="列如：28.00">cm
-								</div><font color="red" size="1"><i id="msgwaistcircumferenceid"></i></font></td>
+										name="waistcircumference"
+										value="${healthinfo.waistcircumference}"
+										placeholder="列如：28.00">cm
+								</div>
+								<font color="red" size="1"><i id="msgwaistcircumferenceid"></i></font>
+								</td>
 						</tr>
-						<tr align="center">
+						<tr>
 							<td colspan="8">身体信息</td>
 						</tr>
 						<tr>
 							<td>左眼视力:</td>
 							<td><INPUT type="text" class="form-control"
-								name="lefteyesight" placeholder="列如：1.2米"></td>
+								name="lefteyesight" value="${healthinfo.lefteyesight}"
+								placeholder="列如：1.2米"></td>
 							<td>右眼视力:</td>
 							<td><INPUT type="text" class="form-control"
-								name="righteyesight" placeholder="列如：1.2米"></td>
+								name="righteyesight" value="${healthinfo.righteyesight}"
+								placeholder="列如：1.2米"></td>
 							<td>矫正左眼视力:</td>
 							<td><INPUT type="text" class="form-control"
-								name="correctlefteyesight" placeholder="列如：1.2米"></td>
+								name="correctlefteyesight"
+								value="${healthinfo.correctlefteyesight}" placeholder="列如：1.2米"></td>
 							<td>矫正右眼视力</td>
 							<td><INPUT type="text" class="form-control"
-								name="correctrighteyesight" placeholder="列如：1.2米"></td>
+								name="correctrighteyesight"
+								value="${healthinfo.correctrighteyesight}" placeholder="列如：1.2米"></td>
 						</tr>
 						<tr>
 							<td><font color=red>*</font>右侧血压：</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="rightbloodpressureid"
-										required="required" placeholder="列如：150.00"
-										name="rightbloodpressure">mmHg
-								</div><font color="red" size="1"><i id="msgrightbloodpressureid"></i></font></td>
+										value="${healthinfo.rightbloodpressure}" required="required"
+										placeholder="列如：150.00" name="rightbloodpressure">mmHg
+								</div>
+								<font color="red" size="1"><i id="msgrightbloodpressureid"></i></font>
+								</td>
 
 							<td><font color=red>*</font>左侧血压:</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="leftbloodpressureid"
-										required="required" placeholder="列如：150.00"
-										name="leftbloodpressure">mmHg
-								</div><font color="red" size="1"><i id="msgleftbloodpressureid"></i></font></td>
+										value="${healthinfo.leftbloodpressure}" required="required"
+										placeholder="列如：150.00" name="leftbloodpressure">mmHg
+								</div>
+								<font color="red" size="1"><i id="msgleftbloodpressureid"></i></font>
+								</td>
 							<td>呼吸频率:</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="breathingrateid"
-										name="breathingrate" placeholder="列如：150">次/分钟
-								</div><font color="red" size="1"><i id="msgbreathingrateid"></i></font></td>
+										value="${healthinfo.breathingrate}" name="breathingrate"
+										placeholder="列如：150">次/分钟
+								</div>
+								<font color="red" size="1"><i id="msgbreathingrateid"></i></font>
+								</td>
 							<td>脉率：</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="pulsefrequencyid"
-										name="pulsefrequency" placeholder="列如：150">次/分钟
-								</div><font color="red" size="1"><i id="msgpulsefrequencyid"></i></font></td>
+										value="${healthinfo.pulsefrequency}" name="pulsefrequency"
+										placeholder="列如：150">次/分钟
+								</div>
+								<font color="red" size="1"><i id="msgpulsefrequencyid"></i></font>
+								</td>
 						</tr>
 						<tr>
 							<td>口唇:</td>
-							<td><INPUT type="text" class="form-control" name="oral"></td>
+							<td><INPUT type="text" class="form-control" name="oral"
+								value="${healthinfo.oral}"></td>
 							<td>齿列：</td>
-							<td><INPUT type="text" class="form-control" name="dentition"></td>
+							<td><INPUT type="text" class="form-control" name="dentition"
+								value="${healthinfo.dentition}"></td>
 							<td>咽部：</td>
 							<td><INPUT type="text" class="form-control"
-								name="pharyngeal"></td>
+								name="pharyngeal" value="${healthinfo.pharyngeal}"></td>
 							<td>皮肤：</td>
-							<td><INPUT type="text" class="form-control" name="skin"></td>
+							<td><INPUT type="text" class="form-control" name="skin"
+								value="${healthinfo.skin}"></td>
 						</tr>
 						<tr>
 							<td>巩膜:</td>
-							<td><INPUT type="text" class="form-control" name="sclera"></td>
+							<td><INPUT type="text" class="form-control" name="sclera"
+								value="${healthinfo.sclera}"></td>
 							<td>淋巴结:</td>
-							<td><INPUT type="text" class="form-control" name="lymphnode"></td>
+							<td><INPUT type="text" class="form-control" name="lymphnode"
+								value="${healthinfo.lymphnode}"></td>
 							<td>心律:</td>
 							<td><div class="form-inline">
-									<input class="form-control" style="width:70%" name="heartrate" id="heartrateid"
-										placeholder="列如：80">次/分钟
+									<input class="form-control" value="${healthinfo.heartrate}" id="heartrateid"
+										style="width:70%" name="heartrate" placeholder="列如：80">次/分钟
 								</div><font color="red" size="1"><i id="msgheartrateid"></i></font></td>
 							<td>脾大：</td>
-							<td><select class="form-control" name="splenomegaly">
-									<OPTION>否</OPTION>
-									<OPTION>是</OPTION>
+							<td><select class="form-control" name="splenomegaly"
+								id="splenomegalyid">
+									<OPTION value="是">是</OPTION>
+									<OPTION value="否">否</OPTION>
 							</select></td>
 						<tr>
 							<td>桶状胸:</td>
-							<td><select class="form-control" name="barrelchest">
-									<OPTION>否</OPTION>
-									<OPTION>是</OPTION>
+							<td><select class="form-control" name="barrelchest"
+								id="barrelchestid">
+									<OPTION value="是">是</OPTION>
+									<OPTION value="否">否</OPTION>
 							</select></td>
 							<td>呼吸音:</td>
-							<td><select class="form-control" name="breathsounds">
-									<OPTION>正常</OPTION>
-									<OPTION>异常</OPTION>
+							<td><select class="form-control" name="breathsounds"
+								id="breathsoundsid">
+									<OPTION value="正常">正常</OPTION>
+									<OPTION value="异常">异常</OPTION>
 							</select></td>
 							<td>罗音:</td>
-							<td><INPUT type="text" class="form-control" name="rale"></td>
+							<td><INPUT type="text" class="form-control" name="rale"
+								value="${healthinfo.rale}"></td>
 							<td>体温：</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="bodytemperatureid"
-										placeholder="列如：32.50" name="bodytemperature">℃
-								</div><font color="red" size="1"><i id="msgbodytemperatureid"></i></font></td>
+										placeholder="列如：32.50" value="${healthinfo.bodytemperature}"
+										name="bodytemperature">℃
+								</div>
+								<font color="red" size="1"><i id="msgbodytemperatureid"></i></font>
+								</td>
 						</tr>
 						<tr>
 							<td>听力:</td>
-							<td><INPUT type="text" class="form-control" name="hearing"></td>
+							<td><INPUT type="text" class="form-control" name="hearing"
+								value="${healthinfo.hearing}"></td>
 							<td>杂音:</td>
-							<td><select class="form-control" name="noise">
-									<OPTION>否</OPTION>
-									<OPTION>是</OPTION>
+							<td><select class="form-control" name="noise" id="noiseid">
+									<OPTION value="是">是</OPTION>
+									<OPTION value="否">否</OPTION>
 							</select></td>
 							<td>压痛:</td>
-							<td><select class="form-control" name="tenderness">
-									<OPTION>否</OPTION>
-									<OPTION>是</OPTION>
+							<td><select class="form-control" name="tenderness"
+								id="tendernessid">
+									<OPTION value="是">是</OPTION>
+									<OPTION value="否">否</OPTION>
 							</select></td>
 							<td>包块:</td>
-							<td><select class="form-control" name="bagpiece">
-									<OPTION>否</OPTION>
-									<OPTION>是</OPTION>
+							<td><select class="form-control" name="bagpiece"
+								id="bagpieceid">
+									<OPTION value="是">是</OPTION>
+									<OPTION value="否">否</OPTION>
 							</select></td>
 						</tr>
 						<TR>
 							<td>症状：</td>
-							<td><input class="form-control" name="symptoms"></td>
+							<td><input class="form-control" name="symptoms"
+								value="${healthinfo.symptoms}"></td>
 							<td colspan="6"></td>
 						</TR>
 						<tr>
-						<tr align="center">
+						<tr>
 							<td colspan="8">日常习惯</td>
 						</tr>
 						<tr>
 							<td>饮食习惯:</td>
 							<td><INPUT type="text" class="form-control"
-								name="eationhabits"></td>
+								name="eationhabits" value="${healthinfo.eationhabits}"></td>
 							<td>锻炼频率：</td>
 							<td><INPUT type="text" class="form-control"
-								name="exercisefrequency"></td>
+								name="exercisefrequency" value="${healthinfo.exercisefrequency}"></td>
 							<td>每次锻炼时间：</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="exercisetimeid"
-										name="exercisetime" placeholder="列如：150">分钟
-								</div><font color="red" size="1"><i id="msgexercisetimeid"></i></font></td>
+										value="${healthinfo.exercisetime}" name="exercisetime"
+										placeholder="列如：150">分钟
+								</div>
+								<font color="red" size="1"><i id="msgexercisetimeid"></i></font>
+								</td>
 							<td>坚持锻炼时间：</td>
 							<td><div class="form-inline">
-									<input class="form-control" style="width:70%"  id="stickexercisetimeid"
-										placeholder="列如：3.00" name="stickexercisetime"> 年
-								</div><font color="red" size="1"><i id="msgstickexercisetimeid"></i></font></td>
+									<input class="form-control" style="width:70%" id="stickexercisetimeid"
+										value="${healthinfo.stickexercisetime}" placeholder="列如：3.00"
+										name="stickexercisetime"> 年
+								</div>
+								<font color="red" size="1"><i id="msgstickexercisetimeid"></i></font>
+								</td>
 						</tr>
 						<tr>
 							<td>锻炼方法：</td>
 							<td><INPUT type="text" class="form-control"
-								name="exerciseway"></td>
+								name="exerciseway" value="${healthinfo.exerciseway}"></td>
 							<td>吸烟状态：</td>
 							<td><INPUT type="text" class="form-control"
-								name="smokingstatus"></td>
+								name="smokingstatus" value="${healthinfo.smokingstatus}"></td>
 							<td>开始吸烟年龄：</td>
 							<td><div class="form-inline">
-									<input class="form-control" style="width:70%" id="beginsmokingageid"
+									<input class="form-control" id="beginsmokingageid"
+										value="${healthinfo.beginsmokingage}" style="width:70%"
 										name="beginsmokingage" placeholder="列如：20">岁
-								</div><font color="red" size="1"><i id="msgbeginsmokingageid"></i></font></td>
+								</div>
+								<font color="red" size="1"><i id="msgbeginsmokingageid"></i></font>
+								</td>
 							<td>戒烟年龄：</td>
 							<td><div class="form-inline">
-									<input class="form-control" style="width:70%" id="quitsmokingageid"
+									<input class="form-control" id="quitsmokingageid"
+										value="${healthinfo.quitsmokingage}" style="width:70%"
 										name="quitsmokingage" placeholder="列如：30">岁
-								</div><font color="red" size="1"><i id="msgquitsmokingageid"></i></font></td>
+								</div>
+								<font color="red" size="1"><i id="msgquitsmokingageid"></i></font>
+								</td>
 						</tr>
 						<tr>
 							<td>饮酒频率：</td>
 							<td><INPUT type="text" class="form-control" id="drinkingfrequencyid"
-								name="drinkingfrequency" placeholder="列如：2.00"><font color="red" size="1"><i id="msgdrinkingfrequencyid"></i></font></td>
+								value="${healthinfo.drinkingfrequency}" name="drinkingfrequency"
+								placeholder="列如：2.00">
+								<font color="red" size="1"><i id="msgdrinkingfrequencyid"></i></font>
+								</td>
 							<td>日饮酒量：</td>
 							<td><div class="form-inline">
-									<input class="form-control" style="width:70%" id="dailydrinkingid"
-										placeholder="列如：5.00" name="dailydrinking">两
-								</div><font color="red" size="1"><i id="msgdailydrinkingid"></i></font></td>
+									<input class="form-control" value="${healthinfo.dailydrinking}" id="dailydrinkingid"
+										style="width:70%" placeholder="列如：5.00" name="dailydrinking">两
+								</div>
+								<font color="red" size="1"><i id="msgdailydrinkingid"></i></font>
+								</td>
 							<td>开始饮酒年龄：</td>
 							<td><div class="form-inline">
-									<input class="form-control" style="width:70%" id="startdrinkingageid"
-										name="startdrinkingage" placeholder="列如：15">岁
-								</div><font color="red" size="1"><i id="msgstartdrinkingageid"></i></font></td>
+									<input class="form-control"  id="startdrinkingageid"
+										value="${healthinfo.startdrinkingage}" style="width:70%"
+										name="startdrinkingage">岁
+								</div>
+								<font color="red" size="1"><i id="msgstartdrinkingageid"></i></font>
+								</td>
 							<td>是否戒酒：</td>
-							<td><select class="form-control" name="isquitdrinking">
-									<OPTION>是</OPTION>
-									<OPTION>否</OPTION>
+							<td><select class="form-control" name="isquitdrinking"
+								id="isquitdrinkingid">
+									<OPTION value="是">是</OPTION>
+									<OPTION value="否">否</OPTION>
 							</select></td>
 						</tr>
 
@@ -273,24 +335,26 @@
 							<td>日吸烟量：</td>
 							<td><div class="form-inline">
 									<input class="form-control" style="width:70%" id="daysmokingamountid"
-										name="daysmokingamount" placeholder="列如：20">支
-								</div><font color="red" size="1"><i id="msgdaysmokingamountid"></i></font></td>
+										value="${healthinfo.daysmokingamount}" name="daysmokingamount">支
+								</div>
+								<font color="red" size="1"><i id="msgdaysmokingamountid"></i></font>
+								</td>
 							<td colspan="6"></td>
 						</tr>
-						<tr align="center">
+						<tr>
 							<td colspan="8">评价信息</td>
 						</tr>
 
 						<tr>
 							<td>健康状况评价:</td>
 							<td><textarea rows="2" cols="" class="form-control"
-									name="healthassessment"></textarea></td>
+									name="healthassessment">${healthinfo.healthassessment}</textarea></td>
 							<td>自理能力评价：</td>
 							<td><textarea rows="2" cols="" class="form-control"
-									name="selfevaluation"></textarea></td>
+									name="selfevaluation">${healthinfo.selfevaluation}</textarea></td>
 							<td>认知功能：</td>
 							<td><textarea rows="2" cols="" class="form-control"
-									name="cognitivefunction"></textarea></td>
+									name="cognitivefunction">${healthinfo.cognitivefunction}</textarea></td>
 							<td colspan="2"></td>
 						</tr>
 					</table>
@@ -299,7 +363,8 @@
 						<div align="center">
 							<BUTTON class="btn btn-success" id="save_healthinfo"
 								type="button">保存</BUTTON>
-							<button type="button" class="btn btn-info" id="back_btn">返回</button>
+							<button type="button" class="btn btn-info"
+								onClick="javascript :history.back(-1);">返回</button>
 						</div>
 					</div>
 				</form>
@@ -308,48 +373,25 @@
 
 	</div>
 
-
-
 	<script type="text/javascript">
-	  var num=new Array(0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1);
-		$(function() {
-		$("#save_healthinfo").attr("disabled",true);
-			//获取老人的名字
-			$.ajax({
-				url : "${APP_PATH}/old/selectallolderskiptakeactivity",
-				type : "GET",
-				success : function(result) {
-					$.each(result.extend.oldman, function() {
-						var optionoldmanid = $("<option></option>").append(
-								this.name).attr("value", this.id);
-						//这个是通过id的形式
-						//optionEle.appendTo("#dept_add_select");
-						//这个通过模态框的形式  模态框的id
-						optionoldmanid.appendTo("#oldman_name");
-					});
-				}
-			});
-			
-});
 		$("#save_healthinfo")
 				.click(
 						function() {
 							$
 									.ajax({
-										url : "${APP_PATH}/healthinfo/addhealthinfo",
+										url : "${APP_PATH}/healthinfo/updatehealthinfo/"
+												+ ${id},
 										type : "POST",
 										data : $("#addhealthinfo_form")
 												.serialize(),
 										success : function(result) {
 
 											if (result.code == 100) {
-												window.location.href = "${APP_PATH}/health/healthInfo/99999";
-											  //$("#errormsg").text("请检查输入类容");
+												window.location.href = "${APP_PATH}/health/healthInfo/${pn}";
 											}else if(result.code == 200){
 											   
 											   //$("#errormsg").text("请检查输入类容");
-	
-													layer.open({
+											  layer.open({
 													title : '出错了',
 													content : '请检查输入类容!'
 												});
@@ -360,24 +402,31 @@
 
 						});
 
-		//点击返回
-		$("#back_btn").click(function() {
-			window.location.href = "${APP_PATH}/health/healthInfo/${pn}";
+		$(function() {
+			$("#isquitdrinkingid").val([ "${healthinfo.isquitdrinking}" ]);
+			$("#bagpieceid").val([ "${healthinfo.bagpiece}" ]);
+			$("#tendernessid").val([ "${healthinfo.tenderness}" ]);
+			$("#noiseid").val([ "${healthinfo.noise}" ]);
+			$("#barrelchestid").val([ "${healthinfo.barrelchest}" ]);
+			$("#breathsoundsid").val([ "${healthinfo.breathsounds}" ]);
+			$("#splenomegalyid").val([ "${healthinfo.splenomegaly}" ]);
 		});
 
 		//校验******************************************************************
 		//double类型的
 		var doublenum = /^[0-9]{1,3}\.([0-9]{1,2})$/;
 		var intnum = /^\d{1,6}$/;
+		var num = new Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1);
 
 		$("#heightid").change(function() {
 			var height = $("#heightid").val();
 			if (!doublenum.test(height) && height != null) {
-				$("#msg").text("请输入正确的值");
+				$("#msgheightid").text("请输入正确的值");
 				//$("#save_healthinfo").attr("disabled",true);
 				num[0] = 0;
 			} else {
-				$("#msg").text("");
+				$("#msgheightid").text("");
 				//$("#save_healthinfo").attr("disabled",false);
 				num[0] = 1;
 				//alert(document.write(num[0])+"****************");

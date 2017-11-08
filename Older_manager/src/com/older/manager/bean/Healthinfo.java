@@ -1,28 +1,42 @@
 package com.older.manager.bean;
 
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class Healthinfo {
+	
+	
     private Integer id;
 
     private String symptoms;
-
+    @DecimalMax(value="42.00",message="体温输入的值不符合")
+    @DecimalMin(value="35.00",message="体温输入的值不符合")
     private Double bodytemperature;
-
+  
     private Integer pulsefrequency;
-
+   
     private Integer breathingrate;
-
+    @NotNull
+  
     private Double leftbloodpressure;
-
+    @NotNull
+   
     private Double rightbloodpressure;
-
+    @NotNull
+    @DecimalMax(value="300.00",message="身高输入的值不符合")
+    @DecimalMin(value="100.00",message="身高输入的值不符合")
     private Double height;
-
+    @NotNull
+    @DecimalMax(value="500.00",message="体重输入的值不符合")
     private Double bodyweight;
-
+   
     private Double waistcircumference;
-
+   
     private Double bmi;
-
+   
     private Double armcirumferenceratio;
 
     private String healthassessment;
@@ -36,25 +50,28 @@ public class Healthinfo {
     private String eationhabits;
 
     private String exercisefrequency;
-
+    @Max(value=300,message="每次锻炼时间输入的值不符合")
     private Integer exercisetime;
-
+    
     private Double stickexercisetime;
 
     private String exerciseway;
 
     private String smokingstatus;
-
+    @Max(value=150,message="开始吸烟年龄输入值不符合")
+    @Min(value=2,message="开始吸烟年龄输入值不符合")
     private Integer beginsmokingage;
-
+   
     private Integer daysmokingamount;
-
+    @Max(value=150,message="戒烟年龄输入值不符合")
+    @Min(value=2,message="戒烟年龄输入值不符合")
     private Integer quitsmokingage;
 
     private String drinkingfrequency;
-
+    
     private Double dailydrinking;
-
+    @Min(value=2,message="开始喝酒输入值不符合")
+    @Max(value=150,message="开始喝酒输入值不符合")
     private Integer startdrinkingage;
 
     private String isquitdrinking;
@@ -88,7 +105,7 @@ public class Healthinfo {
     private String breathsounds;
 
     private String rale;
-
+    @Max(value=1000,message="输入的值不符合")
     private Integer heartrate;
 
     private String heartregularity;
@@ -100,7 +117,6 @@ public class Healthinfo {
     private String bagpiece;
 
     private String splenomegaly;
-
     private Integer oldmanId;
 
     private String numone;
@@ -108,8 +124,59 @@ public class Healthinfo {
     private String numtwo;
 
     private String numthree;
+    
+    private Oldman oldman;
+    
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Healthinfo [id=" + id + ", symptoms=" + symptoms
+				+ ", bodytemperature=" + bodytemperature + ", pulsefrequency="
+				+ pulsefrequency + ", breathingrate=" + breathingrate
+				+ ", leftbloodpressure=" + leftbloodpressure
+				+ ", rightbloodpressure=" + rightbloodpressure + ", height="
+				+ height + ", bodyweight=" + bodyweight
+				+ ", waistcircumference=" + waistcircumference + ", bmi=" + bmi
+				+ ", armcirumferenceratio=" + armcirumferenceratio
+				+ ", healthassessment=" + healthassessment
+				+ ", selfevaluation=" + selfevaluation + ", cognitivefunction="
+				+ cognitivefunction + ", emotionalstate=" + emotionalstate
+				+ ", eationhabits=" + eationhabits + ", exercisefrequency="
+				+ exercisefrequency + ", exercisetime=" + exercisetime
+				+ ", stickexercisetime=" + stickexercisetime + ", exerciseway="
+				+ exerciseway + ", smokingstatus=" + smokingstatus
+				+ ", beginsmokingage=" + beginsmokingage
+				+ ", daysmokingamount=" + daysmokingamount
+				+ ", quitsmokingage=" + quitsmokingage + ", drinkingfrequency="
+				+ drinkingfrequency + ", dailydrinking=" + dailydrinking
+				+ ", startdrinkingage=" + startdrinkingage
+				+ ", isquitdrinking=" + isquitdrinking + ", oral=" + oral
+				+ ", dentition=" + dentition + ", pharyngeal=" + pharyngeal
+				+ ", lefteyesight=" + lefteyesight + ", righteyesight="
+				+ righteyesight + ", correctlefteyesight="
+				+ correctlefteyesight + ", correctrighteyesight="
+				+ correctrighteyesight + ", hearing=" + hearing
+				+ ", sportsability=" + sportsability + ", skin=" + skin
+				+ ", sclera=" + sclera + ", lymphnode=" + lymphnode
+				+ ", barrelchest=" + barrelchest + ", breathsounds="
+				+ breathsounds + ", rale=" + rale + ", heartrate=" + heartrate
+				+ ", heartregularity=" + heartregularity + ", noise=" + noise
+				+ ", tenderness=" + tenderness + ", bagpiece=" + bagpiece
+				+ ", splenomegaly=" + splenomegaly + ", oldmanId=" + oldmanId
+				+ ", numone=" + numone + ", numtwo=" + numtwo + ", numthree="
+				+ numthree + ", oldman=" + oldman + "]";
+	}
+
+	public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public Integer getId() {
         return id;
     }
 

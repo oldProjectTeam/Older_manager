@@ -19,6 +19,15 @@ public interface HealthinfoMapper {
     List<Healthinfo> selectByExample(HealthinfoExample example);
 
     Healthinfo selectByPrimaryKey(Integer id);
+    
+    
+    
+    
+    
+    //模糊查询
+    List<Healthinfo> selectByExampleWithOlder(Healthinfo healthinfo);
+
+    Healthinfo selectByPrimaryKeyWithOlder(Integer id);
 
     int updateByExampleSelective(@Param("record") Healthinfo record, @Param("example") HealthinfoExample example);
 

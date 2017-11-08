@@ -57,6 +57,72 @@
     <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
     <result column="numthree" property="numthree" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+  
+  <!-- 修改的 -->
+  <resultMap id="BaseResultMapWithOlder" type="com.older.manager.bean.Healthinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="symptoms" property="symptoms" jdbcType="VARCHAR" />
+    <result column="bodyTemperature" property="bodytemperature" jdbcType="DOUBLE" />
+    <result column="pulseFrequency" property="pulsefrequency" jdbcType="INTEGER" />
+    <result column="breathingRate" property="breathingrate" jdbcType="INTEGER" />
+    <result column="LeftBloodPressure" property="leftbloodpressure" jdbcType="DOUBLE" />
+    <result column="RightBloodPressure" property="rightbloodpressure" jdbcType="DOUBLE" />
+    <result column="height" property="height" jdbcType="DOUBLE" />
+    <result column="bodyWeight" property="bodyweight" jdbcType="DOUBLE" />
+    <result column="waistCircumference" property="waistcircumference" jdbcType="DOUBLE" />
+    <result column="bmi" property="bmi" jdbcType="DOUBLE" />
+    <result column="armCirumferenceRatio" property="armcirumferenceratio" jdbcType="DOUBLE" />
+    <result column="healthAssessment" property="healthassessment" jdbcType="VARCHAR" />
+    <result column="selfEvaluation" property="selfevaluation" jdbcType="VARCHAR" />
+    <result column="cognitiveFunction" property="cognitivefunction" jdbcType="VARCHAR" />
+    <result column="emotionalState" property="emotionalstate" jdbcType="VARCHAR" />
+    <result column="eationHabits" property="eationhabits" jdbcType="VARCHAR" />
+    <result column="exerciseFrequency" property="exercisefrequency" jdbcType="VARCHAR" />
+    <result column="exerciseTime" property="exercisetime" jdbcType="INTEGER" />
+    <result column="stickExerciseTime" property="stickexercisetime" jdbcType="DOUBLE" />
+    <result column="exerciseWay" property="exerciseway" jdbcType="VARCHAR" />
+    <result column="smokingStatus" property="smokingstatus" jdbcType="VARCHAR" />
+    <result column="beginSmokingAge" property="beginsmokingage" jdbcType="INTEGER" />
+    <result column="daySmokingAmount" property="daysmokingamount" jdbcType="INTEGER" />
+    <result column="quitSmokingAge" property="quitsmokingage" jdbcType="INTEGER" />
+    <result column="drinkingFrequency" property="drinkingfrequency" jdbcType="VARCHAR" />
+    <result column="dailyDrinking" property="dailydrinking" jdbcType="DOUBLE" />
+    <result column="startDrinkingAge" property="startdrinkingage" jdbcType="INTEGER" />
+    <result column="isQuitDrinking" property="isquitdrinking" jdbcType="VARCHAR" />
+    <result column="oral" property="oral" jdbcType="VARCHAR" />
+    <result column="dentition" property="dentition" jdbcType="VARCHAR" />
+    <result column="pharyngeal" property="pharyngeal" jdbcType="VARCHAR" />
+    <result column="leftEyesight" property="lefteyesight" jdbcType="VARCHAR" />
+    <result column="rightEyesight" property="righteyesight" jdbcType="VARCHAR" />
+    <result column="correctLeftEyesight" property="correctlefteyesight" jdbcType="VARCHAR" />
+    <result column="correctRightEyesight" property="correctrighteyesight" jdbcType="VARCHAR" />
+    <result column="hearing" property="hearing" jdbcType="VARCHAR" />
+    <result column="sportsAbility" property="sportsability" jdbcType="VARCHAR" />
+    <result column="skin" property="skin" jdbcType="VARCHAR" />
+    <result column="sclera" property="sclera" jdbcType="VARCHAR" />
+    <result column="lymphNode" property="lymphnode" jdbcType="VARCHAR" />
+    <result column="barrelChest" property="barrelchest" jdbcType="VARCHAR" />
+    <result column="breathSounds" property="breathsounds" jdbcType="VARCHAR" />
+    <result column="rale" property="rale" jdbcType="VARCHAR" />
+    <result column="heartRate" property="heartrate" jdbcType="INTEGER" />
+    <result column="heartRegularity" property="heartregularity" jdbcType="VARCHAR" />
+    <result column="noise" property="noise" jdbcType="VARCHAR" />
+    <result column="tenderness" property="tenderness" jdbcType="VARCHAR" />
+    <result column="bagPiece" property="bagpiece" jdbcType="VARCHAR" />
+    <result column="splenomegaly" property="splenomegaly" jdbcType="VARCHAR" />
+    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+    <result column="numone" property="numone" jdbcType="VARCHAR" />
+    <result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+    <result column="numthree" property="numthree" jdbcType="VARCHAR" />
+    <association property="oldman" javaType="com.older.manager.bean.Oldman">
+    	<id column="oldMan_id" property="id"/>
+    	<result column="name" property="name"/>
+    </association>
+  </resultMap>
+  
+  
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -144,6 +210,32 @@
     from healthinfo
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
+  
+  
+  
+  
+  <!-- 模糊查询 -->
+  <select id="selectByExampleWithOlder" resultMap="BaseResultMapWithOlder" parameterType="com.older.manager.bean.Healthinfo" >
+    select h.*,o.id,o.name from healthinfo h,oldman o where h.oldMan_id=o.id
+     <if test="oldman!=null">
+        	<if test="oldman.name!=null and oldman.name!=''">
+        		and o.name like '%${oldman.name}%'
+        	</if>
+        </if>
+       <if test="symptoms!=null and symptoms!=''"></if>
+   
+  </select>
+  <select id="selectByPrimaryKeyWithOlder" resultMap="BaseResultMapWithOlder" parameterType="java.lang.Integer" >
+    select h.*,o.id,o.name from healthinfo h,oldman o where h.oldMan_id=o.id
+   and h.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from healthinfo
     where id = #{id,jdbcType=INTEGER}
