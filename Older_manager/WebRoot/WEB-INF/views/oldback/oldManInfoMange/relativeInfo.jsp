@@ -108,7 +108,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ul class="nav nav-tabs">
-				<li role="presentation"><a href="javascript:history.back(-1);">老人基本信息</a></li>
+				<li role="presentation"><a href="${APP_PATH}/old/selectolder/${id}&${selectpn}">老人基本信息</a></li>
 				<li role="presentation" class="active"><a>亲属信息</a></li>
 			</ul>
 		</div>
@@ -364,8 +364,17 @@
 
 								//为删除按钮添加一个自定义的属性，来表示当前删除员工的id
 								delBtn.attr("del-id", item.id);
+								var Relbtn = $("<button></button>")
+										.addClass(
+												"btn  btn-info btn-sm relative_btn")
+										.append(
+												$("<span></span>")
+														.addClass(
+																"glyphicon glyphicon-user"))
+										.append("设为紧急联系人");
+								Relbtn.attr("rel-id",item.id);
 								var btnTd = $("<td></td>").append(editBtn)
-										.append(" ").append(delBtn);
+										.append(" ").append(delBtn).append(" ").append(Relbtn);
 								//append方法执行完成以后还是返回原来的元素							              								              
 								$("<tr></tr>").append(checkBoxTd).append(
 										olderid).append(oldername).append(
@@ -552,6 +561,25 @@
 						});
 					});
 				});
+				
+			//设为紧急联系人	
+				$(document).on("click", ".relative_btn", function() {
+			var delid = $(this).attr("rel-id");
+			var oldername = $(this).parents("tr").find("td:eq(2)").text();
+			layer.confirm("确认设置【" + oldername + "】为紧急联系人吗", function(index) {
+				$.ajax({
+					url : "${APP_PATH}/rel/setrelatives/" + delid,
+					type : "POST",
+					success : function(result) {
+						if(result.code==100){
+						        go(currentNum, ${id});
+		                     	layer.msg(result.msg);
+					
+						}
+					}
+				});
+			});
+		});
 	</script>
 </body>
 </html>

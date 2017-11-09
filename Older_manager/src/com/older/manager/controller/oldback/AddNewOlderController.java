@@ -25,6 +25,7 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,6 +36,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -79,7 +81,8 @@ public class AddNewOlderController {
 	 * @return
 	 */
 	@RequestMapping("/skipolderinfo/{pn}")
-	public String skipolderinfo(@PathVariable("pn") Integer id) {
+	public String skipolderinfo(@PathVariable("pn") Integer pn,HttpServletRequest request) {
+		request.setAttribute("pn", pn);
 		return "oldback/oldManInfoMange/selectallolderwith";
 
 	}
@@ -103,6 +106,9 @@ public class AddNewOlderController {
 				Map<String, Object> map = new HashMap<String, Object>();
 				map.put("fieldName", fieldError.getField());
 				map.put("errorMessage", fieldError.getDefaultMessage());
+				
+				System.out.println(fieldError.getField()+"*****************");
+				System.out.println(fieldError.getDefaultMessage()+"*********************");
 				errorList.add(map);
 			}
 		} else {
@@ -136,8 +142,9 @@ public class AddNewOlderController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/insertnewolder")
-	public String insertnewolder() {
+	@RequestMapping("/insertnewolder/{addpn}")
+	public String insertnewolder(@PathVariable("addpn")Integer addpn, HttpServletRequest request) {
+		request.setAttribute("addpn", addpn);
 		return "oldback/oldManInfoMange/addOldManInfo";
 	}
 
@@ -165,29 +172,44 @@ public class AddNewOlderController {
 	 * @throws IllegalStateException
 	 */
 	@RequestMapping(value = "/upateolder/{id}&{pn}", method = RequestMethod.POST)
-	public String updateOlder(Oldman oldman, @PathVariable("pn") Integer pn,
+	public String updateOlder(@Valid Oldman oldman, BindingResult result, @PathVariable("pn") Integer pn,
 			MultipartFile file, HttpServletRequest request)
 			throws IllegalStateException, IOException {
-
-		String imgUrl = null;
+		List<Map<String, Object>> errorList = new ArrayList<Map<String, Object>>();
+		if (result.hasErrors()) {
+			for (FieldError fieldError : result.getFieldErrors()) {
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("fieldName", fieldError.getField());
+				map.put("errorMessage", fieldError.getDefaultMessage());
+				errorList.add(map);
+				System.out.println(fieldError.getField()+"*****************");
+				System.out.println(fieldError.getDefaultMessage()+"*********************");
+			}
+		} else {
+		//String imgUrl =SaveFile.saveImg(file,request);
+		
 		if (file != null) {
-			imgUrl = SaveFile.saveImg(file, request);
+			String imgUrl = SaveFile.saveImg(file, request);
+			oldman.setPhoto(imgUrl);
 		}
 		if (oldman != null) {
 			addNewOlderService.updateOlder(oldman);
 		}
 		return "oldback/oldManInfoMange/selectallolderwith";
 	}
+		request.setAttribute("errorList", errorList);
+		return "oldback/oldManInfoMange/editOlderInfo";
 
+	}
 	/**
 	 * 通过id查看一个老人
 	 * 
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/selectolder/{id}")
-	public String selectOlder(@PathVariable("id") Integer id, Model model) {
-
+	@RequestMapping(value = "/selectolder/{id}&{selectpn}")
+	public String selectOlder(@PathVariable("id") Integer id, Model model,@PathVariable("selectpn") Integer selectpn,HttpServletRequest request) {
+        request.setAttribute("selectpn", selectpn);
 		Oldman oldman = addNewOlderService.selectOlder(id);
 		model.addAttribute("oldman", oldman);
 		return "oldback/oldManInfoMange/oldManInfoView";
@@ -199,10 +221,10 @@ public class AddNewOlderController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value = "/selectolderwithedit/{id}&{pn}")
+	@RequestMapping(value = "/selectolderwithedit/{id}&{updatepn}")
 	public String selectOlderWithEdit(@PathVariable("id") Integer id,
-			Model model, @PathVariable("pn") Integer pn) {
-
+			Model model, @PathVariable("updatepn") Integer updatepn,HttpServletRequest request) {
+       request.setAttribute("updatepn", updatepn);
 		Oldman oldman = addNewOlderService.selectOlder(id);
 		model.addAttribute("oldman", oldman);
 		return "oldback/oldManInfoMange/editOlderInfo";

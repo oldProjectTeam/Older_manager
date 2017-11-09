@@ -3,6 +3,7 @@ package com.older.manager.controller.oldback;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import com.github.pagehelper.PageInfo;
 import com.older.manager.bean.OldManRelativesShow;
 import com.older.manager.bean.Oldman;
 import com.older.manager.bean.Relatives;
+import com.older.manager.service.impl.oldback.OldManServiceImpl;
+import com.older.manager.service.oldback.AddNewOlderService;
 import com.older.manager.service.oldback.OldRelativesService;
 import com.older.manager.utils.Msg;
 
@@ -30,6 +33,8 @@ import com.older.manager.utils.Msg;
 public class OldRelativesControl {
 	@Autowired
 	private OldRelativesService oldRelativesService;
+	@Autowired
+	private AddNewOlderService addNewOlderService;
 
 	/**
 	 * 通过老人的id查询所有
@@ -55,8 +60,9 @@ public class OldRelativesControl {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/skipallrelatives/{id}")
-	public String skipAllRelatives(@PathVariable("id") Integer id) {
+	@RequestMapping("/skipallrelatives/{id}&{selectpn}")
+	public String skipAllRelatives(@PathVariable("id") Integer id,@PathVariable("selectpn")Integer selectpn,HttpServletRequest request) {
+		request.setAttribute("selectpn", selectpn);
 		return "oldback/oldManInfoMange/relativeInfo";
 
 	}
@@ -194,4 +200,29 @@ public class OldRelativesControl {
 		}
 	}
 
+	/***
+	 * 设置为紧急联系人
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping("/setrelatives/{id}")
+	@ResponseBody
+	public Msg setRelatives(@PathVariable("id")Integer id){
+		Relatives relatives = oldRelativesService.selectOlderRelative(id);
+		Oldman oldman=new Oldman();
+		oldman.setUrgencycontact(relatives.getName());
+		oldman.setUrgencycontactphone(relatives.getPhone());
+		oldman.setRelation(relatives.getRelation());
+		oldman.setLiveinfo(relatives.getIslive());
+		oldman.setId(relatives.getOldmanId());
+		addNewOlderService.updateOlder(oldman);
+		return Msg.success();
+	}
+	
+	
+	
+	
+	
+	
+	
 }

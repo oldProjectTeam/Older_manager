@@ -117,8 +117,11 @@
 							<td><input type="date" name="birthday" id="birthday"
 								required="required" class="form-control" /></td>
 							<td><font color=red>*</font>年龄:</td>
-							<td><input type="text" required="required" name="age"
-								id="age" class="form-control" readonly="readonly" /></td>
+							<td>
+							<input type="text" required="required" name="age" 
+								id="age" class="form-control" readonly="readonly" />
+								
+								</td>
 						</tr>
 						<tr>
 							<td><font color=red>*</font>地址:</td>
@@ -148,6 +151,7 @@
 									<option>母子</option>
 									<option>兄弟</option>
 									<option>儿子</option>
+									<option>其他</option>
 							</select></td>
 							<td>是否同住</td>
 							<td><select class="form-control" name="liveinfo">
@@ -265,10 +269,9 @@
 						</tr>
 						<tr>
 							<td colspan="8">
-								<button type="button" id="save" class="btn btn-success">保存</button>
+								<button type="submit" id="save" class="btn btn-success">保存</button>
 
-								<button type="button" class="btn btn-info"
-									onClick="javascript :history.back(-1);">返回</button>
+								<button type="button" class="btn btn-inf" id="addcomeback">返回</button>
 							</td>
 						</tr>
 					</table>
@@ -411,6 +414,15 @@
 			}
 			return returnAge;//返回周岁年龄  
 		}
+		
+		
+		
+		
+		$("#addcomeback").click(function (){
+		
+		
+		 window.location.href="${APP_PATH}/old/skipolderinfo/${addpn}";
+		});
 	</script>
 
 

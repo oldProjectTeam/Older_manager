@@ -111,7 +111,7 @@
 	<script type="text/javascript">
 		var totalRecord, currentNum, strs = "";
 		/* 分页 */
-		$(function(pn) {
+		$(function( ) {
 			$("#old_delete_all_btn").attr("disabled", true);
 			go(${pn}, "");
 
@@ -306,12 +306,14 @@
 		//点击查看详细
 		$(document).on("click", ".serchBtn", function() {
 			var serchid = $(this).attr("serch-id");
-			window.location.href = "${APP_PATH}/old/selectolder/" + serchid;
+			var selectpn=currentNum;
+			window.location.href = "${APP_PATH}/old/selectolder/" + serchid+"&"+selectpn;
 
 		});
 		//点击新增按钮
 		$("#add_old_btn").click(function() {
-			window.location.href = "${APP_PATH}/old/insertnewolder";
+		     var addpn=currentNum;
+			window.location.href = "${APP_PATH}/old/insertnewolder/"+addpn;
 		});
 
 		//点击编辑按钮
@@ -321,9 +323,9 @@
 						".edit_btn",
 						function() {
 							var serchid = $(this).attr("edit-id");
-							var pn = currentNum;
+							var updatepn = currentNum;
 							window.location.href = "${APP_PATH}/old/selectolderwithedit/"
-									+ serchid + "&" + pn;
+									+ serchid + "&" + updatepn;
 
 						});
 

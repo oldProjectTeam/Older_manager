@@ -39,7 +39,7 @@
 	type="text/javascript"></script>
 </head>
 
-<body onload="test()">
+<body>
 	<!--路劲导航  -->
 	<div class="row">
 		<div class="col-md-12">
@@ -57,7 +57,7 @@
 			<ul class="nav nav-tabs">
 				<li role="presentation" class="active"><a>老人基本信息</a></li>
 				<li role="presentation"><a
-					href="${APP_PATH}/rel/skipallrelatives/${oldman.id}">亲属信息</a></li>
+					href="${APP_PATH}/rel/skipallrelatives/${oldman.id}&${selectpn}">亲属信息</a></li>
 			</ul>
 		</div>
 	</div>
@@ -170,8 +170,7 @@
 						</tr>
 						<tr>
 							<td colspan="8">
-								<button type="button" class="btn btn-info"
-									onClick="javascript :history.back();">返回</button>
+								<button type="button" class="btn btn-info" id="goback">返回</button>
 							</td>
 						</tr>
 					</table>
@@ -179,5 +178,17 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+	 $("#goback").click(function(){
+	     //var a = '
+	     
+	     
+	     var selectpn='<%=request.getAttribute("selectpn")%>';
+	      window.location.href="${APP_PATH}/old/skipolderinfo/"+selectpn;
+	 });
+	
+	
+	</script>
+	
 </body>
 </html>
