@@ -171,10 +171,11 @@ public class AddNewOlderController {
 	 * @throws IOException
 	 * @throws IllegalStateException
 	 */
-	@RequestMapping(value = "/upateolder/{id}&{pn}", method = RequestMethod.POST)
-	public String updateOlder(@Valid Oldman oldman, BindingResult result, @PathVariable("pn") Integer pn,
+	@RequestMapping(value = "/upateolder/{id}&{updatepn}", method = RequestMethod.POST)
+	public String updateOlder(@Valid Oldman oldman, BindingResult result, @PathVariable("updatepn") Integer updatepn,
 			MultipartFile file, HttpServletRequest request)
 			throws IllegalStateException, IOException {
+		request.setAttribute("pn", updatepn);
 		List<Map<String, Object>> errorList = new ArrayList<Map<String, Object>>();
 		if (result.hasErrors()) {
 			for (FieldError fieldError : result.getFieldErrors()) {

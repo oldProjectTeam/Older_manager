@@ -59,7 +59,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<div class="row">
 		<div class="col-md-12">&nbsp;&nbsp;
 		  <div class="table-responsive">
-		   <form class="form-horizontal" method="post"  enctype="multipart/form-data" action="${APP_PATH}/old/upateolder/${oldman.id}&${pn}">
+		   <form class="form-horizontal" method="post"  enctype="multipart/form-data" action="${APP_PATH}/old/upateolder/${oldman.id}&${updatepn}">
 			 <table   class="table text-center table-bordered">
 				<tr>
 					<td><font color=red>*</font>老人姓名:</td>
