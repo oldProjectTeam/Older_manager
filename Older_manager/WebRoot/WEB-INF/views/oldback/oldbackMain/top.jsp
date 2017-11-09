@@ -51,7 +51,7 @@
 		</ul>
 
 		<div class="user">
-			<span><font color="white" style="font-size: 16px;">当前管理员:${activeUser.username}</font></span>
+			<span><font color="white" style="font-size: 16px;">当前管理员:${activeUser.usercode}</font></span>
 		</div>
 	</div>
 </body>
