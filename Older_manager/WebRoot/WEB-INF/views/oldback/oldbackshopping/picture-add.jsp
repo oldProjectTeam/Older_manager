@@ -169,7 +169,7 @@
 						<label class="form-label col-2">产&nbsp;&nbsp;&nbsp;&nbsp;地：</label>
 						<div class="formControls col-2">
 							<input type="text" class="input-text" placeholder="可输入100个字符"
-								id="region" name="region"> 
+								id="placeorigin" name="placeorigin"> 
 						</div>
 					</div>
 					<div class="Add_p_s">
@@ -204,23 +204,20 @@
 					<div class="Add_p_s">
 						<label class="form-label col-2"><font color="red">*</font>现在价格：</label>
 						<div class="formControls col-2">
-							<input type="number" class="input-text" value="" 
-								id="nowprice" name="nowprice">元
+							<input type="number" class="input-text" id="nowprice" name="nowprice">元
 						</div>
 					</div>
 					<div class="Add_p_s">
 						<label class="form-label col-2"><font color="red">*</font>原来价格：</label>
 						<div class="formControls col-2">
-							<input type="number" class="input-text" value=""  
+							<input type="number" class="input-text" 
 								id="orprice" name="orprice">元
 						</div>
 					</div>
 					<div class="Add_p_s">
 						<label class="form-label col-2"><font color="red">*</font>库存量：</label>
 						<div class="formControls col-2">
-							<input type="number" class="input-text" value=""
-							 
-								id="inventory" name="inventory">
+							<input type="number" class="input-text" id="inventory" name="inventory">
 						</div>
 					</div>
 					 <div class="Add_p_s">
@@ -245,7 +242,12 @@
 							<input type="hidden" id="brandId" name="brandId" readonly="readonly">
 						</div>
 					</div>
-
+				    <div class="Add_p_s">
+						<label class="form-label col-2"><font color="red">*</font>地区/国家：</label>
+						<div class="formControls col-2">
+							<input type="text" class="input-text" id="region" name="region">
+						</div>
+					</div>
 				</div>
 
 				<div class="clearfix cl">
@@ -346,13 +348,6 @@
 	<script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.js"></script>
 	<script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.admin.js"></script>
 	<script>
-	
-	
-	
-	
-	
-	
-	
 	
 	//构建模态框表格信息
 	function build_modal_table(result){
@@ -508,14 +503,129 @@
 			 show_vaildate_msg("#name","success","");
 		 }
 		 
-		 //现在价格
-		 var nowprice=$("#nowprice").val();
-		 if(nowprice.length<0||nowprice.length==''||nowprice.length==undefined){
+		 //3.产品编号
+		  var regex0=/^([0-9a-zA-Z]{0,30})$/;
+		 var number=$("#number").val();
+		 if(!regex0.test(number)){
+			 show_vaildate_msg("#number","error","产品编号必须是30位以内的数字或字母！");
+			 return false;
+		 }
+		 if(number.length>30){
+			 show_vaildate_msg("#number","error","产品编号字数超出限制！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#number","success","");
+		 }  
+		 //4.产地 
+		 var placeorigin=$("#placeorigin").val();
+		 if(placeorigin.length>100){
+			 show_vaildate_msg("#placeorigin","error","产地字数超出限制！");
+			 return false;
+		 }else{
+			 
+			 show_vaildate_msg("#placeorigin","success","");
+		 }
+		 //5.材质
+		 var texture=$("#texture").val();
+		 if(texture.length>100){
+			 show_vaildate_msg("#texture","error","材质字数超出限制！");
+			 return false;
+		 }else{
+			 
+			 show_vaildate_msg("#texture","success","");
+		 }
+		 
+		 //6.产品重量
+		 var regex1=/^([\d.]{0,7})$/;
+		 var weight=$("#weight").val();
+		 if(!regex1.test(weight)){
+			 show_vaildate_msg("#weight","error","产品重量不能为负数！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#weight","success","");
+		 }
+  
+		 //7.现在价格
+		 var regex2=/^([\d.]{1,8})$/;
+		 var nowprice=$("#nowprice").val();	 
+		 if(!regex2.test(nowprice)){
 			 show_vaildate_msg("#nowprice","error","现在价格不能为空或不能为负数！");
 			 return false;
 		 }else{
 			 show_vaildate_msg("#nowprice","success","");
 		 }
+		 
+		//8.原来价格
+		 var regex3=/^([\d.]{1,8})$/;
+		 var orprice=$("#orprice").val();
+		 if(!regex3.test(orprice)){
+			 show_vaildate_msg("#orprice","error","原来价格不能为空或不能为负数！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#orprice","success","");
+		 }
+		 
+		//9.库存量
+		 var regex4=/^([\d]{1,8})$/;
+		 var inventory=$("#inventory").val();
+		 if(!regex4.test(inventory)){
+			 show_vaildate_msg("#inventory","error","库存量不能为空或不能为负数！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#inventory","success","");
+		 }
+		  
+		//13.地区/国家
+		 var region=$("#region").val();
+		 if(region.length<1){
+			 show_vaildate_msg("#region","error","所属地区/国家不能为空！");
+			 return false;
+		 }else if(region.length>100){
+			 show_vaildate_msg("#region","error","所属地区/国家字数不能超过一百！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#region","success","");
+		 }
+		 
+		 //10.关键词
+		 var keyword=$("#keyword").val();
+		 if(keyword.length<1){
+			 show_vaildate_msg("#keyword","error","关键词不能为空！");
+			 return false;
+		 }else if(keyword.length>200){
+			 show_vaildate_msg("#keyword","error","关键词字数不能超过两百！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#keyword","success","");
+		 }
+		 
+		 //11.内容摘要
+		 var synopsis=$("#synopsis").val();
+		 if(synopsis.length<1){
+			 show_vaildate_msg("#synopsis","error","内容摘要不能为空！");
+			 return false;
+		 }else if(synopsis.length>200){
+			 show_vaildate_msg("#synopsis","error","内容摘要字数不能超过两百！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#synopsis","success","");
+		 }
+		 
+		//12.详细内容
+		 var description=$("#description").val();
+		 if(description.length<1){
+			 show_vaildate_msg("#description","error","详细内容不能为空！");
+			 return false;
+		 }else if(description.length>1000){
+			 show_vaildate_msg("#description","error","详细内容字数不能超过一千！");
+			 return false;
+		 }else{
+			 show_vaildate_msg("#description","success","");
+		 }
+		 
+		 
+		 
+		 return true;
 	 }
 	 
 	 
@@ -523,6 +633,15 @@
 	 
 	 //保存按钮，保存数据
 	$("#save_btn").click(function(){
+		if(!vail_product_form()){
+			return false;
+		}
+		layer.msg('正在保存', {
+			   icon: 16
+			   ,shade: 0.01,
+			   time:2000,
+			   offset:['30%'],
+		}); 
 		$.ajax({
 			url:"${APP_PATH}/shopping/insertProduct",
 			type:"POST",
@@ -535,6 +654,14 @@
 						time : 1000,
 					});
 				}else{
+					var error=result.extend.error;
+					var error_msg="";
+					if(error.imagetitle!=null){
+						error_msg+=error.imagetitle+"\n";
+					}
+					if(error.name!=null){
+						error_msg+=error.name+"\n";
+					}
 					layer.msg("添加失败！",{
 						offset:['30%'],
 						icon : 5,

@@ -2,6 +2,9 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class ProductKeyword {
     private Integer id;
 
@@ -19,6 +22,8 @@ public class ProductKeyword {
 
     private Integer param4;
 
+    @NotEmpty(message="关键词不能为空！")
+    @Length(min=1,max=200,message="关键词字数超出限制！")
     private String keyword;
 
     public Integer getId() {

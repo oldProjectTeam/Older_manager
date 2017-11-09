@@ -20,7 +20,15 @@ public class ProductKeywordServiceImpl implements IProductKeywordService {
 			  if(productKeyword.getKeyword()!=null&&!"".equals(productKeyword.getKeyword())){
 				  if(productKeyword.getKeyword().contains(" ")){
 					  String[] keyword=productKeyword.getKeyword().split(" ");
-					  productKeyword.setNumber(keyword.length);
+					  int num=0;
+					  for(String s:keyword){
+						  if(" ".equals(s)||"  ".equals(s)){
+							  continue;
+						  }else{
+							  num++;
+						  }
+					  }
+					  productKeyword.setNumber(num);
 				  }else{
 					  productKeyword.setNumber(1);
 				  }

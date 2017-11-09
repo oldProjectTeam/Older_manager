@@ -4,11 +4,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -111,8 +117,17 @@ public class ProductsController {
 	@SuppressWarnings("finally")
 	@RequestMapping("/insertProduct")
 	@ResponseBody
-	public Msg insertProduct(Products product)throws Exception{
+	public Msg insertProduct(@Valid Products product,BindingResult result)throws Exception{
 		boolean flag=false;
+		//校验数据是否不符合规则
+		if(result.hasErrors()){
+			List<FieldError>list=result.getFieldErrors();
+			Map<String, Object>map=new HashMap<String, Object>();
+			for(FieldError fieldError:list){
+				map.put(fieldError.getField(), fieldError.getDefaultMessage());
+			}
+			return Msg.fail().add("error", map);
+		}
 		try {
 			IProductService.insertProducts(product);
 			

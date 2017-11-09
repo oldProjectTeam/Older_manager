@@ -2,17 +2,32 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.Valid;
+import javax.validation.constraints.*;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Products {
 	private Integer id;
 
+	@NotEmpty(message="简略标题不能为空")
+	@Length(min=1,max=100,message="简略标题长度超出限制")
 	private String name;
-
+  
+	@Length(min=0,max=30,message="产品编号长度超出限制")
 	private String number;
 
+	@NotNull(message="原来价格不能为空！")
+	@Min(value=0,message="原来价格不能为负数！")
 	private Double orprice;
 
+	@NotEmpty(message="所属地区/国家不能为空！")
+	@Length(min=1,max=50,message="所属地区/国家字数超过限制！")
 	private String region;
 
+	@NotNull(message="现在价格不能为空！")
+	@Min(value=0,message="现在价格不能为负数！")
 	private Double nowprice;
 
 	private Date addtime;
@@ -23,12 +38,16 @@ public class Products {
 
 	private Integer state;
 
+	@NotEmpty(message="图片标题不能为空")
+	@Length(min=1,max=50,message="图片标题长度超出限制")
 	private String imagetitle;
 
+	@Length(min=0,max=100,message="产地长度超出限制")
 	private String placeorigin;
 
 	private Integer brandId;
 
+	@Valid
 	private ProductKeyword productKeyword;
 	
 	// 类型ID
@@ -38,18 +57,28 @@ public class Products {
 
 	private BrandWithBLOBs brand;
 
+	@Length(min=0,max=100,message="材质长度超出限制")
 	private String texture;
 
+	@Min(value=0,message="重量不能为负数！")
 	private Double weight;
 
+	@Length(min=0,max=20,message="单位长度超出限制！最长为20")
 	private String unit;
 
+	@NotEmpty(message="内容摘要不能为空")
+	@Length(min=1,max=200,message="内容摘要长度超出限制")
 	private String synopsis;
 
+	@NotEmpty(message="详细内容不能为空")
+	@Length(min=1,max=1000,message="详细内容长度超出限制")
 	private String description;
-
+	
+	@NotNull(message="库存量不能为空！")
+	@Min(value=0,message="库存量不能为负数！")
 	private Integer inventory;
 
+	@Min(value=0,message="销量不能为负数！")
 	private Integer sales;
 
 	private String paral1;
