@@ -28,8 +28,28 @@ public class RecomProductsDetails {
     private String recomproductsdetails6;
 
     private String recomproductsdetails7;
+    
+    private Oldman oldman;
+    
+    private RecomProducts recomProducts;
 
-    public Integer getId() {
+    public Oldman getOldman() {
+		return oldman;
+	}
+
+	public void setOldman(Oldman oldman) {
+		this.oldman = oldman;
+	}
+
+	public RecomProducts getRecomProducts() {
+		return recomProducts;
+	}
+
+	public void setRecomProducts(RecomProducts recomProducts) {
+		this.recomProducts = recomProducts;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -132,4 +152,21 @@ public class RecomProductsDetails {
     public void setRecomproductsdetails7(String recomproductsdetails7) {
         this.recomproductsdetails7 = recomproductsdetails7 == null ? null : recomproductsdetails7.trim();
     }
+
+	@Override
+	public String toString() {
+		return "RecomProductsDetails [id=" + id + ", recomproductsId="
+				+ recomproductsId + ", recomtime=" + recomtime + ", number="
+				+ number + ", result=" + result + ", oldmanId=" + oldmanId
+				+ ", recomproductsdetails1=" + recomproductsdetails1
+				+ ", recomproductsdetails2=" + recomproductsdetails2
+				+ ", recomproductsdetails3=" + recomproductsdetails3
+				+ ", recomproductsdetails4=" + recomproductsdetails4
+				+ ", recomproductsdetails5=" + recomproductsdetails5
+				+ ", recomproductsdetails6=" + recomproductsdetails6
+				+ ", recomproductsdetails7=" + recomproductsdetails7
+				+ ", oldman=" + oldman + ", recomProducts=" + recomProducts
+				+ "]";
+	}
+    
 }

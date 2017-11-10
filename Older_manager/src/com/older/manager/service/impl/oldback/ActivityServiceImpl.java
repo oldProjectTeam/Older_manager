@@ -75,4 +75,18 @@ public class ActivityServiceImpl implements IActivityService {
 		return activityMapper.selectByExample(example);
 	}
 
+	/**
+	 * @Title:   findAllActivitiesByNoReleaseregionByName
+	 * @Description:  通过名字查询所有没有举行的活动
+	 * @param:    @param name
+	 * @param:    @return     
+	 * @throws
+	 */
+	@Override
+	public List<Activity> findAllActivitiesByNoReleaseregionByName(String name) {
+		ActivityExample example=new ActivityExample();
+		example.createCriteria().andStateLike("%未进行%").andTitleLike("%"+name+"%");
+		return activityMapper.selectByExample(example);
+	}
+
 }

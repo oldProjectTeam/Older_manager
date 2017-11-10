@@ -61,7 +61,17 @@ public interface RecomActivityDetailsService {
 	 */
 	public List<Recomactivitydetails> findAllRecomactivitydetails();
 	
-	public List<Recomactivitydetails> findAllRecomactivitydetailsBySearch();
+	/**
+	 * @Title:   findAllRecomactivitydetailsBySearch
+	 * @Description:  通过搜索查询所有的推荐活动
+	 * @param:    @param oldManName
+	 * @param:    @param activityName
+	 * @param:    @param result
+	 * @param:    @return   
+	 * @return:   List<Recomactivitydetails>   
+	 * @throws
+	 */
+	public List<Recomactivitydetails> findAllRecomactivitydetailsBySearch(String oldManName,String activityName,String result);
 	
 	
 	

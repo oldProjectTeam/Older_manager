@@ -30,6 +30,8 @@ public class RecomProducts {
     private String recomproducts6;
 
     private String recomproducts7;
+    
+    private Products products;
 
     public Integer getId() {
         return id;
@@ -142,4 +144,33 @@ public class RecomProducts {
     public void setRecomproducts7(String recomproducts7) {
         this.recomproducts7 = recomproducts7 == null ? null : recomproducts7.trim();
     }
+
+	public Products getProducts() {
+		return products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+
+	@Override
+	public String toString() {
+		return "RecomProducts [id=" + id + ", productsId=" + productsId
+				+ ", recomtime=" + recomtime + ", recompeople=" + recompeople
+				+ ", number=" + number + ", state=" + state + ", recomid="
+				+ recomid + ", recomproducts1=" + recomproducts1
+				+ ", recomproducts2=" + recomproducts2 + ", recomproducts3="
+				+ recomproducts3 + ", recomproducts4=" + recomproducts4
+				+ ", recomproducts5=" + recomproducts5 + ", recomproducts6="
+				+ recomproducts6 + ", recomproducts7=" + recomproducts7
+				+ ", products=" + products + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
+	}
+
+	
+
+	
+    
+    
 }

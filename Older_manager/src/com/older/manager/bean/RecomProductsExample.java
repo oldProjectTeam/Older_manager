@@ -166,62 +166,62 @@ public class RecomProductsExample {
         }
 
         public Criteria andProductsIdIsNull() {
-            addCriterion("\"products _id\" is null");
+            addCriterion("products_id is null");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdIsNotNull() {
-            addCriterion("\"products _id\" is not null");
+            addCriterion("products_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdEqualTo(Integer value) {
-            addCriterion("\"products _id\" =", value, "productsId");
+            addCriterion("products_id =", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdNotEqualTo(Integer value) {
-            addCriterion("\"products _id\" <>", value, "productsId");
+            addCriterion("products_id <>", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdGreaterThan(Integer value) {
-            addCriterion("\"products _id\" >", value, "productsId");
+            addCriterion("products_id >", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("\"products _id\" >=", value, "productsId");
+            addCriterion("products_id >=", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdLessThan(Integer value) {
-            addCriterion("\"products _id\" <", value, "productsId");
+            addCriterion("products_id <", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdLessThanOrEqualTo(Integer value) {
-            addCriterion("\"products _id\" <=", value, "productsId");
+            addCriterion("products_id <=", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdIn(List<Integer> values) {
-            addCriterion("\"products _id\" in", values, "productsId");
+            addCriterion("products_id in", values, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdNotIn(List<Integer> values) {
-            addCriterion("\"products _id\" not in", values, "productsId");
+            addCriterion("products_id not in", values, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdBetween(Integer value1, Integer value2) {
-            addCriterion("\"products _id\" between", value1, value2, "productsId");
+            addCriterion("products_id between", value1, value2, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("\"products _id\" not between", value1, value2, "productsId");
+            addCriterion("products_id not between", value1, value2, "productsId");
             return (Criteria) this;
         }
 

@@ -68,7 +68,7 @@ public class RecomProductsServiceImpl implements RecomProductsService {
 	 */
 	@Override
 	public RecomProducts findRecomProductsByid(int id) {
-		return recomProductsMapper.selectByPrimaryKey(id);
+		return recomProductsMapper.selectBaseDataById(id);
 	}
 
 	/**

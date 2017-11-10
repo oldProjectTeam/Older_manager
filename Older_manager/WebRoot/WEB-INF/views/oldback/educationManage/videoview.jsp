@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page language="java" import="ava.util.*" pageEncoding="UTF-8" contentType="text/html; charset=utf-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -52,8 +52,8 @@
 								<td class="col-xs-2">${video.subtitle}</td>
 								<td>创作人</td>
 								<td class="col-xs-2">${video.creators}</td>
-								<td rowspan="3" class="active" style="padding-top:50px">图片</td>
-								<td rowspan="3" class="col-xs-2"><video src="${video.path}" controls="controls"
+								<td rowspan="3" class="active">视频</td>
+								<td rowspan="3" class="col-xs-3"><video src="${video.path}" controls="controls"
 										class="img-responsive" /> 您的浏览器不支持 video 标签。</td>
 							</tr>
 							<tr>

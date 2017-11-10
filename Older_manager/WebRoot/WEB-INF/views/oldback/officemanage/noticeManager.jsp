@@ -29,8 +29,6 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
-	type="text/javascript"></script>
 </head>
 
 <body style="margin: 15px;">
@@ -49,23 +47,21 @@
 	<div style="width:98%;margin-left:4px"">
 		<div style="background:#fdfdfd;margin-top:15px;">
 			<ul class="list-unstyle list-inline">
-				<li><a href="sendnotice"><button type="button"
-							class="btn btn-info">发布新公告</button></a></li>
-				<li><button type="button" id="delete_all_but"
-						class="btn btn-danger">批量删除公告</button></li>
+				<li><a
+					href="sendnotice"><button
+							type="button" class="btn btn-info">发布新公告</button></a></li>
+				<li><button type="button" id="delete_all_but" class="btn btn-danger">批量删除公告</button></li>
 				<li><a href=""><button type="button"
 							class="btn btn-success">推送到手机</button></a></li>
 			</ul>
 			<form class="form-inline">
 				<div class="form-group">
 					<label for="exampleInputName2">通告标题:</label> <input type="text"
-						class="form-control" placeholder="通告标题" id="stitle"
-						onchange="checkStr(this.value)">
+						class="form-control" placeholder="通告标题" id="stitle" onchange="checkStr(this.value)">
 				</div>
 				<div class="form-group">
 					<label for="exampleInputEmail2">发布人:</label> <input type="email"
-						class="form-control" placeholder="发布人" id="sreleasepeople"
-						onchange="checkStr(this.value)">
+						class="form-control" placeholder="发布人" id="sreleasepeople" onchange="checkStr(this.value)">
 				</div>
 				<button type="button" class="btn btn-info" id="search">搜索</button>
 			</form>
@@ -86,10 +82,10 @@
 			<!--分页信息  -->
 			<div class="row">
 				<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
-				<div class="col-md-5" id="page_nav"></div>
+				<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
 			</div>
 
-
+			
 
 			<!--修改模态框  -->
 			<div class="modal fade" id="alter" tabindex="-1" role="dialog"
@@ -105,47 +101,49 @@
 						</div>
 						<div class="modal-body">
 							<div class="col-md-10 col-md-offset-1">
-								<form action="" id="noticeForm">
-									<div class="panel panel-default">
-										<!-- Table -->
-										<table class="table table-bordered">
-											<tr>
-												<td>通知标题</td>
-												<td><input type="text" class="form-control" id="title"
-													name="title"></td>
-											</tr>
-											<tr>
-												<td>发布时间</td>
-												<td><label class="col-sm-7 control-label" id="timet"></label>
-													<div class="col-sm-1">
-														<input type="hidden" class="form-control" id="time"
-															name="time">
-
-													</div></td>
-											</tr>
-											<tr>
-												<td>发布人</td>
-												<td><input type="text" id="releasepeople"
-													name="releasepeople" onchange="checkStr(this.value)"></td>
-											</tr>
-											<tr>
-												<td>通知类型</td>
-												<td><select id="type" name="type">
-														<option value="通知类型">通知类型</option>
-														<option value="会议通知">会议通知</option>
-														<option value="指示通知">指示通知</option>
-														<option value="转发通知">转发通知</option>
-														<option value="重大通知">重大通知</option>
-												</select></td>
-											</tr>
-										</table>
-										<div class="panel-heading">通告内容</div>
-										<div class="panel-body">
-											<textarea class="form-control" rows="5" id="content"
-												name="content" id="content"></textarea>
-										</div>
+							<form action="" id="noticeForm">
+								<div class="panel panel-default">
+									<!-- Table -->
+									<table class="table table-bordered">
+										<tr>
+											<td>通知标题</td>
+											<td><input type="text" class="form-control" id="title"
+												name="title"></td>
+										</tr>
+										<tr>
+											<td>发布时间</td>
+											<td>
+												<label class="col-sm-7 control-label" id="timet"></label>
+												<div class="col-sm-1">
+													<input type="hidden" class="form-control" id="time"
+														name="time">
+													
+												</div> 
+											</td>
+										</tr>
+										<tr>
+											<td>发布人</td>
+											<td><input type="text" 
+												id="releasepeople" name="releasepeople" onchange="checkStr(this.value)"></td>
+										</tr>
+										<tr>
+											<td>通知类型</td>
+											<td><select id="type" name="type">
+													<option value="通知类型">通知类型</option>
+													<option value="会议通知">会议通知</option>
+													<option value="指示通知">指示通知</option>
+													<option value="转发通知">转发通知</option>
+													<option value="重大通知">重大通知</option>
+											</select></td>
+										</tr>
+									</table>
+									<div class="panel-heading">通告内容</div>
+									<div class="panel-body">
+										<textarea class="form-control" rows="5" id="content"
+											name="content" id="content"></textarea>
 									</div>
-									<input type="hidden" id="id" name="id">
+								</div>
+								<input type="hidden" id="id" name="id">
 								</form>
 							</div>
 							<div class="modal-footer">
@@ -211,14 +209,10 @@
 		</div>
 		<script type="text/javascript">
 			var totalRecord, currentNum;
-			$(function() {
+			 $(function() {
 				go(1);
-			});
+			}); 
 			function go(pn) {
-				layer.msg('数据加载中...', {
-					icon : 16,
-					shade : 0.01
-				});
 				$.ajax({
 					url : "notice/findAllNoticeByPage",
 					data : "pn=" + pn,
@@ -228,7 +222,7 @@
 							//构建分页信息
 							build_page_text(result);
 							//构建分页条
-							build_page_nav(result, 0);
+							build_page_nav(result,0);
 							//构建表格数据
 							build_table_data(result);
 						}
@@ -246,21 +240,21 @@
 				currentNum = result.extend.pageInfo.pageNum;
 			}
 			//解析显示分页条信息
-			function build_page_nav(result, code) {
+			function build_page_nav(result,code) {
 				var firstPageLi;
 				var lastPageLi;
 				$("#page_nav").empty();
 				var ul = $("<ul></ul>").addClass("pagination");
-				if (code == 1) {
+				if(code==1){
 					firstPageLi = $("<li></li>").append(
 							$("<a></a>").append("首页").attr("href",
 									"javascript:search(1)"));
-				} else {
+				}else{
 					firstPageLi = $("<li></li>").append(
 							$("<a></a>").append("首页").attr("href",
 									"javascript:go(1)"));
 				}
-
+				
 				var prePageLi = $("<li></li>").append(
 						$("<a></a>").append("&laquo;"));
 				if (result.extend.pageInfo.hasPreviousPage == false) {
@@ -274,36 +268,34 @@
 				}
 				var nextPageLi = $("<li></li>").append(
 						$("<a></a>").append("&raquo;"));
-				if (code == 1) {
+				if(code==1){
 					lastPageLi = $("<li></li>").append(
 							$("<a></a>").append("末页").attr(
 									"href",
-									"javascript:search("
-											+ result.extend.pageInfo.pages
+									"javascript:search(" + result.extend.pageInfo.pages
 											+ ")"));
-				} else {
+				}else{
 					lastPageLi = $("<li></li>").append(
 							$("<a></a>").append("末页").attr(
 									"href",
-									"javascript:go("
-											+ result.extend.pageInfo.pages
+									"javascript:go(" + result.extend.pageInfo.pages
 											+ ")"));
 				}
-
+				
 				if (result.extend.pageInfo.hasNextPage == false) {
 					nextPageLi.addClass("disabled");
 					lastPageLi.addClass("disabled");
 				} else {
-					if (code == 1) {
+					if(code==1){
 						nextPageLi.click(function() {
 							search(result.extend.pageInfo.pageNum + 1);
 						});
-					} else {
+					}else{
 						nextPageLi.click(function() {
 							go(result.extend.pageInfo.pageNum + 1);
 						});
 					}
-
+					
 				}
 				//添加首页和前一页的提示
 				ul.append(firstPageLi).append(prePageLi);
@@ -316,9 +308,9 @@
 						numLi.addClass("active");
 					}
 					numLi.click(function() {
-						if (code == 1) {
+						if(code==1){
 							search(item);
-						} else {
+						}else{
 							go(item);
 						}
 					});
@@ -334,7 +326,7 @@
 			function build_table_data(result) {
 				$("#head").empty();
 				$("#table_data").empty();
-
+				
 				var headTR = $("<tr></tr>");
 				var checkBox = $("<td></td>").append(
 						$("<input type='checkbox' id='check_item_all'/>"));
@@ -346,7 +338,8 @@
 				var Td5 = $("<td></td>").append("发布时间");
 				var Td6 = $("<td></td>").append("通告标题");
 				var Td7 = $("<td></td>").append("操作");
-				headTR.append(checkBox).append(Td1).append(Td4).append(Td5)
+				headTR.append(checkBox).append(Td1)
+						.append(Td4).append(Td5)
 						.append(Td6).append(Td7).appendTo($("#head"));
 
 				$.each(result.extend.pageInfo.list, function(index, item) {
@@ -401,7 +394,7 @@
 									$("#sentcontent").html(notice.content);
 
 								} else {
-									layer.msg("获取失败，请重试！");
+									alert("获取失败，请重试！");
 								}
 							}
 						});
@@ -417,17 +410,14 @@
 							success : function(result) {
 								if (result.code == 100) {
 									var notice = result.extend.notice;
-									$("#releasepeople").val(
-											notice.releasepeople);
-									$("#time").val(
-											ChangeDateFormat2(notice.time));
-									$("#timet").html(
-											ChangeDateFormat2(notice.time));
+									$("#releasepeople").val(notice.releasepeople);
+									$("#time").val(ChangeDateFormat2(notice.time));
+									$("#timet").html(ChangeDateFormat2(notice.time));
 									$("#title").val(notice.title);
 									$("#content").val(notice.content);
 									$("#id").val(notice.id);
 								} else {
-									layer.msg("获取失败，请重试！");
+									alert("获取失败，请重试！");
 								}
 							}
 						});
@@ -436,89 +426,82 @@
 
 					//单个item删除事件
 					delet_btn.click(function() {
-						layer.confirm("确认删除【" + "id="
+						if (confirm("确认删除【" + "id="
 								+ delet_btn.attr("noticeId") + ",标题为 "
-								+ delet_btn.attr("noticetitle") + "】的通知吗?",
-								function(index) {
-									//确认,发送ajax请求即可
-									$.ajax({
-										url : "notice/deleteNoticeById/",
-										data : {
-											"id" : delet_btn.attr("noticeId")
-										},
-										type : "GET",
-										success : function(result) {
-											if (result.code == 100) {
-												//回到本页
-												go(currentNum);
-												layer.msg("删除成功");
-											} else {
-												layer.msg(result.msg);
-											}
+								+ delet_btn.attr("noticetitle") + "】的通知吗?")) {
+							//确认,发送ajax请求即可
+							$.ajax({
+								url : "notice/deleteNoticeById/",
+								data : {
+									"id" : delet_btn.attr("noticeId")
+								},
+								type : "GET",
+								success : function(result) {
+									if (result.code == 100) {
+										alert(result.extend.msg);
+										//回到本页
+										go(currentNum);
+									} else {
+										alert(result.extend.msg);
+									}
 
-										}
-									});
-								});
+								}
+							});
+						}
 					});
-
-					dataTR.append(checkBoxData).append(dataTd1).append(dataTd4)
-							.append(dataTd5).append(dataTd6).append(
-									$("<td></td>").append(edit_btn).append(
-											"&nbsp;&nbsp").append(find_btn)
-											.append("&nbsp;&nbsp;").append(
-													delet_btn)).appendTo(
-									$("#table_data"));
+					
+					
+					
+					dataTR.append(checkBoxData).append(dataTd1).append(
+							dataTd4).append(dataTd5).append(dataTd6).append(
+							$("<td></td>").append(edit_btn).append(
+									"&nbsp;&nbsp").append(find_btn).append(
+									"&nbsp;&nbsp;").append(delet_btn))
+							.appendTo($("#table_data"));
 				});
 			}
+
+		
+
+		
 
 			//全选
 			$(document).on("click", "#check_item_all", function() {
 				$(".item_check").prop("checked", $(this).prop("checked"));
 			});
-
+			
 			//点击保存按钮，修改通知信息
-			$("#editnotice_button")
-					.click(
-							function() {
-								var time = $("#time").val();
-								var releasepeople = $("#releasepeople").val();
-								var type = $("#type").val();
-								var content = $("#content").val();
-								var title = $("#title").val();
-								if (title == '' || releasepeople == ''
-										|| type == '' || content == ''
-										|| time == '') {
-									layer.msg("请填写完整信息再发布");
-								} else {
-									layer.msg('数据加载中...', {
-										icon : 16,
-										shade : 0.01
-									});
-									$
-											.ajax({
-												url : "${APP_PATH}/notice/updateNotice",
-												type : "post",
-												data : $("#noticeForm")
-														.serialize(),
-												success : function(result) {
-													if (result.code == 100) {
-														layer.msg("修改成功！");
-														//1.关闭模态框
-														$(
-																"#activity_edit_modal")
-																.modal('hide');
-														//2.重新加载当页
-														go(currentNum);
-													} else {
-														layer
-																.msg("修改失败，请再重试一遍吧！");
-													}
-												}
-											});
-								}
-
-							});
-
+			$("#editnotice_button").click(function() {
+				var time=$("#time").val();
+				var releasepeople=$("#releasepeople").val();
+				var type=$("#type").val();
+				var content=$("#content").val();
+				var title=$("#title").val();
+				if(title==''||releasepeople==''||type==''||content=='' ||time==''){
+					alert("请填写完整信息再发布");
+				}else{
+					$.ajax({
+						url : "${APP_PATH}/notice/updateNotice",
+						type : "post",
+						data : $("#noticeForm").serialize(),
+						success : function(result) {
+							if (result.code == 100) {
+								alert("修改成功！");
+								//1.关闭模态框
+								$("#activity_edit_modal").modal('hide');
+								//2.重新加载当页
+								go(currentNum);
+							} else {
+								alert("修改失败，请再重试一遍吧！");
+								//$("#activity_edit_modal").modal('hide');
+							}
+						}
+					});
+				}
+				
+				
+			});
+			
 			//点击批量删除
 			$("#delete_all_but").click(
 					function() {
@@ -529,8 +512,8 @@
 							empNames += $(item).parents("tr").find("td:eq(4)")
 									.text()
 									+ ",";
-							del_idshow += $(item).parents("tr")
-									.find("td:eq(1)").text()
+							del_idshow += $(item).parents("tr").find("td:eq(1)")
+									.text()
 									+ ",";
 							del_idstr += $(item).parents("tr").find("td:eq(1)")
 									.text()
@@ -540,8 +523,7 @@
 						del_idstr = del_idstr
 								.substring(0, del_idstr.length - 1);
 						if (empNames != null && empNames.length != 0) {
-							layer.confirm("确认删除【id为" + del_idshow + " ，标题为："
-									+ empNames + "】的公告吗?", function(index) {
+							if (confirm("确认删除【id为"+del_idshow+" ，标题为："+ empNames + "】的公告吗?")) {
 								//发送ajax请求删除
 								$.ajax({
 									url : "notice/delectNoticeByListId/",
@@ -551,18 +533,18 @@
 									type : "GET",
 									success : function(result) {
 										if (result.code == 100) {
+											alert(result.extend.msg);
 											go(currentNum);
-											layer.msg("删除成功");
 										}
 									}
 								});
-							});
+							}
 						} else {
-							layer.msg("请选择要删除的公告！");
+							alert("请选择要删除的公告！");
 						}
 
 					});
-
+			
 			//新增按钮
 			$("#addvideo_btn").click(function() {
 				location.href = "sendnotice";
@@ -576,37 +558,40 @@
 			function search(pn) {
 				var dtitle = $('#stitle').val();//获取值
 				var dreleasepeople = $('#sreleasepeople').val();
-
+				
 				if (dtitle.length == 0 && dreleasepeople.length == 0) {
-					layer.msg("请输入搜索数据！");
+					alert("请输入搜索数据！");
+					go(1);
 				} else {
 					$.ajax({
 						url : "notice/findAllNoticeBySearch",
 						data : {
 							"title" : dtitle,
 							"releasepeople" : dreleasepeople,
-							"pn" : pn
+							"pn":pn
 						},
 						type : "get",
 						success : function(result) {
 							if (result.code == 100) {
 								if (result.extend.pageInfo.list == null) {
-									layer.msg("查询不到相关数据！");
+									alert("查询不到相关数据！");
 								} else {
 									//构建分页信息
 									build_page_text(result);
 									//构建分页条
-									build_page_nav(result, 1);
+									build_page_nav(result,1);
 									//构建表格数据
 									build_table_data(result);
 								}
-							} else {
-								layer.msg(result.msg);
+
+							}else{
+								alert(result.extend.msg);
 							}
 						}
 					});
 				}
-
+				
+				
 			}
 
 			function ChangeDateFormat(d) {
@@ -617,11 +602,10 @@
 					var month = date.getMonth() + 1 + "月";
 					//日期为个位数时在前面+0
 					var currentDate = date.getDate() + "日";
-					var currenthours = date.getHours();
-					var currentminut = date.getMinutes();
+                    var currenthours=date.getHours();
+					var currentminut=date.getMinutes();
 					//getFullYear得到4位数的年份 ，返回一串字符串
-					return date.getFullYear() + "年" + month + currentDate + " "
-							+ currenthours + ":" + currentminut;
+					return date.getFullYear() + "年" + month + currentDate+" "+currenthours+":"+currentminut;
 				} else {
 					return null;
 				}
@@ -637,26 +621,26 @@
 
 					//日期为个位数时在前面+0
 					var currentDate = date.getDate();
-
-					var currenthours = date.getHours();
-
-					var currentminut = date.getMinutes();
-
-					var currentSeconds = date.getSeconds();
+					
+					var currenthours=date.getHours();
+					
+					var currentminut=date.getMinutes();
+					
+					var currentSeconds=date.getSeconds();
 					//getFullYear得到4位数的年份 ，返回一串字符串
-					return date.getFullYear() + "-" + month + currentDate + " "
-							+ currenthours + ":" + currentminut + ":"
-							+ currentSeconds;
+					return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut+":"+currentSeconds;
 				} else {
 					return null;
 				}
 			}
-
+			
 			function checkStr(str) {
 				// [\u4E00-\uFA29]|[\uE7C7-\uE7F3]汉字编码范围 
-				var re1 = new RegExp("^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
+				var re1 = new RegExp(
+						"^([\u4E00-\uFA29]|[\uE7C7-\uE7F3])*$");
 				if (!re1.test(str)) {
-					layer.msg("请输入中文字符");
+					alert("请输入中文字符");
+					
 					return false;
 				} else {
 					return true;

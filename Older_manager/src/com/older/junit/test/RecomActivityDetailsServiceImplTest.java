@@ -46,4 +46,9 @@ public class RecomActivityDetailsServiceImplTest {
 		System.out.println(recomActivityDetailsService.findRecomactivitydetailsById(14));
 	}
 	
+	@Test
+	public void findAllRecomactivitydetailsBySearchTest(){
+		System.out.println(recomActivityDetailsService.findAllRecomactivitydetailsBySearch("张三", "", "未推荐"));
+	}
+	
 }

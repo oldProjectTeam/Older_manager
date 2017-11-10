@@ -1,7 +1,9 @@
 package com.older.manager.service.impl.oldback;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ import com.older.manager.mapper.OldmanMapper;
 import com.older.manager.mapper.VisitplanMapper;
 import com.older.manager.service.oldback.IVisitPlanService;
 
+/**
+ * 再次编写：杨明 编写内容：添加查找、修改接口实现
+ * 
+ */
 @Service
 public class VisitPlanServiceImpl implements IVisitPlanService {
 
@@ -97,5 +103,64 @@ public class VisitPlanServiceImpl implements IVisitPlanService {
 	@Override
 	public void addVisitPlan(Visitplan visitplan) {
 		visitplanMapper.insertSelective(visitplan);
+	}
+
+	/**
+	 * @Title: findAllVisitplansBySearch
+	 * @Description: 通过搜索查找所有的回访计划表
+	 * @param: @param visitPeaplo
+	 * @param: @param days
+	 * @param: @return
+	 * @throws
+	 */
+	@Override
+	public List<Visitplan> findAllVisitplansBySearch(String visitPeaplo,
+			String days) {
+		VisitplanExample example = new VisitplanExample();
+		if (visitPeaplo != null && !visitPeaplo.equals("")
+				&& (days == null || days.equals(""))) {
+			example.createCriteria().andRemindpeopleLike(
+					"%" + visitPeaplo + "%");
+			return visitplanMapper.selectByExample2(example);
+		} else if (visitPeaplo == null || visitPeaplo.equals("")
+				&& (days != null && !days.equals(""))) {
+			int dateLeng = Integer.valueOf(days) * 60 * 60 * 24000;
+			long datemix = System.currentTimeMillis() - dateLeng;
+			System.out.println(new Date(datemix) + "........");
+			example.createCriteria().andVisiplantimeLessThan(new Date(datemix));
+			return visitplanMapper.selectByExample2(example);
+		} else if ((visitPeaplo != null && !visitPeaplo.equals(""))
+				&& (days != null && !days.equals(""))) {
+			int dateLeng = Integer.valueOf(days) * 60 * 60 * 24000;
+			long datemix = System.currentTimeMillis() - dateLeng;
+			System.out.println(new Date(datemix) + "........");
+			example.createCriteria().andVisiplantimeLessThan(new Date(datemix))
+					.andRemindpeopleLike("%" + visitPeaplo + "%");
+			return visitplanMapper.selectByExample2(example);
+		}
+		return null;
+	}
+
+	/**
+	 * @Title: findAllVisitplans
+	 * @Description: 查询所有的回访计划表
+	 * @param: @return
+	 * @throws
+	 */
+	@Override
+	public List<Visitplan> findAllVisitplans() {
+		return visitplanMapper.selectByExample2(null);
+	}
+
+	/**
+	 * @Title:   modifyVisitPlan
+	 * @Description:  修改回访计划
+	 * @param:    @param visitplan
+	 * @param:    @return     
+	 * @throws
+	 */
+	@Override
+	public int modifyVisitPlan(Visitplan visitplan) {
+		return visitplanMapper.updateByPrimaryKeySelective(visitplan);
 	}
 }

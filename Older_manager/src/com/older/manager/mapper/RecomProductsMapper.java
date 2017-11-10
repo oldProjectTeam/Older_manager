@@ -15,7 +15,9 @@ public interface RecomProductsMapper {
     int insert(RecomProducts record);
 
     int insertSelective(RecomProducts record);
-
+    
+    RecomProducts selectBaseDataById(int id);
+    
     List<RecomProducts> selectByExample(RecomProductsExample example);
 
     RecomProducts selectByPrimaryKey(Integer id);

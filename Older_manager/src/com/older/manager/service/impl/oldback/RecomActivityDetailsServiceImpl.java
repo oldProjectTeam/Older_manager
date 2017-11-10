@@ -97,40 +97,42 @@ public class RecomActivityDetailsServiceImpl implements
 	 */
 	@Override
 	public List<Recomactivitydetails> findAllRecomactivitydetails() {
-		/*List<Recomactivitydetails> allList = new ArrayList<Recomactivitydetails>();
-		List<Recomactivitydetails> list = recomactivitydetailsMapper
-				.selectByExample(null);
-		System.out.println(list.size()+";;;;;;;;;;;;;;;;;;");
-		for (Recomactivitydetails recomactivitydetails : list) {
-			Oldman oldman = oldmanMapper
-					.selectBaseInfoById(recomactivitydetails.getOldmanId());
-			Recomactivity recomactivity = recomactivityMapper
-					.selectByPrimaryKey(recomactivitydetails
-							.getRecomactivityId());
-			Activity activity = activityMapper.selectByPrimaryKey(recomactivity
-					.getActivityId());
-			recomactivitydetails.setActivity(activity);
-			recomactivitydetails.setOldman(oldman);
-			recomactivitydetails.setRecomactivity(recomactivity);
-			allList.add(recomactivitydetails);
-
-		}*/
 		return recomactivitydetailsMapper.selectAllBaseRecomActivitydetails();
 	}
 
 	/**
-	 * @Title:   findAllRecomactivitydetailsBySearch
-	 * @Description:  TODO
-	 * @param:    @return     
+	 * @Title: findAllRecomactivitydetailsBySearch
+	 * @Description: 通过搜索查询所有的推荐活动详细表
+	 * @param: @param oldManName
+	 * @param: @param activityName
+	 * @param: @param result
+	 * @param: @return
 	 * @throws
 	 */
 	@Override
-	public List<Recomactivitydetails> findAllRecomactivitydetailsBySearch() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Recomactivitydetails> findAllRecomactivitydetailsBySearch(
+			String oldManName, String activityName, String result) {
+		Recomactivitydetails recomactivitydetails = new Recomactivitydetails();
+		Activity activity = new Activity();
+		activity.setTitle(activityName);
+		Recomactivity recomactivity = new Recomactivity();
+		recomactivity.setActivity(activity);
+		if (result.equals("请选择")) {
+			//recomactivitydetails.setResult(null);
+			recomactivity.setState(null);
+			recomactivitydetails.setRecomactivity(null);
+		} else {
+			recomactivity.setState(result);
+			//recomactivitydetails.setResult(result);
+			recomactivitydetails.setRecomactivity(recomactivity);
+		}
+		;
+		Oldman oldman = new Oldman();
+		oldman.setName(oldManName);
+		recomactivitydetails.setOldman(oldman);
+
+		return recomactivitydetailsMapper
+				.selectByRecomactivitydetails(recomactivitydetails);
 	}
-	
-	
-	
 
 }

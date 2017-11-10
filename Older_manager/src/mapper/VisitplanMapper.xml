@@ -24,6 +24,32 @@
 		<result column="visitPlan2" property="visitplan2" jdbcType="VARCHAR" />
 		<result column="visitPlan3" property="visitplan3" jdbcType="VARCHAR" />
 	</resultMap>
+
+	<resultMap id="detailResultMap" type="com.older.manager.bean.Visitplan">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+		<result column="visiPlanTime" property="visiplantime" jdbcType="TIMESTAMP" />
+		<result column="plannedVisits" property="plannedvisits"
+			jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="remindVistitPlanTime" property="remindvistitplantime"
+			jdbcType="TIMESTAMP" />
+		<result column="remindPeople" property="remindpeople" jdbcType="VARCHAR" />
+		<result column="pendingEvent" property="pendingevent" jdbcType="VARCHAR" />
+		<result column="actualTime" property="actualtime" jdbcType="TIMESTAMP" />
+		<result column="actualPlannedVisits" property="actualplannedvisits"
+			jdbcType="VARCHAR" />
+		<result column="visitRecord" property="visitrecord" jdbcType="VARCHAR" />
+		<result column="images" property="images" jdbcType="VARCHAR" />
+		<result column="video" property="video" jdbcType="VARCHAR" />
+		<result column="recording" property="recording" jdbcType="VARCHAR" />
+		<result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+		<result column="visitPlan1" property="visitplan1" jdbcType="VARCHAR" />
+		<result column="visitPlan2" property="visitplan2" jdbcType="VARCHAR" />
+		<result column="visitPlan3" property="visitplan3" jdbcType="VARCHAR" />
+		<association property="oldman" column="oldMan_id"
+			javaType="com.older.manager.bean.Oldman" select="com.older.manager.mapper.OldmanMapper.selectBaseInfoById" />
+	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
@@ -38,7 +64,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -70,7 +97,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -88,11 +116,14 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, oldMan_id, visiPlanTime, plannedVisits, state, remindVistitPlanTime,
+		id, oldMan_id, visiPlanTime, plannedVisits, state,
+		remindVistitPlanTime,
 		remindPeople,
-		pendingEvent, actualTime, actualPlannedVisits, visitRecord, images, video,
+		pendingEvent, actualTime,
+		actualPlannedVisits, visitRecord, images, video,
 		recording,
-		createTime, visitPlan1, visitPlan2, visitPlan3
+		createTime,
+		visitPlan1, visitPlan2, visitPlan3
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.older.manager.bean.VisitplanExample">
@@ -107,7 +138,20 @@
 		</if>
 		order by id DESC
 	</select>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+	<select id="selectByExample2" resultMap="detailResultMap"
+		parameterType="com.older.manager.bean.VisitplanExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from visitplan
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		order by id DESC
+	</select>
+	<select id="selectByPrimaryKey" resultMap="detailResultMap"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
@@ -115,7 +159,8 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from visitplan
+		delete from
+		visitplan
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.older.manager.bean.VisitplanExample">
@@ -125,14 +170,18 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.older.manager.bean.Visitplan">
-		insert into visitplan (id, oldMan_id, visiPlanTime,
+		insert into visitplan (id,
+		oldMan_id, visiPlanTime,
 		plannedVisits, state, remindVistitPlanTime,
 		remindPeople, pendingEvent, actualTime,
-		actualPlannedVisits, visitRecord, images,
+		actualPlannedVisits,
+		visitRecord, images,
 		video, recording, createTime,
-		visitPlan1, visitPlan2, visitPlan3
+		visitPlan1,
+		visitPlan2, visitPlan3
 		)
-		values (#{id,jdbcType=INTEGER}, #{oldmanId,jdbcType=INTEGER},
+		values (#{id,jdbcType=INTEGER},
+		#{oldmanId,jdbcType=INTEGER},
 		#{visiplantime,jdbcType=TIMESTAMP},
 		#{plannedvisits,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
 		#{remindvistitplantime,jdbcType=TIMESTAMP},
@@ -142,7 +191,8 @@
 		#{visitrecord,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR},
 		#{video,jdbcType=VARCHAR}, #{recording,jdbcType=VARCHAR},
 		#{createtime,jdbcType=TIMESTAMP},
-		#{visitplan1,jdbcType=VARCHAR}, #{visitplan2,jdbcType=VARCHAR}, #{visitplan3,jdbcType=VARCHAR}
+		#{visitplan1,jdbcType=VARCHAR},
+		#{visitplan2,jdbcType=VARCHAR}, #{visitplan3,jdbcType=VARCHAR}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.older.manager.bean.Visitplan">
@@ -299,7 +349,8 @@
 				actualTime = #{record.actualtime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="record.actualplannedvisits != null">
-				actualPlannedVisits = #{record.actualplannedvisits,jdbcType=VARCHAR},
+				actualPlannedVisits =
+				#{record.actualplannedvisits,jdbcType=VARCHAR},
 			</if>
 			<if test="record.visitrecord != null">
 				visitRecord = #{record.visitrecord,jdbcType=VARCHAR},
@@ -333,23 +384,40 @@
 	<update id="updateByExample" parameterType="map">
 		update visitplan
 		set id = #{record.id,jdbcType=INTEGER},
-		oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-		visiPlanTime = #{record.visiplantime,jdbcType=TIMESTAMP},
-		plannedVisits = #{record.plannedvisits,jdbcType=VARCHAR},
-		state = #{record.state,jdbcType=VARCHAR},
-		remindVistitPlanTime = #{record.remindvistitplantime,jdbcType=TIMESTAMP},
-		remindPeople = #{record.remindpeople,jdbcType=VARCHAR},
-		pendingEvent = #{record.pendingevent,jdbcType=VARCHAR},
-		actualTime = #{record.actualtime,jdbcType=TIMESTAMP},
-		actualPlannedVisits = #{record.actualplannedvisits,jdbcType=VARCHAR},
-		visitRecord = #{record.visitrecord,jdbcType=VARCHAR},
-		images = #{record.images,jdbcType=VARCHAR},
-		video = #{record.video,jdbcType=VARCHAR},
-		recording = #{record.recording,jdbcType=VARCHAR},
-		createTime = #{record.createtime,jdbcType=TIMESTAMP},
-		visitPlan1 = #{record.visitplan1,jdbcType=VARCHAR},
-		visitPlan2 = #{record.visitplan2,jdbcType=VARCHAR},
-		visitPlan3 = #{record.visitplan3,jdbcType=VARCHAR}
+		oldMan_id =
+		#{record.oldmanId,jdbcType=INTEGER},
+		visiPlanTime =
+		#{record.visiplantime,jdbcType=TIMESTAMP},
+		plannedVisits =
+		#{record.plannedvisits,jdbcType=VARCHAR},
+		state =
+		#{record.state,jdbcType=VARCHAR},
+		remindVistitPlanTime =
+		#{record.remindvistitplantime,jdbcType=TIMESTAMP},
+		remindPeople =
+		#{record.remindpeople,jdbcType=VARCHAR},
+		pendingEvent =
+		#{record.pendingevent,jdbcType=VARCHAR},
+		actualTime =
+		#{record.actualtime,jdbcType=TIMESTAMP},
+		actualPlannedVisits =
+		#{record.actualplannedvisits,jdbcType=VARCHAR},
+		visitRecord =
+		#{record.visitrecord,jdbcType=VARCHAR},
+		images =
+		#{record.images,jdbcType=VARCHAR},
+		video =
+		#{record.video,jdbcType=VARCHAR},
+		recording =
+		#{record.recording,jdbcType=VARCHAR},
+		createTime =
+		#{record.createtime,jdbcType=TIMESTAMP},
+		visitPlan1 =
+		#{record.visitplan1,jdbcType=VARCHAR},
+		visitPlan2 =
+		#{record.visitplan2,jdbcType=VARCHAR},
+		visitPlan3 =
+		#{record.visitplan3,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -370,7 +438,8 @@
 				state = #{state,jdbcType=VARCHAR},
 			</if>
 			<if test="remindvistitplantime != null">
-				remindVistitPlanTime = #{remindvistitplantime,jdbcType=TIMESTAMP},
+				remindVistitPlanTime =
+				#{remindvistitplantime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="remindpeople != null">
 				remindPeople = #{remindpeople,jdbcType=VARCHAR},
@@ -382,7 +451,8 @@
 				actualTime = #{actualtime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="actualplannedvisits != null">
-				actualPlannedVisits = #{actualplannedvisits,jdbcType=VARCHAR},
+				actualPlannedVisits =
+				#{actualplannedvisits,jdbcType=VARCHAR},
 			</if>
 			<if test="visitrecord != null">
 				visitRecord = #{visitrecord,jdbcType=VARCHAR},
@@ -414,22 +484,33 @@
 	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Visitplan">
 		update visitplan
 		set oldMan_id = #{oldmanId,jdbcType=INTEGER},
-		visiPlanTime = #{visiplantime,jdbcType=TIMESTAMP},
-		plannedVisits = #{plannedvisits,jdbcType=VARCHAR},
+		visiPlanTime =
+		#{visiplantime,jdbcType=TIMESTAMP},
+		plannedVisits =
+		#{plannedvisits,jdbcType=VARCHAR},
 		state = #{state,jdbcType=VARCHAR},
 		remindVistitPlanTime = #{remindvistitplantime,jdbcType=TIMESTAMP},
 		remindPeople = #{remindpeople,jdbcType=VARCHAR},
-		pendingEvent = #{pendingevent,jdbcType=VARCHAR},
-		actualTime = #{actualtime,jdbcType=TIMESTAMP},
-		actualPlannedVisits = #{actualplannedvisits,jdbcType=VARCHAR},
-		visitRecord = #{visitrecord,jdbcType=VARCHAR},
+		pendingEvent =
+		#{pendingevent,jdbcType=VARCHAR},
+		actualTime =
+		#{actualtime,jdbcType=TIMESTAMP},
+		actualPlannedVisits =
+		#{actualplannedvisits,jdbcType=VARCHAR},
+		visitRecord =
+		#{visitrecord,jdbcType=VARCHAR},
 		images = #{images,jdbcType=VARCHAR},
 		video = #{video,jdbcType=VARCHAR},
-		recording = #{recording,jdbcType=VARCHAR},
-		createTime = #{createtime,jdbcType=TIMESTAMP},
-		visitPlan1 = #{visitplan1,jdbcType=VARCHAR},
-		visitPlan2 = #{visitplan2,jdbcType=VARCHAR},
-		visitPlan3 = #{visitplan3,jdbcType=VARCHAR}
+		recording =
+		#{recording,jdbcType=VARCHAR},
+		createTime =
+		#{createtime,jdbcType=TIMESTAMP},
+		visitPlan1 =
+		#{visitplan1,jdbcType=VARCHAR},
+		visitPlan2 =
+		#{visitplan2,jdbcType=VARCHAR},
+		visitPlan3 =
+		#{visitplan3,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

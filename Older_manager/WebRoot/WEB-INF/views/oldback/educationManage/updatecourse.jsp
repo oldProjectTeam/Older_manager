@@ -133,7 +133,7 @@
 		//修改按钮
 		$("#editCourse").click(function() {
 			$.ajax({
-				url : "Course/modifyCourses",
+				url : "Course/modifyCourses/",
 				data : new FormData($("#modifyForm")[0]),
 				type : "post",
 				cache : false,
@@ -142,6 +142,7 @@
 				success : function(result) {
 					if (result.code == 100) {
 						alert("修改成功!");
+						 window.history.back(-1);
 					} else {
 						alert("修改失败!");
 					}

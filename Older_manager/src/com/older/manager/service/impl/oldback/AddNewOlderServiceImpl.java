@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import org.springframework.web.multipart.MultipartFile;
 
 import com.older.manager.bean.Oldman;
@@ -201,6 +200,20 @@ public class AddNewOlderServiceImpl implements AddNewOlderService {
 	public List<Oldman> findOldManPhone() {
 		// TODO Auto-generated method stub
 		return oldmanMapper.selectAllPhone();
+	}
+
+	/**
+	 * @Title:   findAllOldmansByName
+	 * @Description:  通过姓名查询所有的老人信息
+	 * @param:    @param name
+	 * @param:    @return     
+	 * @throws
+	 */
+	@Override
+	public List<Oldman> findAllOldmansByName(String name) {
+		OldmanExample example = new OldmanExample();
+		example.createCriteria().andNameLike("%"+name+"%");
+		return oldmanMapper.selectByExample(example);
 	}
 
 }

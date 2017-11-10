@@ -31,7 +31,7 @@ public class Oldman {
 
 	@NotNull
 	@Min(value = 70, message = "年龄低于了最小的范围")
-	@Max(value = 110, message = "年龄高于了最大的范围")
+	@Max(value = 150, message = "年龄高于了最大的范围")
 	private Integer age;
 
 	@NotNull

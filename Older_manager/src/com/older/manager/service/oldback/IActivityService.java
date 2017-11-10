@@ -54,4 +54,13 @@ public interface IActivityService {
 	 * @throws
 	 */
 	public List<Activity> findAllActivitiesByNoReleaseregion();
+	
+	/**
+	 * @Title:   findAllActivitiesByNoReleaseregionByName
+	 * @Description:  通过搜索名字来查询所有没有举行的活动
+	 * @param:    @return   
+	 * @return:   List<Activity>   
+	 * @throws
+	 */
+	public List<Activity> findAllActivitiesByNoReleaseregionByName(String name);
 }

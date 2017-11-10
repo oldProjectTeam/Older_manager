@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -96,6 +97,30 @@ public class VideoController {
 	}
 
 	/**
+	 * @Title:   deleteVideo
+	 * @Description:  删除视频
+	 * @param:    @param fileurl
+	 * @param:    @return   
+	 * @return:   Msg   
+	 * @throws
+	 */
+	@RequestMapping("/deleteVideo")
+	@ResponseBody
+	public Msg deleteVideo(String fileurl,HttpServletRequest request) {
+		if (fileurl != null) {
+			Boolean flag = SaveFile.delete(fileurl,request);
+			if (flag) {
+				return Msg.success().add("msg", "视频文件删除成功！");
+			} else {
+				return Msg.fail().add("msg", "视频文件删除失败！");
+			}
+		}else {
+			return Msg.fail().add("msg", "视频文件删除失败！");
+		}
+
+	}
+
+	/**
 	 * @Title: addVideo
 	 * @Description: 添加视频信息
 	 * @param: @param video
@@ -170,9 +195,34 @@ public class VideoController {
 	 */
 	@RequestMapping("/updateVideo")
 	@ResponseBody
-	public Msg updateVideo(Video video) {
+	public Msg updateVideo(Video video,HttpServletRequest request) {
+		String origailFileString=videoService.findById(video.getId()).getPath();
+		if (!origailFileString.equals(video.getPath())) {
+			SaveFile.delete(origailFileString, request);
+		}
 		int state = videoService.updateVideo(video);
 		if (state != 0) {
+			return Msg.success().add("msg", "视频更改成功！");
+		} else {
+			return Msg.fail().add("msg", "视频更改失败！");
+		}
+	}
+	
+	
+	/**
+	 * @Title: updateVideo
+	 * @Description: 修改视频信息
+	 * @param: @param video
+	 * @param: @return
+	 * @return: Msg
+	 * @throws
+	 */
+	@RequestMapping("/updateVideo2/{fileUrl}")
+	@ResponseBody
+	public Msg updateVideo2(Video video,@PathVariable("fileUrl")String fileUrl,HttpServletRequest request) {
+		int state = videoService.updateVideo(video);
+		if (state != 0) {
+			SaveFile.delete(fileUrl, request);
 			return Msg.success().add("msg", "视频更改成功！");
 		} else {
 			return Msg.fail().add("msg", "视频更改失败！");
@@ -227,13 +277,15 @@ public class VideoController {
 		PageHelper.startPage(pn, pageSize);
 		List<Video> list = null;
 		if ((title != null && !title.equals(""))
-				&& (vcount != null && !vcount.equals(""))&&(creator==null||creator.equals(""))) {
+				&& (vcount != null && !vcount.equals(""))
+				&& (creator == null || creator.equals(""))) {
 			System.out.println("...............进入4");
 			list = videoService.findAllVideoByNameAndVCount(
 					new String(title.getBytes("iso-8859-1"), "utf-8"),
 					Integer.valueOf(vcount));
 		} else if ((creator != null && !creator.equals(""))
-				&& (vcount != null && !vcount.equals(""))&&(title==null||title.equals(""))) {
+				&& (vcount != null && !vcount.equals(""))
+				&& (title == null || title.equals(""))) {
 			System.out.println("...............进入3");
 			list = videoService.findAllVideoByCreatorsAndVCount(new String(
 					creator.getBytes("iso-8859-1"), "utf-8"), Integer

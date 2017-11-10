@@ -314,6 +314,41 @@
 				return true;
 			}
 		}
+		$("#back_btn").click(
+	                function() {
+
+	                    var title = $('#title').val();
+	                    var createtime = $('#createtime').val();
+	                    var creators = $('#creators').val();
+	                    var lenght = $('#lenght').val();
+	                    var video = $('#video').val();
+	                    var path = document.getElementById("videopath").value;
+	                    if (jQuery.trim(video) == '' || jQuery.trim(title) == ''
+	                            || jQuery.trim(creators) == '' || jQuery.trim(subtitle) == ''
+	                            || jQuery.trim(createtime) == '' || jQuery.trim(lenght) == ''
+	                            || path.replace(/(^s*)|(s*$)/g, "").length == 0 || path == null) {
+
+	                        window.history.back();
+	                        go(currentNum);
+	                    } else {
+	                        if (confirm("您填写的数据还没有上传,退出后数据将会清空，您确定退出吗?")) {
+	                            //发送ajax请求删除
+	                            $.ajax({
+	                                url : "video/deleteVideo/",
+	                                data : {
+	                                    "fileurl" : path
+	                                },
+	                                type : "GET",
+	                                success : function(result) {
+	                                    if (result.code == 100) {
+	                                        window.history.back();
+	                                    }
+	                                }
+	                            });
+	                        }
+	                    }
+
+	                })
 	</script>
 </body>
 </html>

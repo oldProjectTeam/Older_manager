@@ -74,5 +74,15 @@ public interface AddNewOlderService {
      * @throws
      */
     public List<Oldman> findOldManPhone();
+    
+    /**
+     * @Title:   findAllOldmansByName
+     * @Description:  通过名字查询所有有关的老人
+     * @param:    @param name
+     * @param:    @return   
+     * @return:   List<Oldman>   
+     * @throws
+     */
+    public List<Oldman> findAllOldmansByName(String name);
 
 }

@@ -166,62 +166,62 @@ public class RecomProductsDetailsExample {
         }
 
         public Criteria andRecomproductsIdIsNull() {
-            addCriterion("\"recomProducts _id\" is null");
+            addCriterion("recomProducts_id is null");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdIsNotNull() {
-            addCriterion("\"recomProducts _id\" is not null");
+            addCriterion("recomProducts_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdEqualTo(Integer value) {
-            addCriterion("\"recomProducts _id\" =", value, "recomproductsId");
+            addCriterion("recomProducts_id =", value, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdNotEqualTo(Integer value) {
-            addCriterion("\"recomProducts _id\" <>", value, "recomproductsId");
+            addCriterion("recomProducts_id <>", value, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdGreaterThan(Integer value) {
-            addCriterion("\"recomProducts _id\" >", value, "recomproductsId");
+            addCriterion("recomProducts_id >", value, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("\"recomProducts _id\" >=", value, "recomproductsId");
+            addCriterion("recomProducts_id >=", value, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdLessThan(Integer value) {
-            addCriterion("\"recomProducts _id\" <", value, "recomproductsId");
+            addCriterion("recomProducts_id <", value, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdLessThanOrEqualTo(Integer value) {
-            addCriterion("\"recomProducts _id\" <=", value, "recomproductsId");
+            addCriterion("recomProducts_id <=", value, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdIn(List<Integer> values) {
-            addCriterion("\"recomProducts _id\" in", values, "recomproductsId");
+            addCriterion("recomProducts_id in", values, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdNotIn(List<Integer> values) {
-            addCriterion("\"recomProducts _id\" not in", values, "recomproductsId");
+            addCriterion("recomProducts_id not in", values, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdBetween(Integer value1, Integer value2) {
-            addCriterion("\"recomProducts _id\" between", value1, value2, "recomproductsId");
+            addCriterion("recomProducts_id between", value1, value2, "recomproductsId");
             return (Criteria) this;
         }
 
         public Criteria andRecomproductsIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("\"recomProducts _id\" not between", value1, value2, "recomproductsId");
+            addCriterion("recomProducts_id not between", value1, value2, "recomproductsId");
             return (Criteria) this;
         }
 

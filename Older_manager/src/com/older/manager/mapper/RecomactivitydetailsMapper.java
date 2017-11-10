@@ -31,4 +31,6 @@ public interface RecomactivitydetailsMapper {
     Recomactivitydetails selectBaseRecomActivitydetails(Integer id);
     
     List<Recomactivitydetails> selectAllBaseRecomActivitydetails();
+    
+    List<Recomactivitydetails> selectByRecomactivitydetails(Recomactivitydetails recomactivitydetails);
 }

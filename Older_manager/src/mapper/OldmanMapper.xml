@@ -12,6 +12,7 @@
 		<result column="address" property="address" jdbcType="VARCHAR" />
 		<result column="photo" property="photo" jdbcType="VARCHAR" />
 		<result column="service" property="service" jdbcType="VARCHAR" />
+		<result column="idcar" property="idcar" jdbcType="VARCHAR" />
 	</resultMap>
 	<resultMap id="BaseResultMap" type="com.older.manager.bean.Oldman">
 		<id column="id" property="id" jdbcType="INTEGER" />
@@ -138,14 +139,16 @@
 	</sql>
 	<select id="selectAllPhone" resultMap="PhoneResultMap">
 		select id, name, sex,
-		nation,birthday,phone, address,
+		nation,birthday,phone, address,idcar,
 		photo, service from oldman
 	</select>
 
 	<select id="selectBaseInfoById" resultMap="PhoneResultMap"
 		parameterType="java.lang.Integer">
-		select id, name, sex, nation,birthday,phone, address,
-		photo, service from oldman where id = #{id,jdbcType=INTEGER}
+		select id, name, sex, nation,birthday,phone,
+		address,idcar,
+		photo, service from oldman where id =
+		#{id,jdbcType=INTEGER}
 	</select>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.older.manager.bean.OldmanExample">

@@ -17,8 +17,14 @@ public interface RecomProductsDetailsMapper {
     int insertSelective(RecomProductsDetails record);
 
     List<RecomProductsDetails> selectByExample(RecomProductsDetailsExample example);
+    
+    List<RecomProductsDetails> selectAllDetailRecomProductsDetails();
+    
+    List<RecomProductsDetails> selectByRecomProductsDetails(RecomProductsDetails recomProductsDetails);
 
     RecomProductsDetails selectByPrimaryKey(Integer id);
+    
+    RecomProductsDetails selectDetailRecomProductsDetailsById(Integer id);
 
     int updateByExampleSelective(@Param("record") RecomProductsDetails record, @Param("example") RecomProductsDetailsExample example);
 

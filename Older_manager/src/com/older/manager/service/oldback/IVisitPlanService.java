@@ -2,9 +2,12 @@ package com.older.manager.service.oldback;
 
 import java.util.List;
 
-import com.older.manager.bean.Oldman;
 import com.older.manager.bean.Visitplan;
 
+/**
+ * 再次编写：杨明 编写内容：添加查询接口,修改接口
+ *
+ */
 public interface IVisitPlanService {
 
 	/**
@@ -38,5 +41,35 @@ public interface IVisitPlanService {
 	 * @param visitplan
 	 */
 	void addVisitPlan(Visitplan visitplan);
+	
+	/**
+	 * @Title:   findAllVisitplansBySearch
+	 * @Description:  通过搜索查询所有的回访计划
+	 * @param:    @param visitPeaplo
+	 * @param:    @param days
+	 * @param:    @return   
+	 * @return:   List<Visitplan>   
+	 * @throws
+	 */
+	List<Visitplan> findAllVisitplansBySearch(String visitPeaplo,String days);
 
+	
+	/**
+	 * @Title:   findAllVisitplans
+	 * @Description:  查询所有的回访计划表
+	 * @param:    @return   
+	 * @return:   List<Visitplan>   
+	 * @throws
+	 */
+	List<Visitplan> findAllVisitplans();
+	
+	/**
+	 * @Title:   modifyVisitPlan
+	 * @Description:  修改回访计划
+	 * @param:    @param visitplan
+	 * @param:    @return   
+	 * @return:   int   
+	 * @throws
+	 */
+	public int modifyVisitPlan(Visitplan visitplan);
 }
