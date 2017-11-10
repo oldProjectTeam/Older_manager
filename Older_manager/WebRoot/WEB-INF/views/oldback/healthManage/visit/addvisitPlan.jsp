@@ -30,6 +30,8 @@
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script language="JavaScript"
 	src="${APP_PATH}/static/js/uploadPreview.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 <STYLE type="text/css">
 .table td {
 	text-align: center;
@@ -45,16 +47,16 @@
 <body style="margin: 15px;">
 	<!-- 头部 -->
 	<div class="col-md-12">
-		
-     	<div class="row">
-		<div class="col-md-12">
-			<ol class="breadcrumb">
-				<li><b>位置：数据统计</b></li>
-				<li>回访记录</li>
-				<li class="active">新增记录</li>
-			</ol>
+
+		<div class="row">
+			<div class="col-md-12">
+				<ol class="breadcrumb">
+					<li><b>位置：数据统计</b></li>
+					<li>回访记录</li>
+					<li class="active">新增记录</li>
+				</ol>
+			</div>
 		</div>
-	</div>
 		<!-- 小模态框,显示老人信息 -->
 		<div class="modal fade bs-example-modal-sm" tabindex="-1"
 			role="dialog" aria-labelledby="mySmallModalLabel">
@@ -251,48 +253,41 @@
 			});
 		};
 		/* 保存 */
-		$("#save").click(function() {
-			if ($("#plannedvisits").val() == '') {
-				$("#plannedvisitsHelpBlock").text("");
-				$("#plannedvisitsHelpBlock").append("计划回访不能为空");
-
-			}
-			if ($("#visiplantime").val() == '') {
-				$("#visiplantimeHelpBlock").text("");
-				$("#visiplantimeHelpBlock").append("计划回访时间不能为空");
-			}
-			if ($("#actualplannedvisits").val() == '') {
-				$("#actualplannedvisitsHelpBlock").text("");
-				$("#actualplannedvisitsHelpBlock").append("实际回访不能为空");
-
-			}
-			if ($("#actualtime").val() == '') {
-				$("#actualtimeHelpBlock").text("");
-				$("#actualtimeHelpBlock").append("实际回访时间不能为空");
-			}
-			if ($("#remindvistitplantime").val() == '') {
-				$("#remindvistitplantimeHelpBlock").text("");
-				$("#remindvistitplantimeHelpBlock").append("提醒时间不能为空");
-			}
-			if ($("#pendingevent").val() == '') {
-				$("#pendingeventHelpBlock").text("");
-				$("#pendingeventHelpBlock").append("待提醒不能为空");
-			}
-			if ($("#visitrecord").val() == '') {
-				$("#visitrecordHelpBlock").text("");
-				$("#visitrecordHelpBlock").append("回访记录不能为空");
-			} else {
-				if($("#visiplantime").val())
-				$("#plannedvisitsHelpBlock").text("");
-				$("#visiplantimeHelpBlock").text("");
-				$("#actualplannedvisitsHelpBlock").text("");
-				$("#actualtimeHelpBlock").text("");
-				$("#remindvistitplantimeHelpBlock").text("");
-				$("#pendingeventHelpBlock").text("");
-				$("#visitrecordHelpBlock").text("");
-				$("#saveForm").submit();
-			}
-		});
+		$("#save")
+				.click(
+						function() {
+							if ($("#plannedvisits").val() == ''
+									|| $("#visiplantime").val() == ''
+									|| $("#actualplannedvisits").val() == ''
+									|| $("#actualtime").val() == ''
+									|| $("#remindvistitplantime").val() == ''
+									|| $("#pendingevent").val() == ''
+									|| $("#visitrecord").val() == '') {
+								layer.msg("请填写必填信息");
+							} else {
+								var name = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)";
+								if ($("#visiplantime").val() > $("#actualtime")
+										.val()) {
+									layer.msg("实际时间不能在计划时间之前");
+								} else if ($("#visiplantime").val() > $(
+										"#remindvistitplantime").val()) {
+									layer.msg("提醒时间不能再计划时间之前");
+								} else if (!$("#plannedvisits").val().match(
+										name)) {
+									layer.msg("计划回访必须是中文的");
+								} else if (!$("#actualplannedvisits").val()
+										.match(name)) {
+									layer.msg("实际回访必须是中文的");
+								} else if (!$("#pendingevent").val()
+										.match(name)) {
+									layer.msg("待提醒必须是中文的");
+								} else if (!$("#visitrecord").val().match(name)) {
+									layer.msg("回访记录必须是中文的");
+								} else {
+									$("#saveForm").submit();
+								}
+							}
+						});
 	</script>
 </body>
 </html>

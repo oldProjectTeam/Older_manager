@@ -130,10 +130,6 @@ public class VisitPlanController {
 				map.put("fieldName", fieldError.getField());
 				map.put("errorMessage", fieldError.getDefaultMessage());
 				errorList.add(map);
-				System.out.println("出错的字段名为:------------->"
-						+ fieldError.getField());
-				System.out.println("出错信息为:---------------->"
-						+ fieldError.getDefaultMessage());
 			}
 		} else {
 			String imgUrl = null;

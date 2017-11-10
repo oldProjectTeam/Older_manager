@@ -1,6 +1,5 @@
 package com.older.manager.controller.oldback;
 
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 import com.older.manager.bean.Activity;
 import com.older.manager.service.oldback.IActivityService;
 import com.older.manager.utils.Msg;
+import com.older.manager.utils.TableData;
 
 @Controller
 @RequestMapping("/activity")
@@ -222,5 +222,17 @@ public class ActivityController {
 		}
 	}
 	
-	
+	@RequestMapping("/test")
+	@ResponseBody
+	public TableData<Activity> test(@RequestParam("page")Integer page,@RequestParam("limit")Integer limit){
+		TableData<Activity> tableData=new TableData<Activity>();
+		PageHelper.startPage(page, limit);
+		List<Activity> activities=activityService.findAllActivitiesByNoReleaseregion();
+		PageInfo<Activity> pageInfo=new PageInfo<Activity>(activities);
+		tableData.setCode(0);
+		tableData.setCount(activities.size());
+		tableData.setData(pageInfo.getList());
+		tableData.setMsg("查询成功");
+		return tableData;
+	}
 }
