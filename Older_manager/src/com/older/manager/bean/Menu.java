@@ -9,6 +9,8 @@ public class Menu {
 
     private String url;
 
+    private Integer type;
+
     public Integer getId() {
         return id;
     }
@@ -39,5 +41,13 @@ public class Menu {
 
     public void setUrl(String url) {
         this.url = url == null ? null : url.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 }

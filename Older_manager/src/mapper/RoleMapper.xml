@@ -4,6 +4,8 @@
 	<resultMap id="BaseResultMap" type="com.older.manager.bean.Role">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
 	</resultMap>
 	<sql id="Example_Where_Clause">
 		<where>
@@ -71,7 +73,7 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, name
+		id, name, type, region
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
 		parameterType="com.older.manager.bean.RoleExample">
@@ -84,7 +86,9 @@
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
-		order by id DESC
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
 	</select>
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
@@ -106,8 +110,12 @@
 	</delete>
 	<insert id="insert" parameterType="com.older.manager.bean.Role">
 		insert into sys_role (id,
-		name)
-		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+		name, type,
+		region)
+		values (#{id,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{type,jdbcType=INTEGER},
+		#{region,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.older.manager.bean.Role">
 		insert into sys_role
@@ -118,6 +126,12 @@
 			<if test="name != null">
 				name,
 			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="region != null">
+				region,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -125,6 +139,12 @@
 			</if>
 			<if test="name != null">
 				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="region != null">
+				#{region,jdbcType=VARCHAR},
 			</if>
 		</trim>
 	</insert>
@@ -144,6 +164,12 @@
 			<if test="record.name != null">
 				name = #{record.name,jdbcType=VARCHAR},
 			</if>
+			<if test="record.type != null">
+				type = #{record.type,jdbcType=INTEGER},
+			</if>
+			<if test="record.region != null">
+				region = #{record.region,jdbcType=VARCHAR},
+			</if>
 		</set>
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
@@ -153,7 +179,11 @@
 		update sys_role
 		set id = #{record.id,jdbcType=INTEGER},
 		name =
-		#{record.name,jdbcType=VARCHAR}
+		#{record.name,jdbcType=VARCHAR},
+		type =
+		#{record.type,jdbcType=INTEGER},
+		region =
+		#{record.region,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -164,12 +194,20 @@
 			<if test="name != null">
 				name = #{name,jdbcType=VARCHAR},
 			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=INTEGER},
+			</if>
+			<if test="region != null">
+				region = #{region,jdbcType=VARCHAR},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Role">
 		update sys_role
-		set name = #{name,jdbcType=VARCHAR}
+		set name = #{name,jdbcType=VARCHAR},
+		type = #{type,jdbcType=INTEGER},
+		region = #{region,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 

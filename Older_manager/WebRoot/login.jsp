@@ -40,6 +40,7 @@
 	type="text/javascript"></script>
 </head>
 <body>
+<div class="header"></div>
 	<div class="loginWraper">
 		<div class="loginBox">
 			<span><font color="red" id="msg" size="3"

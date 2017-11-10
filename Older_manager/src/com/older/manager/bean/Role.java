@@ -5,6 +5,10 @@ public class Role {
 
     private String name;
 
+    private Integer type;
+
+    private String region;
+
     public Integer getId() {
         return id;
     }
@@ -19,5 +23,21 @@ public class Role {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region == null ? null : region.trim();
     }
 }

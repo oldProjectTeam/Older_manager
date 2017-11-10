@@ -15,6 +15,8 @@ public class Permission {
 
     private String img;
 
+    private Integer flag;
+
     public Integer getId() {
         return id;
     }
@@ -69,5 +71,13 @@ public class Permission {
 
     public void setImg(String img) {
         this.img = img == null ? null : img.trim();
+    }
+
+    public Integer getFlag() {
+        return flag;
+    }
+
+    public void setFlag(Integer flag) {
+        this.flag = flag;
     }
 }
