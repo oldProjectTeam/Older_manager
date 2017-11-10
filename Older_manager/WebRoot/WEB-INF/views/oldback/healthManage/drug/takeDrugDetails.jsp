@@ -24,21 +24,22 @@
 	type="text/javascript"></script>
 <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
  <script src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+ <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
   </head>
 
 <body>
    <div class="col-sm-12">
 	<!-- 头部 -->
 	<div class="col-md-12">
-		<div>
-			<div class="row">
-
-				<ol class="breadcrumb">
-					<li><b>位置：健康管理</b>>用药记录
-				</ol>
-
-			</div>
+		<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><b>位置：健康管理</b></li>
+				<li class="active">用药记录</li>
+			</ol>
 		</div>
+	</div>
 
 		<!-- 新增按钮 -->
 
@@ -107,7 +108,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">新增就诊记录</h4>
+        <h4 class="modal-title" id="myModalLabel">新增用药记录</h4>
            </div>
            
            <div class="modal-body">
@@ -119,34 +120,34 @@
 			   <form id="formid">
 				<table class="table table-bordered table-hover text-center">
 					<tr>
-					     <td>老人名字</td>
+					     <td><font color="red">*</font>老人名字</td>
 					     <td>
 					         <select class="form-control" id="oldmanselect" name="oldmanId"> </select>
 					     </td>
-					     <td>药物名称</td>
+					     <td><font color="red">*</font>药物名称</td>
 					      <td>
-					         <input class="form-control" type="text" name="medicines">
+					         <input class="form-control" type="text" id="medid" name="medicines">
 					     </td>
-					     <td>开始服用时间</td>
+					     <td><font color="red">*</font>开始服用时间</td>
 					     <td>
-					        <input class="form-control" type="date" name="starttakingdate">
+					        <input class="form-control" type="date" name="starttakingdate" id="staid">
 					     </td>
 					</tr>
 					<tr>
-					     <td>服用结束时间</td>
+					     <td><font color="red">*</font>服用结束时间</td>
 					     <td>
-					         <input class="form-control" type="date" name="endtakingdate">
+					         <input class="form-control" type="date" name="endtakingdate" id="endid">
 					     </td>
-					     <td>用药剂量</td>
+					     <td><font color="red">*</font>用药剂量</td>
 					      <td colspan="1">
-					         <input class="form-control" type="text" name="dosage">
+					         <input class="form-control" type="text" id="dosid" name="dosage">
 					     </td>
 					     <td colspan="2"></td>
 					     
 					</tr>
 					<tr>
-					   <td>使用方法</td>
-					   <td colspan="2"> <textarea class="form-control" rows="2" cols="" name="methoduse"></textarea></td>
+					   <td><font color="red">*</font>使用方法</td>
+					   <td colspan="2"> <textarea class="form-control" rows="2" id="metid" cols="" name="methoduse"></textarea></td>
 					   <td>作用</td>
 					   <td colspan="2"> <textarea class="form-control" rows="2" cols="" name="role"></textarea></td>
 					</tr>
@@ -173,7 +174,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">编辑就诊记录</h4>
+        <h4 class="modal-title" id="myModalLabel">编辑用药记录</h4>
            </div>
            
            <div class="modal-body">
@@ -185,25 +186,25 @@
 			   <form id="form_update">
 				<table class="table table-bordered table-hover text-center">
 					<tr>
-					     <td>老人名字</td>
+					     <td><font color="red">*</font>老人名字</td>
 					     <td>  
 					         <p class="form-control-static" id="oldmanselect1"></p>
 					     </td>
-					     <td>药物名称</td>
+					     <td><font color="red">*</font>药物名称</td>
 					      <td>
 					         <input class="form-control" type="text" name="medicines" id="medicinesid">
 					     </td>
-					     <td>开始服用时间</td>
+					     <td><font color="red">*</font>开始服用时间</td>
 					     <td>
 					        <input class="form-control" type="date" name="starttakingdate" id="starttakingdateid">
 					     </td>
 					</tr>
 					<tr>
-					     <td>服用结束时间</td>
+					     <td><font color="red">*</font>服用结束时间</td>
 					     <td>
 					         <input class="form-control" type="date" name="endtakingdate" id="endtakingdateid">
 					     </td>
-					     <td>用药剂量</td>
+					     <td><font color="red">*</font>用药剂量</td>
 					      <td colspan="1">
 					         <input class="form-control" type="text" name="dosage" id="dosageid">
 					     </td>
@@ -211,7 +212,7 @@
 					     
 					</tr>
 					<tr>
-					   <td>使用方法</td>
+					   <td><font color="red">*</font>使用方法</td>
 					   <td colspan="2"> <textarea class="form-control" rows="2" cols="" name="methoduse" id="methoduseid"></textarea></td>
 					   <td>作用</td>
 					   <td colspan="2"> <textarea class="form-control" rows="2" cols="" name="role" id="roleid"></textarea></td>
@@ -227,7 +228,7 @@
 		</div>
 		 <div class="modal-footer">
 		 <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-        <button type="button" class="btn btn-success" data-dismiss="modal" id="update_drug_btn">更新</button>
+        <button type="button" class="btn btn-success"  id="update_drug_btn">更新</button>
       </div>
     </div>
   </div>
@@ -240,7 +241,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">查看就诊记录</h4>
+        <h4 class="modal-title" id="myModalLabel">查看用药记录</h4>
            </div>
            
            <div class="modal-body">
@@ -622,9 +623,53 @@
 	
 	});	
 		
-		
+	/*//点击保存	
+		$("#save_pe_btn").click(
+				function() {
+					if ($("#hospital").val() == '' || $("#peTime").val() == ''
+							|| $("#peNextTime").val() == ''
+							|| $("#project").val() == ''
+							|| $("#pevalue").val() == ''
+							|| $("#result").val() == ''
+							|| $("#resultAnysis").val() == '') {
+						layer.msg("请填写完必填项再保存");
+					} else {
+						if ($("#peTime").val() > $("#peNextTime").val()) {
+							layer.msg("下次体检时间应该在这次体检时间之后");
+						} else {
+							$.ajax({
+								url : "${APP_PATH}/pe/addpe",
+								type : "POST",
+								data : $("#formid").serialize(),
+								success : function(result) {
+
+									if (result.code == 100) {
+										//1.关闭模态框
+										$("#add_modal").modal('hide');
+										go(totalRecord, oldmanname,
+												hospitalname);
+										layer.msg("添加成功");
+										$("#formid")[0].reset();
+									}
+								}
+
+							});
+						}
+					}
+				});**/	
 	 $("#save_drug_btn").click(function(){
 	 // alert($("#formid").serialize());
+	     if($("#oldmanselect").val()==''||
+	        $("#medid").val()==''||
+	        $("#staid").val()==''||
+	        $("#endid").val()==''||
+	        $("#dosid").val()==''||
+	        $("#metid").val()=='' ){
+	        layer.msg("请填写完必填项再保存");
+	     }else {
+	         if( $("#endid").val()< $("#staid").val()){
+	            layer.msg("结束服药时间应该在开始时间之后");
+	         }else{
 	   $.ajax({
 			url:"${APP_PATH}/drug/addtakedrugdetails",
 			type:"POST",
@@ -635,11 +680,13 @@
 					//1.关闭模态框
 					$("#add_modal").modal('hide');
 					go(totalRecord, oldmanname,drugname);
+					layer.msg("添加成功");
+					$("#formid")[0].reset();
 				}
 			}
 
 	  }); 
-
+        }}
   });	
 		
 //点击编辑
@@ -682,8 +729,23 @@
 			});
 	  }); 
 
+
+
 	 //点击修改
 	  $("#update_drug_btn").click(function(){
+	     if(
+	        $("#medicinesid").val()==''||
+	        $("#starttakingdateid").val()==''||
+	        $("#endtakingdateid").val()==''||
+	        $("#dosageid").val()==''||
+	        $("#methoduseid").val()==''){
+	          layer.msg("请填写完必填项再修改");
+	        }else{
+	        
+	         if( $("#endtakingdateid").val()< $("#starttakingdateid").val()){
+	            layer.msg("结束服药时间应该在开始时间之后");
+	         }else{
+	        
        var edit=$(this).attr("edit-id");
 	   $.ajax({
 			url:"${APP_PATH}/drug/updatetakedrugdetails/"+edit,
@@ -695,11 +757,13 @@
 					//1.关闭模态框
 					$("#update_modal").modal('hide');
 					go(currentNum, oldmanname,drugname);
+					layer.msg("修改成功");
+					$("#update_modal form")[0].reset();
 				}
 			}
 
 	  }); 
-
+}}
   });	
 	//点击查看
 	

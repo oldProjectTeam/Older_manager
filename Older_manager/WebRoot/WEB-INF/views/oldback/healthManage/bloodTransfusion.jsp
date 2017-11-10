@@ -98,23 +98,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table class="table table-bordered table-hover">
 	                
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                   <select id="oldman_name" class="form-control" name="oldmanId">
 	                   </select>
 	                 </td>
-	                 <td>输血原因</td>
+	                 <td><font color="red">*</font>输血原因</td>
 	                  <td>
-                         <input name="bloodtransfusionwhy" type="text" class="form-control">
+                         <input name="bloodtransfusionwhy" id="bloid" type="text" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>输血时间</td>
-	                 <td><input name="occurrencetime" type="date" class="form-control"></td>
-	                 <td>输血量</td>
+	                 <td><font color="red">*</font>输血时间</td>
+	                 <td><input name="occurrencetime" type="date" id="occid" class="form-control"></td>
+	                 <td><font color="red">*</font>输血量</td>
 	                  <td>
-                        <input name="bloodtransfusionamount" type="text" class="form-control">
+                        <input name="bloodtransfusionamount" id="blooid" type="text" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
@@ -149,20 +149,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table class="table table-bordered table-hover">
 	                
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                   <p class="form-control-static" id="update_name"></p>
 	                 </td>
-	                 <td>输血原因</td>
+	                 <td><font color="red">*</font>输血原因</td>
 	                  <td>
                          <input name="bloodtransfusionwhy" type="text" class="form-control" id="bloodtransfusionwhyid">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>输血时间</td>
+	                 <td><font color="red">*</font>输血时间</td>
 	                 <td><input name="occurrencetime" type="date" class="form-control" id="occurrencetimeid"></td>
-	                 <td>输血量</td>
+	                 <td><font color="red">*</font>输血量</td>
 	                  <td>
                         <input name="bloodtransfusionamount" type="text" class="form-control" id="bloodtransfusionamountid">
 	                 </td>
@@ -541,7 +541,15 @@ var totalRecord, currentNum,oldmanname="";
 		//点击保存	
 	$("#save_blood_btn").click(function(){
 	 // alert($("#formid").serialize());
-	   $.ajax({
+	 if($("#oldman_name").val()==""||
+	    $("#bloid").val()==''||
+	    $("#occid").val()==''||
+	    $("#blooid").val()==''){
+	    
+	    layer.msg("请填写完必填项再保存");
+	    }else{
+	       
+	    $.ajax({
 			url:"${APP_PATH}/blood/addblood",
 			type:"POST",
 			data:$("#add_form").serialize(),
@@ -551,10 +559,16 @@ var totalRecord, currentNum,oldmanname="";
 					//1.关闭模态框
 					$("#add_modal").modal('hide');
 					go(totalRecord, oldmanname);
+					layer.msg("添加成功");
+					$("#add_modal form")[0].reset();
 				}
 			}
 
 	  }); 
+	    
+	    }
+	 
+	   
 
   });
  
@@ -596,6 +610,12 @@ var totalRecord, currentNum,oldmanname="";
 	  
 	  	 //点击更新
 	  $("#update_blood_btn").click(function(){
+	      if($("#bloodtransfusionwhyid").val()==''||
+	         $("#occurrencetimeid").val()==''||
+	         $("#bloodtransfusionamountid").val()==''){
+	         layer.msg("请填写完必填项再保存");
+	         }else{
+	         
        var edit=$(this).attr("edit-id");
 	   $.ajax({
 			url:"${APP_PATH}/blood/updateblood/"+edit,
@@ -611,6 +631,9 @@ var totalRecord, currentNum,oldmanname="";
 			}
 
 	  }); 
+	         }
+	  
+	  
 
   });
     //点击查看

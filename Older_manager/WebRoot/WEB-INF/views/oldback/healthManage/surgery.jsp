@@ -99,23 +99,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table class="table table-bordered table-hover">
 	                
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                   <select id="oldman_name" class="form-control" name="oldmanId">
 	                 		</select>
 	                 </td>
-	                 <td>手术名称</td>
+	                 <td><font color="red">*</font>手术名称</td>
 	                  <td>
-                         <input name="surgeryname" type="text" class="form-control">
+                         <input name="surgeryname" id="surid" type="text" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>手术时间</td>
-	                 <td><input name="surgerytime" type="date" class="form-control"></td>
-	                 <td>医院名称</td>
+	                 <td><font color="red">*</font>手术时间</td>
+	                 <td><input name="surgerytime" id="surgid" type="date" class="form-control"></td>
+	                 <td><font color="red">*</font>医院名称</td>
 	                  <td>
-                        <input name="hospitalname" type="text" class="form-control">
+                        <input name="hospitalname" type="text" id="hosid" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
@@ -151,20 +151,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	                
 	                 
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                  <p class="form-control-static" id="update_name"></p>
 	                 </td>
-	                 <td>手术名称</td>
+	                 <td><font color="red">*</font>手术名称</td>
 	                  <td>
                          <input name="surgeryname" type="text" class="form-control" id="surgerynameid">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>手术时间</td>
+	                 <td><font color="red">*</font>手术时间</td>
 	                 <td><input name="surgerytime" type="date" class="form-control" id="surgerytimeid"></td>
-	                 <td>医院名称</td>
+	                 <td><font color="red">*</font>医院名称</td>
 	                  <td>
                         <input name="hospitalname" type="text" class="form-control" id="hospitalnameid">
 	                 </td>
@@ -550,7 +550,13 @@ var totalRecord, currentNum,oldmanname="", surgeryname="";
  	//点击保存	
 	$("#save_surgery_btn").click(function(){
 	 // alert($("#formid").serialize());
-	   $.ajax({
+	   if($("#oldman_name").val()==""||
+	      $("#surid").val()==""||
+	      $("#surgid").val()==""||
+	      $("#hosid").val()==""){
+	        layer.msg("请填写完必填项再保存");
+	      }else{
+	        $.ajax({
 			url:"${APP_PATH}/surgery/addsurgery",
 			type:"POST",
 			data:$("#add_form").serialize(),
@@ -560,11 +566,13 @@ var totalRecord, currentNum,oldmanname="", surgeryname="";
 					//1.关闭模态框
 					$("#add_modal").modal('hide');
 					go(totalRecord, oldmanname,surgeryname);
+					layer.msg("保存成功");
+					$("#add_modal form")[0].reset();
 				}
 			}
 
 	  }); 
-
+	      }
   });
  
  //点击编辑
@@ -601,10 +609,13 @@ var totalRecord, currentNum,oldmanname="", surgeryname="";
 			});
 	  });
 	  
-	  
-	   
 	  	 //点击更新
 	  $("#update_surgery_btn").click(function(){
+	        if($("#surgerynameid").val()==""||
+	      $("#surgerytimeid").val()==""||
+	      $("#hospitalnameid").val()==""){
+	        layer.msg("请填写完必填项再保存");
+	      }else{
        var edit=$(this).attr("edit-id");
 	   $.ajax({
 			url:"${APP_PATH}/surgery/updatesurgery/"+edit,
@@ -616,11 +627,12 @@ var totalRecord, currentNum,oldmanname="", surgeryname="";
 					//1.关闭模态框
 					$("#update_modal").modal('hide');
 					go(currentNum, oldmanname,surgeryname);
+					layer.msg("更新成功");
 				}
 			}
 
 	  }); 
-
+}
   });
   
   

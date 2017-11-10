@@ -45,14 +45,16 @@
 <body style="margin: 15px;">
 	<!-- 头部 -->
 	<div class="col-md-12">
-		<div>
-			<div class="row">
-				<ol class="breadcrumb">
-					<li><b>位置：健康管理>回访记录</b>>新增记录
-				</ol>
-			</div>
+		
+     	<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><b>位置：数据统计</b></li>
+				<li>回访记录</li>
+				<li class="active">新增记录</li>
+			</ol>
 		</div>
-
+	</div>
 		<!-- 小模态框,显示老人信息 -->
 		<div class="modal fade bs-example-modal-sm" tabindex="-1"
 			role="dialog" aria-labelledby="mySmallModalLabel">

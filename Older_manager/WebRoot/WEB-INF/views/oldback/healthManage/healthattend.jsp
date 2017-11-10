@@ -34,15 +34,14 @@
 <body style="margin: 15px;">
 	<!-- 头部 -->
 	<div class="col-md-12">
-		<div>
 			<div class="row">
-
-				<ol class="breadcrumb">
-					<li><b>位置：健康管理</b>>就诊记录
-				</ol>
-
-			</div>
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><b>位置：健康管理</b></li>
+				<li class="active">就诊记录</li>
+			</ol>
 		</div>
+	</div>
 
 		<!-- 新增按钮 -->
 
@@ -216,54 +215,54 @@
 							<form id="formid">
 								<table class="table table-bordered table-hover text-center">
 									<tr class="active">
-										<td>老人姓名：</td>
+										<td><font color="red">*</font>老人姓名：</td>
 										<td><p class="form-control-static" id="select_name"></p></td>
-										<td>就诊医院：</td>
+										<td><font color="red">*</font>就诊医院：</td>
 										<td><input type="text" class="form-control"
 											name="hospital" id="select_hospital"></td>
-										<td>就诊科室：</td>
+										<td><font color="red">*</font>就诊科室：</td>
 										<td><input type="text" class="form-control"
 											name="department" id="select_department"></td>
 									</tr>
 									<tr>
-										<td>医生姓名：</td>
+										<td><font color="red">*</font>医生姓名：</td>
 										<td><input type="text" class="form-control" name="doctor"
 											id="select_doctor"></td>
-										<td>就诊时间：</td>
+										<td><font color="red">*</font>就诊时间：</td>
 										<td><INPUT type="date" class="form-control"
 											name="clinicaltime" id="select_clinicaltime"></td>
-										<td>复诊时间：</td>
+										<td><font color="red">*</font>复诊时间：</td>
 										<td><INPUT type="date" class="form-control"
 											name="appointmenttime" id="select_appointmenttime"></td>
 									</tr>
 									<tr class="active">
-										<td class="">主诉内容：</td>
+										<td class=""><font color="red">*</font>主诉内容：</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="medicalrecord1" id="select_medicalrecord1"></textarea>
 										</td>
-										<td>体格检查内容：</td>
+										<td><font color="red">*</font>体格检查内容：</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="chekcontent" id="select_chekcontent"></textarea></td>
 									</tr>
 									<tr>
-										<td>辅助检查内容：</td>
+										<td><font color="red">*</font>辅助检查内容：</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="ancillarycheckcontent"
 												id="select_ancillarycheckcontent"></textarea></td>
-										<td>实际检查内容：</td>
+										<td><font color="red">*</font>实际检查内容：</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="realcheckcontent" id="select_realcheckcontent"></textarea></td>
 									</tr>
 									<tr class="active">
-										<td>正常使用药物：</td>
+										<td><font color="red">*</font>正常使用药物：</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="normalusedrug" id="select_normalusedrug"></textarea></td>
-										<td>本次诊断结果：</td>
+										<td><font color="red">*</font>本次诊断结果：</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="diagnosis" id="select_diagnosis"></textarea></td>
 									</tr>
 									<tr>
-										<td>治疗处方和保健处方：</td>
+										<td><font color="red">*</font>治疗处方和保健处方：</td>
 										<td colspan="2"><textarea class="form-control" rows="2"
 												name="treatmentcareprescription"
 												id="select_treatmentcareprescription"></textarea></td>
@@ -807,6 +806,23 @@
 
 		//点击修改
 		$("#update_healthrecord_btn").click(function() {
+		           if ($("#select_hospital").val() == ''
+							|| $("#select_department").val() == ''
+							|| $("#select_doctor").val() == ''
+							|| $("#select_clinicaltime").val() == ''
+							|| $("#select_appointmenttime").val() == ''
+							|| $("#select_medicalrecord1").val() == ''
+							|| $("#select_chekcontent").val() == ''
+							|| $("#select_realcheckcontent").val() == ''
+							|| $("#select_normalusedrug").val() == ''
+							|| $("#select_diagnosis").val() == ''
+							|| $("#select_treatmentcareprescription").val() == '') {
+						layer.msg("请先填写必填项");
+					} else {
+						if ($("#select_clinicaltime").val() > $("#select_appointmenttime")
+								.val()) {
+							layer.msg("复查时间不能在就诊时间之前");
+						} else {
 			var edit = $(this).attr("edit-id");
 			$.ajax({
 				url : "${APP_PATH}/health/updatehealthrecord/" + edit,
@@ -818,11 +834,12 @@
 						//1.关闭模态框
 						$("#update_modal").modal('hide');
 						go(currentNum, hospital1, oldmanname, doctor1);
+						layer.msg("更新成功");
 					}
 				}
 
 			});
-
+}}
 		});
 
 		//点击查看

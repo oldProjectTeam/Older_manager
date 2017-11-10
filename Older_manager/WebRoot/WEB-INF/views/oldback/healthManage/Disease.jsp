@@ -99,23 +99,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           <form id="add_form">        
 	            <table class="table table-bordered table-hover">
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                   <select id="oldman_name" class="form-control" name="oldmanId">
 	                   </select>
 	                 </td>
-	                 <td>疾病名称</td>
+	                 <td><font color="red">*</font>疾病名称</td>
 	                  <td>
-                         <input name="diseasename" type="text" class="form-control">
+                         <input name="diseasename" id="disid" type="text" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>确诊时间</td>
-	                 <td><input name="confirmedtime" type="date" class="form-control"></td>
-	                 <td>确诊地点</td>
+	                 <td><font color="red">*</font>确诊时间</td>
+	                 <td><input name="confirmedtime" id="conid" type="date" class="form-control"></td>
+	                 <td><font color="red">*</font>确诊地点</td>
 	                  <td>
-                        <input name="place" type="text" class="form-control">
+                        <input name="place" type="text" id="plaid" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
@@ -153,20 +153,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	           <form id="update_form">        
 	            <table class="table table-bordered table-hover">
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                   <p class="form-control-static" id="oldman_update_id"></p>
 	                 </td>
-	                 <td>疾病名称</td>
+	                 <td><font color="red">*</font>疾病名称</td>
 	                  <td>
                          <input name="diseasename" type="text" class="form-control" id="diseasenameid">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>确诊时间</td>
+	                 <td><font color="red">*</font>确诊时间</td>
 	                 <td><input name="confirmedtime" type="date" class="form-control" id="confirmedtimeid"></td>
-	                 <td>确诊地点</td>
+	                 <td><font color="red">*</font>确诊地点</td>
 	                  <td>
                         <input name="place" type="text" class="form-control" id="placeid">
 	                 </td>
@@ -561,7 +561,14 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 		//点击保存	
 	$("#save_disease_btn").click(function(){
 	 // alert($("#formid").serialize());
-	   $.ajax({
+	  if($("#oldman_name").val()==''||
+	     $("#disid").val()==''||
+	     $("#conid").val()==''||
+	     $("#plaid").val()==''){
+	     
+	     layer.msg("请填写完必填项再保存");
+	     }else{
+	         $.ajax({
 			url:"${APP_PATH}/disease/adddisease",
 			type:"POST",
 			data:$("#add_form").serialize(),
@@ -571,11 +578,16 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 					//1.关闭模态框
 					$("#add_modal").modal('hide');
 					go(totalRecord, oldmanname,diseasename);
+					layer.msg("添加成功");
+					$("#add_modal form")[0].reset();
 				}
 			}
 
 	  }); 
-
+	        
+	     }
+	 
+	  
   });
   
   //点击编辑
@@ -615,14 +627,15 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 			   }
 			});
 	  });
-	  
-	  
-	  
-	  
 	  	 //点击更新
 	  $("#update_disease_btn").click(function(){
-       var edit=$(this).attr("edit-id");
-	   $.ajax({
+	       if($("#diseasenameid").val()==""||
+	          $("#placeid").val()==""||
+	          $("#confirmedtimeid").val()==""){
+	          layer.msg("请填写完必填项再保存");
+	          }else{
+	             var edit=$(this).attr("edit-id");
+	    $.ajax({
 			url:"${APP_PATH}/disease/updatedisease/"+edit,
 			type:"POST",
 			data:$("#update_modal form").serialize(),
@@ -632,10 +645,15 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 					//1.关闭模态框
 					$("#update_modal").modal('hide');
 					go(currentNum, oldmanname,diseasename);
+					layer.msg("更新成功");
+					$("#update_modal form")[0].reset();
+					
 				}
 			}
 
 	  }); 
+	          }
+    
 
   });	
   

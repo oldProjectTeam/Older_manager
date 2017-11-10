@@ -171,26 +171,26 @@
 							<form id="form_update">
 								<table class="table table-bordered table-hover text-center">
 									<tr>
-										<td>老人姓名</td>
+										<td><font color="red">*</font>老人姓名</td>
 										<td>
 											<p class="form-control-static" id="oldmanid"></p>
 										</td>
-										<td>医生姓名</td>
+										<td><font color="red">*</font>医生姓名</td>
 										<td><input name="doctor" type="text" class="form-control"
 											id="doctorid"></td>
 									</tr>
 									<tr>
 
-										<td>健康状况</td>
+										<td><font color="red">*</font>健康状况</td>
 										<td><textarea class="form-control" rows="2" name="health"
 												id="healthid"></textarea></td>
-										<td>健康评估</td>
+										<td><font color="red">*</font>健康评估</td>
 										<td><textarea class="form-control" rows="2"
 												name="healthdataassessment" id="healthdataassessmentid"></textarea>
 										</td>
 									</tr>
 									<tr>
-										<td>医生建议</td>
+										<td><font color="red">*</font>医生建议</td>
 										<td colspan="3"><textarea class="form-control" rows="2"
 												name="suggest" id="suggestid"></textarea></td>
 									</tr>
@@ -622,7 +622,13 @@
 
 		//点击更新
 		$("#update_assess_btn").click(function() {
-			var edit = $(this).attr("edit-id");
+		     if($("#doctorid").val()==''||
+		        $("#healthid").val()==''||
+		        $("#healthdataassessmentid").val()==''||
+		        $("#suggestid").val()==''){
+		        layer.msg("请填写完必填项再保存");
+		        }else{
+		        var edit = $(this).attr("edit-id");
 			$.ajax({
 				url : "${APP_PATH}/access/updatehealthassess/" + edit,
 				type : "POST",
@@ -633,10 +639,13 @@
 						//1.关闭模态框
 						$("#update_modal").modal('hide');
 						go(currentNum, oldmanname, healthname);
+						layer.msg("更新成功");
 					}
 				}
 
 			});
+		        }
+			
 
 		});
 

@@ -31,15 +31,14 @@
 <body style="margin: 15px;">
 	<!-- 头部 -->
 	<div class="col-md-12">
-		<div>
-			<div class="row">
-
-				<ol class="breadcrumb">
-					<li><b>位置：健康管理</b>>体检记录
-				</ol>
-
-			</div>
+		<div class="row">
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><b>位置：健康管理</b></li>
+				<li class="active">体检记录</li>
+			</ol>
 		</div>
+	</div>
 
 		<!-- 新增按钮 -->
 
@@ -195,38 +194,38 @@
 							<form id="form_update">
 								<table class="table table-bordered table-hover text-center">
 									<tr>
-										<td>老人姓名</td>
+										<td><font color="red">*</font>老人姓名</td>
 										<td>
 											<p class="form-control-static" id="oldmanid"></p>
 										</td>
-										<td>体检医院</td>
+										<td><font color="red">*</font>体检医院</td>
 										<td><input name="peinfo.hospital" type="text"
 											class="form-control" id="hospitalid"></td>
 									</tr>
 									<tr>
 
-										<td>体检时间</td>
+										<td><font color="red">*</font>体检时间</td>
 										<td><input name="peinfo.petime" type="date"
 											class="form-control" id="petimeid"></td>
-										<td>下次体检时间</td>
+										<td><font color="red">*</font>下次体检时间</td>
 										<td><input name="peinfo.nexttime" type="date"
 											class="form-control" id="nexttimeid"></td>
 									</tr>
 									<tr>
 
-										<td>体检项目</td>
+										<td><font color="red">*</font>体检项目</td>
 										<td><textarea class="form-control" rows="2"
 												name="peproject" id="peprojectid"></textarea></td>
-										<td>体检值</td>
+										<td><font color="red">*</font>体检值</td>
 										<td><textarea class="form-control" rows="2"
 												name="pevalue" id="pevalueid"></textarea></td>
 									</tr>
 									<tr>
 
-										<td>体检结果</td>
+										<td><font color="red">*</font>体检结果</td>
 										<td><textarea class="form-control" rows="2"
 												name="peresult" id="peresultid"></textarea></td>
-										<td>结果分析</td>
+										<td><font color="red">*</font>结果分析</td>
 										<td><textarea class="form-control" rows="2"
 												name="resultanalysis" id="resultanalysisid"></textarea></td>
 									</tr>
@@ -713,6 +712,21 @@
 
 		//点击更新
 		$("#update_pe_btn").click(function() {
+		     if($("#hospitalid").val()==''||
+		        $("#petimeid").val()==''||
+		        $("#nexttimeid").val()==''||
+		        $("#peprojectid").val()==''||
+		        $("#pevalueid").val()==''||
+		        $("#peresultid").val()==''||
+		        $("#resultanalysisid").val()==''){
+		        
+		        layer.msg("请填写完必填项再保存");
+		        }else{
+		             if($("#nexttimeid").val()<$("#petimeid").val()){
+		             layer.msg("下次体检时间应该在这次体检时间之后");
+		             }else{
+		             
+		               
 			var edit = $(this).attr("edit-id");
 			$.ajax({
 				url : "${APP_PATH}/pe/updatepe/" + edit,
@@ -724,11 +738,15 @@
 						//1.关闭模态框
 						$("#update_modal").modal('hide');
 						go(currentNum, oldmanname, hospitalname);
+						layer.msg("添加成功");
+						$("#update_modal form")[0].reset();
 					}
 				}
 
 			});
-
+		             
+		             }
+		        }
 		});
 
 		//点击查看

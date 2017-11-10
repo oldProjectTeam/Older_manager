@@ -35,15 +35,14 @@
 <body>
 	<!-- 头部 -->
 	<div class="col-md-12">
-		<div>
 			<div class="row">
-
-				<ol class="breadcrumb">
-					<li><b>位置：健康管理</b>>基本健康信息
-				</ol>
-
-			</div>
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><b>位置：健康管理</b></li>
+				<li class="active">健康数据</li>
+			</ol>
 		</div>
+	</div>
 		<!-- 新增按钮 -->
 
 		<div class="row">

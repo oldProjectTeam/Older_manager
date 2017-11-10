@@ -98,23 +98,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table class="table table-bordered table-hover">
 	                
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                   <select id="oldman_name" class="form-control" name="oldmanId">
 	                 		</select>
 	                 </td>
-	                 <td>外伤名称</td>
+	                 <td><font color="red">*</font>外伤名称</td>
 	                  <td>
-                         <input name="traumaname" type="text" class="form-control" >
+                         <input name="traumaname" id="traid" type="text" class="form-control" >
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>治疗时间</td>
-	                 <td><input name="occurrencetime" type="date" class="form-control" ></td>
-	                 <td>医院名称</td>
+	                 <td><font color="red">*</font>治疗时间</td>
+	                 <td><input name="occurrencetime" type="date" class="form-control" id="occid" ></td>
+	                 <td><font color="red">*</font>医院名称</td>
 	                  <td>
-                        <input name="hospitalname" type="text" class="form-control">
+                        <input name="hospitalname" type="text" class="form-control" id="hosid">
 	                 </td>
 	               </tr>
 	               <tr>
@@ -148,20 +148,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table class="table table-bordered table-hover">
 	                
 	                <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                 <p class="form-control-static" id="update_name"> </p>
 	                 </td>
-	                 <td>外伤名称</td>
+	                 <td><font color="red">*</font>外伤名称</td>
 	                  <td>
                          <input name="traumaname" type="text" class="form-control" id="traumanameid">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>治疗时间</td>
+	                 <td><font color="red">*</font>治疗时间</td>
 	                 <td><input name="occurrencetime" type="date" class="form-control" id="occurrencetimeid"></td>
-	                 <td>医院名称</td>
+	                 <td><font color="red">*</font>医院名称</td>
 	                  <td>
                         <input name="hospitalname" type="text" class="form-control" id="hospitalnameid">
 	                 </td>
@@ -553,6 +553,12 @@ var totalRecord, currentNum,oldmanname="", traumaname="";
  	//点击保存	
 	$("#save_trauma_btn").click(function(){
 	 // alert($("#formid").serialize());
+	  if($("#oldman_name").val()==""||
+	      $("#occid").val()==""||
+	      $("#traid").val()==""||
+	      $("#hosid").val()==""){
+	        layer.msg("请填写完必填项再保存");
+	      }else{
 	   $.ajax({
 			url:"${APP_PATH}/trauma/addtrauma",
 			type:"POST",
@@ -563,11 +569,13 @@ var totalRecord, currentNum,oldmanname="", traumaname="";
 					//1.关闭模态框
 					$("#add_modal").modal('hide');
 					go(totalRecord, oldmanname,traumaname);
+					layer.msg("保存成功");
+					$("#add_modal form")[0].reset();
 				}
 			}
 
 	  }); 
-
+}
   });
  
  //点击编辑
@@ -610,6 +618,11 @@ var totalRecord, currentNum,oldmanname="", traumaname="";
  
  //点击更新
 	  $("#update_trauma_btn").click(function(){
+	   if($("#traumanameid").val()==""||
+	      $("#occurrencetimeid").val()==""||
+	      $("#hospitalnameid").val()==""){
+	        layer.msg("请填写完必填项再保存");
+	      }else{
        var edit=$(this).attr("edit-id");
 	   $.ajax({
 			url:"${APP_PATH}/trauma/updatetrauma/"+edit,
@@ -621,11 +634,12 @@ var totalRecord, currentNum,oldmanname="", traumaname="";
 					//1.关闭模态框
 					$("#update_modal").modal('hide');
 					go(currentNum, oldmanname,traumaname);
+					layer.msg("更新成功");
 				}
 			}
 
 	  }); 
-
+     }
   });	
  
  //点击查看

@@ -39,13 +39,15 @@
 <body style="margin: 15px;">
 	<!-- 头部 -->
 	<div class="col-md-12">
-		<div>
 			<div class="row">
-				<ol class="breadcrumb">
-					<li><b>位置：数据统计>回访记录</b>>查看记录
-				</ol>
-			</div>
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><b>位置：数据统计</b></li>
+				<li>回访记录</li>
+				<li class="active">查看记录</li>
+			</ol>
 		</div>
+	</div>
 		<!-- 表格 -->
 		<div class="row">
 			<div class="col-md-12">

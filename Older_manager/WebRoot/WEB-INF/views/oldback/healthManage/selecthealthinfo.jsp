@@ -34,14 +34,15 @@
   <body>
     <!-- 头部 -->
 	<div class="col-md-12">
-		<div>
 			<div class="row">
-
-				<ol class="breadcrumb">
-					<li><b>位置：健康管理>基本健康信息</b>>查看健康数据
-				</ol>
-			</div>
+		<div class="col-md-12">
+			<ol class="breadcrumb">
+				<li><b>位置：健康管理</b></li>
+				<li>健康数据</li>
+				<li class="active">查看健康数据</li>
+			</ol>
 		</div>
+	</div>
 		<div class="row">
 			<div class="col-md-12">
 			  <form action="" id="addhealthinfo_form">

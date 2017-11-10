@@ -99,23 +99,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table class="table table-bordered table-hover">
 	                
 	               <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                   <select id="oldman_name" class="form-control" name="oldmanId">
 	                 		</select>
 	                 </td>
-	                 <td>疾病名称</td>
+	                 <td><font color="red">*</font>疾病名称</td>
 	                  <td>
-                         <input name="diseasename" type="text" class="form-control">
+                         <input name="diseasename" id="disid" type="text" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>确认感染时间</td>
-	                 <td><input name="infectiontime" type="date" class="form-control"></td>
-	                 <td>确认感染医院</td>
+	                 <td><font color="red">*</font>确认感染时间</td>
+	                 <td><input name="infectiontime" id="infid" type="date" class="form-control"></td>
+	                 <td><font color="red">*</font>确认感染医院</td>
 	                  <td>
-                        <input name="place" type="text" class="form-control">
+                        <input name="place" id="plaid" type="text" class="form-control">
 	                 </td>
 	               </tr>
 	               <tr>
@@ -150,20 +150,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            <table class="table table-bordered table-hover">
 	                
 	              <tr>
-	                 <td>老人姓名</td>
+	                 <td><font color="red">*</font>老人姓名</td>
 	                 <td>
 	                 <p class="form-control-static" id="update_name"></p>
 	                 </td>
-	                 <td>疾病名称</td>
+	                 <td><font color="red">*</font>疾病名称</td>
 	                  <td>
                          <input name="diseasename" type="text" class="form-control" id="diseasenameid">
 	                 </td>
 	               </tr>
 	               <tr>
 	                 
-	                 <td>确认感染时间</td>
+	                 <td><font color="red">*</font>确认感染时间</td>
 	                 <td><input name="infectiontime" type="date" class="form-control" id="infectiontimeid"></td>
-	                 <td>确认感染医院</td>
+	                 <td><font color="red">*</font>确认感染医院</td>
 	                  <td>
                         <input name="place" type="text" class="form-control" id="placeid">
 	                 </td>
@@ -554,7 +554,12 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 	//点击保存	
 	$("#save_genetichistory_btn").click(function(){
 	 // alert($("#formid").serialize());
-	   $.ajax({
+	 if($("#oldman_name").val()==""||
+	    $("#disid").val()==""||
+	    $("#infid").val()==""||
+	    $("#plaid").val()==""){
+	   layer.msg("请填写完必填项再保存");
+	    }else{ $.ajax({
 			url:"${APP_PATH}/history/addgenetichistory",
 			type:"POST",
 			data:$("#add_form").serialize(),
@@ -564,10 +569,14 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 					//1.关闭模态框
 					$("#add_modal").modal('hide');
 					go(totalRecord, oldmanname,diseasename);
+					layer.msg("保存成功");
+					$("#add_modal form")[0].reset();
+					
 				}
 			}
 
-	  }); 
+	  }); }
+	  
 
   });	
 				
@@ -609,7 +618,13 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 		
 	 //点击更新
 	  $("#update_genetichistory_btn").click(function(){
-       var edit=$(this).attr("edit-id");
+	  
+	      if($("#diseasenameid").val()==''||
+	         $("#infectiontimeid").val()==''||
+	         $("#placeid").val()==''){
+	          layer.msg("请填写完必填项再保存");
+	         }else{
+	          var edit=$(this).attr("edit-id");
 	   $.ajax({
 			url:"${APP_PATH}/history/updategenetichistory/"+edit,
 			type:"POST",
@@ -620,10 +635,13 @@ var totalRecord, currentNum,oldmanname="", diseasename="";
 					//1.关闭模态框
 					$("#update_modal").modal('hide');
 					go(currentNum, oldmanname,diseasename);
+					layer.msg("更新成功");
 				}
 			}
 
 	  }); 
+	         }
+      
 
   });	
   
