@@ -27,30 +27,19 @@
 	rel="stylesheet" />
 <link rel="stylesheet"
 	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
-<!--[if IE 7]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <link rel="stylesheet"
 	href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
 <link rel="stylesheet"
 	href="${APP_PATH}/static/shop/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
+<link rel="stylesheet"
 	href="${APP_PATH}/static/shop/assets/css/ace-skins.min.css" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
 <script src="${APP_PATH}/static/shop/assets/js/ace-extra.min.js"></script>
-<!--[if lt IE 9]>
-		<script src="${APP_PATH}/static/shop/assets/js/html5shiv.js"></script>
-		<script src="${APP_PATH}/static/shop/assets/js/respond.min.js"></script>
-		<![endif]-->
-<!--[if !IE]> -->
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
-<!-- <![endif]-->
-<!--[if IE]>
-         <script type="text/javascript">window.jQuery || document.write("<script src='./static/shop/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");</script>
-        <![endif]-->
 <script type="text/javascript">
 	if ("ontouchend" in document)
 		document
@@ -59,9 +48,6 @@
 </script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
-<!--[if lte IE 8]>
-		  <script src="${APP_PATH}/static/shop/assets/js/excanvas.min.js"></script>
-		<![endif]-->
 <script src="${APP_PATH}/static/shop/assets/js/ace-elements.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/ace.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"

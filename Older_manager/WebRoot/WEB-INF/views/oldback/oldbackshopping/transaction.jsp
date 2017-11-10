@@ -20,28 +20,20 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
-<link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
-<link href="${APP_PATH}/static/shop/assets/css/codemirror.css" rel="stylesheet">
-<link rel="stylesheet" href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
-<!--[if IE 7]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
+<link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <script src="${APP_PATH}/static/shop/assets/js/ace-extra.min.js"></script>
-<!--[if lt IE 9]>
-		<script src="${APP_PATH}/static/shop/assets/js/html5shiv.js"></script>
-		<script src="${APP_PATH}/static/shop/assets/js/respond.min.js"></script>
-		<![endif]-->
-<!--[if !IE]> -->
-<script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js" type="text/javascript"></script>
-<!-- <![endif]-->
+<script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"
+	type="text/javascript"></script>
 <script src="${APP_PATH}/static/shop/assets/dist/echarts.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
 </head>

@@ -26,28 +26,29 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
-<link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
-<link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
-<link href="${APP_PATH}/static/shop/Widget/icheck/icheck.css" rel="stylesheet" type="text/css" />
-<!--[if IE 7]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
+<link href="${APP_PATH}/static/shop/Widget/icheck/icheck.css"
+	rel="stylesheet" type="text/css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
-
-<!-- page specific plugin scripts -->
- <%-- <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script> --%>
-<script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
+<script
+	src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
 <script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.js"></script>
-<script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.admin.js"></script>
-<script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
-<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js" type="text/javascript"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/shop/js/H-ui.admin.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
+<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js"
+	type="text/javascript"></script>
 <script src="${APP_PATH}/static/shop/assets/dist/echarts.js"></script>
 <script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script>
 </head>
@@ -56,67 +57,63 @@
 		<div id="brand_style">
 			<div class="search_style">
 				<div class="title_names">搜索查询</div>
-				<form id="search_data_form" action="${APP_PATH}/brand/findAllBrand.action" method="post">
-				<ul class="search_content clearfix">
-					<li>
-					  <label class="l_f">品牌名称</label>
-					  <input name="name" type="text" class="text_add" placeholder="输入品牌名称" style=" width:250px" /></li>
-					<li>
-					   <label class="l_f">添加时间</label>
-					   <input class="inline laydate-icon" name="addtime" id="start" placeholder="开始时间"
-					   style=" margin-left:10px;">
-					   <label>-</label>
-					   <input class="inline laydate-icon" type="date" name="addtime1" placeholder="结束时间">
-					</li>
-					<li>
-					  <select name="region" class="text_add">
-					  	 <option value="">所在区域</option>
-					     <option value="国内">国内品牌</option>
-						 <option value="国外">国外品牌</option>
-					  </select>
-					</li>
-					<li style="width:90px;">
-					    <button type="submit" class="btn_search" id="search_btn">
-							<i class="icon-search"></i>查询
-						</button>
-					</li>
-				</ul>
+				<form id="search_data_form"
+					action="${APP_PATH}/brand/findAllBrand.action" method="post">
+					<ul class="search_content clearfix">
+						<li><label class="l_f">品牌名称</label> <input name="name"
+							type="text" class="text_add" placeholder="输入品牌名称"
+							style=" width:250px" /></li>
+						<li><label class="l_f">添加时间</label> <input
+							class="inline laydate-icon" name="addtime" id="start"
+							placeholder="开始时间" style=" margin-left:10px;"> <label>-</label>
+							<input class="inline laydate-icon" type="date" name="addtime1"
+							placeholder="结束时间"></li>
+						<li><select name="region" class="text_add">
+								<option value="">所在区域</option>
+								<option value="国内">国内品牌</option>
+								<option value="国外">国外品牌</option>
+						</select></li>
+						<li style="width:90px;">
+							<button type="submit" class="btn_search" id="search_btn">
+								<i class="icon-search"></i>查询
+							</button>
+						</li>
+					</ul>
 				</form>
 			</div>
 			<div class="border clearfix">
 				<span class="l_f"> <a href="Add_Brand" title="添加品牌"
 					class="btn btn-warning Order_form"><i class="icon-plus"></i>添加品牌</a>
-					<a href="javascript:ovid()" id="batchDel_btn" class="btn btn-danger"><i
-						class="icon-trash" ></i>批量删除</a>
+					<a href="javascript:ovid()" id="batchDel_btn"
+					class="btn btn-danger"><i class="icon-trash"></i>批量删除</a>
 				</span> <span class="r_f">共：<b>${pageInfo.total }</b>个品牌
 				</span>
 			</div>
 			<!--品牌展示-->
-			<div class="row" >
+			<div class="row">
 				<div class="col-sm-9">
-				每页显示：<select id="pageSize_select">
+					每页显示：<select id="pageSize_select">
 						<c:forEach var="i" begin="2" step="2" end="30">
-							<option  <c:if test="${i==pageInfo.pageSize}"> selected="selected"</c:if>  value="${i}">${i }</option>
+							<option
+								<c:if test="${i==pageInfo.pageSize}"> selected="selected"</c:if>
+								value="${i}">${i }</option>
 						</c:forEach>
-				    	  
-				    	  
-				    </select>
+
+
+					</select>
 				</div>
-				 
+
 			</div>
-			<div class="row" style="margin-top:5px">  
+			<div class="row" style="margin-top:5px">
 				<!--品牌列表-->
-				 <div class="col-sm-12 table-responsive">
-					<table class="table table-striped table-bordered table-hover" 
+				<div class="col-sm-12 table-responsive">
+					<table class="table table-striped table-bordered table-hover"
 						id="sample-table">
 						<thead>
 							<tr>
-								<th width="25px">
-								   <label>
-								   <input type="checkbox" class="ace" id='check_item_all'>
-								   <span class="lbl"></span>
-								   </label>
-								</th>
+								<th width="25px"><label> <input type="checkbox"
+										class="ace" id='check_item_all'> <span class="lbl"></span>
+								</label></th>
 								<th width="90px">品牌编号</th>
 								<th width="50px">排序</th>
 								<th width="120px">品牌LOGO</th>
@@ -129,395 +126,453 @@
 							</tr>
 						</thead>
 						<tbody id="brand_table_tbody">
-						    <c:if test="${empty pageInfo.list}">
-						    	<tr><td colspan="10"><h4>暂无记录</h4></td></tr>
-						    </c:if>
+							<c:if test="${empty pageInfo.list}">
+								<tr>
+									<td colspan="10"><h4>暂无记录</h4></td>
+								</tr>
+							</c:if>
 							<c:forEach items="${pageInfo.list}" var="b">
-							<tr>
-					          <td value="${b.id}"><label><input type="checkbox"  class="ace item_check" ><span class="lbl"></span></label></td>
-					          <td>${b.brandid }</td>
-					          <td><input type="text" class="form-control" value="${b.sort}" style="width:40px"></td>
-					          <td><img src="upload/152.jpg"  width="130"/></td>
-					          <td>
-					            <u style="cursor:pointer" class="text-primary brond_name" onclick="generateOrders('${b.id}');" title="玉兰油OLAY">
-					            ${b.name }</u>
-					         </td>
-					          <td>${b.region }</td>
-					          <td class="text-l">${b.description}</td>
-					          <td><fmt:formatDate value="${b.addtime}" pattern='yyyy-MM-dd HH:mm:ss'/></td>
-					          <td class="td-status">
-					          		<c:if test="${b.state==0}">
-					          			<span class="label label-defaunt radius">已停用</span>
-					          		</c:if>
-					          		<c:if test="${b.state==1}">
-					          			<span class="label label-success radius">已启用</span>
-					          		</c:if>
-					          </td>
-					          <td class="td-manage">
-					            <c:if test="${b.state==0}">
-					            	<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,'${b.id}','${b.state}')" href="javascript:;" title="启用"><i class="icon-ok bigger-120"></i></a>
-					            </c:if>
-					             <c:if test="${b.state==1}">
-					            	<a style='text-decoration:none' class='btn btn-xs btn-success' onClick="member_stop(this,'${b.id}','${b.state}')" href='javascript:;' title='停用'><i class='icon-ok bigger-120'></i></a>
-					            </c:if>
-					          <a title="编辑" onclick="edit_brand('${b.id}')" href="javascript:;"  class="btn btn-xs btn-info" ><i class="icon-edit bigger-120"></i></a> 
-					          <a title="删除" href="javascript:;"  onclick="member_del('${b.id}')" class="btn btn-xs btn-warning" ><i class="icon-trash  bigger-120"></i></a>
-					          </td>
-							</tr>
+								<tr>
+									<td value="${b.id}"><label><input type="checkbox"
+											class="ace item_check"><span class="lbl"></span></label></td>
+									<td>${b.brandid }</td>
+									<td><input type="text" class="form-control"
+										value="${b.sort}" style="width:40px"></td>
+									<td><img src="upload/152.jpg" width="130" /></td>
+									<td><u style="cursor:pointer"
+										class="text-primary brond_name"
+										onclick="generateOrders('${b.id}');" title="玉兰油OLAY">
+											${b.name }</u></td>
+									<td>${b.region }</td>
+									<td class="text-l">${b.description}</td>
+									<td><fmt:formatDate value="${b.addtime}"
+											pattern='yyyy-MM-dd HH:mm:ss' /></td>
+									<td class="td-status"><c:if test="${b.state==0}">
+											<span class="label label-defaunt radius">已停用</span>
+										</c:if> <c:if test="${b.state==1}">
+											<span class="label label-success radius">已启用</span>
+										</c:if></td>
+									<td class="td-manage"><c:if test="${b.state==0}">
+											<a style="text-decoration:none" class="btn btn-xs "
+												onClick="member_start(this,'${b.id}','${b.state}')"
+												href="javascript:;" title="启用"><i
+												class="icon-ok bigger-120"></i></a>
+										</c:if> <c:if test="${b.state==1}">
+											<a style='text-decoration:none'
+												class='btn btn-xs btn-success'
+												onClick="member_stop(this,'${b.id}','${b.state}')"
+												href='javascript:;' title='停用'><i
+												class='icon-ok bigger-120'></i></a>
+										</c:if> <a title="编辑" onclick="edit_brand('${b.id}')"
+										href="javascript:;" class="btn btn-xs btn-info"><i
+											class="icon-edit bigger-120"></i></a> <a title="删除"
+										href="javascript:;" onclick="member_del('${b.id}')"
+										class="btn btn-xs btn-warning"><i
+											class="icon-trash  bigger-120"></i></a></td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
-					
-				</div> 
+
+				</div>
 			</div>
-            <!--分页信息  -->
-            <div class="row">
-			<div class="col-md-7">&nbsp;&nbsp;当前第${pageInfo.pageNum }页，共${pageInfo.pages}页，总计${pageInfo.total}条记录</div>
-			<div class="col-md-4 col-md-offset-1">
-				<nav aria-label="Page navigation">
+			<!--分页信息  -->
+			<div class="row">
+				<div class="col-md-7">&nbsp;&nbsp;当前第${pageInfo.pageNum }页，共${pageInfo.pages}页，总计${pageInfo.total}条记录</div>
+				<div class="col-md-4 col-md-offset-1">
+					<nav aria-label="Page navigation">
 					<ul class="pagination">
-					    
-					   <c:if test="${pageInfo.hasPreviousPage==false}">
-					    	<li class="disabled">
-					    	   <a>首页</a>
-					    	 </li>
-					    	<li class="disabled"> 
-					           <span aria-hidden="true">&laquo;</span>
-					        </li>
-					    </c:if>
-					    <c:if test="${pageInfo.hasPreviousPage==true}">
-					    	<li>
-					    	  <a href="${APP_PATH}/brand/findAllBrand.action?pageNum=${1}&pageSize=${pageInfo.pageSize}">首页</a>
-					    	</li>
-					    	<li> 
-					    	   <a href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum-1}&pageSize=${pageInfo.pageSize}">
-					           <span aria-hidden="true">&laquo;</span></a>
-					        </li>
-					    </c:if>		    
-					    <c:forEach items="${pageInfo.navigatepageNums}" var="p">
-					       <c:if test="${p==pageInfo.pageNum}">
-					       		<li class="active"><a href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}">${p}</a></li>
-					       </c:if>
-					       <c:if test="${p!=pageInfo.pageNum}">
-					       		<li><a href="${APP_PATH}/brand/findAllBrand.action?pageNum=${p}&pageSize=${pageInfo.pageSize}">${p}</a></li>
-					       </c:if>
-					    </c:forEach>
-					    <c:if test="${pageInfo.hasNextPage==false}">
-					      <li class="disabled"> 
-					         <span aria-hidden="true">&raquo;</span>
-					      </li>
-					      <li class="disabled"><a>末页</a></li>
-					    </c:if>	
-					    <c:if test="${pageInfo.hasNextPage!=false}">
-					      <li> 
-					         <a href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum+1}&pageSize=${pageInfo.pageSize}" aria-label="Next">
-					         <span aria-hidden="true">&raquo;</span></a>
-					      </li>
-					      <li>
-					        <a href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pages}&pageSize=${pageInfo.pageSize}">末页</a>
-					       </li>
-					    </c:if>		
+
+						<c:if test="${pageInfo.hasPreviousPage==false}">
+							<li class="disabled"><a>首页</a></li>
+							<li class="disabled"><span aria-hidden="true">&laquo;</span>
+							</li>
+						</c:if>
+						<c:if test="${pageInfo.hasPreviousPage==true}">
+							<li><a
+								href="${APP_PATH}/brand/findAllBrand.action?pageNum=${1}&pageSize=${pageInfo.pageSize}">首页</a>
+							</li>
+							<li><a
+								href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum-1}&pageSize=${pageInfo.pageSize}">
+									<span aria-hidden="true">&laquo;</span>
+							</a></li>
+						</c:if>
+						<c:forEach items="${pageInfo.navigatepageNums}" var="p">
+							<c:if test="${p==pageInfo.pageNum}">
+								<li class="active"><a
+									href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}">${p}</a></li>
+							</c:if>
+							<c:if test="${p!=pageInfo.pageNum}">
+								<li><a
+									href="${APP_PATH}/brand/findAllBrand.action?pageNum=${p}&pageSize=${pageInfo.pageSize}">${p}</a></li>
+							</c:if>
+						</c:forEach>
+						<c:if test="${pageInfo.hasNextPage==false}">
+							<li class="disabled"><span aria-hidden="true">&raquo;</span>
+							</li>
+							<li class="disabled"><a>末页</a></li>
+						</c:if>
+						<c:if test="${pageInfo.hasNextPage!=false}">
+							<li><a
+								href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum+1}&pageSize=${pageInfo.pageSize}"
+								aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+							<li><a
+								href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pages}&pageSize=${pageInfo.pageSize}">末页</a>
+							</li>
+						</c:if>
 					</ul>
-				</nav>
+					</nav>
+				</div>
 			</div>
-		</div>
 		</div>
 	</div>
-	
- <!--编辑模态框  -->
- <div class="modal fade  bs-example-modal-lg" tabindex="-1" role="dialog" id="edit_brand_modal">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-         
-        <h4 class="modal-title">编辑品牌信息</h4>
-      </div>
-      <div class="modal-body">
-        
-        <form class="form-horizontal" id="edit_brand_form">
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label"><font color="red">*</font>品牌名称:</label>
-		    <div class="col-sm-4" id="firstDiv">
-		      <input type="text" id="name" name="name" class="form-control">
-		      <input type="hidden" id="bId" name="id">
-		    </div>
-		     <label class="col-sm-2 control-label"><font color="red">*</font>品牌序号:</label>
-		    <div class="col-sm-3">
-		      <input type="number" id="sort" name="sort" class="form-control">
-		    </div>
-		  </div>
-   		 
-   		 <div class="form-group">
-		    <label class="col-sm-2 control-label">品牌图片:</label>
-		    <div class="col-sm-4">
-		       <img id="img" alt="图片显示失败" class="img-rounded" width="150" height="150">
-		    </div>
-		    
-		    <div class="col-sm-4">
-		      <p>图片大小<b>120px*60px</b>图片大小小于5MB,</p>
-				<p>支持.jpg;.gif;.png;.jpeg格式的图片</p>
-		    </div>
-		    
-		  </div>
-		  <div class="form-group">
-		    <div class="col-sm-2 col-md-offset-3">
-		      <input type="file" id="photofile" onchange="showPic()"  style="display:none">
-		      <button type="button" class="btn btn-success" onclick="upload_btn()">上传图片</button>
-		    </div>
-		    <div class="col-sm-4 col-md-offset-1" style="line-height:20px" id="imgDiv">
-		       <div class="progress" id="parent">
-				  <div id="son"
-				    class="progress-bar progress-bar-info progress-bar-striped" 
-				    role="progressbar" aria-valuenow="20" aria-valuemin="0" 
-				      aria-valuemax="100" style="width: 20%">
-				    <span class="sr-only">20% Complete</span>
-				  </div>
-			  </div>
-		    </div>
-		    
-		  </div>
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label"><font color="red">*</font>所属地区</label>
-		    <div class="col-sm-4">
-		      <input type="text" id="region" name="region" class="form-control">
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label"><font color="red">*</font>品牌描述:</label>
-		    <div class="col-sm-8">
-		      <textarea onkeyup="checkLength(this);" name="description" id="description" class="form-control" rows="3"></textarea>
-		             剩余字数：<span id="sy" style="color:Red;">500</span>字
-		    </div>
-		  </div>
-		  <div class="form-group">
-		    <label class="col-sm-2 control-label"><font color="red">*</font>显示状态</label>
-		    <div class="col-sm-4">
-		      <label class="radio-inline">
-			   <input type="radio" name="state" id="inlineRadio1" value="1">显示
-				</label>
-				<label class="radio-inline">
-				  <input type="radio" name="state" id="inlineRadio2" value="0">不显示
-				</label>
-		     </div>
-		  </div>
-		</form>  
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" id="close_btn">关闭</button>
-        <button type="button" class="btn btn-primary" id="save_btn">保存</button>
-      </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<script type="text/javascript">
-$("#check_item_all").click(function(){
-	   $(".item_check").prop("checked",$(this).prop("checked"));
-});
-//如果复选框全部选中，全选复选框应该也要选中
-$(document).on("click",".item_check",function(){
-	   var flag=$(".item_check:checked").length==$(".item_check").length;
-	   $("#check_item_all").prop("checked",flag);
-});
-//批量删除按钮batchDel_btn
-$("#batchDel_btn").click(function(){
-	    
-	   var Ids_str="";
-	   $.each($(".item_check:checked"),function(){
-		    
-		   Ids_str+=$(this).parents("tr").find("td:eq(0)").attr("value")+"-";
-	   });
-	   
-	   Ids_str=Ids_str.substring(0,Ids_str.length-1);
-	   if(Ids_str.length<1){ 
-		   return false;
-	   }
-	   
-	   layer.confirm('确定要批量删除这些品牌信息吗？', {
-			  offset: ['35%', '45%'],
-			}, function(index){
-				 $.ajax({
-					   url:"${APP_PATH}/brand/deleteBrand/"+Ids_str,
-					   type:"delete",
-					   success:function(result){
-						   if(result.code==100){
-							   layer.msg('删除成功!', {
-									icon : 6,
-									time : 1000,
-									offset: ['35%', '45%']
-								});
-							   window.location.href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
-						   }else{
-							   layer.msg('删除失败!', {
-									icon : 6,
-									time : 1000,
-									offset: ['35%', '45%']
-								});
-						   }	
-					   }
-				   });
+
+	<!--编辑模态框  -->
+	<div class="modal fade  bs-example-modal-lg" tabindex="-1"
+		role="dialog" id="edit_brand_modal">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+
+					<h4 class="modal-title">编辑品牌信息</h4>
+				</div>
+				<div class="modal-body">
+
+					<form class="form-horizontal" id="edit_brand_form">
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><font color="red">*</font>品牌名称:</label>
+							<div class="col-sm-4" id="firstDiv">
+								<input type="text" id="name" name="name" class="form-control">
+								<input type="hidden" id="bId" name="id">
+							</div>
+							<label class="col-sm-2 control-label"><font color="red">*</font>品牌序号:</label>
+							<div class="col-sm-3">
+								<input type="number" id="sort" name="sort" class="form-control">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-2 control-label">品牌图片:</label>
+							<div class="col-sm-4">
+								<img id="img" alt="图片显示失败" class="img-rounded" width="150"
+									height="150">
+							</div>
+
+							<div class="col-sm-4">
+								<p>
+									图片大小<b>120px*60px</b>图片大小小于5MB,
+								</p>
+								<p>支持.jpg;.gif;.png;.jpeg格式的图片</p>
+							</div>
+
+						</div>
+						<div class="form-group">
+							<div class="col-sm-2 col-md-offset-3">
+								<input type="file" id="photofile" onchange="showPic()"
+									style="display:none">
+								<button type="button" class="btn btn-success"
+									onclick="upload_btn()">上传图片</button>
+							</div>
+							<div class="col-sm-4 col-md-offset-1" style="line-height:20px"
+								id="imgDiv">
+								<div class="progress" id="parent">
+									<div id="son"
+										class="progress-bar progress-bar-info progress-bar-striped"
+										role="progressbar" aria-valuenow="20" aria-valuemin="0"
+										aria-valuemax="100" style="width: 20%">
+										<span class="sr-only">20% Complete</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><font color="red">*</font>所属地区</label>
+							<div class="col-sm-4">
+								<input type="text" id="region" name="region"
+									class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><font color="red">*</font>品牌描述:</label>
+							<div class="col-sm-8">
+								<textarea onkeyup="checkLength(this);" name="description"
+									id="description" class="form-control" rows="3"></textarea>
+								剩余字数：<span id="sy" style="color:Red;">500</span>字
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label"><font color="red">*</font>显示状态</label>
+							<div class="col-sm-4">
+								<label class="radio-inline"> <input type="radio"
+									name="state" id="inlineRadio1" value="1">显示
+								</label> <label class="radio-inline"> <input type="radio"
+									name="state" id="inlineRadio2" value="0">不显示
+								</label>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						id="close_btn">关闭</button>
+					<button type="button" class="btn btn-primary" id="save_btn">保存</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<script type="text/javascript">
+		$("#check_item_all").click(function() {
+			$(".item_check").prop("checked", $(this).prop("checked"));
+		});
+		//如果复选框全部选中，全选复选框应该也要选中
+		$(document)
+				.on(
+						"click",
+						".item_check",
+						function() {
+							var flag = $(".item_check:checked").length == $(".item_check").length;
+							$("#check_item_all").prop("checked", flag);
+						});
+		//批量删除按钮batchDel_btn
+		$("#batchDel_btn")
+				.click(
+						function() {
+
+							var Ids_str = "";
+							$.each($(".item_check:checked"), function() {
+
+								Ids_str += $(this).parents("tr").find(
+										"td:eq(0)").attr("value")
+										+ "-";
+							});
+
+							Ids_str = Ids_str.substring(0, Ids_str.length - 1);
+							if (Ids_str.length < 1) {
+								return false;
+							}
+
+							layer
+									.confirm(
+											'确定要批量删除这些品牌信息吗？',
+											{
+												offset : [ '35%', '45%' ],
+											},
+											function(index) {
+												$
+														.ajax({
+															url : "${APP_PATH}/brand/deleteBrand/"
+																	+ Ids_str,
+															type : "delete",
+															success : function(
+																	result) {
+																if (result.code == 100) {
+																	layer
+																			.msg(
+																					'删除成功!',
+																					{
+																						icon : 6,
+																						time : 1000,
+																						offset : [
+																								'35%',
+																								'45%' ]
+																					});
+																	window.location.href = "${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
+																} else {
+																	layer
+																			.msg(
+																					'删除失败!',
+																					{
+																						icon : 6,
+																						time : 1000,
+																						offset : [
+																								'35%',
+																								'45%' ]
+																					});
+																}
+															}
+														});
+											});
+
+						});
+
+		$("#pageSize_select")
+				.change(
+						function() {
+
+							window.location.href = "${APP_PATH}/brand/findAllBrand.action?pageSize="
+									+ $(this).val();
+						});
+
+		function show_vaildate_msg(ele, status, msg) {
+			$(ele).parent().removeClass("has-success has-error");
+			if ("success" == status) {
+				$(ele).parent().addClass("has-success");
+			} else if ("error" == status) {
+				layer.msg(msg, {
+					icon : 5,
+					time : 1000,
+					offset : [ '15%', '45%' ]
+				});
+				$(ele).parent().addClass("has-error");
 			}
-		);
-	    
-	  
-});
 
-  $("#pageSize_select").change(function(){
-	   
-	  window.location.href="${APP_PATH}/brand/findAllBrand.action?pageSize="+$(this).val();
-  });
+		}
 
-  
-  
-  
-  function show_vaildate_msg(ele,status,msg){
-		$(ele).parent().removeClass("has-success has-error");
-		if("success"==status){
-			$(ele).parent().addClass("has-success"); 
-		}else if("error"==status){
-			layer.msg(msg, {icon: 5,time : 1000,offset: ['15%', '45%']});
-			$(ele).parent().addClass("has-error");
+		//模态框关闭按钮
+		$("#close_btn").click(function() {
+			var isImg = $("#cs1").val();
+			if (isImg != undefined && isImg != '') {//如果图片已上传，那么关闭之前将图片删除
+				$("#cs1").remove();
+				removeImg(isImg);
+			}
+		});
+		$("#save_btn")
+				.click(
+						function() {
+							var name = $("#name").val();
+							if (name.length < 1) {
+								show_vaildate_msg("#name", "error", '品牌名称不能为空！');
+								return false;
+							} else if (name.length > 50) {
+								show_vaildate_msg("#name", "error",
+										'品牌名称长度不能超过50！');
+								return false;
+							} else {
+								show_vaildate_msg("#name", "success", '');
+							}
+							var sort = $("#sort").val();
+							if (sort == '' || sort < 0) {
+								show_vaildate_msg("#sort", "error",
+										'排序不能为空且不能为负数！');
+								return false;
+							} else {
+								show_vaildate_msg("#sort", "success", '');
+							}
+							var region = $("#region").val();
+							if (region.length < 1) {
+								show_vaildate_msg("#region", "error", '地区不能为空！');
+								return false;
+							} else if (region.length > 100) {
+								show_vaildate_msg("#region", "error",
+										'地区长度不能超过100！');
+								return false;
+							} else {
+								show_vaildate_msg("#region", "success", '');
+							}
+							var remark = $("#description").val();
+							if (remark.length < 1) {
+								show_vaildate_msg("#description", "error",
+										'品牌描述不能为空！');
+								return false;
+							} else if (remark.length > 500) {
+								show_vaildate_msg("#description", "error",
+										'描述长度不能超过500！');
+								return false;
+							} else {
+								show_vaildate_msg("#description", "success", '');
+							}
+							$
+									.ajax({
+										url : "${APP_PATH}/brand/updateBrand",
+										data : $("#edit_brand_form")
+												.serialize(),
+										type : "post",
+										success : function(result) {
+											if (result.code == 100) {
+												layer.msg('修改成功!', {
+													icon : 6,
+													time : 1000,
+													offset : [ '35%', '45%' ]
+												});
+												window.location.href = "${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
+											} else {
+												layer.msg('修改失败！', {
+													icon : 5,
+													time : 1000,
+													offset : [ '35%', '45%' ]
+												});
+											}
+											$("#edit_brand_modal")
+													.modal('hide');
+											var isImg = $("#cs1").val();
+											if (isImg != undefined
+													&& isImg != '') {//如果有图片上传痕迹，则清理掉
+												$("#cs1").remove();
+											}
+										}
+									});
+						});
+
+		//监听文本框字数
+		function checkLength(which) {
+			var maxChars = 500;
+			if (which.value.length > maxChars) {
+				layer.open({
+					icon : 2,
+					title : '提示框',
+					offset : [ '35%', '45%' ],
+					content : '您出入的字数超多限制!',
+				});
+				// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
+				which.value = which.value.substring(0, maxChars);
+				return false;
+			} else {
+				var curr = maxChars - which.value.length; // 减去 当前输入的
+				document.getElementById("sy").innerHTML = curr.toString();
+				return true;
+			}
 		}
-		
-	}
-  
-  //模态框关闭按钮
-   $("#close_btn").click(function(){
-	   var isImg = $("#cs1").val();
-		if (isImg != undefined && isImg != '') {//如果图片已上传，那么关闭之前将图片删除
-			$("#cs1").remove();
-			removeImg(isImg);
-		}
-   });
-  $("#save_btn").click(function(){
-	  var name=$("#name").val();
-	   if(name.length<1){
-		   show_vaildate_msg("#name","error",'品牌名称不能为空！');
-		   return false;
-	   }else if(name.length>50){
-		   show_vaildate_msg("#name","error",'品牌名称长度不能超过50！');
-		   return false;
-	   }else{
-		   show_vaildate_msg("#name","success",'');
-	   }
-	   var sort=$("#sort").val();
-	   if(sort==''||sort<0){
-		   show_vaildate_msg("#sort","error",'排序不能为空且不能为负数！');
-		   return false;
-	   }else{
-		   show_vaildate_msg("#sort","success",'');
-	   }
-	   var region=$("#region").val();
-	   if(region.length<1){
-		   show_vaildate_msg("#region","error",'地区不能为空！');
-		   return false;
-	   }else if(region.length>100){
-		   show_vaildate_msg("#region","error",'地区长度不能超过100！');
-		   return false;
-	   }else{
-		   show_vaildate_msg("#region","success",'');
-	   }
-	   var remark=$("#description").val();
-	   if(remark.length<1){
-		   show_vaildate_msg("#description","error",'品牌描述不能为空！');
-		   return false;
-	   }else if(remark.length>500){
-		   show_vaildate_msg("#description","error",'描述长度不能超过500！');
-		   return false;
-  		}else{
-  			show_vaildate_msg("#description","success",'');
-  		}
-	  $.ajax({
-		  url:"${APP_PATH}/brand/updateBrand",
-		  data:$("#edit_brand_form").serialize(),
-		  type:"post",
-		  success:function(result){
-			  if(result.code==100){
-				  layer.msg('修改成功!', {
-						icon : 6,
-						time : 1000,
-						offset: ['35%', '45%']
-					});
-				  window.location.href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
-			  }else{
-				  layer.msg('修改失败！', {icon: 5,time : 1000,offset: ['35%', '45%']});
-			  }
-			  $("#edit_brand_modal").modal('hide');
-			  var isImg = $("#cs1").val();
-				if (isImg != undefined && isImg != '') {//如果有图片上传痕迹，则清理掉
-					$("#cs1").remove();
-				}
-		  }
-	  });
-  });
-  
-  
-  //监听文本框字数
-  function checkLength(which) {
-		var maxChars = 500;
-		if (which.value.length > maxChars) {
-			layer.open({
-				icon : 2,
-				title : '提示框',
-				offset: ['35%', '45%'],
-				content : '您出入的字数超多限制!',
+
+		function edit_brand(id) {
+
+			/* layer.open({
+			   type:3,
+			   icon:3,
+			   offset:['20%'],
+			   time:2000
+			}); */
+			layer.msg('加载中', {
+				icon : 16,
+				shade : 0.01,
+				time : 1000,
+				offset : [ '20%' ],
 			});
-			// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
-			which.value = which.value.substring(0, maxChars);
-			return false;
-		} else {
-			var curr = maxChars - which.value.length; // 减去 当前输入的
-			document.getElementById("sy").innerHTML = curr.toString();
-			return true;
+			$("#imgDiv").hide();
+			$.ajax({
+				url : "${APP_PATH}/brand/findBrand",
+				data : "id=" + id,
+				type : "POST",
+				success : function(result) {
+					var b = result.extend.brand;
+					$("#edit_brand_modal").modal({
+						backdrop : "static"
+					});
+					$("#bId").val(b.id);
+					$("#name").val(b.name);
+					$("#region").val(b.region);
+					$("#sort").val(b.sort);
+					$("#description").val(b.description);
+					$("#edit_brand_form input[name=state]").val([ b.state ]);
+					if (b.logoimage == '' || b.logoimage == null) {
+						$("#img").prop("src",
+								"${APP_PATH}/static/shop/images/image.png");
+
+					} else {
+						$("#img").prop("src", b.logoimage);
+					}
+
+				}
+			});
 		}
-	}
-  
-   function edit_brand(id){
-	   
-	   /* layer.open({
-		   type:3,
-		   icon:3,
-		   offset:['20%'],
-		   time:2000
-	   }); */
-	    layer.msg('加载中', {
-		   icon: 16
-		   ,shade: 0.01,
-		   time:1000,
-		   offset:['20%'],
-		 }); 
-	   $("#imgDiv").hide();
-	   $.ajax({
-		   url:"${APP_PATH}/brand/findBrand",
-		   data:"id="+id,
-		   type:"POST",
-		   success:function(result){
-			   var b=result.extend.brand;
-			   $("#edit_brand_modal").modal({
-				   backdrop:"static"
-			   });
-			   $("#bId").val(b.id);
-			   $("#name").val(b.name);
-			   $("#region").val(b.region);
-			   $("#sort").val(b.sort);
-			   $("#description").val(b.description);
-			   $("#edit_brand_form input[name=state]").val([b.state]);
-			   if(b.logoimage==''||b.logoimage==null){
-				   $("#img").prop("src","${APP_PATH}/static/shop/images/image.png");
-				    
-			   }else{
-				   $("#img").prop("src",b.logoimage);
-			   }
-			   
-		   }
-	   });
-   }
-</script>
+	</script>
 
 
 
-<script type="text/javascript">
-	 
-    
+	<script type="text/javascript">
 		jQuery(function($) {
 			var oTable1 = $('#sample-table').dataTable({
 				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
@@ -543,9 +598,8 @@ $("#batchDel_btn").click(function(){
 
 					
 			});
- */
- 
- 
+			 */
+
 			$('[data-rel="tooltip"]').tooltip({
 				placement : tooltip_placement
 			});
@@ -563,8 +617,8 @@ $("#batchDel_btn").click(function(){
 					return 'right';
 				return 'left';
 			}
-		});	 
-		 
+		});
+
 		//面包屑返回值
 		/* var index = parent.layer.getFrameIndex(window.name);
 		parent.layer.iframeAuto(index);
@@ -583,221 +637,262 @@ $("#batchDel_btn").click(function(){
 
 		}); */
 		function generateOrders(id) {
-			 
-			window.location.href = "${APP_PATH}/brand/Brand_Details.action?id=" + id;
+
+			window.location.href = "${APP_PATH}/brand/Brand_Details.action?id="
+					+ id;
 		};
 		/*品牌-查看*/
 		function member_show(title, url, id, w, h) {
 			layer_show(title, url, w, h);
 		}
-	
-	//停止或启用品牌
-	function stop_start_btn(id,state){
-		if(id==undefined||state==undefined){
-			alert("获取参数失败");
-			return false;
-		}
-		$.ajax({
-			url:"${APP_PATH}/brand/updateState.action?id="+id+"&state="+state,
-			type:"POST",
-			success:function(result){
-				if(result.code==100){
-					return true;
-				}else{
-					return false;
-				}
-			}
-		});
-	}	
-    
-		/*品牌-停用*/
-	function member_stop(obj,id,state){
-		layer.confirm('确定要停用吗？', {
-			  offset: ['35%', '45%'],
-			}, function(index){
-				stop_start_btn(id,state);
-				if(state==1){
-					state=0;
-				}else{
-					state=1;
-				}
-				$(obj).parents("tr").find(".td-manage")
-				.prepend("<a style='text-decoration:none' class='btn btn-xs' onClick='member_start(this,"+id+","+state+")' href='javascript:;' title='启用'><i class='icon-ok bigger-120'></i></a>");
-		        $(obj).parents("tr").find(".td-status")
-				.html('<span class="label label-defaunt radius">已停用</span>');
-				$(obj).remove();
-			  	layer.msg('已停用', {icon: 5,time : 1000,offset: ['35%', '45%']});
-			}
-		);
-	}
 
-	/*用户-启用*/
-	function member_start(obj,id,state) {
-		layer.confirm('确认要启用吗？',{
-			offset: ['35%', '45%'],
-		   },
-			function(index) {
-			   stop_start_btn(id,state);
-			   if(state==1){
-					state=0;
-				}else{
-					state=1;
-				}
-				$(obj).parents("tr").find(".td-manage")
-					.prepend("<a style='text-decoration:none' class='btn btn-xs btn-success' onClick='member_stop(this,"+id+","+state+")' href='javascript:;' title='停用'><i class='icon-ok bigger-120'></i></a>");
-					$(obj).parents("tr").find(".td-status")
-				    .html('<span class="label label-success radius">已启用</span>');
-					$(obj).remove();
-					layer.msg('已启用!', {
-					icon : 6,
-					time : 1000,
-					offset: ['35%', '45%']
-				});
-		});
-	}
-	/*品牌-编辑*/
-	function member_edit(title, url, id, w, h) {
-		layer_show(title, url, w, h);
-	}
-
-	/*品牌-删除*/
-	function member_del(id) {
-		layer.confirm('确认要删除吗？',{
-			offset: ['35%', '45%']
-		}, function(index) {
+		//停止或启用品牌
+		function stop_start_btn(id, state) {
+			if (id == undefined || state == undefined) {
+				alert("获取参数失败");
+				return false;
+			}
 			$.ajax({
-				url:"${APP_PATH}/brand/deleteBrand/"+id,
-				type:"POST",
-				success:function(result){
-					if(result.code==100){
-						
-					   window.location.href="${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
-					   layer.msg('已删除!', {
-							icon : 1,
-							time : 6000,
-							offset: ['35%', '45%']
-						});
-					}else{
-						layer.msg('删除失败!', {
-							icon : 1,
-							time : 3000,
-							offset: ['35%', '45%']
-						});
-					}
-				}
-			});
-		});
-	}
-	laydate({
-		elem : '#start',
-		event : 'focus'
-	});
-</script>
-<script type="text/javascript">
-
- 
-
-//删除上传但没保存的图片
-function removeImg(imgName) {
-	$.ajax({
-		url : "${APP_PATH}/file/checkImg.action?isImg="+ imgName,
-		type : "post",
-		success : function(result) {
-		}
-	});
-}
-
-//上传图片，加载进度条
-function showPic() {
-	
-	var pic = $("#photofile").get(0).files[0];
-	var regImg = /\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/;
-	if (!regImg.test($("#photofile").val())) {
-		layer.msg("图片类型必须是.gif,jpeg,jpg,png中的一种");
-		//清空文件域
-		var file = $("#photofile");
-		file.after(file.clone().val(""));
-		file.remove();
-		return false;
-	}
-	$("#son").css("width", "0%");
-	$("#imgDiv").hide();
-	$("#img").prop("src", window.URL.createObjectURL(pic));
-	uploadFile();
-}
-
-function upload_btn(){
-	$("#photofile").click();
-}
-function uploadFile() {
-	var pic = $("#photofile").get(0).files[0];
-	if (pic == undefined) {
-		layer.msg("您还没选择上传的文件！");
-		return false;
-	}
-	//显示进度条
-	$("#imgDiv").show();
-	var formData = new FormData();
-	formData.append("file", pic);
-	/** 
-	 * 必须false才会避开jQuery对 formdata 的默认处理 
-	 * XMLHttpRequest会对 formdata 进行正确的处理 
-	 */
-	$
-			.ajax({
+				url : "${APP_PATH}/brand/updateState.action?id=" + id
+						+ "&state=" + state,
 				type : "POST",
-				url : "${APP_PATH}/file/upload.action",
-				data : formData,
-				processData : false,
-				//必须false才会自动加上正确的Content-Type 
-				contentType : false,
-				xhr : function() {
-					var xhr = $.ajaxSettings.xhr();
-					if (onprogress && xhr.upload) {
-						xhr.upload.addEventListener("progress",
-								onprogress, false);
-						return xhr;
-					}
-				},
 				success : function(result) {
 					if (result.code == 100) {
-						//返回图片路径创建文本框之前，先判断之前是否已经上传过了，如果是，先删除再创建
-						var isImg = $("#cs1").val();
-						if (isImg != undefined && isImg != '') {//如果图片已上传，那么创建之前将图片删除
-							$("#cs1").remove();
-							removeImg(isImg);
-						}
-						//清空文件域
-						var file = $("#photofile");
-						file.after(file.clone().val(""));
-						file.remove();
-						//存放文件名
-						var inputPath = $("<input type='hidden' name='logoimage' id='cs1'/>");
-						inputPath.attr("value", result.extend.fileName);
-						inputPath.appendTo("#firstDiv");
+						return true;
 					} else {
-						$("#son").html("上传失败");
-						$("#son").css("font-size", "0.6em");
-						$("#son").css("color", "red");
+						return false;
 					}
 				}
 			});
-}
+		}
 
-/**
-* 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
-*/
-function onprogress(evt) {
-	var loaded = evt.loaded; //已经上传大小情况 
-	var tot = evt.total; //附件总大小 
-	var per = Math.floor(100 * loaded / tot); //已经上传的百分比 
-	$("#son").html(per + "%");
-	$("#son").css("width", per + "%");
-	if ($("#son").text() == "100%") {
-		$("#son").html("上传成功");
-	}
-}
-</script>
-	
+		/*品牌-停用*/
+		function member_stop(obj, id, state) {
+			layer
+					.confirm(
+							'确定要停用吗？',
+							{
+								offset : [ '35%', '45%' ],
+							},
+							function(index) {
+								stop_start_btn(id, state);
+								if (state == 1) {
+									state = 0;
+								} else {
+									state = 1;
+								}
+								$(obj)
+										.parents("tr")
+										.find(".td-manage")
+										.prepend(
+												"<a style='text-decoration:none' class='btn btn-xs' onClick='member_start(this,"
+														+ id
+														+ ","
+														+ state
+														+ ")' href='javascript:;' title='启用'><i class='icon-ok bigger-120'></i></a>");
+								$(obj)
+										.parents("tr")
+										.find(".td-status")
+										.html(
+												'<span class="label label-defaunt radius">已停用</span>');
+								$(obj).remove();
+								layer.msg('已停用', {
+									icon : 5,
+									time : 1000,
+									offset : [ '35%', '45%' ]
+								});
+							});
+		}
+
+		/*用户-启用*/
+		function member_start(obj, id, state) {
+			layer
+					.confirm(
+							'确认要启用吗？',
+							{
+								offset : [ '35%', '45%' ],
+							},
+							function(index) {
+								stop_start_btn(id, state);
+								if (state == 1) {
+									state = 0;
+								} else {
+									state = 1;
+								}
+								$(obj)
+										.parents("tr")
+										.find(".td-manage")
+										.prepend(
+												"<a style='text-decoration:none' class='btn btn-xs btn-success' onClick='member_stop(this,"
+														+ id
+														+ ","
+														+ state
+														+ ")' href='javascript:;' title='停用'><i class='icon-ok bigger-120'></i></a>");
+								$(obj)
+										.parents("tr")
+										.find(".td-status")
+										.html(
+												'<span class="label label-success radius">已启用</span>');
+								$(obj).remove();
+								layer.msg('已启用!', {
+									icon : 6,
+									time : 1000,
+									offset : [ '35%', '45%' ]
+								});
+							});
+		}
+		/*品牌-编辑*/
+		function member_edit(title, url, id, w, h) {
+			layer_show(title, url, w, h);
+		}
+
+		/*品牌-删除*/
+		function member_del(id) {
+			layer
+					.confirm(
+							'确认要删除吗？',
+							{
+								offset : [ '35%', '45%' ]
+							},
+							function(index) {
+								$
+										.ajax({
+											url : "${APP_PATH}/brand/deleteBrand/"
+													+ id,
+											type : "POST",
+											success : function(result) {
+												if (result.code == 100) {
+
+													window.location.href = "${APP_PATH}/brand/findAllBrand.action?pageNum=${pageInfo.pageNum}&pageSize=${pageInfo.pageSize}";
+													layer.msg('已删除!',
+															{
+																icon : 1,
+																time : 6000,
+																offset : [
+																		'35%',
+																		'45%' ]
+															});
+												} else {
+													layer.msg('删除失败!',
+															{
+																icon : 1,
+																time : 3000,
+																offset : [
+																		'35%',
+																		'45%' ]
+															});
+												}
+											}
+										});
+							});
+		}
+		laydate({
+			elem : '#start',
+			event : 'focus'
+		});
+	</script>
+	<script type="text/javascript">
+		//删除上传但没保存的图片
+		function removeImg(imgName) {
+			$.ajax({
+				url : "${APP_PATH}/file/checkImg.action?isImg=" + imgName,
+				type : "post",
+				success : function(result) {
+				}
+			});
+		}
+
+		//上传图片，加载进度条
+		function showPic() {
+
+			var pic = $("#photofile").get(0).files[0];
+			var regImg = /\.(gif|jpg|jpeg|png|GIF|JPG|PNG)$/;
+			if (!regImg.test($("#photofile").val())) {
+				layer.msg("图片类型必须是.gif,jpeg,jpg,png中的一种");
+				//清空文件域
+				var file = $("#photofile");
+				file.after(file.clone().val(""));
+				file.remove();
+				return false;
+			}
+			$("#son").css("width", "0%");
+			$("#imgDiv").hide();
+			$("#img").prop("src", window.URL.createObjectURL(pic));
+			uploadFile();
+		}
+
+		function upload_btn() {
+			$("#photofile").click();
+		}
+		function uploadFile() {
+			var pic = $("#photofile").get(0).files[0];
+			if (pic == undefined) {
+				layer.msg("您还没选择上传的文件！");
+				return false;
+			}
+			//显示进度条
+			$("#imgDiv").show();
+			var formData = new FormData();
+			formData.append("file", pic);
+			/** 
+			 * 必须false才会避开jQuery对 formdata 的默认处理 
+			 * XMLHttpRequest会对 formdata 进行正确的处理 
+			 */
+			$
+					.ajax({
+						type : "POST",
+						url : "${APP_PATH}/file/upload.action",
+						data : formData,
+						processData : false,
+						//必须false才会自动加上正确的Content-Type 
+						contentType : false,
+						xhr : function() {
+							var xhr = $.ajaxSettings.xhr();
+							if (onprogress && xhr.upload) {
+								xhr.upload.addEventListener("progress",
+										onprogress, false);
+								return xhr;
+							}
+						},
+						success : function(result) {
+							if (result.code == 100) {
+								//返回图片路径创建文本框之前，先判断之前是否已经上传过了，如果是，先删除再创建
+								var isImg = $("#cs1").val();
+								if (isImg != undefined && isImg != '') {//如果图片已上传，那么创建之前将图片删除
+									$("#cs1").remove();
+									removeImg(isImg);
+								}
+								//清空文件域
+								var file = $("#photofile");
+								file.after(file.clone().val(""));
+								file.remove();
+								//存放文件名
+								var inputPath = $("<input type='hidden' name='logoimage' id='cs1'/>");
+								inputPath.attr("value", result.extend.fileName);
+								inputPath.appendTo("#firstDiv");
+							} else {
+								$("#son").html("上传失败");
+								$("#son").css("font-size", "0.6em");
+								$("#son").css("color", "red");
+							}
+						}
+					});
+		}
+
+		/**
+		 * 侦查附件上传情况 ,这个方法大概0.05-0.1秒执行一次
+		 */
+		function onprogress(evt) {
+			var loaded = evt.loaded; //已经上传大小情况 
+			var tot = evt.total; //附件总大小 
+			var per = Math.floor(100 * loaded / tot); //已经上传的百分比 
+			$("#son").html(per + "%");
+			$("#son").css("width", per + "%");
+			if ($("#son").text() == "100%") {
+				$("#son").html("上传成功");
+			}
+		}
+	</script>
+
 </body>
 </html>

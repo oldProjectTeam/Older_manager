@@ -25,6 +25,8 @@
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
 <link rel="stylesheet"
 	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
 	rel="stylesheet">
 <script src="${APP_PATH}/static/shop/assets/js/ace-extra.min.js"></script>
@@ -175,7 +177,7 @@
 					dataType : "json", //返回数据形式为json
 					success : function(result) {
 						console.log(result);
-						if (result!=null) {
+						if (result != null) {
 							//将返回的category和series对象赋值给options对象内的category和series
 							//因为xAxis是一个数组 这里需要是xAxis[i]的形式
 							options.xAxis[0].data = result.category;
@@ -190,153 +192,153 @@
 						alert("图表请求数据失败啦!");
 					}
 				});
-			}); 
+			});
 
-			 /* $(document).ready(function() {
+			/* $(document).ready(function() {
 
+			$(".t_Record").width($(window).width() - 320);
+			//当文档窗口发生改变时 触发  
+			$(window).resize(function() {
 				$(".t_Record").width($(window).width() - 320);
-				//当文档窗口发生改变时 触发  
-				$(window).resize(function() {
-					$(".t_Record").width($(window).width() - 320);
-				});
+			});
 			});
 
 			require.config({
-				paths : {
-					echarts : './static/shop/assets/dist'
-				}
+			paths : {
+				echarts : './static/shop/assets/dist'
+			}
 			});
 			require([ 'echarts', 'echarts/theme/macarons',
-					'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
-					'echarts/chart/bar' ], function(ec, theme) {
-				var myChart = ec.init(document.getElementById('main'), theme);
-				option = {
-					title : {
-						text : '月购买订单交易记录',
-						subtext : '实时获取用户订单购买记录'
-					},
-					tooltip : {
-						trigger : 'axis'
-					},
-					legend : {
-						data : [ '所有订单', '待付款', '已付款', '代发货' ]
-					},
-					toolbox : {
-						show : true,
-						feature : {
-							mark : {
-								show : true
-							},
-							dataView : {
-								show : true,
-								readOnly : false
-							},
-							magicType : {
-								show : true,
-								type : [ 'line', 'bar' ]
-							},
-							restore : {
-								show : true
-							},
-							saveAsImage : {
-								show : true
-							}
+				'echarts/chart/line', // 按需加载所需图表，如需动态类型切换功能，别忘了同时加载相应图表
+				'echarts/chart/bar' ], function(ec, theme) {
+			var myChart = ec.init(document.getElementById('main'), theme);
+			option = {
+				title : {
+					text : '月购买订单交易记录',
+					subtext : '实时获取用户订单购买记录'
+				},
+				tooltip : {
+					trigger : 'axis'
+				},
+				legend : {
+					data : [ '所有订单', '待付款', '已付款', '代发货' ]
+				},
+				toolbox : {
+					show : true,
+					feature : {
+						mark : {
+							show : true
+						},
+						dataView : {
+							show : true,
+							readOnly : false
+						},
+						magicType : {
+							show : true,
+							type : [ 'line', 'bar' ]
+						},
+						restore : {
+							show : true
+						},
+						saveAsImage : {
+							show : true
 						}
-					},
-					calculable : true,
-					xAxis : [ {
-						type : 'category',
-						data : [ '1月', '2月', '3月', '4月', '5月', '6月', '7月',
-								'8月', '9月', '10月', '11月', '12月' ]
-					} ],
-					yAxis : [ {
-						type : 'value'
-					} ],
-					series : [
-							{
-								name : '所有订单',
-								type : 'bar',
-								data : [ 120, 49, 70, 232, 256, 767, 1356,
-										1622, 326, 200, 164, 133 ],
-								markPoint : {
-									data : [ {
-										type : 'max',
-										name : '最大值'
-									}, {
-										type : 'min',
-										name : '最小值'
-									} ]
-								}
+					}
+				},
+				calculable : true,
+				xAxis : [ {
+					type : 'category',
+					data : [ '1月', '2月', '3月', '4月', '5月', '6月', '7月',
+							'8月', '9月', '10月', '11月', '12月' ]
+				} ],
+				yAxis : [ {
+					type : 'value'
+				} ],
+				series : [
+						{
+							name : '所有订单',
+							type : 'bar',
+							data : [ 120, 49, 70, 232, 256, 767, 1356,
+									1622, 326, 200, 164, 133 ],
+							markPoint : {
+								data : [ {
+									type : 'max',
+									name : '最大值'
+								}, {
+									type : 'min',
+									name : '最小值'
+								} ]
+							}
+						},
+						{
+							name : '待付款',
+							type : 'bar',
+							data : [ 26, 59, 30, 84, 27, 77, 176, 1182,
+									487, 188, 60, 23 ],
+							markPoint : {
+								data : [ {
+									name : '年最高',
+									value : 1182,
+									xAxis : 7,
+									yAxis : 1182,
+									symbolSize : 18
+								}, {
+									name : '年最低',
+									value : 23,
+									xAxis : 11,
+									yAxis : 3,
+									symbolSize : 18
+								} ]
 							},
-							{
-								name : '待付款',
-								type : 'bar',
-								data : [ 26, 59, 30, 84, 27, 77, 176, 1182,
-										487, 188, 60, 23 ],
-								markPoint : {
-									data : [ {
-										name : '年最高',
-										value : 1182,
-										xAxis : 7,
-										yAxis : 1182,
-										symbolSize : 18
-									}, {
-										name : '年最低',
-										value : 23,
-										xAxis : 11,
-										yAxis : 3,
-										symbolSize : 18
-									} ]
-								},
 
+						},
+						{
+							name : '已付款',
+							type : 'bar',
+							data : [ 26, 59, 60, 264, 287, 77, 176, 122,
+									247, 148, 60, 23 ],
+							markPoint : {
+								data : [ {
+									name : '年最高',
+									value : 172,
+									xAxis : 7,
+									yAxis : 172,
+									symbolSize : 18
+								}, {
+									name : '年最低',
+									value : 23,
+									xAxis : 11,
+									yAxis : 3,
+									symbolSize : 18
+								} ]
 							},
-							{
-								name : '已付款',
-								type : 'bar',
-								data : [ 26, 59, 60, 264, 287, 77, 176, 122,
-										247, 148, 60, 23 ],
-								markPoint : {
-									data : [ {
-										name : '年最高',
-										value : 172,
-										xAxis : 7,
-										yAxis : 172,
-										symbolSize : 18
-									}, {
-										name : '年最低',
-										value : 23,
-										xAxis : 11,
-										yAxis : 3,
-										symbolSize : 18
-									} ]
-								},
 
+						},
+						{
+							name : '代发货',
+							type : 'bar',
+							data : [ 26, 59, 80, 24, 87, 70, 175, 1072, 48,
+									18, 69, 63 ],
+							markPoint : {
+								data : [ {
+									name : '年最高',
+									value : 1072,
+									xAxis : 7,
+									yAxis : 1072,
+									symbolSize : 18
+								}, {
+									name : '年最低',
+									value : 22,
+									xAxis : 11,
+									yAxis : 3,
+									symbolSize : 18
+								} ]
 							},
-							{
-								name : '代发货',
-								type : 'bar',
-								data : [ 26, 59, 80, 24, 87, 70, 175, 1072, 48,
-										18, 69, 63 ],
-								markPoint : {
-									data : [ {
-										name : '年最高',
-										value : 1072,
-										xAxis : 7,
-										yAxis : 1072,
-										symbolSize : 18
-									}, {
-										name : '年最低',
-										value : 22,
-										xAxis : 11,
-										yAxis : 3,
-										symbolSize : 18
-									} ]
-								},
 
-							} ]
-				};
+						} ]
+			};
 
-				myChart.setOption(option);
+			myChart.setOption(option);
 			});  */
 		</script>
 	</div>

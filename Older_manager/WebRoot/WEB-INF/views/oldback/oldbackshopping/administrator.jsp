@@ -32,9 +32,8 @@
 	href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
 <link rel="stylesheet"
 	href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript"

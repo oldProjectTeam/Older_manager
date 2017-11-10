@@ -25,24 +25,33 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
-<link href="${APP_PATH}/static/shop/assets/css/codemirror.css" rel="stylesheet">
-<link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
-<link rel="stylesheet" href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
+<link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
 <script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script>
 <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script>
-<script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
-<script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
-<script type="text/javascript" src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.js"></script>
-<script type="text/javascript" src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.queue.js"></script>
-<script type="text/javascript" src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.speed.js"></script>
-<script type="text/javascript" src="${APP_PATH}/static/shop/Widget/swfupload/handlers.js"></script>
+<script
+	src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.queue.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.speed.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/shop/Widget/swfupload/handlers.js"></script>
 </head>
 
 <body>
@@ -107,8 +116,9 @@
 							<td><input name="" type="text" style=" width:50px"
 								placeholder="1" /></td>
 							<td>幻灯片</td>
-							<td><span class="ad_img"><img src="${APP_PATH}/static/shop/products/ad.jpg"
-									width="100%" height="100%" /></span></td>
+							<td><span class="ad_img"><img
+									src="${APP_PATH}/static/shop/products/ad.jpg" width="100%"
+									height="100%" /></span></td>
 							<td>1890x1080</td>
 							<td><a href="#" target="_blank">http://item.jd.com/10443270082.html</a></td>
 							<td>2016-6-29 12:34</td>
@@ -167,7 +177,8 @@
 						<div class="demo">
 							<div class="logobox">
 								<div class="resizebox">
-									<img src="${APP_PATH}/static/shop/images/image.png" width="100px" alt="" height="100px" />
+									<img src="${APP_PATH}/static/shop/images/image.png"
+										width="100px" alt="" height="100px" />
 								</div>
 							</div>
 							<div class="logoupload">

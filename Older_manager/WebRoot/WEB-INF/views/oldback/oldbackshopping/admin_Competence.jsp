@@ -23,21 +23,27 @@
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
-<link href="${APP_PATH}/static/shop/assets/css/codemirror.css" rel="stylesheet">
-<link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
-<link rel="stylesheet" href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
+<link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script>
-<script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
-<script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
-<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js" type="text/javascript"></script>
+<script
+	src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
+<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js"
+	type="text/javascript"></script>
 </head>
 
 <body>
@@ -102,11 +108,10 @@
 						<td>拥有部分权限，主要进行编辑功能，无边界订单功能，权限分配功能。</td>
 						<td><a title="编辑" onclick="Competence_modify('562')"
 							href="javascript:;" class="btn btn-xs btn-info"><i
-								class="fa fa-edit bigger-120"></i></a> 
-								<a title="编辑" onclick="Competence_modify('562')"
-							href="javascript:;" class="btn btn-xs btn-warning"><i
-								class="fa fa-trash bigger-120"></i></a>
-								</td>
+								class="fa fa-edit bigger-120"></i></a> <a title="编辑"
+							onclick="Competence_modify('562')" href="javascript:;"
+							class="btn btn-xs btn-warning"><i
+								class="fa fa-trash bigger-120"></i></a></td>
 					</tr>
 				</tbody>
 			</table>

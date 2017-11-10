@@ -23,23 +23,30 @@
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
+	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
-<link href="${APP_PATH}/static/shop/assets/css/codemirror.css" rel="stylesheet">
-<link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
-<link rel="stylesheet" href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
-<!--[if lte IE 8]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/ace-ie.min.css" />
-		<![endif]-->
+<link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/ace.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/font/css/font-awesome.min.css" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
 <script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script>
-<script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
-<script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
-<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js" type="text/javascript"></script>
-<script src="${APP_PATH}/static/shop/assets/js/jquery.easy-pie-chart.min.js"></script>
+<script
+	src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
+<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js"
+	type="text/javascript"></script>
+<script
+	src="${APP_PATH}/static/shop/assets/js/jquery.easy-pie-chart.min.js"></script>
 <script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script>
 </head>
 
@@ -78,9 +85,10 @@
 				<div class="title_name">产品信息</div>
 				<div class="Info_style clearfix">
 					<div class="product_info clearfix">
-						<a href="#" class="img_link"><img src="${APP_PATH}/static/shop/products/p_3.jpg"
-							width="200" height="200" /></a> <span> <a href="#"
-							class="name_link">美果汇 美国进口嘎啦果苹果6粒装 加力果 姬娜果 伽利果 新鲜应季水果</a> <b>也称为姬娜果，饱满色艳，个头小</b>
+						<a href="#" class="img_link"><img
+							src="${APP_PATH}/static/shop/products/p_3.jpg" width="200"
+							height="200" /></a> <span> <a href="#" class="name_link">美果汇
+								美国进口嘎啦果苹果6粒装 加力果 姬娜果 伽利果 新鲜应季水果</a> <b>也称为姬娜果，饱满色艳，个头小</b>
 							<p>规格：500g/斤</p>
 							<p>数量：2kg</p>
 							<p>
@@ -92,9 +100,10 @@
 						</span>
 					</div>
 					<div class="product_info clearfix">
-						<a href="#" class="img_link"><img src="${APP_PATH}/static/shop/products/p_5.jpg"
-							width="200" height="200" /></a> <span> <a href="#"
-							class="name_link">美果汇 美国进口嘎啦果苹果6粒装 加力果 姬娜果 伽利果 新鲜应季水果</a> <b>也称为姬娜果，饱满色艳，个头小</b>
+						<a href="#" class="img_link"><img
+							src="${APP_PATH}/static/shop/products/p_5.jpg" width="200"
+							height="200" /></a> <span> <a href="#" class="name_link">美果汇
+								美国进口嘎啦果苹果6粒装 加力果 姬娜果 伽利果 新鲜应季水果</a> <b>也称为姬娜果，饱满色艳，个头小</b>
 							<p>规格：39.9/5kg</p>
 							<p>数量：2</p>
 							<p>
@@ -106,9 +115,10 @@
 						</span>
 					</div>
 					<div class="product_info clearfix">
-						<a href="#" class="img_link"><img src="${APP_PATH}/static/shop/products/p_8.jpg"
-							width="200" height="200" /></a> <span> <a href="#"
-							class="name_link">美果汇 美国进口嘎啦果苹果6粒装 加力果 姬娜果 伽利果 新鲜应季水果</a> <b>也称为姬娜果，饱满色艳，个头小</b>
+						<a href="#" class="img_link"><img
+							src="${APP_PATH}/static/shop/products/p_8.jpg" width="200"
+							height="200" /></a> <span> <a href="#" class="name_link">美果汇
+								美国进口嘎啦果苹果6粒装 加力果 姬娜果 伽利果 新鲜应季水果</a> <b>也称为姬娜果，饱满色艳，个头小</b>
 							<p>规格：500g/斤</p>
 							<p>数量：2kg</p>
 							<p>

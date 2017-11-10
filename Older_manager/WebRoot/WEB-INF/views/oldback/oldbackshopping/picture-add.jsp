@@ -25,11 +25,8 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="${APP_PATH}/static/shop/js/html5.js"></script>
-<script type="text/javascript" src="${APP_PATH}/static/shop/js/respond.min.js"></script>
-<script type="text/javascript" src="${APP_PATH}/static/shop/js/PIE_IE678.js"></script>
-<![endif]-->
+<link rel="stylesheet"
+	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
 	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
@@ -42,80 +39,82 @@
 	type="text/css">
 <link rel="stylesheet"
 	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
-<!--[if IE 7]>
-		  <link rel="stylesheet" href="${APP_PATH}/static/shop/assets/css/font-awesome-ie7.min.css" />
-		<![endif]-->
 <link href="${APP_PATH}/static/shop/Widget/icheck/icheck.css"
 	rel="stylesheet" type="text/css" />
 <link
 	href="${APP_PATH}/static/shop/Widget/webuploader/0.1.5/webuploader.css"
 	rel="stylesheet" type="text/css" />
-	<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
+<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
 	rel="stylesheet" />
 </head>
 <body>
 
 	<!--选择品牌模态框开始  -->
-    <div class="modal fade" tabindex="-1" role="dialog" id="choose_brand_modal">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	        <h4 class="modal-title">选择品牌</h4>
-	      </div>
-	      <div class="modal-body">
-	          <div class="row">
-	          		<div class="col-md-10 col-md-offset-1">
-	          			<table class="table text-center table-hover table-bordered">
-	          			     <tr>
-	          				 	<td colspan="4">
-	          				 	<form class="form-inline" id="modal_search_form">
-								  <div class="form-group">
-								    <label for="exampleInputEmail2">品牌名称</label>
-								    <input type="text" class="input-text" name="name">
-								  </div>
-								  <button type="button" class="btn btn-default btn-sm" id="modal_search_btn">
-								  <span class="icon-search" aria-hidden="true"></span>
-								  搜索</button>
-								</form>	          				 	
-	          				 	</td> 
-	          				 </tr>	 
-	          				 <tr>
-	          				 	<td>品牌编号</td>
-	          				 	<td>品牌名称</td>
-	          				 	<td>所属地区/国家</td>
-	          				 	<td>操作</td>
-	          				 </tr>
-	          				 <tbody id="modal_table_tbody">
-	          				    
-	          				 </tbody>
-  						</table>
-	          		</div>
-	          </div>
-	          <!--分页信息  -->
-	          <div class="row">
-	          	<div class="col-md-10 col-md-offset-1" id="page_info">	          	           
-	          	</div>
-	          </div>
-	          <div class="row">
-	          	<div class="col-md-10 col-md-offset-1">
-          	      <nav aria-label="Page navigation" style="float:right">
-          	        <ul class="pagination pagination-sm" id="modal_nav_ul">
-          	        	
-          	        </ul>
-          	      </nav>
-	          	</div>
-	          </div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">
-	        <span aria-hidden="true">&larr;</span>返回</button>
-	      </div>
-	    </div> 
-	  </div> 
-	</div> 
+	<div class="modal fade" tabindex="-1" role="dialog"
+		id="choose_brand_modal">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">选择品牌</h4>
+				</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<table class="table text-center table-hover table-bordered">
+								<tr>
+									<td colspan="4">
+										<form class="form-inline" id="modal_search_form">
+											<div class="form-group">
+												<label for="exampleInputEmail2">品牌名称</label> <input
+													type="text" class="input-text" name="name">
+											</div>
+											<button type="button" class="btn btn-default btn-sm"
+												id="modal_search_btn">
+												<span class="icon-search" aria-hidden="true"></span> 搜索
+											</button>
+										</form>
+									</td>
+								</tr>
+								<tr>
+									<td>品牌编号</td>
+									<td>品牌名称</td>
+									<td>所属地区/国家</td>
+									<td>操作</td>
+								</tr>
+								<tbody id="modal_table_tbody">
 
-    <!--主体内容开始  -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<!--分页信息  -->
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1" id="page_info"></div>
+					</div>
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<nav aria-label="Page navigation" style="float:right">
+							<ul class="pagination pagination-sm" id="modal_nav_ul">
+
+							</ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">
+						<span aria-hidden="true">&larr;</span>返回
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--主体内容开始  -->
 	<div class="clearfix" id="add_picture">
 		<div id="scrollsidebar" class="left_Treeview">
 			<div class="show_btn" id="rightArrow">
@@ -139,13 +138,13 @@
 		</div>
 		<div class="page_right_style">
 			<div class="type_title">添加商品</div>
-			<form  method="post" class="form form-horizontal"
+			<form method="post" class="form form-horizontal"
 				id="form-article-add">
 				<div class="clearfix cl">
 					<label class="form-label col-2"><font color="red">*</font>图片标题：</label>
 					<div class="formControls col-10">
-						<input type="text" class="input-text" name="imagetitle" placeholder="最多可输入50个字符"
-							id="imagetitle">
+						<input type="text" class="input-text" name="imagetitle"
+							placeholder="最多可输入50个字符" id="imagetitle">
 					</div>
 				</div>
 				<div class=" clearfix cl">
@@ -153,7 +152,7 @@
 					<div class="formControls col-10">
 						<input type="text" class="input-text" placeholder="最多可输入100个字符"
 							id="name" name="name">
-						
+
 					</div>
 				</div>
 				<div class=" clearfix cl">
@@ -169,7 +168,7 @@
 						<label class="form-label col-2">产&nbsp;&nbsp;&nbsp;&nbsp;地：</label>
 						<div class="formControls col-2">
 							<input type="text" class="input-text" placeholder="可输入100个字符"
-								id="placeorigin" name="placeorigin"> 
+								id="placeorigin" name="placeorigin">
 						</div>
 					</div>
 					<div class="Add_p_s">
@@ -179,7 +178,7 @@
 								id="texture" name="texture">
 						</div>
 					</div>
-					
+
 					<div class="Add_p_s">
 						<label class="form-label col-2">产品重量：</label>
 						<div class="formControls col-2">
@@ -190,7 +189,8 @@
 					<div class="Add_p_s">
 						<label class="form-label col-2">单位：</label>
 						<div class="formControls col-2">
-							<span class="select-box"> <select class="select" name="unit">
+							<span class="select-box"> <select class="select"
+								name="unit">
 									<option value="">请选择</option>
 									<option value="件">件</option>
 									<option value="斤">斤</option>
@@ -204,45 +204,51 @@
 					<div class="Add_p_s">
 						<label class="form-label col-2"><font color="red">*</font>现在价格：</label>
 						<div class="formControls col-2">
-							<input type="number" class="input-text" id="nowprice" name="nowprice">元
+							<input type="number" class="input-text" id="nowprice"
+								name="nowprice">元
 						</div>
 					</div>
 					<div class="Add_p_s">
 						<label class="form-label col-2"><font color="red">*</font>原来价格：</label>
 						<div class="formControls col-2">
-							<input type="number" class="input-text" 
-								id="orprice" name="orprice">元
+							<input type="number" class="input-text" id="orprice"
+								name="orprice">元
 						</div>
 					</div>
 					<div class="Add_p_s">
 						<label class="form-label col-2"><font color="red">*</font>库存量：</label>
 						<div class="formControls col-2">
-							<input type="number" class="input-text" id="inventory" name="inventory">
+							<input type="number" class="input-text" id="inventory"
+								name="inventory">
 						</div>
 					</div>
-					 <div class="Add_p_s">
+					<div class="Add_p_s">
 						<label class="form-label col-2">产品类型：</label>
 						<div class="formControls col-2">
-							 <input type="text" id="typeName" class="input-text" readonly="readonly">
-							<input type="hidden" id="typeId" name="typeId"/>
+							<input type="text" id="typeName" class="input-text"
+								readonly="readonly"> <input type="hidden" id="typeId"
+								name="typeId" />
 						</div>
 					</div>
 					<div class="Add_p_s">
 						<label class="form-label col-2">品&nbsp;&nbsp;&nbsp;&nbsp;牌：</label>
 						<div class="formControls col-2">
-							<button id="choose_brand_btn" type="button" class="btn btn-primary btn-sm">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							选择品牌</button>
+							<button id="choose_brand_btn" type="button"
+								class="btn btn-primary btn-sm">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+								选择品牌
+							</button>
 						</div>
 					</div>
 					<div class="Add_p_s">
 						<label class="form-label col-2">品牌名称：</label>
 						<div class="formControls col-2">
-							 <input type="text" id="brandName" class="input-text" readonly="readonly">
-							<input type="hidden" id="brandId" name="brandId" readonly="readonly">
+							<input type="text" id="brandName" class="input-text"
+								readonly="readonly"> <input type="hidden" id="brandId"
+								name="brandId" readonly="readonly">
 						</div>
 					</div>
-				    <div class="Add_p_s">
+					<div class="Add_p_s">
 						<label class="form-label col-2"><font color="red">*</font>地区/国家：</label>
 						<div class="formControls col-2">
 							<input type="text" class="input-text" id="region" name="region">
@@ -253,17 +259,17 @@
 				<div class="clearfix cl">
 					<label class="form-label col-2"><font color="red">*</font>关键词：</label>
 					<div class="formControls col-10">
-						<input type="text" class="input-text" 
-						 placeholder="关键词之间请用空格隔开 例如：智能手机 vivo 手机"
-							id="keyword" name="productKeyword.keyword">
+						<input type="text" class="input-text"
+							placeholder="关键词之间请用空格隔开 例如：智能手机 vivo 手机" id="keyword"
+							name="productKeyword.keyword">
 					</div>
 				</div>
 				<div class="clearfix cl">
 					<label class="form-label col-2"><font color="red">*</font>内容摘要：</label>
 					<div class="formControls col-10">
-						<textarea id="synopsis" name="synopsis" cols="" rows="" class="textarea"
-							placeholder="说点什么...最少输入10个字符" datatype="*10-100"
-							dragonfly="true" nullmsg="备注不能为空！"
+						<textarea id="synopsis" name="synopsis" cols="" rows=""
+							class="textarea" placeholder="说点什么...最少输入10个字符"
+							datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！"
 							onKeyUp="textarealength(this,200)"></textarea>
 						<p class="textarea-numberbar">
 							<em class="textarea-length">0</em>/200
@@ -297,22 +303,21 @@
 				<div class="clearfix cl">
 					<label class="form-label col-2"><font color="red">*</font>详细内容：</label>
 					<div class="formControls col-10">
-						<textarea id="description" name="description" cols="" rows="" class="textarea"
-							placeholder="说点什么...最少输入10个字符" datatype="*10-100"
-							dragonfly="true" nullmsg="备注不能为空！"
+						<textarea id="description" name="description" cols="" rows=""
+							class="textarea" placeholder="说点什么...最少输入10个字符"
+							datatype="*10-100" dragonfly="true" nullmsg="备注不能为空！"
 							onKeyUp="checkLength(this,1000)"></textarea>
 						<p class="textarea-numberbar">
 							<em class="textarea-length" id="sy">0/1000</em>
 						</p>
 						<!--<script id="editor" type="text/plain" style="width:100%;height:400px;">
 						</script> -->
-					</div> 
+					</div>
 				</div>
-				 
+
 				<div class="clearfix cl">
 					<div class="Button_operation">
-						<button  
-							class="btn btn-primary radius" type="button" id="save_btn">
+						<button class="btn btn-primary radius" type="button" id="save_btn">
 							<i class="icon-save "></i>保存并提交审核
 						</button>
 						<button onClick="layer_close();" class="btn btn-default radius"
@@ -322,15 +327,18 @@
 			</form>
 		</div>
 	</div>
-	 
+
 	<script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 	<script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
 	<script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
-	<script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
-	<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js" type="text/javascript"></script>
+	<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+		type="text/javascript"></script>
+	<script src="${APP_PATH}/static/shop/assets/laydate/laydate.js"
+		type="text/javascript"></script>
 	<script type="text/javascript"
 		src="${APP_PATH}/static/shop/Widget/My97DatePicker/WdatePicker.js"></script>
-	<script type="text/javascript" src="${APP_PATH}/static/shop/Widget/icheck/jquery.icheck.min.js"></script>
+	<script type="text/javascript"
+		src="${APP_PATH}/static/shop/Widget/icheck/jquery.icheck.min.js"></script>
 	<script type="text/javascript"
 		src="${APP_PATH}/static/shop/Widget/zTree/js/jquery.ztree.all-3.5.min.js"></script>
 	<script type="text/javascript"
@@ -341,356 +349,364 @@
 		src="${APP_PATH}/static/shop/Widget/ueditor/1.4.3/ueditor.config.js"></script>
 	<script type="text/javascript"
 		src="${APP_PATH}/static/shop/Widget/ueditor/1.4.3/ueditor.all.min.js">
+		
 	</script>
 	<script type="text/javascript"
 		src="${APP_PATH}/static/shop/Widget/ueditor/1.4.3/lang/zh-cn/zh-cn.js"></script>
 	<script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script>
 	<script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.js"></script>
-	<script type="text/javascript" src="${APP_PATH}/static/shop/js/H-ui.admin.js"></script>
+	<script type="text/javascript"
+		src="${APP_PATH}/static/shop/js/H-ui.admin.js"></script>
 	<script>
-	
-	//构建模态框表格信息
-	function build_modal_table(result){
-		$("#modal_table_tbody").empty();
-		$.each(result.extend.pageInfo.list,function(index,item){
-			var tr=$("<tr></tr>");
-			var td1=$("<td></td>").append(item.id);
-			var td2=$("<td></td>").append(item.name);
-			var td3=$("<td></td>").append(item.region);
-			var span=$("<span class='icon-ok' aria-hidden='true'></span>");
-			var button=$("<button type='button' class='btn btn-success modal_choose_btn'></button>")
-			.append(span).append("选择");
-			var td4=$("<td></td>").append(button);
-			tr.append(td1).append(td2).append(td3).append(td4).appendTo("#modal_table_tbody");
-		});
-	}
-	//为模态框选择品牌按钮设置点击事件
-	$(document).on("click",".modal_choose_btn",function(){
-		var brandId=$(this).parents("tr").find("td:eq(0)").text();
-		var brandName=$(this).parents("tr").find("td:eq(1)").text();
-		$("#brandName").prop("value",brandName);
-		$("#brandId").prop("value",brandId);
-		$("#choose_brand_modal").modal('hide');
-	});
-	
-	//模态框搜索按钮
-	$("#modal_search_btn").click(function(){
-		$.ajax({
-			url:"${APP_PATH}/brand/getAllBrand",
-			data:$("#modal_search_form").serialize(),
-			type:"post",
-			success:function(result){
-				//console.log(result);
-				//1.构建表格数据
-				build_modal_table(result);
-				//2.构建页信息
-				buil_modal_pageInfo(result);
-			}
-		});
-	});
-	//模态框去哪页加载数据
-	function to_page(pn){
-		$.ajax({
-			url:"${APP_PATH}/brand/getAllBrand",
-			data:"pn="+pn,
-			type:"post",
-			success:function(result){
-				//console.log(result);
-				//1.构建表格数据
-				build_modal_table(result);
-				//2.构建页信息
-				buil_modal_pageInfo(result);
-			}
-		});
-	}
-	
-	//构建模态框分页信息
-	function buil_modal_pageInfo(result){
-		$("#modal_nav_ul").empty();
-		$("#page_info").empty();
-		//左边分页信息
-		var pageInfo=result.extend.pageInfo;
-		$("#page_info").append(" 当前第 "+pageInfo.pageNum+" 页，共 "+pageInfo.pages+"页，共计 "+pageInfo.total+" 条数据")
-		
-		//右边分页导航
-		var firstPage=$("<li></li>").append($("<a></a>").append("首页"));
-		var prePage=$("<li></li>").append($("<a></a>").append("&laquo;"));
-		var nextPage=$("<li></li>").append($("<a></a>").append("&raquo;"));
-		var lastPage=$("<li></li>").append($("<a></a>").append("末页"));
-		if(result.extend.pageInfo.hasPreviousPage==false){
-			firstPage.addClass("disabled");
-			prePage.addClass("disabled");
-		}else{
-			firstPage.click(function(){
-				to_page(1);
-			});
-			prePage.click(function(){
-				to_page(result.extend.pageInfo.pageNum-1);
-			});
+		//构建模态框表格信息
+		function build_modal_table(result) {
+			$("#modal_table_tbody").empty();
+			$
+					.each(
+							result.extend.pageInfo.list,
+							function(index, item) {
+								var tr = $("<tr></tr>");
+								var td1 = $("<td></td>").append(item.id);
+								var td2 = $("<td></td>").append(item.name);
+								var td3 = $("<td></td>").append(item.region);
+								var span = $("<span class='icon-ok' aria-hidden='true'></span>");
+								var button = $(
+										"<button type='button' class='btn btn-success modal_choose_btn'></button>")
+										.append(span).append("选择");
+								var td4 = $("<td></td>").append(button);
+								tr.append(td1).append(td2).append(td3).append(
+										td4).appendTo("#modal_table_tbody");
+							});
 		}
-		if(result.extend.pageInfo.hasNextPage==false){
-			nextPage.addClass("disabled");
-			lastPage.addClass("disabled");
-		}else{
-			nextPage.click(function(){
-				to_page(result.extend.pageInfo.pageNum+1);
-			});
-			lastPage.click(function(){
-				to_page(result.extend.pageInfo.pages);
-			});
-		}
-		$("#modal_nav_ul").append(firstPage).append(prePage);
-		$.each(result.extend.pageInfo.navigatepageNums,function(index,item){
-			var numLi=$("<li></li>").append($("<a></a>").append(item));
-			if(result.extend.pageInfo.pageNum==item){
-				numLi.addClass("active");	
-			}
-			numLi.click(function(){
-				to_page(item);
-			});
-			$("#modal_nav_ul").append(numLi);
+		//为模态框选择品牌按钮设置点击事件
+		$(document).on("click", ".modal_choose_btn", function() {
+			var brandId = $(this).parents("tr").find("td:eq(0)").text();
+			var brandName = $(this).parents("tr").find("td:eq(1)").text();
+			$("#brandName").prop("value", brandName);
+			$("#brandId").prop("value", brandId);
+			$("#choose_brand_modal").modal('hide');
 		});
-		$("#modal_nav_ul").append(nextPage).append(lastPage);
-		
-	}
-	
-	 //选择品牌按钮
-	$("#choose_brand_btn").click(function(){
-		//默认打开模态框去第一页
-		//加载数据
-		to_page(1);
-		//打开模态框
-		$("#choose_brand_modal").modal();
-	});
-	
-	 
-	 
-	//校验结果的提示信息
-	function show_vaildate_msg(ele,status,msg){
-		$(ele).parent().removeClass("has-success has-error");
-		if("success"==status){
-			$(ele).parent().addClass("has-success"); 
-		}else if("error"==status){
-			layer.msg(msg, {icon: 5,time : 1000,offset: ['35%']});
-			$(ele).parent().addClass("has-error");
-		}
-		
-	}
-	 //增加产品表单校验
-	 function vail_product_form(){
-		 
-		 //1.图片标题
-		 var imagetitle=$("#imagetitle").val();
-		 if(imagetitle.length<1){
-			 show_vaildate_msg("#imagetitle","error","图片标题不能为空！");
-			 return false;
-		 }else if(imagetitle.length>50){
-			 show_vaildate_msg("#imagetitle","error","图片标题字数超出限制！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#imagetitle","success","");
-		 }
-		  
-		 //2.简略标题
-		 var name=$("#name").val();
-		 if(name.length<1){
-			 show_vaildate_msg("#name","error","简略标题不能为空！");
-			 return false;
-		 }else if(name.length>100){
-			 show_vaildate_msg("#name","error","简略标题字数超出限制！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#name","success","");
-		 }
-		 
-		 //3.产品编号
-		  var regex0=/^([0-9a-zA-Z]{0,30})$/;
-		 var number=$("#number").val();
-		 if(!regex0.test(number)){
-			 show_vaildate_msg("#number","error","产品编号必须是30位以内的数字或字母！");
-			 return false;
-		 }
-		 if(number.length>30){
-			 show_vaildate_msg("#number","error","产品编号字数超出限制！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#number","success","");
-		 }  
-		 //4.产地 
-		 var placeorigin=$("#placeorigin").val();
-		 if(placeorigin.length>100){
-			 show_vaildate_msg("#placeorigin","error","产地字数超出限制！");
-			 return false;
-		 }else{
-			 
-			 show_vaildate_msg("#placeorigin","success","");
-		 }
-		 //5.材质
-		 var texture=$("#texture").val();
-		 if(texture.length>100){
-			 show_vaildate_msg("#texture","error","材质字数超出限制！");
-			 return false;
-		 }else{
-			 
-			 show_vaildate_msg("#texture","success","");
-		 }
-		 
-		 //6.产品重量
-		 var regex1=/^([\d.]{0,7})$/;
-		 var weight=$("#weight").val();
-		 if(!regex1.test(weight)){
-			 show_vaildate_msg("#weight","error","产品重量不能为负数！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#weight","success","");
-		 }
-  
-		 //7.现在价格
-		 var regex2=/^([\d.]{1,8})$/;
-		 var nowprice=$("#nowprice").val();	 
-		 if(!regex2.test(nowprice)){
-			 show_vaildate_msg("#nowprice","error","现在价格不能为空或不能为负数！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#nowprice","success","");
-		 }
-		 
-		//8.原来价格
-		 var regex3=/^([\d.]{1,8})$/;
-		 var orprice=$("#orprice").val();
-		 if(!regex3.test(orprice)){
-			 show_vaildate_msg("#orprice","error","原来价格不能为空或不能为负数！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#orprice","success","");
-		 }
-		 
-		//9.库存量
-		 var regex4=/^([\d]{1,8})$/;
-		 var inventory=$("#inventory").val();
-		 if(!regex4.test(inventory)){
-			 show_vaildate_msg("#inventory","error","库存量不能为空或不能为负数！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#inventory","success","");
-		 }
-		  
-		//13.地区/国家
-		 var region=$("#region").val();
-		 if(region.length<1){
-			 show_vaildate_msg("#region","error","所属地区/国家不能为空！");
-			 return false;
-		 }else if(region.length>100){
-			 show_vaildate_msg("#region","error","所属地区/国家字数不能超过一百！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#region","success","");
-		 }
-		 
-		 //10.关键词
-		 var keyword=$("#keyword").val();
-		 if(keyword.length<1){
-			 show_vaildate_msg("#keyword","error","关键词不能为空！");
-			 return false;
-		 }else if(keyword.length>200){
-			 show_vaildate_msg("#keyword","error","关键词字数不能超过两百！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#keyword","success","");
-		 }
-		 
-		 //11.内容摘要
-		 var synopsis=$("#synopsis").val();
-		 if(synopsis.length<1){
-			 show_vaildate_msg("#synopsis","error","内容摘要不能为空！");
-			 return false;
-		 }else if(synopsis.length>200){
-			 show_vaildate_msg("#synopsis","error","内容摘要字数不能超过两百！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#synopsis","success","");
-		 }
-		 
-		//12.详细内容
-		 var description=$("#description").val();
-		 if(description.length<1){
-			 show_vaildate_msg("#description","error","详细内容不能为空！");
-			 return false;
-		 }else if(description.length>1000){
-			 show_vaildate_msg("#description","error","详细内容字数不能超过一千！");
-			 return false;
-		 }else{
-			 show_vaildate_msg("#description","success","");
-		 }
-		 
-		 
-		 
-		 return true;
-	 }
-	 
-	 
-	 
-	 
-	 //保存按钮，保存数据
-	$("#save_btn").click(function(){
-		if(!vail_product_form()){
-			return false;
-		}
-		layer.msg('正在保存', {
-			   icon: 16
-			   ,shade: 0.01,
-			   time:2000,
-			   offset:['30%'],
-		}); 
-		$.ajax({
-			url:"${APP_PATH}/shopping/insertProduct",
-			type:"POST",
-			data:$("#form-article-add").serialize(),
-			success:function(result){
-				if(result.code==100){
-					layer.msg("添加成功！",{
-						offset:['30%'],
-						icon : 6,
-						time : 1000,
-					});
-				}else{
-					var error=result.extend.error;
-					var error_msg="";
-					if(error.imagetitle!=null){
-						error_msg+=error.imagetitle+"\n";
-					}
-					if(error.name!=null){
-						error_msg+=error.name+"\n";
-					}
-					layer.msg("添加失败！",{
-						offset:['30%'],
-						icon : 5,
-						time : 1000,
-					});
+
+		//模态框搜索按钮
+		$("#modal_search_btn").click(function() {
+			$.ajax({
+				url : "${APP_PATH}/brand/getAllBrand",
+				data : $("#modal_search_form").serialize(),
+				type : "post",
+				success : function(result) {
+					//console.log(result);
+					//1.构建表格数据
+					build_modal_table(result);
+					//2.构建页信息
+					buil_modal_pageInfo(result);
 				}
-			}
-			
-		});
-	});
-	function checkLength(which,maxChars) {
-		if (which.value.length > maxChars) {
-			layer.open({
-				icon : 2,
-				title : '提示框',
-				offset:['25%'],
-				content : '您输入的字数超多限制!',
 			});
-			// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
-			which.value = which.value.substring(0, maxChars);
-			return false;
-		} else {
-			var curr = maxChars - which.value.length; // 减去 当前输入的
-			document.getElementById("sy").innerHTML =which.value.length.toString()+"/"+curr.toString();
+		});
+		//模态框去哪页加载数据
+		function to_page(pn) {
+			$.ajax({
+				url : "${APP_PATH}/brand/getAllBrand",
+				data : "pn=" + pn,
+				type : "post",
+				success : function(result) {
+					//console.log(result);
+					//1.构建表格数据
+					build_modal_table(result);
+					//2.构建页信息
+					buil_modal_pageInfo(result);
+				}
+			});
+		}
+
+		//构建模态框分页信息
+		function buil_modal_pageInfo(result) {
+			$("#modal_nav_ul").empty();
+			$("#page_info").empty();
+			//左边分页信息
+			var pageInfo = result.extend.pageInfo;
+			$("#page_info").append(
+					" 当前第 " + pageInfo.pageNum + " 页，共 " + pageInfo.pages
+							+ "页，共计 " + pageInfo.total + " 条数据")
+
+			//右边分页导航
+			var firstPage = $("<li></li>").append($("<a></a>").append("首页"));
+			var prePage = $("<li></li>").append($("<a></a>").append("&laquo;"));
+			var nextPage = $("<li></li>")
+					.append($("<a></a>").append("&raquo;"));
+			var lastPage = $("<li></li>").append($("<a></a>").append("末页"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
+				firstPage.addClass("disabled");
+				prePage.addClass("disabled");
+			} else {
+				firstPage.click(function() {
+					to_page(1);
+				});
+				prePage.click(function() {
+					to_page(result.extend.pageInfo.pageNum - 1);
+				});
+			}
+			if (result.extend.pageInfo.hasNextPage == false) {
+				nextPage.addClass("disabled");
+				lastPage.addClass("disabled");
+			} else {
+				nextPage.click(function() {
+					to_page(result.extend.pageInfo.pageNum + 1);
+				});
+				lastPage.click(function() {
+					to_page(result.extend.pageInfo.pages);
+				});
+			}
+			$("#modal_nav_ul").append(firstPage).append(prePage);
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("active");
+				}
+				numLi.click(function() {
+					to_page(item);
+				});
+				$("#modal_nav_ul").append(numLi);
+			});
+			$("#modal_nav_ul").append(nextPage).append(lastPage);
+
+		}
+
+		//选择品牌按钮
+		$("#choose_brand_btn").click(function() {
+			//默认打开模态框去第一页
+			//加载数据
+			to_page(1);
+			//打开模态框
+			$("#choose_brand_modal").modal();
+		});
+
+		//校验结果的提示信息
+		function show_vaildate_msg(ele, status, msg) {
+			$(ele).parent().removeClass("has-success has-error");
+			if ("success" == status) {
+				$(ele).parent().addClass("has-success");
+			} else if ("error" == status) {
+				layer.msg(msg, {
+					icon : 5,
+					time : 1000,
+					offset : [ '35%' ]
+				});
+				$(ele).parent().addClass("has-error");
+			}
+
+		}
+		//增加产品表单校验
+		function vail_product_form() {
+
+			//1.图片标题
+			var imagetitle = $("#imagetitle").val();
+			if (imagetitle.length < 1) {
+				show_vaildate_msg("#imagetitle", "error", "图片标题不能为空！");
+				return false;
+			} else if (imagetitle.length > 50) {
+				show_vaildate_msg("#imagetitle", "error", "图片标题字数超出限制！");
+				return false;
+			} else {
+				show_vaildate_msg("#imagetitle", "success", "");
+			}
+
+			//2.简略标题
+			var name = $("#name").val();
+			if (name.length < 1) {
+				show_vaildate_msg("#name", "error", "简略标题不能为空！");
+				return false;
+			} else if (name.length > 100) {
+				show_vaildate_msg("#name", "error", "简略标题字数超出限制！");
+				return false;
+			} else {
+				show_vaildate_msg("#name", "success", "");
+			}
+
+			//3.产品编号
+			var regex0 = /^([0-9a-zA-Z]{0,30})$/;
+			var number = $("#number").val();
+			if (!regex0.test(number)) {
+				show_vaildate_msg("#number", "error", "产品编号必须是30位以内的数字或字母！");
+				return false;
+			}
+			if (number.length > 30) {
+				show_vaildate_msg("#number", "error", "产品编号字数超出限制！");
+				return false;
+			} else {
+				show_vaildate_msg("#number", "success", "");
+			}
+			//4.产地 
+			var placeorigin = $("#placeorigin").val();
+			if (placeorigin.length > 100) {
+				show_vaildate_msg("#placeorigin", "error", "产地字数超出限制！");
+				return false;
+			} else {
+
+				show_vaildate_msg("#placeorigin", "success", "");
+			}
+			//5.材质
+			var texture = $("#texture").val();
+			if (texture.length > 100) {
+				show_vaildate_msg("#texture", "error", "材质字数超出限制！");
+				return false;
+			} else {
+
+				show_vaildate_msg("#texture", "success", "");
+			}
+
+			//6.产品重量
+			var regex1 = /^([\d.]{0,7})$/;
+			var weight = $("#weight").val();
+			if (!regex1.test(weight)) {
+				show_vaildate_msg("#weight", "error", "产品重量不能为负数！");
+				return false;
+			} else {
+				show_vaildate_msg("#weight", "success", "");
+			}
+
+			//7.现在价格
+			var regex2 = /^([\d.]{1,8})$/;
+			var nowprice = $("#nowprice").val();
+			if (!regex2.test(nowprice)) {
+				show_vaildate_msg("#nowprice", "error", "现在价格不能为空或不能为负数！");
+				return false;
+			} else {
+				show_vaildate_msg("#nowprice", "success", "");
+			}
+
+			//8.原来价格
+			var regex3 = /^([\d.]{1,8})$/;
+			var orprice = $("#orprice").val();
+			if (!regex3.test(orprice)) {
+				show_vaildate_msg("#orprice", "error", "原来价格不能为空或不能为负数！");
+				return false;
+			} else {
+				show_vaildate_msg("#orprice", "success", "");
+			}
+
+			//9.库存量
+			var regex4 = /^([\d]{1,8})$/;
+			var inventory = $("#inventory").val();
+			if (!regex4.test(inventory)) {
+				show_vaildate_msg("#inventory", "error", "库存量不能为空或不能为负数！");
+				return false;
+			} else {
+				show_vaildate_msg("#inventory", "success", "");
+			}
+
+			//13.地区/国家
+			var region = $("#region").val();
+			if (region.length < 1) {
+				show_vaildate_msg("#region", "error", "所属地区/国家不能为空！");
+				return false;
+			} else if (region.length > 100) {
+				show_vaildate_msg("#region", "error", "所属地区/国家字数不能超过一百！");
+				return false;
+			} else {
+				show_vaildate_msg("#region", "success", "");
+			}
+
+			//10.关键词
+			var keyword = $("#keyword").val();
+			if (keyword.length < 1) {
+				show_vaildate_msg("#keyword", "error", "关键词不能为空！");
+				return false;
+			} else if (keyword.length > 200) {
+				show_vaildate_msg("#keyword", "error", "关键词字数不能超过两百！");
+				return false;
+			} else {
+				show_vaildate_msg("#keyword", "success", "");
+			}
+
+			//11.内容摘要
+			var synopsis = $("#synopsis").val();
+			if (synopsis.length < 1) {
+				show_vaildate_msg("#synopsis", "error", "内容摘要不能为空！");
+				return false;
+			} else if (synopsis.length > 200) {
+				show_vaildate_msg("#synopsis", "error", "内容摘要字数不能超过两百！");
+				return false;
+			} else {
+				show_vaildate_msg("#synopsis", "success", "");
+			}
+
+			//12.详细内容
+			var description = $("#description").val();
+			if (description.length < 1) {
+				show_vaildate_msg("#description", "error", "详细内容不能为空！");
+				return false;
+			} else if (description.length > 1000) {
+				show_vaildate_msg("#description", "error", "详细内容字数不能超过一千！");
+				return false;
+			} else {
+				show_vaildate_msg("#description", "success", "");
+			}
+
 			return true;
 		}
-	}
-	
-	
+
+		//保存按钮，保存数据
+		$("#save_btn").click(function() {
+			if (!vail_product_form()) {
+				return false;
+			}
+			layer.msg('正在保存', {
+				icon : 16,
+				shade : 0.01,
+				time : 2000,
+				offset : [ '30%' ],
+			});
+			$.ajax({
+				url : "${APP_PATH}/shopping/insertProduct",
+				type : "POST",
+				data : $("#form-article-add").serialize(),
+				success : function(result) {
+					if (result.code == 100) {
+						layer.msg("添加成功！", {
+							offset : [ '30%' ],
+							icon : 6,
+							time : 1000,
+						});
+					} else {
+						var error = result.extend.error;
+						var error_msg = "";
+						if (error.imagetitle != null) {
+							error_msg += error.imagetitle + "\n";
+						}
+						if (error.name != null) {
+							error_msg += error.name + "\n";
+						}
+						layer.msg("添加失败！", {
+							offset : [ '30%' ],
+							icon : 5,
+							time : 1000,
+						});
+					}
+				}
+
+			});
+		});
+		function checkLength(which, maxChars) {
+			if (which.value.length > maxChars) {
+				layer.open({
+					icon : 2,
+					title : '提示框',
+					offset : [ '25%' ],
+					content : '您输入的字数超多限制!',
+				});
+				// 超过限制的字数了就将 文本框中的内容按规定的字数 截取
+				which.value = which.value.substring(0, maxChars);
+				return false;
+			} else {
+				var curr = maxChars - which.value.length; // 减去 当前输入的
+				document.getElementById("sy").innerHTML = which.value.length
+						.toString()
+						+ "/" + curr.toString();
+				return true;
+			}
+		}
+
 		$(function() {
 			$("#add_picture").fix({
 				float : 'left',
@@ -740,14 +756,14 @@
 						zTree.expandNode(treeNode);
 						return false;
 					} else {
-						 $("#typeName").prop("value",treeNode.name);
-						 $("#typeId").prop("value",treeNode.id);
+						$("#typeName").prop("value", treeNode.name);
+						$("#typeId").prop("value", treeNode.id);
 						return true;
 					}
 				}
 			}
 		};
- 
+
 		var code;
 
 		function showCode(str) {
@@ -756,28 +772,36 @@
 			code.empty();
 			code.append("<li>" + str + "</li>");
 		}
-		
-		
-		var zNodes=[];
-		
-		function types(){
+
+		var zNodes = [];
+
+		function types() {
 			$.ajax({
-				url:"${APP_PATH}/productType/findAllProductType",
-				type:"POST",
-				success:function(result){
+				url : "${APP_PATH}/productType/findAllProductType",
+				type : "POST",
+				success : function(result) {
 					$("#treeDemo").empty();
-					zNodes=[];
-					$.each(result.extend.productTypes,function(index,item){
-						 if(item.id==1){
-							 zNodes.push({"id":item.id,"pId":item.parentid,"name":item.name,"open":true});
-						 }else{
-							 zNodes.push({"id":item.id,"pId":item.parentid,"name":item.name});
-						 }
+					zNodes = [];
+					$.each(result.extend.productTypes, function(index, item) {
+						if (item.id == 1) {
+							zNodes.push({
+								"id" : item.id,
+								"pId" : item.parentid,
+								"name" : item.name,
+								"open" : true
+							});
+						} else {
+							zNodes.push({
+								"id" : item.id,
+								"pId" : item.parentid,
+								"name" : item.name
+							});
+						}
 					});
 					var t = $("#treeDemo");
-					
+
 					t = $.fn.zTree.init(t, setting, zNodes);
-					
+
 					demoIframe = $("#testIframe");
 					//demoIframe.bind("load", loadReady);
 					var zTree = $.fn.zTree.getZTreeObj("tree");
@@ -817,12 +841,14 @@
 						// 只允许选择图片文件。
 						accept : {
 							title : 'Images',
-							extensions :'gif,jpg,jpeg,bmp,png',
+							extensions : 'gif,jpg,jpeg,bmp,png',
 							mimeTypes : 'image/*'
 						}
 					});
 			uploader
-					.on('fileQueued',function(file) {
+					.on(
+							'fileQueued',
+							function(file) {
 								var $li = $('<div id="' + file.id + '" class="item">'
 										+ '<div class="pic-box"><img></div>'
 										+ '<div class="info">'
