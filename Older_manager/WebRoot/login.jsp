@@ -40,7 +40,7 @@
 	type="text/javascript"></script>
 </head>
 <body>
-<div class="header"></div>
+	<div class="header"></div>
 	<div class="loginWraper">
 		<div class="loginBox">
 			<span><font color="red" id="msg" size="3"
@@ -78,10 +78,11 @@
 					<!-- 类型,1表示登录老人后台,2表示登录电商后台 -->
 					<label class="form-label col-xs-3"></label>
 					<div class="formControls col-xs-8">
-						<input type="radio" name="loginType" value="1" checked="checked"
-							style="margin-top: 2px;" /><font color="black" size="3">老人后台管理员</font>
-						<input type="radio" name="loginType" value="0"
-							style="margin-top: 2px;" /><font color="black" size="3">电商后台管理员</font>
+						<input type="radio" name="loginType" class="type" value="1"
+							checked="checked" style="margin-top: 2px;" /><font color="black"
+							size="3">老人后台管理员</font> <input type="radio" name="loginType"
+							class="type" value="0" style="margin-top: 2px;" /><font
+							color="black" size="3">电商后台管理员</font>
 					</div>
 				</div>
 				<div class="row cl">
@@ -103,10 +104,17 @@
 			var user = $("#username").val();
 			var pwd = $("#password").val();
 			var code = $("#code").val();
-			if (user == '' || pwd == '' || code == '') {
+			var type = $(".type").attr("checked");
+			if (user == '' || pwd == '') {
 				$("#msg").empty();
 				$("#msg").append("请先输入信息");
-			} else {
+			}else if(code == ''){
+				$("#msg").empty();
+				$("#msg").append("请先输入验证码");
+			}else if(type == ''){
+				$("#msg").empty();
+				$("#msg").append("请选择登录类型");
+			}else {
 				$("#msg").empty();
 				$("#loginForm").submit();
 				layer.load();
