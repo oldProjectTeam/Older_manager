@@ -6,42 +6,41 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface ProductsMapper {
-    int countByExample(ProductsExample example);
+	int countByExample(ProductsExample example);
 
-    int deleteByExample(ProductsExample example);
+	int deleteByExample(ProductsExample example);
 
-    int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-    int insert(Products record);
+	int insert(Products record);
 
-    int insertSelective(Products record);
-    
-    //根据名字和时间查询
-    List<Products> selectCondition(Products products);
-    //根据number更改
-    void updateByNumber(Products products);
-    
-    /**
-     * 分页查询所有产品信息
-     * @param products
-     * @return
-     */
-    List<Products> selectByCondition(Products products);
-    List<Products> selectByExampleWithBLOBs(ProductsExample example);
+	int insertSelective(Products record);
 
-    List<Products> selectByExample(ProductsExample example);
+	List<Products> selectByExample(ProductsExample example);
 
-    Products selectByPrimaryKey(Integer id);
+	Products selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Products record, @Param("example") ProductsExample example);
+	int updateByExampleSelective(@Param("record") Products record,
+			@Param("example") ProductsExample example);
 
-    int updateByExampleWithBLOBs(@Param("record") Products record, @Param("example") ProductsExample example);
+	int updateByExample(@Param("record") Products record,
+			@Param("example") ProductsExample example);
 
-    int updateByExample(@Param("record") Products record, @Param("example") ProductsExample example);
+	int updateByPrimaryKeySelective(Products record);
 
-    int updateByPrimaryKeySelective(Products record);
+	int updateByPrimaryKey(Products record);
 
-    int updateByPrimaryKeyWithBLOBs(Products record);
+	// 根据名字和时间查询
+	List<Products> selectCondition(Products products);
 
-    int updateByPrimaryKey(Products record);
+	// 根据number更改
+	void updateByNumber(Products products);
+
+	/**
+	 * 分页查询所有产品信息
+	 * 
+	 * @param products
+	 * @return
+	 */
+	List<Products> selectByCondition(Products products);
 }

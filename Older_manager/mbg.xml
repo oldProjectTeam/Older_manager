@@ -33,111 +33,56 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!--table指定每个表的生成策略 -->
-		<!-- <table tableName="activity" domainObjectName="Activity">
-		</table>
-		<table tableName="activityenrol" domainObjectName="Activityenrol">
-		</table>
-		<table tableName="assess" domainObjectName="Assess">
-		</table>
-		<table tableName="bloodtransfusion" domainObjectName="Bloodtransfusion">
-		</table>
-		<table tableName="courseenrol" domainObjectName="Courseenrol">
-		</table>
-		<table tableName="courses" domainObjectName="Courses">
-		</table>
-		<table tableName="disease" domainObjectName="Disease">
-		</table>
-		<table tableName="familyhistory" domainObjectName="Familyhistory">
-		</table>
-		<table tableName="genetichistory" domainObjectName="Genetichistory">
-		</table>
-		<table tableName="giftexchange" domainObjectName="Giftexchange">
-		</table>
-		<table tableName="giftmanagement" domainObjectName="Giftmanagement">
-		</table>
-		<table tableName="healthinfo" domainObjectName="Healthinfo">
-		</table>
-		<table tableName="hobby" domainObjectName="Hobby">
-		</table>
-		<table tableName="medicalrecord" domainObjectName="Medicalrecord">
-		</table>
-		<table tableName="notice" domainObjectName="Notice">
-		</table>
-		<table tableName="oldman" domainObjectName="Oldman">
-		</table>
-		<table tableName="oldmanaccount" domainObjectName="Oldmanaccount">
-		</table>
-		<table tableName="oplog" domainObjectName="Oplog">
-		</table>
-		<table tableName="orderdetail" domainObjectName="Orderdetail">
-		</table>
-		<table tableName="orders" domainObjectName="Orders">
-		</table>
-		<table tableName="pedetails" domainObjectName="Pedetails">
-		</table>
-		<table tableName="peinfo" domainObjectName="Peinfo">
-		</table>
-		<table tableName="productcollect" domainObjectName="Productcollect">
-		</table>
+		<!-- <table tableName="activity" domainObjectName="Activity"> </table> 
+			<table tableName="activityenrol" domainObjectName="Activityenrol"> </table> 
+			<table tableName="assess" domainObjectName="Assess"> </table> <table tableName="bloodtransfusion" 
+			domainObjectName="Bloodtransfusion"> </table> <table tableName="courseenrol" 
+			domainObjectName="Courseenrol"> </table> <table tableName="courses" domainObjectName="Courses"> 
+			</table> <table tableName="disease" domainObjectName="Disease"> </table> 
+			<table tableName="familyhistory" domainObjectName="Familyhistory"> </table> 
+			<table tableName="genetichistory" domainObjectName="Genetichistory"> </table> 
+			<table tableName="giftexchange" domainObjectName="Giftexchange"> </table> 
+			<table tableName="giftmanagement" domainObjectName="Giftmanagement"> </table> 
+			<table tableName="healthinfo" domainObjectName="Healthinfo"> </table> <table 
+			tableName="hobby" domainObjectName="Hobby"> </table> <table tableName="medicalrecord" 
+			domainObjectName="Medicalrecord"> </table> <table tableName="notice" domainObjectName="Notice"> 
+			</table> <table tableName="oldman" domainObjectName="Oldman"> </table> <table 
+			tableName="oldmanaccount" domainObjectName="Oldmanaccount"> </table> <table 
+			tableName="oplog" domainObjectName="Oplog"> </table> <table tableName="orderdetail" 
+			domainObjectName="Orderdetail"> </table> <table tableName="orders" domainObjectName="Orders"> 
+			</table> <table tableName="pedetails" domainObjectName="Pedetails"> </table> 
+			<table tableName="peinfo" domainObjectName="Peinfo"> </table> <table tableName="productcollect" 
+			domainObjectName="Productcollect"> </table> <table tableName="products" domainObjectName="Products"> 
+			</table> <table tableName="recomactivity" domainObjectName="Recomactivity"> 
+			</table> <table tableName="recomactivitydetails" domainObjectName="Recomactivitydetails"> 
+			</table> <table tableName="relatives" domainObjectName="Relatives"> </table> 
+			<table tableName="shoppingcart" domainObjectName="Shoppingcart"> </table> 
+			<table tableName="sms" domainObjectName="Sms"> </table> <table tableName="smsdetails" 
+			domainObjectName="Smsdetails"> </table> <table tableName="special" domainObjectName="Special"> 
+			</table> <table tableName="staff" domainObjectName="Staff"> </table> <table 
+			tableName="surgery" domainObjectName="Surgery"> </table> <table tableName="takeactivity" 
+			domainObjectName="Takeactivity"> </table> <table tableName="takedrugdetails" 
+			domainObjectName="Takedrugdetails"> </table> <table tableName="trauma" domainObjectName="Trauma"> 
+			</table> <table tableName="usehealthproductdetails" domainObjectName="Usehealthproductdetails"> 
+			</table> <table tableName="userroles" domainObjectName="Userroles"> </table> 
+			<table tableName="video" domainObjectName="Video"> </table> <table tableName="visitplan" 
+			domainObjectName="Visitplan"> </table> <table tableName="integral" domainObjectName="Integral"> 
+			</table> <table tableName="shippingaddress" domainObjectName="Shippingaddress"> 
+			</table> <table tableName="users" domainObjectName="Users"> </table> -->
+		<!-- <table tableName="sys_menu" domainObjectName="Menu"> </table> <table 
+			tableName="systemLog" domainObjectName="SystemLog"> </table> <table tableName="sys_role" 
+			domainObjectName="Role"> </table> <table tableName="sys_permission" domainObjectName="Permission"> 
+			</table> -->
+		<!-- <table tableName="sys_role_permission" domainObjectName="RolePermission"> 
+			</table> <table tableName="sys_user" domainObjectName="User"> </table> <table 
+			tableName="sys_user_role" domainObjectName="UserRole"> </table> -->
+		<!-- <table tableName="recomproducts" domainObjectName="RecomProducts"> 
+			</table> <table tableName="recomproductsdetails" domainObjectName="RecomProductsDetails"> 
+			</table> -->
+		<!-- <table tableName="shopmember" domainObjectName="ShopMember"> </table> 
+			<table tableName="productsviews" domainObjectName="ProductsViews"> </table> -->
+		<!-- <table tableName="integral" domainObjectName="Integral"> </table> -->
 		<table tableName="products" domainObjectName="Products">
-		</table>
-		<table tableName="recomactivity" domainObjectName="Recomactivity">
-		</table>
-		<table tableName="recomactivitydetails" domainObjectName="Recomactivitydetails">
-		</table>
-		<table tableName="relatives" domainObjectName="Relatives">
-		</table>
-		<table tableName="shoppingcart" domainObjectName="Shoppingcart">
-		</table>
-		<table tableName="sms" domainObjectName="Sms">
-		</table>
-		<table tableName="smsdetails" domainObjectName="Smsdetails">
-		</table>
-		<table tableName="special" domainObjectName="Special">
-		</table>
-		<table tableName="staff" domainObjectName="Staff">
-		</table>
-		<table tableName="surgery" domainObjectName="Surgery">
-		</table>
-		<table tableName="takeactivity" domainObjectName="Takeactivity">
-		</table>
-		<table tableName="takedrugdetails" domainObjectName="Takedrugdetails">
-		</table>
-		<table tableName="trauma" domainObjectName="Trauma">
-		</table>
-		<table tableName="usehealthproductdetails" domainObjectName="Usehealthproductdetails">
-		</table>
-		<table tableName="userroles" domainObjectName="Userroles">
-		</table>
-		<table tableName="video" domainObjectName="Video">
-		</table>
-		<table tableName="visitplan" domainObjectName="Visitplan">
-		</table>
-		<table tableName="integral" domainObjectName="Integral">
-		</table>
-		<table tableName="shippingaddress" domainObjectName="Shippingaddress">
-		</table>
-		<table tableName="users" domainObjectName="Users"> 
-		</table>-->
-	<!-- <table tableName="sys_menu" domainObjectName="Menu"> </table> <table 
-		tableName="systemLog" domainObjectName="SystemLog"> </table> <table tableName="sys_role" 
-		domainObjectName="Role"> </table> <table tableName="sys_permission" domainObjectName="Permission"> 
-		</table> -->
-		<!-- <table tableName="sys_role_permission" domainObjectName="RolePermission">
-		</table>
-		<table tableName="sys_user" domainObjectName="User">
-		</table>
-		<table tableName="sys_user_role" domainObjectName="UserRole">
-		</table> -->
-			<!-- <table tableName="recomproducts" domainObjectName="RecomProducts">
-		</table>
-		<table tableName="recomproductsdetails" domainObjectName="RecomProductsDetails">
-		</table>  -->
-		<!-- <table tableName="shopmember" domainObjectName="ShopMember">
-		</table>
-		<table tableName="productsviews" domainObjectName="ProductsViews">
-		</table> -->
-		<table tableName="integral" domainObjectName="Integral">
 		</table>
 	</context>
 </generatorConfiguration>

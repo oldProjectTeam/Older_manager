@@ -1,4 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%
 	String path = request.getContextPath();
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
@@ -59,69 +61,15 @@
 					class="top_close_btn">隐藏</a></span>
 			</div>
 			<div class="hide_style clearfix">
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="20"
-						data-color="#D15B47">
-						<span class="percent">20</span>%
+				<c:forEach items="${list}" var="orderRatio">
+					<div class="proportion">
+						<div class="easy-pie-chart percentage" data-percent="20"
+							data-color="#D15B47">
+							<span class="percent">${orderRatio.orderRatio}</span>%
+						</div>
+						<span class="name">${orderRatio.orderOfType}</span>
 					</div>
-					<span class="name">食品类</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="55"
-						data-color="#87CEEB">
-						<span class="percent">55</span>%
-					</div>
-					<span class="name">服装类</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="90"
-						data-color="#87B87F">
-						<span class="percent">90</span>%
-					</div>
-					<span class="name">数码配件</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="30"
-						data-color="#d63116">
-						<span class="percent">30</span>%
-					</div>
-					<span class="name">手机</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="60"
-						data-color="#ff6600">
-						<span class="percent">60</span>%
-					</div>
-					<span class="name">电脑</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="40"
-						data-color="#2ab023">
-						<span class="percent">40</span>%
-					</div>
-					<span class="name">电子产品</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="46"
-						data-color="#1e3ae6">
-						<span class="percent">46</span>%
-					</div>
-					<span class="name">厨房用品</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="65"
-						data-color="#c316a9">
-						<span class="percent">65</span>%
-					</div>
-					<span class="name">家用电器</span>
-				</div>
-				<div class="proportion">
-					<div class="easy-pie-chart percentage" data-percent="56"
-						data-color="#13a9e1">
-						<span class="percent">56</span>%
-					</div>
-					<span class="name">卫浴</span>
-				</div>
+				</c:forEach>
 			</div>
 		</div>
 
@@ -142,17 +90,9 @@
 							</div>
 							<div class="widget-body">
 								<ul class="b_P_Sort_list">
-									<li><i class="orange  fa fa-reorder"></i><a href="#">全部订单(235)</a></li>
-									<li><i class="fa fa-sticky-note pink "></i> <a href="#">食品类(235)</a></li>
-									<li><i class="fa fa-sticky-note pink "></i> <a href="#">数码配件(2215)</a>
-									</li>
-									<li><i class="fa fa-sticky-note pink "></i> <a href="#">手机(3456)</a></li>
-									<li><i class="fa fa-sticky-note pink "></i> <a href="#">电脑(4332)</a></li>
-									<li><i class="fa fa-sticky-note pink "></i> <a href="#">厨房用品(1332)</a></li>
-									<li><i class="fa fa-sticky-note grey "></i> <a href="#">电子产品(4543)</a></li>
-									<li><i class="fa fa-sticky-note red  "></i> <a href="#">红钻会员(343)</a></li>
-									<li><i class="fa fa-sticky-note blue "></i> <a href="#">家用电器(2343)</a></li>
-									<li><i class="fa fa-sticky-note grey "></i> <a href="#">卫浴</a></li>
+									<c:forEach items="${list}" var="orderRatio">
+										<li><i class="orange  fa fa-reorder"></i><a href="#">${orderRatio.orderOfType}(${orderRatio.orderOfTypeNum})</a></li>
+									</c:forEach>
 								</ul>
 							</div>
 						</div>
@@ -180,7 +120,7 @@
 						id="sample-table">
 						<thead>
 							<tr>
-								<th width="25px"><label><input type="checkbox"
+								<th width="25px"><label><input type="checkbox" id="check_item_all"
 										class="ace"><span class="lbl"></span></label></th>
 								<th width="120px">订单编号</th>
 								<th width="250px">产品名称</th>
@@ -194,164 +134,77 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>20160705445622</td>
-								<td class="order_product_name"><a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_1.jpg" title="产品名称" /></a>
-									<i class="fa fa-plus"></i> <a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_2.jpg" title="产品名称" /></a>
-								</td>
-								<td>456.5</td>
-								<td>14</td>
-								<td>2016-7-5</td>
-								<td>食品</td>
-								<td>2</td>
-								<td class="td-status"><span
-									class="label label-success radius">代发货</span></td>
-								<td><a onClick="Delivery_stop(this,'10001')"
-									href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
-										class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
-									href="order_detailed"
-									class="btn btn-xs btn-info order_detailed"><i
-										class="fa fa-list bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="Order_form_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="fa fa-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>20160705445622</td>
-								<td class="order_product_name"><a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_1.jpg" title="产品名称" /></a>
-									<i class="fa fa-plus"></i> <a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_2.jpg" title="产品名称" /></a>
-								</td>
-								<td>456.5</td>
-								<td>14</td>
-								<td>2016-7-5</td>
-								<td>食品</td>
-								<td>2</td>
-								<td class="td-status"><span
-									class="label label-success radius">代发货</span></td>
-								<td><a onClick="Delivery_stop(this,'10003')"
-									href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
-										class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
-									href="order_detailed"
-									class="btn btn-xs btn-info order_detailed"><i
-										class="fa fa-list bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="Order_form_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="fa fa-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>20160705445622</td>
-								<td class="order_product_name"><a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_1.jpg" title="产品名称" /></a>
-									<i class="fa fa-plus"></i> <a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_2.jpg" title="产品名称" /></a>
-								</td>
-								<td>456.5</td>
-								<td>14</td>
-								<td>2016-7-5</td>
-								<td>食品</td>
-								<td>2</td>
-								<td class="td-status"><span
-									class="label label-success radius">代发货</span></td>
-								<td><a onClick="Delivery_stop(this,'10005')"
-									href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
-										class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
-									href="order_detailed"
-									class="btn btn-xs btn-info order_detailed"><i
-										class="fa fa-list bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="Order_form_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="fa fa-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>20160705445622</td>
-								<td class="order_product_name"><a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_1.jpg" title="产品名称" /></a>
-									<i class="fa fa-plus"></i> <a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_2.jpg" title="产品名称" /></a>
-								</td>
-								<td>456.5</td>
-								<td>14</td>
-								<td>2016-7-5</td>
-								<td>食品</td>
-								<td>2</td>
-								<td class="td-status"><span
-									class="label label-success radius">代发货</span></td>
-								<td><a onClick="Delivery_stop(this,'10034')"
-									href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
-										class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
-									href="order_detailed"
-									class="btn btn-xs btn-info order_detailed"><i
-										class="fa fa-list bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="Order_form_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="fa fa-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>20160705445622</td>
-								<td class="order_product_name"><a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_5.jpg" title="产品名称" /></a>
-									<i class="fa fa-plus"></i> <a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_4.jpg" title="产品名称" /></a>
-								</td>
-								<td>456.5</td>
-								<td>14</td>
-								<td>2016-7-5</td>
-								<td>食品</td>
-								<td>2</td>
-								<td class="td-status"><span
-									class="label label-success radius">代发货</span></td>
-								<td><a onClick="Delivery_stop(this,'10012')"
-									href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
-										class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
-									href="order_detailed"
-									class="btn btn-xs btn-info order_detailed"><i
-										class="fa fa-list bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="Order_form_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="fa fa-trash  bigger-120"></i></a></td>
-							</tr>
-							<tr>
-								<td><label><input type="checkbox" class="ace"><span
-										class="lbl"></span></label></td>
-								<td>20160705445622</td>
-								<td class="order_product_name"><a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_3.jpg" title="产品名称" /></a>
-									<i class="fa fa-plus"></i> <a href="#"><img
-										src="${APP_PATH}/static/shop/products/p_7.jpg" title="产品名称" /></a>
-								</td>
-								<td>456.5</td>
-								<td>14</td>
-								<td>2016-7-5</td>
-								<td>食品</td>
-								<td>2</td>
-								<td class="td-status"><span
-									class="label label-success radius">代发货</span></td>
-								<td><a onClick="Delivery_stop(this,'10061')"
-									href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
-										class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
-									href="order_detailed"
-									class="btn btn-xs btn-info order_detailed"><i
-										class="fa fa-list bigger-120"></i></a> <a title="删除"
-									href="javascript:;" onclick="Order_form_del(this,'1')"
-									class="btn btn-xs btn-warning"><i
-										class="fa fa-trash  bigger-120"></i></a></td>
-							</tr>
+							<c:forEach items="${pageInfo.list}" var="order">
+								<tr>
+									<td><label><input type="checkbox" class="ace check_item" ><span
+											class="lbl"></span></label></td>
+									<td>${order.id}</td>
+									<td class="order_product_name">${order.subject}</td>
+									<td>${order.subject}</td>
+									<td>${order.cost}</td>
+									<td><fmt:formatDate value="${order.creattime}"
+											pattern="yyyy-MM-dd" /></td>
+									<td>食品</td>
+									<td>${order.num}</td>
+									<td class="td-status"><span
+										class="label label-success radius">${order.state}</span></td>
+									<td><a onClick="Delivery_stop(this,'10001')"
+										href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
+											class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
+										href="order_detailed"
+										class="btn btn-xs btn-info order_detailed"><i
+											class="fa fa-list bigger-120"></i></a> <a title="删除"
+										href="javascript:;" onclick="Order_form_del(this,'1')"
+										class="btn btn-xs btn-warning"><i
+											class="fa fa-trash  bigger-120"></i></a></td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
+					<!--分页信息  -->
+					<div class="row">
+						<div class="col-md-7" style="font-size: 18px;">&nbsp;&nbsp;当前第${pageInfo.pageNum }页，共${pageInfo.pages}页，总计${pageInfo.total}条记录</div>
+						<div class="col-md-5">
+							<nav aria-label="Page navigation">
+							<ul class="pagination">
+								<c:if test="${pageInfo.hasPreviousPage==false}">
+									<li class="disabled"><a>首页</a></li>
+									<li class="disabled"><span aria-hidden="true">&laquo;</span>
+									</li>
+								</c:if>
+								<c:if test="${pageInfo.hasPreviousPage==true}">
+									<li><a href="${APP_PATH}/order/Orderform?pn=${user.type}">首页</a></li>
+									<li><a
+										href="${APP_PATH}/order/Orderform?pn=${pageInfo.pageNum-1}">
+											<span aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:if>
+								<c:forEach items="${pageInfo.navigatepageNums}" var="p">
+									<c:if test="${p==pageInfo.pageNum}">
+										<li class="active"><a
+											href="${APP_PATH}/order/Orderform?pn=${pageInfo.pageNum}">${p}</a></li>
+									</c:if>
+									<c:if test="${p!=pageInfo.pageNum}">
+										<li><a href="${APP_PATH}/order/Orderform?pn=${p}">${p}</a></li>
+									</c:if>
+								</c:forEach>
+								<c:if test="${pageInfo.hasNextPage==false}">
+									<li class="disabled"><span aria-hidden="true">&raquo;</span>
+									</li>
+									<li class="disabled"><a>末页</a></li>
+								</c:if>
+								<c:if test="${pageInfo.hasNextPage!=false}">
+									<li><a
+										href="${APP_PATH}/order/Orderform?pn=${pageInfo.pageNum+1}"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
+									<li><a
+										href="${APP_PATH}/order/Orderform?pn=${pageInfo.pages}">末页</a>
+									</li>
+								</c:if>
+							</ul>
+							</nav>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -395,203 +248,226 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<script type="text/javascript">
+		//左侧显示隐藏
+		$(function() {
+			$("#order_list").fix({
+				float : 'left',
+				//minStatue : true,
+				skin : 'green',
+				durationTime : false,
+				spacingw : 50,//设置隐藏时的距离
+				spacingh : 270,//设置显示时间距
+				close_btn : '.close_btn',
+				show_btn : '.show_btn',
+				side_list : '.side_list',
+			});
+		});
+		//顶部隐藏显示
+		$(function() {
+			$("#Order_form_style").fix({
+				float : 'top',
+				//minStatue : true,
+				skin : 'green',
+				durationTime : true,
+				spacingw : 0,
+				spacingh : 0,
+				close_btn : '.top_close_btn',
+				show_btn : '.top_show_btn',
+				side_list : '.hide_style',
+				close_btn_width : 80,
+				side_title : '.Statistic_title',
+			});
+		});
+		//时间选择
+		laydate({
+			elem : '#start',
+			event : 'focus'
+		});
+		/*订单-删除*/
+		function Order_form_del(obj, id) {
+			layer.confirm('确认要删除吗？', function(index) {
+				$(obj).parents("tr").remove();
+				layer.msg('已删除!', {
+					icon : 1,
+					time : 1000
+				});
+			});
+		}
+		/**发货**/
+		function Delivery_stop(obj, id) {
+			layer
+					.open({
+						type : 1,
+						title : '发货',
+						maxmin : true,
+						shadeClose : false,
+						area : [ '500px', '' ],
+						content : $('#Delivery_stop'),
+						btn : [ '确定', '取消' ],
+						yes : function(index, layero) {
+							if ($('#form-field-1').val() == "") {
+								layer.alert('快递号不能为空！', {
+									title : '提示框',
+									icon : 0,
+								})
 
-		<script type="text/javascript">
-			//左侧显示隐藏
-			$(function() {
-				$("#order_list").fix({
-					float : 'left',
-					//minStatue : true,
-					skin : 'green',
-					durationTime : false,
-					spacingw : 50,//设置隐藏时的距离
-					spacingh : 270,//设置显示时间距
-					close_btn : '.close_btn',
-					show_btn : '.show_btn',
-					side_list : '.side_list',
-				});
-			});
-			//顶部隐藏显示
-			$(function() {
-				$("#Order_form_style").fix({
-					float : 'top',
-					//minStatue : true,
-					skin : 'green',
-					durationTime : true,
-					spacingw : 0,
-					spacingh : 0,
-					close_btn : '.top_close_btn',
-					show_btn : '.top_show_btn',
-					side_list : '.hide_style',
-					close_btn_width : 80,
-					side_title : '.Statistic_title',
-				});
-			});
-			//时间选择
-			laydate({
-				elem : '#start',
-				event : 'focus'
-			});
-			/*订单-删除*/
-			function Order_form_del(obj, id) {
-				layer.confirm('确认要删除吗？', function(index) {
-					$(obj).parents("tr").remove();
-					layer.msg('已删除!', {
-						icon : 1,
-						time : 1000
-					});
-				});
-			}
-			/**发货**/
-			function Delivery_stop(obj, id) {
-				layer
-						.open({
-							type : 1,
-							title : '发货',
-							maxmin : true,
-							shadeClose : false,
-							area : [ '500px', '' ],
-							content : $('#Delivery_stop'),
-							btn : [ '确定', '取消' ],
-							yes : function(index, layero) {
-								if ($('#form-field-1').val() == "") {
-									layer.alert('快递号不能为空！', {
-										title : '提示框',
-										icon : 0,
-									})
-
-								} else {
-									layer
-											.confirm(
-													'提交成功！',
-													function(index) {
-														$(obj)
-																.parents("tr")
-																.find(
-																		".td-manage")
-																.prepend(
-																		'<a style=" display:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="已发货"><i class="fa fa-cubes bigger-120"></i></a>');
-														$(obj)
-																.parents("tr")
-																.find(
-																		".td-status")
-																.html(
-																		'<span class="label label-success radius">已发货</span>');
-														$(obj).remove();
-														layer.msg('已发货!', {
-															icon : 6,
-															time : 1000
-														});
+							} else {
+								layer
+										.confirm(
+												'提交成功！',
+												function(index) {
+													$(obj)
+															.parents("tr")
+															.find(".td-manage")
+															.prepend(
+																	'<a style=" display:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="已发货"><i class="fa fa-cubes bigger-120"></i></a>');
+													$(obj)
+															.parents("tr")
+															.find(".td-status")
+															.html(
+																	'<span class="label label-success radius">已发货</span>');
+													$(obj).remove();
+													layer.msg('已发货!', {
+														icon : 6,
+														time : 1000
 													});
-									layer.close(index);
-								}
-
+												});
+								layer.close(index);
 							}
-						})
-			};
-			//面包屑返回值
-			var index = parent.layer.getFrameIndex(window.name);
-			parent.layer.iframeAuto(index);
-			$('.Order_form,.order_detailed').on('click', function() {
-				var cname = $(this).attr("title");
-				var chref = $(this).attr("href");
-				var cnames = parent.$('.Current_page').html();
-				var herf = parent.$("#iframe").attr("src");
-				parent.$('#parentIframe').html(cname);
-				parent.$('#iframe').attr("src", chref).ready();
-				;
-				parent.$('#parentIframe').css("display", "inline-block");
-				parent.$('.Current_page').attr({
-					"name" : herf,
-					"href" : "javascript:void(0)"
-				}).css({
-					"color" : "#4c8fbd",
-					"cursor" : "pointer"
-				});
-				//parent.$('.Current_page').html("<a href='javascript:void(0)' name="+herf+" class='iframeurl'>" + cnames + "</a>");
-				parent.layer.close(index);
 
+						}
+					})
+		};
+		//面包屑返回值
+		var index = parent.layer.getFrameIndex(window.name);
+		parent.layer.iframeAuto(index);
+		$('.Order_form,.order_detailed').on('click', function() {
+			var cname = $(this).attr("title");
+			var chref = $(this).attr("href");
+			var cnames = parent.$('.Current_page').html();
+			var herf = parent.$("#iframe").attr("src");
+			parent.$('#parentIframe').html(cname);
+			parent.$('#iframe').attr("src", chref).ready();
+			;
+			parent.$('#parentIframe').css("display", "inline-block");
+			parent.$('.Current_page').attr({
+				"name" : herf,
+				"href" : "javascript:void(0)"
+			}).css({
+				"color" : "#4c8fbd",
+				"cursor" : "pointer"
 			});
+			//parent.$('.Current_page').html("<a href='javascript:void(0)' name="+herf+" class='iframeurl'>" + cnames + "</a>");
+			parent.layer.close(index);
 
-			//初始化宽度、高度
-			$(".hide_style").height($(".hide_style").height());
-			var heights = $(".hide_style").outerHeight(true) + 90;
+		});
+
+		//初始化宽度、高度
+		$(".hide_style").height($(".hide_style").height());
+		var heights = $(".hide_style").outerHeight(true) + 90;
+		$(".widget-box").height($(window).height() - heights);
+		$(".table_menu_list").width($(window).width() - 250);
+		$(".table_menu_list").height($(window).height() - heights);
+		//当文档窗口发生改变时 触发  
+		$(window).resize(function() {
 			$(".widget-box").height($(window).height() - heights);
 			$(".table_menu_list").width($(window).width() - 250);
 			$(".table_menu_list").height($(window).height() - heights);
-			//当文档窗口发生改变时 触发  
-			$(window).resize(function() {
-				$(".widget-box").height($(window).height() - heights);
-				$(".table_menu_list").width($(window).width() - 250);
-				$(".table_menu_list").height($(window).height() - heights);
-			})
-			//比例
-			var oldie = /msie\s*(8|7|6)/
-					.test(navigator.userAgent.toLowerCase());
-			$('.easy-pie-chart.percentage').each(function() {
-				$(this).easyPieChart({
-					barColor : $(this).data('color'),
-					trackColor : '#EEEEEE',
-					scaleColor : false,
-					lineCap : 'butt',
-					lineWidth : 10,
-					animate : oldie ? false : 1000,
-					size : 103
-				}).css('color', $(this).data('color'));
-			});
+		})
+		//比例
+		var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
+		$('.easy-pie-chart.percentage').each(function() {
+			$(this).easyPieChart({
+				barColor : $(this).data('color'),
+				trackColor : '#EEEEEE',
+				scaleColor : false,
+				lineCap : 'butt',
+				lineWidth : 10,
+				animate : oldie ? false : 1000,
+				size : 103
+			}).css('color', $(this).data('color'));
+		});
 
-			$('[data-rel=tooltip]').tooltip();
-			$('[data-rel=popover]').popover({
-				html : true
-			});
-		</script>
-		<script type="text/javascript">
-			//订单列表
-			jQuery(function($) {
-				var oTable1 = $('#sample-table').dataTable({
-					"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
-					"bStateSave" : true,//状态保存
-					"aoColumnDefs" : [
-					//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-					{
-						"orderable" : false,
-						"aTargets" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-					} // 制定列不参与排序
-					]
-				});
+		$('[data-rel=tooltip]').tooltip();
+		$('[data-rel=popover]').popover({
+			html : true
+		});
+	</script>
+	<script type="text/javascript">
+		//完成全选/全不选
+		//完成全选、全部选功能
+		$(document).on("click", "#check_item_all", function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
 
-				$('table th input:checkbox').on(
-						'click',
+			if ($("#check_item_all").prop("checked") == true) {
+				$("#add").attr("disabled", false);
+			} else {
+				$("#add").attr("disabled", true);
+			}
+		});
+		$(document)
+				.on(
+						"click",
+						".check_item",
 						function() {
-							var that = this;
-							$(this).closest('table').find(
-									'tr > td:first-child input:checkbox').each(
-									function() {
-										this.checked = that.checked;
-										$(this).closest('tr').toggleClass(
-												'selected');
-									});
 
+							var flag = $(".check_item:checked").length == $(".check_item").length;
+							$("#check_item_all").prop("checked", flag);
+							if ($(".check_item:checked").length > 0) {
+								$("#add").attr("disabled", false);
+							} else {
+								$("#add").attr("disabled", true);
+							}
 						});
 
-				$('[data-rel="tooltip"]').tooltip({
-					placement : tooltip_placement
-				});
-				function tooltip_placement(context, source) {
-					var $source = $(source);
-					var $parent = $source.closest('table')
-					var off1 = $parent.offset();
-					var w1 = $parent.width();
-
-					var off2 = $source.offset();
-					var w2 = $source.width();
-
-					if (parseInt(off2.left) < parseInt(off1.left)
-							+ parseInt(w1 / 2))
-						return 'right';
-					return 'left';
-				}
+		//订单列表
+		/* jQuery(function($) {
+			var oTable1 = $('#sample-table').dataTable({
+				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
+				"bStateSave" : true,//状态保存
+				"aoColumnDefs" : [
+				//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+				{
+					"orderable" : false,
+					"aTargets" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+				} // 制定列不参与排序
+				]
 			});
-		</script>
+
+			$('table th input:checkbox').on(
+					'click',
+					function() {
+						var that = this;
+						$(this).closest('table').find(
+								'tr > td:first-child input:checkbox').each(
+								function() {
+									this.checked = that.checked;
+									$(this).closest('tr').toggleClass(
+											'selected');
+								});
+
+					});
+
+			$('[data-rel="tooltip"]').tooltip({
+				placement : tooltip_placement
+			});
+			function tooltip_placement(context, source) {
+				var $source = $(source);
+				var $parent = $source.closest('table')
+				var off1 = $parent.offset();
+				var w1 = $parent.width();
+
+				var off2 = $source.offset();
+				var w2 = $source.width();
+
+				if (parseInt(off2.left) < parseInt(off1.left)
+						+ parseInt(w1 / 2))
+					return 'right';
+				return 'left';
+			}
+		}); */
+	</script>
 </body>
 </html>

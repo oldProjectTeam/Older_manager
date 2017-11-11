@@ -96,20 +96,14 @@
 				<div id="main"
 					style="height:300px; overflow:hidden; width:100%; overflow:auto"></div>
 			</div>
-			<div class="news_style">
-				<div class="title_name">最新消息</div>
-				<ul class="list">
-					<li><i class="icon-bell red"></i><a href="#">暂时没有最新消息。</a></li>
-				</ul>
-			</div>
 		</div>
 
 		<script type="text/javascript">
 			$().ready(function() {
-				$(".t_Record").width($(window).width() - 320);
+				$(".t_Record").width($(window).width() - 60);
 				//当文档窗口发生改变时 触发  
 				$(window).resize(function() {
-					$(".t_Record").width($(window).width() - 320);
+					$(".t_Record").width($(window).width() - 60);
 				});
 			});
 
@@ -337,7 +331,6 @@
 
 						} ]
 			};
-
 			myChart.setOption(option);
 			});  */
 		</script>

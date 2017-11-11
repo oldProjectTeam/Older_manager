@@ -815,6 +815,66 @@ public class ProductsExample {
             return (Criteria) this;
         }
 
+        public Criteria andTypeIdIsNull() {
+            addCriterion("type_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdIsNotNull() {
+            addCriterion("type_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdEqualTo(Integer value) {
+            addCriterion("type_id =", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdNotEqualTo(Integer value) {
+            addCriterion("type_id <>", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdGreaterThan(Integer value) {
+            addCriterion("type_id >", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type_id >=", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdLessThan(Integer value) {
+            addCriterion("type_id <", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("type_id <=", value, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdIn(List<Integer> values) {
+            addCriterion("type_id in", values, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdNotIn(List<Integer> values) {
+            addCriterion("type_id not in", values, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("type_id between", value1, value2, "typeId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("type_id not between", value1, value2, "typeId");
+            return (Criteria) this;
+        }
+
         public Criteria andBrandIdIsNull() {
             addCriterion("brand_id is null");
             return (Criteria) this;
@@ -1142,6 +1202,76 @@ public class ProductsExample {
 
         public Criteria andSynopsisNotBetween(String value1, String value2) {
             addCriterion("synopsis not between", value1, value2, "synopsis");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesIsNull() {
+            addCriterion("images is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesIsNotNull() {
+            addCriterion("images is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesEqualTo(String value) {
+            addCriterion("images =", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotEqualTo(String value) {
+            addCriterion("images <>", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesGreaterThan(String value) {
+            addCriterion("images >", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesGreaterThanOrEqualTo(String value) {
+            addCriterion("images >=", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLessThan(String value) {
+            addCriterion("images <", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLessThanOrEqualTo(String value) {
+            addCriterion("images <=", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesLike(String value) {
+            addCriterion("images like", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotLike(String value) {
+            addCriterion("images not like", value, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesIn(List<String> values) {
+            addCriterion("images in", values, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotIn(List<String> values) {
+            addCriterion("images not in", values, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesBetween(String value1, String value2) {
+            addCriterion("images between", value1, value2, "images");
+            return (Criteria) this;
+        }
+
+        public Criteria andImagesNotBetween(String value1, String value2) {
+            addCriterion("images not between", value1, value2, "images");
             return (Criteria) this;
         }
 

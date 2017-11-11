@@ -1,7 +1,12 @@
-package com.older.manager.controller.oldback;
+package com.older.manager.controller.oldback.shop;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.older.manager.bean.OrderRatio;
 
 @Controller
 public class OldShoppingMainController {
@@ -124,27 +129,6 @@ public class OldShoppingMainController {
 	public String Ads_list() {
 		return "oldback/oldbackshopping/Ads_list";
 	}
-
-	/**
-	 * 电商后台交易信息
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/transaction")
-	public String transaction() {
-		return "oldback/oldbackshopping/transaction";
-	}
-
-	/**
-	 * 电商后台订单管理
-	 * 
-	 * @return
-	 */
-	@RequestMapping("/Orderform")
-	public String Orderform() {
-		return "oldback/oldbackshopping/Orderform";
-	}
-
 	/**
 	 * 电商后台订单明细
 	 * 
