@@ -78,10 +78,10 @@
 					<!-- 类型,1表示登录老人后台,2表示登录电商后台 -->
 					<label class="form-label col-xs-3"></label>
 					<div class="formControls col-xs-8">
-						<input type="radio" name="loginType" class="type" value="1"
+						<input type="radio" name="loginType" class="oldtype" value="1"
 							checked="checked" style="margin-top: 2px;" /><font color="black"
 							size="3">老人后台管理员</font> <input type="radio" name="loginType"
-							class="type" value="0" style="margin-top: 2px;" /><font
+							class="shoptype" value="0" style="margin-top: 2px;" /><font
 							color="black" size="3">电商后台管理员</font>
 					</div>
 				</div>
@@ -104,14 +104,15 @@
 			var user = $("#username").val();
 			var pwd = $("#password").val();
 			var code = $("#code").val();
-			var type = $(".type").attr("checked");
+			var oldtype = $(".oldtype").val();
+			var shoptype = $(".shoptype").val();
 			if (user == '' || pwd == '') {
 				$("#msg").empty();
 				$("#msg").append("请先输入信息");
 			}else if(code == ''){
 				$("#msg").empty();
 				$("#msg").append("请先输入验证码");
-			}else if(type == ''){
+			}else if(oldtype == ''||shoptype==''){
 				$("#msg").empty();
 				$("#msg").append("请选择登录类型");
 			}else {
