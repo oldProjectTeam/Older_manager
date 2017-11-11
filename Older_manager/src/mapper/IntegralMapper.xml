@@ -1,307 +1,394 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.IntegralMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Integral" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
-    <result column="beforeChangeIntegral" property="beforechangeintegral" jdbcType="INTEGER" />
-    <result column="currentIntegral" property="currentintegral" jdbcType="INTEGER" />
-    <result column="afterChangeIntegral" property="afterchangeintegral" jdbcType="INTEGER" />
-    <result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
-    <result column="operator" property="operator" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, oldMan_id, beforeChangeIntegral, currentIntegral, afterChangeIntegral, changeTime, 
-    operator
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.IntegralExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from integral
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    order by id DESC
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from integral
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  
-   <!--查询所有不在积分表的老人ResultMap  -->
-  <resultMap type="com.older.manager.bean.Oldman" id="selectOldManNotIntegralResultMap">   	 
-   	<id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="VARCHAR" />
-    <result column="phone" property="phone" jdbcType="VARCHAR" />
-   	<result column="address" property="address" jdbcType="VARCHAR" />
-   	<result column="service" property="service" jdbcType="VARCHAR" />
-  </resultMap>
-   
-  <!--查询所有不在积分表的老人，可模糊查询（根据老人姓名）  -->
-  <select id="selectOldManNotIntegral" resultMap="selectOldManNotIntegralResultMap" parameterType="com.older.manager.bean.Oldman">
-  	 select o.id, o.name, o.sex, o.phone,o.address,o.service
-      
-     from oldman o where 
-      <if test="name!=null and name!=''">
-      	o.name like '%${name}%' and
-      </if>
-        o.id not in (
+<mapper namespace="com.older.manager.mapper.IntegralMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.Integral">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="users_id" property="usersId" jdbcType="INTEGER" />
+		<result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+		<result column="beforeChangeIntegral" property="beforechangeintegral"
+			jdbcType="TIMESTAMP" />
+		<result column="currentIntegral" property="currentintegral"
+			jdbcType="INTEGER" />
+		<result column="afterChangeIntegral" property="afterchangeintegral"
+			jdbcType="TIMESTAMP" />
+		<result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
+		<result column="operator" property="operator" jdbcType="VARCHAR" />
+		<result column="operationDetail" property="operationdetail"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, users_id, oldMan_id, beforeChangeIntegral,
+		currentIntegral,
+		afterChangeIntegral,
+		changeTime, operator,
+		operationDetail
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.IntegralExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from integral
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from integral
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		integral
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.IntegralExample">
+		delete from integral
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.Integral">
+		insert into integral (id,
+		users_id, oldMan_id,
+		beforeChangeIntegral, currentIntegral,
+		afterChangeIntegral, changeTime, operator,
+		operationDetail)
+		values
+		(#{id,jdbcType=INTEGER}, #{usersId,jdbcType=INTEGER},
+		#{oldmanId,jdbcType=INTEGER},
+		#{beforechangeintegral,jdbcType=TIMESTAMP},
+		#{currentintegral,jdbcType=INTEGER},
+		#{afterchangeintegral,jdbcType=TIMESTAMP},
+		#{changetime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR},
+		#{operationdetail,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.Integral">
+		insert into integral
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="usersId != null">
+				users_id,
+			</if>
+			<if test="oldmanId != null">
+				oldMan_id,
+			</if>
+			<if test="beforechangeintegral != null">
+				beforeChangeIntegral,
+			</if>
+			<if test="currentintegral != null">
+				currentIntegral,
+			</if>
+			<if test="afterchangeintegral != null">
+				afterChangeIntegral,
+			</if>
+			<if test="changetime != null">
+				changeTime,
+			</if>
+			<if test="operator != null">
+				operator,
+			</if>
+			<if test="operationdetail != null">
+				operationDetail,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="usersId != null">
+				#{usersId,jdbcType=INTEGER},
+			</if>
+			<if test="oldmanId != null">
+				#{oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="beforechangeintegral != null">
+				#{beforechangeintegral,jdbcType=TIMESTAMP},
+			</if>
+			<if test="currentintegral != null">
+				#{currentintegral,jdbcType=INTEGER},
+			</if>
+			<if test="afterchangeintegral != null">
+				#{afterchangeintegral,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changetime != null">
+				#{changetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="operationdetail != null">
+				#{operationdetail,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.IntegralExample"
+		resultType="java.lang.Integer">
+		select count(*) from integral
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update integral
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.usersId != null">
+				users_id = #{record.usersId,jdbcType=INTEGER},
+			</if>
+			<if test="record.oldmanId != null">
+				oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="record.beforechangeintegral != null">
+				beforeChangeIntegral =
+				#{record.beforechangeintegral,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.currentintegral != null">
+				currentIntegral =
+				#{record.currentintegral,jdbcType=INTEGER},
+			</if>
+			<if test="record.afterchangeintegral != null">
+				afterChangeIntegral =
+				#{record.afterchangeintegral,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.changetime != null">
+				changeTime = #{record.changetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.operator != null">
+				operator = #{record.operator,jdbcType=VARCHAR},
+			</if>
+			<if test="record.operationdetail != null">
+				operationDetail =
+				#{record.operationdetail,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update integral
+		set id = #{record.id,jdbcType=INTEGER},
+		users_id =
+		#{record.usersId,jdbcType=INTEGER},
+		oldMan_id =
+		#{record.oldmanId,jdbcType=INTEGER},
+		beforeChangeIntegral =
+		#{record.beforechangeintegral,jdbcType=TIMESTAMP},
+		currentIntegral =
+		#{record.currentintegral,jdbcType=INTEGER},
+		afterChangeIntegral =
+		#{record.afterchangeintegral,jdbcType=TIMESTAMP},
+		changeTime =
+		#{record.changetime,jdbcType=TIMESTAMP},
+		operator =
+		#{record.operator,jdbcType=VARCHAR},
+		operationDetail =
+		#{record.operationdetail,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Integral">
+		update integral
+		<set>
+			<if test="usersId != null">
+				users_id = #{usersId,jdbcType=INTEGER},
+			</if>
+			<if test="oldmanId != null">
+				oldMan_id = #{oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="beforechangeintegral != null">
+				beforeChangeIntegral =
+				#{beforechangeintegral,jdbcType=TIMESTAMP},
+			</if>
+			<if test="currentintegral != null">
+				currentIntegral = #{currentintegral,jdbcType=INTEGER},
+			</if>
+			<if test="afterchangeintegral != null">
+				afterChangeIntegral =
+				#{afterchangeintegral,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changetime != null">
+				changeTime = #{changetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operator != null">
+				operator = #{operator,jdbcType=VARCHAR},
+			</if>
+			<if test="operationdetail != null">
+				operationDetail = #{operationdetail,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Integral">
+		update integral
+		set users_id = #{usersId,jdbcType=INTEGER},
+		oldMan_id =
+		#{oldmanId,jdbcType=INTEGER},
+		beforeChangeIntegral =
+		#{beforechangeintegral,jdbcType=TIMESTAMP},
+		currentIntegral =
+		#{currentintegral,jdbcType=INTEGER},
+		afterChangeIntegral =
+		#{afterchangeintegral,jdbcType=TIMESTAMP},
+		changeTime =
+		#{changetime,jdbcType=TIMESTAMP},
+		operator =
+		#{operator,jdbcType=VARCHAR},
+		operationDetail =
+		#{operationdetail,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!--查询所有不在积分表的老人ResultMap -->
+	<resultMap type="com.older.manager.bean.Oldman" id="selectOldManNotIntegralResultMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="service" property="service" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<!--查询所有不在积分表的老人，可模糊查询（根据老人姓名） -->
+	<select id="selectOldManNotIntegral" resultMap="selectOldManNotIntegralResultMap"
+		parameterType="com.older.manager.bean.Oldman">
+		select o.id, o.name, o.sex, o.phone,o.address,o.service
+
+		from oldman o
+		where
+		<if test="name!=null and name!=''">
+			o.name like '%${name}%' and
+		</if>
+		o.id not in (
 		select ol.oldMan_id
-		from integral as ol 
-	    )
-  </select>
-  
-   <!--查询老人积分信息和关联的老人信息结果集  -->
-  <resultMap id="selectIntegralAndOldmanResultMap" type="com.older.manager.bean.Integral" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
-    <result column="beforeChangeIntegral" property="beforechangeintegral" jdbcType="INTEGER" />
-    <result column="currentIntegral" property="currentintegral" jdbcType="INTEGER" />
-    <result column="afterChangeIntegral" property="afterchangeintegral" jdbcType="INTEGER" />
-    <result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
-    <result column="operator" property="operator" jdbcType="VARCHAR" />
-    <association property="oldman" javaType="oldman">
-    	<id column="oldmanId" property="id" jdbcType="INTEGER" />
-	    <result column="name" property="name" jdbcType="VARCHAR" />
-	    <result column="sex" property="sex" jdbcType="VARCHAR" />
-	    <result column="phone" property="phone" jdbcType="VARCHAR" />
-	   	<result column="address" property="address" jdbcType="VARCHAR" />
-	   	<result column="service" property="service" jdbcType="VARCHAR" />
-	   	<result column="servicestatu" property="servicestatu" jdbcType="VARCHAR" />
-    </association>
-  </resultMap>
-  <sql id="integral_oldman_Column_List" >
-    i.id, i.oldMan_id, i.beforeChangeIntegral, i.currentIntegral, i.afterChangeIntegral, i.changeTime, 
-    i.operator,o.id oldmanId,o.name,o.sex,o.address,o.service,o.phone,o.servicestatu
-  </sql>
-  <!--查询老人积分信息和关联的老人信息  -->
-  <select id="selectIntegralAndOldmanByCondition" resultMap="selectIntegralAndOldmanResultMap" parameterType="integral" >
-    select 
-    <include refid="integral_oldman_Column_List" />
-    from integral i,oldman o
-    where  i.oldMan_id=o.id
-    <if test="oldman!=null">
-    	<if test="oldman.name!=null and oldman.name!=''">
-    	and o.name like '%${oldman.name}%'
-    	</if>
-    </if>
-    <if test="changetime1!=null and changetime2!=null">
-     and i.changetime between #{changetime1} and #{changetime2}
-    </if>
-  </select>
-  
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from integral
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.IntegralExample" >
-    delete from integral
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Integral" >
-    insert into integral (id, oldMan_id, beforeChangeIntegral, 
-      currentIntegral, afterChangeIntegral, changeTime, 
-      operator)
-    values (#{id,jdbcType=INTEGER}, #{oldmanId,jdbcType=INTEGER}, #{beforechangeintegral,jdbcType=INTEGER}, 
-      #{currentintegral,jdbcType=INTEGER}, #{afterchangeintegral,jdbcType=INTEGER}, #{changetime,jdbcType=TIMESTAMP}, 
-      #{operator,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Integral" >
-    insert into integral
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="oldmanId != null" >
-        oldMan_id,
-      </if>
-      <if test="beforechangeintegral != null" >
-        beforeChangeIntegral,
-      </if>
-      <if test="currentintegral != null" >
-        currentIntegral,
-      </if>
-      <if test="afterchangeintegral != null" >
-        afterChangeIntegral,
-      </if>
-      <if test="changetime != null" >
-        changeTime,
-      </if>
-      <if test="operator != null" >
-        operator,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="oldmanId != null" >
-        #{oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="beforechangeintegral != null" >
-        #{beforechangeintegral,jdbcType=INTEGER},
-      </if>
-      <if test="currentintegral != null" >
-        #{currentintegral,jdbcType=INTEGER},
-      </if>
-      <if test="afterchangeintegral != null" >
-        #{afterchangeintegral,jdbcType=INTEGER},
-      </if>
-      <if test="changetime != null" >
-        #{changetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="operator != null" >
-        #{operator,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.IntegralExample" resultType="java.lang.Integer" >
-    select count(*) from integral
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update integral
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.oldmanId != null" >
-        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="record.beforechangeintegral != null" >
-        beforeChangeIntegral = #{record.beforechangeintegral,jdbcType=INTEGER},
-      </if>
-      <if test="record.currentintegral != null" >
-        currentIntegral = #{record.currentintegral,jdbcType=INTEGER},
-      </if>
-      <if test="record.afterchangeintegral != null" >
-        afterChangeIntegral = #{record.afterchangeintegral,jdbcType=INTEGER},
-      </if>
-      <if test="record.changetime != null" >
-        changeTime = #{record.changetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.operator != null" >
-        operator = #{record.operator,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update integral
-    set id = #{record.id,jdbcType=INTEGER},
-      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-      beforeChangeIntegral = #{record.beforechangeintegral,jdbcType=INTEGER},
-      currentIntegral = #{record.currentintegral,jdbcType=INTEGER},
-      afterChangeIntegral = #{record.afterchangeintegral,jdbcType=INTEGER},
-      changeTime = #{record.changetime,jdbcType=TIMESTAMP},
-      operator = #{record.operator,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Integral" >
-    update integral
-    <set >
-      <if test="oldmanId != null" >
-        oldMan_id = #{oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="beforechangeintegral != null" >
-        beforeChangeIntegral = #{beforechangeintegral,jdbcType=INTEGER},
-      </if>
-      <if test="currentintegral != null" >
-        currentIntegral = #{currentintegral,jdbcType=INTEGER},
-      </if>
-      <if test="afterchangeintegral != null" >
-        afterChangeIntegral = #{afterchangeintegral,jdbcType=INTEGER},
-      </if>
-      <if test="changetime != null" >
-        changeTime = #{changetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="operator != null" >
-        operator = #{operator,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Integral" >
-    update integral
-    set oldMan_id = #{oldmanId,jdbcType=INTEGER},
-      beforeChangeIntegral = #{beforechangeintegral,jdbcType=INTEGER},
-      currentIntegral = #{currentintegral,jdbcType=INTEGER},
-      afterChangeIntegral = #{afterchangeintegral,jdbcType=INTEGER},
-      changeTime = #{changetime,jdbcType=TIMESTAMP},
-      operator = #{operator,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+		from integral as ol
+		)
+	</select>
+
+	<!--查询老人积分信息和关联的老人信息结果集 -->
+	<resultMap id="selectIntegralAndOldmanResultMap" type="com.older.manager.bean.Integral">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+		<result column="beforeChangeIntegral" property="beforechangeintegral"
+			jdbcType="INTEGER" />
+		<result column="currentIntegral" property="currentintegral"
+			jdbcType="INTEGER" />
+		<result column="afterChangeIntegral" property="afterchangeintegral"
+			jdbcType="INTEGER" />
+		<result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
+		<result column="operator" property="operator" jdbcType="VARCHAR" />
+		<association property="oldman" javaType="oldman">
+			<id column="oldmanId" property="id" jdbcType="INTEGER" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="sex" property="sex" jdbcType="VARCHAR" />
+			<result column="phone" property="phone" jdbcType="VARCHAR" />
+			<result column="address" property="address" jdbcType="VARCHAR" />
+			<result column="service" property="service" jdbcType="VARCHAR" />
+			<result column="servicestatu" property="servicestatu"
+				jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+	<sql id="integral_oldman_Column_List">
+		i.id, i.oldMan_id, i.beforeChangeIntegral,
+		i.currentIntegral,
+		i.afterChangeIntegral, i.changeTime,
+		i.operator,o.id
+		oldmanId,o.name,o.sex,o.address,o.service,o.phone,o.servicestatu
+	</sql>
+	<!--查询老人积分信息和关联的老人信息 -->
+	<select id="selectIntegralAndOldmanByCondition" resultMap="selectIntegralAndOldmanResultMap"
+		parameterType="integral">
+		select
+		<include refid="integral_oldman_Column_List" />
+		from integral i,oldman o
+		where i.oldMan_id=o.id
+		<if test="oldman!=null">
+			<if test="oldman.name!=null and oldman.name!=''">
+				and o.name like '%${oldman.name}%'
+			</if>
+		</if>
+		<if test="beforechangeintegral!=null and afterChangeIntegral!=null">
+			and i.changetime between #{beforechangeintegral} and
+			#{afterChangeIntegral}
+		</if>
+	</select>
 </mapper>

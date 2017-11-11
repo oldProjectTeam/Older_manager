@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class IntegralExample {
+public class ShopMemberExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public IntegralExample() {
+    public ShopMemberExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -225,243 +225,193 @@ public class IntegralExample {
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdIsNull() {
-            addCriterion("oldMan_id is null");
+        public Criteria andIntegralIdIsNull() {
+            addCriterion("integral_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdIsNotNull() {
-            addCriterion("oldMan_id is not null");
+        public Criteria andIntegralIdIsNotNull() {
+            addCriterion("integral_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdEqualTo(Integer value) {
-            addCriterion("oldMan_id =", value, "oldmanId");
+        public Criteria andIntegralIdEqualTo(Integer value) {
+            addCriterion("integral_id =", value, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdNotEqualTo(Integer value) {
-            addCriterion("oldMan_id <>", value, "oldmanId");
+        public Criteria andIntegralIdNotEqualTo(Integer value) {
+            addCriterion("integral_id <>", value, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdGreaterThan(Integer value) {
-            addCriterion("oldMan_id >", value, "oldmanId");
+        public Criteria andIntegralIdGreaterThan(Integer value) {
+            addCriterion("integral_id >", value, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("oldMan_id >=", value, "oldmanId");
+        public Criteria andIntegralIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("integral_id >=", value, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdLessThan(Integer value) {
-            addCriterion("oldMan_id <", value, "oldmanId");
+        public Criteria andIntegralIdLessThan(Integer value) {
+            addCriterion("integral_id <", value, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdLessThanOrEqualTo(Integer value) {
-            addCriterion("oldMan_id <=", value, "oldmanId");
+        public Criteria andIntegralIdLessThanOrEqualTo(Integer value) {
+            addCriterion("integral_id <=", value, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdIn(List<Integer> values) {
-            addCriterion("oldMan_id in", values, "oldmanId");
+        public Criteria andIntegralIdIn(List<Integer> values) {
+            addCriterion("integral_id in", values, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdNotIn(List<Integer> values) {
-            addCriterion("oldMan_id not in", values, "oldmanId");
+        public Criteria andIntegralIdNotIn(List<Integer> values) {
+            addCriterion("integral_id not in", values, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdBetween(Integer value1, Integer value2) {
-            addCriterion("oldMan_id between", value1, value2, "oldmanId");
+        public Criteria andIntegralIdBetween(Integer value1, Integer value2) {
+            addCriterion("integral_id between", value1, value2, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("oldMan_id not between", value1, value2, "oldmanId");
+        public Criteria andIntegralIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("integral_id not between", value1, value2, "integralId");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralIsNull() {
-            addCriterion("beforeChangeIntegral is null");
+        public Criteria andLevelIsNull() {
+            addCriterion("level is null");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralIsNotNull() {
-            addCriterion("beforeChangeIntegral is not null");
+        public Criteria andLevelIsNotNull() {
+            addCriterion("level is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralEqualTo(Date value) {
-            addCriterion("beforeChangeIntegral =", value, "beforechangeintegral");
+        public Criteria andLevelEqualTo(String value) {
+            addCriterion("level =", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralNotEqualTo(Date value) {
-            addCriterion("beforeChangeIntegral <>", value, "beforechangeintegral");
+        public Criteria andLevelNotEqualTo(String value) {
+            addCriterion("level <>", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralGreaterThan(Date value) {
-            addCriterion("beforeChangeIntegral >", value, "beforechangeintegral");
+        public Criteria andLevelGreaterThan(String value) {
+            addCriterion("level >", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralGreaterThanOrEqualTo(Date value) {
-            addCriterion("beforeChangeIntegral >=", value, "beforechangeintegral");
+        public Criteria andLevelGreaterThanOrEqualTo(String value) {
+            addCriterion("level >=", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralLessThan(Date value) {
-            addCriterion("beforeChangeIntegral <", value, "beforechangeintegral");
+        public Criteria andLevelLessThan(String value) {
+            addCriterion("level <", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralLessThanOrEqualTo(Date value) {
-            addCriterion("beforeChangeIntegral <=", value, "beforechangeintegral");
+        public Criteria andLevelLessThanOrEqualTo(String value) {
+            addCriterion("level <=", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralIn(List<Date> values) {
-            addCriterion("beforeChangeIntegral in", values, "beforechangeintegral");
+        public Criteria andLevelLike(String value) {
+            addCriterion("level like", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralNotIn(List<Date> values) {
-            addCriterion("beforeChangeIntegral not in", values, "beforechangeintegral");
+        public Criteria andLevelNotLike(String value) {
+            addCriterion("level not like", value, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralBetween(Date value1, Date value2) {
-            addCriterion("beforeChangeIntegral between", value1, value2, "beforechangeintegral");
+        public Criteria andLevelIn(List<String> values) {
+            addCriterion("level in", values, "level");
             return (Criteria) this;
         }
 
-        public Criteria andBeforechangeintegralNotBetween(Date value1, Date value2) {
-            addCriterion("beforeChangeIntegral not between", value1, value2, "beforechangeintegral");
+        public Criteria andLevelNotIn(List<String> values) {
+            addCriterion("level not in", values, "level");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralIsNull() {
-            addCriterion("currentIntegral is null");
+        public Criteria andLevelBetween(String value1, String value2) {
+            addCriterion("level between", value1, value2, "level");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralIsNotNull() {
-            addCriterion("currentIntegral is not null");
+        public Criteria andLevelNotBetween(String value1, String value2) {
+            addCriterion("level not between", value1, value2, "level");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralEqualTo(Integer value) {
-            addCriterion("currentIntegral =", value, "currentintegral");
+        public Criteria andJointimeIsNull() {
+            addCriterion("joinTime is null");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralNotEqualTo(Integer value) {
-            addCriterion("currentIntegral <>", value, "currentintegral");
+        public Criteria andJointimeIsNotNull() {
+            addCriterion("joinTime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralGreaterThan(Integer value) {
-            addCriterion("currentIntegral >", value, "currentintegral");
+        public Criteria andJointimeEqualTo(Date value) {
+            addCriterion("joinTime =", value, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralGreaterThanOrEqualTo(Integer value) {
-            addCriterion("currentIntegral >=", value, "currentintegral");
+        public Criteria andJointimeNotEqualTo(Date value) {
+            addCriterion("joinTime <>", value, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralLessThan(Integer value) {
-            addCriterion("currentIntegral <", value, "currentintegral");
+        public Criteria andJointimeGreaterThan(Date value) {
+            addCriterion("joinTime >", value, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralLessThanOrEqualTo(Integer value) {
-            addCriterion("currentIntegral <=", value, "currentintegral");
+        public Criteria andJointimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("joinTime >=", value, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralIn(List<Integer> values) {
-            addCriterion("currentIntegral in", values, "currentintegral");
+        public Criteria andJointimeLessThan(Date value) {
+            addCriterion("joinTime <", value, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralNotIn(List<Integer> values) {
-            addCriterion("currentIntegral not in", values, "currentintegral");
+        public Criteria andJointimeLessThanOrEqualTo(Date value) {
+            addCriterion("joinTime <=", value, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralBetween(Integer value1, Integer value2) {
-            addCriterion("currentIntegral between", value1, value2, "currentintegral");
+        public Criteria andJointimeIn(List<Date> values) {
+            addCriterion("joinTime in", values, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andCurrentintegralNotBetween(Integer value1, Integer value2) {
-            addCriterion("currentIntegral not between", value1, value2, "currentintegral");
+        public Criteria andJointimeNotIn(List<Date> values) {
+            addCriterion("joinTime not in", values, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andAfterchangeintegralIsNull() {
-            addCriterion("afterChangeIntegral is null");
+        public Criteria andJointimeBetween(Date value1, Date value2) {
+            addCriterion("joinTime between", value1, value2, "jointime");
             return (Criteria) this;
         }
 
-        public Criteria andAfterchangeintegralIsNotNull() {
-            addCriterion("afterChangeIntegral is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralEqualTo(Date value) {
-            addCriterion("afterChangeIntegral =", value, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralNotEqualTo(Date value) {
-            addCriterion("afterChangeIntegral <>", value, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralGreaterThan(Date value) {
-            addCriterion("afterChangeIntegral >", value, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralGreaterThanOrEqualTo(Date value) {
-            addCriterion("afterChangeIntegral >=", value, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralLessThan(Date value) {
-            addCriterion("afterChangeIntegral <", value, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralLessThanOrEqualTo(Date value) {
-            addCriterion("afterChangeIntegral <=", value, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralIn(List<Date> values) {
-            addCriterion("afterChangeIntegral in", values, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralNotIn(List<Date> values) {
-            addCriterion("afterChangeIntegral not in", values, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralBetween(Date value1, Date value2) {
-            addCriterion("afterChangeIntegral between", value1, value2, "afterchangeintegral");
-            return (Criteria) this;
-        }
-
-        public Criteria andAfterchangeintegralNotBetween(Date value1, Date value2) {
-            addCriterion("afterChangeIntegral not between", value1, value2, "afterchangeintegral");
+        public Criteria andJointimeNotBetween(Date value1, Date value2) {
+            addCriterion("joinTime not between", value1, value2, "jointime");
             return (Criteria) this;
         }
 
@@ -522,146 +472,6 @@ public class IntegralExample {
 
         public Criteria andChangetimeNotBetween(Date value1, Date value2) {
             addCriterion("changeTime not between", value1, value2, "changetime");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorIsNull() {
-            addCriterion("operator is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorIsNotNull() {
-            addCriterion("operator is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorEqualTo(String value) {
-            addCriterion("operator =", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorNotEqualTo(String value) {
-            addCriterion("operator <>", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorGreaterThan(String value) {
-            addCriterion("operator >", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorGreaterThanOrEqualTo(String value) {
-            addCriterion("operator >=", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorLessThan(String value) {
-            addCriterion("operator <", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorLessThanOrEqualTo(String value) {
-            addCriterion("operator <=", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorLike(String value) {
-            addCriterion("operator like", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorNotLike(String value) {
-            addCriterion("operator not like", value, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorIn(List<String> values) {
-            addCriterion("operator in", values, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorNotIn(List<String> values) {
-            addCriterion("operator not in", values, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorBetween(String value1, String value2) {
-            addCriterion("operator between", value1, value2, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperatorNotBetween(String value1, String value2) {
-            addCriterion("operator not between", value1, value2, "operator");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailIsNull() {
-            addCriterion("operationDetail is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailIsNotNull() {
-            addCriterion("operationDetail is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailEqualTo(String value) {
-            addCriterion("operationDetail =", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailNotEqualTo(String value) {
-            addCriterion("operationDetail <>", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailGreaterThan(String value) {
-            addCriterion("operationDetail >", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailGreaterThanOrEqualTo(String value) {
-            addCriterion("operationDetail >=", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailLessThan(String value) {
-            addCriterion("operationDetail <", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailLessThanOrEqualTo(String value) {
-            addCriterion("operationDetail <=", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailLike(String value) {
-            addCriterion("operationDetail like", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailNotLike(String value) {
-            addCriterion("operationDetail not like", value, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailIn(List<String> values) {
-            addCriterion("operationDetail in", values, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailNotIn(List<String> values) {
-            addCriterion("operationDetail not in", values, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailBetween(String value1, String value2) {
-            addCriterion("operationDetail between", value1, value2, "operationdetail");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationdetailNotBetween(String value1, String value2) {
-            addCriterion("operationDetail not between", value1, value2, "operationdetail");
             return (Criteria) this;
         }
     }

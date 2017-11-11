@@ -419,8 +419,6 @@
 		
 		
 		$("#addcomeback").click(function (){
-		
-		
 		 window.location.href="${APP_PATH}/old/skipolderinfo/${addpn}";
 		});
 	</script>

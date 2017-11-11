@@ -140,8 +140,10 @@ public class AddNewOlderController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/insertnewolder")
-	public String insertnewolder() {
+	@RequestMapping("/insertnewolder/{addpn}")
+	public String insertnewolder(@PathVariable("addpn") Integer addpn,
+			HttpServletRequest request) {
+		request.setAttribute("addpn", addpn);
 		return "oldback/oldManInfoMange/addOldManInfo";
 	}
 
@@ -385,31 +387,33 @@ public class AddNewOlderController {
 		}
 	}
 
-	
 	/**
-	 * @Title:   findAllOldManByName
-	 * @Description:  通过搜索名字查询所有的老人信息
-	 * @param:    @param name
-	 * @param:    @return
-	 * @param:    @throws UnsupportedEncodingException   
-	 * @return:   Msg   
+	 * @Title: findAllOldManByName
+	 * @Description: 通过搜索名字查询所有的老人信息
+	 * @param: @param name
+	 * @param: @return
+	 * @param: @throws UnsupportedEncodingException
+	 * @return: Msg
 	 * @throws
 	 */
 	@RequestMapping(value = "/findAllOldManByName")
 	@ResponseBody
-	public Msg findAllOldManByName(String name) throws UnsupportedEncodingException {
-		System.out.println("........."+name);
-		if (name!=null&& !name.equals("")) {
-			List<Oldman> list = addNewOlderService.findAllOldmansByName(new String(name.getBytes("iso-8859-1"),"utf-8"));
+	public Msg findAllOldManByName(String name)
+			throws UnsupportedEncodingException {
+		System.out.println("........." + name);
+		if (name != null && !name.equals("")) {
+			List<Oldman> list = addNewOlderService
+					.findAllOldmansByName(new String(name
+							.getBytes("iso-8859-1"), "utf-8"));
 			if (list == null) {
 				return Msg.fail().add("msg", "没有查询到相关数据");
 			} else {
 				return Msg.success().add("pageInfo", list);
 			}
-		}else {
+		} else {
 			return Msg.fail().add("msg", "没有查询到相关数据");
 		}
-		
+
 	}
 
 	/**
