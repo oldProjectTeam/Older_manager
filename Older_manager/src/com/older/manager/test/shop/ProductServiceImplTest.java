@@ -2,7 +2,11 @@ package com.older.manager.test.shop;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +41,7 @@ public class ProductServiceImplTest {
 	@Test
 	public void testInsertProducts() {
 		Products products=new Products();
-		products.setName("vivo智能手机");
+		
 		products.setOrprice(50.0);
 		products.setNowprice(45.00);
 		products.setRegion("浙江省");
@@ -50,13 +54,16 @@ public class ProductServiceImplTest {
 		ProductKeyword productKeyword=new ProductKeyword();
 		productKeyword.setKeyword("智能手机 vivo 步步高 智能");
 		 
-		
-		productService.insertProducts(products);
+		for(int i=24;i<=60;i++){
+			products.setName("vivo智能手机"+i);
+			products.setId(i);
+		   productService.insertProducts(products);
+		/*   productKeyword.setProductId(products.getId());
+			productKeywordService.insertProductKeyword(productKeyword);*/
+		}
 		//int id=productService.insertProducts(products);
-		System.out.println("id---------------"+products.getId());
+		 
 		
-		productKeyword.setProductId(products.getId());
-		productKeywordService.insertProductKeyword(productKeyword);
 	}
 
 	@Test
@@ -74,4 +81,18 @@ public class ProductServiceImplTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public void testbatchdelete() throws Exception {
+		 List<Integer>ids=new ArrayList<Integer>();
+		 ids.add(4);
+		 ids.add(6);
+		 
+		 productService.batchDeleteProduct(ids, null);
+	
+}
+	
+	@Test
+	public void findProduct() throws Exception{
+		System.out.println(productService.findProduct(4));
+	}
 }

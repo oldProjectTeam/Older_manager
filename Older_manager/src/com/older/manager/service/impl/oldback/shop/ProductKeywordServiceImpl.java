@@ -19,16 +19,10 @@ public class ProductKeywordServiceImpl implements IProductKeywordService {
 		 
 			  if(productKeyword.getKeyword()!=null&&!"".equals(productKeyword.getKeyword())){
 				  if(productKeyword.getKeyword().contains(" ")){
-					  String[] keyword=productKeyword.getKeyword().split(" ");
-					  int num=0;
-					  for(String s:keyword){
-						  if(" ".equals(s)||"  ".equals(s)){
-							  continue;
-						  }else{
-							  num++;
-						  }
-					  }
-					  productKeyword.setNumber(num);
+					  String str=(productKeyword.getKeyword().trim()).replaceAll("\\s+", " ");
+					  String[] keyword=str.split(" ");
+					  productKeyword.setNumber(keyword.length);
+					  productKeyword.setKeyword(str);
 				  }else{
 					  productKeyword.setNumber(1);
 				  }
@@ -38,6 +32,11 @@ public class ProductKeywordServiceImpl implements IProductKeywordService {
 					  productKeywordMapper.insertSelective(productKeyword);
 				  }  
 			  }
+	}
+	@Override
+	public void updateProductKeyword(ProductKeyword productKeyword) {
+
+		productKeywordMapper.updateByPrimaryKeySelective(productKeyword);
 	}
 
 }

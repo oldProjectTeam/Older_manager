@@ -21,7 +21,12 @@ public interface ProductsMapper {
     //根据number更改
     void updateByNumber(Products products);
     
-    
+    /**
+     * 分页查询所有产品信息
+     * @param products
+     * @return
+     */
+    List<Products> selectByCondition(Products products);
     List<Products> selectByExampleWithBLOBs(ProductsExample example);
 
     List<Products> selectByExample(ProductsExample example);

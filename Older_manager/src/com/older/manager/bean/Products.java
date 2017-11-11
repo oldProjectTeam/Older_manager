@@ -11,6 +11,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Products {
 	private Integer id;
 
+	//分页参数
+	private Integer page;//当前页
+	private Integer limit;//每页显示大小
+	
+	
 	@NotEmpty(message="简略标题不能为空")
 	@Length(min=1,max=100,message="简略标题长度超出限制")
 	private String name;
@@ -451,5 +456,45 @@ public class Products {
 
 	public void setProductKeyword(ProductKeyword productKeyword) {
 		this.productKeyword = productKeyword;
+	}
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
+	public Integer getLimit() {
+		return limit;
+	}
+
+	public void setLimit(Integer limit) {
+		this.limit = limit;
+	}
+
+	@Override
+	public String toString() {
+		return "Products [id=" + id + ", page=" + page + ", limit=" + limit
+				+ ", name=" + name + ", number=" + number + ", orprice="
+				+ orprice + ", region=" + region + ", nowprice=" + nowprice
+				+ ", addtime=" + addtime + ", addtime1=" + addtime1
+				+ ", auditstatus=" + auditstatus + ", state=" + state
+				+ ", imagetitle=" + imagetitle + ", placeorigin=" + placeorigin
+				+ ", brandId=" + brandId + ", productKeyword=" + productKeyword
+				+ ", typeId=" + typeId + ", productType=" + productType
+				+ ", brand=" + brand + ", texture=" + texture + ", weight="
+				+ weight + ", unit=" + unit + ", synopsis=" + synopsis
+				+ ", description=" + description + ", inventory=" + inventory
+				+ ", sales=" + sales + ", paral1=" + paral1 + ", paral2="
+				+ paral2 + ", paral3=" + paral3 + ", paral4=" + paral4
+				+ ", paral5=" + paral5 + ", paral6=" + paral6 + ", paral7="
+				+ paral7 + ", paral8=" + paral8 + ", paral9=" + paral9
+				+ ", paral10=" + paral10 + ", paral11=" + paral11
+				+ ", paral12=" + paral12 + ", paral13=" + paral13
+				+ ", paral14=" + paral14 + ", paral15=" + paral15
+				+ ", paral16=" + paral16 + ", paral17=" + paral17 + ", images="
+				+ images + "]";
 	}
 }

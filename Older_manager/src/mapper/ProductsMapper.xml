@@ -149,6 +149,24 @@
   		</if>
   	</where>
   </select>
+  
+  <!--分页查询所有产品  -->
+  <select id="selectByCondition" parameterType="com.older.manager.bean.Products" resultMap="ResultMapWithBLOBs">
+  	select 
+  	<include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" /> 
+  	from products p
+  	<where>
+  		<if test="name!=null and name!=''">
+  			and p.name like '%${name}%'
+  		</if>
+  		<if test="addtime!=null and addtime1!=null">
+  			and p.addtime between #{addtime} and #{addtime1}
+  		</if>
+  	</where>
+  	limit #{page},#{limit}
+  </select>
   <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
