@@ -153,7 +153,6 @@
 					<div class="formControls col-10">
 						<input type="text" class="input-text" placeholder="最多可输入100个字符"
 							id="name" name="name">
-						
 					</div>
 				</div>
 				<div class=" clearfix cl">
@@ -575,7 +574,19 @@
 		 }else{
 			 show_vaildate_msg("#inventory","success","");
 		 }
-		  
+		  //10.产品类型
+		  var typeId=$("#typeId").val();
+		  if(typeId==null||typeId==undefined){
+			  show_vaildate_msg("#typeId","error","您还没选择产品类型！");
+			   return false;
+		  }
+		  //11.品牌
+		  var brandId=$("#brandId").val();
+		  if(brandId==null||brandId==undefined){
+			  show_vaildate_msg("#brandId","error","您还没选择产品品牌！");
+			   return false;
+		  }
+		 
 		//13.地区/国家
 		 var region=$("#region").val();
 		 if(region.length<1){

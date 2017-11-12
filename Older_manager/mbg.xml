@@ -82,7 +82,11 @@
 		<!-- <table tableName="shopmember" domainObjectName="ShopMember"> </table> 
 			<table tableName="productsviews" domainObjectName="ProductsViews"> </table> -->
 		<!-- <table tableName="integral" domainObjectName="Integral"> </table> -->
-		<table tableName="products" domainObjectName="Products">
+		<!-- <table tableName="products" domainObjectName="Products">
+		</table> -->
+		<table tableName="adslist" domainObjectName="Adslist">
+		</table>
+		<table tableName="sortads" domainObjectName="Sortads">
 		</table>
 	</context>
 </generatorConfiguration>

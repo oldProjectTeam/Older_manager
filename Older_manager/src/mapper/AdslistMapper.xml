@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.AdslistMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Adslist" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sortname" property="sortname" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="sortphoto" property="sortphoto" jdbcType="VARCHAR" />
+    <result column="sortsize" property="sortsize" jdbcType="VARCHAR" />
+    <result column="sorthref" property="sorthref" jdbcType="VARCHAR" />
+    <result column="sortjointime" property="sortjointime" jdbcType="TIMESTAMP" />
+    <result column="sortstate" property="sortstate" jdbcType="VARCHAR" />
+    <result column="sortone" property="sortone" jdbcType="VARCHAR" />
+    <result column="sorttwo" property="sorttwo" jdbcType="VARCHAR" />
+    <result column="sortthree" property="sortthree" jdbcType="VARCHAR" />
+    <result column="sortfour" property="sortfour" jdbcType="INTEGER" />
+    <result column="sortadsid" property="sortadsid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sortname, sort, sortphoto, sortsize, sorthref, sortjointime, sortstate, sortone, 
+    sorttwo, sortthree, sortfour, sortadsid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.AdslistExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from adslist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from adslist
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from adslist
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.AdslistExample" >
+    delete from adslist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Adslist" >
+    insert into adslist (id, sortname, sort, 
+      sortphoto, sortsize, sorthref, 
+      sortjointime, sortstate, sortone, 
+      sorttwo, sortthree, sortfour, 
+      sortadsid)
+    values (#{id,jdbcType=INTEGER}, #{sortname,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{sortphoto,jdbcType=VARCHAR}, #{sortsize,jdbcType=VARCHAR}, #{sorthref,jdbcType=VARCHAR}, 
+      #{sortjointime,jdbcType=TIMESTAMP}, #{sortstate,jdbcType=VARCHAR}, #{sortone,jdbcType=VARCHAR}, 
+      #{sorttwo,jdbcType=VARCHAR}, #{sortthree,jdbcType=VARCHAR}, #{sortfour,jdbcType=INTEGER}, 
+      #{sortadsid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Adslist" >
+    insert into adslist
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sortname != null" >
+        sortname,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="sortphoto != null" >
+        sortphoto,
+      </if>
+      <if test="sortsize != null" >
+        sortsize,
+      </if>
+      <if test="sorthref != null" >
+        sorthref,
+      </if>
+      <if test="sortjointime != null" >
+        sortjointime,
+      </if>
+      <if test="sortstate != null" >
+        sortstate,
+      </if>
+      <if test="sortone != null" >
+        sortone,
+      </if>
+      <if test="sorttwo != null" >
+        sorttwo,
+      </if>
+      <if test="sortthree != null" >
+        sortthree,
+      </if>
+      <if test="sortfour != null" >
+        sortfour,
+      </if>
+      <if test="sortadsid != null" >
+        sortadsid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sortname != null" >
+        #{sortname,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="sortphoto != null" >
+        #{sortphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="sortsize != null" >
+        #{sortsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sorthref != null" >
+        #{sorthref,jdbcType=VARCHAR},
+      </if>
+      <if test="sortjointime != null" >
+        #{sortjointime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortstate != null" >
+        #{sortstate,jdbcType=VARCHAR},
+      </if>
+      <if test="sortone != null" >
+        #{sortone,jdbcType=VARCHAR},
+      </if>
+      <if test="sorttwo != null" >
+        #{sorttwo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortthree != null" >
+        #{sortthree,jdbcType=VARCHAR},
+      </if>
+      <if test="sortfour != null" >
+        #{sortfour,jdbcType=INTEGER},
+      </if>
+      <if test="sortadsid != null" >
+        #{sortadsid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.AdslistExample" resultType="java.lang.Integer" >
+    select count(*) from adslist
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update adslist
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortname != null" >
+        sortname = #{record.sortname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sort != null" >
+        sort = #{record.sort,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortphoto != null" >
+        sortphoto = #{record.sortphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortsize != null" >
+        sortsize = #{record.sortsize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sorthref != null" >
+        sorthref = #{record.sorthref,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortjointime != null" >
+        sortjointime = #{record.sortjointime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sortstate != null" >
+        sortstate = #{record.sortstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortone != null" >
+        sortone = #{record.sortone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sorttwo != null" >
+        sorttwo = #{record.sorttwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortthree != null" >
+        sortthree = #{record.sortthree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortfour != null" >
+        sortfour = #{record.sortfour,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortadsid != null" >
+        sortadsid = #{record.sortadsid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update adslist
+    set id = #{record.id,jdbcType=INTEGER},
+      sortname = #{record.sortname,jdbcType=VARCHAR},
+      sort = #{record.sort,jdbcType=INTEGER},
+      sortphoto = #{record.sortphoto,jdbcType=VARCHAR},
+      sortsize = #{record.sortsize,jdbcType=VARCHAR},
+      sorthref = #{record.sorthref,jdbcType=VARCHAR},
+      sortjointime = #{record.sortjointime,jdbcType=TIMESTAMP},
+      sortstate = #{record.sortstate,jdbcType=VARCHAR},
+      sortone = #{record.sortone,jdbcType=VARCHAR},
+      sorttwo = #{record.sorttwo,jdbcType=VARCHAR},
+      sortthree = #{record.sortthree,jdbcType=VARCHAR},
+      sortfour = #{record.sortfour,jdbcType=INTEGER},
+      sortadsid = #{record.sortadsid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Adslist" >
+    update adslist
+    <set >
+      <if test="sortname != null" >
+        sortname = #{sortname,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="sortphoto != null" >
+        sortphoto = #{sortphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="sortsize != null" >
+        sortsize = #{sortsize,jdbcType=VARCHAR},
+      </if>
+      <if test="sorthref != null" >
+        sorthref = #{sorthref,jdbcType=VARCHAR},
+      </if>
+      <if test="sortjointime != null" >
+        sortjointime = #{sortjointime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sortstate != null" >
+        sortstate = #{sortstate,jdbcType=VARCHAR},
+      </if>
+      <if test="sortone != null" >
+        sortone = #{sortone,jdbcType=VARCHAR},
+      </if>
+      <if test="sorttwo != null" >
+        sorttwo = #{sorttwo,jdbcType=VARCHAR},
+      </if>
+      <if test="sortthree != null" >
+        sortthree = #{sortthree,jdbcType=VARCHAR},
+      </if>
+      <if test="sortfour != null" >
+        sortfour = #{sortfour,jdbcType=INTEGER},
+      </if>
+      <if test="sortadsid != null" >
+        sortadsid = #{sortadsid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Adslist" >
+    update adslist
+    set sortname = #{sortname,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      sortphoto = #{sortphoto,jdbcType=VARCHAR},
+      sortsize = #{sortsize,jdbcType=VARCHAR},
+      sorthref = #{sorthref,jdbcType=VARCHAR},
+      sortjointime = #{sortjointime,jdbcType=TIMESTAMP},
+      sortstate = #{sortstate,jdbcType=VARCHAR},
+      sortone = #{sortone,jdbcType=VARCHAR},
+      sorttwo = #{sorttwo,jdbcType=VARCHAR},
+      sortthree = #{sortthree,jdbcType=VARCHAR},
+      sortfour = #{sortfour,jdbcType=INTEGER},
+      sortadsid = #{sortadsid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

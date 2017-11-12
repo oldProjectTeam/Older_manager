@@ -126,13 +126,7 @@ public class ProductServiceImpl implements IProductService {
 						+ products.getImages());
 			}
 		}
-		/*//更新关键词表
-		if(products.getProductKeyword()!=null){
-			ProductKeyword productKeyword=products.getProductKeyword();
-			if(productKeyword.getKeyword()!=null&&!"".equals(productKeyword.getKeyword())){
-				productKeywordMapper.updateByPrimaryKeySelective(productKeyword);
-			}
-		}*/
+		 
 		productsMapper.updateByPrimaryKeySelective(products);
 	}
 

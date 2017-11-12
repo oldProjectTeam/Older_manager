@@ -34,8 +34,13 @@ public class ProductServiceImplTest {
 	}
 
 	@Test
-	public void testSelectCondition() {
-		fail("Not yet implemented");
+	public void testSelectByCondition() throws Exception {
+		Products product=new Products();
+		//product.setName("35");
+		product.setTypeId(122);
+       product.setPage(1);
+       product.setLimit(50);
+		System.out.println(productService.selectByCondition(product));
 	}
 
 	@Test
