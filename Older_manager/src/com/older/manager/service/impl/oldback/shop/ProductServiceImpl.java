@@ -28,17 +28,11 @@ public class ProductServiceImpl implements IProductService {
 	@Autowired
 	private ProductsMapper productsMapper;
 
-	@Override
-	public List<Products> selectProducts() {
-
-		return productsMapper.selectByExample(null);
-	}
-
-	@Override
-	public List<Products> selectCondition(Products products) {
-
-		return productsMapper.selectCondition(products);
-	}
+	@Autowired
+	private ProductKeywordMapper productKeywordMapper;
+	
+	 
+ 
 
 	@Override
 	public void insertProducts(Products products) {
@@ -53,30 +47,7 @@ public class ProductServiceImpl implements IProductService {
 		productsMapper.insertSelective(products);
 	}
 
-	@Override
-	public void deleteProducts(List<String> numbers) {
-		ProductsExample example = new ProductsExample();
-		com.older.manager.bean.ProductsExample.Criteria create = example
-				.createCriteria();
-		create.andNumberIn(numbers);
-		productsMapper.deleteByExample(example);
-
-	}
-
-	@Override
-	public void deleteByProduct(String number) {
-		ProductsExample example = new ProductsExample();
-		com.older.manager.bean.ProductsExample.Criteria criteria = example
-				.createCriteria();
-		criteria.andNumberEqualTo(number);
-		productsMapper.deleteByExample(example);
-	}
-
-	@Override
-	public void updateByNumber(Products product) {
-		productsMapper.updateByNumber(product);
-	}
-
+ 
 	@Override
 	public Map<String, Object> selectByCondition(Products product)
 			throws Exception {
@@ -95,7 +66,7 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public Products findProduct(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		return productsMapper.selectByPrimaryKey(id);
+		return productsMapper.selectWithTypeBrandByKey(id);
 	}
 
 	@Override
@@ -155,6 +126,13 @@ public class ProductServiceImpl implements IProductService {
 						+ products.getImages());
 			}
 		}
+		/*//更新关键词表
+		if(products.getProductKeyword()!=null){
+			ProductKeyword productKeyword=products.getProductKeyword();
+			if(productKeyword.getKeyword()!=null&&!"".equals(productKeyword.getKeyword())){
+				productKeywordMapper.updateByPrimaryKeySelective(productKeyword);
+			}
+		}*/
 		productsMapper.updateByPrimaryKeySelective(products);
 	}
 
@@ -187,5 +165,10 @@ public class ProductServiceImpl implements IProductService {
 			}
 
 		}
+	}
+
+	@Override
+	public void updateStateAndAuditstatus(Products product) {
+		 productsMapper.updateByPrimaryKeySelective(product);
 	}
 }

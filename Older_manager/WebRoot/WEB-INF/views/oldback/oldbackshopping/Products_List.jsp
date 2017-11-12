@@ -50,36 +50,39 @@
 <script src="${APP_PATH}/static/shop/assets/laydate/laydate.js" type="text/javascript"></script>
 <script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script>
 <link href="${APP_PATH}/static/layui/css/layui.css" rel="stylesheet" />
-
-         
-<script type="text/javascript" src="${APP_PATH}/static/shop/Widget/zTree/js/jquery.ztree.all-3.5.min.js"></script>
-	
+ 
 </head>
 
 <body>
 	<div class=" page-content clearfix">
 		<div id="products_style">
 			<div class="search_style">
-				<div class="title_names">搜索查询</div>
-				<form  id="select_produts_form" method="post">
-					<label>产品名称</label>
-					<input name="name" type="text" class="text_add" placeholder="输入品牌名称" style=" width:250px" />
-					<label>添加时间区为</label>
-					<input class="inline laydate-icon " name="addtime" type="date" id="start" style=" margin-left:10px;">
-					<label>—></label>
-					<input class="inline laydate-icon " name="addtime1" type="date"  style=" margin-left:10px;">
-					<button type="button" id="btn_select" >
-							<i class="icon-search"></i>查询
-					</button>
-				</form>
+				 <!--搜索部分  -->
+					<div class="demoTable">
+					 产品名称：
+					  <div class="layui-inline">
+					    
+					    <input class="layui-input" name="name" id="name" autocomplete="off">
+					  </div>
+				日期时间范围
+					  <div class="layui-inline">
+					      
+					      <div class="layui-input-inline">
+					        <input type="text" class="layui-input" id="test10" placeholder=" - ">
+					      </div>
+					    </div>
+					  <button class="layui-btn" data-type="reload">搜索</button>
+				</div>
 			</div>
 			<div class="border clearfix">
 				<span class="l_f"> 
 					<a href="picture-add" title="添加商品"
 					class="btn btn-warning Order_form"><i class="icon-plus"></i>添加商品</a>
-					<a  class="btn btn-danger" id="delete_products_info">
-					<i class="icon-trash"></i>批量删除</a>
+					 
 				</span> 
+				<div class="layui-btn-group demoTable">
+					  <button class="layui-btn layui-btn-radius" data-type="getCheckData"><i class="layui-icon"></i>批量删除</button>
+					</div>
 				<span class="r_f" id="shopNum"></span>
 			</div>
 			<!--产品列表展示-->
@@ -105,9 +108,7 @@
 					</div>
 				</div>
 				<div class="table_menu_list" id="testIframe">
-					<div class="layui-btn-group demoTable">
-					  <button class="layui-btn" data-type="getCheckData">批量删除</button>
-					</div>
+					
 					 
 					<table   class="layui-table" id="idTest" lay-filter="demo">
 					</table>
@@ -427,20 +428,45 @@
 	 
 	
 </script>
-   
+
+    <!--表格工具栏  -->
 	<script type="text/html" id="barDemo">
 	  <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="state">设置状态</a>
-	  <a class="layui-btn layui-btn-mini" lay-event="state">审核通过</a>
+	  <a class="layui-btn layui-btn-mini" lay-event="auditstatus">审核通过</a>
 	  <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
 	  
 	  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 	</script>
+	
+	<!--产品名称templet模板  -->
 	<script type="text/html" id="nameTpl">
 	  <a href="javascript:;" onClick="to_detail({{d.id}})" class="layui-table-link">{{d.name}}</a>
 	</script>
-	           
+	 
+	<!--审核auditstatus模板  -->
+	<script type="text/html" id="auditstatusTpl">
+	    {{#  if(d.auditstatus==0){ }}
+          <span class="layui-bg-gray">正在审核</span>
+        {{#  } else if(d.auditstatus==1) { }}
+          <span class="layui-bg-blue">审核通过</span>
+        {{#  } }}
+	</script>
+	<!--产品状态state templet模板  --> 
+	<script type="text/html" id="stateTpl">
+		{{# if(d.state==0){ }}
+         <span class="layui-bg-red">停用</span>
+        {{# } else if(d.state==1){ }}
+		 <span class="layui-bg-green">启用</span>
+        {{# } }}
+
+	</script>
+	
+	<!--添加时间 templet模板  --> 
+	<script type="text/javascript" id="addtimeTpl">
+		 {{ChangeDateFormat2(d.addtime)}}
+	</script>    
 	<script src="${APP_PATH}/static/layui/layui.js" type="text/javascript"></script>
-<script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
+	<script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 
 	
 	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
@@ -449,6 +475,7 @@
 	function to_detail(id){
 		 
 		layer.open({
+			  title:"产品信息详细",
 			  type: 2,
 			  area: ['700px', '550px'],
 			  fixed: false, //不固定
@@ -462,21 +489,32 @@
 	
 	layui.use(['laydate', 'laypage', 'table'], function(){
 	  var table = layui.table;
+	  
+	  
+	  var laydate=layui.laydate;
+	  
+	  
+	//日期时间范围
+	  laydate.render({
+	    elem: '#test10'
+	    ,type: 'datetime'
+	    ,range: true
+	  });
 	//方法级渲染
 	  table.render({
 	    elem: '#idTest'
 	    ,url:'shopping/getAllproduct'
 	    ,cols: [[
 	      {checkbox: true, fixed: true}
-	      ,{field:'id', title: 'ID', width:80, sort: true}
+	      ,{field:'id', title: 'ID', width:70, sort: true}
 	      ,{field:'number', width:135,title:'编号'}
 	      ,{field:'name', width:150,templet: '#nameTpl',title:'名称'}
-	      ,{field:'orprice', width:70, sort: true,title:'原价'}
-	      ,{field:'orprice', width:70, sort: true,title:'现价'}
-	      ,{field:'region', width:125,title:'所属地区/国家'}
-	      ,{field:'addtime', width:135, sort: true,title:'加入时间'}
-	      ,{field:'auditstatus', width:100, sort: true,title:'审核状态'}
-	      ,{field:'state', width:100, sort: true,title:'状态'}
+	      ,{field:'orprice', width:65, sort: true,title:'原价'}
+	      ,{field:'orprice', width:65, sort: true,title:'现价'}
+	      ,{field:'region', width:118,title:'所属地区/国家'}
+	      ,{field:'addtime', width:160,templet:'#addtimeTpl', sort: true,title:'加入时间'}
+	      ,{field:'auditstatus', width:100,templet:'#auditstatusTpl', sort: true,title:'审核状态'}
+	      ,{field:'state', width:80,templet:'#stateTpl', sort: true,title:'状态'}
 	      ,{fixed: 'right', width:250, align:'center', toolbar: '#barDemo',title:'操作'}
 	    ]]
 	    ,id: 'testReload'
@@ -490,8 +528,34 @@
 	  table.on('tool(demo)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
 		    var data = obj.data //获得当前行数据
 		    ,layEvent = obj.event; //获得 lay-event 对应的值
-		    if(layEvent === 'detail'){
-		      layer.msg('查看操作');
+		    if(layEvent === 'state'){
+		    	var value=data.state;
+		    	if(value==1){
+		    		value=0;
+		    	}else{
+		    		value=1;
+		    	} 
+		    	//像服务器发送更改状态指令
+		    	$.ajax({
+		        	url:"${APP_PATH}/shopping/updateState.action?id="+data.id,
+		        	data:"state="+value,
+		        	type:"get",
+		        	success:function(result){
+		        		if(result.code==100){
+		        			//修改列中状态显示
+		    		    	obj.update({
+		    		    		state:value
+		    		    	});
+		        		}else{
+		        			layer.msg('设置失败！',{
+		        				 icon:5,
+		        				 time:1000,
+		        				 offset:['30%']
+		        			 });
+		        		}
+		        	}
+		        });
+		    	
 		    } else if(layEvent === 'del'){
 		      layer.confirm('真的要删除么',{offset:['30%']}, function(index){
 		        obj.del(); //删除对应行（tr）的DOM结构
@@ -506,8 +570,7 @@
 		        				 icon:6,
 		        				 time:1000,
 		        				 offset:['30%']
-		        			 });
-		        			 
+		        			 }); 
 		        		}else{
 		        			layer.msg('删除失败！',{
 		        				 icon:5,
@@ -519,7 +582,34 @@
 		        });
 		      });
 		    } else if(layEvent === 'edit'){
-		      layer.msg('编辑操作');
+		       window.location.href="${APP_PATH}/shopping/product_edit.action?id="+data.id;
+		    }else if(layEvent==='auditstatus'){
+		    	var value=data.auditstatus;
+		    	if(value==1){
+		    		value=0;
+		    	}else{
+		    		value=1;
+		    	} 
+		    	//像服务器发送更改状态指令
+		    	$.ajax({
+		        	url:"${APP_PATH}/shopping/updateState.action?id="+data.id,
+		        	data:"auditstatus="+value,
+		        	type:"get",
+		        	success:function(result){
+		        		if(result.code==100){
+		        			//修改列中状态显示
+		    		    	obj.update({
+		    		    		auditstatus:value
+		    		    	});
+		        		}else{
+		        			layer.msg('设置失败！',{
+		        				 icon:5,
+		        				 time:1000,
+		        				 offset:['30%']
+		        			 });
+		        		}
+		        	}
+		        });
 		    }
 		  });
 
@@ -529,15 +619,20 @@
 	  });
 	  var $ = layui.$, active = {
 			  reload: function(){
-			      var demoReload = $('#demoReload');
+			      var name=$('#name');
+			      var time=$("#test10").val();
+			      var addtime=time.substring(0,20);
+			      var addtime1=time.substring(21,time.length);
+			       
 			      table.reload('testReload', {
 			        where: {
-			          key: {
-			            id: demoReload.val()
-			          }
+			            
+			            name:name.val(),
+			            addtime:addtime,
+			            addtime1:addtime1,
 			        }
-			   });
-			}
+			  });
+		  }
 		  ,
 	      getCheckData: function(){ //获取选中数据
 	      var checkStatus = table.checkStatus('testReload')
@@ -585,7 +680,29 @@
 	    active[type] ? active[type].call(this) : '';
 	  });
 	});
+     
+	function ChangeDateFormat2(d) {
+		//将时间戳转为int类型，构造Date类型
+		if (d != null) {
+			var date = new Date(parseInt(d));
 
+			//月份得+1，且只有个位数时在前面+0
+			var month = date.getMonth() + 1 + "-";
+
+			//日期为个位数时在前面+0
+			var currentDate = date.getDate();
+			
+			var currenthours=date.getHours();
+			
+			var currentminut=date.getMinutes();
+			
+			var currentSeconds=date.getSeconds();
+			//getFullYear得到4位数的年份 ，返回一串字符串
+			return date.getFullYear() + "-" + month + currentDate+" "+currenthours+":"+currentminut+":"+currentSeconds;
+		} else {
+			return null;
+		}
+	}
 	      
 	</script>
  

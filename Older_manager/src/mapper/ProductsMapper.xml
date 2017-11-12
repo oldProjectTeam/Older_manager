@@ -19,7 +19,7 @@
 		<result column="weight" property="weight" jdbcType="DOUBLE" />
 		<result column="unit" property="unit" jdbcType="VARCHAR" />
 		<result column="synopsis" property="synopsis" jdbcType="VARCHAR" />
-		<result column="images" property="images" jdbcType="VARCHAR" />
+		<result column="images" property="images" jdbcType="LONGVARCHAR" />
 		<result column="description" property="description" jdbcType="VARCHAR" />
 		<result column="inventory" property="inventory" jdbcType="INTEGER" />
 		<result column="sales" property="sales" jdbcType="INTEGER" />
@@ -747,19 +747,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
-	<!-- 根据名字和时间查询 -->
-	<select id="selectCondition" parameterType="com.older.manager.bean.Products"
-		resultMap="BaseResultMap">
-		select * from products p
-		<where>
-			<if test="name!=null and name!=''">
-				and p.name like '%${name}%'
-			</if>
-			<if test="addtime!=null">
-				and p.addtime between #{addtime} and #{addtime1}
-			</if>
-		</where>
-	</select>
+	
 
 	<!--分页查询所有产品 -->
 	<select id="selectByCondition" parameterType="com.older.manager.bean.Products"
@@ -777,4 +765,58 @@
 		</where>
 		limit #{page},#{limit}
 	</select>
+	
+	<resultMap id="ResultMapWithTypeBrand" type="com.older.manager.bean.Products" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="orPrice" property="orprice" jdbcType="DOUBLE" />
+    <result column="region" property="region" jdbcType="VARCHAR" />
+    <result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+    <result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="auditStatus" property="auditstatus" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+    <result column="placeOrigin" property="placeorigin" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="texture" property="texture" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="unit" property="unit" jdbcType="VARCHAR" />
+    <result column="synopsis" property="synopsis" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="inventory" property="inventory" jdbcType="INTEGER" />
+    <result column="sales" property="sales" jdbcType="INTEGER" />
+    <result column="images" property="images" jdbcType="LONGVARCHAR" />
+    <collection property="brand" ofType="brandWithBLOBs">
+    	<result column="brand_id" property="id" jdbcType="INTEGER" />
+     	<result column="brandName" property="name" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="productType" ofType="productType">
+    	<result column="type_id" property="id" jdbcType="INTEGER" />
+     	<result column="typeName" property="name" jdbcType="VARCHAR" />
+    </collection>
+    <collection property="productKeyword" ofType="productKeyword">
+    	<result column="pkId" property="id" jdbcType="INTEGER" />
+     	<result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
+    </collection>
+     
+  </resultMap>
+   
+  <!--根据ID联合查询产品和关联的品牌信息和类型信息  -->
+  <sql id="WithTypeBrand_Column_List" >
+    p.id, p.name, p.number, p.orPrice, p.region, p.nowPrice, p.addTime, p.auditStatus, p.state, p.imageTitle, 
+    p.placeOrigin, p.brand_id,p.type_id, p.texture, p.weight, p.unit, p.synopsis, p.description, p.inventory,
+     p.sales,p.images,
+    b.name brandName, pt.name typeName,
+    pk.id pkId,pk.keyword
+  </sql>
+   
+  <select id="selectWithTypeBrandByKey" parameterType="java.lang.Integer" resultMap="ResultMapWithTypeBrand">
+  	select 
+  	<include refid="WithTypeBrand_Column_List" />
+  	from products p,brand b,producttype pt,productKeyword pk
+  	where p.brand_id=b.id and p.type_id=pt.id and p.id=pk.product_id  and p.id = #{id,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

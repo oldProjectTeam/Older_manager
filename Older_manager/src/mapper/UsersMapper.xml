@@ -11,8 +11,7 @@
     <result column="realName" property="realname" jdbcType="VARCHAR" />
     <result column="phone" property="phone" jdbcType="VARCHAR" />
     <result column="idCard" property="idcard" jdbcType="VARCHAR" />
-    <result column="column1" property="column1" jdbcType="VARCHAR" />
-    <result column="column2" property="column2" jdbcType="VARCHAR" />
+    
     <result column="column3" property="column3" jdbcType="DOUBLE" />
     <result column="coumn4" property="coumn4" jdbcType="INTEGER" />
     <result column="column5" property="column5" jdbcType="VARCHAR" />
@@ -78,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, account, password, nickname, loginIp, loginTime, realName, phone, idCard, column1, 
-    column2, column3, coumn4, column5, column6, column7
+    id, account, password, nickname, loginIp, loginTime, realName, phone, idCard, 
+    column3, coumn4, column5, column6, column7
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.UsersExample" >
     select

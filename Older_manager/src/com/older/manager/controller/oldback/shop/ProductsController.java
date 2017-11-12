@@ -63,8 +63,15 @@ public class ProductsController {
 	  */
 		@RequestMapping("/getAllproduct")
 		@ResponseBody
-		public Map<String,Object> getAllproduct(Products product) throws Exception{
+		public Map<String,Object> getAllproduct(Products product,Integer id) throws Exception{
+			if(product!=null){
+				if(product.getName()!=null&&!"".equals(product.getName())){
+					product.setName(new String(product.getName().getBytes("ISO-8859-1"),"UTF-8"));
+				}
+			}
+				 
 			Map<String,Object> map = IProductService.selectByCondition(product);
+			
 			return map;
 		}
    
@@ -128,9 +135,15 @@ public class ProductsController {
 			}
 		}
 		
+		/**
+		 * 商品详细
+		 * @param id
+		 * @param modal
+		 * @return
+		 * @throws Exception
+		 */
 		@SuppressWarnings("finally")
 		@RequestMapping("/productDetail")
-		@ResponseBody
 		public ModelAndView productDetail(Integer id,ModelAndView modal) throws Exception{
 			 Products product=IProductService.findProduct(id);
 			 modal.addObject("product",product);
@@ -146,7 +159,7 @@ public class ProductsController {
 		 * @return
 		 */
 		@SuppressWarnings("finally")
-		@RequestMapping("/ updateProduct")
+		@RequestMapping("/updateProduct")
 		@ResponseBody
 		public Msg updateProduct(@Valid Products product,BindingResult result,HttpServletRequest request){
 			boolean flag=false;
@@ -161,7 +174,7 @@ public class ProductsController {
 			}
 			try {
 				IProductService.updateProduct(product, request);
-				
+				System.out.println("product------>"+product);
 				//判断是否应该更新关键词
 				if(product.getProductKeyword()!=null){
 					productKeywordService.updateProductKeyword(product.getProductKeyword());
@@ -178,60 +191,14 @@ public class ProductsController {
 			}
 		}
 
-		
-   //查询所有产品信息
-	@RequestMapping("/products")
-	@ResponseBody
-	public Msg getProductsInfo(@RequestParam(value="pn",defaultValue="1")Integer pn){
-		PageHelper.startPage(pn,10);
-		List<Products> products = IProductService.selectProducts();
-		PageInfo pageInfo=new PageInfo(products,5);
-		return Msg.success().add("pageInfo", pageInfo);
-	}
-	
-	//根据条件查询产品
-	@RequestMapping("/proCondition")
-	@ResponseBody
-	public Msg getProductsCondition(@RequestParam(value="pn",defaultValue="1")Integer pn,
-			@RequestParam(value="pageSize",defaultValue="10")Integer pageSize,Products  products){
-		System.out.println("信息为"+products.toString());
-		
-		PageHelper.startPage(pn,pageSize);
-		List<Products> proInfo=IProductService.selectCondition(products);
-		PageInfo pageInfo=new PageInfo(proInfo,5);
-		return Msg.success().add("pageInfo", pageInfo);
-	}
-	
-	//根据number集合删除
-	@RequestMapping(value="/deleteProduct/{numbers}")
-	@ResponseBody
-	public Msg deletePorducts(@PathVariable("numbers")String numbers){
-		if(numbers.contains("-")){
-		String[] number=numbers.split("-");
-		List<String> productList=new ArrayList<String>();
-		for (String proNumbers : number) {
-			productList.add(proNumbers);
-			}
-			IProductService.deleteProducts(productList);
-			return Msg.success();
-		}else{
-			IProductService.deleteByProduct(numbers);
-			return Msg.success();
+		 
+		@RequestMapping("/product_edit")
+		public ModelAndView product_edit(Integer id,ModelAndView modal) throws Exception{
+			 Products product=IProductService.findProduct(id);
+			 modal.addObject("product",product);
+			 modal.setViewName("/oldback/oldbackshopping/product_edit");
+			 return modal;
 		}
-	}
-	
-	//根据number修改
-	@RequestMapping("/updateProduct/{number}")
-	@ResponseBody
-	public Msg updateProdut(@PathVariable("number")String number,@RequestParam(value="state",defaultValue="1")int state){
-		System.out.println("哈哈哈哈或"+number+"-"+state);
-		Products products=new Products();
-		products.setNumber(number);
-		products.setState(state);
-		IProductService.updateByNumber(products);
-		return Msg.success();
-	}
-	
 	/**
 	 * 添加产品
 	 * @param product
@@ -268,6 +235,30 @@ public class ProductsController {
 			if(flag){
 				return Msg.success();
 			}else{
+				return Msg.fail();
+			}
+		}
+	}
+	
+	/**
+	 * 修改产品状态（使用状态、审核状态）
+	 * @param product
+	 * @return
+	 */
+	@SuppressWarnings("finally")
+	@RequestMapping("/updateState")
+	@ResponseBody
+	public Msg updateStateAndAuditstatus(Products product){
+		boolean flag = false;
+		try {
+		    IProductService.updateStateAndAuditstatus(product);
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+				return Msg.success();
+			} else {
 				return Msg.fail();
 			}
 		}

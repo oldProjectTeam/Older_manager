@@ -14,18 +14,13 @@ import com.older.manager.bean.Products;
 
 public interface IProductService {
 
-	//查询products信息
-	List<Products> selectProducts();
-	//根据条件查询
-	List<Products> selectCondition(Products products);
-	//添加商品
+	 
+	/**
+	 * 添加产品
+	 * @param products
+	 */
 	void  insertProducts(Products products);
-	//根据number的集合删除
-	void deleteProducts(List<String> numbers);
-	//根据number删除
-	void deleteByProduct(String number);
-	//根据number修改
-	void updateByNumber(Products product);
+	 
 	
 	/**
 	 * 分页查询所有产品
@@ -70,4 +65,14 @@ public interface IProductService {
 	 * @throws Exception
 	 */
 	public void deleteImg(Integer id,String imgName,HttpServletRequest request)throws Exception;
+
+
+	/**
+	 * 修改产品状态和审核状态
+	 * @param product
+	 */
+	public void updateStateAndAuditstatus(Products product);
+	
+	 
+
 }

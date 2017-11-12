@@ -29,12 +29,13 @@ public interface ProductsMapper {
 	int updateByPrimaryKeySelective(Products record);
 
 	int updateByPrimaryKey(Products record);
-
-	// 根据名字和时间查询
-	List<Products> selectCondition(Products products);
-
-	// 根据number更改
-	void updateByNumber(Products products);
+ 
+	/**
+     * 根据Id联合查询品牌信息、类型信息
+     * @param id
+     * @return
+     */
+    public Products selectWithTypeBrandByKey(Integer id);
 
 	/**
 	 * 分页查询所有产品信息
