@@ -45,6 +45,7 @@
 	src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
+<script src="${APP_PATH}/static/shop/assets/dist/echarts.js"></script>
 <script src="${APP_PATH}/static/shop/assets/laydate/laydate.js"
 	type="text/javascript"></script>
 <script
@@ -60,17 +61,7 @@
 					class="Statistic_title Statistic_btn"><a title="隐藏"
 					class="top_close_btn">隐藏</a></span>
 			</div>
-			<div class="hide_style clearfix">
-				<c:forEach items="${list}" var="orderRatio">
-					<div class="proportion">
-						<div class="easy-pie-chart percentage" data-percent="20"
-							data-color="#D15B47">
-							<span class="percent">${orderRatio.orderRatio}</span>%
-						</div>
-						<span class="name">${orderRatio.orderOfType}</span>
-					</div>
-				</c:forEach>
-			</div>
+			<div class="hide_style clearfix" id="ratioDiv"></div>
 		</div>
 
 		<!--订单表格-->
@@ -89,10 +80,7 @@
 								<h4 class="lighter smaller">订单类型分类</h4>
 							</div>
 							<div class="widget-body">
-								<ul class="b_P_Sort_list">
-									<c:forEach items="${list}" var="orderRatio">
-										<li><i class="orange  fa fa-reorder"></i><a href="#">${orderRatio.orderOfType}(${orderRatio.orderOfTypeNum})</a></li>
-									</c:forEach>
+								<ul class="b_P_Sort_list" id="sort_type">
 								</ul>
 							</div>
 						</div>
@@ -103,13 +91,12 @@
 					<div class="search_style">
 						<div class="title_names">搜索查询</div>
 						<ul class="search_content clearfix">
-							<li><label class="l_f">订单编号</label><input name=""
+							<li><label class="l_f">订单编号</label><input id="text_id"
 								type="text" class="text_add" placeholder="订单订单编号"
 								style=" width:250px"></li>
 							<li><label class="l_f">时间</label><input
-								class="inline laydate-icon" id="start"
-								style=" margin-left:10px;"></li>
-							<li style="width:90px;"><button type="button"
+								class="inline laydate-icon" id="start" style="margin-left:10px;" /></li>
+							<li style="width:90px;"><button type="button" id="search"
 									class="btn_search">
 									<i class="fa fa-search"></i>查询
 								</button></li>
@@ -120,90 +107,24 @@
 						id="sample-table">
 						<thead>
 							<tr>
-								<th width="25px"><label><input type="checkbox" id="check_item_all"
-										class="ace"><span class="lbl"></span></label></th>
+								<!-- <th width="25px"><label><input type="checkbox"
+										id="check_item_all" class="ace"><span class="lbl"></span></label></th> -->
 								<th width="120px">订单编号</th>
 								<th width="250px">产品名称</th>
 								<th width="100px">总价</th>
-								<th width="100px">优惠</th>
 								<th width="100px">订单时间</th>
-								<th width="180px">所属类型</th>
 								<th width="80px">数量</th>
 								<th width="70px">状态</th>
 								<th width="200px">操作</th>
 							</tr>
 						</thead>
-						<tbody>
-							<c:forEach items="${pageInfo.list}" var="order">
-								<tr>
-									<td><label><input type="checkbox" class="ace check_item" ><span
-											class="lbl"></span></label></td>
-									<td>${order.id}</td>
-									<td class="order_product_name">${order.subject}</td>
-									<td>${order.subject}</td>
-									<td>${order.cost}</td>
-									<td><fmt:formatDate value="${order.creattime}"
-											pattern="yyyy-MM-dd" /></td>
-									<td>食品</td>
-									<td>${order.num}</td>
-									<td class="td-status"><span
-										class="label label-success radius">${order.state}</span></td>
-									<td><a onClick="Delivery_stop(this,'10001')"
-										href="javascript:;" title="发货" class="btn btn-xs btn-success"><i
-											class="fa fa-cubes bigger-120"></i></a> <a title="订单详细"
-										href="order_detailed"
-										class="btn btn-xs btn-info order_detailed"><i
-											class="fa fa-list bigger-120"></i></a> <a title="删除"
-										href="javascript:;" onclick="Order_form_del(this,'1')"
-										class="btn btn-xs btn-warning"><i
-											class="fa fa-trash  bigger-120"></i></a></td>
-								</tr>
-							</c:forEach>
+						<tbody id="table_data">
 						</tbody>
 					</table>
 					<!--分页信息  -->
 					<div class="row">
-						<div class="col-md-7" style="font-size: 18px;">&nbsp;&nbsp;当前第${pageInfo.pageNum }页，共${pageInfo.pages}页，总计${pageInfo.total}条记录</div>
-						<div class="col-md-5">
-							<nav aria-label="Page navigation">
-							<ul class="pagination">
-								<c:if test="${pageInfo.hasPreviousPage==false}">
-									<li class="disabled"><a>首页</a></li>
-									<li class="disabled"><span aria-hidden="true">&laquo;</span>
-									</li>
-								</c:if>
-								<c:if test="${pageInfo.hasPreviousPage==true}">
-									<li><a href="${APP_PATH}/order/Orderform?pn=${user.type}">首页</a></li>
-									<li><a
-										href="${APP_PATH}/order/Orderform?pn=${pageInfo.pageNum-1}">
-											<span aria-hidden="true">&laquo;</span>
-									</a></li>
-								</c:if>
-								<c:forEach items="${pageInfo.navigatepageNums}" var="p">
-									<c:if test="${p==pageInfo.pageNum}">
-										<li class="active"><a
-											href="${APP_PATH}/order/Orderform?pn=${pageInfo.pageNum}">${p}</a></li>
-									</c:if>
-									<c:if test="${p!=pageInfo.pageNum}">
-										<li><a href="${APP_PATH}/order/Orderform?pn=${p}">${p}</a></li>
-									</c:if>
-								</c:forEach>
-								<c:if test="${pageInfo.hasNextPage==false}">
-									<li class="disabled"><span aria-hidden="true">&raquo;</span>
-									</li>
-									<li class="disabled"><a>末页</a></li>
-								</c:if>
-								<c:if test="${pageInfo.hasNextPage!=false}">
-									<li><a
-										href="${APP_PATH}/order/Orderform?pn=${pageInfo.pageNum+1}"
-										aria-label="Next"> <span aria-hidden="true">&raquo;</span></a></li>
-									<li><a
-										href="${APP_PATH}/order/Orderform?pn=${pageInfo.pages}">末页</a>
-									</li>
-								</c:if>
-							</ul>
-							</nav>
-						</div>
+						<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
+						<div class="col-md-5" id="page_nav"></div>
 					</div>
 				</div>
 			</div>
@@ -240,7 +161,7 @@
 					<div class="form-group">
 						<label class="col-sm-2 control-label no-padding-right"
 							for="form-field-1">货到付款 </label>
-						<div class="col-sm-9">
+						<div class="col-sm-9" style="margin-top: 8px;">
 							<label><input name="checkbox" type="checkbox" class="ace"
 								id="checkbox"><span class="lbl"></span></label>
 						</div>
@@ -422,52 +343,328 @@
 							}
 						});
 
-		//订单列表
-		/* jQuery(function($) {
-			var oTable1 = $('#sample-table').dataTable({
-				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
-				"bStateSave" : true,//状态保存
-				"aoColumnDefs" : [
-				//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-				{
-					"orderable" : false,
-					"aTargets" : [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
-				} // 制定列不参与排序
-				]
-			});
+		//加载订单占比
+		layer.msg('数据加载中...', {
+			icon : 16,
+			shade : 0.01
+		});
+		$(function() {
+			$
+					.ajax({
+						url : "order/orderRatio",
+						type : "GET",
+						success : function(result) {
+							$
+									.each(
+											result.extend.list,
+											function(index, item) {
+												var outDiv = $("<div></div>")
+														.addClass("proportion");
+												var inDiv = $("<div></div>")
+														.attr("data-percent",
+																"20").attr(
+																"data-color",
+																"#D15B47");
+												inDiv
+														.append(
+																$(
+																		"<span></span>")
+																		.addClass(
+																				"percent")
+																		.append(
+																				item.orderRatio))
+														.append("%");
+												var inSpan = $("<span></span>")
+														.addClass("name")
+														.append(
+																item.orderOfType);
+												outDiv.append(inDiv).append(
+														inSpan).appendTo(
+														$("#ratioDiv"));
 
-			$('table th input:checkbox').on(
-					'click',
-					function() {
-						var that = this;
-						$(this).closest('table').find(
-								'tr > td:first-child input:checkbox').each(
-								function() {
-									this.checked = that.checked;
-									$(this).closest('tr').toggleClass(
-											'selected');
-								});
-
+												var li = $("<li></li>")
+														.append(
+																$("<i></i>")
+																		.addClass(
+																				"orange  fa fa-reorder"))
+														.append(
+																$("<a></a>")
+																		.append(
+																				item.orderOfType
+																						+ (item.orderOfTypeNum)));
+												$("#sort_type").append(li);
+											});
+						}
 					});
+			go(1);
+		});
 
-			$('[data-rel="tooltip"]').tooltip({
-				placement : tooltip_placement
+		function go(pn, id) {
+			$.ajax({
+				url : "order/queryAllOrderWithJson",
+				data : {
+					"pn" : pn
+				},
+				type : "GET",
+				success : function(result) {
+					build_page_text(result);
+					//构建分页条
+					build_page_nav(result);
+					//构建表格数据
+					build_table_data(result);
+				}
 			});
-			function tooltip_placement(context, source) {
-				var $source = $(source);
-				var $parent = $source.closest('table')
-				var off1 = $parent.offset();
-				var w1 = $parent.width();
+		}
+		function build_table_data(result) {
+			$("#table_data").empty();
+			$.each(result.extend.pageInfo.list,
+					function(index, item) {
+						var dataTR = $("<tr></tr>");
+						var checkBoxData = $("<td></td>").addClass(
+								"text-center").append(
+								$("<lable></lable>").append(
+										$("<input type='checkbox'/>").addClass(
+												"ace check_item")).append(
+										$("<span></span>").addClass("lbl")));
+						var dataTd1 = $("<td></td>").append(item.orderNo);
+						var dataTd2 = $("<td></td>").addClass(
+								"order_product_name").append(item.subject);
+						var dataTd3 = $("<td></td>").append(item.cost);
+						var dataTd4 = $("<td></td>").append(
+								ChangeDateFormat(item.creattime));
 
-				var off2 = $source.offset();
-				var w2 = $source.width();
+						var dataTd5 = $("<td></td>").append(item.num);
+						var dataTd6 = $("<td></td>").addClass("td-status")
+								.append(
+										$("<span></span>").addClass(
+												"label label-success radius")
+												.append(item.state));
 
-				if (parseInt(off2.left) < parseInt(off1.left)
-						+ parseInt(w1 / 2))
-					return 'right';
-				return 'left';
+						var send_btn = $("<a></a>")
+								.attr("href", "javascript:;").attr("title",
+										"发货")
+								.addClass("btn btn-xs btn-success").append(
+										$("<i></i>").addClass(
+												"fa fa-cubes bigger-120"));
+						var find_btn = $("<a></a>")
+								.attr("href", "javascript:;").attr("title",
+										"订单详细").addClass(
+										"btn btn-xs btn-info order_detailed")
+								.append(
+										$("<i></i>").addClass(
+												"fa fa-list bigger-120"));
+						var del_btn = $("<a></a>").attr("href", "javascript:;")
+								.attr("title", "删除").addClass(
+										"btn btn-xs btn-warning").append(
+										$("<i></i>").addClass(
+												"fa fa-trash  bigger-120"));
+						send_btn.attr("orderId", item.id);
+						send_btn.attr("state", item.state);
+						find_btn.attr("orderId", item.id);
+						del_btn.attr("orderId", item.id);
+
+						//发货
+						send_btn.click(function() {
+							if(send_btn.attr("state")=='待发货'){
+								Delivery_stop($(this), send_btn.attr("orderId"));
+							}else if(send_btn.attr("state")=='待付款'){
+								layer.msg("这个订单还没有付款呢,不能发货");
+							}else{
+								layer.msg("这个订单已经发过货了");
+							}
+						});
+
+						//单个item删除事件
+						del_btn.click(function() {
+							Order_form_del($(this), del_btn.attr("orderId"));
+						});
+						dataTR.append(dataTd1).append(
+								dataTd2).append(dataTd3).append(dataTd4)
+								.append(dataTd5).append(dataTd6).append(
+										$("<td></td>").append(send_btn).append(del_btn))
+								.appendTo($("#table_data"));
+						send_btn.click(function() {
+
+						});
+					});
+		}
+		//解析显示分页条信息
+		function build_page_nav(result) {
+			$("#page_nav").empty();
+			var ul = $("<ul></ul>").addClass("pagination");
+			var firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
+			firstPageLi.click(function() {
+				go(1);
+			});
+			var prePageLi = $("<li></li>").append(
+					$("<a></a>").append("&laquo;"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
+				firstPageLi.addClass("disabled");
+				prePageLi.addClass("disabled");
+			} else {
+				//为元素添加点击翻页事件
+				prePageLi.click(function() {
+					go(result.extend.pageInfo.pageNum - 1);
+				});
 			}
-		}); */
+			var nextPageLi = $("<li></li>").append(
+					$("<a></a>").append("&raquo;"));
+			var lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
+			lastPageLi.click(function() {
+				go(result.extend.pageInfo.pages);
+			});
+			if (result.extend.pageInfo.hasNextPage == false) {
+				nextPageLi.addClass("disabled");
+				lastPageLi.addClass("disabled");
+			} else {
+				//为元素添加点击翻页事件
+				nextPageLi.click(function() {
+					go(result.extend.pageInfo.pageNum + 1);
+				});
+			}
+			//添加首页和前一页的提示
+			ul.append(firstPageLi).append(prePageLi);
+			//遍历给ul中添加页码提示
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("active");
+				}
+				numLi.click(function() {
+					go(item);
+				});
+				ul.append(numLi);
+			});
+			//添加下一页和末页的提示
+			ul.append(nextPageLi).append(lastPageLi);
+			//把ul加到nav 
+			var navEle = $("<nav></nav>").append(ul);
+			navEle.appendTo("#page_nav");
+		}
+		function build_page_text(result) {
+			$("#page_text").empty();
+			$("#page_text").append(
+					"当前第" + result.extend.pageInfo.pageNum + "页，共"
+							+ result.extend.pageInfo.pages + "页，总计"
+							+ result.extend.pageInfo.total + "条记录");
+			totalRecord = result.extend.pageInfo.total;
+			currentNum = result.extend.pageInfo.pageNum;
+		}
+		function ChangeDateFormat(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
+
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "月";
+
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate() + "日";
+
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "年" + month + currentDate;
+			} else {
+				return null;
+			}
+
+		}
+
+		$("#search").click(function() {
+			if ($("#text_id").val() == '') {
+				layer.msg("请输入订单编号");
+			} else if ($("#start").val() == '') {
+				layer.msg("请输入时间");
+			} else {
+				search(1, $("#text_id").val(), $("#start").val());
+			}
+		});
+
+		function search(pn, id, time) {
+			layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
+			$.ajax({
+				url : "order/search",
+				data : {
+					"pn" : pn,
+					"id" : id,
+					"time" : time
+				},
+				type : "GET",
+				success : function(result) {
+					//console.log(result);
+					if (result.code == 100) {
+						build_page_text(result);
+						//构建分页条
+						build_page_nav_search(result);
+						//构建表格数据
+						build_table_data(result);
+					} else {
+						$("#table_data").empty();
+						$("#page_nav").empty();
+						$("#page_text").empty();
+						layer.msg("没有查到数据");
+					}
+				}
+			});
+		}
+		
+		//解析显示分页条信息
+		function build_page_nav_search(result) {
+			$("#page_nav").empty();
+			var ul = $("<ul></ul>").addClass("pagination");
+			var firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
+			firstPageLi.click(function() {
+				search(1,$("#text_id").val(),$("#start").val());
+			});
+			var prePageLi = $("<li></li>").append(
+					$("<a></a>").append("&laquo;"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
+				firstPageLi.addClass("disabled");
+				prePageLi.addClass("disabled");
+			} else {
+				//为元素添加点击翻页事件
+				prePageLi.click(function() {
+					search(result.extend.pageInfo.pageNum - 1,$("#text_id").val(),$("#start").val());
+				});
+			}
+			var nextPageLi = $("<li></li>").append(
+					$("<a></a>").append("&raquo;"));
+			var lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
+			lastPageLi.click(function() {
+				search(result.extend.pageInfo.pages,$("#text_id").val(),$("#start").val());
+			});
+			if (result.extend.pageInfo.hasNextPage == false) {
+				nextPageLi.addClass("disabled");
+				lastPageLi.addClass("disabled");
+			} else {
+				//为元素添加点击翻页事件
+				nextPageLi.click(function() {
+					search(result.extend.pageInfo.pageNum + 1,$("#text_id").val(),$("#start").val());
+				});
+			}
+			//添加首页和前一页的提示
+			ul.append(firstPageLi).append(prePageLi);
+			//遍历给ul中添加页码提示
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("active");
+				}
+				numLi.click(function() {
+					search(item,$("#text_id").val(),$("#start").val());
+				});
+				ul.append(numLi);
+			});
+			//添加下一页和末页的提示
+			ul.append(nextPageLi).append(lastPageLi);
+			//把ul加到nav 
+			var navEle = $("<nav></nav>").append(ul);
+			navEle.appendTo("#page_nav");
+		}
 	</script>
 </body>
 </html>

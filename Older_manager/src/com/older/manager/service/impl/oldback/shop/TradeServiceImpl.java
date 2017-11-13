@@ -1,6 +1,9 @@
 package com.older.manager.service.impl.oldback.shop;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.older.manager.bean.Orderdetail;
 import com.older.manager.bean.OrderdetailExample;
 import com.older.manager.bean.Orders;
+import com.older.manager.bean.OrdersExample;
 import com.older.manager.bean.ProductType;
 import com.older.manager.bean.Products;
 import com.older.manager.bean.ProductsExample;
@@ -81,6 +85,21 @@ public class TradeServiceImpl implements ITradeService {
 	@Override
 	public List<Orders> queryAllOrderWithJson() {
 		return ordersMapper.selectByExample(null);
+	}
+
+	@Override
+	public List<Orders> search(String id,String time) {
+		OrdersExample example = new OrdersExample();
+		com.older.manager.bean.OrdersExample.Criteria criteria = example
+				.createCriteria();
+		criteria.andOrderNoEqualTo(id);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			criteria.andCreattimeEqualTo(sdf.parse(time));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return ordersMapper.selectByExample(example);
 	}
 
 }

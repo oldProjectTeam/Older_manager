@@ -33,7 +33,8 @@
 <script src="${APP_PATH}/static/shop/assets/js/jquery.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/dist/echarts.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/bootstrap.min.js"></script>
-
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body>

@@ -1,6 +1,7 @@
 package com.older.manager.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
@@ -15,6 +16,8 @@ public class Products {
 	private Integer page;//当前页
 	private Integer limit;//每页显示大小
 	
+	//图片路径列表
+	private List<String>imgList;
 	
 	@NotEmpty(message="简略标题不能为空")
 	@Length(min=1,max=100,message="简略标题长度超出限制")
@@ -496,5 +499,13 @@ public class Products {
 				+ ", paral14=" + paral14 + ", paral15=" + paral15
 				+ ", paral16=" + paral16 + ", paral17=" + paral17 + ", images="
 				+ images + "]";
+	}
+
+	public List<String> getImgList() {
+		return imgList;
+	}
+
+	public void setImgList(List<String> imgList) {
+		this.imgList = imgList;
 	}
 }

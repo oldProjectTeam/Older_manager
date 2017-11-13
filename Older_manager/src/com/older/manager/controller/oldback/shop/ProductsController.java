@@ -195,6 +195,7 @@ public class ProductsController {
 		@RequestMapping("/product_edit")
 		public ModelAndView product_edit(Integer id,ModelAndView modal) throws Exception{
 			 Products product=IProductService.findProduct(id);
+			 
 			 modal.addObject("product",product);
 			 modal.setViewName("/oldback/oldbackshopping/product_edit");
 			 return modal;
@@ -252,6 +253,34 @@ public class ProductsController {
 		boolean flag = false;
 		try {
 		    IProductService.updateStateAndAuditstatus(product);
+			flag = true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (flag) {
+				return Msg.success();
+			} else {
+				return Msg.fail();
+			}
+		}
+	}
+	
+	/**
+	 * 删除图片
+	 * @param id
+	 * @param imgName
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings("finally")
+	@RequestMapping("/deleteImg")
+	@ResponseBody
+	public Msg deleteImg(Integer id, String imgName, HttpServletRequest request)
+			throws Exception{
+		boolean flag = false;
+		try {
+		    IProductService.deleteImg(id, imgName, request);
 			flag = true;
 		} catch (Exception e) {
 			e.printStackTrace();

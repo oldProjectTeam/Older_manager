@@ -1,5 +1,6 @@
 package com.older.manager.service.impl.oldback.shop;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -44,6 +45,9 @@ public class ProductServiceImpl implements IProductService {
 		if (products.getNumber() == null || "".equals(products.getNumber())) {
 			products.setNumber(UUIDTools.getNumber());
 		}
+		if(products.getImages()!=null&&!"".equals(products.getImages())){
+			products.setImages(products.getImages().substring(1,products.getImages().length()));
+		}
 		productsMapper.insertSelective(products);
 	}
 
@@ -66,7 +70,24 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public Products findProduct(Integer id) throws Exception {
 		// TODO Auto-generated method stub
-		return productsMapper.selectWithTypeBrandByKey(id);
+		Products product=productsMapper.selectWithTypeBrandByKey(id);
+		//分割图片路径，方便前台循环展示
+		 if(product.getImages()!=null&&!"".equals(product.getImages())){
+			 List<String>imgList=new ArrayList<String>();
+			 String img=product.getImages();
+			 if(img.contains(",")){
+				 String i[]=img.split(",");
+				 for(String image:i){
+					 if("".equals(image))
+						 continue;
+					 imgList.add(image.trim());
+				 }
+			 }else{
+				 imgList.add(img.trim());
+			 }
+			 product.setImgList(imgList);
+		 }
+		return product;
 	}
 
 	@Override
@@ -80,8 +101,8 @@ public class ProductServiceImpl implements IProductService {
 				for (String fileName : image) {
 					FileUtil.deleteFile(fileName, request);
 				}
-			} else {
-				FileUtil.deleteFile(product.getImages(), request);
+			} else { 
+				FileUtil.deleteFile(product.getImages().trim(), request);
 			}
 		}
 		productsMapper.deleteByPrimaryKey(id);
@@ -95,7 +116,7 @@ public class ProductServiceImpl implements IProductService {
 		criteria.andIdIn(ids);
 		Products product = null;
 		
-		// 删除对应图片图片
+		// 删除对应图片
 		for (Integer id : ids) {
 			product = productsMapper.selectByPrimaryKey(id);
 			if (product.getImages() != null) {
@@ -105,8 +126,7 @@ public class ProductServiceImpl implements IProductService {
 						FileUtil.deleteFile(fileName, request);
 					}
 				} else {
-					String fileName = product.getImages().replaceAll(",", "");// 防止格式错误，多逗号
-					FileUtil.deleteFile(fileName, request);
+					FileUtil.deleteFile(product.getImages().trim(), request);
 				}
 			}
 		}
@@ -136,7 +156,6 @@ public class ProductServiceImpl implements IProductService {
 		if (imgName != null && !"".equals(imgName)) {
 			Products product = productsMapper.selectByPrimaryKey(id);
 			if (product.getImages() != null) {
-				
 				if (product.getImages().contains(",")) {
 					StringBuffer newImg=new StringBuffer();
 					String image[] = product.getImages().trim().split(",");
@@ -149,15 +168,14 @@ public class ProductServiceImpl implements IProductService {
 					}
 					String s=newImg.toString().substring(0,newImg.lastIndexOf(","));
 					product.setImages(s);
-					//更新图片序列信息
-					productsMapper.updateByPrimaryKeySelective(product);
 				} else {
-					String fileName = product.getImages().replaceAll(",", "");// 防止格式错误，多逗号
-					if (fileName.equals(imgName))
-						FileUtil.deleteFile(fileName, request);
+					if (product.getImages().equals(imgName.trim())){
+						FileUtil.deleteFile(imgName.trim(), request);
+						product.setImages("");
+					}
 				}
 			}
-
+			productsMapper.updateByPrimaryKeySelective(product);
 		}
 	}
 

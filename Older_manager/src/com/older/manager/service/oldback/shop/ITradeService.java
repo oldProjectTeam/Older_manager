@@ -1,5 +1,6 @@
 package com.older.manager.service.oldback.shop;
 
+import java.util.Date;
 import java.util.List;
 
 import com.older.manager.bean.Orders;
@@ -45,5 +46,12 @@ public interface ITradeService {
 	 * @return
 	 */
 	List<Orders> queryAllOrderWithJson();
+
+	/**
+	 * 通过订单编号查询订单
+	 * @param id
+	 * @return
+	 */
+	List<Orders> search(String id,String time);
 
 }

@@ -1,8 +1,12 @@
 package com.older.manager.controller.oldback.shop;
 
+import java.io.UnsupportedEncodingException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,13 +31,19 @@ public class TradeController {
 	@Autowired
 	private ITradeService tradeService;
 
+	@RequestMapping("/orderform")
+	public String order() {
+		return "oldback/oldbackshopping/Orderform";
+	}
+
 	/**
 	 * 电商后台订单管理
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/Orderform")
-	public String Orderform(@RequestParam("pn") Integer pn,Model model) {
+	@RequestMapping("/orderRatio")
+	@ResponseBody
+	public Msg Orderform() {
 		List<OrderRatio> list = new ArrayList<OrderRatio>();
 		// 查询出所有的产品类型出来
 		List<ProductType> productTypes = tradeService
@@ -57,12 +67,10 @@ public class TradeController {
 			orderRatio.setOrderRatio(df.format(ratio));
 			list.add(orderRatio);
 		}
-		PageHelper.startPage(pn, 10);
-		List<Orders> orderlList = tradeService.queryAllOrderWithJson();
-		PageInfo<Orders> pageInfo = new PageInfo<Orders>(orderlList);
-		model.addAttribute("list", list);
-		model.addAttribute("pageInfo", pageInfo);
-		return "oldback/oldbackshopping/Orderform";
+		if (list.size() > 0) {
+			return Msg.success().add("list", list);
+		}
+		return Msg.fail();
 	}
 
 	@RequestMapping("/queryAllOrderWithJson")
@@ -72,5 +80,24 @@ public class TradeController {
 		List<Orders> orders = tradeService.queryAllOrderWithJson();
 		PageInfo<Orders> pageInfo = new PageInfo<Orders>(orders);
 		return Msg.success().add("pageInfo", pageInfo);
+	}
+
+	@RequestMapping("/search")
+	@ResponseBody
+	public Msg search(@RequestParam("pn") Integer pn,
+			@RequestParam("id") String id, @RequestParam("time") String time) {
+		try {
+			id = new String(id.getBytes("ISO-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		PageHelper.startPage(pn, 10);
+		List<Orders> orders = tradeService.search(id, time);
+		PageInfo<Orders> pageInfo = new PageInfo<Orders>(orders);
+		if (orders.size()>0) {
+			return Msg.success().add("pageInfo", pageInfo);
+		}else {
+			return Msg.fail();
+		}
 	}
 }
