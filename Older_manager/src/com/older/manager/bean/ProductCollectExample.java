@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
-public class ProductcollectExample {
+public class ProductCollectExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ProductcollectExample() {
+    public ProductCollectExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -192,123 +192,123 @@ public class ProductcollectExample {
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdIsNull() {
-            addCriterion("oldManAccount_id is null");
+        public Criteria andUsersIdIsNull() {
+            addCriterion("users_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdIsNotNull() {
-            addCriterion("oldManAccount_id is not null");
+        public Criteria andUsersIdIsNotNull() {
+            addCriterion("users_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdEqualTo(Integer value) {
-            addCriterion("oldManAccount_id =", value, "oldmanaccountId");
+        public Criteria andUsersIdEqualTo(Integer value) {
+            addCriterion("users_id =", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdNotEqualTo(Integer value) {
-            addCriterion("oldManAccount_id <>", value, "oldmanaccountId");
+        public Criteria andUsersIdNotEqualTo(Integer value) {
+            addCriterion("users_id <>", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdGreaterThan(Integer value) {
-            addCriterion("oldManAccount_id >", value, "oldmanaccountId");
+        public Criteria andUsersIdGreaterThan(Integer value) {
+            addCriterion("users_id >", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("oldManAccount_id >=", value, "oldmanaccountId");
+        public Criteria andUsersIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("users_id >=", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdLessThan(Integer value) {
-            addCriterion("oldManAccount_id <", value, "oldmanaccountId");
+        public Criteria andUsersIdLessThan(Integer value) {
+            addCriterion("users_id <", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdLessThanOrEqualTo(Integer value) {
-            addCriterion("oldManAccount_id <=", value, "oldmanaccountId");
+        public Criteria andUsersIdLessThanOrEqualTo(Integer value) {
+            addCriterion("users_id <=", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdIn(List<Integer> values) {
-            addCriterion("oldManAccount_id in", values, "oldmanaccountId");
+        public Criteria andUsersIdIn(List<Integer> values) {
+            addCriterion("users_id in", values, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdNotIn(List<Integer> values) {
-            addCriterion("oldManAccount_id not in", values, "oldmanaccountId");
+        public Criteria andUsersIdNotIn(List<Integer> values) {
+            addCriterion("users_id not in", values, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdBetween(Integer value1, Integer value2) {
-            addCriterion("oldManAccount_id between", value1, value2, "oldmanaccountId");
+        public Criteria andUsersIdBetween(Integer value1, Integer value2) {
+            addCriterion("users_id between", value1, value2, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("oldManAccount_id not between", value1, value2, "oldmanaccountId");
+        public Criteria andUsersIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("users_id not between", value1, value2, "usersId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdIsNull() {
-            addCriterion("Products_id is null");
+            addCriterion("products_id is null");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdIsNotNull() {
-            addCriterion("Products_id is not null");
+            addCriterion("products_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdEqualTo(Integer value) {
-            addCriterion("Products_id =", value, "productsId");
+            addCriterion("products_id =", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdNotEqualTo(Integer value) {
-            addCriterion("Products_id <>", value, "productsId");
+            addCriterion("products_id <>", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdGreaterThan(Integer value) {
-            addCriterion("Products_id >", value, "productsId");
+            addCriterion("products_id >", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("Products_id >=", value, "productsId");
+            addCriterion("products_id >=", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdLessThan(Integer value) {
-            addCriterion("Products_id <", value, "productsId");
+            addCriterion("products_id <", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdLessThanOrEqualTo(Integer value) {
-            addCriterion("Products_id <=", value, "productsId");
+            addCriterion("products_id <=", value, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdIn(List<Integer> values) {
-            addCriterion("Products_id in", values, "productsId");
+            addCriterion("products_id in", values, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdNotIn(List<Integer> values) {
-            addCriterion("Products_id not in", values, "productsId");
+            addCriterion("products_id not in", values, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdBetween(Integer value1, Integer value2) {
-            addCriterion("Products_id between", value1, value2, "productsId");
+            addCriterion("products_id between", value1, value2, "productsId");
             return (Criteria) this;
         }
 
         public Criteria andProductsIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("Products_id not between", value1, value2, "productsId");
+            addCriterion("products_id not between", value1, value2, "productsId");
             return (Criteria) this;
         }
 

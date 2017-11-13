@@ -84,9 +84,9 @@
 		<!-- <table tableName="integral" domainObjectName="Integral"> </table> -->
 		<!-- <table tableName="products" domainObjectName="Products">
 		</table> -->
-		<table tableName="adslist" domainObjectName="Adslist">
+		<table tableName="shoppingcart" domainObjectName="ShoppingCart">
 		</table>
-		<table tableName="sortads" domainObjectName="Sortads">
+		<table tableName="productcollect" domainObjectName="ProductCollect">
 		</table>
 	</context>
 </generatorConfiguration>

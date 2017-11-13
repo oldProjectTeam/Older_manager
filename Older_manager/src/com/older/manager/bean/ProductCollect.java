@@ -2,10 +2,10 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
-public class Productcollect {
+public class ProductCollect {
     private Integer id;
 
-    private Integer oldmanaccountId;
+    private Integer usersId;
 
     private Integer productsId;
 
@@ -33,12 +33,12 @@ public class Productcollect {
         this.id = id;
     }
 
-    public Integer getOldmanaccountId() {
-        return oldmanaccountId;
+    public Integer getUsersId() {
+        return usersId;
     }
 
-    public void setOldmanaccountId(Integer oldmanaccountId) {
-        this.oldmanaccountId = oldmanaccountId;
+    public void setUsersId(Integer usersId) {
+        this.usersId = usersId;
     }
 
     public Integer getProductsId() {

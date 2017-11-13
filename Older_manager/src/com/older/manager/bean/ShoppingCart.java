@@ -2,10 +2,10 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
-public class Shoppingcart {
+public class ShoppingCart {
     private Integer id;
 
-    private Integer oldmanaccountId;
+    private Integer usersId;
 
     private Integer produtsId;
 
@@ -29,12 +29,12 @@ public class Shoppingcart {
         this.id = id;
     }
 
-    public Integer getOldmanaccountId() {
-        return oldmanaccountId;
+    public Integer getUsersId() {
+        return usersId;
     }
 
-    public void setOldmanaccountId(Integer oldmanaccountId) {
-        this.oldmanaccountId = oldmanaccountId;
+    public void setUsersId(Integer usersId) {
+        this.usersId = usersId;
     }
 
     public Integer getProdutsId() {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ProductcollectMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Productcollect" >
+<mapper namespace="com.older.manager.mapper.ProductCollectMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.ProductCollect" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="oldManAccount_id" property="oldmanaccountId" jdbcType="INTEGER" />
-    <result column="Products_id" property="productsId" jdbcType="INTEGER" />
+    <result column="users_id" property="usersId" jdbcType="INTEGER" />
+    <result column="products_id" property="productsId" jdbcType="INTEGER" />
     <result column="time" property="time" jdbcType="DATE" />
     <result column="productCollect1" property="productcollect1" jdbcType="VARCHAR" />
     <result column="productCollect2" property="productcollect2" jdbcType="VARCHAR" />
@@ -73,10 +73,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, oldManAccount_id, Products_id, time, productCollect1, productCollect2, productCollect3, 
+    id, users_id, products_id, time, productCollect1, productCollect2, productCollect3, 
     productCollect4, productCollect5, productCollect6, productCollect7
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ProductcollectExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ProductCollectExample" >
     select
     <if test="distinct" >
       distinct
@@ -86,7 +86,9 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    order by id DESC
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -98,33 +100,33 @@
     delete from productcollect
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ProductcollectExample" >
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.ProductCollectExample" >
     delete from productcollect
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Productcollect" >
-    insert into productcollect (id, oldManAccount_id, Products_id, 
+  <insert id="insert" parameterType="com.older.manager.bean.ProductCollect" >
+    insert into productcollect (id, users_id, products_id, 
       time, productCollect1, productCollect2, 
       productCollect3, productCollect4, productCollect5, 
       productCollect6, productCollect7)
-    values (#{id,jdbcType=INTEGER}, #{oldmanaccountId,jdbcType=INTEGER}, #{productsId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{usersId,jdbcType=INTEGER}, #{productsId,jdbcType=INTEGER}, 
       #{time,jdbcType=DATE}, #{productcollect1,jdbcType=VARCHAR}, #{productcollect2,jdbcType=VARCHAR}, 
       #{productcollect3,jdbcType=VARCHAR}, #{productcollect4,jdbcType=VARCHAR}, #{productcollect5,jdbcType=VARCHAR}, 
       #{productcollect6,jdbcType=VARCHAR}, #{productcollect7,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Productcollect" >
+  <insert id="insertSelective" parameterType="com.older.manager.bean.ProductCollect" >
     insert into productcollect
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="oldmanaccountId != null" >
-        oldManAccount_id,
+      <if test="usersId != null" >
+        users_id,
       </if>
       <if test="productsId != null" >
-        Products_id,
+        products_id,
       </if>
       <if test="time != null" >
         time,
@@ -155,8 +157,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="oldmanaccountId != null" >
-        #{oldmanaccountId,jdbcType=INTEGER},
+      <if test="usersId != null" >
+        #{usersId,jdbcType=INTEGER},
       </if>
       <if test="productsId != null" >
         #{productsId,jdbcType=INTEGER},
@@ -187,7 +189,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ProductcollectExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.older.manager.bean.ProductCollectExample" resultType="java.lang.Integer" >
     select count(*) from productcollect
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -199,11 +201,11 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.oldmanaccountId != null" >
-        oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      <if test="record.usersId != null" >
+        users_id = #{record.usersId,jdbcType=INTEGER},
       </if>
       <if test="record.productsId != null" >
-        Products_id = #{record.productsId,jdbcType=INTEGER},
+        products_id = #{record.productsId,jdbcType=INTEGER},
       </if>
       <if test="record.time != null" >
         time = #{record.time,jdbcType=DATE},
@@ -237,8 +239,8 @@
   <update id="updateByExample" parameterType="map" >
     update productcollect
     set id = #{record.id,jdbcType=INTEGER},
-      oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
-      Products_id = #{record.productsId,jdbcType=INTEGER},
+      users_id = #{record.usersId,jdbcType=INTEGER},
+      products_id = #{record.productsId,jdbcType=INTEGER},
       time = #{record.time,jdbcType=DATE},
       productCollect1 = #{record.productcollect1,jdbcType=VARCHAR},
       productCollect2 = #{record.productcollect2,jdbcType=VARCHAR},
@@ -251,14 +253,14 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Productcollect" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ProductCollect" >
     update productcollect
     <set >
-      <if test="oldmanaccountId != null" >
-        oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      <if test="usersId != null" >
+        users_id = #{usersId,jdbcType=INTEGER},
       </if>
       <if test="productsId != null" >
-        Products_id = #{productsId,jdbcType=INTEGER},
+        products_id = #{productsId,jdbcType=INTEGER},
       </if>
       <if test="time != null" >
         time = #{time,jdbcType=DATE},
@@ -287,10 +289,10 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Productcollect" >
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ProductCollect" >
     update productcollect
-    set oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
-      Products_id = #{productsId,jdbcType=INTEGER},
+    set users_id = #{usersId,jdbcType=INTEGER},
+      products_id = #{productsId,jdbcType=INTEGER},
       time = #{time,jdbcType=DATE},
       productCollect1 = #{productcollect1,jdbcType=VARCHAR},
       productCollect2 = #{productcollect2,jdbcType=VARCHAR},

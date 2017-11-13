@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'shopcart.jsp' starting page</title>
+<title>孝和购物商城</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">

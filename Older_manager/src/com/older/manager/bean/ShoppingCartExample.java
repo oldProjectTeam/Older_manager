@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ShoppingcartExample {
+public class ShoppingCartExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ShoppingcartExample() {
+    public ShoppingCartExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,63 +165,63 @@ public class ShoppingcartExample {
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdIsNull() {
-            addCriterion("oldManAccount_id is null");
+        public Criteria andUsersIdIsNull() {
+            addCriterion("users_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdIsNotNull() {
-            addCriterion("oldManAccount_id is not null");
+        public Criteria andUsersIdIsNotNull() {
+            addCriterion("users_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdEqualTo(Integer value) {
-            addCriterion("oldManAccount_id =", value, "oldmanaccountId");
+        public Criteria andUsersIdEqualTo(Integer value) {
+            addCriterion("users_id =", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdNotEqualTo(Integer value) {
-            addCriterion("oldManAccount_id <>", value, "oldmanaccountId");
+        public Criteria andUsersIdNotEqualTo(Integer value) {
+            addCriterion("users_id <>", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdGreaterThan(Integer value) {
-            addCriterion("oldManAccount_id >", value, "oldmanaccountId");
+        public Criteria andUsersIdGreaterThan(Integer value) {
+            addCriterion("users_id >", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("oldManAccount_id >=", value, "oldmanaccountId");
+        public Criteria andUsersIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("users_id >=", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdLessThan(Integer value) {
-            addCriterion("oldManAccount_id <", value, "oldmanaccountId");
+        public Criteria andUsersIdLessThan(Integer value) {
+            addCriterion("users_id <", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdLessThanOrEqualTo(Integer value) {
-            addCriterion("oldManAccount_id <=", value, "oldmanaccountId");
+        public Criteria andUsersIdLessThanOrEqualTo(Integer value) {
+            addCriterion("users_id <=", value, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdIn(List<Integer> values) {
-            addCriterion("oldManAccount_id in", values, "oldmanaccountId");
+        public Criteria andUsersIdIn(List<Integer> values) {
+            addCriterion("users_id in", values, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdNotIn(List<Integer> values) {
-            addCriterion("oldManAccount_id not in", values, "oldmanaccountId");
+        public Criteria andUsersIdNotIn(List<Integer> values) {
+            addCriterion("users_id not in", values, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdBetween(Integer value1, Integer value2) {
-            addCriterion("oldManAccount_id between", value1, value2, "oldmanaccountId");
+        public Criteria andUsersIdBetween(Integer value1, Integer value2) {
+            addCriterion("users_id between", value1, value2, "usersId");
             return (Criteria) this;
         }
 
-        public Criteria andOldmanaccountIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("oldManAccount_id not between", value1, value2, "oldmanaccountId");
+        public Criteria andUsersIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("users_id not between", value1, value2, "usersId");
             return (Criteria) this;
         }
 

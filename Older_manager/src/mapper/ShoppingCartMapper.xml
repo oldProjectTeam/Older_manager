@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ShoppingcartMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Shoppingcart" >
+<mapper namespace="com.older.manager.mapper.ShoppingCartMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.ShoppingCart" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="oldManAccount_id" property="oldmanaccountId" jdbcType="INTEGER" />
+    <result column="users_id" property="usersId" jdbcType="INTEGER" />
     <result column="Produts_id" property="produtsId" jdbcType="INTEGER" />
     <result column="number" property="number" jdbcType="INTEGER" />
     <result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
@@ -71,10 +71,10 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, oldManAccount_id, Produts_id, number, basePrice, time, shoppingCart1, shoppingCart2, 
+    id, users_id, Produts_id, number, basePrice, time, shoppingCart1, shoppingCart2, 
     shoppingCart3
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ShoppingcartExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ShoppingCartExample" >
     select
     <if test="distinct" >
       distinct
@@ -84,7 +84,9 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-   order by id DESC
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -96,30 +98,30 @@
     delete from shoppingcart
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ShoppingcartExample" >
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.ShoppingCartExample" >
     delete from shoppingcart
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Shoppingcart" >
-    insert into shoppingcart (id, oldManAccount_id, Produts_id, 
+  <insert id="insert" parameterType="com.older.manager.bean.ShoppingCart" >
+    insert into shoppingcart (id, users_id, Produts_id, 
       number, basePrice, time, 
       shoppingCart1, shoppingCart2, shoppingCart3
       )
-    values (#{id,jdbcType=INTEGER}, #{oldmanaccountId,jdbcType=INTEGER}, #{produtsId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{usersId,jdbcType=INTEGER}, #{produtsId,jdbcType=INTEGER}, 
       #{number,jdbcType=INTEGER}, #{baseprice,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, 
       #{shoppingcart1,jdbcType=VARCHAR}, #{shoppingcart2,jdbcType=VARCHAR}, #{shoppingcart3,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Shoppingcart" >
+  <insert id="insertSelective" parameterType="com.older.manager.bean.ShoppingCart" >
     insert into shoppingcart
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
       </if>
-      <if test="oldmanaccountId != null" >
-        oldManAccount_id,
+      <if test="usersId != null" >
+        users_id,
       </if>
       <if test="produtsId != null" >
         Produts_id,
@@ -147,8 +149,8 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="oldmanaccountId != null" >
-        #{oldmanaccountId,jdbcType=INTEGER},
+      <if test="usersId != null" >
+        #{usersId,jdbcType=INTEGER},
       </if>
       <if test="produtsId != null" >
         #{produtsId,jdbcType=INTEGER},
@@ -173,7 +175,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ShoppingcartExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.older.manager.bean.ShoppingCartExample" resultType="java.lang.Integer" >
     select count(*) from shoppingcart
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -185,8 +187,8 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.oldmanaccountId != null" >
-        oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      <if test="record.usersId != null" >
+        users_id = #{record.usersId,jdbcType=INTEGER},
       </if>
       <if test="record.produtsId != null" >
         Produts_id = #{record.produtsId,jdbcType=INTEGER},
@@ -217,7 +219,7 @@
   <update id="updateByExample" parameterType="map" >
     update shoppingcart
     set id = #{record.id,jdbcType=INTEGER},
-      oldManAccount_id = #{record.oldmanaccountId,jdbcType=INTEGER},
+      users_id = #{record.usersId,jdbcType=INTEGER},
       Produts_id = #{record.produtsId,jdbcType=INTEGER},
       number = #{record.number,jdbcType=INTEGER},
       basePrice = #{record.baseprice,jdbcType=DOUBLE},
@@ -229,11 +231,11 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Shoppingcart" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ShoppingCart" >
     update shoppingcart
     <set >
-      <if test="oldmanaccountId != null" >
-        oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+      <if test="usersId != null" >
+        users_id = #{usersId,jdbcType=INTEGER},
       </if>
       <if test="produtsId != null" >
         Produts_id = #{produtsId,jdbcType=INTEGER},
@@ -259,9 +261,9 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Shoppingcart" >
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ShoppingCart" >
     update shoppingcart
-    set oldManAccount_id = #{oldmanaccountId,jdbcType=INTEGER},
+    set users_id = #{usersId,jdbcType=INTEGER},
       Produts_id = #{produtsId,jdbcType=INTEGER},
       number = #{number,jdbcType=INTEGER},
       basePrice = #{baseprice,jdbcType=DOUBLE},
