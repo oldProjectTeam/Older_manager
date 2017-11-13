@@ -94,6 +94,9 @@
     from shoppingcart
     where id = #{id,jdbcType=INTEGER}
   </select>
+  
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from shoppingcart
     where id = #{id,jdbcType=INTEGER}
@@ -273,4 +276,36 @@
       shoppingCart3 = #{shoppingcart3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!--封装购物车信息和产品信息结果集  -->
+   <resultMap id="CartProductResultMap" type="com.older.manager.bean.ShoppingCart" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="users_id" property="usersId" jdbcType="INTEGER" />
+    <result column="Produts_id" property="produtsId" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="INTEGER" />
+    <result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="shoppingCart1" property="shoppingcart1" jdbcType="VARCHAR" />
+    <result column="shoppingCart2" property="shoppingcart2" jdbcType="VARCHAR" />
+    <result column="shoppingCart3" property="shoppingcart3" jdbcType="VARCHAR" />
+    <collection property="product" ofType="products">
+    	<id column="pId" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="orPrice" property="orprice" jdbcType="DOUBLE" />
+		<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+    </collection>
+  </resultMap>
+  <!--包含购物车信息和产品信息字段  -->
+  <sql id="cart_product_Column_List" >
+    s.id, s.users_id, s.Produts_id, s.number, s.basePrice, s.time, s.shoppingCart1, s.shoppingCart2, 
+    s.shoppingCart3,
+    p.id pId,p.name, p.orPrice,p.nowPrice
+  </sql>
+  <!--根据用户id查询该用户所有购物车信息和产品信息  -->
+  <select id="selectByUserId" resultMap="CartProductResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="cart_product_Column_List" />
+    from shoppingcart s,products p
+    where s.users_id=#{usersId} and s.Produts_id=p.id
+  </select>
 </mapper>

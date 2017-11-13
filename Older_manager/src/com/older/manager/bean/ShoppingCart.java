@@ -11,6 +11,9 @@ public class ShoppingCart {
 
     private Integer number;
 
+    //关联产品信息
+    private Products product;
+    
     private Double baseprice;
 
     private Date time;
@@ -92,4 +95,22 @@ public class ShoppingCart {
     public void setShoppingcart3(String shoppingcart3) {
         this.shoppingcart3 = shoppingcart3 == null ? null : shoppingcart3.trim();
     }
+
+	public Products getProduct() {
+		return product;
+	}
+
+	public void setProduct(Products product) {
+		this.product = product;
+	}
+
+	@Override
+	public String toString() {
+		return "ShoppingCart [id=" + id + ", usersId=" + usersId
+				+ ", produtsId=" + produtsId + ", number=" + number
+				+ ", product=" + product + ", baseprice=" + baseprice
+				+ ", time=" + time + ", shoppingcart1=" + shoppingcart1
+				+ ", shoppingcart2=" + shoppingcart2 + ", shoppingcart3="
+				+ shoppingcart3 + "]";
+	}
 }
