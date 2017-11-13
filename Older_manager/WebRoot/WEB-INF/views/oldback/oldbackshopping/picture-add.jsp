@@ -220,7 +220,7 @@
 						</div>
 					</div>
 					 <div class="Add_p_s">
-						<label class="form-label col-2">产品类型：</label>
+						<label class="form-label col-2"><font color="red">*</font>产品类型：</label>
 						<div class="formControls col-2">
 							 <input type="text" id="typeName" class="input-text" readonly="readonly">
 							<input type="hidden" id="typeId" name="typeId"/>
@@ -235,7 +235,7 @@
 						</div>
 					</div>
 					<div class="Add_p_s">
-						<label class="form-label col-2">品牌名称：</label>
+						<label class="form-label col-2"><font color="red">*</font>品牌名称：</label>
 						<div class="formControls col-2">
 							 <input type="text" id="brandName" class="input-text" readonly="readonly">
 							<input type="hidden" id="brandId" name="brandId" readonly="readonly">
@@ -576,13 +576,13 @@
 		 }
 		  //10.产品类型
 		  var typeId=$("#typeId").val();
-		  if(typeId==null||typeId==undefined){
+		  if(typeId==''||typeId==null){
 			  show_vaildate_msg("#typeId","error","您还没选择产品类型！");
 			   return false;
 		  }
 		  //11.品牌
 		  var brandId=$("#brandId").val();
-		  if(brandId==null||brandId==undefined){
+		  if(brandId==''||brandId==null){
 			  show_vaildate_msg("#brandId","error","您还没选择产品品牌！");
 			   return false;
 		  }
@@ -742,12 +742,13 @@
 			callback : {
 				beforeClick : function(treeId, treeNode) {
 					var zTree = $.fn.zTree.getZTreeObj("tree");
+					$("#typeName").prop("value",treeNode.name);
+					 $("#typeId").prop("value",treeNode.id);
 					if (treeNode.isParent) {
 						zTree.expandNode(treeNode);
 						return false;
 					} else {
-						 $("#typeName").prop("value",treeNode.name);
-						 $("#typeId").prop("value",treeNode.id);
+						 
 						return true;
 					}
 				}

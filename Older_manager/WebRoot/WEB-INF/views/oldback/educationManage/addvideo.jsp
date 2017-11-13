@@ -90,10 +90,10 @@
 								<td>备注</td>
 								<td><textarea class="form-control" rows="3" name="remark"></textarea></td>
 								<td>长度 <span style="color:red">*</span></td>
-								<td><input type="text" class="form-control"
+								<td><input type="number" class="form-control"
 									required="required" name="lenght" id="lenght"></td>
 								<td>帧高度</td>
-								<td><input type="text" class="form-control"
+								<td><input type="number" class="form-control"
 									name="frameheight"></td>
 								<td colspan="2"><input class="btn btn-success"
 									type="button" value="上传视频" name="addvideo"
@@ -108,7 +108,7 @@
 								<td>
 									<div class="form-group">
 										<div class="col-sm-8">
-											<input type="text" class="form-control" name="daterate">
+											<input type="number" class="form-control" name="daterate">
 										</div>
 										<label class="col-sm-1 control-label">kbps</label>
 									</div>
@@ -117,7 +117,7 @@
 								<td>
 									<div class="form-group">
 										<div class="col-sm-8">
-											<input type="text" class="form-control" name="totalbitrate">
+											<input type="number" class="form-control" name="totalbitrate">
 										</div>
 										<label class="col-sm-1 control-label">kbps</label>
 									</div>
@@ -126,7 +126,7 @@
 								<td>
 									<div class="form-group">
 										<div class="col-sm-7">
-											<input type="text" class="form-control" name="framerate">
+											<input type="number" class="form-control" name="framerate">
 										</div>
 										<label class="col-sm-4 control-label">帧/秒</label>
 									</div>
@@ -140,7 +140,7 @@
 								<td>
 									<div class="form-group">
 										<div class="col-sm-8">
-											<input type="text" class="form-control" name="afsf">
+											<input type="number" class="form-control" name="afsf">
 										</div>
 										<label class="col-sm-1 control-label">kHz</label>
 									</div>
@@ -149,13 +149,13 @@
 								<td>
 									<div class="form-group">
 										<div class="col-sm-8" name="">
-											<input type="text" class="form-control" name="bitrate">
+											<input type="number" class="form-control" name="bitrate">
 										</div>
 										<label class="col-sm-1 control-label">kbps</label>
 									</div>
 								</td>
 								<td>帧宽度</td>
-								<td><input type="text" class="form-control"
+								<td><input type="number" class="form-control"
 									name="framewidth"></td>
 							</tr>
 							<tr>

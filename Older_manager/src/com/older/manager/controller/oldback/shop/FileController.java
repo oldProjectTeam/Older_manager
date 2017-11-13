@@ -63,9 +63,9 @@ public class FileController {
 	
 	@RequestMapping("/batchUpload")
 	@ResponseBody
-	public Msg batchUpload(MultipartFile file[], HttpServletRequest request)
+	public Map<String, Object> batchUpload(MultipartFile file[], HttpServletRequest request)
 			throws Exception {
-		 
+		Map<String, Object>map=new HashMap<String, Object>();
 		if (file != null&&file.length>0) {
 			
 			//上传成功图片名称字符串
@@ -90,9 +90,12 @@ public class FileController {
 				}
 			}
 			// 将文件名包括路径保存到数据并返回
-			 
-			return Msg.success().add("url", url);
+			map.put("state", 1);
+			map.put("path", url);
+			return map;
 		}
-		return Msg.fail();
+		map.put("state", 0);
+		map.put("errmsg","上传失败了");
+		return map;
 	}
 }

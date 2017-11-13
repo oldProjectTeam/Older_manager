@@ -231,7 +231,7 @@
 						<div class="formControls col-2">
 							 <input type="text" id="typeName" class="input-text" 
 							 readonly="readonly" value="${product.productType.name}" >
-							<input type="hidden" id="typeId" name="typeId" />
+							<input type="hidden" id="typeId" name="typeId" value="${product.productType.id}"/>
 						</div>
 					</div>
 					<div class="Add_p_s">
@@ -247,7 +247,7 @@
 						<div class="formControls col-2">
 							 <input type="text" id="brandName" class="input-text" value="${product.brand.name}" 
 							 readonly="readonly">
-							<input type="hidden" id="brandId" name="brandId" readonly="readonly">
+							<input type="hidden" id="brandId" name="brandId" value="${product.brand.id}" readonly="readonly">
 						</div>
 					</div>
 				    <div class="Add_p_s">
@@ -584,6 +584,18 @@
 			 show_vaildate_msg("#inventory","success","");
 		 }
 		  
+		 //10.产品类型
+		  var typeId=$("#typeId").val();
+		  if(typeId==''||typeId==null){
+			  show_vaildate_msg("#typeId","error","您还没选择产品类型！");
+			   return false;
+		  }
+		  //11.品牌
+		  var brandId=$("#brandId").val();
+		  if(brandId==''||brandId==null){
+			  show_vaildate_msg("#brandId","error","您还没选择产品品牌！");
+			   return false;
+		  }
 		//13.地区/国家
 		 var region=$("#region").val();
 		 if(region.length<1){

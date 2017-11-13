@@ -180,7 +180,8 @@
 		#{paral13,jdbcType=DOUBLE}, #{paral14,jdbcType=DOUBLE}, #{paral15,jdbcType=DOUBLE},
 		#{paral16,jdbcType=DOUBLE}, #{paral17,jdbcType=DOUBLE})
 	</insert>
-	<insert id="insertSelective" parameterType="com.older.manager.bean.Products">
+	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"
+	parameterType="com.older.manager.bean.Products">
 		insert into products
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
