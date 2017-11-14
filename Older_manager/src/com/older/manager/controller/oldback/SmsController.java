@@ -43,8 +43,8 @@ public class SmsController {
 
 	@Autowired
 	SmsService smsService;
-	
-	@Autowired 
+
+	@Autowired
 	AddNewOlderService addNewOlderService;
 
 	/**
@@ -73,7 +73,7 @@ public class SmsController {
 	@RequestMapping("/addSms")
 	@ResponseBody
 	public Msg addSms(@Valid Sms sms, BindingResult result) {
-		if (sms!=null) {
+		if (sms != null) {
 			List<Map<String, Object>> errorList = new ArrayList<Map<String, Object>>();
 			if (result.hasErrors()) {
 				for (FieldError fieldError : result.getFieldErrors()) {
@@ -95,10 +95,10 @@ public class SmsController {
 					return Msg.success().add("msg", "发送失败");
 				}
 			}
-		}else {
+		} else {
 			return Msg.fail().add("msg", "发送短信失败");
 		}
-		
+
 	}
 
 	/**
@@ -222,21 +222,40 @@ public class SmsController {
 			return Msg.success().add("pageInfo", pageInfo);
 		}
 	}
-	
+
 	/**
-	 * @Title:   intoSendSms
-	 * @Description:  跳转到发送短信
-	 * @param:    @param phone
-	 * @param:    @param model
-	 * @param:    @return   
-	 * @return:   String   
+	 * @Title: intoSendSms
+	 * @Description: 跳转到发送短信
+	 * @param: @param phone
+	 * @param: @param model
+	 * @param: @return
+	 * @return: String
 	 * @throws
 	 */
 	@RequestMapping(value = "/intoSendSms")
-	public String intoSendSms(String phone,Model model){
+	public String intoSendSms(String phone, Model model) {
 		model.addAttribute("phone", phone);
 		return "oldback/officemanage/sendsms";
 	}
-	
+
+	@RequestMapping("/sendMessage")
+	@ResponseBody
+	public Msg sendMessage(@RequestParam("phone") String phone,
+			@RequestParam("content") String content) {
+		try {
+			phone = new String(phone.getBytes("iso-8859-1"), "utf-8");
+			content = new String(content.getBytes("iso-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		Map<String, Object> map = smsService.sendMessage(phone, content);
+		String errorMsg = (String) map.get("errorMsg");
+		int result = (Integer) map.get("result");
+		if (result > 0) {
+			return Msg.success();
+		} else {
+			return Msg.fail().add("errorMsg", errorMsg);
+		}
+	}
 
 }

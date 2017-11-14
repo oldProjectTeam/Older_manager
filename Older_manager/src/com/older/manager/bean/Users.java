@@ -21,7 +21,7 @@ public class Users {
 
     private String idcard;
 
-    private String column1;
+    private String email;
 
     private String column2;
 
@@ -107,12 +107,12 @@ public class Users {
         this.idcard = idcard == null ? null : idcard.trim();
     }
 
-    public String getColumn1() {
-        return column1;
+    public String getemail() {
+        return email;
     }
 
-    public void setColumn1(String column1) {
-        this.column1 = column1 == null ? null : column1.trim();
+    public void setemail(String email) {
+        this.email = email == null ? null : email.trim();
     }
 
     public String getColumn2() {

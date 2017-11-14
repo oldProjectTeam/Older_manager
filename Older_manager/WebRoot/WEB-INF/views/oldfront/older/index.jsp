@@ -25,6 +25,8 @@
 	rel="stylesheet" />
 <link href="${APP_PATH}/static/oldfront/assets/css/style.css"
 	rel="stylesheet" />
+<link rel="stylesheet"
+	href="${APP_PATH}/static/oldfront/assets/css/zhuye.css" />
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
 	rel='stylesheet' type='text/css' />
@@ -43,7 +45,8 @@
 				<div class="navbar-collapse collapse">
 					<ul id="menu-top"
 						class="nav navbar-nav navbar-right navbar-fixed-top navbar-inverse">
-						<li style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
+						<li
+							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
 							src="${APP_PATH}/static/images/oldback/images/logo.png"
 							width="200px" style="margin-right: 240px;" /></li>
 						<li><a href="index.jsp" class="menu-top-active">主页</a></li>
@@ -105,46 +108,209 @@
 			</a>
 		</div>
 	</div>
-	<!-- SLIDESHOW SECTION END-->
-	<div class="below-slideshow">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<div class="txt-block">
-
-
-						<i class="fa fa-lastfm fa-4x"></i>
-						<h4>
-							近期活动
-							<h4>
-								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-									Mauris sagittis felis dolor vitae.</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<div class="txt-block">
-
-
-						<i class="fa fa-yelp fa-4x"></i>
-						<h4>服务简介</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Mauris sagittis felis dolor vitae.</p>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-					<div class="txt-block">
-
-
-						<i class="fa fa-ioxhost fa-4x"></i>
-						<h4>最近推荐</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Mauris sagittis felis dolor vitae.</p>
-					</div>
-				</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h1 class="tag-home">
+					他们奉献一生，难免走路磕磕绊绊;他们教育一生，难免话语细细碎碎。尊重老人，他们才是我们前行的明灯。.</h1>
+				<p style="color: #1781C2;font-size: 20px;font-weight:bold;">今日头条</p>
+				<hr />
 			</div>
-
 		</div>
 	</div>
+	<!-- TAG HOME SECTION END-->
+
+	<div class="container">
+
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>市场发展空间广阔 万亿银发经济成新增长点</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				人口老龄化是世界性问题，我国是世界上人口老龄化程度比较高的国家之一。截至2016年底，我国60岁及以上老年人口超过2.3亿人，占总人口...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>未富先老时代，2.2亿人的养老市场到底有哪些机遇？</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				改革开放以来，中国经济高速发展，中国人的收入水平也在快速提高，然而在收入快速提高的同时，中国还有一个数字也在快速的...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+		</div>
+		<div class="image1">
+			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
+				alt="图片" width="200px" height="200px" />
+			</a>
+			<div class="text">
+				<a>“缺医少护”的中国式养老：寻路医养结合</a>
+			</div>
+			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
+				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row ">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h1 class="head-line">尊老为德，敬老为善，爱老为美，助老为乐</h1>
+				<br />
+			</div>
+		</div>
+		<div class="row ">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<hr />
+				<div class="new1">
+					<p
+						style="color: #1781C2;font-size: 20px;font-weight:bold;float: left;">养老动态</p>
+					<a href="#" style="float: right;color:#666666;">更多&gt;&gt;</a><br />
+					<hr />
+					<div class="new2">
+						<ul>
+							<li><a>蒋正华：智慧康养小镇建设的五个原则</a><span>2017/5/8</span></li>
+							<li><a>共建社区居家养老新生态，关键在于共享经济的实践</a><span>2017/5/8</span></li>
+							<li><a>旅居式养老受热捧，广西巴马养生旅游峰会在宁召开</a><span>2017/5/8</span></li>
+							<li><a>未来30亿养老产业蓝海关键是占领老年科技的战略制</a><span>2017/5/8</span></li>
+							<li><a>这12个地区，将成为中国7000亿康复辅具产业的发</a><span>2017/5/8</span></li>
+							<li><a>广东：汕头老龄化比率逐年增加 6年间高龄人口增</a><span>2017/5/8</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="new1">
+					<p
+						style="color: #1781C2;font-size: 20px;font-weight:bold;float: left;">养老政策</p>
+					<a href="#" style="float: right;color:#666666;">更多&gt;&gt;</a><br />
+					<hr />
+					<div class="new2">
+						<ul>
+							<li><a>宁夏：银川智慧养老正流行 </a><span>2017/5/8</span></li>
+							<li><a>老人有了专属“天猫” 杭州首个智慧养老社区服务站开业</a><span>2017/5/8</span></li>
+							<li><a>实施医养结合型养老院可行性分析报告</a><span>2017/5/8</span></li>
+							<li><a>大江东举办“智慧养老”综合服务项目推进会</a><span>2017/5/8</span></li>
+							<li><a>中国“智慧养老”重大战略正在稳步实施</a><span>2017/5/8</span></li>
+							<li><a>“十二五”期间老龄事业发展情况</a><span>2017/5/8</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="new1">
+					<p
+						style="color: #1781C2;font-size: 20px;font-weight:bold;float: left;">投标快讯：</p>
+					<a href="#" style="float: right;color:#666666;">更多&gt;&gt;</a><br />
+					<hr />
+					<div class="new2">
+						<ul>
+							<li><a>宁夏：银川智慧养老正流行 </a><span>2017/5/8</span></li>
+							<li><a>老人有了专属“天猫” 杭州首个智慧养老社区服务站开业</a><span>2017/5/8</span></li>
+							<li><a>实施医养结合型养老院可行性分析报告</a><span>2017/5/8</span></li>
+							<li><a>大江东举办“智慧养老”综合服务项目推进会</a><span>2017/5/8</span></li>
+							<li><a>中国“智慧养老”重大战略正在稳步实施</a><span>2017/5/8</span></li>
+							<li><a>“十二五”期间老龄事业发展情况</a><span>2017/5/8</span></li>
+						</ul>
+					</div>
+				</div>
+				<div class="new1">
+					<p
+						style="color: #1781C2;font-size: 20px;font-weight:bold;float: left;">养老产业：</p>
+					<a href="#" style="float: right;color:#666666;">更多&gt;&gt;</a><br />
+					<hr />
+					<div class="new2">
+						<ul>
+							<li><a>宁夏：银川智慧养老正流行 </a><span>2017/5/8</span></li>
+							<li><a>老人有了专属“天猫” 杭州首个智慧养老社区服务站开业</a><span>2017/5/8</span></li>
+							<li><a>实施医养结合型养老院可行性分析报告</a><span>2017/5/8</span></li>
+							<li><a>大江东举办“智慧养老”综合服务项目推进会</a><span>2017/5/8</span></li>
+							<li><a>中国“智慧养老”重大战略正在稳步实施</a><span>2017/5/8</span></li>
+							<li><a>“十二五”期间老龄事业发展情况</a><span>2017/5/8</span></li>
+						</ul>
+					</div>
+				</div>
+				<hr />
+				<br />
+			</div>
+		</div>
+	</div>
+	<hr />
 	<!-- BELOW SLIDESHOW SECTION END-->
 	<div class="container">
 		<div class="row">
@@ -209,6 +375,17 @@
 		src="${APP_PATH}/static/oldfront/assets/js/jquery.flexslider.js"></script>
 	<!--CUSTOM SCRIPTS -->
 	<script src="${APP_PATH}/static/oldfront/assets/js/custom.js"></script>
-</body>
 
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url : "official/info",
+				type : "GET",
+				success : function(result) {
+					console.log(result);
+				}
+			});
+		});
+	</script>
+</body>
 </html>

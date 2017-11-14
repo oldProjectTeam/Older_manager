@@ -4,6 +4,7 @@
 package com.older.manager.service.impl.oldback;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import com.older.manager.bean.Sms;
 import com.older.manager.bean.SmsExample;
 import com.older.manager.mapper.SmsMapper;
 import com.older.manager.service.oldback.SmsService;
+import com.older.manager.utils.MessageUtils;
 
 /**
  * @author ym
@@ -63,39 +65,42 @@ public class SmsServiceImpl implements SmsService {
 	public List<Sms> findAllSmsBySearch(String sender, String receiverphone,
 			String receivername) {
 		example = new SmsExample();
-		if (sender != null && !sender.equals("") && (receiverphone.equals("")||receiverphone==null)
-				&& (receivername.equals("")||receivername==null)) {
+		if (sender != null && !sender.equals("")
+				&& (receiverphone.equals("") || receiverphone == null)
+				&& (receivername.equals("") || receivername == null)) {
 			System.out.println(".............通过5");
 			example.createCriteria().andSenderLike("%" + sender + "%");
 			return smsMapper.selectByExample(example);
 		} else if (receivername != null && !receivername.equals("")
-				&& (receiverphone.equals("") ||receiverphone==null)&& (sender.equals("")||sender==null)) {
+				&& (receiverphone.equals("") || receiverphone == null)
+				&& (sender.equals("") || sender == null)) {
 			System.out.println(".............通过6");
 			example.createCriteria().andReceivernameLike(
 					"%" + receivername + "%");
 			return smsMapper.selectByExample(example);
 		} else if (receiverphone != null && !receiverphone.equals("")
-				&& (sender.equals("")||sender==null) && (receivername.equals("")||receivername==null)) {
+				&& (sender.equals("") || sender == null)
+				&& (receivername.equals("") || receivername == null)) {
 			System.out.println(".............通过7");
 			example.createCriteria().andReceiverphoneLike(
 					"%" + receiverphone + "%");
 			return smsMapper.selectByExample(example);
 		} else if ((sender != null && !sender.equals(""))
-				&& (receiverphone.equals("")||receiverphone==null)
+				&& (receiverphone.equals("") || receiverphone == null)
 				&& (receivername != null && !receivername.equals(""))) {
 			System.out.println(".............通过2");
 			example.createCriteria().andSenderLike("%" + sender + "%")
 					.andReceivernameLike("%" + receivername + "%");
 			return smsMapper.selectByExample(example);
 		} else if ((sender != null && !sender.equals(""))
-				&& (receivername.equals("")||receivername==null)
+				&& (receivername.equals("") || receivername == null)
 				&& (receiverphone != null && !receiverphone.equals(""))) {
 			System.out.println(".............通过1");
 			example.createCriteria().andSenderLike("%" + sender + "%")
 					.andReceiverphoneLike("%" + receiverphone + "%");
 			return smsMapper.selectByExample(example);
 		} else if ((receivername != null && !receivername.equals(""))
-				&& (sender.equals("")||sender==null)
+				&& (sender.equals("") || sender == null)
 				&& (receiverphone != null && !receiverphone.equals(""))) {
 			System.out.println(".............通过3");
 			example.createCriteria()
@@ -153,6 +158,11 @@ public class SmsServiceImpl implements SmsService {
 	public int deleteSmsById(int id) {
 		// TODO Auto-generated method stub
 		return smsMapper.deleteByPrimaryKey(id);
+	}
+
+	@Override
+	public Map<String, Object> sendMessage(String phone, String content) {
+		return MessageUtils.sendMessage(phone, content);
 	}
 
 }

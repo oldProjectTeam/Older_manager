@@ -715,73 +715,73 @@ public class UsersExample {
             return (Criteria) this;
         }
 
-        public Criteria andColumn1IsNull() {
-            addCriterion("column1 is null");
+        public Criteria andemailIsNull() {
+            addCriterion("email is null");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1IsNotNull() {
-            addCriterion("column1 is not null");
+        public Criteria andemailIsNotNull() {
+            addCriterion("email is not null");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1EqualTo(String value) {
-            addCriterion("column1 =", value, "column1");
+        public Criteria andemailEqualTo(String value) {
+            addCriterion("email =", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1NotEqualTo(String value) {
-            addCriterion("column1 <>", value, "column1");
+        public Criteria andemailNotEqualTo(String value) {
+            addCriterion("email <>", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1GreaterThan(String value) {
-            addCriterion("column1 >", value, "column1");
+        public Criteria andemailGreaterThan(String value) {
+            addCriterion("email >", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1GreaterThanOrEqualTo(String value) {
-            addCriterion("column1 >=", value, "column1");
+        public Criteria andemailGreaterThanOrEqualTo(String value) {
+            addCriterion("email >=", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1LessThan(String value) {
-            addCriterion("column1 <", value, "column1");
+        public Criteria andemailLessThan(String value) {
+            addCriterion("email <", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1LessThanOrEqualTo(String value) {
-            addCriterion("column1 <=", value, "column1");
+        public Criteria andemailLessThanOrEqualTo(String value) {
+            addCriterion("email <=", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1Like(String value) {
-            addCriterion("column1 like", value, "column1");
+        public Criteria andemailLike(String value) {
+            addCriterion("email like", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1NotLike(String value) {
-            addCriterion("column1 not like", value, "column1");
+        public Criteria andemailNotLike(String value) {
+            addCriterion("email not like", value, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1In(List<String> values) {
-            addCriterion("column1 in", values, "column1");
+        public Criteria andemailIn(List<String> values) {
+            addCriterion("email in", values, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1NotIn(List<String> values) {
-            addCriterion("column1 not in", values, "column1");
+        public Criteria andemailNotIn(List<String> values) {
+            addCriterion("email not in", values, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1Between(String value1, String value2) {
-            addCriterion("column1 between", value1, value2, "column1");
+        public Criteria andemailBetween(String value1, String value2) {
+            addCriterion("email between", value1, value2, "email");
             return (Criteria) this;
         }
 
-        public Criteria andColumn1NotBetween(String value1, String value2) {
-            addCriterion("column1 not between", value1, value2, "column1");
+        public Criteria andemailNotBetween(String value1, String value2) {
+			addCriterion("email not between", value1, value2, "email");
             return (Criteria) this;
         }
 

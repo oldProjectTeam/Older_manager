@@ -48,52 +48,68 @@
 	<div style="width:98%;margin-left:10px">
 		<form class="form-inline" id="Smsform">
 			<div class="form-group">
-				<label for="exampleInputEmail2" >收信人:</label> <input type="text"
-					class="form-control" value="${phone}" placeholder="接收人电话号码" id="receiverphone" onchange="checkPhone(this.value)">
+				<label for="exampleInputEmail2">收信人:</label> <input type="text"
+					class="form-control" value="${phone}" placeholder="接收人电话号码"
+					id="receiverphone" onchange="checkPhone(this.value)">
 			</div>
-			<button type="button" class="btn btn-info">从通讯录中选择</button>
+			<button type="button" class="btn btn-info" id="select_btn">从通讯录中选择</button>
 			<br /> <br /> <br /> <label>发送内容:</label><br />
 			<div class="form-group">
-				<textarea class="form-control" placeholder="发送内容" rows="10" id="content" 
-					cols="128"></textarea>
+				<textarea class="form-control" placeholder="发送内容" rows="10"
+					id="content" cols="128"></textarea>
 			</div>
-			<br />
-			<br />
-			<button type="button" class="col-sm-offset-8 btn btn-info" id="sentSms">发送</button>
+			<br /> <br />
+			<button type="button" class="col-sm-offset-8 btn btn-info"
+				id="sentSms">发送</button>
 		</form>
 	</div>
 	<script type="text/javascript">
-	function checkPhone(val)
-	{
-		 if(val.length==0) 
-	       { 
-	          layer.msg('请输入手机号码！'); 
-	          $("#receiverphone").focus(); 
-	          return false; 
-	       }     
-	       if(val.length!=11) 
-	       { 
-	           layer.msg('请输入有效的手机号码！'); 
-	           $("#receiverphone").focus(); 
-	           return false; 
-	       } 
-	        
-	       var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/; 
-	       if(!myreg.test(val)) 
-	       { 
-	           layer.msg('请输入有效的手机号码！'); 
-	           $("#receiverphone").focus(); 
-	           return false; 
-	       } 
-	}
-	$("#sentSms").click(function(){
-		var content=document.getElementById("content").val;
-		var phone=document.getElementById("receiverphone").val;
-		if(content==null||phone==null){
-			layer.msg("信息填写不完整，请填写完整信息");
-		};
-	});
-	
+		$("#select_btn").click(function() {
+			window.location.href = "addressbookmanager";
+		});
+		function checkPhone(val) {
+			if (val.length == 0) {
+				layer.msg('请输入手机号码！');
+				$("#receiverphone").focus();
+				return false;
+			}
+			if (val.length != 11) {
+				layer.msg('请输入有效的手机号码！');
+				$("#receiverphone").focus();
+				return false;
+			}
+
+			var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+			if (!myreg.test(val)) {
+				layer.msg('请输入有效的手机号码！');
+				$("#receiverphone").focus();
+				return false;
+			}
+		}
+		$("#sentSms").click(function() {
+			if ($("#content").val() == '' || $("#receiverphone").val() == '') {
+				layer.msg("信息填写不完整，请填写完整信息");
+			} else {
+				//发送短信
+				$.ajax({
+					url : "Sms/sendMessage",
+					data : {
+						"phone" : $("#receiverphone").val(),
+						"content" : $("#content").val()
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							layer.msg("短信发送成功");
+							$("#receiverphone").val("");
+							$("#content").val("");
+						} else {
+							layer.msg(result.extend.errorMsg);
+						}
+					}
+				});
+			}
+		});
 	</script>
 </body>
 </html>

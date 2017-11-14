@@ -4,6 +4,7 @@
 package com.older.manager.service.oldback;
 
 import java.util.List;
+import java.util.Map;
 
 import com.older.manager.bean.Sms;
 
@@ -74,6 +75,14 @@ public interface SmsService {
 	 * @throws
 	 */
 	public int deleteSmsById(int id);
+
+	/**
+	 * 发送短信
+	 * @param phone
+	 * @param content
+	 * @return
+	 */
+	public Map<String, Object> sendMessage(String phone, String content);
 	
 	
 }

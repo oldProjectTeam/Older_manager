@@ -1,0 +1,56 @@
+
+.image1{
+	border: 1px solid #5F9EA0;
+	width: 210px;
+	height: 335px;
+	float: left;
+	text-align: left;
+	margin: 8px;
+}
+img{
+	margin: 5px;
+	
+}
+.text1{
+	margin-bottom: 5px;
+	font-size: 10px;
+	height: 70px;
+	color: #777777;
+}
+
+.text{
+	
+	font-size: 15px;
+	font-family: "微软雅黑";
+	height: 50px;
+}
+.text a:hover{
+	color: #464646;
+}
+
+.new1{
+	width: 48%;
+	height: 250px;
+	border: 1px solid #01A2A6;
+	float: left;
+	margin: 10px;
+}
+
+.new2 span{
+	float: right;
+	margin-right: 10px;
+	color: #737373;
+	font-size: 15px;
+	
+	
+}
+.new2 a{
+	font-family: "微软雅黑"; 
+	font-size: 15px;
+	
+	
+}
+
+.new2 a:hover{
+	color: #C0A16B;
+}

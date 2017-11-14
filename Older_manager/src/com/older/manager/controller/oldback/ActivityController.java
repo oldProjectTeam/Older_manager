@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -15,13 +17,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.older.manager.bean.Activity;
 import com.older.manager.service.oldback.IActivityService;
+import com.older.manager.utils.FileUtil;
 import com.older.manager.utils.Msg;
+import com.older.manager.utils.SaveFile;
 import com.older.manager.utils.TableData;
 
 @Controller
@@ -56,14 +61,21 @@ public class ActivityController {
 	@SuppressWarnings("finally")
 	@RequestMapping("/insertActivity")
 	@ResponseBody
-	public Msg insertActivity(Activity activity) {
+	public Msg insertActivity(Activity activity, MultipartFile file,
+			HttpServletRequest request) {
+		System.out.println(activity.toString());
+		System.out.println(file.getOriginalFilename());
 		boolean flag = false;
 		try {
+			String imgUrl = null;
+			if (file != null) {
+				imgUrl = FileUtil.saveFile(file, request);
+			}
+			activity.setActivity1(imgUrl);
 			activity.setReleasetime(new Date());
 			activityService.insertActivity(activity);
 			flag = true;
 		} catch (Exception e) {
-			// TODO: handle exception
 		} finally {
 			if (flag) {
 				return Msg.success();
@@ -203,32 +215,35 @@ public class ActivityController {
 		return Msg.success().add("activities", activities);
 
 	}
-	
+
 	/**
-	 * @Title:   findAllActivitiesByState
-	 * @Description:  查询所有没有举行的活动
-	 * @param:    @return   
-	 * @return:   Msg   
+	 * @Title: findAllActivitiesByState
+	 * @Description: 查询所有没有举行的活动
+	 * @param: @return
+	 * @return: Msg
 	 * @throws
 	 */
 	@RequestMapping("/findAllActivitiesByState")
 	@ResponseBody
-	public Msg findAllActivitiesByState(){
-		List<Activity> activities = activityService.findAllActivitiesByNoReleaseregion();
-		if (activities!=null) {
+	public Msg findAllActivitiesByState() {
+		List<Activity> activities = activityService
+				.findAllActivitiesByNoReleaseregion();
+		if (activities != null) {
 			return Msg.success().add("activities", activities);
-		}else {
+		} else {
 			return Msg.fail().add("msg", "查询不到相关的数据！");
 		}
 	}
-	
+
 	@RequestMapping("/test")
 	@ResponseBody
-	public TableData<Activity> test(@RequestParam("page")Integer page,@RequestParam("limit")Integer limit){
-		TableData<Activity> tableData=new TableData<Activity>();
+	public TableData<Activity> test(@RequestParam("page") Integer page,
+			@RequestParam("limit") Integer limit) {
+		TableData<Activity> tableData = new TableData<Activity>();
 		PageHelper.startPage(page, limit);
-		List<Activity> activities=activityService.findAllActivitiesByNoReleaseregion();
-		PageInfo<Activity> pageInfo=new PageInfo<Activity>(activities);
+		List<Activity> activities = activityService
+				.findAllActivitiesByNoReleaseregion();
+		PageInfo<Activity> pageInfo = new PageInfo<Activity>(activities);
 		tableData.setCode(0);
 		tableData.setCount(activities.size());
 		tableData.setData(pageInfo.getList());
