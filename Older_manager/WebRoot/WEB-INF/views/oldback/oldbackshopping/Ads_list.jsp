@@ -25,8 +25,6 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
-	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
 <link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
 	rel="stylesheet">
@@ -47,18 +45,46 @@
 	src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
-<script type="text/javascript"
+<%-- <script type="text/javascript"
 	src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.js"></script>
 <script type="text/javascript"
 	src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.queue.js"></script>
 <script type="text/javascript"
 	src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.speed.js"></script>
 <script type="text/javascript"
-	src="${APP_PATH}/static/shop/Widget/swfupload/handlers.js"></script>
+	src="${APP_PATH}/static/shop/Widget/swfupload/handlers.js"></script>  --%>
+	
+	
+	
+	
+	
+	
+	
+	
+<!-- 引入jquery -->
+<script type="text/javascript"
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
+<!-- 引入样式 -->
+
+<link
+	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+ <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>	
+<script src="${APP_PATH}/static/layui/css/layui.css"
+	type="text/javascript"></script>
+<script src="${APP_PATH}/static/layui/layui.js"
+	type="text/javascript"></script>
+<script language="JavaScript"
+	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 </head>
 
 <body>
-	<div class="page-content clearfix">
+
+    	<!--  广告图片 <input class="form-control" type="file" name="sortphoto">  -->
+	<%-- <div class="page-content clearfix">
 		<div class="sort_adsadd_style">
 			<div class="border clearfix">
 				<span class="l_f"> <a href="javascript:ovid()" id="ads_add"
@@ -175,9 +201,237 @@
 			</div>
 
 		</div>
-	</div>
+	</div> --%>
+	
+	
+	
+	
+ <div class="col-sm-12">
+                      <div style="margin-top:20px">
+						      <div class="col-md-4">
+								<button type="button" class="btn btn-primary" id="add_btn">
+									<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+									添加广告
+								</button>
+								<button type="button" class="btn btn-danger" id="old_delete_all_btn">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									批量删除
+								</button>
+								<button type="button" class="btn btn-info" id="goback">
+									<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
+									返回上一步
+								</button>
+							</div>
+								<span style="float:right">共：<b id="totalid"></b>类</span>
+							</div>
+							<br/>
+           <div class="row form-inline" align="left" style="margin-top:20px;">
+			<div class="col-md-12">
+				      分类名称： <input type="text" class="form-control" id="str1id"
+					placeholder="请输入分类名称"> 
+			
+				  <button class="btn btn-default" id="selectwith">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					查询
+				</button>
+				
+				  
+	       <span style="float:right; margin-right:10px">每页显示:<select id="selectid" class="form-control">
+			   <option>5</option>
+			   <option>20</option>
+			   <option>50</option>
+			   <option>100</option>
+			</select>条</span> 
+	    
+	   
+			</div>
+			
+			
+		</div>
+ 
+ 
+ 
+ 
+	 <!-- 表格开始 -->
+		<div class="row" style="margin-top:10px;">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered text-center table-striped" id="sample-table">
+						<thead id="head">
+						</thead>
+						<tbody id="table_data">
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+	</div>  
+		<!--分页信息  -->
+		<div class="row">
+			<div class="col-md-7" id="page_text"></div>
+			<div class="col-md-5" id="page_nav"></div>
+		</div>	
+	
+	
+</div>		
+	<!-- 增加模态框 -->
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="addmodal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+         <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加广告</h4>
+      </div>
+      <div class="modal-body">
+          <form action="" enctype="multipart/form-data">
+                <div class="row form-inline">
+                   <div class=" col-sm-offset-1">
+                                 <font color="red">*</font>所属分类 <select class="form-control" id="soridid" name="sortname">
+	                            <option value="">选择分类</option>
+								<option value="首页大幻灯片">首页大幻灯片</option>
+								<option value="首页小幻灯片">首页小幻灯片</option>
+								<option value="单广告图">单广告图</option>
+								<option value="其他广告">其他广告</option>
+								<option value="板块栏目广告">板块栏目广告</option>
+                            </select>
+                   </div>                 
+                </div>  
+                <br/>
+              <div class="row form-inline">
+                  <input type="hidden" id="sortsize" name="sortsize">
+                 <div class="col-sm-offset-1">
+                  <font color="red">*</font> 图片尺寸 <input class="form-control" placeholder="0" style="width:60px" id="size1"> * <input class="form-control" placeholder="0" style="width:60px" id="size2">          
+                 </div>
+              </div>  
+              <br/>
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                  <font color="red">*</font>显示排序 <input class="form-control" placeholder="0" style="width:60px" id="sorid" name="sort"> 
+                 </div>
+              </div>   
+              <br/>    
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                             <font color="red">*</font>  链接地址 <input class="form-control" placeholder="www.baidu.com" id="hrefid" name="sorthref"> 
+                 </div>
+              </div>  
+              <br/>
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                              显示状态
+                      <label class="radio-inline">
+						  <input type="radio" checked="checked" name="sortstate" id="inlineRadio1" value="显示"> 显示
+					  </label>
+					  <label class="radio-inline">
+						  <input type="radio" name="sortstate" id="inlineRadio2" value="隐藏"> 隐藏
+					 </label>
+                 </div>
+              </div>
+              <br/>
+               <div class="row form-inline">
+                 <div class="col-sm-offset-1" >
+                  <input type="hidden" name="sortphoto">
+                             <font color="red">*</font> 广告图片  <input type="file" multiple="multiple" class="btn btn-info" name="file" id="up_img" class="form-control" />
+                 </div>
+                 <div class="col-sm-offset-1" style="width:500px;height:100px; border:solid 0px grey">
+                   <img src="${pageContext.request.contextPath}/upload/${user.image==null?'default.png':user.image}"
+								id="imgShow" width="300" height="100"> 
+                 </div>
+              </div>
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                     <p>图片大小小于5MB,支持.jpg;.gif;.png;.jpeg格式的图片</p>       
+                 </div>
+                 </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="saveadslistbtn">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+	<!-- 编辑模态框 -->
+	<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" id="updatemodal">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+         <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">编辑广告</h4>
+      </div>
+      <div class="modal-body">
+          <form action="" enctype="multipart/form-data">
+                <div class="row form-inline">
+                   <div class=" col-sm-offset-1">
+                                   <font color="red">*</font> 所属分类 <p class="form-control-static" id="sortnameid"></p>
+                   </div>                 
+                </div>  
+                <br/>
+              <div class="row form-inline">
+                  <input type="hidden" id="updatesortsize" name="sortsize">
+                 <div class="col-sm-offset-1">
+                              <font color="red">*</font> 图片尺寸 <input class="form-control" placeholder="0" style="width:60px" id="updatesize1"> * <input class="form-control" placeholder="0" style="width:60px" id="updatesize2">          
+                 </div>
+              </div>  
+              <br/>
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                              <font color="red">*</font> 显示排序 <input class="form-control" placeholder="0" style="width:60px" id="sortid" name="sort"> 
+                 </div>
+              </div>   
+              <br/>    
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                             <font color="red">*</font> 链接地址 <input class="form-control" placeholder="www.baidu.com" name="sorthref" id="sorthrefid"> 
+                 </div>
+              </div>  
+              <br/>
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                              显示状态
+                      <label class="radio-inline">
+						  <input type="radio" checked="checked" name="sortstate" id="inlineRadio1" value="显示"> 显示
+					  </label>
+					  <label class="radio-inline">
+						  <input type="radio" name="sortstate" id="inlineRadio2" value="隐藏"> 隐藏
+					 </label>
+                 </div>
+              </div>
+              <br/>
+               <div class="row form-inline">
+                 <div class="col-sm-offset-1" >
+                  <input type="hidden" name="sortphoto">
+                            <font color="red">*</font>  广告图片  <input type="file" multiple="multiple" class="btn btn-info" name="file" id="up_img1" class="form-control" />
+                 </div>
+                 <div class="col-sm-offset-1" style="width:700px;height:100px; border:solid 0px grey">
+                   <img  id="imgShow1" width="300" height="100"> 
+                 </div>
+              </div>
+              <div class="row form-inline">
+                 <div class="col-sm-offset-1">
+                     <p>图片大小小于5MB,支持.jpg;.gif;.png;.jpeg格式的图片</p>       
+                 </div>
+                 </div>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary" id="updateadslistbtn">更新</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+	
+	
 	<!--添加广告样式-->
-	<div id="add_ads_style" style="display:none">
+	<%-- <div id="add_ads_style" style="display:none">
 		<div class="add_adverts">
 			<ul>
 				<li><label class="label_name">所属分类</label> <span
@@ -242,9 +496,612 @@
 				</span></li>
 			</ul>
 		</div>
-	</div>
+	</div> --%>
 
-	<script>
+
+
+<script type="text/javascript">
+	window.onload = function() {
+			new uploadPreview({
+				UpBtn : "up_img",
+				ImgShow : "imgShow"
+			});
+			
+			new uploadPreview({
+				UpBtn : "up_img1",
+				ImgShow : "imgShow1"
+			});
+		};
+var totalRecord, currentNum,str="",ta=5;
+	/* 分页 */
+	$(function() {
+		go(1, "",5,${id});
+		
+		$("#old_delete_all_btn").attr("disabled", true);
+	});
+	function go(pn,str,ta,id) {
+		$("#old_delete_all_btn").attr("disabled", true);
+		layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
+		$.ajax({
+			url : "${APP_PATH}/adslist/selectalladslist",
+			data : {
+				"pn" : pn,
+				"str" : str,
+				"ta" : ta,
+				"id" : id,
+			},
+			type : "GET",
+			success : function(result) {
+				if (result.code == 100) {
+					//console.log(result.extend.pageInfo);
+					//构建分页信息
+					build_page_text(result);
+					//构建分页条
+					build_page_nav(result);
+					//构建表格数据
+					build_table_data(result);
+				}
+			}
+		});
+	}
+	function build_page_text(result) {
+		$("#page_text").empty();
+		$("#page_text").append(
+				"当前第" + result.extend.pageInfo.pageNum + "页，共"
+						+ result.extend.pageInfo.pages + "页，总计"
+						+ result.extend.pageInfo.total + "条记录");
+		totalRecord = result.extend.pageInfo.total;
+		$("#totalid").text(totalRecord);
+		currentNum = result.extend.pageInfo.pageNum;
+	}
+	//解析显示分页条信息
+	function build_page_nav(result) {
+		$("#page_nav").empty();
+		var ul = $("<ul></ul>").addClass("pagination");
+		var firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
+		firstPageLi.click(function() {
+			go(1, str,ta,${id});
+		});
+		var prePageLi = $("<li></li>").append(
+				$("<a></a>").append("&laquo;"));
+		if (result.extend.pageInfo.hasPreviousPage == false) {
+			firstPageLi.addClass("disabled");
+			prePageLi.addClass("disabled");
+		} else {
+			//为元素添加点击翻页事件
+			prePageLi
+					.click(function() {
+						go(result.extend.pageInfo.pageNum - 1, str,ta,${id});
+					});
+		}
+		var nextPageLi = $("<li></li>").append(
+				$("<a></a>").append("&raquo;"));
+		var lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
+		lastPageLi.click(function() {
+			go(result.extend.pageInfo.pages, str,ta,${id});
+		});
+		if (result.extend.pageInfo.hasNextPage == false) {
+			nextPageLi.addClass("disabled");
+			lastPageLi.addClass("disabled");
+		} else {
+			//为元素添加点击翻页事件
+			nextPageLi
+					.click(function() {
+						go(result.extend.pageInfo.pageNum + 1,str,ta,${id});
+					});
+		}
+		//添加首页和前一页的提示
+		ul.append(firstPageLi).append(prePageLi);
+		//遍历给ul中添加页码提示
+		$.each(result.extend.pageInfo.navigatepageNums, function(index,
+				item) {
+			var numLi = $("<li></li>").append($("<a></a>").append(item));
+			if (result.extend.pageInfo.pageNum == item) {
+				numLi.addClass("active");
+			}
+			numLi.click(function() {
+				go(item,str,ta,${id});
+			});
+			ul.append(numLi);
+		});
+		//添加下一页和末页的提示
+		ul.append(nextPageLi).append(lastPageLi);
+		//把ul加到nav 
+		var navEle = $("<nav></nav>").append(ul);
+		navEle.appendTo("#page_nav");
+	}
+
+	function build_table_data(result) {
+		$("#head").empty();
+		$("#table_data").empty();
+		var headTR = $("<tr></tr>");
+		
+		var checkBox = $("<td width='25px'></td>").append(
+				$("<input type='checkbox' id='check_item_all'/>"));
+		var Td1 = $("<td width='80px'></td>").append("ID");
+		var Td2 = $("<td width='130px'></td>").append("分类");
+		var Td3 = $("<td width='60px'></td>").append("排序");
+		var Td4 = $("<td width='240px'></td>").append("图片");
+		var Td5 = $("<td width='150px'></td>").append("尺寸（大小）");
+		var Td6 = $("<td width='250px'></td>").append("链接地址");
+		var Td7 = $("<td width='180px'></td>").append("加入时间");
+		var Td8 = $("<td width='70px'></td>").append("状态");
+		var Td9 = $("<td width='250px'></td>").append("操作");
+		headTR.append(checkBox).append(Td1).append(Td2).append(Td3).append(
+				Td4).append(Td5).append(Td6).append(Td7).append(Td8).append(Td9).appendTo($("#head"));
+
+		$
+				.each(
+						result.extend.pageInfo.list,
+						function(index, item) {
+							var checkBoxTd = $("<td><input type='checkbox' class='check_item'/></td>");
+							var ty1 = $("<td></td>").append(item.id);
+							var ty2 = $("<td></td>").append(item.sortname);
+							var ty3 = $("<td></td>").append("<input type='text' id='sortchangeid' style='width:50px'>");
+							
+							 ty3.find("input").attr("value", item.sort);
+							 ty3.find("input").attr("inputid",item.id);
+							var ty4 = $("<td></td>").append("<img  width='240' height='100'/>");
+							 ty4.find("img").attr("src",item.sortphoto);
+							var ty5 = $("<td></td>").append(item.sortsize);
+						    var ty6 = $("<td></td>").append("<a id='aid'></a>");
+						   
+						     ty6.find("a").attr("href",item.sorthref);
+						     ty6.find("a").append(item.sorthref);
+						    var ty7 = $("<td></td>").append(ChangeDateFormat(item.sortjointime));
+						    var ty8 = $("<td></td>").append(item.sortstate);
+						            
+							var Stopstart = $("<button></button>")
+									.addClass(
+											"stopright")
+									.append(
+											$("<span></span>"));
+											
+							// $(this).parents("tr").find(".spanclass").removeClass("glyphicon glyphicon-check bigger-120");
+							//				
+								if(item.sortstate=="显示"){
+								   Stopstart.addClass("btn btn-xs btn-success");
+								   Stopstart.find("span").addClass("glyphicon glyphicon-check  bigger-120  spanclass");
+								   Stopstart.attr("stateid", "显示");
+								}else{
+								    Stopstart.addClass("btn btn-xs btn-default");
+								    Stopstart.find("span").addClass("glyphicon glyphicon-remove  bigger-120  spanclass"); 
+								    Stopstart.attr("stateid", "隐藏");
+								}							
+
+							//为启动与关闭按钮添加一个自定义的属性，
+							Stopstart.attr("edit-id", item.id);
+							var editBetn = $("<button></button>")
+									.addClass(
+											"btn btn-xs btn-info editbtn")
+									.append(
+											$("<span></span>")
+													.addClass(
+															"glyphicon glyphicon-edit bigger-120"));
+							//为编辑按钮添加一个自定义的属性，来表示当前查看老人的id
+							 editBetn.attr("editad-id", item.id);
+							 editBetn.attr("src",item.sortphoto);
+							var delBtn = $("<button></button>")
+									.addClass(
+											"btn btn-xs btn-danger delete_btn")
+									.append(
+											$("<span></span>")
+													.addClass(
+															"glyphicon glyphicon-trash  bigger-120"));
+                                  
+							//为删除按钮添加一个自定义的属性，来表示当前删除员工的id
+							delBtn.attr("del-id", item.id);
+						
+							var btnTd = $("<td class='td-manage'></td>").append(Stopstart)
+									.append(" ").append(editBetn).append(
+											" ").append(delBtn);
+							//append方法执行完成以后还是返回原来的元素							              								              
+							$("<tr></tr>").append(checkBoxTd).append(ty1)
+									.append(ty2).append(ty3).append(ty4)
+									.append(ty5).append(ty6).append(ty7).append(ty8).append(btnTd)
+									.appendTo("#table_data");
+						});
+	}
+
+
+		function ChangeDateFormat(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
+
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "-";
+
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate();
+				
+				var house=date.getHours();
+				var min=date.getMinutes();
+                 if(min<10){
+                   min="0"+min;
+                 }
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "-" + month + currentDate+"  "+house+":"+min;
+			} else {
+				return null;
+			}
+
+		}
+
+
+
+   //点击搜索
+		$("#selectwith").click(function() {
+                  str=$("#str1id").val();
+			  go(1,str,ta,${id});
+                
+		});
+		  //每页显示条数
+    $("#selectid").change(function(){
+           ta=$("#selectid").val();
+           str=$("#str1id").val();
+           go(1,str,ta,${id});
+    
+    });
+		
+		//全选
+		$(document).on("click", "#check_item_all", function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+
+			if ($("#check_item_all").prop("checked") == true) {
+				$("#old_delete_all_btn").attr("disabled", false);
+			} else {
+				$("#old_delete_all_btn").attr("disabled", true);
+			}
+		});
+
+		$(document)
+				.on(
+						"click",
+						".check_item",
+						function() {
+
+							var flag = $(".check_item:checked").length == $(".check_item").length;
+							$("#check_item_all").prop("checked", flag);
+							if ($(".check_item:checked").length > 0) {
+								$("#old_delete_all_btn")
+										.attr("disabled", false);
+							} else {
+								$("#old_delete_all_btn").attr("disabled", true);
+							}
+						});
+						
+	//点击删除   
+		$(document).on("click", ".delete_btn", function() {
+			var delid = $(this).attr("del-id");
+			var oldername = $(this).parents("tr").find("td:eq(2)").text();
+			layer.confirm("确认删除【" + oldername + "】吗", function(index) {
+				$.ajax({
+					url : "${APP_PATH}/adslist/deleteadslistbyid/" + delid,
+					type : "DELETE",
+					success : function(result) {
+						
+						  go(currentNum,str,ta,${id});
+						layer.msg(result.msg);
+					}
+				});
+			});
+		});
+
+//点击删除全部，就批量删除
+		$("#old_delete_all_btn")
+				.click(
+						function() {
+							//alert();
+							var empNames = "";
+							var del_idstr = "";
+							$.each($(".check_item:checked"), function() {
+								//索引为2，就是第3个td.
+								empNames += $(this).parents("tr").find(
+										"td:eq(2)").text()
+										+ ",";
+								//alert(empNames);
+								//组装员工id字符串
+								del_idstr += $(this).parents("tr").find(
+										"td:eq(1)").text()
+										+ "-";
+								//alert($(this).parents("tr").find("td:eq(2)").text());
+								//alert(del_idstr);
+
+							});
+
+							//去除empNames多去的逗号
+							empNames = empNames.substring(0,
+									empNames.length - 1);
+							//去除多余的删除员工-
+							del_idstr = del_idstr.substring(0,
+									del_idstr.length - 1);
+							layer
+									.confirm(
+											"确认删除【" + empNames + "】吗",
+											function(index) {
+												//发送ajax请求
+												$
+														.ajax({
+															url : "${APP_PATH}/adslist/deletealladslist/"
+																	+ del_idstr,
+															type : "DELETE",
+															success : function(
+																	result) {
+																//回到当前页面
+																  go(currentNum,str,ta,${id});
+																layer.msg(result.msg);
+
+															}
+														});
+											});
+						});	
+						
+						
+//停用与启用
+	
+	$(document).on("click", ".stopright", function() {
+	var delid = $(this).attr("edit-id");
+	var  stateid=$(this).attr("stateid");
+	if(stateid=="显示"){
+		
+	layer.confirm('确认要隐藏吗？',
+								{
+								icon : 0,
+							},
+				function() {
+
+				  layer.msg('隐藏!', {
+							icon : 5,
+							time : 2000
+						});
+		         $.ajax({
+					url : "${APP_PATH}/adslist/updatesortadswithstop/" + delid,
+					type : "POST",
+					success : function() {
+				 
+						 go(currentNum,str,ta,${id});
+					}
+
+				});
+
+			});
+	
+	}else{
+	
+	layer.confirm('确认要显示吗？',
+								{
+								icon : 0,
+							},
+				function() {
+
+				  layer.msg('显示!', {
+							icon : 6,
+							time : 2000
+						});
+		         $.ajax({
+					url : "${APP_PATH}/adslist/updatesortadswithstop/" + delid,
+					type : "POST",
+					success : function() {
+				 
+						 go(currentNum,str,ta,${id});
+
+					}
+
+				});
+
+			});
+	
+	
+	}
+	
+
+
+		});		
+		
+		
+	//新增
+	$("#add_btn").click(function(){
+	    $("#addmodal").modal();
+	
+	});	
+	
+		
+	//点击保存
+		$("#saveadslistbtn").click(
+				function() {
+				 $("#sortsize").val($("#size1").val()+"*"+$("#size2").val());
+
+
+                 if( $("#soridid").val()=="选择分类"||$("#soridid").val()==""||
+                     $("#size1").val()==null|| $("#size1").val()==""||
+                     $("#size2").val()==null|| $("#size2").val()==""||
+                     $("#sorid").val()==null|| $("#sorid").val()==""||
+                     $("#hrefid").val()==null|| $("#hrefid").val()==""||
+                     $("#up_img").val()==null|| $("#up_img").val()=="" ){
+                 
+                     layer.msg("必填项填完在保存");
+                 
+                 }else{
+                 var num=/^[0-9]{1,4}$/;
+                 var bit=/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+.?/;
+                     if(!num.test($("#size1").val())){
+                       layer.msg("请输入正确的图片尺寸");
+                     }else if(!num.test($("#size2").val())){
+                       layer.msg("请输入正确的图片尺寸");
+                     }else if(!num.test($("#sorid").val())){
+                     layer.msg("请输入正确的排序");
+                     }else if(!bit.test($("#hrefid").val())){
+                     layer.msg("请输入正确的链接地址");
+                     }else {
+                     
+
+
+
+			$.ajax({
+				url : "${APP_PATH}/adslist/addadslist/" + ${id},
+				type : "POST",
+				data :  new FormData($("#addmodal form")[0]),
+				cache : false,
+				processData : false,
+				contentType : false,
+				success : function(result) {
+
+					if (result.code == 100) {
+						//1.关闭模态框
+						$("#addmodal").modal('hide');
+						go(totalRecord, str, ta, ${id});
+						layer.msg("添加成功");
+						$("#addmodal form")[0].reset();
+					}
+				}
+
+			});
+		
+                     
+                     }
+                   
+                 }
+
+	});
+	//点击编辑按钮
+	$(document).on("click",".editbtn",function() {
+
+					var edit = $(this).attr("editad-id");
+					//3.把老人的id传递给模态框的编辑按钮
+					$("#updateadslistbtn").attr("edit-id",
+							$(this).attr("editad-id"));
+               
+					//发送请求获取
+					$.ajax({
+						url : "${APP_PATH}/adslist/selectadslistbyid/" + edit,
+						type : "GET",
+
+						success : function(result) {
+
+							if (result.code == 100) {
+							
+								$("#updatemodal").modal();
+								//console.log(result);
+								var rel = result.extend.adslist;
+								$("#sortnameid").text(rel.sortname);
+								var str=rel.sortsize.split("*");
+								$("#updatesize1").val(str[0]);
+								$("#updatesize2").val(str[1]);
+								$("#sortid").val(rel.sort);
+								$("#sorthrefid").val(rel.sorthref);
+								$("#updatemodal input[name=sortstate]").val([rel.sortstate]);
+								$("#imgShow1").attr("src",rel.sortphoto);
+								$("#imgid").find("img").attr("src",rel.sortphoto);
+								
+							}
+						}
+					});
+					
+				});
+	
+	 
+	 //更新
+	 $("#updateadslistbtn").click(function() {
+		       
+		        $("#updatesortsize").val($("#updatesize1").val()+"*"+$("#updatesize2").val());
+			var edit = $(this).attr("edit-id");
+			  if( $("#updatesize1").val()==null|| $("#updatesize1").val()==""||
+                     $("#updatesize2").val()==null|| $("#updatesize2").val()==""||
+                     $("#sortid").val()==null|| $("#sortid").val()==""||
+                     $("#sorthrefid").val()==null|| $("#sorthrefid").val()==""){
+                 
+                     layer.msg("必填项填完在保存");
+                 
+                 }else{
+                 var num=/^[0-9]*$/;
+                 var bit=/[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+.?/;
+                     if(!num.test($("#updatesize1").val())){
+                       layer.msg("请输入正确的图片尺寸");
+                     }else if(!num.test($("#updatesize2").val())){
+                       layer.msg("请输入正确的图片尺寸");
+                     }else if(!num.test($("#sortid").val())){
+                     layer.msg("请输入正确的排序");
+                     }else if(!bit.test($("#sorthrefid").val())){
+                     layer.msg("请输入正确的链接地址");
+                     }else {
+                     
+			
+			
+			
+			$.ajax({
+				url : "${APP_PATH}/adslist/updateadslist/" + edit,
+				type : "POST",
+				data :  new FormData($("#updatemodal form")[0]),
+				cache : false,
+				processData : false,
+				contentType : false,
+				success : function(result) {
+
+					if (result.code == 100) {
+						//1.关闭模态框
+						$("#updatemodal").modal('hide');
+						go(currentNum, str, ta, ${id});
+						layer.msg("更新成功");
+					}
+				}
+
+			});
+}}
+		});   
+
+	
+	
+	
+	
+	$("#goback").click(function(){
+	    window.location.href="Sort_ads";
+	});
+	
+	
+	//排序
+	
+	$(document).on("change","#sortchangeid",function() {
+	      var num=$("#sortchangeid").val();
+	      var inputid = $(this).attr("inputid");
+	   $.ajax({
+						url : "${APP_PATH}/adslist/updatesortnum/" + inputid+"&"+num,
+						type : "POST",
+
+						success : function(result) {
+
+							if (result.code == 100) {
+							
+								layer.msg("排序成功！");
+							}
+						}
+					});
+
+	});
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- <script>
 		/*******添加广告*********/
 		$('#ads_add').on(
 				'click',
@@ -455,6 +1312,6 @@
 				return 'left';
 			}
 		});
-	</script>
+	</script> -->
 </body>
 </html>

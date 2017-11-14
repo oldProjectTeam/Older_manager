@@ -42,8 +42,22 @@ public class SaveFile {
 			File dateDirs = new File(date.get(Calendar.YEAR) + File.separator
 					+ (date.get(Calendar.MONTH) + 1));
 
+			String NewfileNames = date.get(Calendar.YEAR)
+					+ ""
+					+ date.get(Calendar.MONTH)
+					+ ""
+					+ date.get(Calendar.DATE)
+					+ ""
+					+ date.get(Calendar.HOUR)
+					+ ""
+					+ date.get(Calendar.MINUTE)
+					+ ""
+					+ date.get(Calendar.MILLISECOND)
+					+ ""
+					+ originalFileName.substring(originalFileName
+							.lastIndexOf("."));
 			File newFile = new File(rootPath + File.separator + dateDirs
-					+ File.separator + originalFileName);
+					+ File.separator + NewfileNames);
 
 			// 判断目标文件所在目录是否存在
 			if (!newFile.getParentFile().exists()) {
@@ -53,13 +67,13 @@ public class SaveFile {
 			}
 			// 将内存中的数据写入磁盘
 			if (newFile.exists()) {
-				System.out.println(originalFileName + "已经存在");
+				System.out.println(NewfileNames + "已经存在");
 			} else {
 				file.transferTo(newFile);
 			}
 			// 完整的图片路径
 			fileUrl = "upload/img/" + +date.get(Calendar.YEAR) + "/"
-					+ (date.get(Calendar.MONTH) + 1) + "/" + originalFileName;
+					+ (date.get(Calendar.MONTH) + 1) + "/" + NewfileNames;
 
 		}
 		;

@@ -1,591 +1,617 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ActivityMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Activity" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="releaseTime" property="releasetime" jdbcType="TIMESTAMP" />
-    <result column="activityTime" property="activitytime" jdbcType="TIMESTAMP" />
-    <result column="place" property="place" jdbcType="VARCHAR" />
-    <result column="releasePeople" property="releasepeople" jdbcType="VARCHAR" />
-    <result column="type" property="type" jdbcType="VARCHAR" />
-    <result column="state" property="state" jdbcType="VARCHAR" />
-    <result column="remake" property="remake" jdbcType="VARCHAR" />
-    <result column="releaseRegion" property="releaseregion" jdbcType="VARCHAR" />
-    <result column="activityOperatingBudget" property="activityoperatingbudget" jdbcType="DOUBLE" />
-    <result column="applyTime" property="applytime" jdbcType="TIMESTAMP" />
-    <result column="applyPeople" property="applypeople" jdbcType="VARCHAR" />
-    <result column="approvalState" property="approvalstate" jdbcType="VARCHAR" />
-    <result column="approvalPeople" property="approvalpeople" jdbcType="VARCHAR" />
-    <result column="approvalResult" property="approvalresult" jdbcType="VARCHAR" />
-    <result column="approvalReason" property="approvalreason" jdbcType="VARCHAR" />
-    <result column="approvalTime" property="approvaltime" jdbcType="TIMESTAMP" />
-    <result column="activity1" property="activity1" jdbcType="VARCHAR" />
-    <result column="activity2" property="activity2" jdbcType="VARCHAR" />
-    <result column="activity3" property="activity3" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.older.manager.bean.Activity" extends="BaseResultMap" >
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, title, releaseTime, activityTime, place, releasePeople, type, state, remake, 
-    releaseRegion, activityOperatingBudget, applyTime, applyPeople, approvalState, approvalPeople, 
-    approvalResult, approvalReason, approvalTime, activity1, activity2, activity3
-  </sql>
-  <sql id="Blob_Column_List" >
-    content
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.older.manager.bean.ActivityExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from activity
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    order by id DESC
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ActivityExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from activity
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from activity
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <!--根据条件模糊查询活动信息  -->
-  <select id="selectByCondiction" resultMap="ResultMapWithBLOBs" parameterType="activity" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from activity a
-    <where>     
-      <if test="title != null" >
-        and a.title like '%${title}%'
-      </if>
-      <if test="releasetime != null" >
+<mapper namespace="com.older.manager.mapper.ActivityMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.Activity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="releaseTime" property="releasetime" jdbcType="TIMESTAMP" />
+		<result column="activityTime" property="activitytime" jdbcType="TIMESTAMP" />
+		<result column="place" property="place" jdbcType="VARCHAR" />
+		<result column="releasePeople" property="releasepeople"
+			jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="remake" property="remake" jdbcType="VARCHAR" />
+		<result column="releaseRegion" property="releaseregion"
+			jdbcType="VARCHAR" />
+		<result column="activityOperatingBudget" property="activityoperatingbudget"
+			jdbcType="DOUBLE" />
+		<result column="applyTime" property="applytime" jdbcType="TIMESTAMP" />
+		<result column="applyPeople" property="applypeople" jdbcType="VARCHAR" />
+		<result column="approvalState" property="approvalstate"
+			jdbcType="VARCHAR" />
+		<result column="approvalPeople" property="approvalpeople"
+			jdbcType="VARCHAR" />
+		<result column="approvalResult" property="approvalresult"
+			jdbcType="VARCHAR" />
+		<result column="approvalReason" property="approvalreason"
+			jdbcType="VARCHAR" />
+		<result column="approvalTime" property="approvaltime" jdbcType="TIMESTAMP" />
+		<result column="activity1" property="activity1" jdbcType="VARCHAR" />
+		<result column="activity2" property="activity2" jdbcType="VARCHAR" />
+		<result column="activity3" property="activity3" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.older.manager.bean.Activity"
+		extends="BaseResultMap">
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, title, releaseTime, activityTime, place, releasePeople, type, state,
+		remake,
+		releaseRegion, activityOperatingBudget, applyTime, applyPeople, approvalState,
+		approvalPeople,
+		approvalResult, approvalReason, approvalTime, activity1, activity2, activity3
+	</sql>
+	<sql id="Blob_Column_List">
+		content
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+		parameterType="com.older.manager.bean.ActivityExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from activity
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		order by id DESC
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.ActivityExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from activity
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<!-- <if test="orderByClause != null" > order by ${orderByClause} </if> -->
+		order by id DESC
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from activity
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<!--根据条件模糊查询活动信息 -->
+	<select id="selectByCondiction" resultMap="ResultMapWithBLOBs"
+		parameterType="activity">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from activity a
+		<where>
+			<if test="title != null">
+				and a.title like '%${title}%'
+			</if>
+			<if test="releasetime != null">
         <![CDATA[and a.releaseTime<#{releasetime}]]>
-      </if>
-      <if test="activitytime != null" >
+			</if>
+			<if test="activitytime != null">
         <![CDATA[and a.activityTime<#{activitytime}]]>
-      </if>
-      <if test="place != null" >
-        and a.place like '%${place}%'
-      </if>
-      <if test="releasepeople != null" >
-        and a.releasePeople like '%${releasepeople}%'
-      </if>
-      <if test="type != null" >
-        and a.type=#{type}
-      </if>
-      <if test="state != null" >
-        and a.state=#{state}
-      </if>
-      <if test="remake != null" >
-        and a.remake like '%${remake}%'
-      </if>
-       
-      <if test="content != null" >
-        and a.content like '%${content}%'
-      </if>
-    </where>
+			</if>
+			<if test="place != null">
+				and a.place like '%${place}%'
+			</if>
+			<if test="releasepeople != null">
+				and a.releasePeople like '%${releasepeople}%'
+			</if>
+			<if test="type != null">
+				and a.type=#{type}
+			</if>
+			<if test="state != null">
+				and a.state=#{state}
+			</if>
+			<if test="remake != null">
+				and a.remake like '%${remake}%'
+			</if>
 
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from activity
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ActivityExample" >
-    delete from activity
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Activity" >
-    insert into activity (id, title, releaseTime, 
-      activityTime, place, releasePeople, 
-      type, state, remake, 
-      releaseRegion, activityOperatingBudget, 
-      applyTime, applyPeople, approvalState, 
-      approvalPeople, approvalResult, approvalReason, 
-      approvalTime, activity1, activity2, 
-      activity3, content)
-    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{releasetime,jdbcType=TIMESTAMP}, 
-      #{activitytime,jdbcType=TIMESTAMP}, #{place,jdbcType=VARCHAR}, #{releasepeople,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{remake,jdbcType=VARCHAR}, 
-      #{releaseregion,jdbcType=VARCHAR}, #{activityoperatingbudget,jdbcType=DOUBLE}, 
-      #{applytime,jdbcType=TIMESTAMP}, #{applypeople,jdbcType=VARCHAR}, #{approvalstate,jdbcType=VARCHAR}, 
-      #{approvalpeople,jdbcType=VARCHAR}, #{approvalresult,jdbcType=VARCHAR}, #{approvalreason,jdbcType=VARCHAR}, 
-      #{approvaltime,jdbcType=TIMESTAMP}, #{activity1,jdbcType=VARCHAR}, #{activity2,jdbcType=VARCHAR}, 
-      #{activity3,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Activity" >
-    insert into activity
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="title != null" >
-        title,
-      </if>
-      <if test="releasetime != null" >
-        releaseTime,
-      </if>
-      <if test="activitytime != null" >
-        activityTime,
-      </if>
-      <if test="place != null" >
-        place,
-      </if>
-      <if test="releasepeople != null" >
-        releasePeople,
-      </if>
-      <if test="type != null" >
-        type,
-      </if>
-      <if test="state != null" >
-        state,
-      </if>
-      <if test="remake != null" >
-        remake,
-      </if>
-      <if test="releaseregion != null" >
-        releaseRegion,
-      </if>
-      <if test="activityoperatingbudget != null" >
-        activityOperatingBudget,
-      </if>
-      <if test="applytime != null" >
-        applyTime,
-      </if>
-      <if test="applypeople != null" >
-        applyPeople,
-      </if>
-      <if test="approvalstate != null" >
-        approvalState,
-      </if>
-      <if test="approvalpeople != null" >
-        approvalPeople,
-      </if>
-      <if test="approvalresult != null" >
-        approvalResult,
-      </if>
-      <if test="approvalreason != null" >
-        approvalReason,
-      </if>
-      <if test="approvaltime != null" >
-        approvalTime,
-      </if>
-      <if test="activity1 != null" >
-        activity1,
-      </if>
-      <if test="activity2 != null" >
-        activity2,
-      </if>
-      <if test="activity3 != null" >
-        activity3,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="releasetime != null" >
-        #{releasetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="activitytime != null" >
-        #{activitytime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="place != null" >
-        #{place,jdbcType=VARCHAR},
-      </if>
-      <if test="releasepeople != null" >
-        #{releasepeople,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="remake != null" >
-        #{remake,jdbcType=VARCHAR},
-      </if>
-      <if test="releaseregion != null" >
-        #{releaseregion,jdbcType=VARCHAR},
-      </if>
-      <if test="activityoperatingbudget != null" >
-        #{activityoperatingbudget,jdbcType=DOUBLE},
-      </if>
-      <if test="applytime != null" >
-        #{applytime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="applypeople != null" >
-        #{applypeople,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalstate != null" >
-        #{approvalstate,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalpeople != null" >
-        #{approvalpeople,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalresult != null" >
-        #{approvalresult,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalreason != null" >
-        #{approvalreason,jdbcType=VARCHAR},
-      </if>
-      <if test="approvaltime != null" >
-        #{approvaltime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="activity1 != null" >
-        #{activity1,jdbcType=VARCHAR},
-      </if>
-      <if test="activity2 != null" >
-        #{activity2,jdbcType=VARCHAR},
-      </if>
-      <if test="activity3 != null" >
-        #{activity3,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ActivityExample" resultType="java.lang.Integer" >
-    select count(*) from activity
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update activity
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.title != null" >
-        title = #{record.title,jdbcType=VARCHAR},
-      </if>
-      <if test="record.releasetime != null" >
-        releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.activitytime != null" >
-        activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.place != null" >
-        place = #{record.place,jdbcType=VARCHAR},
-      </if>
-      <if test="record.releasepeople != null" >
-        releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
-      </if>
-      <if test="record.type != null" >
-        type = #{record.type,jdbcType=VARCHAR},
-      </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remake != null" >
-        remake = #{record.remake,jdbcType=VARCHAR},
-      </if>
-      <if test="record.releaseregion != null" >
-        releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
-      </if>
-      <if test="record.activityoperatingbudget != null" >
-        activityOperatingBudget = #{record.activityoperatingbudget,jdbcType=DOUBLE},
-      </if>
-      <if test="record.applytime != null" >
-        applyTime = #{record.applytime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.applypeople != null" >
-        applyPeople = #{record.applypeople,jdbcType=VARCHAR},
-      </if>
-      <if test="record.approvalstate != null" >
-        approvalState = #{record.approvalstate,jdbcType=VARCHAR},
-      </if>
-      <if test="record.approvalpeople != null" >
-        approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
-      </if>
-      <if test="record.approvalresult != null" >
-        approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
-      </if>
-      <if test="record.approvalreason != null" >
-        approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
-      </if>
-      <if test="record.approvaltime != null" >
-        approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.activity1 != null" >
-        activity1 = #{record.activity1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.activity2 != null" >
-        activity2 = #{record.activity2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.activity3 != null" >
-        activity3 = #{record.activity3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.content != null" >
-        content = #{record.content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update activity
-    set id = #{record.id,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
-      activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
-      place = #{record.place,jdbcType=VARCHAR},
-      releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
-      state = #{record.state,jdbcType=VARCHAR},
-      remake = #{record.remake,jdbcType=VARCHAR},
-      releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
-      activityOperatingBudget = #{record.activityoperatingbudget,jdbcType=DOUBLE},
-      applyTime = #{record.applytime,jdbcType=TIMESTAMP},
-      applyPeople = #{record.applypeople,jdbcType=VARCHAR},
-      approvalState = #{record.approvalstate,jdbcType=VARCHAR},
-      approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
-      approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
-      approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
-      approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
-      activity1 = #{record.activity1,jdbcType=VARCHAR},
-      activity2 = #{record.activity2,jdbcType=VARCHAR},
-      activity3 = #{record.activity3,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update activity
-    set id = #{record.id,jdbcType=INTEGER},
-      title = #{record.title,jdbcType=VARCHAR},
-      releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
-      activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
-      place = #{record.place,jdbcType=VARCHAR},
-      releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR},
-      state = #{record.state,jdbcType=VARCHAR},
-      remake = #{record.remake,jdbcType=VARCHAR},
-      releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
-      activityOperatingBudget = #{record.activityoperatingbudget,jdbcType=DOUBLE},
-      applyTime = #{record.applytime,jdbcType=TIMESTAMP},
-      applyPeople = #{record.applypeople,jdbcType=VARCHAR},
-      approvalState = #{record.approvalstate,jdbcType=VARCHAR},
-      approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
-      approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
-      approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
-      approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
-      activity1 = #{record.activity1,jdbcType=VARCHAR},
-      activity2 = #{record.activity2,jdbcType=VARCHAR},
-      activity3 = #{record.activity3,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Activity" >
-    update activity
-    <set >
-      <if test="title != null" >
-        title = #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="releasetime != null" >
-        releaseTime = #{releasetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="activitytime != null" >
-        activityTime = #{activitytime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="place != null" >
-        place = #{place,jdbcType=VARCHAR},
-      </if>
-      <if test="releasepeople != null" >
-        releasePeople = #{releasepeople,jdbcType=VARCHAR},
-      </if>
-      <if test="type != null" >
-        type = #{type,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="remake != null" >
-        remake = #{remake,jdbcType=VARCHAR},
-      </if>
-      <if test="releaseregion != null" >
-        releaseRegion = #{releaseregion,jdbcType=VARCHAR},
-      </if>
-      <if test="activityoperatingbudget != null" >
-        activityOperatingBudget = #{activityoperatingbudget,jdbcType=DOUBLE},
-      </if>
-      <if test="applytime != null" >
-        applyTime = #{applytime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="applypeople != null" >
-        applyPeople = #{applypeople,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalstate != null" >
-        approvalState = #{approvalstate,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalpeople != null" >
-        approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalresult != null" >
-        approvalResult = #{approvalresult,jdbcType=VARCHAR},
-      </if>
-      <if test="approvalreason != null" >
-        approvalReason = #{approvalreason,jdbcType=VARCHAR},
-      </if>
-      <if test="approvaltime != null" >
-        approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="activity1 != null" >
-        activity1 = #{activity1,jdbcType=VARCHAR},
-      </if>
-      <if test="activity2 != null" >
-        activity2 = #{activity2,jdbcType=VARCHAR},
-      </if>
-      <if test="activity3 != null" >
-        activity3 = #{activity3,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.Activity" >
-    update activity
-    set title = #{title,jdbcType=VARCHAR},
-      releaseTime = #{releasetime,jdbcType=TIMESTAMP},
-      activityTime = #{activitytime,jdbcType=TIMESTAMP},
-      place = #{place,jdbcType=VARCHAR},
-      releasePeople = #{releasepeople,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
-      remake = #{remake,jdbcType=VARCHAR},
-      releaseRegion = #{releaseregion,jdbcType=VARCHAR},
-      activityOperatingBudget = #{activityoperatingbudget,jdbcType=DOUBLE},
-      applyTime = #{applytime,jdbcType=TIMESTAMP},
-      applyPeople = #{applypeople,jdbcType=VARCHAR},
-      approvalState = #{approvalstate,jdbcType=VARCHAR},
-      approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
-      approvalResult = #{approvalresult,jdbcType=VARCHAR},
-      approvalReason = #{approvalreason,jdbcType=VARCHAR},
-      approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
-      activity1 = #{activity1,jdbcType=VARCHAR},
-      activity2 = #{activity2,jdbcType=VARCHAR},
-      activity3 = #{activity3,jdbcType=VARCHAR},
-      content = #{content,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Activity" >
-    update activity
-    set title = #{title,jdbcType=VARCHAR},
-      releaseTime = #{releasetime,jdbcType=TIMESTAMP},
-      activityTime = #{activitytime,jdbcType=TIMESTAMP},
-      place = #{place,jdbcType=VARCHAR},
-      releasePeople = #{releasepeople,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR},
-      state = #{state,jdbcType=VARCHAR},
-      remake = #{remake,jdbcType=VARCHAR},
-      releaseRegion = #{releaseregion,jdbcType=VARCHAR},
-      activityOperatingBudget = #{activityoperatingbudget,jdbcType=DOUBLE},
-      applyTime = #{applytime,jdbcType=TIMESTAMP},
-      applyPeople = #{applypeople,jdbcType=VARCHAR},
-      approvalState = #{approvalstate,jdbcType=VARCHAR},
-      approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
-      approvalResult = #{approvalresult,jdbcType=VARCHAR},
-      approvalReason = #{approvalreason,jdbcType=VARCHAR},
-      approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
-      activity1 = #{activity1,jdbcType=VARCHAR},
-      activity2 = #{activity2,jdbcType=VARCHAR},
-      activity3 = #{activity3,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+			<if test="content != null">
+				and a.content like '%${content}%'
+			</if>
+		</where>
+
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from activity
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.ActivityExample">
+		delete from activity
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.Activity">
+		insert into activity (id, title, releaseTime,
+		activityTime, place, releasePeople,
+		type, state, remake,
+		releaseRegion, activityOperatingBudget,
+		applyTime, applyPeople, approvalState,
+		approvalPeople, approvalResult, approvalReason,
+		approvalTime, activity1, activity2,
+		activity3, content)
+		values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		#{releasetime,jdbcType=TIMESTAMP},
+		#{activitytime,jdbcType=TIMESTAMP}, #{place,jdbcType=VARCHAR}, #{releasepeople,jdbcType=VARCHAR},
+		#{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+		#{remake,jdbcType=VARCHAR},
+		#{releaseregion,jdbcType=VARCHAR}, #{activityoperatingbudget,jdbcType=DOUBLE},
+		#{applytime,jdbcType=TIMESTAMP}, #{applypeople,jdbcType=VARCHAR},
+		#{approvalstate,jdbcType=VARCHAR},
+		#{approvalpeople,jdbcType=VARCHAR}, #{approvalresult,jdbcType=VARCHAR},
+		#{approvalreason,jdbcType=VARCHAR},
+		#{approvaltime,jdbcType=TIMESTAMP}, #{activity1,jdbcType=VARCHAR},
+		#{activity2,jdbcType=VARCHAR},
+		#{activity3,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.Activity">
+		insert into activity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="releasetime != null">
+				releaseTime,
+			</if>
+			<if test="activitytime != null">
+				activityTime,
+			</if>
+			<if test="place != null">
+				place,
+			</if>
+			<if test="releasepeople != null">
+				releasePeople,
+			</if>
+			<if test="type != null">
+				type,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="remake != null">
+				remake,
+			</if>
+			<if test="releaseregion != null">
+				releaseRegion,
+			</if>
+			<if test="activityoperatingbudget != null">
+				activityOperatingBudget,
+			</if>
+			<if test="applytime != null">
+				applyTime,
+			</if>
+			<if test="applypeople != null">
+				applyPeople,
+			</if>
+			<if test="approvalstate != null">
+				approvalState,
+			</if>
+			<if test="approvalpeople != null">
+				approvalPeople,
+			</if>
+			<if test="approvalresult != null">
+				approvalResult,
+			</if>
+			<if test="approvalreason != null">
+				approvalReason,
+			</if>
+			<if test="approvaltime != null">
+				approvalTime,
+			</if>
+			<if test="activity1 != null">
+				activity1,
+			</if>
+			<if test="activity2 != null">
+				activity2,
+			</if>
+			<if test="activity3 != null">
+				activity3,
+			</if>
+			<if test="content != null">
+				content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="releasetime != null">
+				#{releasetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="activitytime != null">
+				#{activitytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="place != null">
+				#{place,jdbcType=VARCHAR},
+			</if>
+			<if test="releasepeople != null">
+				#{releasepeople,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="remake != null">
+				#{remake,jdbcType=VARCHAR},
+			</if>
+			<if test="releaseregion != null">
+				#{releaseregion,jdbcType=VARCHAR},
+			</if>
+			<if test="activityoperatingbudget != null">
+				#{activityoperatingbudget,jdbcType=DOUBLE},
+			</if>
+			<if test="applytime != null">
+				#{applytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applypeople != null">
+				#{applypeople,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalstate != null">
+				#{approvalstate,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalpeople != null">
+				#{approvalpeople,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalresult != null">
+				#{approvalresult,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalreason != null">
+				#{approvalreason,jdbcType=VARCHAR},
+			</if>
+			<if test="approvaltime != null">
+				#{approvaltime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="activity1 != null">
+				#{activity1,jdbcType=VARCHAR},
+			</if>
+			<if test="activity2 != null">
+				#{activity2,jdbcType=VARCHAR},
+			</if>
+			<if test="activity3 != null">
+				#{activity3,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.ActivityExample"
+		resultType="java.lang.Integer">
+		select count(*) from activity
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update activity
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.title != null">
+				title = #{record.title,jdbcType=VARCHAR},
+			</if>
+			<if test="record.releasetime != null">
+				releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.activitytime != null">
+				activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.place != null">
+				place = #{record.place,jdbcType=VARCHAR},
+			</if>
+			<if test="record.releasepeople != null">
+				releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
+			</if>
+			<if test="record.type != null">
+				type = #{record.type,jdbcType=VARCHAR},
+			</if>
+			<if test="record.state != null">
+				state = #{record.state,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remake != null">
+				remake = #{record.remake,jdbcType=VARCHAR},
+			</if>
+			<if test="record.releaseregion != null">
+				releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
+			</if>
+			<if test="record.activityoperatingbudget != null">
+				activityOperatingBudget =
+				#{record.activityoperatingbudget,jdbcType=DOUBLE},
+			</if>
+			<if test="record.applytime != null">
+				applyTime = #{record.applytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.applypeople != null">
+				applyPeople = #{record.applypeople,jdbcType=VARCHAR},
+			</if>
+			<if test="record.approvalstate != null">
+				approvalState = #{record.approvalstate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.approvalpeople != null">
+				approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
+			</if>
+			<if test="record.approvalresult != null">
+				approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
+			</if>
+			<if test="record.approvalreason != null">
+				approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
+			</if>
+			<if test="record.approvaltime != null">
+				approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.activity1 != null">
+				activity1 = #{record.activity1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.activity2 != null">
+				activity2 = #{record.activity2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.activity3 != null">
+				activity3 = #{record.activity3,jdbcType=VARCHAR},
+			</if>
+			<if test="record.content != null">
+				content = #{record.content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update activity
+		set id = #{record.id,jdbcType=INTEGER},
+		title = #{record.title,jdbcType=VARCHAR},
+		releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
+		activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
+		place = #{record.place,jdbcType=VARCHAR},
+		releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
+		type = #{record.type,jdbcType=VARCHAR},
+		state = #{record.state,jdbcType=VARCHAR},
+		remake = #{record.remake,jdbcType=VARCHAR},
+		releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget = #{record.activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime = #{record.applytime,jdbcType=TIMESTAMP},
+		applyPeople = #{record.applypeople,jdbcType=VARCHAR},
+		approvalState = #{record.approvalstate,jdbcType=VARCHAR},
+		approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
+		approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
+		approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
+		approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
+		activity1 = #{record.activity1,jdbcType=VARCHAR},
+		activity2 = #{record.activity2,jdbcType=VARCHAR},
+		activity3 = #{record.activity3,jdbcType=VARCHAR},
+		content = #{record.content,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update activity
+		set id = #{record.id,jdbcType=INTEGER},
+		title = #{record.title,jdbcType=VARCHAR},
+		releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
+		activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
+		place = #{record.place,jdbcType=VARCHAR},
+		releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
+		type = #{record.type,jdbcType=VARCHAR},
+		state = #{record.state,jdbcType=VARCHAR},
+		remake = #{record.remake,jdbcType=VARCHAR},
+		releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget = #{record.activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime = #{record.applytime,jdbcType=TIMESTAMP},
+		applyPeople = #{record.applypeople,jdbcType=VARCHAR},
+		approvalState = #{record.approvalstate,jdbcType=VARCHAR},
+		approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
+		approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
+		approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
+		approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
+		activity1 = #{record.activity1,jdbcType=VARCHAR},
+		activity2 = #{record.activity2,jdbcType=VARCHAR},
+		activity3 = #{record.activity3,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Activity">
+		update activity
+		<set>
+			<if test="title != null">
+				title = #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="releasetime != null">
+				releaseTime = #{releasetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="activitytime != null">
+				activityTime = #{activitytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="place != null">
+				place = #{place,jdbcType=VARCHAR},
+			</if>
+			<if test="releasepeople != null">
+				releasePeople = #{releasepeople,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="remake != null">
+				remake = #{remake,jdbcType=VARCHAR},
+			</if>
+			<if test="releaseregion != null">
+				releaseRegion = #{releaseregion,jdbcType=VARCHAR},
+			</if>
+			<if test="activityoperatingbudget != null">
+				activityOperatingBudget =
+				#{activityoperatingbudget,jdbcType=DOUBLE},
+			</if>
+			<if test="applytime != null">
+				applyTime = #{applytime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="applypeople != null">
+				applyPeople = #{applypeople,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalstate != null">
+				approvalState = #{approvalstate,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalpeople != null">
+				approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalresult != null">
+				approvalResult = #{approvalresult,jdbcType=VARCHAR},
+			</if>
+			<if test="approvalreason != null">
+				approvalReason = #{approvalreason,jdbcType=VARCHAR},
+			</if>
+			<if test="approvaltime != null">
+				approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="activity1 != null">
+				activity1 = #{activity1,jdbcType=VARCHAR},
+			</if>
+			<if test="activity2 != null">
+				activity2 = #{activity2,jdbcType=VARCHAR},
+			</if>
+			<if test="activity3 != null">
+				activity3 = #{activity3,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				content = #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.Activity">
+		update activity
+		set title = #{title,jdbcType=VARCHAR},
+		releaseTime = #{releasetime,jdbcType=TIMESTAMP},
+		activityTime = #{activitytime,jdbcType=TIMESTAMP},
+		place = #{place,jdbcType=VARCHAR},
+		releasePeople = #{releasepeople,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR},
+		remake = #{remake,jdbcType=VARCHAR},
+		releaseRegion = #{releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget = #{activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime = #{applytime,jdbcType=TIMESTAMP},
+		applyPeople = #{applypeople,jdbcType=VARCHAR},
+		approvalState = #{approvalstate,jdbcType=VARCHAR},
+		approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
+		approvalResult = #{approvalresult,jdbcType=VARCHAR},
+		approvalReason = #{approvalreason,jdbcType=VARCHAR},
+		approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
+		activity1 = #{activity1,jdbcType=VARCHAR},
+		activity2 = #{activity2,jdbcType=VARCHAR},
+		activity3 = #{activity3,jdbcType=VARCHAR},
+		content = #{content,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Activity">
+		update activity
+		set title = #{title,jdbcType=VARCHAR},
+		releaseTime = #{releasetime,jdbcType=TIMESTAMP},
+		activityTime = #{activitytime,jdbcType=TIMESTAMP},
+		place = #{place,jdbcType=VARCHAR},
+		releasePeople = #{releasepeople,jdbcType=VARCHAR},
+		type = #{type,jdbcType=VARCHAR},
+		state = #{state,jdbcType=VARCHAR},
+		remake = #{remake,jdbcType=VARCHAR},
+		releaseRegion = #{releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget = #{activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime = #{applytime,jdbcType=TIMESTAMP},
+		applyPeople = #{applypeople,jdbcType=VARCHAR},
+		approvalState = #{approvalstate,jdbcType=VARCHAR},
+		approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
+		approvalResult = #{approvalresult,jdbcType=VARCHAR},
+		approvalReason = #{approvalreason,jdbcType=VARCHAR},
+		approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
+		activity1 = #{activity1,jdbcType=VARCHAR},
+		activity2 = #{activity2,jdbcType=VARCHAR},
+		activity3 = #{activity3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

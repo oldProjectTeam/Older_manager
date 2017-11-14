@@ -27,6 +27,8 @@
 	rel="stylesheet" />
 <link rel="stylesheet"
 	href="${APP_PATH}/static/oldfront/assets/css/zhuye.css" />
+<script language="JavaScript"
+	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
 	rel='stylesheet' type='text/css' />
@@ -55,7 +57,7 @@
 						<li><a href="activity.jsp">社区活动</a></li>
 						<li><a href="download.jsp">客户端下载</a></li>
 						<li><a href="${APP_PATH}/older/video">视频直播</a></li>
-						<li><a href="blank.jsp">会员登陆</li>
+						<li><a href="blank.jsp">会员登陆</a></li>
 					</ul>
 				</div>
 			</div>
@@ -364,6 +366,22 @@
 			<hr />
 		</div>
 	</div>
+	<script type="text/javascript">
+		$(function() {
+			go(1);
+		});
+		
+		function go(pn) {
+			$.ajax({
+				url : "${APP_PATH}/official/info",
+				type : "GET",
+				success : function(result) {
+					console.log(result);
+				}
+			});
+		}
+		
+	</script>
 	<script
 		src="${APP_PATH}/static/oldfront/assets/js/jquery-1.11.1.min.js"></script>
 	<!--BOOTSTRAP SCRIPTS PLUGIN-->
@@ -378,14 +396,19 @@
 
 	<script type="text/javascript">
 		$(function() {
+			go(1);
+		});
+		
+		function go(pn) {
 			$.ajax({
-				url : "official/info",
+				url : "${APP_PATH}/official/info",
 				type : "GET",
 				success : function(result) {
 					console.log(result);
 				}
 			});
-		});
+		}
+		
 	</script>
 </body>
 </html>

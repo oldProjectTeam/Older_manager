@@ -26,7 +26,7 @@ public class ShopRegisterServiceImpl implements IShopRegisterService {
 	public Map<String, Object> registerOfEmail(Users users) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		// 查询邮箱是否被注册
-		List<Users> users2 = this.queryUsersByEmail(users.getemail());
+		List<Users> users2 = this.queryUsersByEmail(users.getEmail());
 		if (users2.size() == 0) {
 			// 对用户输入的密码进行加密,然后放到数据库中
 			String pwd = new MD5().getMD5ofStr(users.getPassword());
@@ -46,10 +46,10 @@ public class ShopRegisterServiceImpl implements IShopRegisterService {
 	 * @param getemail
 	 * @return
 	 */
-	private List<Users> queryUsersByEmail(String getemail) {
+	private List<Users> queryUsersByEmail(String email) {
 		UsersExample example = new UsersExample();
 		Criteria criteria = example.createCriteria();
-		criteria.andemailEqualTo(getemail);
+		criteria.andEmailEqualTo(email);
 		return usersMapper.selectByExample(example);
 	}
 

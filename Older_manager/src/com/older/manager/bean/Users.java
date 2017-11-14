@@ -23,7 +23,7 @@ public class Users {
 
     private String email;
 
-    private String column2;
+    private String sex;
 
     private Double column3;
 
@@ -107,20 +107,20 @@ public class Users {
         this.idcard = idcard == null ? null : idcard.trim();
     }
 
-    public String getemail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setemail(String email) {
+    public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
     }
 
-    public String getColumn2() {
-        return column2;
+    public String getSex() {
+        return sex;
     }
 
-    public void setColumn2(String column2) {
-        this.column2 = column2 == null ? null : column2.trim();
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
     }
 
     public Double getColumn3() {

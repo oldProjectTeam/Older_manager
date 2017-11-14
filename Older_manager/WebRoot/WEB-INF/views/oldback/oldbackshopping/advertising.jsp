@@ -6,7 +6,7 @@
 			+ path + "/";
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -25,8 +25,6 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
-<link href="${APP_PATH}/static/shop/assets/css/bootstrap.min.css"
-	rel="stylesheet" />
 <link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
 <link href="${APP_PATH}/static/shop/assets/css/codemirror.css"
 	rel="stylesheet">
@@ -38,9 +36,9 @@
 	href="${APP_PATH}/static/shop/assets/css/font-awesome.min.css" />
 <script src="${APP_PATH}/static/shop/js/jquery-1.9.1.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/js/typeahead-bs2.min.js"></script>
-<script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script>
-<script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script>
-<script
+<script src="${APP_PATH}/static/shop/js/lrtk.js" type="text/javascript"></script> 
+ <script src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.min.js"></script> 
+ <script
 	src="${APP_PATH}/static/shop/assets/js/jquery.dataTables.bootstrap.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
@@ -51,7 +49,22 @@
 <script type="text/javascript"
 	src="${APP_PATH}/static/shop/Widget/swfupload/swfupload.speed.js"></script>
 <script type="text/javascript"
-	src="${APP_PATH}/static/shop/Widget/swfupload/handlers.js"></script>
+	src="${APP_PATH}/static/shop/Widget/swfupload/handlers.js"></script> 
+	
+
+<link
+	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+ <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>	
+<script src="${APP_PATH}/static/layui/css/layui.css"
+	type="text/javascript"></script>
+<script src="${APP_PATH}/static/layui/layui.js"
+	type="text/javascript"></script>
+<script language="JavaScript"
+	src="${APP_PATH}/static/js/uploadPreview.js"></script>
 </head>
 
 <body>
@@ -70,143 +83,533 @@
 					</div>
 					<div class="widget-body">
 						<ul class="b_P_Sort_list">
-							<li><i class="orange  fa fa-user-secret"></i><a href="#">全部(235)</a></li>
-							<li><i class="fa fa-image pink "></i> <a href="#">首页轮播广告大(5)</a></li>
-							<li><i class="fa fa-image pink "></i> <a href="#">轮播广告小1(3)</a>
-							</li>
-							<li><i class="fa fa-image pink "></i> <a href="#">轮播广告小2(3)</a></li>
-							<li><i class="fa fa-image pink "></i> <a href="#">单个广告(6)</a></li>
+							<li><i class="orange  fa fa-user-secret"></i><a id="totaldid">全部(${total})</a></li>
+							
+							<%-- <c:forEach items="${pageInfo.list }" var="emp">
+	        					<tr>
+	        						<th>${emp.empId}</th>
+	        						<th>${emp.empName}</th> --%>
+							<c:forEach items="${map}" var="items">
+							<li><i class="fa fa-image pink " ></i> <a onclick="gogo(${items.key})">${items.value}</a></li>
+							 
+							</c:forEach> 
+							
 						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div class="Ads_list">
-			<div class="border clearfix">
-				<span class="l_f"> <a href="javascript:ovid()" id="ads_add"
-					class="btn btn-warning"><i class="fa fa-plus"></i> 添加广告</a> <a
-					href="javascript:ovid()" class="btn btn-danger"><i
-						class="fa fa-trash"></i> 批量删除</a>
-				</span> <span class="r_f">共：<b>45</b>条广告
-				</span>
+	
+			 <div style="margin-top:20px">
+						      <div class="col-md-4">
+								<button type="button" class="btn btn-danger" id="old_delete_all_btn">
+									<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+									批量删除
+								</button>
+							</div>
+								<span style="float:right">共：<b id="totalid"></b>类</span>
+							</div>
+							   <br/>
+		   <div class="row form-inline" align="left" style="margin-top:20px;">
+			<div class="col-md-12">
+				      分类名称： <input type="text" class="form-control" id="str1id"
+					placeholder="请输入分类名称"> 
+			
+				  <button class="btn btn-default" id="selectwith">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					查询
+				</button>
+				
+				  
+	       <span style="float:right; margin-right:10px">每页显示:<select id="selectid" class="form-control">
+			   <option>5</option>
+			   <option>20</option>
+			   <option>50</option>
+			   <option>100</option>
+			</select>条</span> 
+	    
+	   
 			</div>
+			
+			
+		</div>					
+							
+							
 			<div class="Ads_lists">
-				<table class="table table-striped table-bordered table-hover"
-					id="sample-table">
-					<thead>
-						<tr>
-							<th width="25"><label><input type="checkbox"
-									class="ace"><span class="lbl"></span></label></th>
-							<th width="80">ID</th>
-							<th>排序</th>
-							<th width="100">分类</th>
-							<th width="240px">图片</th>
-							<th width="150px">尺寸（大小）</th>
-							<th width="250px">链接地址</th>
-							<th width="180">加入时间</th>
-							<th width="70">状态</th>
-							<th width="250">操作</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td><label><input type="checkbox" class="ace"><span
-									class="lbl"></span></label></td>
-							<td>1</td>
-							<td><input name="" type="text" style=" width:50px"
-								placeholder="1" /></td>
-							<td>幻灯片</td>
-							<td><span class="ad_img"><img
-									src="${APP_PATH}/static/shop/products/ad.jpg" width="100%"
-									height="100%" /></span></td>
-							<td>1890x1080</td>
-							<td><a href="#" target="_blank">http://item.jd.com/10443270082.html</a></td>
-							<td>2016-6-29 12:34</td>
-							<td class="td-status"><span
-								class="label label-success radius">显示</span></td>
-							<td class="td-manage"><a onClick="member_del(this,'1')"
-								href="javascript:;" title="删除" class="btn btn-xs btn-success"><i
-									class="fa fa-trash  bigger-120"></i></a> <a title="编辑"
-								onclick="member_edit('编辑','member-add.html','4','','510')"
-								href="javascript:;" class="btn btn-xs btn-info"><i
-									class="fa fa-edit bigger-120"></i></a></td>
-						</tr>
-					</tbody>
-				</table>
+				
+			 <!-- 表格开始 -->
+		<div class="row" style="margin-top:10px;">
+			<div class="col-md-12">
+				<div class="table-responsive">
+					<table class="table table-hover table-bordered text-center table-striped" id="sample-table">
+						<thead id="head">
+						</thead>
+						<tbody id="table_data">
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+	</div>  
+		<!--分页信息  -->
+		<div class="row">
+			<div class="col-md-7" id="page_text"></div>
+			<div class="col-md-5" id="page_nav"></div>
+		</div>	
+				
+			
+			
+			
+				
 			</div>
 		</div>
-	</div>
-	<!--添加广告样式-->
-	<div id="add_ads_style" style="display:none">
-		<div class="add_adverts">
-			<ul>
-				<li><label class="label_name">所属分类</label> <span
-					class="cont_style"> <select class="form-control"
-						id="form-field-select-1">
-							<option value="">选择分类</option>
-							<option value="AL">首页大幻灯片</option>
-							<option value="AK">首页小幻灯片</option>
-							<option value="AZ">单广告图</option>
-							<option value="AR">其他广告</option>
-							<option value="CA">板块栏目广告</option>
-					</select></span></li>
-				<li><label class="label_name">图片尺寸</label><span
-					class="cont_style"> <input name="长" type="text"
-						id="form-field-1" placeholder="0" class="col-xs-10 col-sm-5"
-						style="width:80px"> <span class="l_f"
-						style="margin-left:10px;">x</span><input name="宽" type="text"
-						id="form-field-1" placeholder="0" class="col-xs-10 col-sm-5"
-						style="width:80px"></span></li>
-				<li><label class="label_name">显示排序</label><span
-					class="cont_style"><input name="排序" type="text"
-						id="form-field-1" placeholder="0" class="col-xs-10 col-sm-5"
-						style="width:50px"></span></li>
-				<li><label class="label_name">链接地址</label><span
-					class="cont_style"><input name="地址" type="text"
-						id="form-field-1" placeholder="地址" class="col-xs-10 col-sm-5"
-						style="width:450px"></span></li>
-				<li><label class="label_name">状&nbsp;&nbsp;态：</label> <span
-					class="cont_style"> &nbsp;&nbsp;<label><input
-							name="form-field-radio1" type="radio" checked="checked"
-							class="ace"><span class="lbl">显示</span></label>&nbsp;&nbsp;&nbsp;
-						<label><input name="form-field-radio1" type="radio"
-							class="ace"><span class="lbl">隐藏</span></label></span>
-					<div class="prompt r_f"></div></li>
-				<li><label class="label_name">图片</label><span
-					class="cont_style">
-						<div class="demo">
-							<div class="logobox">
-								<div class="resizebox">
-									<img src="${APP_PATH}/static/shop/images/image.png"
-										width="100px" alt="" height="100px" />
-								</div>
-							</div>
-							<div class="logoupload">
-								<div class="btnbox">
-									<a id="uploadBtnHolder" class="uploadbtn" href="javascript:;">上传替换</a>
-								</div>
-								<div style="clear:both;height:0;overflow:hidden;"></div>
-								<div class="progress-box" style="display:none;">
-									<div class="progress-num">
-										上传进度：<b>0%</b>
-									</div>
-									<div class="progress-bar">
-										<div style="width:0%;" class="bar-line"></div>
-									</div>
-								</div>
-								<div class="prompt">
-									<p>图片大小小于5MB,支持.jpg;.gif;.png;.jpeg格式的图片</p>
-								</div>
-							</div>
-						</div>
-				</span></li>
+
+	
+	
 
 
-			</ul>
-		</div>
-	</div>
+	</div>	
 
-	<script>
+
+
+
+<script type="text/javascript">
+	window.onload = function() {
+			new uploadPreview({
+				UpBtn : "up_img",
+				ImgShow : "imgShow"
+			});
+		};
+var totalRecord, currentNum,str="",ta=5,adsid=0;
+	/* 分页 */
+	$(function() {
+		go(1, "",5,0);
+		
+		$("#old_delete_all_btn").attr("disabled", true);
+	});
+	function go(pn,str,ta,id) {
+		$("#old_delete_all_btn").attr("disabled", true);
+		layer.msg('数据加载中...', {
+				icon : 16,
+				shade : 0.01
+			});
+		$.ajax({
+			url : "${APP_PATH}/adslist/selectalladslist",
+			data : {
+				"pn" : pn,
+				"str" : str,
+				"ta" : ta,
+				"id" : id,
+			},
+			type : "GET",
+			success : function(result) {
+				if (result.code == 100) {
+					//console.log(result.extend.pageInfo);
+					//构建分页信息
+					build_page_text(result);
+					//构建分页条
+					build_page_nav(result);
+					//构建表格数据
+					build_table_data(result);
+				}
+			}
+		});
+	}
+	function build_page_text(result) {
+		$("#page_text").empty();
+		$("#page_text").append(
+				"当前第" + result.extend.pageInfo.pageNum + "页，共"
+						+ result.extend.pageInfo.pages + "页，总计"
+						+ result.extend.pageInfo.total + "条记录");
+		totalRecord = result.extend.pageInfo.total;
+		$("#totalid").text(totalRecord);
+		currentNum = result.extend.pageInfo.pageNum;
+	}
+	//解析显示分页条信息
+	function build_page_nav(result) {
+		$("#page_nav").empty();
+		var ul = $("<ul></ul>").addClass("pagination");
+		var firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
+		firstPageLi.click(function() {
+			go(1, str,ta,adsid);
+		});
+		var prePageLi = $("<li></li>").append(
+				$("<a></a>").append("&laquo;"));
+		if (result.extend.pageInfo.hasPreviousPage == false) {
+			firstPageLi.addClass("disabled");
+			prePageLi.addClass("disabled");
+		} else {
+			//为元素添加点击翻页事件
+			prePageLi
+					.click(function() {
+						go(result.extend.pageInfo.pageNum - 1, str,ta,adsid);
+					});
+		}
+		var nextPageLi = $("<li></li>").append(
+				$("<a></a>").append("&raquo;"));
+		var lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
+		lastPageLi.click(function() {
+			go(result.extend.pageInfo.pages, str,ta,adsid);
+		});
+		if (result.extend.pageInfo.hasNextPage == false) {
+			nextPageLi.addClass("disabled");
+			lastPageLi.addClass("disabled");
+		} else {
+			//为元素添加点击翻页事件
+			nextPageLi
+					.click(function() {
+						go(result.extend.pageInfo.pageNum + 1,str,ta,adsid);
+					});
+		}
+		//添加首页和前一页的提示
+		ul.append(firstPageLi).append(prePageLi);
+		//遍历给ul中添加页码提示
+		$.each(result.extend.pageInfo.navigatepageNums, function(index,
+				item) {
+			var numLi = $("<li></li>").append($("<a></a>").append(item));
+			if (result.extend.pageInfo.pageNum == item) {
+				numLi.addClass("active");
+			}
+			numLi.click(function() {
+				go(item,str,ta,adsid);
+			});
+			ul.append(numLi);
+		});
+		//添加下一页和末页的提示
+		ul.append(nextPageLi).append(lastPageLi);
+		//把ul加到nav 
+		var navEle = $("<nav></nav>").append(ul);
+		navEle.appendTo("#page_nav");
+	}
+
+	function build_table_data(result) {
+		$("#head").empty();
+		$("#table_data").empty();
+		var headTR = $("<tr></tr>");
+		
+		var checkBox = $("<td width='25px'></td>").append(
+				$("<input type='checkbox' id='check_item_all'/>"));
+		var Td1 = $("<td width='80px'></td>").append("ID");
+		var Td2 = $("<td width='130px'></td>").append("分类");
+		var Td3 = $("<td width='60px'></td>").append("排序");
+		var Td4 = $("<td width='240px'></td>").append("图片");
+		var Td5 = $("<td width='150px'></td>").append("尺寸（大小）");
+		var Td6 = $("<td width='250px'></td>").append("链接地址");
+		var Td7 = $("<td width='180px'></td>").append("加入时间");
+		var Td8 = $("<td width='70px'></td>").append("状态");
+		var Td9 = $("<td width='250px'></td>").append("操作");
+		headTR.append(checkBox).append(Td1).append(Td2).append(Td3).append(
+				Td4).append(Td5).append(Td6).append(Td7).append(Td8).append(Td9).appendTo($("#head"));
+
+		$
+				.each(
+						result.extend.pageInfo.list,
+						function(index, item) {
+							var checkBoxTd = $("<td><input type='checkbox' class='check_item'/></td>");
+							var ty1 = $("<td></td>").append(item.id);
+							var ty2 = $("<td></td>").append(item.sortname);
+							var ty3 = $("<td></td>").append("<input type='text' id='sortchangeid' style='width:50px'>");
+							
+							 ty3.find("input").attr("value", item.sort);
+							 ty3.find("input").attr("inputid",item.id);
+							var ty4 = $("<td></td>").append("<img  width='240' height='100'/>");
+							 ty4.find("img").attr("src",item.sortphoto);
+							var ty5 = $("<td></td>").append(item.sortsize);
+						    var ty6 = $("<td></td>").append("<a id='aid'></a>");
+						   
+						     ty6.find("a").attr("href",item.sorthref);
+						     ty6.find("a").append(item.sorthref);
+						    var ty7 = $("<td></td>").append(ChangeDateFormat(item.sortjointime));
+						    var ty8 = $("<td></td>").append(item.sortstate);
+						            
+							var Stopstart = $("<button></button>")
+									.addClass(
+											"stopright")
+									.append(
+											$("<span></span>"));
+											
+							// $(this).parents("tr").find(".spanclass").removeClass("glyphicon glyphicon-check bigger-120");
+							//				
+								if(item.sortstate=="显示"){
+								   Stopstart.addClass("btn btn-xs btn-success");
+								   Stopstart.find("span").addClass("glyphicon glyphicon-check  bigger-120  spanclass");
+								   Stopstart.attr("stateid", "显示");
+								}else{
+								    Stopstart.addClass("btn btn-xs btn-default");
+								    Stopstart.find("span").addClass("glyphicon glyphicon-remove  bigger-120  spanclass"); 
+								    Stopstart.attr("stateid", "隐藏");
+								}							
+
+							//为启动与关闭按钮添加一个自定义的属性，
+							Stopstart.attr("edit-id", item.id);
+							var delBtn = $("<button></button>")
+									.addClass(
+											"btn btn-xs btn-danger delete_btn")
+									.append(
+											$("<span></span>")
+													.addClass(
+															"glyphicon glyphicon-trash  bigger-120"));
+                                  
+							//为删除按钮添加一个自定义的属性，来表示当前删除员工的id
+							delBtn.attr("del-id", item.id);
+						
+							var btnTd = $("<td class='td-manage'></td>").append(Stopstart)
+									.append(" ").append(delBtn);
+							//append方法执行完成以后还是返回原来的元素							              								              
+							$("<tr></tr>").append(checkBoxTd).append(ty1)
+									.append(ty2).append(ty3).append(ty4)
+									.append(ty5).append(ty6).append(ty7).append(ty8).append(btnTd)
+									.appendTo("#table_data");
+						});
+	}
+
+
+		function ChangeDateFormat(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
+
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "-";
+
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate();
+				
+				var house=date.getHours();
+				var min=date.getMinutes();
+                 if(min<10){
+                   min="0"+min;
+                 }
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "-" + month + currentDate+"  "+house+":"+min;
+			} else {
+				return null;
+			}
+
+		}
+
+
+
+   //点击搜索
+		$("#selectwith").click(function() {
+                  str=$("#str1id").val();
+			  go(1,str,ta,adsid);
+                
+		});
+		  //每页显示条数
+    $("#selectid").change(function(){
+           ta=$("#selectid").val();
+           str=$("#str1id").val();
+           go(1,str,ta,adsid);
+    
+    });
+		
+		//全选
+		$(document).on("click", "#check_item_all", function() {
+			$(".check_item").prop("checked", $(this).prop("checked"));
+
+			if ($("#check_item_all").prop("checked") == true) {
+				$("#old_delete_all_btn").attr("disabled", false);
+			} else {
+				$("#old_delete_all_btn").attr("disabled", true);
+			}
+		});
+
+		$(document)
+				.on(
+						"click",
+						".check_item",
+						function() {
+
+							var flag = $(".check_item:checked").length == $(".check_item").length;
+							$("#check_item_all").prop("checked", flag);
+							if ($(".check_item:checked").length > 0) {
+								$("#old_delete_all_btn")
+										.attr("disabled", false);
+							} else {
+								$("#old_delete_all_btn").attr("disabled", true);
+							}
+						});
+						
+	//点击删除   
+		$(document).on("click", ".delete_btn", function() {
+			var delid = $(this).attr("del-id");
+			var oldername = $(this).parents("tr").find("td:eq(2)").text();
+			layer.confirm("确认删除【" + oldername + "】吗", function(index) {
+				$.ajax({
+					url : "${APP_PATH}/adslist/deleteadslistbyid/" + delid,
+					type : "DELETE",
+					success : function(result) {
+						
+						  go(currentNum,str,ta,adsid);
+						layer.msg(result.msg);
+					}
+				});
+			});
+		});
+
+//点击删除全部，就批量删除
+		$("#old_delete_all_btn")
+				.click(
+						function() {
+							//alert();
+							var empNames = "";
+							var del_idstr = "";
+							$.each($(".check_item:checked"), function() {
+								//索引为2，就是第3个td.
+								empNames += $(this).parents("tr").find(
+										"td:eq(2)").text()
+										+ ",";
+								//alert(empNames);
+								//组装员工id字符串
+								del_idstr += $(this).parents("tr").find(
+										"td:eq(1)").text()
+										+ "-";
+								//alert($(this).parents("tr").find("td:eq(2)").text());
+								//alert(del_idstr);
+
+							});
+
+							//去除empNames多去的逗号
+							empNames = empNames.substring(0,
+									empNames.length - 1);
+							//去除多余的删除员工-
+							del_idstr = del_idstr.substring(0,
+									del_idstr.length - 1);
+							layer
+									.confirm(
+											"确认删除【" + empNames + "】吗",
+											function(index) {
+												//发送ajax请求
+												$
+														.ajax({
+															url : "${APP_PATH}/adslist/deletealladslist/"
+																	+ del_idstr,
+															type : "DELETE",
+															success : function(
+																	result) {
+																//回到当前页面
+																  go(currentNum,str,ta,adsid);
+																layer.msg(result.msg);
+
+															}
+														});
+											});
+						});	
+						
+						
+//停用与启用
+	
+	$(document).on("click", ".stopright", function() {
+	var delid = $(this).attr("edit-id");
+	var  stateid=$(this).attr("stateid");
+	if(stateid=="显示"){
+		
+	layer.confirm('确认要隐藏吗？',
+								{
+								icon : 0,
+							},
+				function() {
+
+				  layer.msg('隐藏!', {
+							icon : 5,
+							time : 2000
+						});
+		         $.ajax({
+					url : "${APP_PATH}/adslist/updatesortadswithstop/" + delid,
+					type : "POST",
+					success : function() {
+				 
+						 go(currentNum,str,ta,adsid);
+					}
+
+				});
+
+			});
+	
+	}else{
+	
+	layer.confirm('确认要显示吗？',
+								{
+								icon : 0,
+							},
+				function() {
+
+				  layer.msg('显示!', {
+							icon : 6,
+							time : 2000
+						});
+		         $.ajax({
+					url : "${APP_PATH}/adslist/updatesortadswithstop/" + delid,
+					type : "POST",
+					success : function() {
+				 
+						 go(currentNum,str,ta,adsid);
+
+					}
+
+				});
+
+			});
+	
+	
+	}
+	
+
+
+		});		
+		
+	
+		
+	
+	//排序
+	
+	$(document).on("change","#sortchangeid",function() {
+	      var num=$("#sortchangeid").val();
+	      var inputid = $(this).attr("inputid");
+	   $.ajax({
+						url : "${APP_PATH}/adslist/updatesortnum/" + inputid+"&"+num,
+						type : "POST",
+
+						success : function(result) {
+
+							if (result.code == 100) {
+							
+								layer.msg("排序成功！");
+							}
+						}
+					});
+
+	});
+//点击总数
+  $("#totaldid").click(function(){
+       adsid=0;
+  go(1,str,ta,adsid);
+  
+  
+  });
+       
+
+
+function gogo(n){
+adsid= n;
+  go(1,str,ta,adsid);
+  
+}
+
+
+
+</script>
+
+
+
+
+
+
+   <script>
 		//初始化宽度、高度  
 		$(".widget-box").height($(window).height());
 		$(".Ads_list").width($(window).width() - 220);
@@ -228,113 +631,9 @@
 				table_menu : '.Ads_list'
 			});
 		});
-		/*广告图片-停用*/
-		function member_stop(obj, id) {
-			layer
-					.confirm(
-							'确认要关闭吗？',
-							{
-								icon : 0,
-							},
-							function(index) {
-								$(obj)
-										.parents("tr")
-										.find(".td-manage")
-										.prepend(
-												'<a style="text-decoration:none" class="btn btn-xs " onClick="member_start(this,id)" href="javascript:;" title="显示"><i class="fa fa-close bigger-120"></i></a>');
-								$(obj)
-										.parents("tr")
-										.find(".td-status")
-										.html(
-												'<span class="label label-defaunt radius">已关闭</span>');
-								$(obj).remove();
-								layer.msg('关闭!', {
-									icon : 5,
-									time : 1000
-								});
-							});
-		}
-		/*广告图片-启用*/
-		function member_start(obj, id) {
-			layer
-					.confirm(
-							'确认要显示吗？',
-							{
-								icon : 0,
-							},
-							function(index) {
-								$(obj)
-										.parents("tr")
-										.find(".td-manage")
-										.prepend(
-												'<a style="text-decoration:none" class="btn btn-xs btn-success" onClick="member_stop(this,id)" href="javascript:;" title="关闭"><i class="fa fa-check  bigger-120"></i></a>');
-								$(obj)
-										.parents("tr")
-										.find(".td-status")
-										.html(
-												'<span class="label label-success radius">显示</span>');
-								$(obj).remove();
-								layer.msg('显示!', {
-									icon : 6,
-									time : 1000
-								});
-							});
-		}
-		/*广告图片-删除*/
-		function member_del(obj, id) {
-			layer.confirm('确认要删除吗？', {
-				icon : 0,
-			}, function(index) {
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!', {
-					icon : 1,
-					time : 1000
-				});
-			});
-		}
-		/*******添加广告*********/
-		$('#ads_add').on(
-				'click',
-				function() {
-					layer.open({
-						type : 1,
-						title : '添加广告',
-						maxmin : true,
-						shadeClose : false, //点击遮罩关闭层
-						area : [ '800px', '' ],
-						content : $('#add_ads_style'),
-						btn : [ '提交', '取消' ],
-						yes : function(index, layero) {
-							var num = 0;
-							var str = "";
-							$(".add_adverts input[type$='text']").each(
-									function(n) {
-										if ($(this).val() == "") {
-
-											layer.alert(str += ""
-													+ $(this).attr("name")
-													+ "不能为空！\r\n", {
-												title : '提示框',
-												icon : 0,
-											});
-											num++;
-											return false;
-										}
-									});
-							if (num > 0) {
-								return false;
-							} else {
-								layer.alert('添加成功！', {
-									title : '提示框',
-									icon : 1,
-								});
-								layer.close(index);
-							}
-						}
-					});
-				})
+		
 	</script>
-	<script type="text/javascript">
+	<!-- <script type="text/javascript">
 		function updateProgress(file) {
 			$('.progress-box .progress-bar > div').css('width',
 					parseInt(file.percentUploaded) + '%');
@@ -428,8 +727,8 @@
 							};
 							swfImageUpload = new SWFUpload(settings);
 						});
-	</script>
-	<script>
+	</script>  -->
+<!-- <script>
 		jQuery(function($) {
 			var oTable1 = $('#sample-table').dataTable({
 				"aaSorting" : [ [ 1, "desc" ] ],//默认第几个排序
@@ -475,6 +774,6 @@
 				return 'left';
 			}
 		})
-	</script>
+	</script> -->
 </body>
 </html>

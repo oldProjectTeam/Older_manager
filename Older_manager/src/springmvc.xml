@@ -35,10 +35,10 @@
 	<bean class="com.older.manager.exception.UserExceptionResolver"></bean>
 
 	<!--拦截器 -->
-	<mvc:interceptors>
-		<mvc:interceptor>
+	<!-- <mvc:interceptors>
+		<mvc:interceptor> -->
 			<!-- 用户认证拦截 -->
-			<mvc:mapping path="/**" />
+			<!-- <mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/**/fonts/*" />
 			<mvc:exclude-mapping path="/**/*.css" />
 			<mvc:exclude-mapping path="/**/*.js" />
@@ -47,10 +47,10 @@
 			<mvc:exclude-mapping path="/**/*.jpg" />
 			<mvc:exclude-mapping path="/**/*.jpeg" />
 			<bean class="com.older.manager.interceptor.LoginInterceptor"></bean>
-		</mvc:interceptor>
+		</mvc:interceptor> -->
 		<!-- <mvc:interceptor> -->
 		<!-- 授权拦截 -->
 		<!-- <mvc:mapping path="/**" /> <bean class="com.older.manager.interceptor.PermissionInterceptor"></bean> 
 			</mvc:interceptor> -->
-	</mvc:interceptors>
+	<!-- </mvc:interceptors> -->
 </beans>
