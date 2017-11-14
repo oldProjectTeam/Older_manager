@@ -29,6 +29,10 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script language="JavaScript"
+	src="${APP_PATH}/static/js/uploadPreview.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body>
@@ -44,7 +48,8 @@
 	</div>
 	<div style="width:98%;margin-left:10px">
 
-		<form class="form-inline" id="activity_data_form">
+		<form class="form-inline" id="activity_data_form"
+			enctype="multipart/form-data">
 			<div class="form-group">
 				<label for="exampleInputName2">活动标题</label> <input type="text"
 					class="form-control" id="title" name="title" placeholder="活动标题">
@@ -70,6 +75,13 @@
 					name="content" required="required"></textarea>
 				<input type="hidden" value="未进行" name="state">
 			</div>
+			<div class="form-group">
+				<label for="exampleInputName2">相关图片:</label><br> <input
+					type="file" multiple="multiple" class="btn btn-info" value="图片管理"
+					name="file" id="up_img" class="form-control" /> <br /> <img
+					src="${pageContext.request.contextPath}/upload/${user.image==null?'default.png':user.image}"
+					id="imgShow" width="300" height="200">
+			</div>
 			<div class="row">
 				<div class="col-md-6 text-center">
 					<h5>
@@ -86,6 +98,12 @@
 	</div>
 
 	<script type="text/javascript">
+		window.onload = function() {
+			new uploadPreview({
+				UpBtn : "up_img",
+				ImgShow : "imgShow"
+			});
+		};
 		//校验结果的提示信息
 		function show_vaildate_msg(ele, status, msg) {
 			$(ele).parent().removeClass("has-success has-error");
@@ -186,49 +204,61 @@
 								show_vaildate_msg("#title", "error",
 										"活动标题可以是2-100个中文、英文和数字的组合");
 								return false;
-							}
-							if ($("#place").attr("place_check") != "success") {
+							} else if ($("#place").attr("place_check") != "success") {
 								show_vaildate_msg("#place", "error",
 										"活动地点可以是2-100个中文、英文和数字的组合");
 								return false;
-							}
-							if ($("#releasepeople").attr("releasepeople_check") != "success") {
+							} else if ($("#releasepeople").attr(
+									"releasepeople_check") != "success") {
 								show_vaildate_msg("#releasepeople", "error",
 										"发布部门可以是2-50个中文、英文和数字的组合");
 								return false;
-							}
-							if ($("#activitytime").attr("activitytime_check") != "success") {
+							} else if ($("#activitytime").attr(
+									"activitytime_check") != "success") {
 								show_vaildate_msg("#activitytime", "error",
 										"请选择活动时间！");
 								return false;
-							}
-							if ($("#content").attr("content_check") != "success") {
+							} else if ($("#content").attr("content_check") != "success") {
 								show_vaildate_msg("#contente", "error",
 										"活动内容不能为空或不能超出1000个字符!");
 								return false;
+							} else if ($("#up_img").val() == '') {
+								layer.msg("请选择图片");
+							} else {
+								$
+										.ajax({
+											url : "${APP_PATH}/activity/insertActivity",
+											type : "post",
+											cache : false,
+											processData : false,
+											contentType : false,
+											data : new FormData(
+													$("#activity_data_form")[0]),
+											success : function(result) {
+												$("#msg").html(result.msg);
+												if (result.code == 100) {
+													$("#msg").css("color",
+															"green");
+												} else {
+													$("#msg").css("color",
+															"red");
+												}
+												//清空表单
+												$("#activity_data_form")[0]
+														.reset();
+												$("#title").removeAttr(
+														"title_check");
+												$("#place").removeAttr(
+														"place_check");
+												$("#releasepeople").removeAttr(
+														"releasepeople_check");
+												$("#activitytime").removeAttr(
+														"activitytime_check");
+												$("#content").removeAttr(
+														"content_check");
+											}
+										});
 							}
-							$.ajax({
-								url : "${APP_PATH}/activity/insertActivity",
-								type : "post",
-								data : $("#activity_data_form").serialize(),
-								success : function(result) {
-									$("#msg").html(result.msg);
-									if (result.code == 100) {
-										$("#msg").css("color", "green");
-									} else {
-										$("#msg").css("color", "red");
-									}
-									//清空表单
-									$("#activity_data_form")[0].reset();
-									$("#title").removeAttr("title_check");
-									$("#place").removeAttr("place_check");
-									$("#releasepeople").removeAttr(
-											"releasepeople_check");
-									$("#activitytime").removeAttr(
-											"activitytime_check");
-									$("#content").removeAttr("content_check");
-								}
-							});
 						});
 	</script>
 </body>

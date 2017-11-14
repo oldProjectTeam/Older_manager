@@ -115,124 +115,13 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<h1 class="tag-home">
 					他们奉献一生，难免走路磕磕绊绊;他们教育一生，难免话语细细碎碎。尊重老人，他们才是我们前行的明灯。.</h1>
-				<p style="color: #1781C2;font-size: 20px;font-weight:bold;">今日头条</p>
+				<p style="color: #1781C2;font-size: 20px;font-weight:bold;">最近活动</p>
 				<hr />
 			</div>
 		</div>
 	</div>
 	<!-- TAG HOME SECTION END-->
-
-	<div class="container">
-
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>市场发展空间广阔 万亿银发经济成新增长点</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				人口老龄化是世界性问题，我国是世界上人口老龄化程度比较高的国家之一。截至2016年底，我国60岁及以上老年人口超过2.3亿人，占总人口...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>未富先老时代，2.2亿人的养老市场到底有哪些机遇？</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				改革开放以来，中国经济高速发展，中国人的收入水平也在快速提高，然而在收入快速提高的同时，中国还有一个数字也在快速的...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-		</div>
-		<div class="image1">
-			<a href="#" target="_self"> <img src="assets/img/portfolio/d.jpg"
-				alt="图片" width="200px" height="200px" />
-			</a>
-			<div class="text">
-				<a>“缺医少护”的中国式养老：寻路医养结合</a>
-			</div>
-			<div class="text1">&nbsp; &nbsp; &nbsp; &nbsp;
-				过去三十多年的改革开放和经济高速增长，成就了中国奇迹。在奇迹背后，快速城镇化、大规模人口流动、人均预期寿命延长、计划...</div>
-		</div>
-	</div>
+	<div class="container" id="activity"></div>
 	<div class="container">
 		<div class="row ">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -370,7 +259,7 @@
 		$(function() {
 			go(1);
 		});
-		
+
 		function go(pn) {
 			$.ajax({
 				url : "${APP_PATH}/official/info",
@@ -380,7 +269,6 @@
 				}
 			});
 		}
-		
 	</script>
 	<script
 		src="${APP_PATH}/static/oldfront/assets/js/jquery-1.11.1.min.js"></script>
@@ -398,17 +286,31 @@
 		$(function() {
 			go(1);
 		});
-		
 		function go(pn) {
 			$.ajax({
 				url : "${APP_PATH}/official/info",
 				type : "GET",
 				success : function(result) {
 					console.log(result);
+					$.each(result.extend.activityPageInfo.list, function(index,
+							item) {
+						var outDiv = $("<div></div>").addClass("image1");
+						var a = $("<a></a>").attr("href", "#").attr("target",
+								"_self").append(
+								$("<img/>").attr("src", '${APP_PATH}/'+item.activity1).attr(
+										"width", "200px").attr("height",
+										"150px"));
+						var txtDiv = $("<div></div>").addClass("text").append(
+								$("<a></a>").append(item.title));
+						var contentDiv = $("<div></div>").addClass("text1")
+								.append("&nbsp; &nbsp; &nbsp; &nbsp;").append(
+										item.content);
+						outDiv.append(a).append(txtDiv).append(contentDiv)
+								.appendTo($("#activity"));
+					});
 				}
 			});
 		}
-		
 	</script>
 </body>
 </html>

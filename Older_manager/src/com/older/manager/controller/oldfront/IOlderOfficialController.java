@@ -25,18 +25,13 @@ public class IOlderOfficialController {
 	@RequestMapping("/info")
 	@ResponseBody
 	public Msg info() {
-		System.out.println("..................");
-		Map<String, Object> map = officialService.info();
 		PageHelper.startPage(1, 10);
+		Map<String, Object> map = officialService.info();
 		@SuppressWarnings("unchecked")
 		PageInfo<Activity> activityPageInfo = new PageInfo<Activity>(
 				(List<Activity>) map.get("activities"));
-		@SuppressWarnings("unchecked")
-		PageInfo<Courses> coursePageInfo = new PageInfo<Courses>(
-				(List<Courses>) map.get("courses"));
 		if (map.size() > 0) {
-			return Msg.success().add("activityPageInfo", activityPageInfo)
-					.add("coursePageInfo", coursePageInfo);
+			return Msg.success().add("activityPageInfo", activityPageInfo);
 		}
 		return Msg.fail();
 	}

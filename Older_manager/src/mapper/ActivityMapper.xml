@@ -10,6 +10,7 @@
 		<result column="releasePeople" property="releasepeople"
 			jdbcType="VARCHAR" />
 		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="content" property="content" jdbcType="VARCHAR" />
 		<result column="state" property="state" jdbcType="VARCHAR" />
 		<result column="remake" property="remake" jdbcType="VARCHAR" />
 		<result column="releaseRegion" property="releaseregion"
@@ -49,7 +50,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -81,7 +83,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -99,11 +102,15 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, title, releaseTime, activityTime, place, releasePeople, type, state,
+		id, title, releaseTime, activityTime, place, releasePeople,
+		type, content,state,
 		remake,
-		releaseRegion, activityOperatingBudget, applyTime, applyPeople, approvalState,
+		releaseRegion, activityOperatingBudget,
+		applyTime,
+		applyPeople, approvalState,
 		approvalPeople,
-		approvalResult, approvalReason, approvalTime, activity1, activity2, activity3
+		approvalResult,
+		approvalReason, approvalTime, activity1, activity2, activity3
 	</sql>
 	<sql id="Blob_Column_List">
 		content
@@ -134,7 +141,6 @@
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
-		<!-- <if test="orderByClause != null" > order by ${orderByClause} </if> -->
 		order by id DESC
 	</select>
 	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
@@ -187,7 +193,8 @@
 
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from activity
+		delete from
+		activity
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.older.manager.bean.ActivityExample">
@@ -197,27 +204,35 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.older.manager.bean.Activity">
-		insert into activity (id, title, releaseTime,
+		insert into activity (id,
+		title, releaseTime,
 		activityTime, place, releasePeople,
-		type, state, remake,
+		type, state,
+		remake,
 		releaseRegion, activityOperatingBudget,
-		applyTime, applyPeople, approvalState,
+		applyTime, applyPeople,
+		approvalState,
 		approvalPeople, approvalResult, approvalReason,
 		approvalTime, activity1, activity2,
 		activity3, content)
-		values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR},
 		#{releasetime,jdbcType=TIMESTAMP},
-		#{activitytime,jdbcType=TIMESTAMP}, #{place,jdbcType=VARCHAR}, #{releasepeople,jdbcType=VARCHAR},
+		#{activitytime,jdbcType=TIMESTAMP},
+		#{place,jdbcType=VARCHAR}, #{releasepeople,jdbcType=VARCHAR},
 		#{type,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
 		#{remake,jdbcType=VARCHAR},
-		#{releaseregion,jdbcType=VARCHAR}, #{activityoperatingbudget,jdbcType=DOUBLE},
+		#{releaseregion,jdbcType=VARCHAR},
+		#{activityoperatingbudget,jdbcType=DOUBLE},
 		#{applytime,jdbcType=TIMESTAMP}, #{applypeople,jdbcType=VARCHAR},
 		#{approvalstate,jdbcType=VARCHAR},
-		#{approvalpeople,jdbcType=VARCHAR}, #{approvalresult,jdbcType=VARCHAR},
+		#{approvalpeople,jdbcType=VARCHAR},
+		#{approvalresult,jdbcType=VARCHAR},
 		#{approvalreason,jdbcType=VARCHAR},
 		#{approvaltime,jdbcType=TIMESTAMP}, #{activity1,jdbcType=VARCHAR},
 		#{activity2,jdbcType=VARCHAR},
-		#{activity3,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR})
+		#{activity3,jdbcType=VARCHAR},
+		#{content,jdbcType=LONGVARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="com.older.manager.bean.Activity">
 		insert into activity
@@ -412,13 +427,16 @@
 				approvalState = #{record.approvalstate,jdbcType=VARCHAR},
 			</if>
 			<if test="record.approvalpeople != null">
-				approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
+				approvalPeople =
+				#{record.approvalpeople,jdbcType=VARCHAR},
 			</if>
 			<if test="record.approvalresult != null">
-				approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
+				approvalResult =
+				#{record.approvalresult,jdbcType=VARCHAR},
 			</if>
 			<if test="record.approvalreason != null">
-				approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
+				approvalReason =
+				#{record.approvalreason,jdbcType=VARCHAR},
 			</if>
 			<if test="record.approvaltime != null">
 				approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
@@ -443,27 +461,48 @@
 	<update id="updateByExampleWithBLOBs" parameterType="map">
 		update activity
 		set id = #{record.id,jdbcType=INTEGER},
-		title = #{record.title,jdbcType=VARCHAR},
-		releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
-		activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
-		place = #{record.place,jdbcType=VARCHAR},
-		releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
-		type = #{record.type,jdbcType=VARCHAR},
-		state = #{record.state,jdbcType=VARCHAR},
-		remake = #{record.remake,jdbcType=VARCHAR},
-		releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
-		activityOperatingBudget = #{record.activityoperatingbudget,jdbcType=DOUBLE},
-		applyTime = #{record.applytime,jdbcType=TIMESTAMP},
-		applyPeople = #{record.applypeople,jdbcType=VARCHAR},
-		approvalState = #{record.approvalstate,jdbcType=VARCHAR},
-		approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
-		approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
-		approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
-		approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
-		activity1 = #{record.activity1,jdbcType=VARCHAR},
-		activity2 = #{record.activity2,jdbcType=VARCHAR},
-		activity3 = #{record.activity3,jdbcType=VARCHAR},
-		content = #{record.content,jdbcType=LONGVARCHAR}
+		title =
+		#{record.title,jdbcType=VARCHAR},
+		releaseTime =
+		#{record.releasetime,jdbcType=TIMESTAMP},
+		activityTime =
+		#{record.activitytime,jdbcType=TIMESTAMP},
+		place =
+		#{record.place,jdbcType=VARCHAR},
+		releasePeople =
+		#{record.releasepeople,jdbcType=VARCHAR},
+		type =
+		#{record.type,jdbcType=VARCHAR},
+		state =
+		#{record.state,jdbcType=VARCHAR},
+		remake =
+		#{record.remake,jdbcType=VARCHAR},
+		releaseRegion =
+		#{record.releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget =
+		#{record.activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime =
+		#{record.applytime,jdbcType=TIMESTAMP},
+		applyPeople =
+		#{record.applypeople,jdbcType=VARCHAR},
+		approvalState =
+		#{record.approvalstate,jdbcType=VARCHAR},
+		approvalPeople =
+		#{record.approvalpeople,jdbcType=VARCHAR},
+		approvalResult =
+		#{record.approvalresult,jdbcType=VARCHAR},
+		approvalReason =
+		#{record.approvalreason,jdbcType=VARCHAR},
+		approvalTime =
+		#{record.approvaltime,jdbcType=TIMESTAMP},
+		activity1 =
+		#{record.activity1,jdbcType=VARCHAR},
+		activity2 =
+		#{record.activity2,jdbcType=VARCHAR},
+		activity3 =
+		#{record.activity3,jdbcType=VARCHAR},
+		content =
+		#{record.content,jdbcType=LONGVARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -471,26 +510,46 @@
 	<update id="updateByExample" parameterType="map">
 		update activity
 		set id = #{record.id,jdbcType=INTEGER},
-		title = #{record.title,jdbcType=VARCHAR},
-		releaseTime = #{record.releasetime,jdbcType=TIMESTAMP},
-		activityTime = #{record.activitytime,jdbcType=TIMESTAMP},
-		place = #{record.place,jdbcType=VARCHAR},
-		releasePeople = #{record.releasepeople,jdbcType=VARCHAR},
-		type = #{record.type,jdbcType=VARCHAR},
-		state = #{record.state,jdbcType=VARCHAR},
-		remake = #{record.remake,jdbcType=VARCHAR},
-		releaseRegion = #{record.releaseregion,jdbcType=VARCHAR},
-		activityOperatingBudget = #{record.activityoperatingbudget,jdbcType=DOUBLE},
-		applyTime = #{record.applytime,jdbcType=TIMESTAMP},
-		applyPeople = #{record.applypeople,jdbcType=VARCHAR},
-		approvalState = #{record.approvalstate,jdbcType=VARCHAR},
-		approvalPeople = #{record.approvalpeople,jdbcType=VARCHAR},
-		approvalResult = #{record.approvalresult,jdbcType=VARCHAR},
-		approvalReason = #{record.approvalreason,jdbcType=VARCHAR},
-		approvalTime = #{record.approvaltime,jdbcType=TIMESTAMP},
-		activity1 = #{record.activity1,jdbcType=VARCHAR},
-		activity2 = #{record.activity2,jdbcType=VARCHAR},
-		activity3 = #{record.activity3,jdbcType=VARCHAR}
+		title =
+		#{record.title,jdbcType=VARCHAR},
+		releaseTime =
+		#{record.releasetime,jdbcType=TIMESTAMP},
+		activityTime =
+		#{record.activitytime,jdbcType=TIMESTAMP},
+		place =
+		#{record.place,jdbcType=VARCHAR},
+		releasePeople =
+		#{record.releasepeople,jdbcType=VARCHAR},
+		type =
+		#{record.type,jdbcType=VARCHAR},
+		state =
+		#{record.state,jdbcType=VARCHAR},
+		remake =
+		#{record.remake,jdbcType=VARCHAR},
+		releaseRegion =
+		#{record.releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget =
+		#{record.activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime =
+		#{record.applytime,jdbcType=TIMESTAMP},
+		applyPeople =
+		#{record.applypeople,jdbcType=VARCHAR},
+		approvalState =
+		#{record.approvalstate,jdbcType=VARCHAR},
+		approvalPeople =
+		#{record.approvalpeople,jdbcType=VARCHAR},
+		approvalResult =
+		#{record.approvalresult,jdbcType=VARCHAR},
+		approvalReason =
+		#{record.approvalreason,jdbcType=VARCHAR},
+		approvalTime =
+		#{record.approvaltime,jdbcType=TIMESTAMP},
+		activity1 =
+		#{record.activity1,jdbcType=VARCHAR},
+		activity2 =
+		#{record.activity2,jdbcType=VARCHAR},
+		activity3 =
+		#{record.activity3,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -566,52 +625,86 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.Activity">
-		update activity
+		update
+		activity
 		set title = #{title,jdbcType=VARCHAR},
-		releaseTime = #{releasetime,jdbcType=TIMESTAMP},
-		activityTime = #{activitytime,jdbcType=TIMESTAMP},
+		releaseTime =
+		#{releasetime,jdbcType=TIMESTAMP},
+		activityTime =
+		#{activitytime,jdbcType=TIMESTAMP},
 		place = #{place,jdbcType=VARCHAR},
 		releasePeople = #{releasepeople,jdbcType=VARCHAR},
-		type = #{type,jdbcType=VARCHAR},
+		type =
+		#{type,jdbcType=VARCHAR},
 		state = #{state,jdbcType=VARCHAR},
-		remake = #{remake,jdbcType=VARCHAR},
-		releaseRegion = #{releaseregion,jdbcType=VARCHAR},
-		activityOperatingBudget = #{activityoperatingbudget,jdbcType=DOUBLE},
-		applyTime = #{applytime,jdbcType=TIMESTAMP},
-		applyPeople = #{applypeople,jdbcType=VARCHAR},
-		approvalState = #{approvalstate,jdbcType=VARCHAR},
-		approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
-		approvalResult = #{approvalresult,jdbcType=VARCHAR},
-		approvalReason = #{approvalreason,jdbcType=VARCHAR},
-		approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
-		activity1 = #{activity1,jdbcType=VARCHAR},
-		activity2 = #{activity2,jdbcType=VARCHAR},
-		activity3 = #{activity3,jdbcType=VARCHAR},
-		content = #{content,jdbcType=LONGVARCHAR}
+		remake =
+		#{remake,jdbcType=VARCHAR},
+		releaseRegion =
+		#{releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget =
+		#{activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime =
+		#{applytime,jdbcType=TIMESTAMP},
+		applyPeople =
+		#{applypeople,jdbcType=VARCHAR},
+		approvalState =
+		#{approvalstate,jdbcType=VARCHAR},
+		approvalPeople =
+		#{approvalpeople,jdbcType=VARCHAR},
+		approvalResult =
+		#{approvalresult,jdbcType=VARCHAR},
+		approvalReason =
+		#{approvalreason,jdbcType=VARCHAR},
+		approvalTime =
+		#{approvaltime,jdbcType=TIMESTAMP},
+		activity1 =
+		#{activity1,jdbcType=VARCHAR},
+		activity2 =
+		#{activity2,jdbcType=VARCHAR},
+		activity3 =
+		#{activity3,jdbcType=VARCHAR},
+		content =
+		#{content,jdbcType=LONGVARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Activity">
 		update activity
 		set title = #{title,jdbcType=VARCHAR},
-		releaseTime = #{releasetime,jdbcType=TIMESTAMP},
-		activityTime = #{activitytime,jdbcType=TIMESTAMP},
+		releaseTime =
+		#{releasetime,jdbcType=TIMESTAMP},
+		activityTime =
+		#{activitytime,jdbcType=TIMESTAMP},
 		place = #{place,jdbcType=VARCHAR},
 		releasePeople = #{releasepeople,jdbcType=VARCHAR},
-		type = #{type,jdbcType=VARCHAR},
+		type =
+		#{type,jdbcType=VARCHAR},
 		state = #{state,jdbcType=VARCHAR},
-		remake = #{remake,jdbcType=VARCHAR},
-		releaseRegion = #{releaseregion,jdbcType=VARCHAR},
-		activityOperatingBudget = #{activityoperatingbudget,jdbcType=DOUBLE},
-		applyTime = #{applytime,jdbcType=TIMESTAMP},
-		applyPeople = #{applypeople,jdbcType=VARCHAR},
-		approvalState = #{approvalstate,jdbcType=VARCHAR},
-		approvalPeople = #{approvalpeople,jdbcType=VARCHAR},
-		approvalResult = #{approvalresult,jdbcType=VARCHAR},
-		approvalReason = #{approvalreason,jdbcType=VARCHAR},
-		approvalTime = #{approvaltime,jdbcType=TIMESTAMP},
-		activity1 = #{activity1,jdbcType=VARCHAR},
-		activity2 = #{activity2,jdbcType=VARCHAR},
-		activity3 = #{activity3,jdbcType=VARCHAR}
+		remake =
+		#{remake,jdbcType=VARCHAR},
+		releaseRegion =
+		#{releaseregion,jdbcType=VARCHAR},
+		activityOperatingBudget =
+		#{activityoperatingbudget,jdbcType=DOUBLE},
+		applyTime =
+		#{applytime,jdbcType=TIMESTAMP},
+		applyPeople =
+		#{applypeople,jdbcType=VARCHAR},
+		approvalState =
+		#{approvalstate,jdbcType=VARCHAR},
+		approvalPeople =
+		#{approvalpeople,jdbcType=VARCHAR},
+		approvalResult =
+		#{approvalresult,jdbcType=VARCHAR},
+		approvalReason =
+		#{approvalreason,jdbcType=VARCHAR},
+		approvalTime =
+		#{approvaltime,jdbcType=TIMESTAMP},
+		activity1 =
+		#{activity1,jdbcType=VARCHAR},
+		activity2 =
+		#{activity2,jdbcType=VARCHAR},
+		activity3 =
+		#{activity3,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 </mapper>

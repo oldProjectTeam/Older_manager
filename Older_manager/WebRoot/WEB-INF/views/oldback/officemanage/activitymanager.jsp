@@ -240,6 +240,7 @@
 								<div class="panel-body">
 									<p id="content"></p>
 								</div>
+								<img id="img" width="200" height="150">
 							</div>
 
 						</div>
@@ -381,6 +382,12 @@
 						$("#releasetime").html(ac.releasetimeStr);
 						$("#releasepeople").html(ac.releasepeople);
 						$("#content").html(ac.content);
+
+						if (ac.activity1 ==null) {
+							$("#img").attr("src", "upload/default.png");
+						} else {
+							$("#img").attr("src", ac.activity1);
+						}
 					} else {
 						layer.msg("获取失败，请重试！");
 					}
