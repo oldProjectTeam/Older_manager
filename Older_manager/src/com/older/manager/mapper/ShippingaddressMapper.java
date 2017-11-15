@@ -27,4 +27,14 @@ public interface ShippingaddressMapper {
     int updateByPrimaryKeySelective(Shippingaddress record);
 
     int updateByPrimaryKey(Shippingaddress record);
+    
+    /**
+     * @Title:   selectByUserId
+     * @Description:  通过用户id查询当前使用的地址
+     * @param:    @param userid
+     * @param:    @return   
+     * @return:   Shippingaddress   
+     * @throws
+     */
+    Shippingaddress selectByUserId(Integer userid);
 }

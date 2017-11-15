@@ -1,228 +1,291 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ShopMemberMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.ShopMember" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="users_id" property="usersId" jdbcType="INTEGER" />
-    <result column="integral_id" property="integralId" jdbcType="INTEGER" />
-    <result column="level" property="level" jdbcType="VARCHAR" />
-    <result column="joinTime" property="jointime" jdbcType="TIMESTAMP" />
-    <result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, users_id, integral_id, level, joinTime, changeTime
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ShopMemberExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from shopmember
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from shopmember
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from shopmember
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ShopMemberExample" >
-    delete from shopmember
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.ShopMember" >
-    insert into shopmember (id, users_id, integral_id, 
-      level, joinTime, changeTime
-      )
-    values (#{id,jdbcType=INTEGER}, #{usersId,jdbcType=INTEGER}, #{integralId,jdbcType=INTEGER}, 
-      #{level,jdbcType=VARCHAR}, #{jointime,jdbcType=TIMESTAMP}, #{changetime,jdbcType=TIMESTAMP}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.ShopMember" >
-    insert into shopmember
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="usersId != null" >
-        users_id,
-      </if>
-      <if test="integralId != null" >
-        integral_id,
-      </if>
-      <if test="level != null" >
-        level,
-      </if>
-      <if test="jointime != null" >
-        joinTime,
-      </if>
-      <if test="changetime != null" >
-        changeTime,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="usersId != null" >
-        #{usersId,jdbcType=INTEGER},
-      </if>
-      <if test="integralId != null" >
-        #{integralId,jdbcType=INTEGER},
-      </if>
-      <if test="level != null" >
-        #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="jointime != null" >
-        #{jointime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="changetime != null" >
-        #{changetime,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ShopMemberExample" resultType="java.lang.Integer" >
-    select count(*) from shopmember
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update shopmember
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.usersId != null" >
-        users_id = #{record.usersId,jdbcType=INTEGER},
-      </if>
-      <if test="record.integralId != null" >
-        integral_id = #{record.integralId,jdbcType=INTEGER},
-      </if>
-      <if test="record.level != null" >
-        level = #{record.level,jdbcType=VARCHAR},
-      </if>
-      <if test="record.jointime != null" >
-        joinTime = #{record.jointime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.changetime != null" >
-        changeTime = #{record.changetime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update shopmember
-    set id = #{record.id,jdbcType=INTEGER},
-      users_id = #{record.usersId,jdbcType=INTEGER},
-      integral_id = #{record.integralId,jdbcType=INTEGER},
-      level = #{record.level,jdbcType=VARCHAR},
-      joinTime = #{record.jointime,jdbcType=TIMESTAMP},
-      changeTime = #{record.changetime,jdbcType=TIMESTAMP}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ShopMember" >
-    update shopmember
-    <set >
-      <if test="usersId != null" >
-        users_id = #{usersId,jdbcType=INTEGER},
-      </if>
-      <if test="integralId != null" >
-        integral_id = #{integralId,jdbcType=INTEGER},
-      </if>
-      <if test="level != null" >
-        level = #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="jointime != null" >
-        joinTime = #{jointime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="changetime != null" >
-        changeTime = #{changetime,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ShopMember" >
-    update shopmember
-    set users_id = #{usersId,jdbcType=INTEGER},
-      integral_id = #{integralId,jdbcType=INTEGER},
-      level = #{level,jdbcType=VARCHAR},
-      joinTime = #{jointime,jdbcType=TIMESTAMP},
-      changeTime = #{changetime,jdbcType=TIMESTAMP}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.older.manager.mapper.ShopMemberMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.ShopMember">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="users_id" property="usersId" jdbcType="INTEGER" />
+		<result column="integral_id" property="integralId" jdbcType="INTEGER" />
+		<result column="level" property="level" jdbcType="VARCHAR" />
+		<result column="joinTime" property="jointime" jdbcType="TIMESTAMP" />
+		<result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
+	</resultMap>
+
+	<resultMap id="detailResultMap" type="com.older.manager.bean.ShopMember">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="users_id" property="usersId" jdbcType="INTEGER" />
+		<result column="integral_id" property="integralId" jdbcType="INTEGER" />
+		<result column="level" property="level" jdbcType="VARCHAR" />
+		<result column="joinTime" property="jointime" jdbcType="TIMESTAMP" />
+		<result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
+		<association property="users" column="users_id"
+			javaType="com.older.manager.bean.Users" select="com.older.manager.mapper.UsersMapper.selectByPrimaryKey" />
+		<association property="integral" column="integral_id"
+			javaType="com.older.manager.bean.Integral" select="com.older.manager.mapper.IntegralMapper.selectByPrimaryKey" />
+		<association property="shippingaddress" column="users_id"
+			javaType="com.older.manager.bean.Shippingaddress"
+			select="com.older.manager.mapper.ShippingaddressMapper.selectByUserId" />
+		<association property="productsViewsCount" column="users_id"
+			javaType="INTEGER"
+			select="com.older.manager.mapper.ProductsViewsMapper.selectProductsViewsCountByUsersId" />
+		<association property="OrdersCount" column="users_id"
+			javaType="INTEGER"
+			select="com.older.manager.mapper.OrdersMapper.selectProductsCountByUsersId" />
+	</resultMap>
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, users_id, integral_id, level, joinTime, changeTime
+	</sql>
+	<select id="selectByExample" resultMap="detailResultMap"
+		parameterType="com.older.manager.bean.ShopMemberExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from shopmember
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByShopMember" resultMap="detailResultMap"
+		parameterType="com.older.manager.bean.ShopMember">
+		select * from shopmember s,users u where s.users_id=u.id
+		<if test="jointime!=null ">
+			and jointime >= #{jointime}
+		</if>
+		<if test="users!=null">
+			<if test="users.account!=null and users.account!=''">
+				and u.account like '%${users.account}%'
+			</if>
+			<if test="users.email!=null and users.email!=''">
+				and u.email=#{users.email}
+			</if>
+			<if test="users.phone!=null and users.phone!=''">
+				and u.phone=#{users.phone}
+			</if>
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="detailResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from shopmember
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		shopmember
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.ShopMemberExample">
+		delete from shopmember
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.ShopMember">
+		insert into shopmember (id,
+		users_id, integral_id,
+		level, joinTime, changeTime
+		)
+		values
+		(#{id,jdbcType=INTEGER}, #{usersId,jdbcType=INTEGER},
+		#{integralId,jdbcType=INTEGER},
+		#{level,jdbcType=VARCHAR},
+		#{jointime,jdbcType=TIMESTAMP}, #{changetime,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.ShopMember" keyProperty="id" useGeneratedKeys="true">
+		insert into shopmember
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="usersId != null">
+				users_id,
+			</if>
+			<if test="integralId != null">
+				integral_id,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="jointime != null">
+				joinTime,
+			</if>
+			<if test="changetime != null">
+				changeTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="usersId != null">
+				#{usersId,jdbcType=INTEGER},
+			</if>
+			<if test="integralId != null">
+				#{integralId,jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=VARCHAR},
+			</if>
+			<if test="jointime != null">
+				#{jointime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changetime != null">
+				#{changetime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.ShopMemberExample"
+		resultType="java.lang.Integer">
+		select count(*) from shopmember
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update shopmember
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.usersId != null">
+				users_id = #{record.usersId,jdbcType=INTEGER},
+			</if>
+			<if test="record.integralId != null">
+				integral_id = #{record.integralId,jdbcType=INTEGER},
+			</if>
+			<if test="record.level != null">
+				level = #{record.level,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jointime != null">
+				joinTime = #{record.jointime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.changetime != null">
+				changeTime = #{record.changetime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update shopmember
+		set id = #{record.id,jdbcType=INTEGER},
+		users_id =
+		#{record.usersId,jdbcType=INTEGER},
+		integral_id =
+		#{record.integralId,jdbcType=INTEGER},
+		level =
+		#{record.level,jdbcType=VARCHAR},
+		joinTime =
+		#{record.jointime,jdbcType=TIMESTAMP},
+		changeTime =
+		#{record.changetime,jdbcType=TIMESTAMP}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ShopMember">
+		update shopmember
+		<set>
+			<if test="usersId != null">
+				users_id = #{usersId,jdbcType=INTEGER},
+			</if>
+			<if test="integralId != null">
+				integral_id = #{integralId,jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=VARCHAR},
+			</if>
+			<if test="jointime != null">
+				joinTime = #{jointime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="changetime != null">
+				changeTime = #{changetime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ShopMember">
+		update shopmember
+		set users_id = #{usersId,jdbcType=INTEGER},
+		integral_id =
+		#{integralId,jdbcType=INTEGER},
+		level = #{level,jdbcType=VARCHAR},
+		joinTime = #{jointime,jdbcType=TIMESTAMP},
+		changeTime =
+		#{changetime,jdbcType=TIMESTAMP}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

@@ -136,7 +136,7 @@
 		#{changetime,jdbcType=TIMESTAMP}, #{operator,jdbcType=VARCHAR},
 		#{operationdetail,jdbcType=VARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.older.manager.bean.Integral">
+	<insert id="insertSelective" parameterType="com.older.manager.bean.Integral" useGeneratedKeys="true" keyProperty="id">
 		insert into integral
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">

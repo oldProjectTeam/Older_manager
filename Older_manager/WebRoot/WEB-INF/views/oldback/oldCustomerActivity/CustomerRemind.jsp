@@ -314,7 +314,7 @@
                             });
                         } else {
                             $.ajax({
-                                url : "${APP_PATH}/notice/updateNotice",
+                                url : "${APP_PATH}/notice/addShopMember",
                                 type : "post",
                                 data : $("#noticeForm").serialize(),
                                 success : function(result) {
@@ -364,7 +364,7 @@
                             success : function(result) {
                                 if (result.code == 100) {
                                     layer.open({
-                                        title:'修改提示',
+                                        title:'删除提示',
                                         content:result.extend.msg
                                     });
                                     go(currentNum);

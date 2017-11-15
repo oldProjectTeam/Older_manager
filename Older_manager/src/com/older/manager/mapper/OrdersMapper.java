@@ -27,4 +27,14 @@ public interface OrdersMapper {
     int updateByPrimaryKeySelective(Orders record);
 
     int updateByPrimaryKey(Orders record);
+    
+    /**
+     * @Title:   selectProductsCountByUsersId
+     * @Description:  通过用户id查询所有的订单总数
+     * @param:    @param userId
+     * @param:    @return   
+     * @return:   int   
+     * @throws
+     */
+    int selectProductsCountByUsersId(Integer userId);
 }

@@ -84,5 +84,15 @@ public interface AddNewOlderService {
      * @throws
      */
     public List<Oldman> findAllOldmansByName(String name);
+    
+    /**
+     * @Title:   findOldManIdByCardId
+     * @Description:  通过身份证号查找老人
+     * @param:    @param carid
+     * @param:    @return   
+     * @return:   int   
+     * @throws
+     */
+    public int findOldManIdByCardId(String carid);
 
 }

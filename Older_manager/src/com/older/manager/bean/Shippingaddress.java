@@ -100,4 +100,15 @@ public class Shippingaddress {
     public void setColumn2(String column2) {
         this.column2 = column2 == null ? null : column2.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Shippingaddress [id=" + id + ", location=" + location
+				+ ", detailaddress=" + detailaddress + ", name=" + name
+				+ ", phone=" + phone + ", postcode=" + postcode + ", state="
+				+ state + ", userId=" + userId + ", column1=" + column1
+				+ ", column2=" + column2 + "]";
+	}
+    
+    
 }

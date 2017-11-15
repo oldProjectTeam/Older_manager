@@ -38,4 +38,15 @@ public interface IIntegralService {
 	 * @param ids
 	 */
 	public void batchInsertIntegral(List<Integer>ids);
+	
+	/**
+	 * @Title:   addIntegral
+	 * @Description:  添加
+	 * @param:    @param integral   
+	 * @return:   void   
+	 * @throws
+	 */
+	public int addIntegral(Integral integral);
+	
+	
 }

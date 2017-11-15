@@ -57,4 +57,16 @@ public class IntegralServiceImpl implements IIntegralService {
 		 }
 	}
 
+	/**
+	 * @Title:   addIntegral
+	 * @Description:  添加单个积分表
+	 * @param:    @param integral     
+	 * @throws
+	 */
+	@Override
+	public int addIntegral(Integral integral) {
+		return integralMapper.insertSelective(integral);
+	}
+
+	
 }

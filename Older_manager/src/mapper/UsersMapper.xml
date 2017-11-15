@@ -19,6 +19,7 @@
     <result column="column6" property="column6" jdbcType="VARCHAR" />
     <result column="column7" property="column7" jdbcType="VARCHAR" />
   </resultMap>
+ 
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -91,9 +92,7 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
+    order by id DESC
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -125,7 +124,7 @@
       #{coumn4,jdbcType=INTEGER}, #{column5,jdbcType=VARCHAR}, #{column6,jdbcType=VARCHAR}, 
       #{column7,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Users" >
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Users" keyProperty="id" useGeneratedKeys="true">
     insert into users
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

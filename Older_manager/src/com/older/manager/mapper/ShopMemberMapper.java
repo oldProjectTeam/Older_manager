@@ -27,4 +27,6 @@ public interface ShopMemberMapper {
     int updateByPrimaryKeySelective(ShopMember record);
 
     int updateByPrimaryKey(ShopMember record);
+    
+    List<ShopMember> selectByShopMember(ShopMember shopMember);
 }

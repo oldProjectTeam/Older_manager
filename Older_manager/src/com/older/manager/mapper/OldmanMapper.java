@@ -31,4 +31,14 @@ public interface OldmanMapper {
     int updateByPrimaryKey(Oldman record);
     
     List<Oldman> selectAllPhone();
+    
+    /**
+     * @Title:   findOldmanId
+     * @Description:  根据身份证返回id
+     * @param:    @param idcar
+     * @param:    @return   
+     * @return:   int   
+     * @throws
+     */
+    int findOldmanId(String idcar);
 }

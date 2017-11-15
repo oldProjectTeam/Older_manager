@@ -27,4 +27,14 @@ public interface ProductsViewsMapper {
     int updateByPrimaryKeySelective(ProductsViews record);
 
     int updateByPrimaryKey(ProductsViews record);
+    
+    /**
+     * @Title:   selectProductsViewsCountByUsersId
+     * @Description:  根据用户id查询所有的产品浏览数
+     * @param:    @param userId
+     * @param:    @return   
+     * @return:   int   
+     * @throws
+     */
+    int selectProductsViewsCountByUsersId(Integer userId);
 }

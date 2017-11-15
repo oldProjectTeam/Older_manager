@@ -216,4 +216,18 @@ public class AddNewOlderServiceImpl implements AddNewOlderService {
 		return oldmanMapper.selectByExample(example);
 	}
 
+	/**
+	 * @Title:   findOldManIdByCardId
+	 * @Description:  通过电商用户的身份证查找老人的id
+	 * @param:    @param carid
+	 * @param:    @return     
+	 * @throws
+	 */
+	@Override
+	public int findOldManIdByCardId(String carid) {
+		OldmanExample example=new OldmanExample();
+		example.createCriteria().andIdcarLike(carid);
+		return oldmanMapper.selectByExample(example).get(0).getId();
+	}
+
 }
