@@ -41,4 +41,27 @@ public interface IShoppingCartService {
 	 * @throws Exception
 	 */
 	public void  batchDelCart(List<Integer>ids)throws Exception;
+	
+	/**
+	 * 根据用户id和产品id查询购物车信息
+	 * @param shoppingCart
+	 * @return
+	 * @throws Exception
+	 */
+	public List<ShoppingCart> findShoppingCart(ShoppingCart shoppingCart)throws Exception;
+	
+	/**
+	 * 根据购物车信息ID查询信息
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
+	public ShoppingCart findShopingCartById(Integer id)throws Exception;
+	
+	/**
+	 * 根据id联合查询产品信息
+	 * @return
+	 * @throws Exception
+	 */
+	public ShoppingCart selectWithProductById(Integer id)throws Exception;
 }

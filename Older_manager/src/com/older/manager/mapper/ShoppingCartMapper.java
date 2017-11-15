@@ -25,6 +25,12 @@ public interface ShoppingCartMapper {
      */
     List<ShoppingCart>selectByUserId(Integer userId);
     
+    /**
+     * 根据id联合查询产品信息
+     * @param id
+     * @return
+     */
+    public ShoppingCart selectWithProductById(Integer id);
     
     ShoppingCart selectByPrimaryKey(Integer id);
 

@@ -4,13 +4,13 @@ String path = request.getContextPath();
 pageContext.setAttribute("APP_PATH", request.getContextPath());
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'pay.jsp' starting page</title>
+    <title>孝和购物商城-商品结算</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -25,7 +25,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="${APP_PATH}/static/css/jsstyle.css" rel="stylesheet" type="text/css" />
 
 		<script type="text/javascript" src="${APP_PATH}/static/js/address.js"></script>
-
+	<script type="text/javascript" src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 	</head>
 
 	<body>
@@ -83,29 +85,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</div>
 						<div class="clear"></div>
 						<ul>
-							<div class="per-border"></div>
+						    <c:forEach items="${addressList}" var="address">
+						    	<div class="per-border"></div>
 							<li class="user-addresslist defaultAddr">
 
 								<div class="address-left">
 									<div class="user DefaultAddr">
 
 										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15871145629</span>
+                   						<span class="buy-user">${address.name} </span>
+										<span class="buy-phone">${address.phone}</span>
 										</span>
 									</div>
 									<div class="default-address DefaultAddr">
 										<span class="buy-line-title buy-line-title-type">收货地址：</span>
 										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">洪山</span>区
-										<span class="street">雄楚大道666号(中南财经政法大学)</span>
-										</span>
-
-										</span>
+								        <span class="province">${address.location}</span>
+										<!-- <span class="city">武汉</span>市
+										<span class="dist">洪山</span>区 --><br>
+										<span class="street">${address.detailaddress}</span>
+										</span>										 
 									</div>
-									<ins class="deftip">默认地址</ins>
+									<c:if test="${address.state==1}">
+										<ins class="deftip">默认地址</ins>
+									</c:if>									
 								</div>
 								<div class="address-right">
 									<a href="../person/address.html">
@@ -114,52 +117,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="clear"></div>
 
 								<div class="new-addr-btn">
-									<a href="#" class="hidden">设为默认</a>
-									<span class="new-addr-bar hidden">|</span>
+									
+									<c:if test="${address.state==1}">
+									    <input type="radio" checked="true" onClick="start('${address.id}')" name="state" value="${address.id}" style="width:18px;height:18px" >
+										<a href="#" class="hidden">设为默认</a>
+										<span class="new-addr-bar hidden">|</span>
+										
+									</c:if>	
+									<c:if test="${address.state!=1}">
+									    <input type="radio" name="state" onClick="start('${address.id}')"  value="${address.id}" style="width:18px;height:18px" >
+										<a href="#">设为默认</a>
+									    <span class="new-addr-bar">|</span>
+									</c:if>											
 									<a href="#">编辑</a>
 									<span class="new-addr-bar">|</span>
 									<a href="javascript:void(0);" onclick="delClick(this);">删除</a>
 								</div>
 
-							</li>
-							<div class="per-border"></div>
-							<li class="user-addresslist">
-								<div class="address-left">
-									<div class="user DefaultAddr">
-
-										<span class="buy-address-detail">   
-                   <span class="buy-user">艾迪 </span>
-										<span class="buy-phone">15871145629</span>
-										</span>
-									</div>
-									<div class="default-address DefaultAddr">
-										<span class="buy-line-title buy-line-title-type">收货地址：</span>
-										<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-										<span class="city">武汉</span>市
-										<span class="dist">武昌</span>区
-										<span class="street">东湖路75号众环大厦2栋9层902</span>
-										</span>
-
-										</span>
-									</div>
-									<ins class="deftip hidden">默认地址</ins>
-								</div>
-								<div class="address-right">
-									<span class="am-icon-angle-right am-icon-lg"></span>
-								</div>
-								<div class="clear"></div>
-
-								<div class="new-addr-btn">
-									<a href="#">设为默认</a>
-									<span class="new-addr-bar">|</span>
-									<a href="#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);"  onclick="delClick(this);">删除</a>
-								</div>
-
-							</li>
-
+							</li>						    
+						    </c:forEach>
 						</ul>
 
 						<div class="clear"></div>
@@ -168,22 +144,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="logistics">
 						<h3>选择物流方式</h3>
 						<ul class="op_express_delivery_hot">
-							<li data-value="yuantong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -468px"></i>圆通<span></span></li>
-							<li data-value="shentong" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -1008px"></i>申通<span></span></li>
-							<li data-value="yunda" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -576px"></i>韵达<span></span></li>
-							<li data-value="zhongtong" class="OP_LOG_BTN op_express_delivery_hot_last "><i class="c-gap-right" style="background-position:0px -324px"></i>中通<span></span></li>
-							<li data-value="shunfeng" class="OP_LOG_BTN  op_express_delivery_hot_bottom"><i class="c-gap-right" style="background-position:0px -180px"></i>顺丰<span></span></li>
+							<li data-value="yuantong" onClick="logisti('1')" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -468px"></i>圆通<span></span></li>
+							<li data-value="shentong" onClick="logisti('2')" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -1008px"></i>申通<span></span></li>
+							<li data-value="yunda" onClick="logisti('3')" class="OP_LOG_BTN  "><i class="c-gap-right" style="background-position:0px -576px"></i>韵达<span></span></li>
+							<li data-value="zhongtong" onClick="logisti('4')" class="OP_LOG_BTN op_express_delivery_hot_last "><i class="c-gap-right" style="background-position:0px -324px"></i>中通<span></span></li>
+							<li data-value="shunfeng" onClick="logisti('5')" class="OP_LOG_BTN  op_express_delivery_hot_bottom"><i class="c-gap-right" style="background-position:0px -180px"></i>顺丰<span></span></li>
 						</ul>
 					</div>
 					<div class="clear"></div>
 
 					<!--支付方式-->
-					<div class="logistics">
+					<div>
 						<h3>选择支付方式</h3>
-						<ul class="pay-list">
-							<li class="pay card"><img src="${APP_PATH}/static/images/wangyin.jpg" />银联<span></span></li>
-							<li class="pay qq"><img src="${APP_PATH}/static/images/weizhifu.jpg" />微信<span></span></li>
-							<li class="pay taobao"><img src="${APP_PATH}/static/images/zhifubao.jpg" />支付宝<span></span></li>
+						<ul class="pay-list">	 
+							<li class="pay taobao selected" style="border-color:#F03726 ;position:relative ;">
+								<input type="radio" name="payType" checked="true" value="1" style="width:18px;height:18px" >
+								<img src="${APP_PATH}/static/images/zhifubao.jpg" />支付宝(默认)<span></span>
+							</li>							 
 						</ul>
 					</div>
 					<div class="clear"></div>
@@ -214,134 +191,83 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 							</div>
 							<div class="clear"></div>
-
-							<tr class="item-list">
+							<c:forEach items="${carts }" var="cart">
+								<tr class="item-list">
 								<div class="bundle  bundle-last">
 
 									<div class="bundle-main">
-										<ul class="item-content clearfix">
-											<div class="pay-phone">
-												<li class="td td-item">
-													<div class="item-pic">
-														<a href="#" class="J_MakePoint">
-															<img src="${APP_PATH}/static/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
+										<ul class="item-content clearfix" value="${cart.id}">
+										<div class="pay-phone">
+											<li class="td td-item">
+												<div class="item-pic">
+													<a href="#" class="J_MakePoint" title="${cart.product.imagetitle}">
+														<img src="${APP_PATH}/${cart.product.images}"
+														onerror="onerror=null;src='${APP_PATH }/static/images/f9b49612f9d78f425c77eae488b9c1ad.jpg'" 
+														class="itempic J_ItemImg" width="80px" height="80px">
+													</a>
+												</div>
+												<div class="item-info">
+													<div class="item-basic-info">
+														<a href="#" class="item-title J_MakePoint" value="${cart.id}" title="${cart.product.name}"
+														data-point="tbcart.8.11">${cart.product.name}</a>
 													</div>
-													<div class="item-info">
-														<div class="item-basic-info">
-															<a href="#" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
-														</div>
+												</div>
+											</li>
+											<!-- <li class="td td-info">
+												<div class="item-props">
+													<span class="sku-line">颜色：12#川南玛瑙</span>
+													<span class="sku-line">包装：裸装</span>
+												</div>
+											</li> -->
+											<li class="td td-price">
+												<div class="item-price price-promo-promo">
+													<div class="price-content">
+														<em class="J_Price price-now">${cart.product.nowprice}</em>
 													</div>
-												</li>
-												<li class="td td-info">
-													<div class="item-props">
-														<span class="sku-line">颜色：12#川南玛瑙</span>
-														<span class="sku-line">包装：裸装</span>
-													</div>
-												</li>
-												<li class="td td-price">
-													<div class="item-price price-promo-promo">
-														<div class="price-content">
-															<em class="J_Price price-now">39.00</em>
-														</div>
-													</div>
-												</li>
+												</div>
+											</li>
+										</div>
+										<li class="td td-amount">
+											<div class="amount-wrapper ">
+											<div class="item-amount ">
+												<span class="phone-title">购买数量</span>
+												<div class="sl">
+													<input class="min am-btn" name="" type="button" value="-" />
+													<input class="text_box" name="" type="text" value="${cart.number}" style="width:30px;" />
+													<input class="add am-btn" name="" type="button" value="+" />
+												</div>
 											</div>
-											<li class="td td-amount">
-												<div class="amount-wrapper ">
-													<div class="item-amount ">
-														<span class="phone-title">购买数量</span>
-														<div class="sl">
-															<input class="min am-btn" name="" type="button" value="-" />
-															<input class="text_box" name="" type="text" value="3" style="width:30px;" />
-															<input class="add am-btn" name="" type="button" value="+" />
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="td td-sum">
-												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number">117.00</em>
-												</div>
-											</li>
-											<li class="td td-oplist">
-												<div class="td-inner">
-													<span class="phone-title">配送方式</span>
-													<div class="pay-logis">
-														快递<b class="sys_item_freprice">10</b>元
-													</div>
-												</div>
-											</li>
-
-										</ul>
-										<div class="clear"></div>
-
-									</div>
+											</div>
+										</li>
+										<li class="td td-sum">
+											<div class="td-inner">
+												<em tabindex="0" class="J_ItemSum number">${cart.baseprice}</em>
+											</div>
+										</li>
+										<li class="td td-oplist">
+										<div class="td-inner">
+											<span class="phone-title">配送方式</span>
+											<div class="pay-logis">
+											   <c:if test="${cart.product.paral11!=null}">
+											   	  快递<b class="sys_item_freprice">${cart.product.paral11}</b>元
+											   </c:if>
+											   <c:if test="${cart.product.paral11==null}">
+											   	包邮 
+											   </c:if>
+											   
+											</div>
+										</div>
+									</li>
+									</ul>
+								<div class="clear"></div>
+								</div>
 							</tr>
 							<div class="clear"></div>
+							</c:forEach>
+							
 							</div>
 
-							<tr id="J_BundleList_s_1911116345_1" class="item-list">
-								<div id="J_Bundle_s_1911116345_1_0" class="bundle  bundle-last">
-									<div class="bundle-main">
-										<ul class="item-content clearfix">
-											<div class="pay-phone">
-												<li class="td td-item">
-													<div class="item-pic">
-														<a href="#" class="J_MakePoint">
-															<img src="${APP_PATH}/static/images/kouhong.jpg_80x80.jpg" class="itempic J_ItemImg"></a>
-													</div>
-													<div class="item-info">
-														<div class="item-basic-info">
-															<a href="#" target="_blank" title="美康粉黛醉美唇膏 持久保湿滋润防水不掉色" class="item-title J_MakePoint" data-point="tbcart.8.11">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</a>
-														</div>
-													</div>
-												</li>
-												<li class="td td-info">
-													<div class="item-props">
-														<span class="sku-line">颜色：10#蜜橘色+17#樱花粉</span>
-														<span class="sku-line">包装：两支手袋装（送彩带）</span>
-													</div>
-												</li>
-												<li class="td td-price">
-													<div class="item-price price-promo-promo">
-														<div class="price-content">
-															<em class="J_Price price-now">39.00</em>
-														</div>
-													</div>
-												</li>
-											</div>
-
-											<li class="td td-amount">
-												<div class="amount-wrapper ">
-													<div class="item-amount ">
-														<span class="phone-title">购买数量</span>
-														<div class="sl">
-															<input class="min am-btn" name="" type="button" value="-" />
-															<input class="text_box" name="" type="text" value="3" style="width:30px;" />
-															<input class="add am-btn" name="" type="button" value="+" />
-														</div>
-													</div>
-												</div>
-											</li>
-											<li class="td td-sum">
-												<div class="td-inner">
-													<em tabindex="0" class="J_ItemSum number">117.00</em>
-												</div>
-											</li>
-											<li class="td td-oplist">
-												<div class="td-inner">
-													<span class="phone-title">配送方式</span>
-													<div class="pay-logis">
-														包邮
-													</div>
-												</div>
-											</li>
-
-										</ul>
-										<div class="clear"></div>
-
-									</div>
-							</tr>
+							 
 							</div>
 							<div class="clear"></div>
 							<div class="pay-total">
@@ -350,7 +276,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="order-user-info">
 									<div id="holyshit257" class="memo">
 										<label>买家留言：</label>
-										<input type="text" title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明" class="memo-input J_MakePoint c2c-text-default memo-close">
+										<input type="text" id="body"
+										title="选填,对本次交易的说明（建议填写已经和卖家达成一致的说明）" placeholder="选填,建议填写和卖家达成一致的说明" class="memo-input J_MakePoint c2c-text-default memo-close">
 										<div class="msg hidden J-msg">
 											<p class="error">最多输入500个字符</p>
 										</div>
@@ -358,62 +285,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 
 							</div>
-							<!--优惠券 -->
-							<div class="buy-agio">
-								<li class="td td-coupon">
-
-									<span class="coupon-title">优惠券</span>
-									<select data-am-selected>
-										<option value="a">
-											<div class="c-price">
-												<strong>￥8</strong>
-											</div>
-											<div class="c-limit">
-												【消费满95元可用】
-											</div>
-										</option>
-										<option value="b" selected>
-											<div class="c-price">
-												<strong>￥3</strong>
-											</div>
-											<div class="c-limit">
-												【无使用门槛】
-											</div>
-										</option>
-									</select>
-								</li>
-
-								<li class="td td-bonus">
-
-									<span class="bonus-title">红包</span>
-									<select data-am-selected>
-										<option value="a">
-											<div class="item-info">
-												¥50.00<span>元</span>
-											</div>
-											<div class="item-remainderprice">
-												<span>还剩</span>10.40<span>元</span>
-											</div>
-										</option>
-										<option value="b" selected>
-											<div class="item-info">
-												¥50.00<span>元</span>
-											</div>
-											<div class="item-remainderprice">
-												<span>还剩</span>50.00<span>元</span>
-											</div>
-										</option>
-									</select>
-
-								</li>
-
-							</div>
+							
 							<div class="clear"></div>
 							</div>
 							<!--含运费小计 -->
 							<div class="buy-point-discharge ">
 								<p class="price g_price ">
-									合计（含运费） <span>¥</span><em class="pay-sum">244.00</em>
+									合计（含运费） <span>¥</span><em class="pay-sum" id="pay-sum">${cost}</em>
 								</p>
 							</div>
 
@@ -423,35 +301,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div class="box">
 										<div tabindex="0" id="holyshit267" class="realPay"><em class="t">实付款：</em>
 											<span class="price g_price ">
-                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">244.00</em>
+                                    <span>¥</span> <em class="style-large-bold-red " id="J_ActualFee">${cost}</em>
 											</span>
 										</div>
 
 										<div id="holyshit268" class="pay-address">
-
+										<c:forEach items="${addressList}" var="address">
+										   <c:if test="${address.state==1}">
 											<p class="buy-footer-address">
 												<span class="buy-line-title buy-line-title-type">寄送至：</span>
 												<span class="buy--address-detail">
-								   <span class="province">湖北</span>省
-												<span class="city">武汉</span>市
-												<span class="dist">洪山</span>区
-												<span class="street">雄楚大道666号(中南财经政法大学)</span>
+								  				<span class="province">${address.location}</span>
+					
+												<span class="street">${address.detailaddress }</span>
 												</span>
-												</span>
+												 
 											</p>
 											<p class="buy-footer-address">
 												<span class="buy-line-title">收货人：</span>
 												<span class="buy-address-detail">   
-                                         <span class="buy-user">艾迪 </span>
-												<span class="buy-phone">15871145629</span>
+                                                <span class="buy-user">${address.name}</span>
+												<span class="buy-phone">${address.phone}</span>
 												</span>
 											</p>
+											</c:if>
+										</c:forEach>
 										</div>
 									</div>
-
-									<div id="holyshit269" class="submitOrder">
+									<div id="holyshit269" class="submitOrder" >
 										<div class="go-btn-wrap">
-											<a id="J_Go" href="success.html" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+											<a id="J_Go" href="javascript:;" onClick="submitOrder(2)" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
 										</div>
 									</div>
 									<div class="clear"></div>
@@ -547,8 +426,154 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 
 			</div>
+		<div class="clear"></div>
+<script type="text/javascript">
 
-			<div class="clear"></div>
-	</body>
+var formulaWay="";//物流名称，配送方式
+function logisti(name){
+	formulaWay=name;
+}
+
+//提交订单按钮
+function submitOrder(userId){
+	if(userId==""||userId==null||userId==undefined){
+		 layer.msg("用户登录失效，请重新登录！");
+		 return false;
+	}
+	//收货地址id
+	 var addressId=$("input[name='state']:checked").val();
+	 if(formulaWay==''||formulaWay==null){
+		 layer.msg("请选择物流方式！");
+		 return false;
+	 }
+	 var ids="";
+	 $.each($(".item-title"),function(){
+		 ids+=$(this).attr("value")+"-";
+	 });
+	 ids=ids.substring(0,ids.length-1);
+	 if(ids==""){
+		 layer.msg("无订单商品，不能提交订单！");
+		 return false;
+	 }
+	 var payType=$("input[name='payType']:checked").val();
+	 if(payType==''||payType==null){
+		 layer.msg("请选择支付方式！");
+		 return false;
+	 }
+	 //买家留言
+	 var body=$("#body").val();
+	 if(body.length>200){
+		 layer.msg("留言字数不能超过200！");
+		 return false;
+	 }
+	 window.location.href="${APP_PATH}/order/orderPay.action?shippingaddressId="+addressId+
+			 "&formulaway="+formulaWay+"&paytype="+payType+"&ids="+ids+"&userId="+userId+"&body="+body;
+}
+
+//更改商品数量，向服务器发送更改指令
+//参数：购物车记录id,更改的数量数值number
+function updateNumber(id,number){
+	if(id==''||id==undefined||number==''||number==undefined){
+		return false;
+	}
+	$.ajax({
+		url:"${APP_PATH}/cart/updateNumber.action?id="+id+"&number="+number,
+		type:"POST",
+		success:function(result){
+		}
+	});
+}
+//增加数量按钮+
+ $(document).on("click",".add",function(){
+	var num=Number($(this).parents("div:.sl").find("input[type=text]").val());
+	$(this).parents("div:.sl").find("input[type='text']").val(num);
+	
+	//向服务器发送更改指令
+	var id=$(this).parents("ul").attr("value");
+	updateNumber(id,num);
+	
+	//商品单价
+	var nowprice=parseFloat($(this).parents("ul").find("em:.price-now").text());
+	//该商品总金额
+	var baseprice=num*nowprice;
+	$(this).parents("ul").find("em:.number").html(baseprice+".0");
+
+	var cost=parseFloat($("#J_ActualFee").text());
+	cost+=nowprice;
+	$("#J_ActualFee").html(cost+".00");
+	$("#pay-sum").html(cost+".00");
+	
+});
+//减少数量按钮-
+$(document).on("click",".min",function(){
+	//原数量
+	var num=Number($(this).parents("div:.sl").find("input[type=text]").val());
+	if(num<1){
+		$(this).parents("div:.sl").find("input[type='text']").val("1");
+		return false;
+	}
+	 
+	$(this).parents("div:.sl").find("input[type='text']").val(num);
+	
+	//向服务器发送更改指令
+	//向服务器发送更改指令
+	var id=$(this).parents("ul").attr("value");
+	updateNumber(id,num);
+	
+	//商品单价
+	var nowprice=parseFloat($(this).parents("ul").find("em:.price-now").text());
+	//该商品总金额
+	var baseprice=num*nowprice;
+	$(this).parents("ul").find("em:.number").html(baseprice+".0");
+
+	var cost=parseFloat($("#J_ActualFee").text());
+	cost-=nowprice;
+	$("#J_ActualFee").html(cost+".00");
+	$("#pay-sum").html(cost+".00");
+});
+
+//文本框原数量值
+var number=0;
+//数量文本框获得焦点，保存原来数字
+$(document).on("focus",".text_box",function(){
+	number=$(this).val();
+});
+$(document).on("change",".text_box",function(){
+	var regx=/^[1-9]\d*$/i;
+	if(!regx.test($(this).val())){
+		layer.msg("请输入一个合法的数字");
+		$(this).val(number);
+		return false;
+	}
+	if($(this).val()<1){
+		layer.msg("请输入一个合法的数字");
+		$(this).val(number);
+		return false;
+	}
+	
+	//修改相应数据
+	//1.修改此商品总金额
+	//商品单价
+	var nowprice=parseFloat($(this).parents("ul").find("em:.price-now").text());
+	var num=$(this).val();//现在数量
+	
+	//向服务器发送更改指令
+	var id=$(this).parents("ul").attr("value");
+	updateNumber(id,num);
+	
+	//该商品总金额
+	var baseprice=num*nowprice;
+	$(this).parents("ul").find("em:.number").html(baseprice+".0");
+	
+	var cost=parseFloat($("#J_ActualFee").text());
+	var n=num-number;//相差数量
+	cost+=nowprice*n;
+	$("#J_ActualFee").html(cost+".00");
+	$("#pay-sum").html(cost+".00");
+});
+
+</script>		
+		
+</body>
 
 </html>

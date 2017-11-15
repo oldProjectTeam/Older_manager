@@ -1,4 +1,4 @@
-package com.older.manager.service.shopfront.test;
+package com.older.manager.shopfront.test;
 
 import static org.junit.Assert.*;
 

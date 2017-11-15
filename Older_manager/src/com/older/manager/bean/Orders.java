@@ -2,6 +2,11 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Orders {
     private Integer id;
 
@@ -15,8 +20,11 @@ public class Orders {
 
     private Integer num;
 
+    @Length(min=0,max=200,message="买家留言不能超过200！")
     private String body;
 
+    @NotEmpty(message="支付方式不能为空！")
+    @Length(min=1,max=20,message="支付方式字数超限！")
     private String paytype;
 
     private Date creattime;
@@ -25,10 +33,14 @@ public class Orders {
 
     private String shipperphone;
 
+    @NotEmpty(message="物流方式不能为空")
+    @Length(min=1,max=20,message="物流方式字数超限")
     private String formulaway;
 
+    @NotNull(message="地址ID不能为空")
     private Integer shippingaddressId;
 
+    @NotNull(message="用户ID不能为空")
     private Integer userId;
 
     private String state;

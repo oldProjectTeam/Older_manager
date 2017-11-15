@@ -18,7 +18,7 @@ import com.older.manager.service.oldback.shop.ShippingaddressService;
  * 
  */
 @Service
-public class ShippingaddressServiceImpl implements ShippingaddressService {
+public class ShippingaddressServiceImpl2 implements ShippingaddressService {
 
 	@Autowired
 	ShippingaddressMapper shippingaddressMapper;

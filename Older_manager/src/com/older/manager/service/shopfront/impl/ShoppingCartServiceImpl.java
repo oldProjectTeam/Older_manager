@@ -39,6 +39,7 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
 
 	@Override
 	public void updateShoppingCart(ShoppingCart shoppingCart) throws Exception {
+		 
 		shoppingCartMapper.updateByPrimaryKeySelective(shoppingCart);
 		
 	}
@@ -56,6 +57,29 @@ public class ShoppingCartServiceImpl implements IShoppingCartService {
 		ShoppingCartExample.Criteria criteria=example.createCriteria();
 		criteria.andIdIn(ids);
 		shoppingCartMapper.deleteByExample(example);
+	}
+
+	@Override
+	public List<ShoppingCart> findShoppingCart(ShoppingCart shoppingCart)
+			throws Exception {
+		ShoppingCartExample example=new ShoppingCartExample();
+		ShoppingCartExample.Criteria criteria=example.createCriteria();
+		criteria.andUsersIdEqualTo(shoppingCart.getUsersId());
+		criteria.andProdutsIdEqualTo(shoppingCart.getProdutsId());
+		
+		return shoppingCartMapper.selectByExample(example);
+	}
+
+	@Override
+	public ShoppingCart findShopingCartById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return shoppingCartMapper.selectByPrimaryKey(id);
+	}
+
+	@Override
+	public ShoppingCart selectWithProductById(Integer id) throws Exception {
+		
+		return shoppingCartMapper.selectWithProductById(id);
 	}
 
 }
