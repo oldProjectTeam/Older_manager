@@ -48,6 +48,19 @@ public class Users {
 
 	private String column7;
 
+	
+	
+	@Override
+	public String toString() {
+		return "Users [id=" + id + ", account=" + account + ", password="
+				+ password + ", nickname=" + nickname + ", loginip=" + loginip
+				+ ", logintime=" + logintime + ", realname=" + realname
+				+ ", phone=" + phone + ", idcard=" + idcard + ", email="
+				+ email + ", sex=" + sex + ", column3=" + column3 + ", coumn4="
+				+ coumn4 + ", column5=" + column5 + ", column6=" + column6
+				+ ", column7=" + column7 + "]";
+	}
+
 	public Integer getId() {
 		return id;
 	}

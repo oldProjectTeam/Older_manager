@@ -24,7 +24,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href="${APP_PATH}/static/css/infstyle.css" rel="stylesheet" type="text/css">
 		<script src="${APP_PATH}/static/js/jquery.min.js" type="text/javascript"></script>
 		<script src="${APP_PATH}/static/js/amazeui.js" type="text/javascript"></script>
-			
+		 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	   type="text/javascript"></script>
+		
+	   <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+       <script src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>	
 	</head>
 
 	<body>
@@ -117,16 +121,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
+								<div><b>用户名：<i id="usernameid" class="form-control-static"></i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
+							             <s class="vip1"></s><a class="classes" href="#" id="mvpid"></a>
 						            </span>
 								</div>
 								<div class="u-safety">
 									<a href="safety.html">
 									 账户安全
-									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
+									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0" id="numid">60分</i></span>
 									</a>
 								</div>
 							</div>
@@ -134,12 +138,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 						<!--个人信息 -->
 						<div class="info-main">
-							<form class="am-form am-form-horizontal">
+							<form class="am-form am-form-horizontal" id="formid">
 
 								<div class="am-form-group">
 									<label for="user-name2" class="am-form-label">昵称</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="nickname">
+										<input type="text" id="ncikid" required="true" placeholder="nickname" name="nickname">
 
 									</div>
 								</div>
@@ -147,7 +151,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="am-form-group">
 									<label for="user-name" class="am-form-label">姓名</label>
 									<div class="am-form-content">
-										<input type="text" id="user-name2" placeholder="name">
+										<input type="text" id="truenameid" required="true" placeholder="name" name="realname">
 
 									</div>
 								</div>
@@ -156,84 +160,59 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<label class="am-form-label">性别</label>
 									<div class="am-form-content sex">
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="male" data-am-ucheck> 男
+											<input type="radio" name="sex" value="男" checked="checked"  data-am-ucheck> 男
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="female" data-am-ucheck> 女
+											<input type="radio" name="sex" value="女"  data-am-ucheck> 女
 										</label>
 										<label class="am-radio-inline">
-											<input type="radio" name="radio10" value="secret" data-am-ucheck> 保密
+											<input type="radio" name="sex" value="保密" data-am-ucheck> 保密
 										</label>
 									</div>
 								</div>
 
 								<div class="am-form-group">
-									<label for="user-birth" class="am-form-label">生日</label>
+									<label for="user-birth" class="am-form-label">身份证</label>
 									<div class="am-form-content birth">
-										<div class="birth-select">
-											<select data-am-selected>
-												<option value="a">2015</option>
-												<option value="b">1987</option>
-											</select>
-											<em>年</em>
-										</div>
-										<div class="birth-select2">
-											<select data-am-selected>
-												<option value="a">12</option>
-												<option value="b">8</option>
-											</select>
-											<em>月</em></div>
-										<div class="birth-select2">
-											<select data-am-selected>
-												<option value="a">21</option>
-												<option value="b">23</option>
-											</select>
-											<em>日</em></div>
+										<input type="text" id="idcarid" required="true" name="idcar" placeholder="身份证">
 									</div>
 							
 								</div>
 								<div class="am-form-group">
 									<label for="user-phone" class="am-form-label">电话</label>
 									<div class="am-form-content">
-										<input id="user-phone" placeholder="telephonenumber" type="tel">
+										<input id="user-phone" name="phone" required="true" placeholder="telephonenumber"  type="tel">
 
 									</div>
 								</div>
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">电子邮件</label>
 									<div class="am-form-content">
-										<input id="user-email" placeholder="Email" type="email">
+										<input id="user-email" name="email" required="true" placeholder="Email" type="email">
 
 									</div>
 								</div>
-								<div class="am-form-group address">
-									<label for="user-address" class="am-form-label">收货地址</label>
-									<div class="am-form-content address">
-										<a href="address.html">
-											<p class="new-mu_l2cw">
-												<span class="province">湖北</span>省
-												<span class="city">武汉</span>市
-												<span class="dist">洪山</span>区
-												<span class="street">雄楚大道666号(中南财经政法大学)</span>
-												<span class="am-icon-angle-right"></span>
-											</p>
+								
+								<div class="am-form-group">
+									<label for="user-email" class="am-form-label">收货地址</label>
+									<div class="am-form-content">
+										<a  class="am-form-label" id="addressid">
+										
 										</a>
-
 									</div>
 								</div>
-								<div class="am-form-group safety">
+							
+								<div class="am-form-group ">
 									<label for="user-safety" class="am-form-label">账号安全</label>
 									<div class="am-form-content safety">
-										<a href="safety.html">
-
-											<span class="am-icon-angle-right"></span>
-
+										<a class="am-form-label">
+										  >
 										</a>
 
 									</div>
 								</div>
-								<div class="info-btn">
-									<div class="am-btn am-btn-danger">保存修改</div>
+								<div class="" align="center">
+									<button type="button" class="btn btn-danger" id="saveinfo">保存修改</button>
 								</div>
 
 							</form>
@@ -311,6 +290,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</aside>
 		</div>
 
+<script type="text/javascript">
+  $(function(){
+       //发送请求获取
+	  $.ajax({
+			url:"${APP_PATH}/info/selectinformation/"+6,
+			type:"GET",
+			
+			success:function(result){
+				
+					var rel=result.extend.shop;
+					$("#usernameid").text(rel.users.nickname);
+					$("#mvpid").text(rel.level);
+	 				$("#ncikid").val(rel.users.nickname);
+					$("#truenameid").val(rel.users.realname);
+					$("#user-phone").val(rel.users.phone);
+					$("#user-email").val(rel.users.email);
+					$("#idcarid").val(rel.users.idcard);
+				    $("#formid input[name=sex]").val([rel.users.sex]);
+				    var a=rel.shippingaddress.location+" "+rel.shippingaddress.detailaddress;
+				    //alert(a);
+				    $("#addressid").text(a);
+			   }
+			});
+  
+  });
+
+  $("#saveinfo").click(function(){
+       var idcar=/^\d{15}|\d{18}$/;
+     if(!idcar.test( $("#idcarid").val())){
+     layer.msg("身份证不符合！");
+     }else{
+     
+             $.ajax({
+			url:"${APP_PATH}/info/updateinformation/"+6,
+			type:"POST",
+			data:$("#formid").serialize(),
+			success:function(result){
+			   if(result.code==100){
+			     layer.msg("保存成功！");
+			   }
+			
+			}});
+     }
+      
+  
+  });
+</script>
 	</body>
 
 </html>

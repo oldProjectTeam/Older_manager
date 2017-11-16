@@ -19,7 +19,8 @@ public interface ShopMemberMapper {
     List<ShopMember> selectByExample(ShopMemberExample example);
 
     ShopMember selectByPrimaryKey(Integer id);
-
+    
+    ShopMember selectByPrimaryKeyWithUid(Integer id);
     int updateByExampleSelective(@Param("record") ShopMember record, @Param("example") ShopMemberExample example);
 
     int updateByExample(@Param("record") ShopMember record, @Param("example") ShopMemberExample example);
