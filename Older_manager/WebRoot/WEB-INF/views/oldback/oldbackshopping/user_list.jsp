@@ -45,7 +45,7 @@
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
 <script src="${APP_PATH}/static/shop/assets/laydate/laydate.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="${APP_PATH}/static/shop/css/style.css" />
+<link rel="stylesheet" href="${APP_PATH}/static/shop/css/style1.css" />
 <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script src="${APP_PATH}/lib/layer/2.4/layer.js"></script>
@@ -112,7 +112,7 @@
 				<!--分页信息  -->
 				<div class="row">
 					<div class="col-md-7" id="page_text">&nbsp;&nbsp;</div>
-					<div class="col-md-4 col-md-offset-1" id="page_nav"></div>
+					<div class="col-md-5 " id="page_nav"></div>
 				</div>
 			</div>
 		</div>
