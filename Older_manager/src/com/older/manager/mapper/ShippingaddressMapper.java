@@ -37,4 +37,10 @@ public interface ShippingaddressMapper {
      * @throws
      */
     Shippingaddress selectByUserId(Integer userid);
+    
+    
+    
+    //自己修改的
+    List<Shippingaddress> selectByExampleWithUsers(Shippingaddress shippingaddress);
+    Shippingaddress selectByPrimaryKeyWithUsers(Integer id);
 }

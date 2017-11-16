@@ -13,7 +13,52 @@
     <result column="column1" property="column1" jdbcType="VARCHAR" />
     <result column="column2" property="column2" jdbcType="VARCHAR" />
   </resultMap>
+  
+  
+  
+    
+  <!-- 带用户的 -->
+  <resultMap id="BaseResultMapWithUsers" type="com.older.manager.bean.Shippingaddress" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="detailAddress" property="detailaddress" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="column1" property="column1" jdbcType="VARCHAR" />
+    <result column="column2" property="column2" jdbcType="VARCHAR" />
+     <association property="users" javaType="com.older.manager.bean.Users">
+    	<id column="user_id" property="id" jdbcType="INTEGER" />
+    	<result column="realName" property="realname" jdbcType="VARCHAR" />
+    	<result column="phone" property="phone" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
   <sql id="Example_Where_Clause" >
+  
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -71,6 +116,12 @@
       </foreach>
     </where>
   </sql>
+  
+  
+  
+  
+  
+  
   <sql id="Base_Column_List" >
     id, location, detailAddress, name, phone, postcode, state, user_id, column1, column2
   </sql>
@@ -185,6 +236,31 @@
       </if>
     </trim>
   </insert>
+  
+  
+  
+  
+  
+  
+  
+    <!-- 带用户 -->
+  <select id="selectByExampleWithUsers" resultMap="BaseResultMapWithUsers" parameterType="com.older.manager.bean.Shippingaddress" >
+    select  s.*,u.id,u.realname,u.phone from shippingaddress s,users u where s.user_id=u.id
+     and s.user_id = ${userId}
+    
+  </select>
+  <select id="selectByPrimaryKeyWithUsers" resultMap="BaseResultMapWithUsers" parameterType="java.lang.Integer" >
+   select  s.*,u.id,u.realname,u.phone from shippingaddress s,users u where s.user_id=u.id
+   and s.id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
   <select id="countByExample" parameterType="com.older.manager.bean.ShippingaddressExample" resultType="java.lang.Integer" >
     select count(*) from shippingaddress
     <if test="_parameter != null" >

@@ -20,8 +20,29 @@ public class Shippingaddress {
     private String column1;
 
     private String column2;
+    
+    private Users users;
+    
+    
 
-    public Integer getId() {
+    @Override
+	public String toString() {
+		return "Shippingaddress [id=" + id + ", location=" + location
+				+ ", detailaddress=" + detailaddress + ", name=" + name
+				+ ", phone=" + phone + ", postcode=" + postcode + ", state="
+				+ state + ", userId=" + userId + ", column1=" + column1
+				+ ", column2=" + column2 + ", users=" + users + "]";
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -100,15 +121,4 @@ public class Shippingaddress {
     public void setColumn2(String column2) {
         this.column2 = column2 == null ? null : column2.trim();
     }
-
-	@Override
-	public String toString() {
-		return "Shippingaddress [id=" + id + ", location=" + location
-				+ ", detailaddress=" + detailaddress + ", name=" + name
-				+ ", phone=" + phone + ", postcode=" + postcode + ", state="
-				+ state + ", userId=" + userId + ", column1=" + column1
-				+ ", column2=" + column2 + "]";
-	}
-    
-    
 }
