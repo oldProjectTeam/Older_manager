@@ -1,80 +1,50 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-String path = request.getContextPath();
-pageContext.setAttribute("APP_PATH", request.getContextPath());
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+	String path = request.getContextPath();
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
+	String basePath = request.getScheme() + "://"
+			+ request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-  <head>
-    <base href="<%=basePath%>">
-    
-    <title>孝和购物商城-商品结算</title>
-    
-	<meta http-equiv="pragma" content="no-cache">
-	<meta http-equiv="cache-control" content="no-cache">
-	<meta http-equiv="expires" content="0">    
-	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-	<meta http-equiv="description" content="This is my page">
-	<link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet" type="text/css" />
+<head>
+<base href="<%=basePath%>">
 
-		<link href="${APP_PATH}/static/css/demo.css" rel="stylesheet" type="text/css" />
-		<link href="${APP_PATH}/static/css/cartstyle.css" rel="stylesheet" type="text/css" />
+<title>孝和购物商城-商品结算</title>
 
-		<link href="${APP_PATH}/static/css/jsstyle.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="cache-control" content="no-cache">
+<meta http-equiv="expires" content="0">
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="This is my page">
+<link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
+	type="text/css" />
 
-		<script type="text/javascript" src="${APP_PATH}/static/js/address.js"></script>
-	<script type="text/javascript" src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+<link href="${APP_PATH}/static/css/demo.css" rel="stylesheet"
+	type="text/css" />
+<link href="${APP_PATH}/static/css/cartstyle.css" rel="stylesheet"
+	type="text/css" />
+
+<link href="${APP_PATH}/static/css/jsstyle.css" rel="stylesheet"
+	type="text/css" />
+
+<script type="text/javascript" src="${APP_PATH}/static/js/address.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
-	</head>
+</head>
 
-	<body>
-
-		<!--顶部导航条 -->
-		<div class="am-container header">
-			<ul class="message-l">
-				<div class="topMessage">
-					<div class="menu-hd">
-						<a href="#" target="_top" class="h">亲，请登录</a>
-						<a href="#" target="_top">免费注册</a>
-					</div>
-				</div>
-			</ul>
-			<ul class="message-r">
-				<div class="topMessage home">
-					<div class="menu-hd"><a href="#" target="_top" class="h">商城首页</a></div>
-				</div>
-				<div class="topMessage my-shangcheng">
-					<div class="menu-hd MyShangcheng"><a href="#" target="_top"><i class="am-icon-user am-icon-fw"></i>个人中心</a></div>
-				</div>
-				<div class="topMessage mini-cart">
-					<div class="menu-hd"><a id="mc-menu-hd" href="#" target="_top"><i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong id="J_MiniCartNum" class="h">0</strong></a></div>
-				</div>
-				<div class="topMessage favorite">
-					<div class="menu-hd"><a href="#" target="_top"><i class="am-icon-heart am-icon-fw"></i><span>收藏夹</span></a></div>
-			</ul>
-			</div>
-
-			<!--悬浮搜索框-->
-
-			<div class="nav white">
-				<div class="logo"><img src="${APP_PATH}/static/images/logo.png" /></div>
-				<div class="logoBig">
-					<li><img src="${APP_PATH}/static/images/logobig.png" /></li>
-				</div>
-
-				<div class="search-bar pr">
-					<a name="index_none_header_sysc" href="#"></a>
-					<form>
-						<input id="searchInput" name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
-						<input id="ai-topsearch" class="submit am-btn" value="搜索" index="1" type="submit">
-					</form>
-				</div>
-			</div>
-
-			<div class="clear"></div>
+<body>
+    <jsp:include page="shopheader.jsp"></jsp:include>
+	<c:if test="${empty carts }">
+            	<script type="text/javascript">
+            	confirm("没有商品，请先选购商品!");
+            	window.location.href="${APP_PATH}/shop/oldfronthome";
+            	</script>
+            </c:if>
 			<div class="concent">
 				<!--地址 -->
 				<div class="paycont">
@@ -119,13 +89,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="new-addr-btn">
 									
 									<c:if test="${address.state==1}">
-									    <input type="radio" checked="true" onClick="start('${address.id}')" name="state" value="${address.id}" style="width:18px;height:18px" >
+										<span class="new-addr-bar">启用</span>
+									    <span class="new-addr-bar">
+									    	<input type="radio" checked="true" 
+									    	onClick="start(this)" name="state"
+									    	 value="${address.id}" style="width:18px;height:18px;margin-top:-5px" >
+									    </span>
+										<span class="new-addr-bar">|</span>
 										<a href="#" class="hidden">设为默认</a>
 										<span class="new-addr-bar hidden">|</span>
 										
 									</c:if>	
 									<c:if test="${address.state!=1}">
-									    <input type="radio" name="state" onClick="start('${address.id}')"  value="${address.id}" style="width:18px;height:18px" >
+									    <span class="new-addr-bar">启用</span>
+									    <input type="radio" name="state" 
+									    onClick="start(this)"  
+									    value="${address.id}" style="width:18px;height:18px;margin-top:-5px" >
+										<span class="new-addr-bar">|</span>
 										<a href="#">设为默认</a>
 									    <span class="new-addr-bar">|</span>
 									</c:if>											
@@ -159,6 +139,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<ul class="pay-list">	 
 							<li class="pay taobao selected" style="border-color:#F03726 ;position:relative ;">
 								<input type="radio" name="payType" checked="true" value="1" style="width:18px;height:18px" >
+								&nbsp;&nbsp;
 								<img src="${APP_PATH}/static/images/zhifubao.jpg" />支付宝(默认)<span></span>
 							</li>							 
 						</ul>
@@ -429,6 +410,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="clear"></div>
 <script type="text/javascript">
 
+//启用地址
+function start(obj){
+	//收货人姓名
+	 var name=$(obj).parents("li").find("span:.buy-user").text();
+	 var phone=$(obj).parents("li").find("span:.buy-phone").text();
+	 var location=$(obj).parents("li").find("span:.province").text();
+	 var street=$(obj).parents("li").find("span:.street").text();
+	 //收货地址确认信息改变
+	 $("#holyshit268").find("span:.buy-user").html(name);
+	 $("#holyshit268").find("span:.buy-phone").html(phone);
+	 $("#holyshit268").find("span:.province").html(location);
+	 $("#holyshit268").find("span:.street").html(street);
+	
+}
+
+
 var formulaWay="";//物流名称，配送方式
 function logisti(name){
 	formulaWay=name;
@@ -466,7 +463,7 @@ function submitOrder(userId){
 		 layer.msg("留言字数不能超过200！");
 		 return false;
 	 }
-	 window.location.href="${APP_PATH}/order/orderPay.action?shippingaddressId="+addressId+
+	 window.location.href="${APP_PATH}/pay/orderPay.action?shippingaddressId="+addressId+
 			 "&formulaway="+formulaWay+"&paytype="+payType+"&ids="+ids+"&userId="+userId+"&body="+body;
 }
 
@@ -573,7 +570,6 @@ $(document).on("change",".text_box",function(){
 });
 
 </script>		
-		
 </body>
 
 </html>

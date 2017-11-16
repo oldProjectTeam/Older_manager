@@ -33,4 +33,11 @@ public interface IOrderService {
 	 * @throws Exception
 	 */
 	public Orders findOrderByNo(String orderNo)throws Exception;
+
+	/**
+	 * 通过订单id查询订单信息和订单详细信息和产品信息
+	 * @param id
+	 * @return
+	 */
+	public Orders findOrderWithDetailById(Integer id);
 }

@@ -1,6 +1,7 @@
 package com.older.manager.bean;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -20,6 +21,9 @@ public class Orders {
 
     private Integer num;
 
+    //关联订单详细表
+    private List<Orderdetail>orderdetails;
+    
     @Length(min=0,max=200,message="买家留言不能超过200！")
     private String body;
 
@@ -40,6 +44,9 @@ public class Orders {
     @NotNull(message="地址ID不能为空")
     private Integer shippingaddressId;
 
+    //关联地址信息
+    private Shippingaddress shippingaddress;
+    
     @NotNull(message="用户ID不能为空")
     private Integer userId;
 
@@ -244,4 +251,38 @@ public class Orders {
     public void setOrders7(String orders7) {
         this.orders7 = orders7 == null ? null : orders7.trim();
     }
+
+	public Shippingaddress getShippingaddress() {
+		return shippingaddress;
+	}
+
+	public void setShippingaddress(Shippingaddress shippingaddress) {
+		this.shippingaddress = shippingaddress;
+	}
+
+	 
+
+	public List<Orderdetail> getOrderdetails() {
+		return orderdetails;
+	}
+
+	public void setOrderdetails(List<Orderdetail> orderdetails) {
+		this.orderdetails = orderdetails;
+	}
+
+	@Override
+	public String toString() {
+		return "Orders [id=" + id + ", orderNo=" + orderNo + ", transactionid="
+				+ transactionid + ", subject=" + subject + ", cost=" + cost
+				+ ", num=" + num + ", orderdetails=" + orderdetails + ", body="
+				+ body + ", paytype=" + paytype + ", creattime=" + creattime
+				+ ", shipper=" + shipper + ", shipperphone=" + shipperphone
+				+ ", formulaway=" + formulaway + ", shippingaddressId="
+				+ shippingaddressId + ", shippingaddress=" + shippingaddress
+				+ ", userId=" + userId + ", state=" + state + ", freight="
+				+ freight + ", orders1=" + orders1 + ", orders2=" + orders2
+				+ ", orders3=" + orders3 + ", orders4=" + orders4
+				+ ", orders5=" + orders5 + ", orders6=" + orders6
+				+ ", orders7=" + orders7 + "]";
+	}
 }

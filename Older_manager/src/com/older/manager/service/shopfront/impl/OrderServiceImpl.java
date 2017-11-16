@@ -41,10 +41,16 @@ public class OrderServiceImpl implements IOrderService {
 
 	@Override
 	public Orders findOrderByNo(String orderNo) throws Exception {
-		OrdersExample example=new OrdersExample();
+		/*OrdersExample example=new OrdersExample();
 		OrdersExample.Criteria criteria=example.createCriteria();
-		criteria.andOrderNoEqualTo(orderNo);
-		return ordersMapper.selectByExample(example).get(0);
+		criteria.andOrderNoEqualTo(orderNo);*/
+		return ordersMapper.selectWithAddressByOrderNo(orderNo);
+	}
+
+	@Override
+	public Orders findOrderWithDetailById(Integer id) {
+		// TODO Auto-generated method stub
+		return ordersMapper.selectOrderWithDetailById(id);
 	}
 
 }

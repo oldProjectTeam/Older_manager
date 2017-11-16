@@ -72,6 +72,9 @@ public interface IProductService {
 	 * @param product
 	 */
 	public void updateStateAndAuditstatus(Products product);
+
+
+	Products findProductById(Integer id) throws Exception;
 	
 	 
 

@@ -44,4 +44,16 @@ public interface ProductsMapper {
 	 * @return
 	 */
 	List<Products> selectByCondition(Products products);
+	
+	/**
+	 * @Title:   selectAllProductsByComplexSearch
+	 * @Description:  通过搜索查询所有的商品
+	 * @param:    @param products
+	 * @param:    @return   
+	 * @return:   List<Products>   
+	 * @throws
+	 * @author:   ym
+	 * @date:     2017年11月15日 下午8:16:49
+	 */
+	List<Products> selectAllProductsByComplexSearch(Products products);
 }

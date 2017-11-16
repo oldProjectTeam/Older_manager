@@ -36,28 +36,7 @@
     </association>
   </resultMap>
   <sql id="Example_Where_Clause" >
-  
 
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
   
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -135,7 +114,7 @@
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
-    order by id DESC
+    order by state DESC, id DESC
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

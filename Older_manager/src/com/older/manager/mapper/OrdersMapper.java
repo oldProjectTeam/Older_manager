@@ -37,4 +37,18 @@ public interface OrdersMapper {
      * @throws
      */
     int selectProductsCountByUsersId(Integer userId);
+    
+    /**
+     * 根据订单编号查询订单信息和收货地址信息
+     * @param orderNo
+     * @return
+     */
+    Orders selectWithAddressByOrderNo(String orderNo);
+    
+    /**
+     * 根据id查询订单信息和订单详细信息和产品信息
+     * @param id
+     * @return
+     */
+    Orders selectOrderWithDetailById(Integer id);
 }

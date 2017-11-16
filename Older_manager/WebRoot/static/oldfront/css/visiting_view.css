@@ -1,0 +1,141 @@
+.left1{
+	background-color:white;
+	width: 15%;
+	height: 1600px;
+	font-family: "微软雅黑";
+	font-size: 15px;
+	text-align: center;
+	margin-left: 10%;
+	margin-top: 25px;
+	float: left;
+	
+}
+.left1 a:hover{
+	color: #EEA236;
+	border-left:1px solid #5BC0DE;
+	
+}
+
+.left1 a:{
+	margin-top: 5px;
+	
+}
+.left11{
+	margin-top: 10px;
+	background-color: #EBEBEB ;
+	border-radius: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+} 
+.neirong{
+	background-color: #E5E5E5;
+	padding-top: 5px;
+	padding-bottom: 15px ;
+}
+.right1{
+	background-color: white;
+	width: 60%;
+	height: 1600px;
+	float: left;
+	font-family: "微软雅黑";
+	font-size: 15px;
+	color:white;
+	margin-left: 5%;
+	margin-top: 25px;
+	float: left;
+	font-weight: 700;
+}
+.touxiang{
+	height: 150px;
+}
+
+.img1 img{
+	height: 100px;
+	width: 100px;
+	
+
+	
+}
+.img1{
+	margin: 25px;
+	
+	float: left;
+	
+}
+.touxiangziliao{
+	width:40% ;
+	height: 100px;
+	float: left;
+	
+	margin-top: 25px;
+	padding: 10px;
+	
+}
+.ziliao{
+	
+	height: 100%;
+	height: 545px;
+	padding: 20px;
+}
+.ziliao1{
+	width: 100%;
+	height: 20%;
+
+	
+}
+.ziliao2{
+	width: 100%;
+	height: auto;
+
+  
+	
+}
+.ziliao3{
+	width: 100%;
+	height: auto;
+
+
+    
+    
+	
+}
+.text1{
+	color:black;
+	
+	height: auto;
+	width: auto;
+
+
+}
+.text1 textarea{
+	width: 100%;
+	height: 90px;
+	border-radius: 4px;
+	 /*background-color:transparent;*/  
+	 font-family: "微软雅黑";
+	 font-size: 15px;
+	 font-weight: 300;
+	 
+}
+.lanmu1{
+	margin-top: 10px;
+	background-color: white;
+	font-size: 20px;
+	font-family: "楷体";
+	font-weight: 700;
+	height: 40px;
+	border-radius: 3px;
+	margin-left: 3px;
+	margin-right: 3px;
+	padding-top: 5px;
+	color:  white;
+	
+	
+}
+
+}
+.abc {background:#fff !improtant;}
+
+.clear{
+	clear: left;
+}

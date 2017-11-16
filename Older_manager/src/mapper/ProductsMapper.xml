@@ -828,4 +828,33 @@
   	where p.brand_id=b.id and p.type_id=pt.id and p.id=pk.product_id  and p.id = #{id,jdbcType=INTEGER}
   </select>
   
+  <!-- ym -->
+  <select id="selectAllProductsByComplexSearch" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.Products">
+		select p.* from products p,brand b,productKeyword pk,productType pt
+		where p.type_id=pt.id and p.brand_id=b.id and p.id=pk.product_id
+		and
+		p.state=1
+		<if test="name!=null and name!=''">
+			and p.name like '%${name}%'
+		</if>
+		<if test="brand!=null">
+			<if test="brand.name!=null and brand.name!=''">
+				and b.name = #{brand.name}
+			</if>
+		</if>
+		<if test="productType!=null">
+			<if test="productType.name!=null and productType.name!=''">
+				and p.name= #{productType.name}
+			</if>
+		</if>
+		<if test="productKeyword!=null">
+			<if test="productKeyword.keyword!=null and productKeyword.keyword!=''">
+				and pk.keyword like '%${productKeyword.keyword}%'
+			</if>
+		</if>
+		<if test="sales!=null"> order by p.sales desc </if>
+		<if test="nowprice!=null">order by p.nowPrice asc</if>
+
+	</select>
 </mapper>

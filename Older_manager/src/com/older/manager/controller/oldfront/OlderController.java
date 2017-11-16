@@ -8,48 +8,52 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class OlderController {
 
 	@RequestMapping("/about")
-	public String about(){
+	public String about() {
 		return "oldfront/older/about";
 	}
-	
+
 	@RequestMapping("/activity")
-	public String activity(){
+	public String activity() {
 		return "oldfront/older/activity";
 	}
-	
+
 	@RequestMapping("/blank")
-	public String blank(){
+	public String blank() {
 		return "oldfront/older/blank";
 	}
-	
+
 	@RequestMapping("/contact")
-	public String contact(){
+	public String contact() {
 		return "oldfront/older/contact";
 	}
-	
+
 	@RequestMapping("/download")
-	public String download(){
+	public String download() {
 		return "oldfront/older/download";
 	}
-	
+
 	@RequestMapping("/features")
-	public String features(){
+	public String features() {
 		return "oldfront/older/features";
 	}
-	
+
 	@RequestMapping("/index")
-	public String index(){
+	public String index() {
 		return "oldfront/older/index";
 	}
-	
+
 	@RequestMapping("/video")
-	public String video(){
+	public String video() {
 		return "oldfront/older/video";
 	}
-	
-	
-	@RequestMapping("/oldabout")
-	public String shopping(){
-		return "oldfront/old/about";
+
+	@RequestMapping("/register")
+	public String register() {
+		return "oldfront/older/person/register";
+	}
+
+	@RequestMapping("/login")
+	public String login() {
+		return "oldfront/older/person/login";
 	}
 }

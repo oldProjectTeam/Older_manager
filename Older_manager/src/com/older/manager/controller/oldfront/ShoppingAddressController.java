@@ -116,4 +116,9 @@ public class ShoppingAddressController {
 		return "redirect:/address/selectallshoppingaddress/"+userid;
 	}
 	
+	@RequestMapping("/index")
+	public String index(){
+		return "oldfront/person/index";
+	}
+	
 }

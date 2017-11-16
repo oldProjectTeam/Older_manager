@@ -512,4 +512,127 @@
 		select count(*) from orders
 		where user_id = #{userId,jdbcType=INTEGER}
 	</select>
+	
+	<!--订单信息和收货信息结果集  -->
+	<resultMap id="orderAndAddressResultMap" type="com.older.manager.bean.Orders">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="transactionId" property="transactionid"
+			jdbcType="VARCHAR" />
+		<result column="subject" property="subject" jdbcType="VARCHAR" />
+		<result column="cost" property="cost" jdbcType="DOUBLE" />
+		<result column="num" property="num" jdbcType="INTEGER" />
+		<result column="body" property="body" jdbcType="VARCHAR" />
+		<result column="payType" property="paytype" jdbcType="VARCHAR" />
+		<result column="creatTime" property="creattime" jdbcType="DATE" />
+		<result column="shipper" property="shipper" jdbcType="VARCHAR" />
+		<result column="shipperPhone" property="shipperphone" jdbcType="VARCHAR" />
+		<result column="formulaWay" property="formulaway" jdbcType="VARCHAR" />
+		<result column="shippingAddress_id" property="shippingaddressId"
+			jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="freight" property="freight" jdbcType="DOUBLE" />
+		<result column="orders1" property="orders1" jdbcType="VARCHAR" />
+		<result column="orders2" property="orders2" jdbcType="VARCHAR" />
+		<result column="orders3" property="orders3" jdbcType="VARCHAR" />
+		<result column="orders4" property="orders4" jdbcType="VARCHAR" />
+		<result column="orders5" property="orders5" jdbcType="VARCHAR" />
+		<result column="orders6" property="orders6" jdbcType="VARCHAR" />
+		<result column="orders7" property="orders7" jdbcType="VARCHAR" />
+		<association property="shippingaddress" javaType="shippingaddress">
+			<id column="shippingAddress_id" property="id" jdbcType="INTEGER" />
+		    <result column="location" property="location" jdbcType="VARCHAR" />
+		    <result column="detailAddress" property="detailaddress" jdbcType="VARCHAR" />
+		    <result column="name" property="name" jdbcType="VARCHAR" />
+		    <result column="phone" property="phone" jdbcType="VARCHAR" />
+		    <result column="postcode" property="postcode" jdbcType="VARCHAR" />	    
+		    <result column="user_id" property="userId" jdbcType="INTEGER" />
+		</association>
+	</resultMap>
+	<!--订单信息和收货信息结果集  -->
+	<sql id="order_address_Column_List">
+		o.id, o.order_no, o.transactionId, o.subject, o.cost, o.num, o.body, o.payType,
+		o.creatTime, o.shipper,
+		o.shipperPhone, o.formulaWay, o.shippingAddress_id, o.user_id, o.state, o.freight, o.orders1,
+		o.orders2,
+		o.orders3, o.orders4, o.orders5, o.orders6, o.orders7,
+		s.location, s.detailAddress, s.name, s.phone, s.postcode
+	</sql>
+	<!--通过订单编号，查询订单信息和关联的收货信息  -->
+	<select id="selectWithAddressByOrderNo" resultMap="orderAndAddressResultMap"
+		parameterType="string">
+		select
+		<include refid="order_address_Column_List" />
+		from orders o,shippingaddress s
+		where o.shippingaddress_id=s.id and order_no=#{orderNo}
+	</select>
+	
+	
+	<!--订单信息和订单信息信息和产品信息结果集  -->
+	<resultMap id="orderWithDetailAndProductResultMap" type="com.older.manager.bean.Orders">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="transactionId" property="transactionid"
+			jdbcType="VARCHAR" />
+		<result column="subject" property="subject" jdbcType="VARCHAR" />
+		<result column="cost" property="cost" jdbcType="DOUBLE" />
+		<result column="num" property="num" jdbcType="INTEGER" />
+		<result column="body" property="body" jdbcType="VARCHAR" />
+		<result column="payType" property="paytype" jdbcType="VARCHAR" />
+		<result column="creatTime" property="creattime" jdbcType="DATE" />
+		<result column="shipper" property="shipper" jdbcType="VARCHAR" />
+		<result column="shipperPhone" property="shipperphone" jdbcType="VARCHAR" />
+		<result column="formulaWay" property="formulaway" jdbcType="VARCHAR" />
+		<result column="shippingAddress_id" property="shippingaddressId"
+			jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="freight" property="freight" jdbcType="DOUBLE" />
+		<result column="orders1" property="orders1" jdbcType="VARCHAR" />
+		<result column="orders2" property="orders2" jdbcType="VARCHAR" />
+		<result column="orders3" property="orders3" jdbcType="VARCHAR" />
+		<result column="orders4" property="orders4" jdbcType="VARCHAR" />
+		<result column="orders5" property="orders5" jdbcType="VARCHAR" />
+		<result column="orders6" property="orders6" jdbcType="VARCHAR" />
+		<result column="orders7" property="orders7" jdbcType="VARCHAR" />
+		<collection property="orderdetails" ofType="Orderdetail">
+			<id column="orId" property="id" jdbcType="INTEGER" />
+			<result column="detial_number" property="detialNumber"
+				jdbcType="VARCHAR" />
+			<result column="orderId" property="orderId" jdbcType="INTEGER" />
+			<result column="produccts_id" property="producctsId" jdbcType="INTEGER" />
+			<result column="producctName" property="producctname" jdbcType="VARCHAR" />
+			<result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
+			<result column="number" property="number" jdbcType="INTEGER" />
+			<association property="product" javaType="products">
+				<id column="pId" property="id" jdbcType="INTEGER" />
+				<result column="name" property="name" jdbcType="VARCHAR" />
+				<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+				<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+				<result column="images" property="images" jdbcType="LONGVARCHAR" />
+				<result column="inventory" property="inventory" jdbcType="INTEGER" />
+				<result column="paral11" property="paral11" jdbcType="DOUBLE" />
+			</association>
+		</collection>
+	</resultMap>
+	<!--订单信息和订单详细字段  -->
+	<sql id="order_detail_product_Column_List">
+		o.id, o.order_no, o.transactionId, o.subject, o.cost, o.num, o.body, o.payType,
+		o.creatTime, o.shipper,
+		o.shipperPhone, o.formulaWay, o.shippingAddress_id, o.user_id, o.state, o.freight, o.orders1,
+		o.orders2,
+		o.orders3, o.orders4, o.orders5, o.orders6, o.orders7,
+		ord.id orId, ord.detial_number, ord.order_id orderId, ord.produccts_id, ord.producctName,
+		ord.basePrice,ord.number,
+		p.id pId, p.name, p.nowPrice,p.images,p.imageTitle,p.inventory,p.paral11
+	</sql>
+	<!--通过订单id查询订单信息和关联的订单详细信息和产品信息  -->
+	<select id="selectOrderWithDetailById" resultMap="orderWithDetailAndProductResultMap"
+		parameterType="Integer">
+		select
+		<include refid="order_detail_product_Column_List" />
+		from orders o,orderdetail ord,products p
+		where o.id=ord.order_id and p.id=ord.produccts_id and o.id=#{id}
+	</select>
 </mapper>

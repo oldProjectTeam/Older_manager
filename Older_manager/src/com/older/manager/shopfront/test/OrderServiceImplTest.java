@@ -21,8 +21,8 @@ public class OrderServiceImplTest {
 	@Autowired
 	 IOrderService orderService;
 	@Test
-	public void testFindOrders() {
-		fail("Not yet implemented");
+	public void testFindOrders() throws Exception {
+		 System.out.println(orderService.findOrderByNo("2017111604744"));
 	}
 
 	@Test
@@ -47,6 +47,11 @@ public class OrderServiceImplTest {
 		  orderService.insertOrder(orders);
 		 
 		  System.out.println("------------------->"+orders.getId());
+	}
+	
+	@Test
+	public void testFindOrderWithDetailById(){
+		System.out.println(orderService.findOrderWithDetailById(52));
 	}
 
 }

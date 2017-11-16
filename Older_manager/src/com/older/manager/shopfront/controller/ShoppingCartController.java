@@ -3,6 +3,7 @@ package com.older.manager.shopfront.controller;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,6 +19,7 @@ import com.older.manager.bean.Courseenrol;
 import com.older.manager.bean.Products;
 import com.older.manager.bean.Shippingaddress;
 import com.older.manager.bean.ShoppingCart;
+import com.older.manager.service.oldback.shop.IProductService;
 import com.older.manager.service.shopfront.IShippingaddressService;
 import com.older.manager.service.shopfront.IShoppingCartService;
 import com.older.manager.utils.FileUtil;
@@ -37,6 +39,8 @@ public class ShoppingCartController {
 	
 	@Autowired
 	IShippingaddressService shippingaddressService;
+	@Autowired
+	IProductService productService;
 	/**
 	 * 添加或修改购物车
 	 * @param cart:必须参数：userId、produtsId、number
@@ -167,62 +171,5 @@ public class ShoppingCartController {
 		}
 	}
 
-	/**
-	 * 准备确认订单数据
-	 * @param ids
-	 * @param modal
-	 * @return
-	 * @throws Exception 
-	 * @throws NumberFormatException 
-	 */
-	@RequestMapping(value="/confirmOrder")
-	public ModelAndView confirmOrder(String ids,Integer userId,ModelAndView modal) throws NumberFormatException, Exception{
-		//待确认订单信息集合
-		List<ShoppingCart>carts=new ArrayList<ShoppingCart>();
-		//地址列表
-		List<Shippingaddress>addressList=null;
-		Double cost=new Double(0);
-		ShoppingCart cart=null;
-		Products product=null;
-		if(ids.contains("-")){
-			String str[] = ids.split("-");
-			for (String id: str) {
-				 cart=shoppingCartService.selectWithProductById(Integer.parseInt(id));
-				 cost+=cart.getBaseprice();
-				 product=cart.getProduct();
-				 
-				 //判断是否有运费
-				 if(product.getParal11()!=null){
-					 cost+=product.getParal11();
-				 }
-				 //默认显示第一张图片
-				if(product.getImages().contains(",")){
-					String img[]=product.getImages().split(",");
-					product.setImages(img[0]);
-				}
-				carts.add(cart);
-			}		
-		}else{
-			cart=shoppingCartService.selectWithProductById(Integer.parseInt(ids));
-			cost+=cart.getBaseprice();
-			 product=cart.getProduct();
-			 //判断是否有运费
-			 if(product.getParal11()!=null){
-				 cost+=product.getParal11();
-			 }
-			 //默认显示第一张图片
-			if(product.getImages().contains(",")){
-				String img[]=product.getImages().split(",");
-				product.setImages(img[0]);
-			}
-			carts.add(cart);
-		}
-		
-		addressList=shippingaddressService.findAllAddress(userId);
-		modal.addObject("carts",carts);
-		modal.addObject("cost",cost);
-		modal.addObject("addressList",addressList);
-		modal.setViewName("/oldfront/home/pay");
-		return modal;
-	}
+	
 }

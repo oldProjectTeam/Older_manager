@@ -1,0 +1,41 @@
+.biaoti {
+	text-align: center;
+}
+.bt1{
+	font-size: 15px;
+	
+}
+.bt1 span{
+	margin-left: 10px;
+}
+.head{
+	margin-left: 6%;
+}
+
+.neirong{
+	width: 60%;
+	border: 1px solid #ADADAD;
+	margin-left: 6%;
+	float: left;
+}
+.news1 p{
+	margin-left: 20px;
+	margin-right: 20px;
+	font-family: "微软雅黑";
+	font-size: 17px;
+}
+.right1{
+
+	width: 25%;
+	float: left;
+	margin-left: 2%;
+font-family: "微软雅黑";
+	font-size: 17px;
+}
+
+.right1 a:hover{
+	color: #D58512;
+}
+.clear{
+	clear: left;
+}

@@ -3,7 +3,10 @@ package com.older.manager.mapper;
 import com.older.manager.bean.Brand;
 import com.older.manager.bean.BrandExample;
 import com.older.manager.bean.BrandWithBLOBs;
+import com.older.manager.bean.Products;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface BrandMapper {
@@ -34,4 +37,16 @@ public interface BrandMapper {
     int updateByPrimaryKeyWithBLOBs(BrandWithBLOBs record);
 
     int updateByPrimaryKey(Brand record);
+    
+    /**
+     * @Title:   findAllBrandsByProduct
+     * @Description:  通过产品搜索产品品牌
+     * @param:    @param products
+     * @param:    @return   
+     * @return:   List<Brand>   
+     * @throws
+     * @author:   ym
+     * @date:     2017年11月16日 下午8:27:23
+     */
+    List<Brand> selectAllProductsBrandByComplexSearch(Products products);
 }

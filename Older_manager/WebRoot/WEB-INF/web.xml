@@ -75,4 +75,7 @@
 	<session-config>
 		<session-timeout>0</session-timeout>
 	</session-config>
+	<welcome-file-list>
+		<welcome-file>welcome.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

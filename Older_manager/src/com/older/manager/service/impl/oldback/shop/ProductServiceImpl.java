@@ -142,8 +142,10 @@ public class ProductServiceImpl implements IProductService {
 			Products product = productsMapper.selectByPrimaryKey(products
 					.getId());
 			if (product.getImages() != null && !"".equals(product.getImages())) {
-				products.setImages(product.getImages() + ","
+				products.setImages(product.getImages()
 						+ products.getImages());
+			}else{
+				products.setImages(products.getImages().substring(1,products.getImages().length()));
 			}
 		}
 		 
@@ -182,5 +184,12 @@ public class ProductServiceImpl implements IProductService {
 	@Override
 	public void updateStateAndAuditstatus(Products product) {
 		 productsMapper.updateByPrimaryKeySelective(product);
+	}
+
+
+	@Override
+	public Products findProductById(Integer id) throws Exception {
+		// TODO Auto-generated method stub
+		return productsMapper.selectByPrimaryKey(id);
 	}
 }

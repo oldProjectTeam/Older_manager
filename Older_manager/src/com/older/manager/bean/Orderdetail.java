@@ -9,6 +9,9 @@ public class Orderdetail {
 
     private Integer producctsId;
 
+    //关联产品信息
+    private Products product;
+    
     private String producctname;
 
     private Double baseprice;
@@ -29,44 +32,7 @@ public class Orderdetail {
 
     private String orderdetail7;
 
-    
-    private Orders orders;
-    
-    private Products products;
-    
-    
-    
-    
-    @Override
-	public String toString() {
-		return "Orderdetail [id=" + id + ", detialNumber=" + detialNumber
-				+ ", orderId=" + orderId + ", producctsId=" + producctsId
-				+ ", producctname=" + producctname + ", baseprice=" + baseprice
-				+ ", number=" + number + ", orderdetail1=" + orderdetail1
-				+ ", orderdetail2=" + orderdetail2 + ", orderdetail3="
-				+ orderdetail3 + ", orderdetail4=" + orderdetail4
-				+ ", orderdetail5=" + orderdetail5 + ", orderdetail6="
-				+ orderdetail6 + ", orderdetail7=" + orderdetail7 + ", orders="
-				+ orders + ", products=" + products + "]";
-	}
-
-	public Orders getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Orders orders) {
-		this.orders = orders;
-	}
-
-	public Products getProducts() {
-		return products;
-	}
-
-	public void setProducts(Products products) {
-		this.products = products;
-	}
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -177,4 +143,25 @@ public class Orderdetail {
     public void setOrderdetail7(String orderdetail7) {
         this.orderdetail7 = orderdetail7 == null ? null : orderdetail7.trim();
     }
+
+	public Products getProduct() {
+		return product;
+	}
+
+	public void setProduct(Products product) {
+		this.product = product;
+	}
+
+	@Override
+	public String toString() {
+		return "Orderdetail [id=" + id + ", detialNumber=" + detialNumber
+				+ ", orderId=" + orderId + ", producctsId=" + producctsId
+				+ ", product=" + product + ", producctname=" + producctname
+				+ ", baseprice=" + baseprice + ", number=" + number
+				+ ", orderdetail1=" + orderdetail1 + ", orderdetail2="
+				+ orderdetail2 + ", orderdetail3=" + orderdetail3
+				+ ", orderdetail4=" + orderdetail4 + ", orderdetail5="
+				+ orderdetail5 + ", orderdetail6=" + orderdetail6
+				+ ", orderdetail7=" + orderdetail7 + "]";
+	}
 }
