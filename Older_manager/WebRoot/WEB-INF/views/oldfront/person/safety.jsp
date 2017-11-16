@@ -22,6 +22,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<link href="${APP_PATH}/static/css/personal.css" rel="stylesheet" type="text/css">
 		<link href="${APP_PATH}/static/css/infstyle.css" rel="stylesheet" type="text/css">
+		<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	   type="text/javascript"></script>
+	   <script src="${APP_PATH}/static/js/jquery.min.js" type="text/javascript"></script>
+	   
+	      <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+       <script src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>
@@ -107,22 +113,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="user-infoPic">
 
 							<div class="filePic">
+								<input type="file" class="inputPic" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
 								<img class="am-circle am-img-thumbnail" src="${APP_PATH}/static/images/getAvatar.do.jpg" alt="" />
 							</div>
 
 							<p class="am-form-help">头像</p>
 
 							<div class="info-m">
-								<div><b>用户名：<i>小叮当</i></b></div>
+								<div><b>用户名：<i id="usernameid" class="form-control-static"></i></b></div>
 								<div class="u-level">
 									<span class="rank r2">
-							             <s class="vip1"></s><a class="classes" href="#">铜牌会员</a>
+							             <s class="vip1"></s><a class="classes" href="#" id="mvpid"></a>
 						            </span>
 								</div>
 								<div class="u-safety">
 									<a href="safety.html">
 									 账户安全
-									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0">60分</i></span>
+									<span class="u-profile"><i class="bc_ee0000" style="width: 60px;" width="0" id="numid">60分</i></span>
 									</a>
 								</div>
 							</div>
@@ -276,6 +283,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			</aside>
 		</div>
 
-	</body>
+<script type="text/javascript">
+$(function(){
+       //发送请求获取
+	  $.ajax({
+			url:"${APP_PATH}/info/selectinformation/"+6,
+			type:"GET",
+			
+			success:function(result){
+				
+					var rel=result.extend.shop;
+					$("#usernameid").text(rel.users.nickname);
+					$("#mvpid").text(rel.level);
+	 			/* 	$("#ncikid").val(rel.users.nickname);
+					$("#truenameid").val(rel.users.realname);
+					$("#user-phone").val(rel.users.phone);
+					$("#user-email").val(rel.users.email);
+					$("#idcarid").val(rel.users.idcard);
+				    $("#formid input[name=sex]").val([rel.users.sex]);
+				    var a=rel.shippingaddress.location+" "+rel.shippingaddress.detailaddress;
+				    //alert(a);
+				    $("#addressid").text(a); */
+			   }
+			});
+  
+  });
+
+
+</script>
+</body>
 
 </html>

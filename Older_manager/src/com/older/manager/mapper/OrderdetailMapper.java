@@ -20,6 +20,14 @@ public interface OrderdetailMapper {
 
     Orderdetail selectByPrimaryKey(Integer id);
 
+    
+    //带订单与商品
+    List<Orderdetail> selectByExampleWithOthre(Orderdetail orderdetail);
+
+    Orderdetail selectByPrimaryKeyWithOther(Integer id);
+    
+    
+    
     int updateByExampleSelective(@Param("record") Orderdetail record, @Param("example") OrderdetailExample example);
 
     int updateByExample(@Param("record") Orderdetail record, @Param("example") OrderdetailExample example);

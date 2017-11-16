@@ -1,5 +1,7 @@
 package com.older.manager.service.shopfront;
 
+import java.util.List;
+
 import com.older.manager.bean.Orderdetail;
 
 public interface IOrderdetailService {
@@ -10,4 +12,17 @@ public interface IOrderdetailService {
 	 * @throws Exception
 	 */
 	public void insertOrderDetail(Orderdetail orderdetail)throws Exception;
+	
+	/**
+	 * 根据用户查一条数据
+	 * @param id
+	 * @return
+	 */
+	public Orderdetail selectOrderDetailByUserid(Integer userid);
+	/**
+	 * 
+	 * @param orderdetail
+	 * @return
+	 */
+	public List<Orderdetail> selectAllOrderDetail(Orderdetail orderdetail);
 }

@@ -1,5 +1,7 @@
 package com.older.manager.service.shopfront.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +13,21 @@ import com.older.manager.service.shopfront.IOrderdetailService;
 public class OrderdetailServiceImpl implements IOrderdetailService {
 
 	@Autowired
-	OrderdetailMapper orderdetailMapper;
+	 private OrderdetailMapper orderdetailMapper;
 	@Override
 	public void insertOrderDetail(Orderdetail orderdetail) throws Exception {
 		// TODO Auto-generated method stub
 		orderdetailMapper.insertSelective(orderdetail);
+	}
+	@Override
+	public Orderdetail selectOrderDetailByUserid(Integer userid) {
+		// TODO 自动生成的方法存根
+		return orderdetailMapper.selectByPrimaryKeyWithOther(userid);
+	}
+	@Override
+	public List<Orderdetail> selectAllOrderDetail(Orderdetail orderdetail) {
+		// TODO 自动生成的方法存根
+		return orderdetailMapper.selectByExampleWithOthre(orderdetail);
 	}
 
 }

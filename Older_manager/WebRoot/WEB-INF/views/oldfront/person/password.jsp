@@ -25,7 +25,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 		<script type="text/javascript" src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
 		<script src="${APP_PATH}/static/js/amazeui.js"></script>
-
+         	<script src="${APP_PATH}/static/shop/assets/layer/layer.js" type="text/javascript"></script>
+	   <script src="${APP_PATH}/static/js/jquery.min.js" type="text/javascript"></script>
+	   
+	       <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+       <script src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 	</head>
 
 	<body>
@@ -104,46 +108,42 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">修改密码</strong> / <small>Password</small></div>
 					</div>
 					<hr/>
-					<!--进度条-->
-					<div class="m-progress">
-						<div class="m-progress-list">
-							<span class="step-1 step">
-                                <em class="u-progress-stage-bg"></em>
-                                <i class="u-stage-icon-inner">1<em class="bg"></em></i>
-                                <p class="stage-name">重置密码</p>
-                            </span>
-							<span class="step-2 step">
-                                <em class="u-progress-stage-bg"></em>
-                                <i class="u-stage-icon-inner">2<em class="bg"></em></i>
-                                <p class="stage-name">完成</p>
-                            </span>
-							<span class="u-progress-placeholder"></span>
-						</div>
-						<div class="u-progress-bar total-steps-2">
-							<div class="u-progress-bar-inner"></div>
-						</div>
+					
+					
+				
+					  	<div align="center">
+					  <div class="progress" style="width:100%;height:2px;">
+							<div class="progress-bar" id="prog" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+								<span class="sr-only" id="proglabel">40% 完成</span>
+							</div>
+					 </div>
 					</div>
-					<form class="am-form am-form-horizontal">
+						<div class="m-progress">	
+					   </div>
+				
+					
+					<form class="am-form am-form-horizontal" id="formid">
 						<div class="am-form-group">
 							<label for="user-old-password" class="am-form-label">原密码</label>
 							<div class="am-form-content">
-								<input type="password" id="user-old-password" placeholder="请输入原登录密码">
+								<input type="password" id="pass1"  placeholder="请输入原登录密码">
 							</div>
 						</div>
 						<div class="am-form-group">
 							<label for="user-new-password" class="am-form-label">新密码</label>
 							<div class="am-form-content">
-								<input type="password" id="user-new-password" placeholder="由数字、字母组合">
+								<input type="password" id="pass2" placeholder="由数字、字母组合">
 							</div>
 						</div>
 						<div class="am-form-group">
-							<label for="user-confirm-password" class="am-form-label">确认密码</label>
+							<label for="user-confirm-password" name="password" class="am-form-label">确认密码</label>
 							<div class="am-form-content">
-								<input type="password" id="user-confirm-password" placeholder="请再次输入上面的密码">
+								<input type="password" id="pass3" placeholder="请再次输入上面的密码">
 							</div>
 						</div>
-						<div class="info-btn">
-							<div class="am-btn am-btn-danger">保存修改</div>
+						<div class="" align="center">
+							<!-- <div class="am-btn am-btn-danger">保存修改</div> -->
+							<button type="button" class="btn btn-danger" id="saveid">保存修改</button>
 						</div>
 
 					</form>
@@ -217,6 +217,111 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			</aside>
 		</div>
+		
+		
+<script type="text/javascript">
+var password;
+$(function(){
+       $("#saveid").attr("disabled",true);
+       //发送请求获取
+	  $.ajax({
+			url:"${APP_PATH}/safety/selectuserbyid/"+6,
+			type:"GET",
+			
+			success:function(result){
+				
+					var rel=result.extend.users;
+					/* $("#usernameid").text(rel.users.nickname);
+					$("#mvpid").text(rel.level); */
+					 password=rel.password;
+	 			/* 	$("#ncikid").val(rel.users.nickname);
+					$("#truenameid").val(rel.users.realname);
+					$("#user-phone").val(rel.users.phone);
+					$("#user-email").val(rel.users.email);
+					$("#idcarid").val(rel.users.idcard);
+				    $("#formid input[name=sex]").val([rel.users.sex]);
+				    var a=rel.shippingaddress.location+" "+rel.shippingaddress.detailaddress;
+				    //alert(a);
+				    $("#addressid").text(a); */
+			   }
+			});
+  
+  });
+  
+  $("#pass1").change(function(){
+    if($("#pass1").val()==password){
+         $("#saveid").attr("disabled",false);
+        
+        
+    }else{
+         layer.msg("原密码不对");
+        $("#saveid").attr("disabled",true);
+    }
+  });
+  //点击保存
+  $("#saveid").click(
+       function(){
+              var value = 0;
+              var time = 10;
+              //进度条复位函数
+              
+             
+         
+   if($("#pass2").val()!=$("#pass3").val()){
+     layer.msg("新密码不一致");
+   }else{
+           function reset( ) {
+                value = 0;
+                  $("#prog").removeClass("progress-bar-success").css("width","0%").text("等待启动");
+                  //setTimeout(increment,5000);
+              }
+              //百分数增加，0-30时为红色，30-60为黄色，60-90为蓝色，>90为绿色
+              function increment( ) {
+                  value += 1;
+                  $("#prog").css("width",value + "%").text(value + "%");
+                  if (value>=0 && value<=30) {
+                      $("#prog").addClass("progress-bar-danger");
+                  }
+                  else if (value>=30 && value <=60) {
+                      $("#prog").removeClass("progress-bar-danger");
+                      $("#prog").addClass("progress-bar-warning");
+                  }
+                  else if (value>=60 && value <=90) {
+                      $("#prog").removeClass("progress-bar-warning");
+                      $("#prog").addClass("progress-bar-info");
+                  }
+                  else if(value >= 90 && value<100) {
+                      $("#prog").removeClass("progress-bar-info");
+                      $("#prog").addClass("progress-bar-success");    
+                  }
+                  else{
+                      setTimeout(reset,1000);
+                      return;
+
+                  }
+
+                  st = setTimeout(increment,time);
+              }
+
+              increment();
+   
+      $.ajax({
+			url:"${APP_PATH}/safety/upateusers/"+6+"&"+$("#pass3").val(),
+			type:"POST",
+			success:function(result){
+			   if(result.code==100){
+			      value =100;
+			     layer.msg("保存成功！");
+			     $("#formid")[0].reset();
+			   }
+			
+			}});
+   }
+  });
+  
+
+</script>
+
 
 	</body>
 

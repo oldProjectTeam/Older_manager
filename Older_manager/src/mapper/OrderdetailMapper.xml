@@ -18,6 +18,90 @@
 		<result column="orderDetail6" property="orderdetail6" jdbcType="VARCHAR" />
 		<result column="orderDetail7" property="orderdetail7" jdbcType="VARCHAR" />
 	</resultMap>
+	
+	
+	
+	<resultMap id="BaseResultMapWithOther" type="com.older.manager.bean.Orderdetail">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="detial_number" property="detialNumber"
+			jdbcType="VARCHAR" />
+		<result column="order_id" property="orderId" jdbcType="INTEGER" />
+		<result column="produccts_id" property="producctsId" jdbcType="INTEGER" />
+		<result column="producctName" property="producctname" jdbcType="VARCHAR" />
+		<result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="orderDetail1" property="orderdetail1" jdbcType="VARCHAR" />
+		<result column="orderDetail2" property="orderdetail2" jdbcType="VARCHAR" />
+		<result column="orderDetail3" property="orderdetail3" jdbcType="VARCHAR" />
+		<result column="orderDetail4" property="orderdetail4" jdbcType="VARCHAR" />
+		<result column="orderDetail5" property="orderdetail5" jdbcType="VARCHAR" />
+		<result column="orderDetail6" property="orderdetail6" jdbcType="VARCHAR" />
+		<result column="orderDetail7" property="orderdetail7" jdbcType="VARCHAR" />
+		
+		<!-- 订单的 -->
+		<association property="orders" javaType="com.older.manager.bean.Orders">
+	     <id column="order_id" property="id"/>
+	    <result column="name" property="name"/>
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="transactionId" property="transactionid"
+			jdbcType="VARCHAR" />
+		<result column="subject" property="subject" jdbcType="VARCHAR" />
+		<result column="cost" property="cost" jdbcType="DOUBLE" />
+		<result column="num" property="num" jdbcType="INTEGER" />
+		<result column="body" property="body" jdbcType="VARCHAR" />
+		<result column="payType" property="paytype" jdbcType="VARCHAR" />
+		<result column="creatTime" property="creattime" jdbcType="DATE" />
+		<result column="shipper" property="shipper" jdbcType="VARCHAR" />
+		<result column="shipperPhone" property="shipperphone" jdbcType="VARCHAR" />
+		<result column="formulaWay" property="formulaway" jdbcType="VARCHAR" />
+		<result column="shippingAddress_id" property="shippingaddressId"
+			jdbcType="INTEGER" />
+		<result column="user_id" property="userId" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="freight" property="freight" jdbcType="DOUBLE" />
+	    </association>
+	        
+	     <!-- 产品的 --> 
+	   <association property="products"  javaType="com.older.manager.bean.Products">
+	    <id column="produccts_id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="orPrice" property="orprice" jdbcType="DOUBLE" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
+		<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+		<result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
+		<result column="auditStatus" property="auditstatus" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+		<result column="placeOrigin" property="placeorigin" jdbcType="VARCHAR" />
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="texture" property="texture" jdbcType="VARCHAR" />
+		<result column="weight" property="weight" jdbcType="DOUBLE" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="synopsis" property="synopsis" jdbcType="VARCHAR" />
+		<result column="images" property="images" jdbcType="LONGVARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="inventory" property="inventory" jdbcType="INTEGER" />
+		<result column="sales" property="sales" jdbcType="INTEGER" />
+	   
+	   </association>   
+	        
+	        
+		
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
@@ -112,6 +196,38 @@
 		from orderdetail
 		where id = #{id,jdbcType=INTEGER}
 	</select>
+	
+	
+	<!-- 带产品与订单的 -->
+	<select id="selectByExampleWithOther" resultMap="BaseResultMapWithOther" parameterType="com.older.manager.bean.Orderdetail">
+		select d.*,o.*,p.* from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
+		
+		<if test="orders.state!=null || order.state!=''">
+		  and  o.state=orders.state;
+		</if>
+		
+	
+	</select>
+	
+	<select id="selectByPrimaryKeyWithOther" resultMap="BaseResultMapWithOther" parameterType="java.lang.Integer">
+		select d.*,o.*,p.* from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
+		and d.order_id=#{id,jdbcType=INTEGER}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		orderdetail
