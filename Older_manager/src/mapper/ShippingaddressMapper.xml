@@ -234,7 +234,10 @@
   </select>
   
   
-  
+    <select id="selectByPrimaryKeyWithState" resultMap="BaseResultMapWithUsers" parameterType="java.lang.Integer" >
+   select  s.*,u.id,u.realname,u.phone from shippingaddress s,users u where s.user_id=u.id  and s.state=1
+     and s.user_id = #{value,jdbcType=INTEGER}
+  </select>
   
   
   

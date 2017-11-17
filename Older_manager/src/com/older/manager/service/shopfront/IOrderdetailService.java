@@ -18,11 +18,12 @@ public interface IOrderdetailService {
 	 * @param id
 	 * @return
 	 */
-	public Orderdetail selectOrderDetailByUserid(Integer userid);
+	public Orderdetail selectOrderDetailByid(Integer id);
 	/**
 	 * 
 	 * @param orderdetail
 	 * @return
 	 */
 	public List<Orderdetail> selectAllOrderDetail(Orderdetail orderdetail);
+
 }

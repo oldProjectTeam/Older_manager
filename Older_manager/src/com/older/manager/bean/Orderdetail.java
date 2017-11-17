@@ -31,8 +31,31 @@ public class Orderdetail {
     private String orderdetail6;
 
     private String orderdetail7;
+    
+    private Orders orders;
+    private Products products;
+    
+    
+    
+    
 
-    public Integer getId() {
+    public Orders getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+
+	public Products getProducts() {
+		return products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -162,6 +185,7 @@ public class Orderdetail {
 				+ orderdetail2 + ", orderdetail3=" + orderdetail3
 				+ ", orderdetail4=" + orderdetail4 + ", orderdetail5="
 				+ orderdetail5 + ", orderdetail6=" + orderdetail6
-				+ ", orderdetail7=" + orderdetail7 + "]";
+				+ ", orderdetail7=" + orderdetail7 + ", orders=" + orders
+				+ ", products=" + products + "]";
 	}
 }

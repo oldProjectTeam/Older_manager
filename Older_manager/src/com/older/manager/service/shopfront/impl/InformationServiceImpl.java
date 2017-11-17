@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.older.manager.bean.Shippingaddress;
 import com.older.manager.bean.ShopMember;
 import com.older.manager.bean.ShopMemberExample;
 import com.older.manager.bean.ShopMemberExample.Criteria;
 import com.older.manager.bean.Users;
+import com.older.manager.mapper.ShippingaddressMapper;
 import com.older.manager.mapper.ShopMemberMapper;
 import com.older.manager.mapper.UsersMapper;
 import com.older.manager.service.shopfront.InformationService;
@@ -24,6 +26,8 @@ public class InformationServiceImpl implements InformationService {
 	private ShopMemberMapper shopMemberMapper;
 	@Autowired
 	private UsersMapper usersMapper;
+	@Autowired
+	private ShippingaddressMapper shippingaddressMapper;
 	
 
 	@Override
@@ -38,6 +42,17 @@ public class InformationServiceImpl implements InformationService {
 		usersMapper.updateByPrimaryKeySelective(users);
 		
 	}
+
+
+
+	@Override
+	public Shippingaddress selectAddressByUseridWithState(Integer userid) {
+		
+		
+		return shippingaddressMapper.selectByPrimaryKeyWithState(userid);
+		
+	}
+
 
 
 

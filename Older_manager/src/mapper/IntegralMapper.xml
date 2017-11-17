@@ -196,6 +196,10 @@
 				#{operationdetail,jdbcType=VARCHAR},
 			</if>
 		</trim>
+		   <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+	</selectKey>
 	</insert>
 	<select id="countByExample" parameterType="com.older.manager.bean.IntegralExample"
 		resultType="java.lang.Integer">

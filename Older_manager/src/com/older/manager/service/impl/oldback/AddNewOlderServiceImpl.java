@@ -227,7 +227,15 @@ public class AddNewOlderServiceImpl implements AddNewOlderService {
 	public int findOldManIdByCardId(String carid) {
 		OldmanExample example=new OldmanExample();
 		example.createCriteria().andIdcarLike(carid);
-		return oldmanMapper.selectByExample(example).get(0).getId();
+		List<Oldman> id=oldmanMapper.selectByExample(example);
+		
+		if (id.size()>0) {
+			return oldmanMapper.selectByExample(example).get(0).getId();
+		}else{
+			return 0;
+		}
+		
 	}
+
 
 }

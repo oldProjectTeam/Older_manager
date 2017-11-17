@@ -43,4 +43,6 @@ public interface ShippingaddressMapper {
     //自己修改的
     List<Shippingaddress> selectByExampleWithUsers(Shippingaddress shippingaddress);
     Shippingaddress selectByPrimaryKeyWithUsers(Integer id);
+  
+    Shippingaddress selectByPrimaryKeyWithState(Integer id);
 }

@@ -226,6 +226,11 @@
         #{column7,jdbcType=VARCHAR},
       </if>
     </trim>
+    <selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID() AS id
+	</selectKey>
+    
   </insert>
   <select id="countByExample" parameterType="com.older.manager.bean.UsersExample" resultType="java.lang.Integer" >
     select count(*) from users

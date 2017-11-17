@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'information.jsp' starting page</title>
+    <title>个人信息</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -125,7 +125,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="am-form-group">
 									<label for="user-birth" class="am-form-label">身份证</label>
 									<div class="am-form-content birth">
-										<input type="text" id="idcarid" required="true" name="idcar" placeholder="身份证">
+										<input type="text" id="idcarid" required="true" name="idcard" placeholder="身份证">
 									</div>
 							
 								</div>
@@ -147,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="am-form-group">
 									<label for="user-email" class="am-form-label">收货地址</label>
 									<div class="am-form-content">
-										<a  class="am-form-label" id="addressid">
+										<a href="${APP_PATH}/address/selectallshoppingaddress/${users.id}" class="am-form-label" id="addressid">
 										
 										</a>
 									</div>
@@ -156,7 +156,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<div class="am-form-group ">
 									<label for="user-safety" class="am-form-label">账号安全</label>
 									<div class="am-form-content safety">
-										<a class="am-form-label">
+										<a href="${APP_PATH}/safety/skipsafety" class="am-form-label">
 										  >
 										</a>
 
@@ -204,13 +204,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   $(function(){
        //发送请求获取
 	  $.ajax({
-			url:"${APP_PATH}/info/selectinformation/"+'${users.id}',
+			url:"${APP_PATH}/info/selectinformation/"+${users.id},
 			type:"GET",
 			
 			success:function(result){
 				
 					var rel=result.extend.shop;
-					$("#usernameid").text(rel.users.nickname);
+					$("#usernameid").text(rel.users.account);
 					$("#mvpid").text(rel.level);
 	 				$("#ncikid").val(rel.users.nickname);
 					$("#truenameid").val(rel.users.realname);
@@ -220,7 +220,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				    $("#formid input[name=sex]").val([rel.users.sex]);
 				    var a=rel.shippingaddress.location+" "+rel.shippingaddress.detailaddress;
 				    //alert(a);
-				    $("#addressid").text(a);
+				    if(a==null||a==''||a.length<4){
+				      $("#addressid").text("去设置默认地址");
+				    }else{
+				     $("#addressid").text(a);
+				    }
+				    
 			   }
 			});
   
@@ -231,9 +236,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      if(!idcar.test( $("#idcarid").val())){
      layer.msg("身份证不符合！");
      }else{
-     
+                                                          //${users.id}
              $.ajax({
-			url:"${APP_PATH}/info/updateinformation/"+6,
+			url:"${APP_PATH}/info/updateinformation/"+${users.id},
 			type:"POST",
 			data:$("#formid").serialize(),
 			success:function(result){

@@ -20,14 +20,15 @@ public class OrderdetailServiceImpl implements IOrderdetailService {
 		orderdetailMapper.insertSelective(orderdetail);
 	}
 	@Override
-	public Orderdetail selectOrderDetailByUserid(Integer userid) {
+	public Orderdetail selectOrderDetailByid(Integer id) {
 		// TODO 自动生成的方法存根
-		return orderdetailMapper.selectByPrimaryKeyWithOther(userid);
+		return orderdetailMapper.selectByPrimaryKeyWithOther(id);
 	}
 	@Override
 	public List<Orderdetail> selectAllOrderDetail(Orderdetail orderdetail) {
 		// TODO 自动生成的方法存根
 		return orderdetailMapper.selectByExampleWithOthre(orderdetail);
 	}
+
 
 }

@@ -1,4 +1,4 @@
-package com.older.manager.controller.oldfront;
+package com.older.manager.shopfront.controller;
 
 import java.util.List;
 

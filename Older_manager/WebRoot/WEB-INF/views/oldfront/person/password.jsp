@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'password.jsp' starting page</title>
+    <title>修改密码</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -30,10 +30,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	   
 	       <link href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
        <script src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+       
+       
+       <script src="${APP_PATH}/static/jQuery-MD5-master/jquery.md5.js"
+	type="text/javascript"></script>
 	</head>
 
 	<body>
-		<jsp:include page="../home/shopheader.jsp"></jsp:include>
+		<jsp:include page="../home/shopheader1.jsp"></jsp:include>
             <div class="nav-table">
 					   <div class="long-title"><span class="all-goods">全部分类</span></div>
 					   <div class="nav-cont">
@@ -58,9 +62,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="am-cf am-padding">
 						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">修改密码</strong> / <small>Password</small></div>
 					</div>
-					<hr/>
-					
-					
 				
 					  	<div align="center">
 					  <div class="progress" style="width:100%;height:2px;">
@@ -130,43 +131,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		
 <script type="text/javascript">
-var password;
 $(function(){
        $("#saveid").attr("disabled",true);
-       //发送请求获取
-	  $.ajax({
+  });
+  
+  $("#pass1").change(function(){
+       // alert($.md5($("#pass1").val()));
+       
+       
+           		//再次去查密码
+		   $.ajax({
 			url:"${APP_PATH}/safety/selectuserbyid/"+'${users.id}',
 			type:"GET",
 			
 			success:function(result){
-				
 					var rel=result.extend.users;
-					/* $("#usernameid").text(rel.users.nickname);
-					$("#mvpid").text(rel.level); */
-					 password=rel.password;
-	 			/* 	$("#ncikid").val(rel.users.nickname);
-					$("#truenameid").val(rel.users.realname);
-					$("#user-phone").val(rel.users.phone);
-					$("#user-email").val(rel.users.email);
-					$("#idcarid").val(rel.users.idcard);
-				    $("#formid input[name=sex]").val([rel.users.sex]);
-				    var a=rel.shippingaddress.location+" "+rel.shippingaddress.detailaddress;
-				    //alert(a);
-				    $("#addressid").text(a); */
-			   }
-			});
-  
-  });
-  
-  $("#pass1").change(function(){
-    if($("#pass1").val()==password){
+		 if($.md5($("#pass1").val())==rel.password){
          $("#saveid").attr("disabled",false);
+        
+        
         
         
     }else{
          layer.msg("原密码不对");
         $("#saveid").attr("disabled",true);
     }
+			   }
+			});	
+			
+			
+
   });
   //点击保存
   $("#saveid").click(
@@ -180,6 +174,7 @@ $(function(){
    if($("#pass2").val()!=$("#pass3").val()){
      layer.msg("新密码不一致");
    }else{
+   
            function reset( ) {
                 value = 0;
                   $("#prog").removeClass("progress-bar-success").css("width","0%").text("等待启动");
@@ -216,7 +211,7 @@ $(function(){
               increment();
    
       $.ajax({
-			url:"${APP_PATH}/safety/upateusers/"+6+"&"+$("#pass3").val(),
+			url:"${APP_PATH}/safety/upateusers/"+${users.id}+"&"+$.md5($("#pass3").val()),
 			type:"POST",
 			success:function(result){
 			   if(result.code==100){
@@ -224,8 +219,11 @@ $(function(){
 			     layer.msg("保存成功！");
 			     $("#formid")[0].reset();
 			   }
-			
+			    $("#saveid").attr("disabled",true);
 			}});
+			
+	
+			
    }
   });
   

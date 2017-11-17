@@ -27,10 +27,10 @@
 		<li class="person active"><a href="index.html">个人中心</a></li>
 		<li class="person"><a>个人资料</a>
 			<ul>
-				<li><a href="${APP_PATH}/shop/information">个人信息</a></li>
-				<li><a href="${APP_PATH}/shop/safety">安全设置</a></li>
+				<li><a href="${APP_PATH}/safety/skipinformation1">个人信息</a></li>
+				<li><a href="${APP_PATH}/safety/skipsafety">安全设置</a></li>
 				<li><a
-					href="${APP_PATH}/address/selectallshoppingaddress/${users.id}">收货地址</a></li>
+					href="${APP_PATH}/address/selectallshoppingaddress/${users.id }">收货地址</a></li>
 			</ul></li>
 		<li class="person"><a href="#">我的交易</a>
 			<ul>

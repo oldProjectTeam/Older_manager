@@ -199,20 +199,29 @@
 	
 	
 	<!-- 带产品与订单的 -->
-	<select id="selectByExampleWithOther" resultMap="BaseResultMapWithOther" parameterType="com.older.manager.bean.Orderdetail">
-		select d.*,o.*,p.* from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
+	<select id="selectByExampleWithOthre" resultMap="BaseResultMapWithOther" parameterType="com.older.manager.bean.Orderdetail">
+		select d.* from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
 		
-		<if test="orders.state!=null || order.state!=''">
-		  and  o.state=orders.state;
-		</if>
-		
+           <if test="orders.state!=null and orders.state!=''">
+        		and o.state like '%${orders.state}%'
+        	</if>
+	
+	        <if test="orders.userId!=null">
+        		and o.user_id =${orders.userId}
+        	</if>
+        	
+        	 <if test="orders.orderNo!=null">
+        		and o.order_no like '%${orders.orderNo}%'
+        	</if>
+	
 	
 	</select>
 	
 	<select id="selectByPrimaryKeyWithOther" resultMap="BaseResultMapWithOther" parameterType="java.lang.Integer">
-		select d.*,o.*,p.* from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
-		and d.order_id=#{id,jdbcType=INTEGER}
+		select d.* from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
+		and d.id=#{value,jdbcType=INTEGER}
 	</select>
+
 	
 	
 	

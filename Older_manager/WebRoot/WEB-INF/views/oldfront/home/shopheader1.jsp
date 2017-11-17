@@ -20,9 +20,6 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
-<script src="${APP_PATH}/lib/layer/2.4/layer.js"></script>
 </head>
 <body>
 	<div class="hmtop">
@@ -37,7 +34,7 @@
 						</c:if>
 						<c:if test="${!empty users}">
 							欢迎
-							<a href="${APP_PATH}/address/index" target="_top" class="h"> <b>${users.account}</b>
+							<a href="${APP_PATH}/shop/index" target="_top" class="h"> <b>${users.account}</b>
 							</a>
 							<a onclick="logouttip()" target="_top" class="h"> <b>退出登录</b>
 							</a>

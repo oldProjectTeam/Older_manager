@@ -208,7 +208,7 @@
 									} else {
 										$("#accountEmail").val(
 												$("#email").val());
-										layer.load();
+										var index=layer.load();
 										$
 												.ajax({
 													url : "registerOfEmail",
@@ -223,6 +223,7 @@
 														} else {
 															layer
 																	.msg(result.extend.error);
+															layer.close(index);
 														}
 													}
 												});
@@ -257,7 +258,7 @@
 										if ($("#code").val() != code) {
 											layer.msg("验证码不正确 ");
 										} else {
-											layer.load();
+											var index=layer.load();
 											$
 													.ajax({
 														url : "registerOfPhone",
@@ -274,6 +275,7 @@
 															} else {
 																layer
 																		.msg(result.extend.error);
+																layer.close(index);
 															}
 														}
 													});

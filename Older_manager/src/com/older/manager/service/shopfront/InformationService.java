@@ -2,6 +2,7 @@ package com.older.manager.service.shopfront;
 
 import java.util.List;
 
+import com.older.manager.bean.Shippingaddress;
 import com.older.manager.bean.ShopMember;
 import com.older.manager.bean.Users;
 
@@ -24,5 +25,12 @@ public interface InformationService {
 	 * @param shopMember
 	 */
 	public void updateInformationByUid(Users users);
+	
+	/**
+	 * 通过用户id来查默认地址
+	 * @param userid
+	 */
+	public Shippingaddress selectAddressByUseridWithState(Integer userid);
+
 	
 }

@@ -48,4 +48,34 @@ public class SafetyController {
         safetyService.updateUser(users);
     	  return Msg.success();
     }
+    
+    /**
+     * 跳到安全设置
+     * @return
+     */
+    @RequestMapping("/skipsafety")
+    public String skipSafety(){
+    	
+    	return "oldfront/person/safety";
+    }
+    
+    /**
+     * 跳到密码
+     * @return
+     */
+    @RequestMapping("/skippassword")
+    public String skipPassword(){
+    	
+    	return "oldfront/person/password";
+    }
+    
+    /**
+     * 跳到个人信息
+     * @return
+     */
+    @RequestMapping("/skipinformation1")
+    public String skipInformation(){
+  	  return "oldfront/person/information";
+    } 
+
 }

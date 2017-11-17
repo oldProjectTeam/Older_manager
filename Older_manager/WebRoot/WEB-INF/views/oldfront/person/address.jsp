@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>地址管理</title>
+<title>地址</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -49,7 +49,7 @@
 </head>
 
 <body>
-	<jsp:include page="../home/shopheader.jsp"></jsp:include>
+	<jsp:include page="../home/shopheader1.jsp"></jsp:include>
 	<div class="nav-table">
 		<div class="long-title">
 			<span class="all-goods">全部分类</span>
@@ -153,7 +153,7 @@
 
 							<div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
 								<form class="am-form am-form-horizontal" method="post"
-									id="formid" action="${APP_PATH}/address/addshoppingaddress/6">
+									id="formid" action="${APP_PATH}/address/addshoppingaddress/${users.id}">
 
 									<div class="am-form-group">
 										<label for="user-name" class="am-form-label">收货人</label>
@@ -395,7 +395,7 @@
 														if (result.code == 100) {
 															layer.msg("更新成功");
 
-															window.location.href = "${APP_PATH}/address/skipAddress/"
+															window.location.href = "${APP_PATH}/address/selectallshoppingaddress/"
 																	+ userid;
 														}
 													}
