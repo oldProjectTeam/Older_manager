@@ -628,10 +628,7 @@
 				dataDiv.attr("products_id", item.id);
 				//单个div点击事件
 				dataDiv.click(function() {
-					layer.open({
-						title : '测试'
-					});
-					window.load.href = "/shop/"
+					window.location.href = "${APP_PATH}/product/getProduct/"+item.id;
 				});
 
 				dataLi.append(

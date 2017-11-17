@@ -60,8 +60,9 @@
 				</div>
 				<div class="topMessage mini-cart">
 					<div class="menu-hd">
-						<a id="mc-menu-hd" href="${APP_PATH}/cart/findAllByUserId?userId=${users.id}" target="_top">
-							<i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
+						<a id="mc-menu-hd"
+							href="${APP_PATH}/cart/findAllByUserId?userId=${users.id}"
+							target="_top"> <i class="am-icon-shopping-cart  am-icon-fw"></i><span>购物车</span><strong
 							id="J_MiniCartNum" class="h">0</strong>
 						</a>
 					</div>
@@ -79,7 +80,7 @@
 			<div class="logoBig">
 				<li><img
 					src="${APP_PATH}/static/images/oldback/images/logo.png"
-					height="85px;" /></li>
+					height="65px;" style="margin-top: 10px" /></li>
 			</div>
 			<div class="search-bar pr">
 				<a name="index_none_header_sysc" href="#"></a>

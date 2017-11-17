@@ -10,6 +10,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.older.manager.bean.ActiveUser;
+import com.older.manager.bean.Users;
 import com.older.manager.utils.ResourcesUtil;
 
 /**
@@ -40,9 +41,9 @@ public class ShopLoginInterceptor implements HandlerInterceptor {
 		}
 		// 判断用户身份在session中是否存在
 		HttpSession session = request.getSession();
-		ActiveUser activeUser = (ActiveUser) session.getAttribute("activeUser");
+		Users users = (Users) session.getAttribute("users");
 		// 如果用户身份在session中存在放行
-		if (activeUser != null) {
+		if (users != null) {
 			return true;
 		}
 		/*
