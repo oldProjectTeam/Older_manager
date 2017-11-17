@@ -50,7 +50,7 @@
 									<label for="email"><i class="am-icon-envelope-o"
 										style="margin-top: 12px;"></i></label> <input type="email"
 										name="email" id="email" placeholder="请输入邮箱账号"> <input
-										type="hidden" name="accountEmail" id="account"> <input
+										type="hidden" name="account" id="accountEmail"> <input
 										type="hidden" name="nickname" value="">
 								</div>
 								<div class="user-pass">

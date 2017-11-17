@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.older.manager.bean.Users;
 import com.older.manager.bean.UsersExample;
-import com.older.manager.exception.ShopException;
-import com.older.manager.exception.UserException;
 import com.older.manager.mapper.UsersMapper;
 import com.older.manager.service.shopfront.ShopLoginService;
 import com.older.manager.utils.MD5;
@@ -41,17 +39,10 @@ public class ShopLoginServiceImpl implements ShopLoginService {
 		UsersExample example = new UsersExample();
 		example.createCriteria().andAccountLike(useracconut);
 		List<Users> users = usersMapper.selectByExample(example);
-		if (users.size() == 0) {
-			throw new ShopException("用户账号不存在");
-		} else {
-			String password_dbString = users.get(0).getPassword();
-			String password_input_md5 = new MD5().getMD5ofStr(password);
-			if (!password_input_md5.equals(password_dbString)) {
-				throw new ShopException("用户名或密码错误");
-			} else {
-				return users.get(0);
-			}
+		if (users.size() > 0) {
+			return users.get(0);
 		}
+		return null;
 	}
 
 	/**
@@ -66,11 +57,11 @@ public class ShopLoginServiceImpl implements ShopLoginService {
 	public Users findSysUserByUserCode(String useracconut) throws Exception {
 		UsersExample example = new UsersExample();
 		example.createCriteria().andAccountLike(useracconut);
-		Users users = usersMapper.selectByExample(example).get(0);
-		if (users == null) {
-			throw new UserException("用户账号不存在");
+		List<Users> users = usersMapper.selectByExample(example);
+		if (users.size() > 0) {
+			return users.get(0);
 		}
-		return users;
+		return null;
 	}
 
 }

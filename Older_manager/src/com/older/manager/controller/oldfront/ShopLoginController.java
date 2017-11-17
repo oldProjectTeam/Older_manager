@@ -12,10 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.older.manager.bean.Users;
-import com.older.manager.exception.ShopException;
-import com.older.manager.exception.UserException;
 import com.older.manager.service.oldback.shop.UsersService;
 import com.older.manager.service.shopfront.ShopLoginService;
+import com.older.manager.utils.MD5;
 
 /**
  * @author ym
@@ -51,7 +50,7 @@ public class ShopLoginController {
 	public String login(HttpSession session, String randomcode,
 			String useraccount, String password, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-
+		String message = "";
 		// 校验验证码，防止恶性攻击
 		// 从session获取正确验证码
 		String validateCode = (String) session.getAttribute("validateCode");
@@ -60,23 +59,32 @@ public class ShopLoginController {
 		if (validateCode != null) {
 			if (!validateCode.equals(randomcode)) {
 				// 抛出异常
-				throw new ShopException("验证码输入错误");
+				message = "验证码输入错误";
 			}
 		}
 		if (useraccount.equals("") || password.equals("")) {
-			throw new ShopException("请输入信息");
+			message = "请输入信息";
 		}
 		// 调用service校验用户账号和密码的正确性
 		if (useraccount != null) {
 			Users users = shopLoginService.authenticat(useraccount, password);
 			if (users != null) {
 				// 如果service校验通过，将用户身份记录到session
-				System.out.println("..........商户登录成功！");
-				session.setAttribute("users", users);
-				return "redirect:/shop/oldfronthome";
+				String password_dbString = users.getPassword();
+				String password_input_md5 = new MD5().getMD5ofStr(password);
+				if (!password_input_md5.equals(password_dbString)) {
+					message = "用户名或密码错误";
+				} else {
+					System.out.println("..........商户登录成功！");
+					session.setAttribute("users", users);
+					return "redirect:/shop/oldfronthome";
+				}
+			} else {
+				message = "用户账号不存在";
 			}
 		}
-		return "redirect:/shop/login";
+		request.setAttribute("message", message);
+		return "oldfront/home/login";
 	}
 
 	@RequestMapping("/shopMain")

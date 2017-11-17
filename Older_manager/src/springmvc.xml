@@ -33,7 +33,7 @@
 	<mvc:annotation-driven />
 	<!-- 定义统一异常处理器 -->
 	<!-- <bean class="com.older.manager.exception.UserExceptionResolver"></bean> -->
-	<bean class="com.older.manager.exception.ShopExceptionResolver"></bean>
+	<bean class="com.older.manager.exception.UserExceptionResolver"></bean>
 	<!--拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
