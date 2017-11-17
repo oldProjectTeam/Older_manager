@@ -112,6 +112,22 @@
 				}
 			});
 		}
+
+		$(function() {
+			$("#J_MiniCartNum").empty();
+		$.ajax({
+				url : "${APP_PATH}/cart/findCartUserId",
+				data : {
+					"userId" : '${users.id}'
+				},
+				type : "GET",
+				success : function(result) {
+					if (result.code == 100) {
+						$("#J_MiniCartNum").append("("+result.extend.carts+")");
+					}
+				}
+			});
+		});
 	</script>
 </body>
 </html>

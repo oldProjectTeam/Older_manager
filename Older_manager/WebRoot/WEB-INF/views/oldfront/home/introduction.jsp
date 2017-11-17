@@ -507,14 +507,28 @@
 	</div>
 
 	<script type="text/javascript">
+		var num = $('#text_box').val();
+		var id = '${product.id}';
+		var userId = '${users.id}';
 		function now_pay() {
-			var num=$('#text_box').val();
-			var id='${product.id}';
-			var userId='${users.id}';
-			window.location.href = "${APP_PATH}/confirm/now_buy/"+id+"&"+num+"&"+userId;
+			window.location.href = "${APP_PATH}/confirm/now_buy/" + id + "&"
+					+ num + "&" + userId;
 		}
 		function addCart() {
-			window.location.href = "";
+			$.ajax({
+				url : "${APP_PATH}/cart/addCart",
+				type : "GET",
+				data : {
+					"usersId" : userId,
+					"produtsId" : id,
+					"number" : num
+				},
+				success : function(result) {
+					if (result.code == 100) {
+						layer.msg("加入成功");
+					}
+				}
+			});
 		}
 	</script>
 </body>
