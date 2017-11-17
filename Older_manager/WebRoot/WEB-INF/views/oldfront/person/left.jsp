@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 	String path = request.getContextPath();
-pageContext.setAttribute("APP_PATH", request.getContextPath());
+	pageContext.setAttribute("APP_PATH", request.getContextPath());
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
@@ -29,7 +29,8 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 			<ul>
 				<li><a href="${APP_PATH}/shop/information">个人信息</a></li>
 				<li><a href="${APP_PATH}/shop/safety">安全设置</a></li>
-				<li><a href="${APP_PATH}/address/selectallshoppingaddress/${users.id}">收货地址</a></li>
+				<li><a
+					href="${APP_PATH}/address/selectallshoppingaddress/${users.id}">收货地址</a></li>
 			</ul></li>
 		<li class="person"><a href="#">我的交易</a>
 			<ul>
@@ -45,10 +46,10 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 
 		<li class="person"><a href="#">我的小窝</a>
 			<ul>
-				<li><a href="collection.html">收藏</a></li>
-				<li><a href="foot.html">足迹</a></li>
-				<li><a href="comment.html">评价</a></li>
-				<li><a href="news.html">消息</a></li>
+				<li><a href="${APP_PATH}/shop/collection">收藏</a></li>
+				<li><a href="${APP_PATH}/shop/foot">足迹</a></li>
+				<li><a href="${APP_PATH}/shop/comment">评价</a></li>
+				<%-- <li><a href="${APP_PATH}">消息</a></li> --%>
 			</ul></li>
 	</ul>
 	</aside>

@@ -23,12 +23,18 @@
 	content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
 
 <title>我的足迹</title>
+<link
+	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="${APP_PATH}/static/css/admin.css" rel="stylesheet"
+	type="text/css">
+<link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
+	type="text/css">
 
-<link href="${APP_PATH}/static/css/admin.css" rel="stylesheet" type="text/css">
-<link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet" type="text/css">
-
-<link href="${APP_PATH}/static/css/personal.css" rel="stylesheet" type="text/css">
-<link href="${APP_PATH}/static/css/footstyle.css" rel="stylesheet" type="text/css">
+<link href="${APP_PATH}/static/css/personal.css" rel="stylesheet"
+	type="text/css">
+<link href="${APP_PATH}/static/css/footstyle.css" rel="stylesheet"
+	type="text/css">
 
 </head>
 
@@ -66,257 +72,13 @@
 					</div>
 					<hr />
 
-					<!--足迹列表 -->
-
-					<div class="goods">
-						<div class="goods-date" data-date="2015-12-21">
-							<span><i class="month-lite">12</i>.<i class="day-lite">21</i><i
-								class="date-desc">今天</i></span>
-							<del class="am-icon-trash"></del>
-							<s class="line"></s>
-						</div>
-
-						<div class="goods-box first-box">
-							<div class="goods-pic">
-								<div class="goods-pic-box">
-									<a class="goods-pic-link" target="_blank" href="#"
-										title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品"> <img
-										src="${APP_PATH}/static/images/TB1_pic.jpg_200x200.jpg" class="goods-img"></a>
-								</div>
-								<a class="goods-delete" href="javascript:void(0);"><i
-									class="am-icon-trash"></i></a>
-								<div class="goods-status goods-status-show">
-									<span class="desc">宝贝已下架</span>
-								</div>
-							</div>
-
-							<div class="goods-attr">
-								<div class="good-title">
-									<a class="title" href="#" target="_blank">意大利费列罗进口食品巧克力零食24粒
-										进口巧克力食品</a>
-								</div>
-								<div class="goods-price">
-									<span class="g_price"> <span>¥</span><strong>71</strong>
-									</span> <span class="g_price g_price-original"> <span>¥</span><strong>142</strong>
-									</span>
-								</div>
-								<div class="clear"></div>
-								<div class="goods-num">
-									<div class="match-recom">
-										<a href="#" class="match-recom-item">找相似</a> <a href="#"
-											class="match-recom-item">找搭配</a> <i><em></em><span></span></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="goods">
-						<div class="goods-date" data-date="2015-12-21">
-							<s class="line"></s>
-						</div>
-
-						<div class="goods-box">
-							<div class="goods-pic">
-								<div class="goods-pic-box">
-									<a class="goods-pic-link" target="_blank" href="#"
-										title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品"> <img
-										src="${APP_PATH}/static/images/TB1_pic.jpg_200x200.jpg" class="goods-img"></a>
-								</div>
-								<a class="goods-delete" href="javascript:void(0);"><i
-									class="am-icon-trash"></i></a>
-								<div class="goods-status goods-status-show">
-									<span class="desc">宝贝已下架</span>
-								</div>
-							</div>
-
-							<div class="goods-attr">
-								<div class="good-title">
-									<a class="title" href="#" target="_blank">意大利费列罗进口食品巧克力零食24粒
-										进口巧克力食品</a>
-								</div>
-								<div class="goods-price">
-									<span class="g_price"> <span>¥</span><strong>71</strong>
-									</span> <span class="g_price g_price-original"> <span>¥</span><strong>142</strong>
-									</span>
-								</div>
-								<div class="clear"></div>
-								<div class="goods-num">
-									<div class="match-recom">
-										<a href="#" class="match-recom-item">找相似</a> <a href="#"
-											class="match-recom-item">找搭配</a> <i><em></em><span></span></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="goods">
-						<div class="goods-date" data-date="2015-12-21">
-							<s class="line"></s>
-						</div>
-
-						<div class="goods-box">
-							<div class="goods-pic">
-								<div class="goods-pic-box">
-									<a class="goods-pic-link" target="_blank" href="#"
-										title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品"> <img
-										src="${APP_PATH}/static/images/TB1_pic.jpg_200x200.jpg" class="goods-img"></a>
-								</div>
-								<a class="goods-delete" href="javascript:void(0);"><i
-									class="am-icon-trash"></i></a>
-								<div class="goods-status goods-status-show">
-									<span class="desc">宝贝已下架</span>
-								</div>
-							</div>
-
-							<div class="goods-attr">
-								<div class="good-title">
-									<a class="title" href="#" target="_blank">意大利费列罗进口食品巧克力零食24粒
-										进口巧克力食品</a>
-								</div>
-								<div class="goods-price">
-									<span class="g_price"> <span>¥</span><strong>71</strong>
-									</span> <span class="g_price g_price-original"> <span>¥</span><strong>142</strong>
-									</span>
-								</div>
-								<div class="clear"></div>
-								<div class="goods-num">
-									<div class="match-recom">
-										<a href="#" class="match-recom-item">找相似</a> <a href="#"
-											class="match-recom-item">找搭配</a> <i><em></em><span></span></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<div class="goods">
-						<div class="goods-date" data-date="2015-12-21">
-							<s class="line"></s>
-						</div>
-
-						<div class="goods-box">
-							<div class="goods-pic">
-								<div class="goods-pic-box">
-									<a class="goods-pic-link" target="_blank" href="#"
-										title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品"> <img
-										src="${APP_PATH}/static/images/TB1_pic.jpg_200x200.jpg" class="goods-img"></a>
-								</div>
-								<a class="goods-delete" href="javascript:void(0);"><i
-									class="am-icon-trash"></i></a>
-								<div class="goods-status goods-status-show">
-									<span class="desc">宝贝已下架</span>
-								</div>
-							</div>
-
-							<div class="goods-attr">
-								<div class="good-title">
-									<a class="title" href="#" target="_blank">意大利费列罗进口食品巧克力零食24粒
-										进口巧克力食品</a>
-								</div>
-								<div class="goods-price">
-									<span class="g_price"> <span>¥</span><strong>71</strong>
-									</span> <span class="g_price g_price-original"> <span>¥</span><strong>142</strong>
-									</span>
-								</div>
-								<div class="clear"></div>
-								<div class="goods-num">
-									<div class="match-recom">
-										<a href="#" class="match-recom-item">找相似</a> <a href="#"
-											class="match-recom-item">找搭配</a> <i><em></em><span></span></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="goods">
-						<div class="goods-date" data-date="2015-12-21">
-							<s class="line"></s>
-						</div>
-
-						<div class="goods-box">
-							<div class="goods-pic">
-								<div class="goods-pic-box">
-									<a class="goods-pic-link" target="_blank" href="#"
-										title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品"> <img
-										src="${APP_PATH}/static/images/TB1_pic.jpg_200x200.jpg" class="goods-img"></a>
-								</div>
-								<a class="goods-delete" href="javascript:void(0);"><i
-									class="am-icon-trash"></i></a>
-								<div class="goods-status goods-status-show">
-									<span class="desc">宝贝已下架</span>
-								</div>
-							</div>
-
-							<div class="goods-attr">
-								<div class="good-title">
-									<a class="title" href="#" target="_blank">意大利费列罗进口食品巧克力零食24粒
-										进口巧克力食品</a>
-								</div>
-								<div class="goods-price">
-									<span class="g_price"> <span>¥</span><strong>71</strong>
-									</span> <span class="g_price g_price-original"> <span>¥</span><strong>142</strong>
-									</span>
-								</div>
-								<div class="clear"></div>
-								<div class="goods-num">
-									<div class="match-recom">
-										<a href="#" class="match-recom-item">找相似</a> <a href="#"
-											class="match-recom-item">找搭配</a> <i><em></em><span></span></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="clear"></div>
-					<div class="goods">
-						<div class="goods-date" data-date="2015-12-17">
-							<span><i class="month-lite"></i><i class="day-lite"></i> <i
-								class="date-desc">一周内</i></span>
-							<del class="am-icon-trash"></del>
-							<s class="line"></s>
-						</div>
-						<div class="goods-box">
-							<div class="goods-pic">
-								<div class="goods-pic-box">
-									<a class="goods-pic-link" target="_blank" href="#"
-										title="意大利费列罗进口食品巧克力零食24粒  进口巧克力食品"> <img
-										src="${APP_PATH}/static/images/TB1_pic.jpg_200x200.jpg"
-										class="goods-img"></a>
-								</div>
-								<a class="goods-delete" href="javascript:void(0);"><i
-									class="am-icon-trash"></i></a>
-								<div class="goods-status goods-status-show">
-									<span class="desc">宝贝已下架</span>
-								</div>
-							</div>
-
-							<div class="goods-attr">
-								<div class="good-title">
-									<a class="title" href="#" target="_blank">意大利费列罗进口食品巧克力零食24粒
-										进口巧克力食品</a>
-								</div>
-								<div class="goods-price">
-									<span class="g_price"> <span>¥</span><strong>71</strong>
-									</span> <span class="g_price g_price-original"> <span>¥</span><strong>142</strong>
-									</span>
-								</div>
-								<div class="clear"></div>
-								<div class="goods-num">
-									<div class="match-recom">
-										<a href="#" class="match-recom-item">找相似</a> <a href="#"
-											class="match-recom-item">找搭配</a> <i><em></em><span></span></i>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
+					<!-- 浏览列表 -->
+					<div id="productsViews_list"></div>
 				</div>
+				<div class="clear"></div>
+				<!-- 分页条 -->
+				<nav aria-label="Page navigation" class="col-sm-offset-8"
+					id="productsView_page_list"> </nav>
 			</div>
 
 			<!--底部-->
@@ -337,5 +99,133 @@
 		</div>
 		<jsp:include page="left.jsp"></jsp:include>
 	</div>
+
+	<script type="text/javascript">
+		$(function() {
+			products_views_page(1);
+		});
+
+		//加载产品信息
+		function products_views_info(result) {
+			$.each(result.extend.pageInfo.list, function(index, item) {
+				var oneDiv = $("<div></div>").addClass("goods");
+				var twoDiv = $("<div></div>").append(
+						$("<s></s>").addClass("line")).addClass("goods-date")
+						.attr("data-date", item.viewtime);
+
+				var div1 = $("<div></div>").addClass("goods-box");
+				var div2 = $("<div></div>").addClass("goods-pic");
+				var div3 = $("<div></div>").append(
+						$("<a></a>").append(
+								$("<img>").attr("src", item.products.images)
+										.addClass("goods-img")).attr("target",
+								"_blank").attr("title",
+								item.products.imagetitle).addClass(
+								"goods-pic-link")).addClass("goods-pic-box");
+				var a = $("<a></a>").append(
+						$("<i><i>").addClass("am-icon-trash").attr(
+								"productsview_id", item.id)
+								.attr("id", "delete")).attr("href",
+						"javascript:void(0);").addClass("goods-delete");
+				div2.append(div3).append(a);
+
+				var div4 = $("<div></div>").addClass("goods-attr");
+				var div5 = $("<div></div>").append(
+						$("<a></a>").append(item.products.imagetitle).addClass(
+								"title").attr("target", "_blank")).addClass(
+						"good-title");
+				var div6 = $("<div></div>").addClass("goods-price");
+				var span1 = $("<span></span>").addClass("g_price");
+				var span2 = $("<span></span>").append("¥");
+				var strong1 = $("<strong></strong>").append(
+						item.products.nowprice);
+				span1.append(span2).append(strong1);
+				var span3 = $("<span></span>").addClass(
+						"g_price g_price-original");
+				var span4 = $("<span></span>").append("¥");
+				var strong2 = $("<strong></strong>").append(
+						item.products.orprice);
+				span3.append(span4).append(strong2);
+				div6.append(span1).append(" ").append(span3);
+				var div7 = $("<div></div>").addClass("clear");
+				div4.append(div5).append(div6).append(div7);
+				div1.append(div2).append(div4);
+				oneDiv.append(twoDiv).append(div1).appendTo(
+						"#productsViews_list");
+				//去除样式，假装删除
+				$(".goods-delete").click(function() {
+					oneDiv.remove();
+
+				});
+			});
+		}
+		//分页条
+		function productsViews_page_info(result) {
+			$("#productsView_page_list").empty();
+			var pageUl = $("<ul></ul>").addClass("pagination");
+			var prePage = $("<li></li>").append(
+					$("<a></a>").append($("<span></span>").append("&laquo;")));
+			if (result.extend.pageInfo.hasPreviousPage) {
+				prePage.click(function() {
+					select_info(result.extend.pageInfo.pageNum - 1);
+				});
+			}
+
+			pageUl.append(prePage);
+
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var pageli = $("<li></li>").append($("<a></a>").append(item));
+				if (item == result.extend.pageInfo.pageNum) {
+					pageli.addClass("active");
+				}
+				pageli.click(function() {
+					select_info(item);
+				});
+				pageUl.append(pageli);
+			});
+
+			var lastPage = $("<li></li>").append(
+					$("<a></a>").append($("<span></span>").append("&raquo;")));
+			pageUl.append(lastPage).appendTo("#productsView_page_list");
+
+			if (result.extend.pageInfo.hasNextPage) {
+				prePage.click(function() {
+					select_info(result.extend.pageInfo.pageNum + 1);
+				});
+			}
+		}
+
+		function products_views_page(pn) {
+			var index = layer.load();
+			$.ajax({
+				url : "${APP_PATH}/queryProductsViewsInfo",
+				type : "POST",
+				data : "pn" + pn,
+				success : function(result) {
+					//console.log(result);
+					products_views_info(result);
+					productsViews_page_info(result);
+					layer.close(index);
+				}
+			});
+		}
+
+		$(document).on(
+				"click",
+				"#delete",
+				function() {
+					$.ajax({
+						url : "${APP_PATH}/deleteProductsViews/"
+								+ $(this).attr("productsview_id"),
+						type : "GET",
+						success : function(result) {
+							if (result.code == 100) {
+								layer.msg("删除成功");
+							}
+						}
+					});
+				});
+	</script>
 </body>
 </html>

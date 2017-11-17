@@ -12,6 +12,10 @@ public class ProductsViews {
     private Date viewtime;
 
     private String buystate;
+    
+    private Users users;
+    
+    private Products products;
 
     private String param1;
 
@@ -20,8 +24,26 @@ public class ProductsViews {
     private String param3;
 
     private String param4;
+    
+    
 
-    public Integer getId() {
+    public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Products getProducts() {
+		return products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -92,4 +114,15 @@ public class ProductsViews {
     public void setParam4(String param4) {
         this.param4 = param4 == null ? null : param4.trim();
     }
+
+	@Override
+	public String toString() {
+		return "ProductsViews [id=" + id + ", usersId=" + usersId
+				+ ", productsId=" + productsId + ", viewtime=" + viewtime
+				+ ", buystate=" + buystate + ", users=" + users + ", products="
+				+ products + ", param1=" + param1 + ", param2=" + param2
+				+ ", param3=" + param3 + ", param4=" + param4 + "]";
+	}
+    
+    
 }

@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'collection.jsp' starting page</title>
+<title>我的收藏</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -73,235 +73,19 @@
 
 					<div class="you-like">
 						<div class="s-bar">
-							我的收藏 <a class="am-badge am-badge-danger am-round">降价</a> <a
-								class="am-badge am-badge-danger am-round">下架</a>
+							我的收藏
+							<!-- <a class="am-badge am-badge-danger am-round">降价</a> <a
+								class="am-badge am-badge-danger am-round">下架</a> -->
 						</div>
-						<div class="s-content">
-							<div class="s-item-wrap">
-								<div class="s-item">
+						<!-- 中间内容 -->
+						<div class="s-content" id="products_list"></div>
 
-									<div class="s-pic">
-										<a href="#" class="s-pic-link"> <img
-											src="${APP_PATH}/static/images/0-item_pic.jpg_220x220.jpg"
-											alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰"
-											title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰"
-											class="s-pic-img s-guess-item-img">
-										</a>
-									</div>
-									<div class="s-info">
-										<div class="s-title">
-											<a href="#" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰">包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰</a>
-										</div>
-										<div class="s-price-box">
-											<span class="s-price"><em class="s-price-sign">¥</em><em
-												class="s-value">42.50</em></span> <span class="s-history-price"><em
-												class="s-price-sign">¥</em><em class="s-value">68.00</em></span>
-										</div>
-										<div class="s-extra-box">
-											<span class="s-comment">好评: 98.03%</span> <span
-												class="s-sales">月销: 219</span>
-										</div>
-									</div>
-									<div class="s-tp">
-										<span class="ui-btn-loading-before">找相似</span> <i
-											class="am-icon-shopping-cart"></i> <span
-											class="ui-btn-loading-before buy">加入购物车</span>
-										<p>
-											<a href="javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="s-item-wrap">
-								<div class="s-item">
-
-									<div class="s-pic">
-										<a href="#" class="s-pic-link"> <img
-											src="${APP_PATH}/static/images/1-item_pic.jpg_220x220.jpg"
-											alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰"
-											title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰"
-											class="s-pic-img s-guess-item-img">
-										</a>
-									</div>
-									<div class="s-info">
-										<div class="s-title">
-											<a href="#" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰">s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰</a>
-										</div>
-										<div class="s-price-box">
-											<span class="s-price"><em class="s-price-sign">¥</em><em
-												class="s-value">49.90</em></span> <span class="s-history-price"><em
-												class="s-price-sign">¥</em><em class="s-value">88.00</em></span>
-										</div>
-										<div class="s-extra-box">
-											<span class="s-comment">好评: 99.74%</span> <span
-												class="s-sales">月销: 69</span>
-										</div>
-									</div>
-									<div class="s-tp">
-										<span class="ui-btn-loading-before">找相似</span> <i
-											class="am-icon-shopping-cart"></i> <span
-											class="ui-btn-loading-before buy">加入购物车</span>
-										<p>
-											<a href="javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="s-item-wrap">
-								<div class="s-item">
-
-									<div class="s-pic">
-										<a href="#" class="s-pic-link"> <img
-											src="${APP_PATH}/static/images/-0-saturn_solar.jpg_220x220.jpg"
-											alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒"
-											class="s-pic-img s-guess-item-img"> <span
-											class="tip-title">已下架</span>
-										</a>
-									</div>
-									<div class="s-info">
-										<div class="s-title">
-											<a href="#" title="4折抢购!十二生肖925银女戒指,时尚开口女戒">4折抢购!十二生肖925银女戒指,时尚开口女戒</a>
-										</div>
-										<div class="s-price-box">
-											<span class="s-price"><em class="s-price-sign">¥</em><em
-												class="s-value">378.00</em></span> <span class="s-history-price"><em
-												class="s-price-sign">¥</em><em class="s-value">1888.00</em></span>
-										</div>
-										<div class="s-extra-box">
-											<span class="s-comment">好评: 99.93%</span> <span
-												class="s-sales">月销: 278</span>
-										</div>
-									</div>
-									<div class="s-tp">
-										<span class="ui-btn-loading-before">找相似</span> <i
-											class="am-icon-trash"></i> <span
-											class="ui-btn-loading-before buy">进入店铺</span>
-										<p>
-											<a href="javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="s-item-wrap">
-								<div class="s-item">
-
-									<div class="s-pic">
-										<a href="#" class="s-pic-link"> <img
-											src="${APP_PATH}/static/images/0-item_pic.jpg_220x220.jpg"
-											alt="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰"
-											title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰"
-											class="s-pic-img s-guess-item-img">
-										</a>
-									</div>
-									<div class="s-info">
-										<div class="s-title">
-											<a href="#" title="包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰">包邮s925纯银项链女吊坠短款锁骨链颈链日韩猫咪银饰简约夏配饰</a>
-										</div>
-										<div class="s-price-box">
-											<span class="s-price"><em class="s-price-sign">¥</em><em
-												class="s-value">42.50</em></span> <span class="s-history-price"><em
-												class="s-price-sign">¥</em><em class="s-value">68.00</em></span>
-										</div>
-										<div class="s-extra-box">
-											<span class="s-comment">好评: 98.03%</span> <span
-												class="s-sales">月销: 219</span>
-										</div>
-									</div>
-									<div class="s-tp">
-										<span class="ui-btn-loading-before">找相似</span> <i
-											class="am-icon-shopping-cart"></i> <span
-											class="ui-btn-loading-before buy">加入购物车</span>
-										<p>
-											<a href="javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="s-item-wrap">
-								<div class="s-item">
-
-									<div class="s-pic">
-										<a href="#" class="s-pic-link"> <img
-											src="${APP_PATH}/static/images/1-item_pic.jpg_220x220.jpg"
-											alt="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰"
-											title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰"
-											class="s-pic-img s-guess-item-img">
-										</a>
-									</div>
-									<div class="s-info">
-										<div class="s-title">
-											<a href="#" title="s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰">s925纯银千纸鹤锁骨链短款简约时尚韩版素银项链小清新秋款女配饰</a>
-										</div>
-										<div class="s-price-box">
-											<span class="s-price"><em class="s-price-sign">¥</em><em
-												class="s-value">49.90</em></span> <span class="s-history-price"><em
-												class="s-price-sign">¥</em><em class="s-value">88.00</em></span>
-										</div>
-										<div class="s-extra-box">
-											<span class="s-comment">好评: 99.74%</span> <span
-												class="s-sales">月销: 69</span>
-										</div>
-									</div>
-									<div class="s-tp">
-										<span class="ui-btn-loading-before">找相似</span> <i
-											class="am-icon-shopping-cart"></i> <span
-											class="ui-btn-loading-before buy">加入购物车</span>
-										<p>
-											<a href="javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-										</p>
-									</div>
-								</div>
-							</div>
-
-							<div class="s-item-wrap">
-								<div class="s-item">
-
-									<div class="s-pic">
-										<a href="#" class="s-pic-link"> <img
-											src="${APP_PATH}/static/images/-0-saturn_solar.jpg_220x220.jpg"
-											alt="4折抢购!十二生肖925银女戒指,时尚开口女戒" title="4折抢购!十二生肖925银女戒指,时尚开口女戒"
-											class="s-pic-img s-guess-item-img">
-										</a>
-									</div>
-									<div class="s-info">
-										<div class="s-title">
-											<a href="#" title="4折抢购!十二生肖925银女戒指,时尚开口女戒">4折抢购!十二生肖925银女戒指,时尚开口女戒</a>
-										</div>
-										<div class="s-price-box">
-											<span class="s-price"><em class="s-price-sign">¥</em><em
-												class="s-value">378.00</em></span> <span class="s-history-price"><em
-												class="s-price-sign">¥</em><em class="s-value">1888.00</em></span>
-										</div>
-										<div class="s-extra-box">
-											<span class="s-comment">好评: 99.93%</span> <span
-												class="s-sales">月销: 278</span>
-										</div>
-									</div>
-									<div class="s-tp">
-										<span class="ui-btn-loading-before">找相似</span> <i
-											class="am-icon-shopping-cart"></i> <span
-											class="ui-btn-loading-before buy">加入购物车</span>
-										<p>
-											<a href="javascript:;" class="c-nodo J_delFav_btn">取消收藏</a>
-										</p>
-									</div>
-								</div>
-							</div>
-
-						</div>
-
-						<div class="s-more-btn i-load-more-item" data-screen="0">
+						<div class="s-more-btn i-load-more-item" data-screen="0"
+							id="update_list">
 							<i class="am-icon-refresh am-icon-fw"></i>更多
 						</div>
-
 					</div>
-
 				</div>
-
 			</div>
 			<!--底部-->
 			<div class="footer">
@@ -319,8 +103,210 @@
 				</div>
 			</div>
 		</div>
-<jsp:include page="left.jsp"></jsp:include>
+		<jsp:include page="left.jsp"></jsp:include>
 	</div>
+	<script type="text/javascript">
+		$(function() {
+			update_products(1);
+		});
 
+		//加载产品的信息
+		function products_info(result) {
+			if (result.extend.pageInfo.hasNextPage) {
+				$("#update_list").attr("data", result.extend.pageInfo.pageNum);
+			} else {
+				$("#update_list").attr("data", 0);
+			}
+			$
+					.each(
+							result.extend.pageInfo.list,
+							function(index, item) {
+								var prices = $("<div></div>").addClass(
+										"s-price-box");
+								var sales = $("<div></div>").addClass(
+										"s-extra-box");
+								var onediv = $("<div></div>").addClass("s-tp");
+								var towdiv = $("<div></div>")
+										.addClass("s-info");
+								var paggingdiv = $("<div></div>").addClass(
+										"s-item");
+								var threediv = $("<div></div>").addClass(
+										"s-item-wrap");
+								var productsImg = $("<div></div>")
+										.append(
+												$("<a></a>")
+														.append(
+																$("<img>")
+																		.addClass(
+																				"s-pic-img s-guess-item-img")
+																		.attr(
+																				"src",
+																				item.images)
+																		.attr(
+																				"alt",
+																				item.imagetitle)
+																		.attr(
+																				"title",
+																				item.imagetitle))
+														.addClass("s-pic-link")
+														.attr("href", "#"))
+										.addClass("s-pic");
+
+								var produtstitle = $("<div></div>").append(
+										$("<a></a>").append(item.imagetitle)
+												.attr("href", "#").attr(
+														"title",
+														item.imagetitle))
+										.addClass("s-title");
+
+								$(prices)
+										.append(
+												$("<span>现价</span>")
+														.append(
+																$("<em>¥</em>")
+																		.addClass(
+																				"s-price-sign"))
+														.append(
+																$("<em></em>")
+																		.append(
+																				item.nowprice)
+																		.addClass(
+																				"s-value"))
+														.addClass("s-price"));
+								$(prices).append(" ");
+								$(prices)
+										.append(
+												$("<del></del>")
+														.append(
+																$(
+																		"<span>原价</span>")
+																		.append(
+																				$(
+																						"<em>¥</em>")
+																						.addClass(
+																								"s-price-sign"))
+																		.append(
+																				$(
+																						"<em></em>")
+																						.append(
+																								item.orprice)
+																						.addClass(
+																								"s-value"))
+																		.addClass(
+																				"s-history-price")));
+
+								$(sales).append(
+										$("<span></span>").append("好评")
+												.addClass("s-comment"));
+								$(sales).append(" ");
+								$(sales).append(
+										$("<span></span>").append(
+												"月销" + item.sales).addClass(
+												"s-sales"));
+
+								$(towdiv).append(produtstitle).append(prices)
+										.append(sales);
+
+								$(onediv)
+										.append(
+												$("<span></span>")
+														.append("找相似")
+														.addClass(
+																"ui-btn-loading-before findId")
+														.attr("title",
+																item.imagetitle));
+								$(onediv).append(
+										$("<i></i>").addClass(
+												"am-icon-shopping-cart"));
+								$(onediv)
+										.append(
+												$("<span></span>")
+														.append("加入购物车")
+														.addClass(
+																"ui-btn-loading-before buy shoppingcart")
+														.attr("productsID",
+																item.id));
+								$(onediv)
+										.append(
+												$("<p></p>")
+														.append(
+																$("<a></a>")
+																		.append(
+																				"取消收藏")
+																		.addClass(
+																				"c-nodo J_delFav_btn")
+																		.attr(
+																				"href",
+																				"javascript:;")));
+
+								$(paggingdiv).append(productsImg)
+										.append(towdiv).append(onediv);
+								$(threediv).append(paggingdiv).appendTo(
+										"#products_list");
+								$(".s-pic-link").attr("id", item.id);
+							});
+		}
+		$(document).on(
+				"click",
+				".s-pic-link",
+				function() {
+					$(this).attr(
+							"href",
+							"${APP_PATH}/product/getProduct/"
+									+ $(this).attr("id"));
+				});
+		//分页显示内容
+		function update_products(pn) {
+			var index = layer.load();
+			$.ajax({
+				url : "${APP_PATH}/select",
+				type : "GET",
+				data : "pn=" + pn,
+				success : function(result) {
+					console.log(result);
+					if (result.code == 100) {
+						products_info(result);
+						layer.close(index);
+					}
+				}
+			});
+		}
+
+		//点击更多
+		$("#update_list").click(function() {
+			if ($("#update_list").attr("data") != 0) {
+				update_products($("#update_list").attr("data") + 1);
+			} else {
+				layer.msg("亲，没有更多数据了哟");
+			}
+		});
+
+		//找相似
+		$(document).on(
+				"click",
+				".findId",
+				function() {
+					window.location.href = "${APP_PATH}/dimquery/"
+							+ $(this).attr("title") + "&" + 1;
+				});
+
+		//加入购物车
+		$(document).on("click", ".shoppingcart", function() {
+			$.ajax({
+				url : "${APP_PATH}/cart/addCart",
+				type : "GET",
+				data : {
+					"usersId" : '${users.id}',
+					"produtsId" : $(this).attr("productsID"),
+					"number" : 1
+				},
+				success : function(result) {
+					if (result.code == 100) {
+						layer.msg("加入成功");
+					}
+				}
+			});
+		});
+	</script>
 </body>
 </html>

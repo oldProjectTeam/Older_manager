@@ -75,6 +75,26 @@ public class ShopController {
 	}
 
 	/**
+	 * 收藏
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/collection")
+	public String collection() {
+		return "oldfront/person/collection";
+	}
+
+	/**
+	 * 足迹
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/foot")
+	public String foot() {
+		return "oldfront/person/foot";
+	}
+
+	/**
 	 * 评价
 	 * 
 	 * @return

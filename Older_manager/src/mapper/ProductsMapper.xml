@@ -55,7 +55,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -87,7 +88,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -105,13 +107,17 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, name, number, orPrice, region, nowPrice, addTime, auditStatus, state,
+		id, name, number, orPrice, region, nowPrice, addTime,
+		auditStatus, state,
 		imageTitle,
-		placeOrigin, type_id, brand_id, texture, weight, unit, synopsis, images,
+		placeOrigin, type_id, brand_id, texture,
+		weight, unit, synopsis, images,
 		description,
-		inventory, sales, paral1, paral2, paral3, paral4, paral5, paral6, paral7,
+		inventory, sales, paral1,
+		paral2, paral3, paral4, paral5, paral6, paral7,
 		paral8,
-		paral9, paral10, paral11, paral12, paral13, paral14, paral15, paral16,
+		paral9, paral10,
+		paral11, paral12, paral13, paral14, paral15, paral16,
 		paral17
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
@@ -137,7 +143,8 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from products
+		delete from
+		products
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.older.manager.bean.ProductsExample">
@@ -147,41 +154,51 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.older.manager.bean.Products">
-		insert into products (id, name, number,
+		insert into products (id,
+		name, number,
 		orPrice, region, nowPrice,
 		addTime, auditStatus, state,
 		imageTitle, placeOrigin, type_id,
 		brand_id, texture, weight,
-		unit, synopsis, images,
+		unit,
+		synopsis, images,
 		description, inventory, sales,
 		paral1, paral2, paral3,
 		paral4, paral5, paral6,
 		paral7, paral8, paral9,
-		paral10, paral11, paral12,
+		paral10, paral11,
+		paral12,
 		paral13, paral14, paral15,
 		paral16, paral17)
-		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{number,jdbcType=VARCHAR},
-		#{orprice,jdbcType=DOUBLE}, #{region,jdbcType=VARCHAR}, #{nowprice,jdbcType=DOUBLE},
+		#{orprice,jdbcType=DOUBLE},
+		#{region,jdbcType=VARCHAR}, #{nowprice,jdbcType=DOUBLE},
 		#{addtime,jdbcType=TIMESTAMP}, #{auditstatus,jdbcType=INTEGER},
 		#{state,jdbcType=INTEGER},
-		#{imagetitle,jdbcType=VARCHAR}, #{placeorigin,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER},
+		#{imagetitle,jdbcType=VARCHAR},
+		#{placeorigin,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER},
 		#{brandId,jdbcType=INTEGER}, #{texture,jdbcType=VARCHAR},
 		#{weight,jdbcType=DOUBLE},
-		#{unit,jdbcType=VARCHAR}, #{synopsis,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR},
+		#{unit,jdbcType=VARCHAR},
+		#{synopsis,jdbcType=VARCHAR}, #{images,jdbcType=VARCHAR},
 		#{description,jdbcType=VARCHAR}, #{inventory,jdbcType=INTEGER},
 		#{sales,jdbcType=INTEGER},
-		#{paral1,jdbcType=VARCHAR}, #{paral2,jdbcType=VARCHAR}, #{paral3,jdbcType=VARCHAR},
+		#{paral1,jdbcType=VARCHAR},
+		#{paral2,jdbcType=VARCHAR}, #{paral3,jdbcType=VARCHAR},
 		#{paral4,jdbcType=VARCHAR}, #{paral5,jdbcType=VARCHAR},
 		#{paral6,jdbcType=VARCHAR},
-		#{paral7,jdbcType=VARCHAR}, #{paral8,jdbcType=VARCHAR}, #{paral9,jdbcType=VARCHAR},
+		#{paral7,jdbcType=VARCHAR},
+		#{paral8,jdbcType=VARCHAR}, #{paral9,jdbcType=VARCHAR},
 		#{paral10,jdbcType=VARCHAR}, #{paral11,jdbcType=DOUBLE},
 		#{paral12,jdbcType=DOUBLE},
-		#{paral13,jdbcType=DOUBLE}, #{paral14,jdbcType=DOUBLE}, #{paral15,jdbcType=DOUBLE},
+		#{paral13,jdbcType=DOUBLE},
+		#{paral14,jdbcType=DOUBLE}, #{paral15,jdbcType=DOUBLE},
 		#{paral16,jdbcType=DOUBLE}, #{paral17,jdbcType=DOUBLE})
 	</insert>
-	<insert id="insertSelective" useGeneratedKeys="true" keyProperty="id"
-	parameterType="com.older.manager.bean.Products">
+	<insert id="insertSelective" useGeneratedKeys="true"
+		keyProperty="id" parameterType="com.older.manager.bean.Products">
 		insert into products
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -548,43 +565,80 @@
 	<update id="updateByExample" parameterType="map">
 		update products
 		set id = #{record.id,jdbcType=INTEGER},
-		name = #{record.name,jdbcType=VARCHAR},
-		number = #{record.number,jdbcType=VARCHAR},
-		orPrice = #{record.orprice,jdbcType=DOUBLE},
-		region = #{record.region,jdbcType=VARCHAR},
-		nowPrice = #{record.nowprice,jdbcType=DOUBLE},
-		addTime = #{record.addtime,jdbcType=TIMESTAMP},
-		auditStatus = #{record.auditstatus,jdbcType=INTEGER},
-		state = #{record.state,jdbcType=INTEGER},
-		imageTitle = #{record.imagetitle,jdbcType=VARCHAR},
-		placeOrigin = #{record.placeorigin,jdbcType=VARCHAR},
-		type_id = #{record.typeId,jdbcType=INTEGER},
-		brand_id = #{record.brandId,jdbcType=INTEGER},
-		texture = #{record.texture,jdbcType=VARCHAR},
-		weight = #{record.weight,jdbcType=DOUBLE},
-		unit = #{record.unit,jdbcType=VARCHAR},
-		synopsis = #{record.synopsis,jdbcType=VARCHAR},
-		images = #{record.images,jdbcType=VARCHAR},
-		description = #{record.description,jdbcType=VARCHAR},
-		inventory = #{record.inventory,jdbcType=INTEGER},
-		sales = #{record.sales,jdbcType=INTEGER},
-		paral1 = #{record.paral1,jdbcType=VARCHAR},
-		paral2 = #{record.paral2,jdbcType=VARCHAR},
-		paral3 = #{record.paral3,jdbcType=VARCHAR},
-		paral4 = #{record.paral4,jdbcType=VARCHAR},
-		paral5 = #{record.paral5,jdbcType=VARCHAR},
-		paral6 = #{record.paral6,jdbcType=VARCHAR},
-		paral7 = #{record.paral7,jdbcType=VARCHAR},
-		paral8 = #{record.paral8,jdbcType=VARCHAR},
-		paral9 = #{record.paral9,jdbcType=VARCHAR},
-		paral10 = #{record.paral10,jdbcType=VARCHAR},
-		paral11 = #{record.paral11,jdbcType=DOUBLE},
-		paral12 = #{record.paral12,jdbcType=DOUBLE},
-		paral13 = #{record.paral13,jdbcType=DOUBLE},
-		paral14 = #{record.paral14,jdbcType=DOUBLE},
-		paral15 = #{record.paral15,jdbcType=DOUBLE},
-		paral16 = #{record.paral16,jdbcType=DOUBLE},
-		paral17 = #{record.paral17,jdbcType=DOUBLE}
+		name =
+		#{record.name,jdbcType=VARCHAR},
+		number =
+		#{record.number,jdbcType=VARCHAR},
+		orPrice =
+		#{record.orprice,jdbcType=DOUBLE},
+		region =
+		#{record.region,jdbcType=VARCHAR},
+		nowPrice =
+		#{record.nowprice,jdbcType=DOUBLE},
+		addTime =
+		#{record.addtime,jdbcType=TIMESTAMP},
+		auditStatus =
+		#{record.auditstatus,jdbcType=INTEGER},
+		state =
+		#{record.state,jdbcType=INTEGER},
+		imageTitle =
+		#{record.imagetitle,jdbcType=VARCHAR},
+		placeOrigin =
+		#{record.placeorigin,jdbcType=VARCHAR},
+		type_id =
+		#{record.typeId,jdbcType=INTEGER},
+		brand_id =
+		#{record.brandId,jdbcType=INTEGER},
+		texture =
+		#{record.texture,jdbcType=VARCHAR},
+		weight =
+		#{record.weight,jdbcType=DOUBLE},
+		unit =
+		#{record.unit,jdbcType=VARCHAR},
+		synopsis =
+		#{record.synopsis,jdbcType=VARCHAR},
+		images =
+		#{record.images,jdbcType=VARCHAR},
+		description =
+		#{record.description,jdbcType=VARCHAR},
+		inventory =
+		#{record.inventory,jdbcType=INTEGER},
+		sales =
+		#{record.sales,jdbcType=INTEGER},
+		paral1 =
+		#{record.paral1,jdbcType=VARCHAR},
+		paral2 =
+		#{record.paral2,jdbcType=VARCHAR},
+		paral3 =
+		#{record.paral3,jdbcType=VARCHAR},
+		paral4 =
+		#{record.paral4,jdbcType=VARCHAR},
+		paral5 =
+		#{record.paral5,jdbcType=VARCHAR},
+		paral6 =
+		#{record.paral6,jdbcType=VARCHAR},
+		paral7 =
+		#{record.paral7,jdbcType=VARCHAR},
+		paral8 =
+		#{record.paral8,jdbcType=VARCHAR},
+		paral9 =
+		#{record.paral9,jdbcType=VARCHAR},
+		paral10 =
+		#{record.paral10,jdbcType=VARCHAR},
+		paral11 =
+		#{record.paral11,jdbcType=DOUBLE},
+		paral12 =
+		#{record.paral12,jdbcType=DOUBLE},
+		paral13 =
+		#{record.paral13,jdbcType=DOUBLE},
+		paral14 =
+		#{record.paral14,jdbcType=DOUBLE},
+		paral15 =
+		#{record.paral15,jdbcType=DOUBLE},
+		paral16 =
+		#{record.paral16,jdbcType=DOUBLE},
+		paral17 =
+		#{record.paral17,jdbcType=DOUBLE}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -709,104 +763,123 @@
 	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Products">
 		update products
 		set name = #{name,jdbcType=VARCHAR},
-		number = #{number,jdbcType=VARCHAR},
+		number =
+		#{number,jdbcType=VARCHAR},
 		orPrice = #{orprice,jdbcType=DOUBLE},
 		region = #{region,jdbcType=VARCHAR},
-		nowPrice = #{nowprice,jdbcType=DOUBLE},
+		nowPrice =
+		#{nowprice,jdbcType=DOUBLE},
 		addTime = #{addtime,jdbcType=TIMESTAMP},
 		auditStatus = #{auditstatus,jdbcType=INTEGER},
-		state = #{state,jdbcType=INTEGER},
+		state =
+		#{state,jdbcType=INTEGER},
 		imageTitle = #{imagetitle,jdbcType=VARCHAR},
 		placeOrigin = #{placeorigin,jdbcType=VARCHAR},
-		type_id = #{typeId,jdbcType=INTEGER},
+		type_id =
+		#{typeId,jdbcType=INTEGER},
 		brand_id = #{brandId,jdbcType=INTEGER},
 		texture = #{texture,jdbcType=VARCHAR},
-		weight = #{weight,jdbcType=DOUBLE},
+		weight =
+		#{weight,jdbcType=DOUBLE},
 		unit = #{unit,jdbcType=VARCHAR},
-		synopsis = #{synopsis,jdbcType=VARCHAR},
+		synopsis =
+		#{synopsis,jdbcType=VARCHAR},
 		images = #{images,jdbcType=VARCHAR},
 		description = #{description,jdbcType=VARCHAR},
-		inventory = #{inventory,jdbcType=INTEGER},
+		inventory =
+		#{inventory,jdbcType=INTEGER},
 		sales = #{sales,jdbcType=INTEGER},
 		paral1 = #{paral1,jdbcType=VARCHAR},
-		paral2 = #{paral2,jdbcType=VARCHAR},
+		paral2 =
+		#{paral2,jdbcType=VARCHAR},
 		paral3 = #{paral3,jdbcType=VARCHAR},
-		paral4 = #{paral4,jdbcType=VARCHAR},
+		paral4
+		= #{paral4,jdbcType=VARCHAR},
 		paral5 = #{paral5,jdbcType=VARCHAR},
 		paral6 = #{paral6,jdbcType=VARCHAR},
-		paral7 = #{paral7,jdbcType=VARCHAR},
+		paral7 =
+		#{paral7,jdbcType=VARCHAR},
 		paral8 = #{paral8,jdbcType=VARCHAR},
-		paral9 = #{paral9,jdbcType=VARCHAR},
+		paral9
+		= #{paral9,jdbcType=VARCHAR},
 		paral10 = #{paral10,jdbcType=VARCHAR},
 		paral11 = #{paral11,jdbcType=DOUBLE},
-		paral12 = #{paral12,jdbcType=DOUBLE},
+		paral12 =
+		#{paral12,jdbcType=DOUBLE},
 		paral13 = #{paral13,jdbcType=DOUBLE},
 		paral14 = #{paral14,jdbcType=DOUBLE},
-		paral15 = #{paral15,jdbcType=DOUBLE},
+		paral15 =
+		#{paral15,jdbcType=DOUBLE},
 		paral16 = #{paral16,jdbcType=DOUBLE},
 		paral17 = #{paral17,jdbcType=DOUBLE}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 
-	
 
-	
-<!--联合查询产品信息、产品类型、品牌信息、产品关键词信息ResultMap结果集  -->
-<resultMap id="ResultMapWithTypeBrand" type="com.older.manager.bean.Products" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="number" property="number" jdbcType="VARCHAR" />
-    <result column="orPrice" property="orprice" jdbcType="DOUBLE" />
-    <result column="region" property="region" jdbcType="VARCHAR" />
-    <result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
-    <result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
-    <result column="auditStatus" property="auditstatus" jdbcType="INTEGER" />
-    <result column="state" property="state" jdbcType="INTEGER" />
-    <result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
-    <result column="placeOrigin" property="placeorigin" jdbcType="VARCHAR" />
-    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
-    <result column="type_id" property="typeId" jdbcType="INTEGER" />
-    <result column="texture" property="texture" jdbcType="VARCHAR" />
-    <result column="weight" property="weight" jdbcType="DOUBLE" />
-    <result column="unit" property="unit" jdbcType="VARCHAR" />
-    <result column="synopsis" property="synopsis" jdbcType="VARCHAR" />
-    <result column="description" property="description" jdbcType="VARCHAR" />
-    <result column="inventory" property="inventory" jdbcType="INTEGER" />
-    <result column="sales" property="sales" jdbcType="INTEGER" />
-    <result column="images" property="images" jdbcType="LONGVARCHAR" />
-    <collection property="brand" ofType="brandWithBLOBs">
-    	<result column="brand_id" property="id" jdbcType="INTEGER" />
-     	<result column="brandName" property="name" jdbcType="VARCHAR" />
-    </collection>
-    <collection property="productType" ofType="productType">
-    	<result column="type_id" property="id" jdbcType="INTEGER" />
-     	<result column="typeName" property="name" jdbcType="VARCHAR" />
-    </collection>
-    <collection property="productKeyword" ofType="productKeyword">
-    	<result column="pkId" property="id" jdbcType="INTEGER" />
-     	<result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
-    </collection>
-     
-  </resultMap>
-   
-  <!--根据ID联合查询产品和关联的品牌信息和类型信息  -->
-  <sql id="WithTypeBrand_Column_List" >
-    p.id, p.name, p.number, p.orPrice, p.region, p.nowPrice, p.addTime, p.auditStatus, p.state, p.imageTitle, 
-    p.placeOrigin, p.brand_id,p.type_id, p.texture, p.weight, p.unit, p.synopsis, p.description, p.inventory,
-     p.sales,p.images,
-    b.name brandName, pt.name typeName,
-    pk.id pkId,pk.keyword
-  </sql>
-   
-   <!--多条件模糊分页查询所有产品 -->
-  <select id="selectByCondition" parameterType="com.older.manager.bean.Products"
+
+
+	<!--联合查询产品信息、产品类型、品牌信息、产品关键词信息ResultMap结果集 -->
+	<resultMap id="ResultMapWithTypeBrand" type="com.older.manager.bean.Products">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="orPrice" property="orprice" jdbcType="DOUBLE" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
+		<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+		<result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
+		<result column="auditStatus" property="auditstatus" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+		<result column="placeOrigin" property="placeorigin" jdbcType="VARCHAR" />
+		<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="texture" property="texture" jdbcType="VARCHAR" />
+		<result column="weight" property="weight" jdbcType="DOUBLE" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="synopsis" property="synopsis" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="inventory" property="inventory" jdbcType="INTEGER" />
+		<result column="sales" property="sales" jdbcType="INTEGER" />
+		<result column="images" property="images" jdbcType="LONGVARCHAR" />
+		<collection property="brand" ofType="brandWithBLOBs">
+			<result column="brand_id" property="id" jdbcType="INTEGER" />
+			<result column="brandName" property="name" jdbcType="VARCHAR" />
+		</collection>
+		<collection property="productType" ofType="productType">
+			<result column="type_id" property="id" jdbcType="INTEGER" />
+			<result column="typeName" property="name" jdbcType="VARCHAR" />
+		</collection>
+		<collection property="productKeyword" ofType="productKeyword">
+			<result column="pkId" property="id" jdbcType="INTEGER" />
+			<result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
+		</collection>
+
+	</resultMap>
+
+	<!--根据ID联合查询产品和关联的品牌信息和类型信息 -->
+	<sql id="WithTypeBrand_Column_List">
+		p.id, p.name, p.number, p.orPrice, p.region, p.nowPrice,
+		p.addTime,
+		p.auditStatus, p.state, p.imageTitle,
+		p.placeOrigin,
+		p.brand_id,p.type_id, p.texture, p.weight, p.unit, p.synopsis,
+		p.description, p.inventory,
+		p.sales,p.images,
+		b.name brandName, pt.name
+		typeName,
+		pk.id pkId,pk.keyword
+	</sql>
+
+	<!--多条件模糊分页查询所有产品 -->
+	<select id="selectByCondition" parameterType="com.older.manager.bean.Products"
 		resultMap="ResultMapWithTypeBrand">
 		select
 		<include refid="WithTypeBrand_Column_List" />
 		from products p,brand b,producttype pt,productKeyword pk
-		where p.brand_id=b.id and p.type_id=pt.id and p.id=pk.product_id  
-		
-	    <if test="typeId!=null and typeId!=''">
+		where
+		p.brand_id=b.id and p.type_id=pt.id and p.id=pk.product_id
+
+		<if test="typeId!=null and typeId!=''">
 			and p.type_id=#{typeId}
 		</if>
 		<if test="name!=null and name!=''">
@@ -818,18 +891,21 @@
 		<if test="page!=null and limit!=null">
 			limit #{page},#{limit}
 		</if>
-  </select>
-   
-   <!--根据id查询产品信息及关联的品牌信息、产品类型信息、关键词信息  -->
-  <select id="selectWithTypeBrandByKey" parameterType="java.lang.Integer" resultMap="ResultMapWithTypeBrand">
-  	select 
-  	<include refid="WithTypeBrand_Column_List" />
-  	from products p,brand b,producttype pt,productKeyword pk
-  	where p.brand_id=b.id and p.type_id=pt.id and p.id=pk.product_id  and p.id = #{id,jdbcType=INTEGER}
-  </select>
-  
-  <!-- ym -->
-  <select id="selectAllProductsByComplexSearch" resultMap="BaseResultMap"
+	</select>
+
+	<!--根据id查询产品信息及关联的品牌信息、产品类型信息、关键词信息 -->
+	<select id="selectWithTypeBrandByKey" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithTypeBrand">
+		select
+		<include refid="WithTypeBrand_Column_List" />
+		from products p,brand b,producttype pt,productKeyword pk
+		where
+		p.brand_id=b.id and p.type_id=pt.id and p.id=pk.product_id and p.id =
+		#{id,jdbcType=INTEGER}
+	</select>
+
+	<!-- ym -->
+	<select id="selectAllProductsByComplexSearch" resultMap="BaseResultMap"
 		parameterType="com.older.manager.bean.Products">
 		select p.* from products p,brand b,productKeyword pk,productType pt
 		where p.type_id=pt.id and p.brand_id=b.id and p.id=pk.product_id
@@ -855,6 +931,101 @@
 		</if>
 		<if test="sales!=null"> order by p.sales desc </if>
 		<if test="nowprice!=null">order by p.nowPrice asc</if>
+	</select>
+	<!-- zqq -->
+	<!-- 查询产品信息 -->
+	<select id="selectProducts" resultMap="BaseResultMap">
+		select
+		id, name, number,
+		orPrice, region, nowPrice,
+		addTime, auditStatus, state,
+		imageTitle,
+		placeOrigin, type_id,
+		brand_id, texture, weight,
+		unit,
+		synopsis, images,
+		description, inventory, sales,
+		paral1, paral2, paral3,
+		paral4, paral5,
+		paral6,
+		paral7, paral8, paral9,
+		paral10, paral11,
+		paral12,
+		paral13,
+		paral14, paral15,
+		paral16, paral17
+		from products
+	</select>
+	<!-- 模糊查询 -->
+	<select id="dimQueryProducts" parameterType="com.older.manager.bean.Products"
+		resultMap="ResultMapWithTypeBrand">
+		select
+		<include refid="WithTypeBrand_Column_List" />
+		from products p,brand b,producttype pt,productKeyword pk
+		<where>
+			<include refid="dim_query_products"></include>
+			and p.brand_id=b.id and p.type_id=pt.id and p.id=pk.product_id
+		</where>
+	</select>
+	<sql id="dim_query_products">
+		<if test="name!=null">
+			and p.name like '%${name}%'
+		</if>
+		<if test="number!=null">
+			and p.number like '%${number}%'
+		</if>
+		<if test="region!=null">
+			and p.region like '%${region}%'
+		</if>
+		<if test="imagetitle!=null">
+			and p.imageTitle like '%${imagetitle}%'
+		</if>
+		<if test="brand.name!=null">
+			and b.name like '%${brand.name}%'
+		</if>
+		<if test="synopsis!=null">
+			and p.synopsis like '%${synopsis}%'
+		</if>
+		<if test="description!=null">
+			and p.description like '%${description}%'
+		</if>
+		<if test="productType.name!=null">
+			and pt.name like '%${productType.name}%'
+		</if>
+	</sql>
 
+	<!-- 销量或价格条件查询 -->
+	<select id="salesOrPriceQuery" parameterType="com.older.manager.bean.Products"
+		resultMap="BaseResultMap">
+		select
+		id, name, number,
+		orPrice, region, nowPrice,
+		addTime, auditStatus,
+		state,
+		imageTitle, placeOrigin, type_id,
+		brand_id, texture, weight,
+		unit,
+		synopsis, images,
+		description, inventory, sales,
+		paral1, paral2,
+		paral3,
+		paral4, paral5, paral6,
+		paral7, paral8, paral9,
+		paral10, paral11,
+		paral12,
+		paral13, paral14, paral15,
+		paral16, paral17
+		from products
+		<where>
+			<if test="imagetitle!=null">
+				and imageTitle like '%${imagetitle}%'
+			</if>
+			<if test="sales!=null">
+				ORDER BY sales desc
+			</if>
+			<if test="nowprice!=null">
+				ORDER BY nowPrice asc
+			</if>
+		</where>
 	</select>
 </mapper>

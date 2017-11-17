@@ -26,7 +26,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -58,7 +59,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -76,7 +78,8 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		id, users_id, products_id, viewTime, buyState, param1, param2, param3,
+		id, users_id, products_id, viewTime, buyState, param1,
+		param2, param3,
 		param4
 	</sql>
 	<select id="selectByExample" resultMap="BaseResultMap"
@@ -102,7 +105,8 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from productsviews
+		delete from
+		productsviews
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.older.manager.bean.ProductsViewsExample">
@@ -112,13 +116,16 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.older.manager.bean.ProductsViews">
-		insert into productsviews (id, users_id, products_id,
+		insert into productsviews (id,
+		users_id, products_id,
 		viewTime, buyState, param1,
-		param2, param3, param4
+		param2, param3,
+		param4
 		)
 		values (#{id,jdbcType=INTEGER}, #{usersId,jdbcType=INTEGER},
 		#{productsId,jdbcType=INTEGER},
-		#{viewtime,jdbcType=TIMESTAMP}, #{buystate,jdbcType=VARCHAR}, #{param1,jdbcType=VARCHAR},
+		#{viewtime,jdbcType=TIMESTAMP},
+		#{buystate,jdbcType=VARCHAR}, #{param1,jdbcType=VARCHAR},
 		#{param2,jdbcType=VARCHAR}, #{param3,jdbcType=VARCHAR},
 		#{param4,jdbcType=VARCHAR}
 		)
@@ -229,14 +236,22 @@
 	<update id="updateByExample" parameterType="map">
 		update productsviews
 		set id = #{record.id,jdbcType=INTEGER},
-		users_id = #{record.usersId,jdbcType=INTEGER},
-		products_id = #{record.productsId,jdbcType=INTEGER},
-		viewTime = #{record.viewtime,jdbcType=TIMESTAMP},
-		buyState = #{record.buystate,jdbcType=VARCHAR},
-		param1 = #{record.param1,jdbcType=VARCHAR},
-		param2 = #{record.param2,jdbcType=VARCHAR},
-		param3 = #{record.param3,jdbcType=VARCHAR},
-		param4 = #{record.param4,jdbcType=VARCHAR}
+		users_id =
+		#{record.usersId,jdbcType=INTEGER},
+		products_id =
+		#{record.productsId,jdbcType=INTEGER},
+		viewTime =
+		#{record.viewtime,jdbcType=TIMESTAMP},
+		buyState =
+		#{record.buystate,jdbcType=VARCHAR},
+		param1 =
+		#{record.param1,jdbcType=VARCHAR},
+		param2 =
+		#{record.param2,jdbcType=VARCHAR},
+		param3 =
+		#{record.param3,jdbcType=VARCHAR},
+		param4 =
+		#{record.param4,jdbcType=VARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -272,20 +287,69 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ProductsViews">
-		update productsviews
+		update
+		productsviews
 		set users_id = #{usersId,jdbcType=INTEGER},
-		products_id = #{productsId,jdbcType=INTEGER},
-		viewTime = #{viewtime,jdbcType=TIMESTAMP},
-		buyState = #{buystate,jdbcType=VARCHAR},
+		products_id =
+		#{productsId,jdbcType=INTEGER},
+		viewTime =
+		#{viewtime,jdbcType=TIMESTAMP},
+		buyState =
+		#{buystate,jdbcType=VARCHAR},
 		param1 = #{param1,jdbcType=VARCHAR},
 		param2 = #{param2,jdbcType=VARCHAR},
-		param3 = #{param3,jdbcType=VARCHAR},
+		param3 =
+		#{param3,jdbcType=VARCHAR},
 		param4 = #{param4,jdbcType=VARCHAR}
-		where id = #{id,jdbcType=INTEGER}
+		where id
+		= #{id,jdbcType=INTEGER}
 	</update>
 	<select id="selectProductsViewsCountByUsersId" parameterType="java.lang.Integer"
 		resultType="java.lang.Integer">
 		select count(*) from productsviews
-		where users_id = #{userId,jdbcType=INTEGER}
+		where users_id =
+		#{userId,jdbcType=INTEGER}
 	</select>
+
+	<!-- 查询浏览记录、用户信息、产品情况的resultMap -->
+	<resultMap type="com.older.manager.bean.ProductsViews" id="selectProductsViewsMap">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="users_id" property="usersId" jdbcType="INTEGER" />
+		<result column="products_id" property="productsId" jdbcType="INTEGER" />
+		<result column="viewTime" property="viewtime" jdbcType="TIMESTAMP" />
+		<result column="buyState" property="buystate" jdbcType="VARCHAR" />
+		<result column="param1" property="param1" jdbcType="VARCHAR" />
+		<result column="param2" property="param2" jdbcType="VARCHAR" />
+		<result column="param3" property="param3" jdbcType="VARCHAR" />
+		<result column="param4" property="param4" jdbcType="VARCHAR" />
+		<association property="users" javaType="com.older.manager.bean.Users">
+			<id column="id" property="id" />
+			<result column="account" property="account" />
+			<result column="nickname" property="nickname" />
+		</association>
+		<association property="products" javaType="com.older.manager.bean.Products">
+			<id column="id" property="id" />
+			<result column="name" property="name" />
+			<result column="images" property="images" />
+			<result column="imageTitle" property="imagetitle" />
+			<result column="orprice" property="orprice" />
+			<result column="nowprice" property="nowprice" />
+		</association>
+	</resultMap>
+
+	<!-- 查询浏览记录、用户信息、产品情况 -->
+	<select id="selectProductsViews" resultMap="selectProductsViewsMap">
+		select
+		<include refid="select_Products_Views_list" />
+		from productsviews pv join users u join products p on
+		pv.users_id=u.id
+		and pv.products_id=p.id
+	</select>
+	<sql id="select_Products_Views_list">
+		pv.id, pv.users_id, pv.products_id,pv.viewTime,
+		pv.buyState, pv.param1,
+		pv.param2, pv.param3,
+		pv.param4,u.id,u.account,u.nickname,
+		p.id,p.name,p.imageTitle,p.orprice,p.nowprice,p.images
+	</sql>
 </mapper>

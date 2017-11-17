@@ -56,4 +56,11 @@ public interface ProductsMapper {
 	 * @date:     2017年11月15日 下午8:16:49
 	 */
 	List<Products> selectAllProductsByComplexSearch(Products products);
+	
+	//查询产品信息
+	List<Products> selectProducts();
+	//模糊查询产品信息
+	List<Products> dimQueryProducts(Products products );
+	//根据销售排序
+	List<Products> salesOrPriceQuery(Products products);
 }
