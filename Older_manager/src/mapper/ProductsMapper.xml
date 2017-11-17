@@ -905,6 +905,7 @@
 	</select>
 
 	<!-- ym -->
+	<!-- ym -->
 	<select id="selectAllProductsByComplexSearch" resultMap="BaseResultMap"
 		parameterType="com.older.manager.bean.Products">
 		select p.* from products p,brand b,productKeyword pk,productType pt
@@ -921,7 +922,7 @@
 		</if>
 		<if test="productType!=null">
 			<if test="productType.name!=null and productType.name!=''">
-				and p.name= #{productType.name}
+				and pt.name= #{productType.name}
 			</if>
 		</if>
 		<if test="productKeyword!=null">
@@ -929,8 +930,22 @@
 				and pk.keyword like '%${productKeyword.keyword}%'
 			</if>
 		</if>
-		<if test="sales!=null"> order by p.sales desc </if>
-		<if test="nowprice!=null">order by p.nowPrice asc</if>
+		<if test="nowprice!=null">
+			order by p.nowPrice asc
+		</if>
+		<if test="sales!=null">
+			order by p.sales desc
+		</if>
+		<!-- order by
+		<if test="nowprice!=null">
+			p.nowPrice asc
+		</if>
+		<if test="sales!=null">
+			<if test="nowprice!=null">
+				,
+			</if>
+			p.sales desc
+		</if> -->
 	</select>
 	<!-- zqq -->
 	<!-- 查询产品信息 -->

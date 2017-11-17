@@ -2,7 +2,10 @@ package com.older.manager.mapper;
 
 import com.older.manager.bean.ProductKeyword;
 import com.older.manager.bean.ProductKeywordExample;
+import com.older.manager.bean.Products;
+
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface ProductKeywordMapper {
@@ -33,4 +36,16 @@ public interface ProductKeywordMapper {
     int updateByPrimaryKeyWithBLOBs(ProductKeyword record);
 
     int updateByPrimaryKey(ProductKeyword record);
+    
+    /**
+     * @Title:   selectAllHotProductsKeyWordsByComplexSearch
+     * @Description:  通过搜索查找产品销量前五的关键词
+     * @param:    @param products
+     * @param:    @return   
+     * @return:   List<ProductKeyword>   
+     * @throws
+     * @author:   ym
+     * @date:     2017年11月17日 上午11:17:12
+     */
+    List<ProductKeyword> selectAllHotProductsKeyWordsByComplexSearch(Products products);
 }

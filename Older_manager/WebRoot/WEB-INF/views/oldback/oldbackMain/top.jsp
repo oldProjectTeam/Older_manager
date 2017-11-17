@@ -46,8 +46,8 @@
 					src="${APP_PATH}/static/images/oldback/images/help.png" title="帮助"
 					class="helpimg" /></span><a href="#">帮助</a></li>
 			<li><a href="#">关于</a></li>
-			<li><a href="logout" onclick="javascript:return confirm('你确定要退出吗?')"
-				target="_parent">退出</a></li>
+			<li><a href="backlogout"
+				onclick="javascript:return confirm('你确定要退出吗?')" target="_parent">退出</a></li>
 		</ul>
 
 		<div class="user">

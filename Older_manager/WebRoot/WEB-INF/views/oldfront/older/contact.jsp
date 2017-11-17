@@ -50,6 +50,7 @@
 						<li><a href="${APP_PATH}/older/contact"
 							class="menu-top-active">联系我们</a></li>
 						<li><a href="${APP_PATH}/older/activity">社区活动</a></li>
+						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
 						<li><a href="${APP_PATH}/older/download">客户端下载</a></li>
 						<li><a href="${APP_PATH}/older/">会员登陆</a></li>
 					</ul>

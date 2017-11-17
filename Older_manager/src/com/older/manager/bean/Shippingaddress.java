@@ -1,14 +1,26 @@
 package com.older.manager.bean;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Shippingaddress {
     private Integer id;
 
+    
     private String location;
 
+    @NotEmpty(message="详细地址不能为空")
+    @Length(min=1,max=100,message="详细地址长度超出限制")
     private String detailaddress;
 
+    
+    @Pattern(regexp="(^[a-zA-Z_-]{1,30}$)|(^[\\u2E80-\\u9FFF]{2,30})",
+	message="收货人必须是2-30位字母或中文")
     private String name;
 
+    @Pattern(regexp="^1[34578]\\d{9}$",message="手机号码不合法")
     private String phone;
 
     private String postcode;
@@ -23,7 +35,18 @@ public class Shippingaddress {
     
     private Users users;
     
+    //扩展属性
+    @NotEmpty(message="省份不能为空")
+    @Length(min=1,max=20,message="省份长度超出限制")
+    private String province1;//省份
     
+    @NotEmpty(message="城市不能为空")
+    @Length(min=1,max=20,message="城市长度超出限制")
+    private String city1;//市
+    
+    @NotEmpty(message="区域不能为空")
+    @Length(min=1,max=20,message="区域长度超出限制")
+    private String area1;//区
 
     @Override
 	public String toString() {
@@ -121,4 +144,28 @@ public class Shippingaddress {
     public void setColumn2(String column2) {
         this.column2 = column2 == null ? null : column2.trim();
     }
+
+	public String getProvince1() {
+		return province1;
+	}
+
+	public void setProvince1(String province1) {
+		this.province1 = province1;
+	}
+
+	public String getCity1() {
+		return city1;
+	}
+
+	public void setCity1(String city1) {
+		this.city1 = city1;
+	}
+
+	public String getArea1() {
+		return area1;
+	}
+
+	public void setArea1(String area1) {
+		this.area1 = area1;
+	}
 }

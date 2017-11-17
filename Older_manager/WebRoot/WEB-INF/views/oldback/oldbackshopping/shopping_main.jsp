@@ -209,7 +209,7 @@
 						btn : [ '是', '否' ],//按钮
 						icon : 2,
 					}, function() {
-						location.href = "logout";
+						location.href = "backlogout";
 
 					});
 				});

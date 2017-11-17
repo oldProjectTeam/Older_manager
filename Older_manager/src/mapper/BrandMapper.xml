@@ -1,431 +1,491 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.BrandMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Brand" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="brandId" property="brandid" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="sort" property="sort" jdbcType="INTEGER" />
-    <result column="region" property="region" jdbcType="VARCHAR" />
-    <result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
-    <result column="state" property="state" jdbcType="INTEGER" />
-    <result column="brand1" property="brand1" jdbcType="VARCHAR" />
-    <result column="brand2" property="brand2" jdbcType="VARCHAR" />
-    <result column="brand3" property="brand3" jdbcType="INTEGER" />
-    <result column="brand4" property="brand4" jdbcType="DOUBLE" />
-    <result column="brand5" property="brand5" jdbcType="VARCHAR" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.older.manager.bean.BrandWithBLOBs" extends="BaseResultMap" >
-    <result column="logoImage" property="logoimage" jdbcType="LONGVARCHAR" />
-    <result column="description" property="description" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, brandId, name, sort, region, addTime, state, brand1, brand2, brand3, brand4, 
-    brand5
-  </sql>
-  <sql id="Blob_Column_List" >
-    logoImage, description
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.older.manager.bean.BrandExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from brand
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.BrandExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from brand
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from brand
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  
-  <!--模糊查询所有  -->
-  <select id="selectByCondiction" resultMap="ResultMapWithBLOBs" parameterType="brand" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from brand b
-    <where>
-    	<if test="brandId!=null and brandId!=''">
-    	b.brandId=#{brandId}
-    	</if>
-    	<if test="name!=null and name!=''">
-    	and b.name like '%${name}%'
-    	</if>
-    </where>
-  </select>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from brand
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.BrandExample" >
-    delete from brand
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.BrandWithBLOBs" >
-    insert into brand (id, brandId, name, 
-      sort, region, addTime, 
-      state, brand1, brand2, 
-      brand3, brand4, brand5, 
-      logoImage, description)
-    values (#{id,jdbcType=INTEGER}, #{brandid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{sort,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR}, #{addtime,jdbcType=TIMESTAMP}, 
-      #{state,jdbcType=INTEGER}, #{brand1,jdbcType=VARCHAR}, #{brand2,jdbcType=VARCHAR}, 
-      #{brand3,jdbcType=INTEGER}, #{brand4,jdbcType=DOUBLE}, #{brand5,jdbcType=VARCHAR}, 
-      #{logoimage,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.BrandWithBLOBs" >
-    insert into brand
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="brandid != null" >
-        brandId,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="sort != null" >
-        sort,
-      </if>
-      <if test="region != null" >
-        region,
-      </if>
-      <if test="addtime != null" >
-        addTime,
-      </if>
-      <if test="state != null" >
-        state,
-      </if>
-      <if test="brand1 != null" >
-        brand1,
-      </if>
-      <if test="brand2 != null" >
-        brand2,
-      </if>
-      <if test="brand3 != null" >
-        brand3,
-      </if>
-      <if test="brand4 != null" >
-        brand4,
-      </if>
-      <if test="brand5 != null" >
-        brand5,
-      </if>
-      <if test="logoimage != null" >
-        logoImage,
-      </if>
-      <if test="description != null" >
-        description,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="brandid != null" >
-        #{brandid,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null" >
-        #{sort,jdbcType=INTEGER},
-      </if>
-      <if test="region != null" >
-        #{region,jdbcType=VARCHAR},
-      </if>
-      <if test="addtime != null" >
-        #{addtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=INTEGER},
-      </if>
-      <if test="brand1 != null" >
-        #{brand1,jdbcType=VARCHAR},
-      </if>
-      <if test="brand2 != null" >
-        #{brand2,jdbcType=VARCHAR},
-      </if>
-      <if test="brand3 != null" >
-        #{brand3,jdbcType=INTEGER},
-      </if>
-      <if test="brand4 != null" >
-        #{brand4,jdbcType=DOUBLE},
-      </if>
-      <if test="brand5 != null" >
-        #{brand5,jdbcType=VARCHAR},
-      </if>
-      <if test="logoimage != null" >
-        #{logoimage,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.BrandExample" resultType="java.lang.Integer" >
-    select count(*) from brand
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update brand
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.brandid != null" >
-        brandId = #{record.brandid,jdbcType=VARCHAR},
-      </if>
-      <if test="record.name != null" >
-        name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.sort != null" >
-        sort = #{record.sort,jdbcType=INTEGER},
-      </if>
-      <if test="record.region != null" >
-        region = #{record.region,jdbcType=VARCHAR},
-      </if>
-      <if test="record.addtime != null" >
-        addTime = #{record.addtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=INTEGER},
-      </if>
-      <if test="record.brand1 != null" >
-        brand1 = #{record.brand1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.brand2 != null" >
-        brand2 = #{record.brand2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.brand3 != null" >
-        brand3 = #{record.brand3,jdbcType=INTEGER},
-      </if>
-      <if test="record.brand4 != null" >
-        brand4 = #{record.brand4,jdbcType=DOUBLE},
-      </if>
-      <if test="record.brand5 != null" >
-        brand5 = #{record.brand5,jdbcType=VARCHAR},
-      </if>
-      <if test="record.logoimage != null" >
-        logoImage = #{record.logoimage,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="record.description != null" >
-        description = #{record.description,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update brand
-    set id = #{record.id,jdbcType=INTEGER},
-      brandId = #{record.brandid,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      sort = #{record.sort,jdbcType=INTEGER},
-      region = #{record.region,jdbcType=VARCHAR},
-      addTime = #{record.addtime,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=INTEGER},
-      brand1 = #{record.brand1,jdbcType=VARCHAR},
-      brand2 = #{record.brand2,jdbcType=VARCHAR},
-      brand3 = #{record.brand3,jdbcType=INTEGER},
-      brand4 = #{record.brand4,jdbcType=DOUBLE},
-      brand5 = #{record.brand5,jdbcType=VARCHAR},
-      logoImage = #{record.logoimage,jdbcType=LONGVARCHAR},
-      description = #{record.description,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update brand
-    set id = #{record.id,jdbcType=INTEGER},
-      brandId = #{record.brandid,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      sort = #{record.sort,jdbcType=INTEGER},
-      region = #{record.region,jdbcType=VARCHAR},
-      addTime = #{record.addtime,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=INTEGER},
-      brand1 = #{record.brand1,jdbcType=VARCHAR},
-      brand2 = #{record.brand2,jdbcType=VARCHAR},
-      brand3 = #{record.brand3,jdbcType=INTEGER},
-      brand4 = #{record.brand4,jdbcType=DOUBLE},
-      brand5 = #{record.brand5,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.BrandWithBLOBs" >
-    update brand
-    <set >
-      <if test="brandid != null" >
-        brandId = #{brandid,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null" >
-        sort = #{sort,jdbcType=INTEGER},
-      </if>
-      <if test="region != null" >
-        region = #{region,jdbcType=VARCHAR},
-      </if>
-      <if test="addtime != null" >
-        addTime = #{addtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=INTEGER},
-      </if>
-      <if test="brand1 != null" >
-        brand1 = #{brand1,jdbcType=VARCHAR},
-      </if>
-      <if test="brand2 != null" >
-        brand2 = #{brand2,jdbcType=VARCHAR},
-      </if>
-      <if test="brand3 != null" >
-        brand3 = #{brand3,jdbcType=INTEGER},
-      </if>
-      <if test="brand4 != null" >
-        brand4 = #{brand4,jdbcType=DOUBLE},
-      </if>
-      <if test="brand5 != null" >
-        brand5 = #{brand5,jdbcType=VARCHAR},
-      </if>
-      <if test="logoimage != null" >
-        logoImage = #{logoimage,jdbcType=LONGVARCHAR},
-      </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.BrandWithBLOBs" >
-    update brand
-    set brandId = #{brandid,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      sort = #{sort,jdbcType=INTEGER},
-      region = #{region,jdbcType=VARCHAR},
-      addTime = #{addtime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=INTEGER},
-      brand1 = #{brand1,jdbcType=VARCHAR},
-      brand2 = #{brand2,jdbcType=VARCHAR},
-      brand3 = #{brand3,jdbcType=INTEGER},
-      brand4 = #{brand4,jdbcType=DOUBLE},
-      brand5 = #{brand5,jdbcType=VARCHAR},
-      logoImage = #{logoimage,jdbcType=LONGVARCHAR},
-      description = #{description,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Brand" >
-    update brand
-    set brandId = #{brandid,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      sort = #{sort,jdbcType=INTEGER},
-      region = #{region,jdbcType=VARCHAR},
-      addTime = #{addtime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=INTEGER},
-      brand1 = #{brand1,jdbcType=VARCHAR},
-      brand2 = #{brand2,jdbcType=VARCHAR},
-      brand3 = #{brand3,jdbcType=INTEGER},
-      brand4 = #{brand4,jdbcType=DOUBLE},
-      brand5 = #{brand5,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <!-- 新写的 -->
-  <select id="selectAllProductsBrandByComplexSearch" resultMap="BaseResultMap"
+<mapper namespace="com.older.manager.mapper.BrandMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.Brand">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="brandId" property="brandid" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
+		<result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="brand1" property="brand1" jdbcType="VARCHAR" />
+		<result column="brand2" property="brand2" jdbcType="VARCHAR" />
+		<result column="brand3" property="brand3" jdbcType="INTEGER" />
+		<result column="brand4" property="brand4" jdbcType="DOUBLE" />
+		<result column="brand5" property="brand5" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.older.manager.bean.BrandWithBLOBs"
+		extends="BaseResultMap">
+		<result column="logoImage" property="logoimage" jdbcType="LONGVARCHAR" />
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, brandId, name, sort, region, addTime, state, brand1,
+		brand2, brand3,
+		brand4,
+		brand5
+	</sql>
+	<sql id="Blob_Column_List">
+		logoImage, description
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+		parameterType="com.older.manager.bean.BrandExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from brand
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.BrandExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from brand
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from brand
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+	<!--模糊查询所有 -->
+	<select id="selectByCondiction" resultMap="ResultMapWithBLOBs"
+		parameterType="brand">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from brand b
+		<where>
+			<if test="brandId!=null and brandId!=''">
+				b.brandId=#{brandId}
+			</if>
+			<if test="name!=null and name!=''">
+				and b.name like '%${name}%'
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from brand
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.BrandExample">
+		delete from brand
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.BrandWithBLOBs">
+		insert into brand (id,
+		brandId, name,
+		sort, region, addTime,
+		state, brand1, brand2,
+		brand3,
+		brand4, brand5,
+		logoImage, description)
+		values (#{id,jdbcType=INTEGER},
+		#{brandid,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{sort,jdbcType=INTEGER}, #{region,jdbcType=VARCHAR},
+		#{addtime,jdbcType=TIMESTAMP},
+		#{state,jdbcType=INTEGER},
+		#{brand1,jdbcType=VARCHAR},
+		#{brand2,jdbcType=VARCHAR},
+		#{brand3,jdbcType=INTEGER}, #{brand4,jdbcType=DOUBLE},
+		#{brand5,jdbcType=VARCHAR},
+		#{logoimage,jdbcType=LONGVARCHAR},
+		#{description,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.BrandWithBLOBs">
+		insert into brand
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="brandid != null">
+				brandId,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="sort != null">
+				sort,
+			</if>
+			<if test="region != null">
+				region,
+			</if>
+			<if test="addtime != null">
+				addTime,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="brand1 != null">
+				brand1,
+			</if>
+			<if test="brand2 != null">
+				brand2,
+			</if>
+			<if test="brand3 != null">
+				brand3,
+			</if>
+			<if test="brand4 != null">
+				brand4,
+			</if>
+			<if test="brand5 != null">
+				brand5,
+			</if>
+			<if test="logoimage != null">
+				logoImage,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="brandid != null">
+				#{brandid,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				#{sort,jdbcType=INTEGER},
+			</if>
+			<if test="region != null">
+				#{region,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				#{addtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+			<if test="brand1 != null">
+				#{brand1,jdbcType=VARCHAR},
+			</if>
+			<if test="brand2 != null">
+				#{brand2,jdbcType=VARCHAR},
+			</if>
+			<if test="brand3 != null">
+				#{brand3,jdbcType=INTEGER},
+			</if>
+			<if test="brand4 != null">
+				#{brand4,jdbcType=DOUBLE},
+			</if>
+			<if test="brand5 != null">
+				#{brand5,jdbcType=VARCHAR},
+			</if>
+			<if test="logoimage != null">
+				#{logoimage,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.BrandExample"
+		resultType="java.lang.Integer">
+		select count(*) from brand
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update brand
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.brandid != null">
+				brandId = #{record.brandid,jdbcType=VARCHAR},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sort != null">
+				sort = #{record.sort,jdbcType=INTEGER},
+			</if>
+			<if test="record.region != null">
+				region = #{record.region,jdbcType=VARCHAR},
+			</if>
+			<if test="record.addtime != null">
+				addTime = #{record.addtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.state != null">
+				state = #{record.state,jdbcType=INTEGER},
+			</if>
+			<if test="record.brand1 != null">
+				brand1 = #{record.brand1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.brand2 != null">
+				brand2 = #{record.brand2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.brand3 != null">
+				brand3 = #{record.brand3,jdbcType=INTEGER},
+			</if>
+			<if test="record.brand4 != null">
+				brand4 = #{record.brand4,jdbcType=DOUBLE},
+			</if>
+			<if test="record.brand5 != null">
+				brand5 = #{record.brand5,jdbcType=VARCHAR},
+			</if>
+			<if test="record.logoimage != null">
+				logoImage = #{record.logoimage,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="record.description != null">
+				description = #{record.description,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update brand
+		set id = #{record.id,jdbcType=INTEGER},
+		brandId =
+		#{record.brandid,jdbcType=VARCHAR},
+		name =
+		#{record.name,jdbcType=VARCHAR},
+		sort =
+		#{record.sort,jdbcType=INTEGER},
+		region =
+		#{record.region,jdbcType=VARCHAR},
+		addTime =
+		#{record.addtime,jdbcType=TIMESTAMP},
+		state =
+		#{record.state,jdbcType=INTEGER},
+		brand1 =
+		#{record.brand1,jdbcType=VARCHAR},
+		brand2 =
+		#{record.brand2,jdbcType=VARCHAR},
+		brand3 =
+		#{record.brand3,jdbcType=INTEGER},
+		brand4 =
+		#{record.brand4,jdbcType=DOUBLE},
+		brand5 =
+		#{record.brand5,jdbcType=VARCHAR},
+		logoImage =
+		#{record.logoimage,jdbcType=LONGVARCHAR},
+		description =
+		#{record.description,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update brand
+		set id = #{record.id,jdbcType=INTEGER},
+		brandId =
+		#{record.brandid,jdbcType=VARCHAR},
+		name =
+		#{record.name,jdbcType=VARCHAR},
+		sort =
+		#{record.sort,jdbcType=INTEGER},
+		region =
+		#{record.region,jdbcType=VARCHAR},
+		addTime =
+		#{record.addtime,jdbcType=TIMESTAMP},
+		state =
+		#{record.state,jdbcType=INTEGER},
+		brand1 =
+		#{record.brand1,jdbcType=VARCHAR},
+		brand2 =
+		#{record.brand2,jdbcType=VARCHAR},
+		brand3 =
+		#{record.brand3,jdbcType=INTEGER},
+		brand4 =
+		#{record.brand4,jdbcType=DOUBLE},
+		brand5 =
+		#{record.brand5,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.BrandWithBLOBs">
+		update brand
+		<set>
+			<if test="brandid != null">
+				brandId = #{brandid,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="region != null">
+				region = #{region,jdbcType=VARCHAR},
+			</if>
+			<if test="addtime != null">
+				addTime = #{addtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+			<if test="brand1 != null">
+				brand1 = #{brand1,jdbcType=VARCHAR},
+			</if>
+			<if test="brand2 != null">
+				brand2 = #{brand2,jdbcType=VARCHAR},
+			</if>
+			<if test="brand3 != null">
+				brand3 = #{brand3,jdbcType=INTEGER},
+			</if>
+			<if test="brand4 != null">
+				brand4 = #{brand4,jdbcType=DOUBLE},
+			</if>
+			<if test="brand5 != null">
+				brand5 = #{brand5,jdbcType=VARCHAR},
+			</if>
+			<if test="logoimage != null">
+				logoImage = #{logoimage,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.BrandWithBLOBs">
+		update
+		brand
+		set brandId = #{brandid,jdbcType=VARCHAR},
+		name =
+		#{name,jdbcType=VARCHAR},
+		sort = #{sort,jdbcType=INTEGER},
+		region =
+		#{region,jdbcType=VARCHAR},
+		addTime = #{addtime,jdbcType=TIMESTAMP},
+		state = #{state,jdbcType=INTEGER},
+		brand1 = #{brand1,jdbcType=VARCHAR},
+		brand2 = #{brand2,jdbcType=VARCHAR},
+		brand3 =
+		#{brand3,jdbcType=INTEGER},
+		brand4 = #{brand4,jdbcType=DOUBLE},
+		brand5 =
+		#{brand5,jdbcType=VARCHAR},
+		logoImage =
+		#{logoimage,jdbcType=LONGVARCHAR},
+		description =
+		#{description,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Brand">
+		update brand
+		set
+		brandId = #{brandid,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		sort = #{sort,jdbcType=INTEGER},
+		region = #{region,jdbcType=VARCHAR},
+		addTime = #{addtime,jdbcType=TIMESTAMP},
+		state =
+		#{state,jdbcType=INTEGER},
+		brand1 = #{brand1,jdbcType=VARCHAR},
+		brand2 =
+		#{brand2,jdbcType=VARCHAR},
+		brand3 = #{brand3,jdbcType=INTEGER},
+		brand4
+		= #{brand4,jdbcType=DOUBLE},
+		brand5 = #{brand5,jdbcType=VARCHAR}
+		where
+		id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 新写的 -->
+	<select id="selectAllProductsBrandByComplexSearch" resultMap="BaseResultMap"
 		parameterType="com.older.manager.bean.Products">
 		select distinct b.* from products p,brand b,productKeyword
 		pk,productType pt
@@ -443,7 +503,7 @@
 		</if>
 		<if test="productType!=null">
 			<if test="productType.name!=null and productType.name!=''">
-				and p.name= #{productType.name}
+				and pt.name= #{productType.name}
 			</if>
 		</if>
 		<if test="productKeyword!=null">
@@ -451,8 +511,12 @@
 				and pk.keyword like '%${productKeyword.keyword}%'
 			</if>
 		</if>
-		<if test="sales!=null"> order by p.sales desc </if>
-		<if test="nowprice!=null">order by p.nowPrice asc</if>
-
+		
+		<if test="nowprice!=null">
+			 order by p.nowPrice asc
+		</if>
+		<if test="sales!=null">
+			order by p.sales desc
+		</if>
 	</select>
 </mapper>

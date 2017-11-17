@@ -82,8 +82,9 @@
 								</li>
 								<li class="td td-item">
 									<div class="item-pic">
-										<a href="#" target="_blank" title="${cart.product.imagetitle}"
-											class="J_MakePoint" data-point="tbcart.8.12"> <img
+										<a href="${APP_PATH}/product/getProduct/${cart.product.id}"
+											title="${cart.product.imagetitle}" class="J_MakePoint"
+											data-point="tbcart.8.12"> <img
 											src="${APP_PATH}/${cart.product.images}"
 											onerror="onerror=null;src='${APP_PATH }/static/images/f9b49612f9d78f425c77eae488b9c1ad.jpg'"
 											class="itempic J_ItemImg" width="80px" height="80px">
@@ -91,9 +92,9 @@
 									</div>
 									<div class="item-info">
 										<div class="item-basic-info">
-											<a href="#" target="_blank" title="${cart.product.name}"
-												class="item-title J_MakePoint" data-point="tbcart.8.11">
-												${cart.product.name} </a>
+											<a href="${APP_PATH}/product/getProduct/${cart.product.id}"
+												title="${cart.product.name}" class="item-title J_MakePoint"
+												data-point="tbcart.8.11"> ${cart.product.name} </a>
 										</div>
 									</div>
 								</li>
@@ -173,7 +174,7 @@
 						id="J_Total">0.00</em></strong>
 				</div>
 				<div class="btn-area">
-					<a href="javascript:;" id="J_Go" onClick="account(2)"
+					<a href="javascript:;" id="J_Go" onClick="account('${users.id}')"
 						class="submit-btn submit-btn-disabled"
 						aria-label="请注意如果没有选择宝贝，将无法结算"> <span>结&nbsp;算</span></a>
 				</div>
@@ -246,7 +247,7 @@
 						});
 
 					}
-					$("#J_Total").html(cost + ".00");
+					$("#J_Total").html(cost.toFixed(2));
 					$("#J_SelectedItemsCount").html(num);
 				});
 		//反选
@@ -272,7 +273,7 @@
 								cost -= baseprice;
 								num -= 1;
 							}
-							$("#J_Total").html(cost + ".00");
+							$("#J_Total").html(cost.toFixed(2));
 							$("#J_SelectedItemsCount").html(num);
 						});
 
@@ -314,13 +315,13 @@
 					//该商品总金额
 					var baseprice = num * nowprice;
 					$(this).parents("ul").find("em:.number").html(
-							baseprice + ".0");
+							baseprice.toFixed(2));
 
 					if ($(this).parents("ul").find(".item_check").prop(
 							"checked")) {
 						var cost = parseFloat($("#J_Total").text());
 						cost += nowprice;
-						$("#J_Total").html(cost + ".00");
+						$("#J_Total").html(cost.toFixed(2));
 					}
 				});
 		//减少数量按钮-
@@ -350,12 +351,12 @@
 					//该商品总金额
 					var baseprice = num * nowprice;
 					$(this).parents("ul").find("em:.number").html(
-							baseprice + ".0");
+							baseprice.toFixed(2));
 					if ($(this).parents("ul").find(".item_check").prop(
 							"checked")) {
 						var cost = parseFloat($("#J_Total").text());
 						cost -= nowprice;
-						$("#J_Total").html(cost + ".00");
+						$("#J_Total").html(cost.toFixed(2));
 					}
 				});
 
@@ -396,7 +397,7 @@
 					//该商品总金额
 					var baseprice = num * nowprice;
 					$(this).parents("ul").find("em:.number").html(
-							baseprice + ".0");
+							baseprice.toFixed(2));
 
 					//如果此产品是选中状态，则修改相应结算金额
 					if ($(this).parents("ul").find(".item_check").prop(
@@ -404,7 +405,7 @@
 						var cost = parseFloat($("#J_Total").text());
 						var n = num - number;//相差数量
 						cost += nowprice * n;
-						$("#J_Total").html(cost + ".00");
+						$("#J_Total").html(cost.toFixed(2));
 					}
 				});
 
@@ -434,7 +435,7 @@
 								cost -= baseprice;
 								var num = Number($("#J_SelectedItemsCount")
 										.text()) - 1;
-								$("#J_Total").html(cost + ".00");
+								$("#J_Total").html(cost.toFixed(2));
 								$("#J_SelectedItemsCount").html(num);
 							}
 							//将该行删除掉

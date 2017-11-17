@@ -1,321 +1,389 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ProductKeywordMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.ProductKeyword" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="product_id" property="productId" jdbcType="INTEGER" />
-    <result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
-    <result column="number" property="number" jdbcType="INTEGER" />
-    <result column="param1" property="param1" jdbcType="VARCHAR" />
-    <result column="param2" property="param2" jdbcType="VARCHAR" />
-    <result column="param3" property="param3" jdbcType="DOUBLE" />
-    <result column="param4" property="param4" jdbcType="INTEGER" />
-  </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.older.manager.bean.ProductKeyword" extends="BaseResultMap" >
-    <result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, product_id, changeTime, number, param1, param2, param3, param4
-  </sql>
-  <sql id="Blob_Column_List" >
-    keyword
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.older.manager.bean.ProductKeywordExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from productkeyword
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-   order by id DESC
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ProductKeywordExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from productkeyword
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from productkeyword
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from productkeyword
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ProductKeywordExample" >
-    delete from productkeyword
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.ProductKeyword" >
-    insert into productkeyword (id, product_id, changeTime, 
-      number, param1, param2, 
-      param3, param4, keyword
-      )
-    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{changetime,jdbcType=TIMESTAMP}, 
-      #{number,jdbcType=INTEGER}, #{param1,jdbcType=VARCHAR}, #{param2,jdbcType=VARCHAR}, 
-      #{param3,jdbcType=DOUBLE}, #{param4,jdbcType=INTEGER}, #{keyword,jdbcType=LONGVARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.ProductKeyword" >
-    insert into productkeyword
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="productId != null" >
-        product_id,
-      </if>
-      <if test="changetime != null" >
-        changeTime,
-      </if>
-      <if test="number != null" >
-        number,
-      </if>
-      <if test="param1 != null" >
-        param1,
-      </if>
-      <if test="param2 != null" >
-        param2,
-      </if>
-      <if test="param3 != null" >
-        param3,
-      </if>
-      <if test="param4 != null" >
-        param4,
-      </if>
-      <if test="keyword != null" >
-        keyword,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="productId != null" >
-        #{productId,jdbcType=INTEGER},
-      </if>
-      <if test="changetime != null" >
-        #{changetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="number != null" >
-        #{number,jdbcType=INTEGER},
-      </if>
-      <if test="param1 != null" >
-        #{param1,jdbcType=VARCHAR},
-      </if>
-      <if test="param2 != null" >
-        #{param2,jdbcType=VARCHAR},
-      </if>
-      <if test="param3 != null" >
-        #{param3,jdbcType=DOUBLE},
-      </if>
-      <if test="param4 != null" >
-        #{param4,jdbcType=INTEGER},
-      </if>
-      <if test="keyword != null" >
-        #{keyword,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ProductKeywordExample" resultType="java.lang.Integer" >
-    select count(*) from productkeyword
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update productkeyword
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.productId != null" >
-        product_id = #{record.productId,jdbcType=INTEGER},
-      </if>
-      <if test="record.changetime != null" >
-        changeTime = #{record.changetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.number != null" >
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-      <if test="record.param1 != null" >
-        param1 = #{record.param1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.param2 != null" >
-        param2 = #{record.param2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.param3 != null" >
-        param3 = #{record.param3,jdbcType=DOUBLE},
-      </if>
-      <if test="record.param4 != null" >
-        param4 = #{record.param4,jdbcType=INTEGER},
-      </if>
-      <if test="record.keyword != null" >
-        keyword = #{record.keyword,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
-    update productkeyword
-    set id = #{record.id,jdbcType=INTEGER},
-      product_id = #{record.productId,jdbcType=INTEGER},
-      changeTime = #{record.changetime,jdbcType=TIMESTAMP},
-      number = #{record.number,jdbcType=INTEGER},
-      param1 = #{record.param1,jdbcType=VARCHAR},
-      param2 = #{record.param2,jdbcType=VARCHAR},
-      param3 = #{record.param3,jdbcType=DOUBLE},
-      param4 = #{record.param4,jdbcType=INTEGER},
-      keyword = #{record.keyword,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update productkeyword
-    set id = #{record.id,jdbcType=INTEGER},
-      product_id = #{record.productId,jdbcType=INTEGER},
-      changeTime = #{record.changetime,jdbcType=TIMESTAMP},
-      number = #{record.number,jdbcType=INTEGER},
-      param1 = #{record.param1,jdbcType=VARCHAR},
-      param2 = #{record.param2,jdbcType=VARCHAR},
-      param3 = #{record.param3,jdbcType=DOUBLE},
-      param4 = #{record.param4,jdbcType=INTEGER}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ProductKeyword" >
-    update productkeyword
-    <set >
-      <if test="productId != null" >
-        product_id = #{productId,jdbcType=INTEGER},
-      </if>
-      <if test="changetime != null" >
-        changeTime = #{changetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="number != null" >
-        number = #{number,jdbcType=INTEGER},
-      </if>
-      <if test="param1 != null" >
-        param1 = #{param1,jdbcType=VARCHAR},
-      </if>
-      <if test="param2 != null" >
-        param2 = #{param2,jdbcType=VARCHAR},
-      </if>
-      <if test="param3 != null" >
-        param3 = #{param3,jdbcType=DOUBLE},
-      </if>
-      <if test="param4 != null" >
-        param4 = #{param4,jdbcType=INTEGER},
-      </if>
-      <if test="keyword != null" >
-        keyword = #{keyword,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.ProductKeyword" >
-    update productkeyword
-    set product_id = #{productId,jdbcType=INTEGER},
-      changeTime = #{changetime,jdbcType=TIMESTAMP},
-      number = #{number,jdbcType=INTEGER},
-      param1 = #{param1,jdbcType=VARCHAR},
-      param2 = #{param2,jdbcType=VARCHAR},
-      param3 = #{param3,jdbcType=DOUBLE},
-      param4 = #{param4,jdbcType=INTEGER},
-      keyword = #{keyword,jdbcType=LONGVARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ProductKeyword" >
-    update productkeyword
-    set product_id = #{productId,jdbcType=INTEGER},
-      changeTime = #{changetime,jdbcType=TIMESTAMP},
-      number = #{number,jdbcType=INTEGER},
-      param1 = #{param1,jdbcType=VARCHAR},
-      param2 = #{param2,jdbcType=VARCHAR},
-      param3 = #{param3,jdbcType=DOUBLE},
-      param4 = #{param4,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.older.manager.mapper.ProductKeywordMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.ProductKeyword">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="product_id" property="productId" jdbcType="INTEGER" />
+		<result column="changeTime" property="changetime" jdbcType="TIMESTAMP" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="param1" property="param1" jdbcType="VARCHAR" />
+		<result column="param2" property="param2" jdbcType="VARCHAR" />
+		<result column="param3" property="param3" jdbcType="DOUBLE" />
+		<result column="param4" property="param4" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.older.manager.bean.ProductKeyword"
+		extends="BaseResultMap">
+		<result column="keyword" property="keyword" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, product_id, changeTime, number, param1, param2, param3,
+		param4
+	</sql>
+	<sql id="Blob_Column_List">
+		keyword
+	</sql>
+	<select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs"
+		parameterType="com.older.manager.bean.ProductKeywordExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from productkeyword
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		order by id DESC
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.ProductKeywordExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from productkeyword
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from productkeyword
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		productkeyword
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.ProductKeywordExample">
+		delete from productkeyword
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.ProductKeyword">
+		insert into productkeyword
+		(id, product_id, changeTime,
+		number, param1, param2,
+		param3, param4,
+		keyword
+		)
+		values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER},
+		#{changetime,jdbcType=TIMESTAMP},
+		#{number,jdbcType=INTEGER},
+		#{param1,jdbcType=VARCHAR}, #{param2,jdbcType=VARCHAR},
+		#{param3,jdbcType=DOUBLE}, #{param4,jdbcType=INTEGER},
+		#{keyword,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.ProductKeyword">
+		insert into productkeyword
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="productId != null">
+				product_id,
+			</if>
+			<if test="changetime != null">
+				changeTime,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="param1 != null">
+				param1,
+			</if>
+			<if test="param2 != null">
+				param2,
+			</if>
+			<if test="param3 != null">
+				param3,
+			</if>
+			<if test="param4 != null">
+				param4,
+			</if>
+			<if test="keyword != null">
+				keyword,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="productId != null">
+				#{productId,jdbcType=INTEGER},
+			</if>
+			<if test="changetime != null">
+				#{changetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=INTEGER},
+			</if>
+			<if test="param1 != null">
+				#{param1,jdbcType=VARCHAR},
+			</if>
+			<if test="param2 != null">
+				#{param2,jdbcType=VARCHAR},
+			</if>
+			<if test="param3 != null">
+				#{param3,jdbcType=DOUBLE},
+			</if>
+			<if test="param4 != null">
+				#{param4,jdbcType=INTEGER},
+			</if>
+			<if test="keyword != null">
+				#{keyword,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.ProductKeywordExample"
+		resultType="java.lang.Integer">
+		select count(*) from productkeyword
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update productkeyword
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.productId != null">
+				product_id = #{record.productId,jdbcType=INTEGER},
+			</if>
+			<if test="record.changetime != null">
+				changeTime = #{record.changetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.number != null">
+				number = #{record.number,jdbcType=INTEGER},
+			</if>
+			<if test="record.param1 != null">
+				param1 = #{record.param1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.param2 != null">
+				param2 = #{record.param2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.param3 != null">
+				param3 = #{record.param3,jdbcType=DOUBLE},
+			</if>
+			<if test="record.param4 != null">
+				param4 = #{record.param4,jdbcType=INTEGER},
+			</if>
+			<if test="record.keyword != null">
+				keyword = #{record.keyword,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update productkeyword
+		set id = #{record.id,jdbcType=INTEGER},
+		product_id = #{record.productId,jdbcType=INTEGER},
+		changeTime =
+		#{record.changetime,jdbcType=TIMESTAMP},
+		number =
+		#{record.number,jdbcType=INTEGER},
+		param1 =
+		#{record.param1,jdbcType=VARCHAR},
+		param2 =
+		#{record.param2,jdbcType=VARCHAR},
+		param3 =
+		#{record.param3,jdbcType=DOUBLE},
+		param4 =
+		#{record.param4,jdbcType=INTEGER},
+		keyword =
+		#{record.keyword,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update productkeyword
+		set id = #{record.id,jdbcType=INTEGER},
+		product_id = #{record.productId,jdbcType=INTEGER},
+		changeTime =
+		#{record.changetime,jdbcType=TIMESTAMP},
+		number =
+		#{record.number,jdbcType=INTEGER},
+		param1 =
+		#{record.param1,jdbcType=VARCHAR},
+		param2 =
+		#{record.param2,jdbcType=VARCHAR},
+		param3 =
+		#{record.param3,jdbcType=DOUBLE},
+		param4 =
+		#{record.param4,jdbcType=INTEGER}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ProductKeyword">
+		update productkeyword
+		<set>
+			<if test="productId != null">
+				product_id = #{productId,jdbcType=INTEGER},
+			</if>
+			<if test="changetime != null">
+				changeTime = #{changetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=INTEGER},
+			</if>
+			<if test="param1 != null">
+				param1 = #{param1,jdbcType=VARCHAR},
+			</if>
+			<if test="param2 != null">
+				param2 = #{param2,jdbcType=VARCHAR},
+			</if>
+			<if test="param3 != null">
+				param3 = #{param3,jdbcType=DOUBLE},
+			</if>
+			<if test="param4 != null">
+				param4 = #{param4,jdbcType=INTEGER},
+			</if>
+			<if test="keyword != null">
+				keyword = #{keyword,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.older.manager.bean.ProductKeyword">
+		update
+		productkeyword
+		set product_id = #{productId,jdbcType=INTEGER},
+		changeTime = #{changetime,jdbcType=TIMESTAMP},
+		number =
+		#{number,jdbcType=INTEGER},
+		param1 = #{param1,jdbcType=VARCHAR},
+		param2
+		= #{param2,jdbcType=VARCHAR},
+		param3 = #{param3,jdbcType=DOUBLE},
+		param4 = #{param4,jdbcType=INTEGER},
+		keyword =
+		#{keyword,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ProductKeyword">
+		update
+		productkeyword
+		set product_id = #{productId,jdbcType=INTEGER},
+		changeTime = #{changetime,jdbcType=TIMESTAMP},
+		number =
+		#{number,jdbcType=INTEGER},
+		param1 = #{param1,jdbcType=VARCHAR},
+		param2
+		= #{param2,jdbcType=VARCHAR},
+		param3 = #{param3,jdbcType=DOUBLE},
+		param4 = #{param4,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!--查找销量排前五的产品关键词 -->
+	<select id="selectAllHotProductsKeyWordsByComplexSearch"
+		resultMap="BaseResultMap" parameterType="com.older.manager.bean.Products">
+		select pk.* from products p,brand b,productKeyword pk,productType pt
+		where p.type_id=pt.id and p.brand_id=b.id and p.id=pk.product_id
+		and
+		p.state=1
+		<if test="name!=null and name!=''">
+			and p.name like '%${name}%'
+		</if>
+		<if test="brand!=null">
+			<if test="brand.name!=null and brand.name!=''">
+				and b.name = #{brand.name}
+			</if>
+		</if>
+		<if test="productType!=null">
+			<if test="productType.name!=null and productType.name!=''">
+				and py.name= #{productType.name}
+			</if>
+		</if>
+		<if test="productKeyword!=null">
+			<if test="productKeyword.keyword!=null and productKeyword.keyword!=''">
+				and pk.keyword like '%${productKeyword.keyword}%'
+			</if>
+		</if>
+		order by p.sales desc limit 1,5
+		<if test="nowprice!=null">order by p.nowPrice asc</if>
+	</select>
 </mapper>

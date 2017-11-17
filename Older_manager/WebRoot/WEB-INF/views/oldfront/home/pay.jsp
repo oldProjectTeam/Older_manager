@@ -19,27 +19,33 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+
+
+
 <link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
 	type="text/css" />
 
 <link href="${APP_PATH}/static/css/demo.css" rel="stylesheet"
 	type="text/css" />
+	 
 <link href="${APP_PATH}/static/css/cartstyle.css" rel="stylesheet"
 	type="text/css" />
 
 <link href="${APP_PATH}/static/css/jsstyle.css" rel="stylesheet"
 	type="text/css" />
-
+ 
 <script type="text/javascript" src="${APP_PATH}/static/js/address.js"></script>
 <script type="text/javascript"
 	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
+<script language="javascript" src="${APP_PATH}/static/shop/city/PCASClass.js"></script>
+
 </head>
 
 <body>
-    <jsp:include page="shopheader.jsp"></jsp:include>
-	<c:if test="${empty carts }">
+   		 <jsp:include page="shopheader.jsp"></jsp:include>
+			<c:if test="${empty carts }">
             	<script type="text/javascript">
             	confirm("没有商品，请先选购商品!");
             	window.location.href="${APP_PATH}/shop/oldfronthome";
@@ -96,8 +102,7 @@
 									    	 value="${address.id}" style="width:18px;height:18px;margin-top:-5px" >
 									    </span>
 										<span class="new-addr-bar">|</span>
-										<a href="#" class="hidden">设为默认</a>
-										<span class="new-addr-bar hidden">|</span>
+										 
 										
 									</c:if>	
 									<c:if test="${address.state!=1}">
@@ -106,12 +111,10 @@
 									    onClick="start(this)"  
 									    value="${address.id}" style="width:18px;height:18px;margin-top:-5px" >
 										<span class="new-addr-bar">|</span>
-										<a href="#">设为默认</a>
-									    <span class="new-addr-bar">|</span>
 									</c:if>											
-									<a href="#">编辑</a>
-									<span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this);">删除</a>
+									<a href="javascript:;" onClick="edit_btn('${address.id}')">编辑</a>
+									<%-- <span class="new-addr-bar">|</span>
+									<a href="javascript:void(0);" onclick="delClick(this,'${address.id}');">删除</a> --%>
 								</div>
 
 							</li>						    
@@ -346,7 +349,7 @@
 				</div>
 			</div>
 			<div class="theme-popover-mask"></div>
-			<div class="theme-popover">
+			<div class="theme-popover" id="add_address_modal">
 
 				<!--标题 -->
 				<div class="am-cf am-padding">
@@ -355,52 +358,50 @@
 				<hr/>
 
 				<div class="am-u-md-12">
-					<form class="am-form am-form-horizontal">
+					<form class="am-form am-form-horizontal" id="add_address_form">
 
 						<div class="am-form-group">
-							<label for="user-name" class="am-form-label">收货人</label>
+							<label for="user-name" class="am-form-label"><font color="red">*</font>收货人</label>
 							<div class="am-form-content">
-								<input type="text" id="user-name" placeholder="收货人">
+								<input type="text" id="user-name" name="name" placeholder="2-30位英文或中文">
+								<font color="red"></font>
+								<input type="hidden" name="userId" value="${users.id}"/>
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-phone" class="am-form-label">手机号码</label>
+							<label for="user-phone" class="am-form-label"><font color="red">*</font>手机号码</label>
 							<div class="am-form-content">
-								<input id="user-phone" placeholder="手机号必填" type="email">
+								<input id="user-phone" name="phone" placeholder="手机号必填" type="text">
+								<font color="red"></font>
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-phone" class="am-form-label">所在地</label>
+							<label for="user-phone" class="am-form-label"><font color="red">*</font>所在地</label>
 							<div class="am-form-content address">
-								<select data-am-selected>
-									<option value="a">浙江省</option>
-									<option value="b">湖北省</option>
+								<select data-am-selected name="province1" id="location">
 								</select>
-								<select data-am-selected>
-									<option value="a">温州市</option>
-									<option value="b">武汉市</option>
+								<select data-am-selected name="city1">
 								</select>
-								<select data-am-selected>
-									<option value="a">瑞安区</option>
-									<option value="b">洪山区</option>
+								<select data-am-selected name="area1">
 								</select>
+								<font color="red" id="p_msg"></font>
 							</div>
 						</div>
 
 						<div class="am-form-group">
-							<label for="user-intro" class="am-form-label">详细地址</label>
+							<label for="user-intro" class="am-form-label"><font color="red">*</font>详细地址</label>
 							<div class="am-form-content">
-								<textarea class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
-								<small>100字以内写出你的详细地址...</small>
+								<textarea name="detailaddress" class="" rows="3" id="user-intro" placeholder="输入详细地址"></textarea>
+								<small>100字以内写出你的详细地址...</small><font color="red" id="intro_msg"></font>
 							</div>
 						</div>
 
 						<div class="am-form-group theme-poptit">
 							<div class="am-u-sm-9 am-u-sm-push-3">
-								<div class="am-btn am-btn-danger">保存</div>
-								<div class="am-btn am-btn-danger close">取消</div>
+								<div class="am-btn am-btn-danger" id="add_save_btn">保存</div>
+								<div class="am-btn am-btn-danger close">关闭</div>
 							</div>
 						</div>
 					</form>
@@ -408,7 +409,273 @@
 
 			</div>
 		<div class="clear"></div>
+
+<!--编辑地址模块  --> 		
+ <div class="theme-popover1" id="edit_address_modal">
+		<!--标题 -->
+		<div class="am-cf am-padding">
+			<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">编辑地址</strong> / <small>Edit address</small></div>
+		</div>
+		<hr/>
+		<div class="am-u-md-12">
+			<form class="am-form am-form-horizontal" id="edit_address_form">
+
+				<div class="am-form-group">
+					<label for="user-name" class="am-form-label"><font color="red">*</font>收货人</label>
+					<div class="am-form-content">
+						<input type="text" id="user-name1" name="name" placeholder="2-30位英文或中文">
+						<font color="red"></font>
+						<input type="hidden" name="userId" value="${users.id}"/>
+						<input type="hidden" name="id" id="addressId"/>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="user-phone" class="am-form-label"><font color="red">*</font>手机号码</label>
+					<div class="am-form-content">
+						<input id="user-phone1" name="phone" placeholder="手机号必填" type="text">
+						<font color="red"></font>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="user-phone" class="am-form-label"><font color="red">*</font>所在地</label>
+					<div class="am-form-content address" >
+						<select data-am-selected id="province2" name="province2" style="width:125px;float:left"  id="location1">
+						</select>
+						<select data-am-selected id="city2" style="width:125px;float:left" name="city2">
+						</select>
+						<select data-am-selected id="area2" style="width:132px;float:left" name="area2">
+						</select>
+						<font color="red" id="p_msg1"></font>
+					</div>
+				</div>
+
+				<div class="am-form-group">
+					<label for="user-intro" class="am-form-label"><font color="red">*</font>详细地址</label>
+					<div class="am-form-content">
+						<textarea  name="detailaddress" class="" rows="3" id="user-intro1" placeholder="输入详细地址"></textarea>
+						<small>100字以内写出你的详细地址...</small><font color="red" id="intro_msg1"></font>
+					</div>
+				</div>
+
+				<div class="am-form-group theme-poptit">
+					<div class="am-u-sm-9 am-u-sm-push-3">
+						<div class="am-btn am-btn-danger" id="edit_save_btn">保存</div>
+						<div class="am-btn am-btn-danger" id="control_btn">取消</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>		
 <script type="text/javascript">
+
+
+//进来先隐藏编辑模块
+$("#edit_address_modal").hide();
+//编辑模块取消按钮
+$("#control_btn").click(function(){
+	layer.closeAll();
+});
+var userName1=false;
+$("#user-name1").change(function(){
+	//校验收货人
+	var regx= /^[a-zA-Z\u4e00-\u9fa5]{2,20}$/i; 
+	if(regx.test($("#user-name1").val())){
+		$(this).next("font").html("");
+		userName1=true;
+	}else{
+		$(this).next("font").html("请输入正确的收货人");
+		userName1=false;
+	}
+});
+
+$("#edit_save_btn").click(function(){
+	//收货人
+	var regx= /^[a-zA-Z\u4e00-\u9fa5]{2,20}$/; 
+	if(!regx.test($("#user-name1").val())){
+		$("#user-name1").next("font").html("");
+		$("#user-name1").next("font").html("请输入正确的收货人");
+		return false;
+	}else{
+		$("#user-name1").next("font").html("");
+	}
+	
+	//校验手机号
+	var pattern = /^1[34578]\d{9}$/;
+	if($("#user-phone1").val().length<1){
+		$("#user-phone1").next("font").html("请输入手机号");
+		return false;
+	}else if(!pattern.test($("#user-phone1").val())){
+		$("#user-phone1").next("font").html("这不是一个合法的手机号");
+		return false;
+	}else{
+		$("#user-phone1").next("font").html("");
+	}
+	var province2=$("#province2").val();
+	 if(province2==""||province2.length<1){
+		 $("#p_msg1").html("请选择地区");
+		 return false;
+	 }else{
+		 $("#p_msg1").html("");
+	 }
+	var description=$("#user-intro1").val();
+	if(description.length<1){
+		$("#intro_msg1").html("请输入详细地址！");
+		return false;
+	}else if(description.length>100){
+		$("#intro_msg1").html("详细地址字数超限！");
+		return false;
+	}else{
+		$("#intro_msg1").html("");
+	} 
+	 
+	$.ajax({
+		url:"${APP_PATH}/address/updateaddress1?province1="+$("#province2").val()
+				+"&city1="+$("#city2").val()+"&area1="+$("#area2").val(),
+		type:"POST",
+		data:$("#edit_address_form").serialize(),
+		success:function(result){
+			if(result.code==100){
+				
+				layer.closeAll();
+				layer.msg("修改成功",{
+					icon:6,
+					time:1000
+				});
+			}else{
+				layer.msg("修改失败");
+			}
+		}
+	}); 
+
+});
+
+
+
+
+
+
+//编辑地址按钮
+function edit_btn(id){
+	layer.open({
+		  type: 1,
+		  area:['500px','400px'],
+		  title: false,
+		  closeBtn:0,
+		  shadeClose: true,
+		  skin: 'yourclass',
+		  content: $("#edit_address_modal")
+	});
+	$.ajax({
+		url:"${APP_PATH}/address/getAddress/"+id,
+		type:"POST",
+		success:function(result){
+			if(result.code==100){
+				var address=result.extend.address;
+				$("#addressId").val(address.id);
+				 $("#user-name1").val(address.name);
+				 $("#user-phone1").val(address.phone);
+				 new PCAS("province2","city2","area2",address.province1,address.city1,address.area1);
+				 $("#user-intro1").val(address.detailaddress);
+			}else{
+				layer.msg("查询失败");
+			}
+			console.log(result);
+		}
+	});
+}
+
+//删除地址按钮
+function delClick(obj,id){
+	layer.confirm("确认要删除吗？",function(index){
+		layer.close(index);
+		$.ajax({
+			url:"${APP_PATH}/address/deleteAddress/"+id,
+			type:"POST",
+			success:function(result){
+				if(result.code==100){
+					layer.msg("删除成功");
+					$(obj).parents("li").remove();
+				}else{
+					layer.msg("删除失败");
+				}
+			}
+		});
+	});
+	
+}
+
+var userName=false;
+$("#user-name").change(function(){
+	//校验收货人
+	var regx= /^[a-zA-Z\u4e00-\u9fa5]{2,20}$/; 
+	if(regx.test($("#user-name").val())){
+		$(this).next("font").html("");
+		userName=true;
+	}else{
+		$(this).next("font").html("请输入正确的收货人");
+		userName=false;
+	}
+});
+$("#add_save_btn").click(function(){
+	 
+	//收货人
+	if(!userName){
+		$("#user-name").next("font").html("请输入正确的收货人");
+		return false;
+	}else{
+		$("#user-name").next("font").html("");
+	}
+	
+	//校验手机号
+	var pattern = /^1[34578]\d{9}$/;
+	if($("#user-phone").val().length<1){
+		$("#user-phone").next("font").html("请输入手机号");
+		return false;
+	}else if(!pattern.test($("#user-phone").val())){
+		$("#user-phone").next("font").html("这不是一个合法的手机号");
+		return false;
+	}else{
+		$("#user-phone").next("font").html("");
+	}
+	var location=$("#location").val();
+	 if(location==""||location.length<1){
+		 $("#p_msg").html("请选择地区");
+		 return false;
+	 }else{
+		 $("#p_msg").html("");
+	 }
+	var description=$("#user-intro").val();
+	if(description.length<1){
+		$("#intro_msg").html("请输入详细地址！");
+		return false;
+	}else if(description.length>100){
+		$("#intro_msg").html("详细地址字数超限！");
+		return false;
+	}else{
+		$("#intro_msg").html("");
+	} 
+	 
+	$.ajax({
+		url:"${APP_PATH}/address/insertAddress",
+		type:"POST",
+		data:$("#add_address_form").serialize(),
+		success:function(result){
+			if(result.code==100){
+				layer.closeAll();
+				window.location.reload();
+				layer.msg("添加成功",{
+					icon:6,
+					time:1000
+				});
+				$("#add_address_form")[0].reset();
+			}else{
+				layer.msg("添加失败");
+			}
+		}
+	});
+});
 
 //启用地址
 function start(obj){
@@ -439,6 +706,10 @@ function submitOrder(userId){
 	}
 	//收货地址id
 	 var addressId=$("input[name='state']:checked").val();
+	 if(addressId==''||addressId==null){
+		 layer.msg("请选择收货地址！");
+		 return false;
+	 }
 	 if(formulaWay==''||formulaWay==null){
 		 layer.msg("请选择物流方式！");
 		 return false;
@@ -493,12 +764,12 @@ function updateNumber(id,number){
 	var nowprice=parseFloat($(this).parents("ul").find("em:.price-now").text());
 	//该商品总金额
 	var baseprice=num*nowprice;
-	$(this).parents("ul").find("em:.number").html(baseprice+".0");
+	$(this).parents("ul").find("em:.number").html(baseprice.toFixed(2));
 
 	var cost=parseFloat($("#J_ActualFee").text());
 	cost+=nowprice;
-	$("#J_ActualFee").html(cost+".00");
-	$("#pay-sum").html(cost+".00");
+	$("#J_ActualFee").html(cost.toFixed(2));
+	$("#pay-sum").html(cost.toFixed(2));
 	
 });
 //减少数量按钮-
@@ -521,12 +792,12 @@ $(document).on("click",".min",function(){
 	var nowprice=parseFloat($(this).parents("ul").find("em:.price-now").text());
 	//该商品总金额
 	var baseprice=num*nowprice;
-	$(this).parents("ul").find("em:.number").html(baseprice+".0");
+	$(this).parents("ul").find("em:.number").html(baseprice.toFixed(2));
 
 	var cost=parseFloat($("#J_ActualFee").text());
 	cost-=nowprice;
-	$("#J_ActualFee").html(cost+".00");
-	$("#pay-sum").html(cost+".00");
+	$("#J_ActualFee").html(cost.toFixed(2));
+	$("#pay-sum").html(cost.toFixed(2));
 });
 
 //文本框原数量值
@@ -560,16 +831,19 @@ $(document).on("change",".text_box",function(){
 	
 	//该商品总金额
 	var baseprice=num*nowprice;
-	$(this).parents("ul").find("em:.number").html(baseprice+".0");
+	$(this).parents("ul").find("em:.number").html(baseprice.toFixed(2));
 	
 	var cost=parseFloat($("#J_ActualFee").text());
 	var n=num-number;//相差数量
 	cost+=nowprice*n;
-	$("#J_ActualFee").html(cost+".00");
-	$("#pay-sum").html(cost+".00");
+	$("#J_ActualFee").html(cost.toFixed(2));
+	$("#pay-sum").html(cost.toFixed(2));
 });
+
+//选择地址
+new PCAS("province1","city1","area1","北京市","市辖区","海淀区");
 
 </script>		
 </body>
-
+     
 </html>

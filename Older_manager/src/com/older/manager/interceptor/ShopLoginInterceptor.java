@@ -46,6 +46,11 @@ public class ShopLoginInterceptor implements HandlerInterceptor {
 		if (users != null) {
 			return true;
 		}
+		ActiveUser activeUser = (ActiveUser) session.getAttribute("activeUser");
+		// 如果用户身份在session中存在放行
+		if (activeUser != null) {
+			return true;
+		}
 		/*
 		 * if (null == request.getSession(false)) { if (true ==
 		 * request.getSession(true).isNew()) { } else {

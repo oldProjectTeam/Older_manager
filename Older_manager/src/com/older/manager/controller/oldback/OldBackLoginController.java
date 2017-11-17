@@ -86,7 +86,7 @@ public class OldBackLoginController {
 	}
 
 	// 用户退出
-	@RequestMapping("/logout")
+	@RequestMapping("/backlogout")
 	public String logout(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		// session失效

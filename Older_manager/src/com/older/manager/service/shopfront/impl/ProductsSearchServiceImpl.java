@@ -3,16 +3,20 @@
  */
 package com.older.manager.service.shopfront.impl;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.older.manager.bean.Brand;
+import com.older.manager.bean.ProductKeyword;
 import com.older.manager.bean.ProductType;
 import com.older.manager.bean.Products;
 import com.older.manager.bean.ProductsExample;
 import com.older.manager.mapper.BrandMapper;
+import com.older.manager.mapper.ProductKeywordMapper;
 import com.older.manager.mapper.ProductTypeMapper;
 import com.older.manager.mapper.ProductsMapper;
 import com.older.manager.service.shopfront.ProductsSearchService;
@@ -32,6 +36,9 @@ public class ProductsSearchServiceImpl implements ProductsSearchService {
 
 	@Autowired
 	ProductTypeMapper productTypeMapper;
+	
+	@Autowired
+	private ProductKeywordMapper productKeywordMapper;
 
 	/**
 	 * @Title: findAllProductsBySearch
@@ -92,4 +99,42 @@ public class ProductsSearchServiceImpl implements ProductsSearchService {
 		return productTypeMapper.selectAllProductsTypeByComplexSearch(products);
 	}
 
+	/**
+	 * @Title: selectAllHosProductsKeyWordBySearch
+	 * @Description: 通过搜索查找热搜产品关键词
+	 * @param: @param products
+	 * @param: @return
+	 * @throws
+	 */
+	@Override
+	public List<String> selectAllHosProductsKeyWordBySearch(Products products) {
+		String keywords = "";
+		String emp[] = null;
+		ArrayList<String> hotsword = new ArrayList<String>();
+		List<ProductKeyword> productKeywords = productKeywordMapper
+				.selectAllHotProductsKeyWordsByComplexSearch(products);
+		if (productKeywords.size() > 0) {
+			for (int i = 0; i < productKeywords.size(); i++) {
+				keywords = keywords + " " + productKeywords.get(i).getKeyword();
+			}
+			;
+			emp = keywords.split(" ");
+			for (int i = 0; i < emp.length; i++) {
+				hotsword.add(emp[i]);
+			}
+			;
+			ArrayList<String> newArray = new ArrayList<String>();
+			Iterator<String> it = hotsword.iterator();
+			while (it.hasNext()) {
+				String s = (String) it.next();
+				if (!newArray.contains(s)) {
+					newArray.add(s);
+				}
+			}
+			;
+			return newArray;
+		} else {
+			return null;
+		}
+	}
 }
