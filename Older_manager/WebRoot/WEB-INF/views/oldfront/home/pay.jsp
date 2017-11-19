@@ -61,9 +61,9 @@
 						</div>
 						<div class="clear"></div>
 						<ul>
-						    <c:forEach items="${addressList}" var="address">
+						    <c:forEach items="${addressList}" var="address" varStatus="a">
 						    	<div class="per-border"></div>
-							<li class="user-addresslist defaultAddr">
+							  <li class="user-addresslist defaultAddr">
 
 								<div class="address-left">
 									<div class="user DefaultAddr">
@@ -94,7 +94,7 @@
 
 								<div class="new-addr-btn">
 									
-									<c:if test="${address.state==1}">
+									<c:if test="${a.count==1}">
 										<span class="new-addr-bar">启用</span>
 									    <span class="new-addr-bar">
 									    	<input type="radio" checked="true" 
@@ -105,14 +105,14 @@
 										 
 										
 									</c:if>	
-									<c:if test="${address.state!=1}">
+									<c:if test="${a.count!=1}">
 									    <span class="new-addr-bar">启用</span>
 									    <input type="radio" name="state" 
 									    onClick="start(this)"  
 									    value="${address.id}" style="width:18px;height:18px;margin-top:-5px" >
 										<span class="new-addr-bar">|</span>
 									</c:if>											
-									<a href="javascript:;" onClick="edit_btn('${address.id}')">编辑</a>
+									<a href="javascript:;" onClick="edit_btn(this,'${address.id}')">编辑</a>
 									<%-- <span class="new-addr-bar">|</span>
 									<a href="javascript:void(0);" onclick="delClick(this,'${address.id}');">删除</a> --%>
 								</div>
@@ -184,7 +184,7 @@
 										<div class="pay-phone">
 											<li class="td td-item">
 												<div class="item-pic">
-													<a href="#" class="J_MakePoint" title="${cart.product.imagetitle}">
+													<a href="${APP_PATH}/product/getProduct/${cart.product.id}" class="J_MakePoint" title="${cart.product.imagetitle}">
 														<img src="${APP_PATH}/${cart.product.images}"
 														onerror="onerror=null;src='${APP_PATH }/static/images/f9b49612f9d78f425c77eae488b9c1ad.jpg'" 
 														class="itempic J_ItemImg" width="80px" height="80px">
@@ -192,7 +192,7 @@
 												</div>
 												<div class="item-info">
 													<div class="item-basic-info">
-														<a href="#" class="item-title J_MakePoint" value="${cart.id}" title="${cart.product.name}"
+														<a href="${APP_PATH}/product/getProduct/${cart.product.id}" class="item-title J_MakePoint" value="${cart.id}" title="${cart.product.name}"
 														data-point="tbcart.8.11">${cart.product.name}</a>
 													</div>
 												</div>
@@ -290,38 +290,57 @@
 										</div>
 
 										<div id="holyshit268" class="pay-address">
-										<c:forEach items="${addressList}" var="address">
-										   <c:if test="${address.state==1}">
+										<c:if test="${!empty addressList[0]}">
+										   
 											<p class="buy-footer-address">
 												<span class="buy-line-title buy-line-title-type">寄送至：</span>
 												<span class="buy--address-detail">
-								  				<span class="province">${address.location}</span>
+								  				<span class="province">${addressList[0].location}</span>
 					
-												<span class="street">${address.detailaddress }</span>
+												<span class="street">${addressList[0].detailaddress }</span>
 												</span>
 												 
 											</p>
 											<p class="buy-footer-address">
 												<span class="buy-line-title">收货人：</span>
 												<span class="buy-address-detail">   
-                                                <span class="buy-user">${address.name}</span>
-												<span class="buy-phone">${address.phone}</span>
+                                                <span class="buy-user">${addressList[0].name}</span>
+												<span class="buy-phone">${addressList[0].phone}</span>
 												</span>
 											</p>
-											</c:if>
-										</c:forEach>
+											 
+										</c:if>
+										<c:if test="${empty addressList[0]}">
+										   
+											<p class="buy-footer-address">
+												<span class="buy-line-title buy-line-title-type">寄送至：</span>
+												<span class="buy--address-detail">
+								  				<span class="province">暂无</span>
+					
+												<span class="street">暂无</span>
+												</span>
+												 
+											</p>
+											<p class="buy-footer-address">
+												<span class="buy-line-title">收货人：</span>
+												<span class="buy-address-detail">   
+                                                <span class="buy-user">暂无</span>
+												<span class="buy-phone">暂无</span>
+												</span>
+											</p>
+											 
+										</c:if>
 										</div>
 									</div>
 									<div id="holyshit269" class="submitOrder" >
 										<div class="go-btn-wrap">
-											<a id="J_Go" href="javascript:;" onClick="submitOrder(2)" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
+											<a id="J_Go" href="javascript:;" onClick="submitOrder('${users.id}')" class="btn-go" tabindex="0" title="点击此按钮，提交订单">提交订单</a>
 										</div>
 									</div>
 									<div class="clear"></div>
 								</div>
 							</div>
 						</div>
-
 						<div class="clear"></div>
 					</div>
 				</div>
@@ -490,6 +509,27 @@ $("#user-name1").change(function(){
 	}
 });
 
+//编辑地址，保存后，页面地址信息要相应变化
+function updataAddressPage(obj){
+	 
+	
+	//更改被编辑地址页面信息
+	 $(obj).parents("li").find("span:.buy-user").html($("#user-name1").val());
+	 $(obj).parents("li").find("span:.buy-phone").html($("#user-phone1").val());
+	 var location=$("#province2").val()+"-"+$("#city2").val()+"-"+$("#area2").val();
+	  $(obj).parents("li").find("span:.province").html(location);
+	 $(obj).parents("li").find("span:.street").html($("#user-intro1").val());
+	 
+	 if($(obj).parents("li").find("input[name='state']").prop("checked")){
+		 //收货地址确认信息改变
+		 $("#holyshit268").find("span:.buy-user").html($("#user-name1").val());
+		 $("#holyshit268").find("span:.buy-phone").html($("#user-phone1").val());
+		 $("#holyshit268").find("span:.province").html(location);
+		 $("#holyshit268").find("span:.street").html($("#user-intro1").val());
+	 }
+}
+
+//编辑地址保存按钮
 $("#edit_save_btn").click(function(){
 	//收货人
 	var regx= /^[a-zA-Z\u4e00-\u9fa5]{2,20}$/; 
@@ -537,12 +577,15 @@ $("#edit_save_btn").click(function(){
 		data:$("#edit_address_form").serialize(),
 		success:function(result){
 			if(result.code==100){
-				
+				//更改页面信息显示
+				updataAddressPage(edit_address_obj);
 				layer.closeAll();
 				layer.msg("修改成功",{
 					icon:6,
 					time:1000
 				});
+				//页面信息相应改变
+				
 			}else{
 				layer.msg("修改失败");
 			}
@@ -551,13 +594,12 @@ $("#edit_save_btn").click(function(){
 
 });
 
-
-
-
-
+//当前编辑地址按钮对象
+var edit_address_obj;
 
 //编辑地址按钮
-function edit_btn(id){
+function edit_btn(obj,id){
+	edit_address_obj=obj;
 	layer.open({
 		  type: 1,
 		  area:['500px','400px'],
@@ -689,7 +731,6 @@ function start(obj){
 	 $("#holyshit268").find("span:.buy-phone").html(phone);
 	 $("#holyshit268").find("span:.province").html(location);
 	 $("#holyshit268").find("span:.street").html(street);
-	
 }
 
 

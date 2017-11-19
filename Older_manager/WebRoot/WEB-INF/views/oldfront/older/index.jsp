@@ -218,6 +218,7 @@
 		function go(pn) {
 			$("#activity1").empty();
 			$("#activity2").empty();
+			var index = layer.load();
 			$
 					.ajax({
 						url : "${APP_PATH}/official/info",
@@ -226,6 +227,7 @@
 							if (result.code == 100) {
 								$(".activity1").attr("display", "none");
 								$(".activity2").attr("display", "none");
+								layer.close(index);
 								$
 										.each(
 												result.extend.activityPageInfo.list,
@@ -313,12 +315,14 @@
 
 		function getCourseInfo(pn) {
 			$("#course").empty();
+			var index = layer.load();
 			$.ajax({
 				url : "${APP_PATH}/official/courseInfo/" + pn,
 				type : "GET",
 				success : function(result) {
 					if (result.code == 100) {
 						$(".course").attr("display", "none");
+						layer.close(index);
 						$.each(result.extend.pageInfo.list, function(index,
 								item) {
 							var time = ChangeDateFormat(item.starttime);
@@ -338,12 +342,14 @@
 
 		function getVideoInfo(pn) {
 			$("#video").empty();
+			var index = layer.load();
 			$.ajax({
 				url : "${APP_PATH}/official/videoInfo/" + pn,
 				type : "GET",
 				success : function(result) {
 					if (result.code == 100) {
 						$(".video").attr("display", "none");
+						layer.close(index);
 						$.each(result.extend.pageInfo.list, function(index,
 								item) {
 							var time = ChangeDateFormat(item.createtime);
