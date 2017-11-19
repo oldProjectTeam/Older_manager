@@ -34,22 +34,16 @@
 <script src="${APP_PATH}/static/js/amazeui.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
-
 <script language="javascript"
 	src="${APP_PATH}/static/shop/city/PCASClass.js"></script>
-
-
-
-
 <link
 	href="${APP_PATH}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-
 <body>
-	<jsp:include page="../home/shopheader1.jsp"></jsp:include>
+	<jsp:include page="../home/shopheader.jsp"></jsp:include>
 	<div class="nav-table">
 		<div class="long-title">
 			<span class="all-goods">全部分类</span>
@@ -69,7 +63,6 @@
 		</div>
 	</div>
 	<b class="line"></b>
-
 	<div class="center">
 		<div class="col-main">
 			<div class="main-wrap">
@@ -153,7 +146,8 @@
 
 							<div class="am-u-md-12 am-u-lg-8" style="margin-top: 20px;">
 								<form class="am-form am-form-horizontal" method="post"
-									id="formid" action="${APP_PATH}/address/addshoppingaddress/${users.id}">
+									id="formid"
+									action="${APP_PATH}/address/addshoppingaddress/${users.id}">
 
 									<div class="am-form-group">
 										<label for="user-name" class="am-form-label">收货人</label>

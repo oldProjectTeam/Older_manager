@@ -29,8 +29,9 @@
 </head>
 <body>
 	<div class="login-boxtitle">
-		<a href="home/demo.html"><img alt=""
-			src="${APP_PATH}/static/images/logobig.png" /></a>
+		<a href="${APP_PATH}/shop/oldfronthome"><img
+			src="${APP_PATH}/static/images/oldback/images/logo.png"
+			height="65px;" /></a>
 	</div>
 	<div class="res-banner">
 		<div class="res-main">
@@ -208,7 +209,7 @@
 									} else {
 										$("#accountEmail").val(
 												$("#email").val());
-										var index=layer.load();
+										var index = layer.load();
 										$
 												.ajax({
 													url : "registerOfEmail",
@@ -258,7 +259,7 @@
 										if ($("#code").val() != code) {
 											layer.msg("验证码不正确 ");
 										} else {
-											var index=layer.load();
+											var index = layer.load();
 											$
 													.ajax({
 														url : "registerOfPhone",
@@ -275,7 +276,8 @@
 															} else {
 																layer
 																		.msg(result.extend.error);
-																layer.close(index);
+																layer
+																		.close(index);
 															}
 														}
 													});

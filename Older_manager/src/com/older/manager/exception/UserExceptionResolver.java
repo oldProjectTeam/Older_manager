@@ -42,8 +42,9 @@ public class UserExceptionResolver implements HandlerExceptionResolver {
 
 		request.setAttribute("message", message);
 		try {
-			request.getRequestDispatcher("login.jsp")
-					.forward(request, response);
+			request.getRequestDispatcher(
+					"/WEB-INF/views/oldfront/home/login.jsp").forward(request,
+					response);
 		} catch (ServletException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

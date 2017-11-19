@@ -15,8 +15,8 @@ import com.older.manager.bean.Orders;
 import com.older.manager.bean.Products;
 import com.older.manager.bean.Shippingaddress;
 import com.older.manager.bean.ShoppingCart;
-import com.older.manager.service.oldback.shop.IProductService;
 import com.older.manager.service.shopfront.IOrderService;
+import com.older.manager.service.shopfront.IProductService;
 import com.older.manager.service.shopfront.IShippingaddressService;
 import com.older.manager.service.shopfront.IShoppingCartService;
 

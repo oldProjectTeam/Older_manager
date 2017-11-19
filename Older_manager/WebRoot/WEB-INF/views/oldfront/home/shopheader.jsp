@@ -20,9 +20,6 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<script type="text/javascript"
-	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
-<script src="${APP_PATH}/lib/layer/2.4/layer.js"></script>
 </head>
 <body>
 	<div class="hmtop">
@@ -37,9 +34,10 @@
 						</c:if>
 						<c:if test="${!empty users}">
 							欢迎
-							<a href="${APP_PATH}/address/index" target="_top" class="h"> <b>${users.account}</b>
+							<a href="${APP_PATH}/address/index" target="_top" class="h">
+								<b>${users.account}</b>
 							</a>
-							<a onclick="logouttip()" target="_top" class="h"> <b>退出登录</b>
+							<a href="javascript:logouttip()" target="_top" class="h"> <b>退出登录</b>
 							</a>
 						</c:if>
 					</div>
@@ -53,7 +51,7 @@
 				</div>
 				<div class="topMessage my-shangcheng">
 					<div class="menu-hd MyShangcheng">
-						<a href="address/index" target="_top"> <i
+						<a href="${APP_PATH}/address/index" target="_top"> <i
 							class="am-icon-user am-icon-fw"></i>个人中心
 						</a>
 					</div>
@@ -78,9 +76,9 @@
 		<!--悬浮搜索框-->
 		<div class="nav white">
 			<div class="logoBig">
-				<li><img
-					src="${APP_PATH}/static/images/oldback/images/logo.png"
-					height="65px;" style="margin-top: 10px" /></li>
+				<li><a href="${APP_PATH}/shop/oldfronthome"><img
+						src="${APP_PATH}/static/images/oldback/images/logo.png"
+						height="65px;" style="margin-top: 10px" /></a></li>
 			</div>
 			<div class="search-bar pr">
 				<a name="index_none_header_sysc" href="#"></a>
@@ -115,7 +113,7 @@
 
 		$(function() {
 			$("#J_MiniCartNum").empty();
-		$.ajax({
+			$.ajax({
 				url : "${APP_PATH}/cart/findCartUserId",
 				data : {
 					"userId" : '${users.id}'
@@ -123,7 +121,8 @@
 				type : "GET",
 				success : function(result) {
 					if (result.code == 100) {
-						$("#J_MiniCartNum").append("("+result.extend.carts+")");
+						$("#J_MiniCartNum").append(
+								"(" + result.extend.carts + ")");
 					}
 				}
 			});

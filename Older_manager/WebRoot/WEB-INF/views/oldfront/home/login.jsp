@@ -46,9 +46,9 @@
 <body>
 
 	<div class="login-boxtitle">
-		<a href="home.html"> <img alt="logo"
-			src="${APP_PATH}/static/images/logobig.png" />
-		</a>
+		<a href="${APP_PATH}/shop/oldfronthome"><img
+			src="${APP_PATH}/static/images/oldback/images/logo.png"
+			height="65px;" /> </a>
 	</div>
 
 	<div class="login-banner">
@@ -94,8 +94,9 @@
 					<font color="red" id="msg" size="3" style="margin-left: 20px">${message}</font>
 				</center>
 				<div>
-					<input id="remember-me" type="radio"><span> 记住密码</span> <a href="#"
-						class="am-fr">忘记密码</a> <a href="${APP_PATH}/shop/register"
+					<input id="remember-me" type="radio"><span> 记住密码</span> <a
+						href="#" class="am-fr">忘记密码</a> <a
+						href="${APP_PATH}/shop/register"
 						class="zcnext am-fr am-btn-default">注册</a> <br />
 				</div>
 				<div class="am-cf">

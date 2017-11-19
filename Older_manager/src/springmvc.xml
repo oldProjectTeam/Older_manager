@@ -32,7 +32,6 @@
 	<!-- 能支持springMVC的更高级的功能，JSR303效验，快捷的ajax...映射动态请求 -->
 	<mvc:annotation-driven />
 	<!-- 定义统一异常处理器 -->
-	<!-- <bean class="com.older.manager.exception.UserExceptionResolver"></bean> -->
 	<bean class="com.older.manager.exception.UserExceptionResolver"></bean>
 	<!--拦截器 -->
 	<mvc:interceptors>
@@ -48,9 +47,5 @@
 			<mvc:exclude-mapping path="/**/*.jpeg" />
 			<bean class="com.older.manager.interceptor.ShopLoginInterceptor"></bean>
 		</mvc:interceptor>
-		<!-- <mvc:interceptor> -->
-		<!-- 授权拦截 -->
-		<!-- <mvc:mapping path="/**" /> <bean class="com.older.manager.interceptor.PermissionInterceptor"></bean> 
-			</mvc:interceptor> -->
 	</mvc:interceptors>
 </beans>

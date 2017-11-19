@@ -46,18 +46,6 @@ public class ShopLoginInterceptor implements HandlerInterceptor {
 		if (users != null) {
 			return true;
 		}
-		ActiveUser activeUser = (ActiveUser) session.getAttribute("activeUser");
-		// 如果用户身份在session中存在放行
-		if (activeUser != null) {
-			return true;
-		}
-		/*
-		 * if (null == request.getSession(false)) { if (true ==
-		 * request.getSession(true).isNew()) { } else {
-		 * request.setAttribute("message", "登录失效,请你重新登录");
-		 * response.sendRedirect(request.getContextPath() + "/login.jsp");
-		 * return false; } }
-		 */
 		// 执行到这里拦截，跳转到登陆页面，用户进行身份认证
 		// 如果返回false表示拦截不继续执行handler，如果返回true表示放行
 		request.setAttribute("message", "请你先登录");

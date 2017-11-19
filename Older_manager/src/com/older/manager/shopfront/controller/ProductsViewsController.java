@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.older.manager.bean.ProductsViews;
-import com.older.manager.service.oldback.shop.ProductsViewsService;
 import com.older.manager.service.shopfront.IProductsViewsService;
+import com.older.manager.service.shopfront.ProductsViewsService;
 import com.older.manager.utils.Msg;
 
 @Controller

@@ -515,20 +515,25 @@
 					+ num + "&" + userId;
 		}
 		function addCart() {
-			$.ajax({
-				url : "${APP_PATH}/cart/addCart",
-				type : "GET",
-				data : {
-					"usersId" : userId,
-					"produtsId" : id,
-					"number" : num
-				},
-				success : function(result) {
-					if (result.code == 100) {
-						layer.msg("加入成功");
+			var users = '${users.id}';
+			if (users == '') {
+				window.location.href = "${APP_PATH}/shop/login";
+			} else {
+				$.ajax({
+					url : "${APP_PATH}/cart/addCart",
+					type : "GET",
+					data : {
+						"usersId" : userId,
+						"produtsId" : id,
+						"number" : num
+					},
+					success : function(result) {
+						if (result.code == 100) {
+							layer.msg("加入成功");
+						}
 					}
-				}
-			});
+				});
+			}
 		}
 	</script>
 </body>

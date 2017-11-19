@@ -16,8 +16,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.older.manager.bean.ProductKeyword;
 import com.older.manager.bean.Products;
-import com.older.manager.service.oldback.shop.IProductKeywordService;
-import com.older.manager.service.oldback.shop.IProductService;
+import com.older.manager.service.shopfront.IProductKeywordService;
+import com.older.manager.service.shopfront.IProductService;
 import com.older.manager.utils.UUIDTools;
 
 @RunWith(SpringJUnit4ClassRunner.class)

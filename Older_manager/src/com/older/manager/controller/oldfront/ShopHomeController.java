@@ -20,7 +20,7 @@ import com.older.manager.bean.BrandWithBLOBs;
 import com.older.manager.bean.ProductKeyword;
 import com.older.manager.bean.ProductType;
 import com.older.manager.bean.Products;
-import com.older.manager.service.oldback.shop.IProductService;
+import com.older.manager.service.shopfront.IProductService;
 import com.older.manager.service.shopfront.ProductsSearchService;
 import com.older.manager.utils.Msg;
 

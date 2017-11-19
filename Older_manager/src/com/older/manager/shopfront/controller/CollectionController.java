@@ -43,7 +43,7 @@ public class CollectionController {
 			@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
 		PageHelper.startPage(pn, 15);
 		List<Products> products = collectionService.queryProducts();
-		PageInfo pageInfo = new PageInfo(products);
+		PageInfo<Products> pageInfo = new PageInfo<Products>(products);
 		return Msg.success().add("pageInfo", pageInfo);
 	}
 
@@ -69,10 +69,10 @@ public class CollectionController {
 
 		PageHelper.startPage(pn, 15);
 		List<Products> products = collectionService.dimQuery(productsInfo);
-		PageInfo pageInfo = new PageInfo(products, 5);
+		PageInfo<Products> pageInfo = new PageInfo<Products>(products, 5);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("title", title);
-		return "oldfront/home/search1";
+		return "oldfront/home/search_same";
 	}
 
 }
