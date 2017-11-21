@@ -157,8 +157,12 @@
 																					"img-responsive")
 																			.attr(
 																					"src",
-																					"${APP_PATH}/"
+																					"http://123.207.93.53/Older_back/"
 																							+ item.activity1))
+															.css("height",
+																	"240").css(
+																	"width",
+																	"350")
 															.append(overlayDiv)
 															.append(title);
 													if (index < 3) {

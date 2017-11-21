@@ -49,7 +49,7 @@
 <script src="${APP_PATH}/static/video/js/willesPlay.js"
 	type="text/javascript" charset="utf-8"></script>
 </head>
-<body style="margin: 15px;">
+<body style="margin: 15px;background-color: black">
 	<section class="menu-section">
 	<div class="container">
 		<div class="row ">
@@ -77,13 +77,13 @@
 	<!--视频播放-->
 	<div id="willesPlay">
 		<div class="playContent" style="display: inline;">
-			<video height="100%" id="playVideo"> <source
-				src="${video.path}" type="video/mp4"></source> 当前浏览器不支持
-			video直接播放，点击这里下载视频： <a href="/">下载视频</a> </video>
+			<video height="100%" id="playVideo" style="width:77%;"> <source
+				src="http://123.207.93.53/Older_back/${video.path}" type="video/mp4"></source>
+			当前浏览器不支持 video直接播放，点击这里下载视频： <a href="/">下载视频</a> </video>
 			<div class="playTip glyphicon glyphicon-play" style="top: -320px;"></div>
 		</div>
-		<div class="list-group pull-right"
-			style="width: 23.3%;display: inline;" id="videoDiv">
+		<div class="list-group pull-right" style="width: 23%;display: inline;"
+			id="videoDiv">
 			<a href="#" class="list-group-item active">
 				<h4 class="list-group-item-heading">当前播放</h4>
 				<p class="list-group-item-text">${video.title}</p>

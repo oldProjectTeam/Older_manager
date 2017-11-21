@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.older.manager.bean.Integral;
@@ -38,9 +39,9 @@ public class InformacationController {
 	   * @param id
 	   * @return
 	   */
-	  @RequestMapping("/selectinformation/{usersid}")
+	  @RequestMapping("/selectinformation")
 	  @ResponseBody
-	  public Msg selectInformationById(@PathVariable("usersid")Integer usersid){
+	  public Msg selectInformationById(@RequestParam("usersid")Integer usersid){
 		  
 		  ShopMember shop=informationService.selectShopMemberById(usersid);
 		  Shippingaddress shippingaddress=informationService.selectAddressByUseridWithState(usersid);
@@ -49,7 +50,7 @@ public class InformacationController {
 			  shop.getShippingaddress().setDetailaddress(shippingaddress.getDetailaddress());
 		}
 
-		  return Msg.success().add("shop", shop);
+		  return Msg.success().add("shopInfo", shop);
 	  }
 	  
 	  /**

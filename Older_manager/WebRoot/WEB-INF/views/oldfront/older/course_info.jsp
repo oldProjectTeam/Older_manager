@@ -78,7 +78,7 @@
 				<p>${course.content}</p>
 			</div>
 			<div>
-				<img src="${APP_PATH}/${course.photo}" />
+				<img src="http://123.207.93.53/Older_back/${course.photo}" />
 			</div>
 		</div>
 		<div class="right1" style="margin-top: 15px;">

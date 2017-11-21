@@ -27,7 +27,7 @@
 	type="text/css">
 <link href="${APP_PATH}/static/css/systyle.css" rel="stylesheet"
 	type="text/css">
-
+<script src="${APP_PATH}/static/js/jquery.min.js"></script>
 </head>
 
 <body>

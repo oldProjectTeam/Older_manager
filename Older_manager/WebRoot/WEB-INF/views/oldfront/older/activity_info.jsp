@@ -78,7 +78,7 @@
 				<p>${activity.content}</p>
 			</div>
 			<div>
-				<img src="${APP_PATH}/${activity.activity1}" />
+				<img src="http://123.207.93.53/Older_back/${activity.activity1}" />
 			</div>
 		</div>
 		<div class="right1" style="margin-top: 15px;">

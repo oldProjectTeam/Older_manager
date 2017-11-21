@@ -27,8 +27,7 @@
 	rel="stylesheet" />
 <link rel="stylesheet"
 	href="${APP_PATH}/static/oldfront/assets/css/zhuye.css" />
-<script language="JavaScript"
-	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
+<script src="${APP_PATH}/static/js/jquery.min.js"></script>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
 	rel='stylesheet' type='text/css' />
@@ -235,8 +234,12 @@
 													var img = $("<img/>")
 															.attr(
 																	"src",
-																	'${APP_PATH}/'
-																			+ item.activity1);
+																	'http://123.207.93.53/Older_back/'
+																			+ item.activity1)
+															.css("height",
+																	"240").css(
+																	"width",
+																	"350");
 													var look_btn = $(
 															"<button></button>")
 															.addClass(
@@ -261,6 +264,8 @@
 													var captionDiv = $(
 															"<div></div>")
 															.addClass("caption")
+															.css("height",
+																	"200")
 															.append(
 																	$(
 																			"<h3></h3>")
