@@ -48,6 +48,10 @@ public class OldmanAccountController {
 		return model;
 	}
 	
+	@RequestMapping("/person")
+	public String person(){
+		return "oldfront/older/person/older";
+	}
 	
 	/**
 	 * 修改密码

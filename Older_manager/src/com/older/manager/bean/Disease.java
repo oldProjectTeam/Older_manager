@@ -2,19 +2,33 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Disease {
     private Integer id;
 
+    @NotEmpty(message="疾病名称不能为空！")
+    @Length(min=1,max=100)
     private String diseasename;
 
+    @NotEmpty(message="确诊时间不能为空")
     private Date confirmedtime;
 
+    //条件查询所用
+    private Date confirmedtime1;
+    private Date confirmedtime2;
+ 
+    @Length(min=0,max=50,message="确诊医院长度不能超过50")
     private String place;
 
+    @Length(min=0,max=20,message="现在状态长度不能超过50")
     private String nowstate;
 
+    @Length(min=0,max=200,message="备注长度不能超过200")
     private String remark;
 
+   
     private Integer oldmanId;
 
     private Date recordtime;
@@ -24,10 +38,9 @@ public class Disease {
     private String numtwo;
 
     private String numthree;
+    
     private Oldman oldman;
     
-    
-
     @Override
 	public String toString() {
 		return "Disease [id=" + id + ", diseasename=" + diseasename
@@ -133,4 +146,20 @@ public class Disease {
     public void setNumthree(String numthree) {
         this.numthree = numthree == null ? null : numthree.trim();
     }
+
+	public Date getConfirmedtime1() {
+		return confirmedtime1;
+	}
+
+	public void setConfirmedtime1(Date confirmedtime1) {
+		this.confirmedtime1 = confirmedtime1;
+	}
+
+	public Date getConfirmedtime2() {
+		return confirmedtime2;
+	}
+
+	public void setConfirmedtime2(Date confirmedtime2) {
+		this.confirmedtime2 = confirmedtime2;
+	}
 }

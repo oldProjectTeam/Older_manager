@@ -37,8 +37,6 @@
 	rel="stylesheet" />
 <script language="JavaScript"
 	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
-<link rel="stylesheet"
-	href="${APP_PATH}/static/oldfront/css/huodongxiangqing.css" />
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
 	rel='stylesheet' type='text/css' />
@@ -46,6 +44,8 @@
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Lobster'
 	rel='stylesheet' type='text/css' />
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 <style type="text/css">
 .news {
@@ -57,8 +57,6 @@
 }
 </style>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
-	<hr />
 	<div class="container">
 		<div class="all" style="margin: 15px;">
 			<hr />
@@ -80,7 +78,7 @@
 				</div>
 			</div>
 		</div>
-		<button class="btn btn-info" style="margin-left:25px;">报名参加</button>
+		<button class="btn btn-info" style="margin-left:25px;" id="join">报名参加</button>
 		<div class="right1" style="margin-top: 15px;">
 			<div class="right2">
 				<p
@@ -97,6 +95,36 @@
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script type="text/javascript">
+		$("#join").click(function() {
+			if ('${older.oldman.id}' == null || '${older.oldman.id}' == '') {
+				layer.msg("请你先登录", {
+					offset : [ '20%' ]
+				});
+				window.location.href = "${APP_PATH}/older/login";
+			} else {
+				var oldManId = '${older.oldman.id}';
+				var courseId = '${course.id}';
+				$.ajax({
+					url : "${APP_PATH}/course/JoinCourseWithOldMan",
+					data : {
+						"courseId" : courseId,
+						"oldManId" : oldManId
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							layer.msg("报名成功", {
+								offset : [ '20%' ]
+							});
+						} else {
+							layer.msg("你已经报名过了", {
+								offset : [ '20%' ]
+							});
+						}
+					}
+				});
+			}
+		});
 		$(function() {
 			$.ajax({
 				url : "official/recommendCourse",

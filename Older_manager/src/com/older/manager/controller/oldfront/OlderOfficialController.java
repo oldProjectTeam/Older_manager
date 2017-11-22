@@ -62,7 +62,7 @@ public class OlderOfficialController {
 	@RequestMapping("/courseInfoId/{id}")
 	public String courseInfo(@PathVariable("id") Integer id, Model model) {
 		Courses course = officialService.queryCourseById(id);
-		model.addAttribute("courses", course);
+		model.addAttribute("course", course);
 		return "oldfront/older/course_info";
 	}
 

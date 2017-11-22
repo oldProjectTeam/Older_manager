@@ -1,4 +1,5 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
@@ -57,11 +58,14 @@
 						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
 						<li>
-							<!-- 用户头像 --> <img src="${APP_PATH}/static/images/old.png"
-							height="30" width="30"
-							style="margin-left: 240px;margin-top: 20px;display: none;"
-							class="img-circle"> <a href="${APP_PATH}/older/login"
-							style="margin-left: 240px;">登录</a>
+							<!-- 用户头像 --> <c:if test="${!empty older}">
+								<img src="${older.oldman.photo}" height="30" width="30"
+									onerror="onerror=null;src='${APP_PATH }/static/oldfront/older/images/doctor.png'"
+									style="margin-left: 240px;margin-top: 20px;" class="img-circle"
+									onclick="person()">
+							</c:if> <c:if test="${empty older}">
+								<a href="${APP_PATH}/older/login" style="margin-left: 240px;">登录</a>
+							</c:if>
 						</li>
 					</ul>
 				</div>
@@ -388,6 +392,10 @@
 			} else {
 				return null;
 			}
+		}
+
+		function person() {
+			window.location.href = "${APP_PATH }/oldmanaccount/person";
 		}
 	</script>
 </body>

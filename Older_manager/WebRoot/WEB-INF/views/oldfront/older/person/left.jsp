@@ -35,9 +35,9 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
                 <ul>
                    <li class="name">
                      <i class="icon-nav icon-user"></i>
-                     	何东明
+                     	${older.oldman.name }
                    </li>
-                   <li><i class="icon-phone"></i>13485369065</li>
+                   <li><i class="icon-phone"></i>${older.oldman.phone }</li>
                    <li>
                      <div class="news">
                      <i class="icon-mail"></i>5
