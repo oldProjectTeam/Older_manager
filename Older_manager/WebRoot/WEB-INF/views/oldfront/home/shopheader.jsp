@@ -46,6 +46,11 @@
 			<ul class="message-r">
 				<div class="topMessage home">
 					<div class="menu-hd">
+						<a href="${APP_PATH}/" target="_top" class="h">官网</a>
+					</div>
+				</div>
+				<div class="topMessage home">
+					<div class="menu-hd">
 						<a href="${APP_PATH}/shop/oldfronthome" target="_top" class="h">商城首页</a>
 					</div>
 				</div>

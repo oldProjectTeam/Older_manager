@@ -59,28 +59,28 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<hr />
-	<div class="all" style="margin: 15px;">
-		<div class="head" style="margin-top: 90px;">
-			<span>位置：</span> <a href="activity.jsp">课程/</a> <span>课程详情</span>
-		</div>
-		<hr />
-		<div class="neirong" style="margin-left: 20px;">
-			<div class="biaoti">
-				<h3>${course.title}</h3>
-				<div class="bt1">
-					<span>结束时间:</span><span><fmt:formatDate
-							value="${course.endtime}" pattern="yyyy-MM-dd" /></span>
+	<div class="container">
+		<div class="all" style="margin: 15px;">
+			<hr />
+			<div class="neirong" style="margin-left: 20px;">
+				<div class="biaoti">
+					<h3>${course.title}</h3>
+					<div class="bt1">
+						<span>结束时间:</span><span><fmt:formatDate
+								value="${course.endtime}" pattern="yyyy-MM-dd" /></span>
+					</div>
+					<div class="kong"></div>
+					<hr />
 				</div>
-				<div class="kong"></div>
-				<hr />
-			</div>
-			<div class="news1">
-				<p>${course.content}</p>
-			</div>
-			<div>
-				<img src="http://123.207.93.53/Older_back/${course.photo}" />
+				<div class="news1">
+					<p>${course.content}</p>
+				</div>
+				<div>
+					<img src="http://123.207.93.53/Older_back/${course.photo}" />
+				</div>
 			</div>
 		</div>
+		<button class="btn btn-info" style="margin-left:25px;">报名参加</button>
 		<div class="right1" style="margin-top: 15px;">
 			<div class="right2">
 				<p

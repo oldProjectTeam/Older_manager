@@ -51,19 +51,24 @@
 			<div class="col-md-12">
 				<div class="navbar-collapse collapse">
 					<ul id="menu-top"
-						class="nav navbar-nav navbar-right navbar-fixed-top navbar-inverse">
+						class="nav navbar-nav navbar-fixed-top navbar-inverse">
 						<li
 							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
 							src="${APP_PATH}/static/images/oldback/images/logo.png"
 							width="200px" style="margin-right: 240px;" /></li>
 						<li><a href="${APP_PATH}/older/index"
 							class="menu-top-active check">主页</a></li>
-						<li><a href="${APP_PATH}/older/about" class="check">关于我们</a></li>
-						<li><a href="${APP_PATH}/older/contact" class="check">联系我们</a></li>
+						<li><a href="${APP_PATH}/older/" class="check">课程专区</a></li>
+						<li><a href="${APP_PATH}/older/" class="check">视频专区</a></li>
 						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
-						<li><a href="${APP_PATH}/older/download" class="check">客户端下载</a></li>
-						<li><a href="${APP_PATH}/older/login" class="check">会员登陆</a></li>
+						<li>
+							<!-- 用户头像 --> <img src="${APP_PATH}/static/images/old.png"
+							height="30" width="30"
+							style="margin-left: 240px;margin-top: 20px;display: none;"
+							class="img-circle"> <a href="${APP_PATH}/older/login"
+							style="margin-left: 240px;">登录</a>
+						</li>
 					</ul>
 				</div>
 			</div>

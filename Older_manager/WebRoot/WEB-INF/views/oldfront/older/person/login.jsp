@@ -60,10 +60,6 @@
 						<img src="${APP_PATH}/static/oldfront/img/mima.png" /> <input
 							type="password" placeholder="请输入密码" />
 					</div>
-					<div class="login3">
-						<input type="radio" /><span>记住密码</span> <a
-							href="${APP_PATH}/older/register">没有账号？</a>
-					</div>
 					<div class="btn1">
 						<input type="button" class="btn2" value="登 录" />
 					</div>

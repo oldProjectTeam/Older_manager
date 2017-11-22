@@ -56,18 +56,24 @@
 			<div class="col-md-12">
 				<div class="navbar-collapse collapse">
 					<ul id="menu-top"
-						class="nav navbar-nav navbar-right navbar-fixed-top navbar-inverse">
+						class="nav navbar-nav navbar-fixed-top navbar-inverse">
 						<li
 							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
 							src="${APP_PATH}/static/images/oldback/images/logo.png"
 							width="200px" style="margin-right: 240px;" /></li>
-						<li><a href="${APP_PATH}/older/index">主页</a></li>
-						<li><a href="${APP_PATH}/older/about">关于我们</a></li>
-						<li><a href="${APP_PATH}/older/contact">联系我们</a></li>
-						<li><a href="${APP_PATH}/older/activity">社区活动</a></li>
+						<li><a href="${APP_PATH}/older/index"
+							class="menu-top-active check">主页</a></li>
+						<li><a href="${APP_PATH}/older/" class="check">课程专区</a></li>
+						<li><a href="${APP_PATH}/older/" class="check">视频专区</a></li>
+						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
-						<li><a href="${APP_PATH}/older/download">客户端下载</a></li>
-						<li><a href="${APP_PATH}/older/">会员登陆</a></li>
+						<li>
+							<!-- 用户头像 --> <img src="${APP_PATH}/static/images/old.png"
+							height="30" width="30"
+							style="margin-left: 240px;margin-top: 20px;display: none;"
+							class="img-circle"> <a href="${APP_PATH}/older/login"
+							style="margin-left: 240px;">登录</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -77,19 +83,19 @@
 	<!--视频播放-->
 	<div id="willesPlay">
 		<div class="playContent" style="display: inline;">
-			<video height="80%" id="playVideo" style="width:77%;"> <source
+			<video height="65%" id="playVideo" style="width:77%;"> <source
 				src="http://123.207.93.53/Older_back/${video.path}" type="video/mp4"></source>
 			当前浏览器不支持 video直接播放，点击这里下载视频： <a href="/">下载视频</a> </video>
-			<div class="playTip glyphicon glyphicon-play" style="top: -320px;"></div>
+			<div class="playTip glyphicon glyphicon-play" style="top: -200px;"></div>
 		</div>
-		<div class="list-group pull-right" style="width: 23%;display: inline;"
-			id="videoDiv">
+		<div class="list-group pull-right"
+			style="width: 23%;display: inline;position:relative; " id="videoDiv">
 			<a href="#" class="list-group-item active">
 				<h4 class="list-group-item-heading">当前播放</h4>
 				<p class="list-group-item-text">${video.title}</p>
 			</a> <img src="${APP_PATH}/static/images/load.gif" width="100"
 				height="100" class="col-md-offset-5 video"
-				style="margin-top: 200px;" />
+				style="margin-top: 100px;" />
 		</div>
 		<div class="playControll" style="width:77%;" id="playControll">
 			<div class="playPause playIcon"></div>

@@ -59,28 +59,28 @@
 <body>
 	<jsp:include page="header.jsp"></jsp:include>
 	<hr />
-	<div class="all" style="margin: 15px;">
-		<div class="head" style="margin-top: 90px;">
-			<span>位置：</span> <a href="activity.jsp">社区活动/</a> <span>活动详情</span>
-		</div>
-		<hr />
-		<div class="neirong" style="margin-left: 20px;">
-			<div class="biaoti">
-				<h3>${activity.title}</h3>
-				<div class="bt1">
-					<span>发布人:</span><span>${activity.releasepeople}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>发布时间:</span><span><fmt:formatDate
-							value="${activity.releasetime}" pattern="yyyy-MM-dd" /></span>
+	<div class="container">
+		<div class="all" style="margin: 15px;">
+			<hr />
+			<div class="neirong" style="margin-left: 20px;">
+				<div class="biaoti">
+					<h3>${activity.title}</h3>
+					<div class="bt1">
+						<span>发布人:</span><span>${activity.releasepeople}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>发布时间:</span><span><fmt:formatDate
+								value="${activity.releasetime}" pattern="yyyy-MM-dd" /></span>
+					</div>
+					<div class="kong"></div>
+					<hr />
 				</div>
-				<div class="kong"></div>
-				<hr />
-			</div>
-			<div class="news1">
-				<p>${activity.content}</p>
-			</div>
-			<div>
-				<img src="http://123.207.93.53/Older_back/${activity.activity1}" />
+				<div class="news1">
+					<p>${activity.content}</p>
+				</div>
+				<div>
+					<img src="http://123.207.93.53/Older_back/${activity.activity1}" />
+				</div>
 			</div>
 		</div>
+		<button class="btn btn-info" style="margin-left:25px;">报名参加</button>
 		<div class="right1" style="margin-top: 15px;">
 			<div class="right2">
 				<p
