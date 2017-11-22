@@ -3,6 +3,8 @@
  */
 package com.older.manager.service.shopfront.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,17 +39,20 @@ public class ShopLoginServiceImpl implements ShopLoginService {
 			throws Exception {
 		UsersExample example = new UsersExample();
 		example.createCriteria().andAccountLike(useracconut);
-		Users users = usersMapper.selectByExample(example).get(0);
-		if (users == null) {
+		List<Users> users = usersMapper.selectByExample(example);
+		if (users.size() == 1) {
+			String password_dbString = users.get(0).getPassword();
+			String password_input_md5 = new MD5().getMD5ofStr(password);
+			if (!password_input_md5.equals(password_dbString)) {
+				throw new UserException("用户名或密码错误");
+			} else {
+				return users.get(0);
+			}
+		}
+		if (users.size() == 0) {
 			throw new UserException("用户账号不存在");
 		}
-		String password_dbString = users.getPassword();
-		String password_input_md5 = new MD5().getMD5ofStr(password);
-		if (!password_input_md5.equals(password_dbString)) {
-			throw new UserException("用户名或密码错误");
-		} else {
-			return users;
-		}
+		return null;
 	}
 
 	/**

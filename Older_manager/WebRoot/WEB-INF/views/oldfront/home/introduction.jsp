@@ -39,7 +39,8 @@
 <script type="text/javascript"
 	src="${APP_PATH}/static/js/jquery.flexslider.js"></script>
 <script type="text/javascript" src="${APP_PATH}/static/js/list.js"></script>
-
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 <body>
 	<jsp:include page="shopheader.jsp"></jsp:include>
@@ -52,22 +53,18 @@
 			</div>
 			<div class="nav-cont">
 				<ul>
-					<li class="index"><a href="#">首页</a></li>
+					<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
 					<li class="qc"><a href="#">闪购</a></li>
 					<li class="qc"><a href="#">限时抢</a></li>
 					<li class="qc"><a href="#">团购</a></li>
 					<li class="qc last"><a href="#">大包装</a></li>
 				</ul>
-				<!-- <div class="nav-extra">
-						 <i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						 <i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-					</div> -->
 			</div>
 		</div>
 
 		<!-- 路径导航 -->
 		<ol class="am-breadcrumb am-breadcrumb-slash">
-			<li><a href="#">首页</a></li>
+			<li><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
 			<li><a href="#">分类</a></li>
 			<li class="am-active">内容</li>
 		</ol>
@@ -84,25 +81,10 @@
 				});
 			});
 		</script>
-
-		<div class="scoll">
-			<section class="slider">
-			<div class="flexslider">
-				<ul class="slides">
-					<li><img src="${APP_PATH}/static/images/01.jpg" title="pic" />
-					</li>
-					<li><img src="${APP_PATH}/static/images/02.jpg" /></li>
-					<li><img src="${APP_PATH}/static/images/03.jpg" /></li>
-				</ul>
-			</div>
-			</section>
-		</div>
-
 		<!--放大镜-->
 		<div class="item-inform">
 			<div class="clearfixLeft" id="clearcontent">
 				<div class="box">
-
 					<script type="text/javascript">
 						$(document).ready(
 								function() {
@@ -127,17 +109,20 @@
 					</script>
 
 					<div class="tb-booth tb-pic tb-s310">
-						<a href="${APP_PATH}/static/images/01.jpg"><img
-							src="${APP_PATH}/static/images/01_mid.jpg" alt="细节展示放大镜特效"
-							rel="${APP_PATH}/static/images/01.jpg" class="jqzoom" /></a>
+						<a href="http://123.207.93.53/Older_back/${product.imgList[0]}"><img
+							src="http://123.207.93.53/Older_back/${product.imgList[0]}"
+							alt="细节展示放大镜特效"
+							rel="http://123.207.93.53/Older_back/${product.imgList[0]}"
+							class="jqzoom" /></a>
 					</div>
-
 					<ul class="tb-thumb" id="thumblist">
 						<c:forEach items="${product.imgList}" var="s">
 							<li class="tb-selected">
 								<div class="tb-pic tb-s40">
-									<a href="#"> <img src="${APP_PATH}/${s}"
-										mid="${APP_PATH}/${s}" big="${APP_PATH}/${s}">
+									<a href="javascript:#"> <img
+										src="http://123.207.93.53/Older_back/${s}"
+										mid="http://123.207.93.53/Older_back/${s}"
+										big="http://123.207.93.53/Older_back/${s}">
 									</a>
 								</div>
 							</li>
@@ -186,12 +171,6 @@
 								<span class="tm-label">累计销量</span> <span class="tm-count">${product.sales}</span>
 							</div>
 						</li>
-						<!-- <li class="tm-ind-item tm-ind-reviewCount canClick tm-line3">
-									<div class="tm-indcon">
-										<span class="tm-label">累计评价</span>
-										<span class="tm-count">640</span>
-									</div>
-								</li> -->
 					</ul>
 
 					<div class="clear"></div>
@@ -215,23 +194,6 @@
 									<form class="theme-signin" name="loginform" action=""
 										method="post">
 										<div class="theme-signin-left">
-											<!-- <div class="theme-options">
-														<div class="cart-title">口味</div>
-														<ul>
-															<li class="sku-line selected">原味<i></i></li>
-															<li class="sku-line">奶油<i></i></li>
-															<li class="sku-line">炭烧<i></i></li>
-															<li class="sku-line">咸香<i></i></li>
-														</ul>
-													</div>
-													<div class="theme-options">
-														<div class="cart-title">包装</div>
-														<ul>
-															<li class="sku-line selected">手袋单人份<i></i></li>
-															<li class="sku-line">礼盒双人份<i></i></li>
-															<li class="sku-line">全家福礼包<i></i></li>
-														</ul>
-													</div> -->
 											<div class="theme-options">
 												<div class="cart-title number">数量</div>
 												<dd>
@@ -306,8 +268,6 @@
 						</a></li>
 						<li><a href="#"> <span class="index-needs-dt-txt">全部评价</span>
 						</a></li>
-						<li><a href="#"> <span class="index-needs-dt-txt">猜你喜欢</span>
-						</a></li>
 					</ul>
 
 					<!-- 介绍主体内容 -->
@@ -337,13 +297,9 @@
 									<h4>商品细节</h4>
 								</div>
 								<div class="twlistNews">
-									<img src="${APP_PATH}/static/images/tw1.jpg" /> <img
-										src="${APP_PATH}/static/images/tw2.jpg" /> <img
-										src="${APP_PATH}/static/images/tw3.jpg" /> <img
-										src="${APP_PATH}/static/images/tw4.jpg" /> <img
-										src="${APP_PATH}/static/images/tw5.jpg" /> <img
-										src="${APP_PATH}/static/images/tw6.jpg" /> <img
-										src="${APP_PATH}/static/images/tw7.jpg" />
+									<c:forEach items="${product.imgList}" var="s">
+										<img src="http://123.207.93.53/Older_back/${s}" />
+									</c:forEach>
 								</div>
 							</div>
 							<div class="clear"></div>
@@ -448,39 +404,6 @@
 								</div>
 							</div>
 						</div>
-
-						<!-- 猜你喜欢 -->
-						<div class="am-tab-panel am-fade">
-							<div class="like">
-								<ul class="am-avg-sm-2 am-avg-md-3 am-avg-lg-4 boxes">
-									<li>
-										<div class="i-pic limit">
-											<img src="${APP_PATH}/static/images/imgsearch1.jpg" />
-											<p>
-												【良品铺子_开口松子】零食坚果特产炒货<span>东北红松子奶油味</span>
-											</p>
-											<p class="price fl">
-												<b>¥</b> <strong>298.00</strong>
-											</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="clear"></div>
-
-							<!--猜你喜欢的分页 -->
-							<ul class="am-pagination am-pagination-right">
-								<li class="am-disabled"><a href="#">&laquo;</a></li>
-								<li class="am-active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
-							<div class="clear"></div>
-						</div>
-						<!-- 猜你喜欢 -->
 					</div>
 					<!-- 介绍主体内容 -->
 				</div>

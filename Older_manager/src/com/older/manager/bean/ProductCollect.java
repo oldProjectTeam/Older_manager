@@ -10,8 +10,30 @@ public class ProductCollect {
     private Integer productsId;
 
     private Date time;
+    
+    private Users users;
+    
+    private Products products;
+    
+    
 
-    private String productcollect1;
+    public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Products getProducts() {
+		return products;
+	}
+
+	public void setProducts(Products products) {
+		this.products = products;
+	}
+
+	private String productcollect1;
 
     private String productcollect2;
 
@@ -112,4 +134,18 @@ public class ProductCollect {
     public void setProductcollect7(String productcollect7) {
         this.productcollect7 = productcollect7 == null ? null : productcollect7.trim();
     }
+
+	@Override
+	public String toString() {
+		return "ProductCollect [id=" + id + ", usersId=" + usersId
+				+ ", productsId=" + productsId + ", time=" + time + ", users="
+				+ users + ", products=" + products + ", productcollect1="
+				+ productcollect1 + ", productcollect2=" + productcollect2
+				+ ", productcollect3=" + productcollect3 + ", productcollect4="
+				+ productcollect4 + ", productcollect5=" + productcollect5
+				+ ", productcollect6=" + productcollect6 + ", productcollect7="
+				+ productcollect7 + "]";
+	}
+    
+    
 }

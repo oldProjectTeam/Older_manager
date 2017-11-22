@@ -36,6 +36,9 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="${APP_PATH}/static/dist/ladda-themeless.min.css">
+<link rel="stylesheet" href="${APP_PATH}/static/css/prism.css">
 <style>
 .error {
 	color: red;
@@ -101,7 +104,10 @@
 				</div>
 				<div class="am-cf">
 					<input type="button" id="shopLogin" value="登 录"
-						class="am-btn am-btn-primary am-btn-sm">
+						class="am-btn am-btn-primary am-btn-sm"> <img
+						src="${APP_PATH}/static/images/loading.gif"
+						style="margin-left: 150px;margin-top: 6px;display: none;"
+						id="loading">
 				</div>
 			</div>
 		</div>
@@ -122,6 +128,8 @@
 			</p>
 		</div>
 	</div>
+	<script src="${APP_PATH}/static/dist/spin.min.js"></script>
+	<script src="${APP_PATH}/static/dist/ladda.min.js"></script>
 	<script type="text/javascript">
 		$("#shopLogin").click(function() {
 			var user = $("#useraccount").val();
@@ -135,8 +143,9 @@
 				$("#msg").append("请先输入验证码");
 			} else {
 				$("#msg").empty();
+				$("#shopLogin").val("正在登录...");
+				$("#loading").css("display", "block");
 				$("#login_form_data").submit();
-				layer.load();
 			}
 		});
 	</script>

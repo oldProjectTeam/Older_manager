@@ -22,6 +22,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.older.manager.bean.Brand;
 import com.older.manager.bean.BrandWithBLOBs;
+import com.older.manager.bean.ProductCollect;
 import com.older.manager.bean.ProductKeyword;
 import com.older.manager.bean.ProductType;
 import com.older.manager.bean.Products;
@@ -40,10 +41,13 @@ public class CollectionController {
 	@RequestMapping("/select")
 	@ResponseBody
 	public Msg queryProducts(
-			@RequestParam(value = "pn", defaultValue = "1") Integer pn) {
+			@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+			Integer userId) {
 		PageHelper.startPage(pn, 15);
-		List<Products> products = collectionService.queryProducts();
-		PageInfo<Products> pageInfo = new PageInfo<Products>(products);
+		List<ProductCollect> products = collectionService
+				.queryProductCollects(userId);
+		PageInfo<ProductCollect> pageInfo = new PageInfo<ProductCollect>(
+				products);
 		return Msg.success().add("pageInfo", pageInfo);
 	}
 
@@ -75,4 +79,41 @@ public class CollectionController {
 		return "oldfront/home/search_same";
 	}
 
+	// 添加收藏
+	@RequestMapping("/insertProductCollect")
+	@ResponseBody
+	public Msg insertProductsCollect(ProductCollect productCollect) {
+
+		if (productCollect != null) {
+			productCollect.setTime(new Date());
+			collectionService.insertProductsCollect(productCollect);
+			return Msg.success();
+		}
+		return Msg.fail();
+	}
+
+	// 根据id删除收藏
+	@RequestMapping("/deleteProductCollect")
+	@ResponseBody
+	public Msg deleteProductCollect(@RequestParam("id") Integer id) {
+		if (id != null) {
+			collectionService.deleteProductsCollect(id);
+			return Msg.success();
+		}
+		return Msg.fail();
+	}
+
+	// 通过商品查询收藏
+	@RequestMapping("/queryCollectByProductId")
+	@ResponseBody
+	public Msg queryCollectByProductId(@RequestParam("id") Integer id,
+			@RequestParam("userId") Integer userId) {
+		ProductCollect productCollect = collectionService
+				.queryCollectByProductId(id, userId);
+		if (productCollect != null) {
+			return Msg.success();
+		} else {
+			return Msg.fail();
+		}
+	}
 }

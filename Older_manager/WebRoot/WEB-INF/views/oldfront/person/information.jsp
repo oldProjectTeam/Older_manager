@@ -38,8 +38,12 @@
 	rel="stylesheet">
 <script
 	src="${APP_PATH}/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<style type="text/css">
+a {
+	text-decoration: none;
+}
+</style>
 </head>
-
 <body>
 	<jsp:include page="../home/shopheader.jsp"></jsp:include>
 	<div class="nav-table">

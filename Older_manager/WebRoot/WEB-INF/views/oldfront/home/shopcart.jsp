@@ -85,7 +85,7 @@
 										<a href="${APP_PATH}/product/getProduct/${cart.product.id}"
 											title="${cart.product.imagetitle}" class="J_MakePoint"
 											data-point="tbcart.8.12"> <img
-											src="${APP_PATH}/${cart.product.images}"
+											src="http://123.207.93.53/Older_back/${cart.product.images}"
 											onerror="onerror=null;src='${APP_PATH }/static/images/f9b49612f9d78f425c77eae488b9c1ad.jpg'"
 											class="itempic J_ItemImg" width="80px" height="80px">
 										</a>
@@ -132,9 +132,11 @@
 								</li>
 								<li class="td td-op">
 									<div class="td-inner">
-										<a title="移入收藏夹" class="btn-fav" href="#"> 移入收藏夹</a> <a
-											href="javascript:;" onClick="del_btn(this,'${cart.id}')"
-											data-point-url="#" class="delete"> 删除</a>
+										<a title="移入收藏夹" class="btn-fav"
+											href="javascript:addCollection(${cart.product.id})">
+											移入收藏夹</a> <a href="javascript:;"
+											onClick="del_btn(this,'${cart.id}')" data-point-url="#"
+											class="delete"> 删除</a>
 									</div>
 								</li>
 							</ul>
@@ -213,6 +215,43 @@
 	</div>
 
 	<script type="text/javascript">
+		function addCollection(id) {
+			var index1 = layer.load();
+			$.ajax({
+				url : "${APP_PATH}/queryCollectByProductId",
+				data : {
+					"id" : id,
+					"userId" : ${users.id}
+				},
+				type : "GET",
+				success : function(result) {
+					if (result.code == 100) {
+						layer.close(index1);
+						layer.msg("已经收藏过了");
+					} else {
+						var index = layer.load();
+						$.ajax({
+							url : "${APP_PATH}/insertProductCollect",
+							data : {
+								"usersId" : ${users.id},
+								"productsId" : id
+							},
+							success : function(result) {
+								if (result.code == 100) {
+									layer.close(index);
+									layer.msg("加入成功");
+								}
+							}
+						});
+					}
+				}
+			});
+		}
+
+		//判断商品是否加入收藏
+		function isCollect(id, userId) {
+
+		}
 		//结算按钮
 		function account(userId) {
 			if (userId == '' || userId == undefined) {

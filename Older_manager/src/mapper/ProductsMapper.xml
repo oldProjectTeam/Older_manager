@@ -936,16 +936,8 @@
 		<if test="sales!=null">
 			order by p.sales desc
 		</if>
-		<!-- order by
-		<if test="nowprice!=null">
-			p.nowPrice asc
-		</if>
-		<if test="sales!=null">
-			<if test="nowprice!=null">
-				,
-			</if>
-			p.sales desc
-		</if> -->
+		<!-- order by <if test="nowprice!=null"> p.nowPrice asc </if> <if test="sales!=null"> 
+			<if test="nowprice!=null"> , </if> p.sales desc </if> -->
 	</select>
 	<!-- zqq -->
 	<!-- 查询产品信息 -->

@@ -77,7 +77,7 @@
 	<!--视频播放-->
 	<div id="willesPlay">
 		<div class="playContent" style="display: inline;">
-			<video height="100%" id="playVideo" style="width:77%;"> <source
+			<video height="80%" id="playVideo" style="width:77%;"> <source
 				src="http://123.207.93.53/Older_back/${video.path}" type="video/mp4"></source>
 			当前浏览器不支持 video直接播放，点击这里下载视频： <a href="/">下载视频</a> </video>
 			<div class="playTip glyphicon glyphicon-play" style="top: -320px;"></div>

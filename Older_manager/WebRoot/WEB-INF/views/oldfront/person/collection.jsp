@@ -34,7 +34,10 @@
 	type="text/css">
 <link href="${APP_PATH}/static/css/colstyle.css" rel="stylesheet"
 	type="text/css">
-
+<script type="text/javascript"
+	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 
 <body>
@@ -72,14 +75,9 @@
 					<hr />
 
 					<div class="you-like">
-						<div class="s-bar">
-							我的收藏
-							<!-- <a class="am-badge am-badge-danger am-round">降价</a> <a
-								class="am-badge am-badge-danger am-round">下架</a> -->
-						</div>
+						<div class="s-bar">我的收藏</div>
 						<!-- 中间内容 -->
 						<div class="s-content" id="products_list"></div>
-
 						<div class="s-more-btn i-load-more-item" data-screen="0"
 							id="update_list">
 							<i class="am-icon-refresh am-icon-fw"></i>更多
@@ -130,33 +128,68 @@
 										.addClass("s-info");
 								var paggingdiv = $("<div></div>").addClass(
 										"s-item");
+								var del = $("<img/>").attr("src",
+										"${APP_PATH}/static/images/del.png")
+										.css("margin-left", "150px").addClass(
+												"del");
+								del.attr("id", item.id);
 								var threediv = $("<div></div>").addClass(
 										"s-item-wrap");
-								var productsImg = $("<div></div>")
-										.append(
-												$("<a></a>")
-														.append(
-																$("<img>")
-																		.addClass(
-																				"s-pic-img s-guess-item-img")
-																		.attr(
-																				"src",
-																				item.images)
-																		.attr(
-																				"alt",
-																				item.imagetitle)
-																		.attr(
-																				"title",
-																				item.imagetitle))
-														.addClass("s-pic-link")
-														.attr("href", "#"))
-										.addClass("s-pic");
+								var img = item.products.images + "";
+								var pImg = null;
+								var productsImg;
+								if (img.indexOf(",") > 0) {
+									pImg = img.split(",");
+									productsImg = $("<div></div>")
+											.append(
+													$("<a></a>")
+															.append(
+																	$("<img/>")
+																			.addClass(
+																					"s-pic-img s-guess-item-img")
+																			.attr(
+																					"src",
+																					"http://123.207.93.53/Older_back/"
+																							+ pImg[0])
+																			.attr(
+																					"alt",
+																					item.products.imagetitle)
+																			.attr(
+																					"title",
+																					item.products.imagetitle))
+															.addClass(
+																	"s-pic-link")
+															.attr("href", "#"))
+											.addClass("s-pic");
+								} else {
+									productsImg = $("<div></div>")
+											.append(
+													$("<a></a>")
+															.append(
+																	$("<img>")
+																			.addClass(
+																					"s-pic-img s-guess-item-img")
+																			.attr(
+																					"src",
+																					"http://123.207.93.53/Older_back/"
+																							+ item.products.images)
+																			.attr(
+																					"alt",
+																					item.products.imagetitle)
+																			.attr(
+																					"title",
+																					item.products.imagetitle))
+															.addClass(
+																	"s-pic-link")
+															.attr("href", "#"))
+											.addClass("s-pic");
+								}
 
 								var produtstitle = $("<div></div>").append(
-										$("<a></a>").append(item.imagetitle)
-												.attr("href", "#").attr(
-														"title",
-														item.imagetitle))
+										$("<a></a>").append(
+												item.products.imagetitle).attr(
+												"href", "#").attr("title",
+												item.products.imagetitle))
 										.addClass("s-title");
 
 								$(prices)
@@ -169,7 +202,7 @@
 														.append(
 																$("<em></em>")
 																		.append(
-																				item.nowprice)
+																				item.products.nowprice)
 																		.addClass(
 																				"s-value"))
 														.addClass("s-price"));
@@ -189,7 +222,7 @@
 																				$(
 																						"<em></em>")
 																						.append(
-																								item.orprice)
+																								item.products.orprice)
 																						.addClass(
 																								"s-value"))
 																		.addClass(
@@ -199,10 +232,13 @@
 										$("<span></span>").append("好评")
 												.addClass("s-comment"));
 								$(sales).append(" ");
+								var sale = item.products.sales;
+								if (sale == null) {
+									sale = 0;
+								}
 								$(sales).append(
-										$("<span></span>").append(
-												"月销" + item.sales).addClass(
-												"s-sales"));
+										$("<span></span>").append("月销" + sale)
+												.addClass("s-sales"));
 
 								$(towdiv).append(produtstitle).append(prices)
 										.append(sales);
@@ -213,8 +249,9 @@
 														.append("找相似")
 														.addClass(
 																"ui-btn-loading-before findId")
-														.attr("title",
-																item.imagetitle));
+														.attr(
+																"title",
+																item.products.imagetitle));
 								$(onediv).append(
 										$("<i></i>").addClass(
 												"am-icon-shopping-cart"));
@@ -224,8 +261,9 @@
 														.append("加入购物车")
 														.addClass(
 																"ui-btn-loading-before buy shoppingcart")
-														.attr("productsID",
-																item.id));
+														.attr(
+																"productsID",
+																item.products.id));
 								$(onediv)
 										.append(
 												$("<p></p>")
@@ -239,13 +277,33 @@
 																				"href",
 																				"javascript:;")));
 
-								$(paggingdiv).append(productsImg)
+								$(paggingdiv).append(del).append(productsImg)
 										.append(towdiv).append(onediv);
 								$(threediv).append(paggingdiv).appendTo(
 										"#products_list");
-								$(".s-pic-link").attr("id", item.id);
+								$(".s-pic-link").attr("id", item.products.id);
 							});
 		}
+
+		//删除收藏
+		$(document).on("click", ".del", function() {
+			var id = $(this).attr("id");
+			layer.confirm("你确定要删除吗?", function(index) {
+				$.ajax({
+					url : "${APP_PATH}/deleteProductCollect",
+					data : {
+						"id" : id
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							layer.msg("删除成功");
+							window.location.reload();
+						}
+					}
+				});
+			});
+		});
 		$(document).on(
 				"click",
 				".s-pic-link",
@@ -261,9 +319,11 @@
 			$.ajax({
 				url : "${APP_PATH}/select",
 				type : "GET",
-				data : "pn=" + pn,
+				data : {
+					"pn" : pn,
+					"userId" : ${users.id}
+				},
 				success : function(result) {
-					console.log(result);
 					if (result.code == 100) {
 						products_info(result);
 						layer.close(index);
