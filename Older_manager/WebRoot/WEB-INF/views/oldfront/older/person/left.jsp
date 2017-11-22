@@ -2,7 +2,6 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-
 pageContext.setAttribute("APP_PATH", request.getContextPath());
 %>
 
@@ -11,7 +10,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
   <head>
     <base href="<%=basePath%>">
     
-    <title>老人个人中心左侧导航栏</title>
+    <title>左侧导航栏</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -21,76 +20,48 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
+ 
   </head>
   
   <body>
-     <div class="left1" style="background-image: url(${APP_PATH}/static/oldfront/img/left1.jpg);">
-			<hr />
-			<div class="lanmu1">
-				<a>个人资料</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/personInfo">个人资料查看</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/oldmanModify">个人资料修改</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/changePassword">账户密码修改</a>
-			</div>
-			<hr />
-			<div class="lanmu1">
-				<a>健康数据</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/oldManHealthInfo">个人健康查看</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/healthReport">健康评估报告</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/peinfoView">体检资料查看</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/visiting_record">就诊记录查看</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/takeDrug">服用药品详情</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/useHealth">使用养生用品</a>
-			</div>
-			<hr />
-			<div class="lanmu1">
-				<a>短信通告</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/sms">短信查看</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/notice">通告查看</a>
-			</div>
-			<hr />
-			<div class="lanmu1">
-				<a>我的活动</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/activitymanager">我的活动详情</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/activity_recom">推荐活动</a>
-			</div>
-			<hr />
-			<div class="lanmu1">
-				<a>我的视频课程</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/myCourse">我关注的课程</a>
-			</div>
-			<div class="left11">
-				<a href="${APP_PATH}/older/myVideo">我关注的视频</a>
-			</div>
-		</div>
+   <div class="col-md-3">
+    <div class="left">
+        <!-- 用户中心开始 -->
+        <div class="user">
+            <div class="user-photo">
+              <img src="${APP_PATH}/static/oldfront/older/images/doctorbg.png" height="115" width="108" border="0" alt="">
+            </div>
+            <div class="user-mes">
+                <ul>
+                   <li class="name">
+                     <i class="icon-nav icon-user"></i>
+                     	何东明
+                   </li>
+                   <li><i class="icon-phone"></i>13485369065</li>
+                   <li>
+                     <div class="news">
+                     <i class="icon-mail"></i>5
+                     </div><div class="tips"><i class="icon-light"></i>5</div></li>
+                </ul>
+            </div>
+            <div class="my_center" onclick="javascript:window.location.href='${APP_PATH}/older/person'">&gt;&gt;个人中心</div>
+        </div>
+        <!-- 用户中心结束 -->
+        <!-- 菜单开始 -->
+        <div class="menu">
+            <ul>
+               <li><a href="${APP_PATH}/older/health" class="menu-item"><i class="icon-nav icon-jksj mr30"></i>健康数据</a></li>
+               <li><a href="${APP_PATH}/older/pinggu" class="menu-item"><i class="icon-nav icon-fwyd mr30"></i>健康评估</a></li>
+               <li><a href="${APP_PATH}/older/lvli" class="menu-item"><i class="icon-nav icon-fwyd mr30"></i>健康履历</a></li>
+               <li><a href="${APP_PATH}/older/tijian" class="menu-item"><i class="icon-nav icon-dtdw mr30"></i>体检记录</a></li>
+               <li><a href="${APP_PATH}/older/jiuzhen" class="menu-item"><i class="icon-nav icon-jjaq mr30"></i>就诊记录</a></li>
+               <li><a href="${APP_PATH}/older/takeDrug" class="menu-item"><i class="icon-nav icon-gasp mr30"></i>用药记录</a></li>
+               <li><a href="${APP_PATH}/older/myactivity" class="menu-item"><i class="icon-nav icon-sbgl mr30"></i>我的活动</a></li>
+               <li><a href="${APP_PATH}/older/mycourse" class="menu-item"><i class="icon-nav icon-xxcx mr30"></i>我的课程</a></li>
+            </ul>
+        </div>
+        <!-- 菜单结束 -->
+    </div>
+   </div>
   </body>
 </html>

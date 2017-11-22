@@ -49,20 +49,29 @@
 			<div class="bgimg">
 				<img src="${APP_PATH}/static/oldfront/img/bggg1.png" />
 			</div>
-			<form>
+			<form action="oldmanaccount/olderLogin" method="POST">
 				<div class="login1">
 					<p style="color: #31B0D5;">智慧老人系统登录</p>
 					<div class="login2">
-						<img src="${APP_PATH}/static/oldfront/img/zhanghao.png" /> <input
+						<img src="${APP_PATH}/static/oldfront/img/zhanghao.png" />
+						<input name="account"
 							type="text" placeholder="请输入账号" />
+						<font color="red"></font>
 					</div>
 					<div class="login2">
-						<img src="${APP_PATH}/static/oldfront/img/mima.png" /> <input
+						<img src="${APP_PATH}/static/oldfront/img/mima.png" />
+						<input name="password"
 							type="password" placeholder="请输入密码" />
+						<font color="red"></font>
+					</div>
+					<div class="login3">
+						<input type="radio" /><span>记住密码</span> <a
+							href="${APP_PATH}/older/register">没有账号？</a>
 					</div>
 					<div class="btn1">
-						<input type="button" class="btn2" value="登 录" />
+						<input type="submit" class="btn2" value="登 录" />
 					</div>
+					<center><font color="red">${msg}</font></center>
 				</div>
 			</form>
 			<div class="clear"></div>

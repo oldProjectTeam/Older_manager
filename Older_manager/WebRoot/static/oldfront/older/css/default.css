@@ -1,0 +1,95 @@
+﻿body{background:#D2E0F2;font-size:12px;}
+a{ color:Black; text-decoration:none;}
+a:hover{ color:Red; text-decoration:underline;}
+.textbox03 {border: #878787 1px solid;padding: 4px 3px;font:Verdana, Geneva, sans-serif,宋体;line-height: 14px; background-color: #fff;  height: auto; font-size: 14px;  font-weight: bold; width: 190px; }
+
+.txt01{font:Verdana, Geneva, sans-serif,宋体;padding:3px 2px 2px 2px; border-width:1px; border-color:#ddd;  color:#000;}
+.txt {border: #999999 1px solid; top: 0px; width: 130px;}
+.footer{text-align:center;color: #006666; margin:0px; padding:0px;line-height:23px; font-weight:bold; background-color:#EBF9FC}
+
+.head a{color:White;text-decoration:underline;}
+
+.toolbarsplit{background:url(../images/split.gif) no-repeat left center; width:2px; margin-left:3px; vertical-align:middle;}
+
+
+
+.listtable{margin:0 auto; background:#efefef; margin-top:0px; width:100%; border-collapse:separate; border-spacing:1px; }
+.listtable thead tr th{text-align:left; height:21px; word-break:break-all; background:#f0f0f0 url(../images/public/tablebg.gif); padding-left:2px;}
+.listtable tbody tr td{padding-left:3px; height:23px; word-break:break-all;}
+.listtabletrout{background-color:#ffffff; }
+.listtabletrover{background:#f9f9f9; }
+
+.listtable1{margin:0 auto; background:#dbe8fa; margin-top:0px; width:100%;}
+.listtable1 thead tr th{font-weight:normal; text-align:center; height:18px; word-break:break-all; background:#f3f5f9; padding:5px 0;}
+.listtable1 tbody tr td{padding-left:3px; text-align:center; height:24px; word-break:break-all;}
+.listtable1trout{background-color:#ffffff; }
+.listtable1trover{background:#f6f9fd; }
+.listul{list-style:none; margin:0; padding:0;}
+.listulli{height:19px; padding:4px 0 0 10px; list-style:none; overflow:hidden; margin:5px 0; background:#daeef9 url(../images/public/buttonbg1.gif) repeat-x center; border:1px solid #b3daf4;}
+.listulli1{height:19px; padding:4px 0 0 10px; list-style:none; overflow:hidden; margin:5px 0; background:#b4d9ee url(../images/public/buttonbg2.gif) repeat-x center; border:1px solid #69a9c6;}
+
+
+.easyui-accordion ul{list-style-type:none;margin:0px; padding:10px;}
+.easyui-accordion ul li{ padding:0px;}
+.easyui-accordion ul li a{line-height:18px;}
+.easyui-accordion ul li div{margin:2px 0px;padding-left:10px;padding-top:2px;}
+.easyui-accordion ul li div.hover{border:1px dashed #99BBE8; background:#E0ECFF;cursor:pointer;}
+.easyui-accordion ul li div.hover a{color:#416AA3;}
+.easyui-accordion ul li div.selected{border:1px solid #99BBE8; background:#E0ECFF;cursor:default;}
+.easyui-accordion ul li div.selected a{color:#416AA3; font-weight:bold;}
+
+.window_maskdiv{width:1px;height:1px;background-color:#000000;position:absolute; filter:alpha(opacity=5);-khtml-opacity:0.1;-moz-opacity:0.1; opacity:0.1;left:0;top:0;right:0;bottom:0;}
+.window_maindiv{position:absolute;background-color:#ffffff; overflow:hidden; border:1px solid #aaa; box-shadow:0px 0px 7px #cccccc; filter:progid:DXImageTransform.Microsoft.Shadow(color='#cccccc', Direction=120, Strength=3);-moz-box-shadow:0px 0px 7px #cccccc;-webkit-box-shadow:0px 0px 7px #cccccc;}
+.window_title{height:26px; padding-left:5px; padding-right:5px;/* background:url(../images/wbg.gif) repeat-x;*/background:#e2e2e2;border-bottom:1px solid #aaa;}
+.window_title_title{font-weight:bold; float:left; overflow:hidden; height:26px; line-height:28px;}
+.window_title_title_ico{font-weight:bold; float:left; padding-left:16px; height:26px; line-height:28px; overflow:hidden; background:url(../images/wico.gif) no-repeat left center;}
+.window_title_button{float:right; width:11px; cursor:pointer; height:26px; line-height:26px; background:url(../images/wclose.gif) no-repeat center;}
+.window_title_button1{float:right; width:11px; cursor:pointer; height:26px; line-height:26px; background:url(../images/wclose1.gif) no-repeat center;}
+.window_body{padding:0;}
+.window_resize{ padding:0 2px 2px 0; height:13px;}
+.window_resize_img{ height:11px; width:11px; float:right; background:url(../images/wdrag.gif) no-repeat right center; cursor:se-resize;}
+
+.icon{ background:url(../images/tabicons.png) no-repeat;width:18px; line-height:18px; display:inline-block;}
+.icon-sys{ background-position:0px -200px;}
+.icon-set{ background-position:-380px -200px;}
+.icon-add{background-position: -20px 0px;}
+.icon-add1{background:url('icon/edit_add.png') no-repeat;}
+.icon-nav{background-position: -100px -20px; }
+.icon-users{background-position: -100px -480px;}
+.icon-role{background-position: -360px -200px;}
+.icon-set{background-position: -380px -200px;}
+.icon-log{background-position: -380px -80px;}
+.icon-delete16{background:url('icon/delete.gif') no-repeat;width:18px; line-height:18px; display:inline-block;}
+.icon-delete{ background-position:-140px -120px;}
+.icon-edit{ background-position:-380px -320px;}
+.icon-magic{ background-position:0px -500px;}
+.icon-database{ background-position:-20px -140px;}
+.icon-seach{ background-position:-60px -260px;}
+.icon-expand{ background:url('../images/coll2.gif') no-repeat;}
+.icon-collapse{ background:url('../images/coll3.gif') no-repeat;}
+
+.nec{color:Red}
+.table-left{text-align:left}
+
+/*新增*/
+.icon-titl_1{background-position: -280px 0px;}/*服务商*/
+.icon-titl_2{background-position: -340px 0px;}/*信息互动管理*/
+.icon-titl_3{background-position: -260px -480px;}/*员工资料*/
+.icon-titl_4{background-position: -200px -220px;}/*居家安全*/
+.icon-titl_5{background-position: -80px -60px;}/*通讯录*/
+.icon-titl_6{background-position: -240px -80px;}/*统计查询*/
+.icon-titl_7{background-position: -340px -220px;}/*设备管理*/
+.icon-titl_8{background-position: -160px -500px;}/*定位管理*/
+.icon-titl_9{background-position: -60px -220px;}/*健康管理*/
+.icon-titl_10{background-position: 0px -320px;}/*工单查询*/
+.icon-titl_11{background-position: -40px -100px;}/*结算查询*/
+.icon-titl_12{background-position: 0px -100px;}/*短信历史*/
+.icon-titl_13{background-position: 0px -220px;}/*系统设置*/
+.icon-titl_14{background-position: -200px -220px;} /*小房子*/
+.icon-titl_15{background-position: -340px -140px;} /*语音外呼记录*/
+.icon-titl_16{background-position: -60px -260px;}/*查询中心*/
+.icon-titl_17{background-position: -340px -300px;}/*报表中心*/
+.icon-titl_18{background-position: -100px -300px;}/*待处理订单*/
+.icon-titl_19{background-position: -200px -60px;}/*正式订单*/
+.icon-titl_20{background-position: -120px -300px;}/*待跟踪订单*/
+.icon-titl_21{background-position: -240px -60px;}/*老人档案管理*/

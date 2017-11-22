@@ -56,7 +56,7 @@
 					<!-- 健康数据开始 -->
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
-							用药记录
+							就诊记录
 							<button type="button" class="btn back fr" id="btnclose">返回</button>
 						</div>
 						<form class="form-inline" role="form">
@@ -91,75 +91,70 @@
 										<h4 class="modal-title">添加新数据</h4>
 									</div>
 									<div class="modal-body">
+
 										<div class="row">
-											<div class="col-md-6 col-md-offset-2">
-												<form class="form-horizontal " role="form">
-													<div class="form-group">
-														<label for="" class="col-md-4 control-label">药名：</label>
-														<div class="col-md-8" style="padding:0;">
-															<input type="text" class="form-control" id="yaoname"
-																placeholder="">
-														</div>
-													</div>
-													<div class="form-group">
-														<label for="" class="col-md-4 control-label">作用：</label>
-														<div class="col-md-8" style="padding:0;">
-															<input type="text" class="form-control" id="zuoyong"
-																placeholder="">
-														</div>
-													</div>
-													<div class="form-group">
-														<label for="" class="col-md-4 control-label">开始日期：</label>
-														<input class="easyui-datebox datebox-f combo-f textbox-f"
-															editable="false" id="h_kaishi"
-															style="width: 280px; height: 30px; display: none;">
-													</div>
-													<div class="form-group">
-														<label for="" class="col-md-4 control-label">结束日期：</label>
-														<input class="easyui-datebox datebox-f combo-f textbox-f"
-															editable="false" id="h_jieshu"
-															style="width: 280px; height: 30px; display: none;"><span
-															class="textbox combo datebox"
-															style="width: 280px; height: 30px;">
-													</div>
-													<div class="form-group">
-														<label for="" class="col-md-4 control-label">用药剂量：</label>
-														<div class="col-md-8" style="padding:0;">
-															<input type="text" class="form-control" id="jiliang"
-																placeholder="">
-														</div>
-													</div>
-													<div class="form-group ">
-														<label for="" class="col-md-4 control-label">使用方法：</label>
-														<div class="col-md-3 " style="padding:0;">
-															<select class="form-control" id="fangfa">
-																<option value="0">口服</option>
-																<option value="1">外用</option>
-
-															</select>
-														</div>
-
-														<div class="col-md-3 " style="padding:0;">
-															<select class="form-control" id="danwei">
-																<option value="0">次/天</option>
-																<option value="1">次/周</option>
-																<option value="2">次/月</option>
-															</select>
-														</div>
-													</div>
-													<div class="form-group ">
-														<label for="" class="col-md-4 control-label">服用疗程：</label>
-														<div class="col-md-8 " style="padding:0;">
-															<select class="form-control" id="liaocheng" value="-请选择-">
-
-																<option value="405">两个月</option>
-																<option value="404">一个月</option>
-																<option value="403">半个月</option>
-																<option value="402">一周</option>
-															</select>
-														</div>
-													</div>
-
+											<div class="col-md-12">
+												<form id="formid">
+													<table class="table table-bordered table-hover text-center">
+														<tr class="active">
+															<td class="col-sm-2"><font color="red">*</font>老人姓名:</td>
+															<td class="col-sm-2">张三</td>
+															<td class="col-sm-2"><font color="red">*</font>就诊医院:</td>
+															<td class="col-sm-2"><input type="text"
+																class="form-control" name="hospital" id="hospital"></td>
+															<td class="col-sm-2"><font color="red">*</font>就诊科室:</td>
+															<td class="col-sm-2"><input type="text"
+																class="form-control" name="department" id="department"></td>
+														</tr>
+														<tr>
+															<td><font color="red">*</font>医生姓名:</td>
+															<td class="col-sm-2"><input type="text"
+																class="form-control" id="doctor" name="doctor"></td>
+															<td><font color="red">*</font>就诊时间:</td>
+															<td class="col-sm-2"><input
+																class="easyui-datebox datebox-f combo-f textbox-f"
+																editable="false" id="h_kaishi"
+																style="width:150px; height: 30px; display: none;"></td>
+															<td><font color="red">*</font>复诊时间:</td>
+															<td class="col-sm-2"><input
+																class="easyui-datebox datebox-f combo-f textbox-f"
+																editable="false" id="h_kaishi"
+																style="width: 150px; height: 30px; display: none;"></td>
+														</tr>
+														<tr class="active">
+															<td class=""><font color="red">*</font>主诉内容:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="medicalrecord1" id="medicalrecord1"></textarea></td>
+															<td><font color="red">*</font>体格检查内容:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="chekcontent" id="chekcontent"></textarea></td>
+														</tr>
+														<tr>
+															<td>辅助检查内容:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="ancillarycheckcontent"></textarea></td>
+															<td><font color="red">*</font>实际检查内容:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="realcheckcontent" id="realcheckcontent"></textarea></td>
+														</tr>
+														<tr class="active">
+															<td><font color="red">*</font>正常使用药物:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="normalusedrug" id="normalusedrug"></textarea></td>
+															<td><font color="red">*</font>本次诊断结果:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="diagnosis" id="diagnosis"></textarea></td>
+														</tr>
+														<tr>
+															<td width="180"><font color="red">*</font>治疗处方和保健处方:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="treatmentcareprescription"
+																	id="treatmentcareprescription"></textarea></td>
+															<td>相关禁忌事项:</td>
+															<td colspan="2"><textarea class="form-control"
+																	rows="2" name="tabooltems"></textarea></td>
+														</tr>
+													</table>
 												</form>
 											</div>
 										</div>
@@ -180,20 +175,21 @@
 							class="table table-striped table-bordered table-hover text-center yyjl-table">
 							<thead>
 								<tr class="xy-head">
-									<th class="col-md-3">药名</th>
-									<th class="col-md-3">作用</th>
-									<th class="col-md-3">时间</th>
+									<th class="col-md-2">就诊时间</th>
+									<th class="col-md-3">就诊医院</th>
+									<th class="col-md-2">就诊科室</th>
+									<th class="col-md-2">医生名称</th>
 									<th class="col-md-3">操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>降压0号</td>
-									<td>聒血压</td>
-									<td>2017-11-06至2017-11-20</td>
+									<td>2017-11-06</td>
+									<td>华夏医院</td>
+									<td>B超</td>
+									<td>12222</td>
 									<td>
-										<div class="jjda-btn " data-toggle="modal" data-target="#jkda">
-											
+										<div class="jjda-btn" data-toggle="modal" data-target="#jkda">											>
 											<i class="jjda-btn-editer"></i>编辑
 										</div>
 										<div class="jjda-btn ">
@@ -206,20 +202,14 @@
 						</table>
 						<nav>
 						<ul class="pagination" id="page_list">
-
-
-							<li class="disabled"><a
-								href="http://demo.shecuntong.cn/DynaForm/174/821#">&lt;</a></li>
-							<li><a href="http://demo.shecuntong.cn/DynaForm/174/821#">
-								 1</a></li>
-							<li><a href="http://demo.shecuntong.cn/DynaForm/174/821#">&gt;</a></li>
+							<li class="disabled"><a href="#">&lt;</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">&gt;</a></li>
 						</ul>
 						</nav>
 						<!-- 列表结束 -->
 					</div>
 					<!-- 健康数据结束 -->
-
-
 					<!-- 右侧内容区结束 -->
 				</div>
 			</div>

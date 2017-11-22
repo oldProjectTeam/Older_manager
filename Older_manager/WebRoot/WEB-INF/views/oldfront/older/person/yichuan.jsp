@@ -56,7 +56,7 @@
 					<!-- 健康数据开始 -->
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
-							用药记录
+							遗传病史
 							<button type="button" class="btn back fr" id="btnclose">返回</button>
 						</div>
 						<form class="form-inline" role="form">
@@ -95,71 +95,32 @@
 											<div class="col-md-6 col-md-offset-2">
 												<form class="form-horizontal " role="form">
 													<div class="form-group">
-														<label for="" class="col-md-4 control-label">药名：</label>
+														<label for="" class="col-md-4 control-label">遗传病名：</label>
 														<div class="col-md-8" style="padding:0;">
 															<input type="text" class="form-control" id="yaoname"
 																placeholder="">
 														</div>
 													</div>
 													<div class="form-group">
-														<label for="" class="col-md-4 control-label">作用：</label>
+														<label for="" class="col-md-4 control-label">确诊地点：</label>
 														<div class="col-md-8" style="padding:0;">
 															<input type="text" class="form-control" id="zuoyong"
 																placeholder="">
 														</div>
 													</div>
 													<div class="form-group">
-														<label for="" class="col-md-4 control-label">开始日期：</label>
+														<label for="" class="col-md-4 control-label">确诊时间：</label>
 														<input class="easyui-datebox datebox-f combo-f textbox-f"
 															editable="false" id="h_kaishi"
 															style="width: 280px; height: 30px; display: none;">
 													</div>
 													<div class="form-group">
-														<label for="" class="col-md-4 control-label">结束日期：</label>
-														<input class="easyui-datebox datebox-f combo-f textbox-f"
-															editable="false" id="h_jieshu"
-															style="width: 280px; height: 30px; display: none;"><span
-															class="textbox combo datebox"
-															style="width: 280px; height: 30px;">
-													</div>
-													<div class="form-group">
-														<label for="" class="col-md-4 control-label">用药剂量：</label>
+														<label for="" class="col-md-4 control-label">备注：</label>
 														<div class="col-md-8" style="padding:0;">
-															<input type="text" class="form-control" id="jiliang"
+															<input type="text" class="form-control" id="zuoyong"
 																placeholder="">
 														</div>
 													</div>
-													<div class="form-group ">
-														<label for="" class="col-md-4 control-label">使用方法：</label>
-														<div class="col-md-3 " style="padding:0;">
-															<select class="form-control" id="fangfa">
-																<option value="0">口服</option>
-																<option value="1">外用</option>
-
-															</select>
-														</div>
-
-														<div class="col-md-3 " style="padding:0;">
-															<select class="form-control" id="danwei">
-																<option value="0">次/天</option>
-																<option value="1">次/周</option>
-																<option value="2">次/月</option>
-															</select>
-														</div>
-													</div>
-													<div class="form-group ">
-														<label for="" class="col-md-4 control-label">服用疗程：</label>
-														<div class="col-md-8 " style="padding:0;">
-															<select class="form-control" id="liaocheng" value="-请选择-">
-
-																<option value="405">两个月</option>
-																<option value="404">一个月</option>
-																<option value="403">半个月</option>
-																<option value="402">一周</option>
-															</select>
-														</div>
-													</div>
-
 												</form>
 											</div>
 										</div>
@@ -180,24 +141,25 @@
 							class="table table-striped table-bordered table-hover text-center yyjl-table">
 							<thead>
 								<tr class="xy-head">
-									<th class="col-md-3">药名</th>
-									<th class="col-md-3">作用</th>
-									<th class="col-md-3">时间</th>
+									<th class="col-md-3">遗传病名</th>
+									<th class="col-md-3">确诊地点</th>
+									<th class="col-md-3">确诊时间</th>
 									<th class="col-md-3">操作</th>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td>降压0号</td>
-									<td>聒血压</td>
-									<td>2017-11-06至2017-11-20</td>
+									<td>乙肝</td>
+									<td>华夏医院</td>
+									<td>2017-11-06</td>
+
 									<td>
-										<div class="jjda-btn " data-toggle="modal" data-target="#jkda">
-											
+										<div class="jjda-btn " data-toggle="modal" data-target="#jkda"
+											>
 											<i class="jjda-btn-editer"></i>编辑
 										</div>
-										<div class="jjda-btn ">
-											 
+										<div class="jjda-btn "
+											>
 											<i class="jjda-btn-del"></i>删除
 										</div>
 									</td>
@@ -209,10 +171,10 @@
 
 
 							<li class="disabled"><a
-								href="http://demo.shecuntong.cn/DynaForm/174/821#">&lt;</a></li>
-							<li><a href="http://demo.shecuntong.cn/DynaForm/174/821#">
-								 1</a></li>
-							<li><a href="http://demo.shecuntong.cn/DynaForm/174/821#">&gt;</a></li>
+								href="#">&lt;</a></li>
+							<li><a href="#"
+								 >1</a></li>
+							<li><a href="#">&gt;</a></li>
 						</ul>
 						</nav>
 						<!-- 列表结束 -->
@@ -222,14 +184,40 @@
 
 					<!-- 右侧内容区结束 -->
 				</div>
+				<!-- 右侧内容区结束 -->
 			</div>
-			<!--底部开始  -->
-			<jsp:include page="footer.jsp"></jsp:include>
-			<!-- 底部结束 -->
-			<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
-			<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
-			<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
-				type="text/javascript"></script>
-			<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+		</div>
+	</div>
+	<!--底部开始  -->
+	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- 底部结束 -->
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
+		type="text/javascript"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+	<script type="text/javascript">
+   function goJiBing (){
+      location.href="${APP_PATH}/static/oldfront/older/person/jibing.jsp";
+   }     
+    function goShouShu(){
+      location.href="${APP_PATH}/static/oldfront/older/person/shoushu.jsp";
+   }   
+   function goWaiShang(){
+      location.href="${APP_PATH}/static/oldfront/older/person/waishang.jsp";
+   }  
+    function goShuYe(){
+      location.href="${APP_PATH}/static/oldfront/older/person/shuye.jsp";
+   }  
+    function goYiChuan(){
+      location.href="${APP_PATH}/static/oldfront/older/person/yichuan.jsp";
+   }  
+  function Login_Out() { 
+      if( confirm('您确定要退出本次登录吗?')) {
+         location.href = '/index.html';
+       }
+  };
+  
+</script>
 </body>
 </html>

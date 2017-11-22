@@ -57,106 +57,111 @@ public class OlderController {
 		return "oldfront/older/person/login";
 	}
 	
-	@RequestMapping("/personInfo")
+	@RequestMapping("/allcourse")
 	public String personInfo() {
-		return "oldfront/older/person/personInfo";
+		return "oldfront/older/person/allcourse";
 	}
 	
-	@RequestMapping("/changePassword")
+	@RequestMapping("/course_detail")
 	public String changePassword() {
-		return "oldfront/older/person/changePassword";
+		return "oldfront/older/person/course_detail";
 	}
 	
-	@RequestMapping("/oldmanModify")
+	@RequestMapping("/health")
 	public String oldmanModify() {
-		return "oldfront/older/person/oldmanModify";
+		return "oldfront/older/person/health";
 	}
-	@RequestMapping("/oldManHealthInfo")
+	@RequestMapping("/jibing")
 	public String oldManHealthInfo() {
-		return "oldfront/older/person/oldManHealthInfo";
+		return "oldfront/older/person/jibing";
 	}
 	
-	@RequestMapping("/healthReport")
+	@RequestMapping("/jiuzhen")
 	public String healthReport() {
-		return "oldfront/older/person/healthReport";
+		return "oldfront/older/person/jiuzhen";
 	}
 	
-	@RequestMapping("/peinfoView")
+	@RequestMapping("/lvli")
 	public String peinfoView() {
-		return "oldfront/older/person/peinfoView";
+		return "oldfront/older/person/lvli";
 	}
 	
-	@RequestMapping("/visiting_record")
+	@RequestMapping("/myactivity")
 	public String visiting_record() {
-		return "oldfront/older/person/visiting_record";
+		return "oldfront/older/person/myactivity";
 	}
 	
-	@RequestMapping("/visiting_view")
+	@RequestMapping("/mycourse")
 	public String visiting_view() {
-		return "oldfront/older/person/visiting_view";
+		return "oldfront/older/person/mycourse";
+	}
+	
+	@RequestMapping("/older")
+	public String takeDrug() {
+		return "oldfront/older/person/older";
+	}
+	
+	@RequestMapping("/person_info")
+	public String takeDrugView() {
+		return "oldfront/older/person/person_info";
+	}
+	
+	@RequestMapping("/person")
+	public String useHealth() {
+		return "oldfront/older/person/person";
+	}
+	@RequestMapping("/pinggu")
+	public String use_health_view() {
+		return "oldfront/older/person/pinggu";
+	}
+	
+	@RequestMapping("/recomActivity")
+	public String sms() {
+		return "oldfront/older/person/recomActivity";
+	}
+	@RequestMapping("/shoushu")
+	public String sms_view() {
+		return "oldfront/older/person/shoushu";
+	}
+	@RequestMapping("/shuye")
+	public String notice() {
+		return "oldfront/older/person/shuye";
 	}
 	
 	@RequestMapping("/takeDrug")
-	public String takeDrug() {
+	public String notice_view() {
 		return "oldfront/older/person/takeDrug";
 	}
 	
-	@RequestMapping("/takeDrugView")
-	public String takeDrugView() {
-		return "oldfront/older/person/takeDrugView";
-	}
-	
-	@RequestMapping("/useHealth")
-	public String useHealth() {
-		return "oldfront/older/person/useHealth";
-	}
-	@RequestMapping("/use_health_view")
-	public String use_health_view() {
-		return "oldfront/older/person/use_health_view";
-	}
-	
-	@RequestMapping("/sms")
-	public String sms() {
-		return "oldfront/older/person/sms";
-	}
-	@RequestMapping("/sms_view")
-	public String sms_view() {
-		return "oldfront/older/person/sms_view";
-	}
-	@RequestMapping("/notice")
-	public String notice() {
-		return "oldfront/older/person/notice";
-	}
-	
-	@RequestMapping("/notice_view")
-	public String notice_view() {
-		return "oldfront/older/person/notice_view";
-	}
-	
-	/**
-	 * 老人个人中心活动管理
-	 * @return
-	 */
-	@RequestMapping("/activitymanager")
+	 
+	@RequestMapping("/tijian")
 	public String activitymanager() {
-		return "oldfront/older/person/activity";
+		return "oldfront/older/person/tijian";
 	}
 	
-	@RequestMapping("/activity_view")
+	@RequestMapping("/tiwen")
 	public String activity_view() {
-		return "oldfront/older/person/activity_view";
+		return "oldfront/older/person/tiwen";
 	}
 	
-	@RequestMapping("/activity_recom")
+	@RequestMapping("/tizhong")
 	public String activity_recom() {
-		return "oldfront/older/person/activity_recom";
+		return "oldfront/older/person/tizhong";
 	}
-	@RequestMapping("/myCourse")
+	@RequestMapping("/user_manager")
 	public String myCourse() {
-		return "oldfront/older/person/myCourse";
+		return "oldfront/older/person/user_manager";
 	}
-	@RequestMapping("/myVideo")
+	@RequestMapping("/waishang")
 	public String myVideo() {
-		return "oldfront/older/person/myVideo";
+		return "oldfront/older/person/waishang";
+	}
+	@RequestMapping("/xueya")
+	public String xueya() {
+		return "oldfront/older/person/xueya";
+	}
+	@RequestMapping("/yichuan")
+	public String yichuan() {
+		return "oldfront/older/person/yichuan";
 	}
 }
