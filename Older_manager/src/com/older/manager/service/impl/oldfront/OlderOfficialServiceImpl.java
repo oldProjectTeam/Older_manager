@@ -13,6 +13,8 @@ import com.older.manager.bean.Activity;
 import com.older.manager.bean.ActivityExample;
 import com.older.manager.bean.Courses;
 import com.older.manager.bean.Video;
+import com.older.manager.bean.VideoExample;
+import com.older.manager.bean.VideoExample.Criteria;
 import com.older.manager.mapper.ActivityMapper;
 import com.older.manager.mapper.CoursesMapper;
 import com.older.manager.mapper.VideoMapper;
@@ -119,6 +121,19 @@ public class OlderOfficialServiceImpl implements IOlderOfficialService {
 	@Override
 	public List<Activity> infoActivity() {
 		return activityMapper.selectByExample(null);
+	}
+
+	@Override
+	public List<Video> queryAllVideo() {
+		return videoMapper.selectByExample(null);
+	}
+
+	@Override
+	public List<Video> queryVideoByKeyWord(String key) {
+		VideoExample example = new VideoExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andTitleLike("%" + key + "%");
+		return videoMapper.selectByExample(example);
 	}
 
 }

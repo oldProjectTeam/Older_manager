@@ -11,12 +11,14 @@ public interface IOlderOfficialService {
 
 	/**
 	 * 官网最新数据
+	 * 
 	 * @return
 	 */
 	Map<String, Object> info();
 
 	/**
 	 * 通过id查询活动信息
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -24,24 +26,28 @@ public interface IOlderOfficialService {
 
 	/**
 	 * 随机的从数据库中查询6条活动数据
+	 * 
 	 * @return
 	 */
 	List<Activity> queryRandomActivity();
 
 	/**
 	 * 获取最新的6条课程数据
+	 * 
 	 * @return
 	 */
 	List<Courses> courseInfo();
 
 	/**
 	 * 获取最新的6条视频数据
+	 * 
 	 * @return
 	 */
 	List<Video> videoInfo();
 
 	/**
 	 * 根据id查询视频
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -49,12 +55,14 @@ public interface IOlderOfficialService {
 
 	/**
 	 * 随机获取10条视频
+	 * 
 	 * @return
 	 */
 	List<Video> videoLive();
 
 	/**
 	 * 通过id查询课程
+	 * 
 	 * @param id
 	 * @return
 	 */
@@ -62,14 +70,31 @@ public interface IOlderOfficialService {
 
 	/**
 	 * 随机的从数据库中查询6条课程数据
+	 * 
 	 * @return
 	 */
 	List<Courses> queryRandomCourse();
 
 	/**
 	 * 查询活动
+	 * 
 	 * @return
 	 */
 	List<Activity> infoActivity();
+
+	/**
+	 * 查询所有的视频
+	 * 
+	 * @return
+	 */
+	List<Video> queryAllVideo();
+
+	/**
+	 * 通过关键字查询视频
+	 * 
+	 * @param key
+	 * @return
+	 */
+	List<Video> queryVideoByKeyWord(String key);
 
 }

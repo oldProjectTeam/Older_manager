@@ -54,15 +54,16 @@
 						<li><a href="${APP_PATH}/older/index"
 							class="menu-top-active check">主页</a></li>
 						<li><a href="${APP_PATH}/older/" class="check">课程专区</a></li>
-						<li><a href="${APP_PATH}/older/" class="check">视频专区</a></li>
+						<li><a href="${APP_PATH}/older/video_list" class="check">视频专区</a></li>
 						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
 						<li>
 							<!-- 用户头像 --> <c:if test="${!empty older}">
-								<img src="${older.oldman.photo}" height="30" width="30"
+								<img src="http://123.207.93.53/Older_back/${older.oldman.photo}"
+									height="30" width="30"
 									onerror="onerror=null;src='${APP_PATH }/static/oldfront/older/images/doctor.png'"
 									style="margin-left: 240px;margin-top: 20px;" class="img-circle"
-									onclick="person()">
+									onclick="person()" />
 							</c:if> <c:if test="${empty older}">
 								<a href="${APP_PATH}/older/login" style="margin-left: 240px;">登录</a>
 							</c:if>

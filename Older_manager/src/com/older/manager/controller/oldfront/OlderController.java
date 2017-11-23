@@ -1,15 +1,34 @@
 package com.older.manager.controller.oldfront;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.older.manager.bean.Assess;
+import com.older.manager.service.oldfront.IAssessService;
 
 @Controller
 @RequestMapping("older")
 public class OlderController {
 
+	@Autowired
+	private IAssessService assessService;
+
 	@RequestMapping("/about")
 	public String about() {
 		return "oldfront/older/about";
+	}
+
+	@RequestMapping("/video_list")
+	public String video_list() {
+		return "oldfront/older/video_list";
 	}
 
 	@RequestMapping("/activity")
@@ -56,110 +75,122 @@ public class OlderController {
 	public String login() {
 		return "oldfront/older/person/login";
 	}
-	
+
 	@RequestMapping("/allcourse")
 	public String personInfo() {
 		return "oldfront/older/person/allcourse";
 	}
-	
+
 	@RequestMapping("/course_detail")
 	public String changePassword() {
 		return "oldfront/older/person/course_detail";
 	}
-	
+
 	@RequestMapping("/health")
 	public String oldmanModify() {
 		return "oldfront/older/person/health";
 	}
+
 	@RequestMapping("/jibing")
 	public String oldManHealthInfo() {
 		return "oldfront/older/person/jibing";
 	}
-	
+
 	@RequestMapping("/jiuzhen")
 	public String healthReport() {
 		return "oldfront/older/person/jiuzhen";
 	}
-	
+
 	@RequestMapping("/lvli")
 	public String peinfoView() {
 		return "oldfront/older/person/lvli";
 	}
-	
+
 	@RequestMapping("/myactivity")
 	public String visiting_record() {
 		return "oldfront/older/person/myactivity";
 	}
-	
+
 	@RequestMapping("/mycourse")
 	public String visiting_view() {
 		return "oldfront/older/person/mycourse";
 	}
-	
+
 	@RequestMapping("/older")
 	public String takeDrug() {
 		return "oldfront/older/person/older";
 	}
-	
+
 	@RequestMapping("/person_info")
 	public String takeDrugView() {
 		return "oldfront/older/person/person_info";
 	}
-	
+
 	@RequestMapping("/person")
 	public String useHealth() {
 		return "oldfront/older/person/person";
 	}
-	@RequestMapping("/pinggu")
-	public String use_health_view() {
+
+	@RequestMapping("/pinggu/{pn}&{oldManId}")
+	public String use_health_view(@PathVariable("pn") Integer pn,
+			@PathVariable("oldManId") Integer oldManId, Model model) {
+		PageHelper.startPage(pn, 10);
+		List<Assess> list = assessService.queryAssessByOldManId(oldManId);
+		PageInfo<Assess> pageInfo = new PageInfo<Assess>(list, 6);
+		model.addAttribute("pageInfo", pageInfo);
 		return "oldfront/older/person/pinggu";
 	}
-	
+
 	@RequestMapping("/recomActivity")
 	public String sms() {
 		return "oldfront/older/person/recomActivity";
 	}
+
 	@RequestMapping("/shoushu")
 	public String sms_view() {
 		return "oldfront/older/person/shoushu";
 	}
+
 	@RequestMapping("/shuye")
 	public String notice() {
 		return "oldfront/older/person/shuye";
 	}
-	
+
 	@RequestMapping("/takeDrug")
 	public String notice_view() {
 		return "oldfront/older/person/takeDrug";
 	}
-	
-	 
+
 	@RequestMapping("/tijian")
 	public String activitymanager() {
 		return "oldfront/older/person/tijian";
 	}
-	
+
 	@RequestMapping("/tiwen")
 	public String activity_view() {
 		return "oldfront/older/person/tiwen";
 	}
-	
+
 	@RequestMapping("/tizhong")
 	public String activity_recom() {
 		return "oldfront/older/person/tizhong";
 	}
+
 	@RequestMapping("/user_manager")
 	public String myCourse() {
 		return "oldfront/older/person/user_manager";
 	}
+
 	@RequestMapping("/waishang")
 	public String myVideo() {
 		return "oldfront/older/person/waishang";
 	}
+
 	@RequestMapping("/xueya")
 	public String xueya() {
 		return "oldfront/older/person/xueya";
 	}
+
 	@RequestMapping("/yichuan")
 	public String yichuan() {
 		return "oldfront/older/person/yichuan";

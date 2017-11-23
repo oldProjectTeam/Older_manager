@@ -1,5 +1,6 @@
 package com.older.manager.controller.oldfront;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -148,7 +149,46 @@ public class OlderOfficialController {
 	public String videoInfo(@PathVariable("id") Integer id, Model model) {
 		Video video = officialService.queryVideoById(id);
 		model.addAttribute("video", video);
-		return "oldfront/older/video";
+		return "oldfront/older/video_list";
 	}
 
+	@RequestMapping("/queryVideo")
+	@ResponseBody
+	public Msg queryAllVideo(@RequestParam("pn") Integer pn) {
+		PageHelper.startPage(pn, 12);
+		List<Video> list = officialService.queryAllVideo();
+		PageInfo<Video> pageInfo = new PageInfo<Video>(list, 6);
+		if (list.size() > 0) {
+			return Msg.success().add("pageInfo", pageInfo);
+		} else {
+			return Msg.fail();
+		}
+	}
+
+	/**
+	 * 通过关键字查询视频
+	 * 
+	 * @param pn
+	 * @param key
+	 * @return
+	 */
+	@RequestMapping("/queryVideoByKeyWord")
+	@ResponseBody
+	public Msg queryVideoByKeyWord(
+			@RequestParam(value = "pn", required = false, defaultValue = "1") Integer pn,
+			@RequestParam("key") String key) {
+		PageHelper.startPage(pn, 12);
+		try {
+			key = new String(key.getBytes("ISO-8859-1"), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		List<Video> list = officialService.queryVideoByKeyWord(key);
+		PageInfo<Video> pageInfo = new PageInfo<Video>(list, 6);
+		if (list.size() > 0) {
+			return Msg.success().add("pageInfo", pageInfo);
+		} else {
+			return Msg.fail();
+		}
+	}
 }
