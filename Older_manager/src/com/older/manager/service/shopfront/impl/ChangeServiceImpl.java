@@ -5,39 +5,48 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.older.manager.bean.Change;
-import com.older.manager.bean.ChangeExample;
-import com.older.manager.bean.ChangeExample.Criteria;
-import com.older.manager.mapper.ChangeMapper;
+import com.older.manager.bean.Changesale;
+import com.older.manager.bean.ChangesaleExample;
+import com.older.manager.bean.ChangesaleExample.Criteria;
+import com.older.manager.mapper.ChangesaleMapper;
 import com.older.manager.service.shopfront.ChangeService;
 
 @Service
 public class ChangeServiceImpl implements ChangeService{
 	   @Autowired
-       private ChangeMapper changeMapper;
+       private ChangesaleMapper  changesaleMapper;
 	
 	
 	@Override
-	public List<Change> selectAll(Integer userid) {
-        ChangeExample example=new ChangeExample();
+	public List<Changesale> selectAll(Integer userid) {
+        ChangesaleExample example=new ChangesaleExample();
         Criteria criteria=example.createCriteria();
         criteria.andUsidEqualTo(userid);
 
-		return changeMapper.selectByExample(example);
+		return changesaleMapper.selectByExample(example);
 	}
 
 
-	@Override
-	public void addChange(Change change) {
-		// TODO 自动生成的方法存根
-		changeMapper.insertSelective(change);
-	}
 
 
 	@Override
 	public void deleteChange(Integer id) {
 		// TODO 自动生成的方法存根
-		changeMapper.deleteByPrimaryKey(id);
+		changesaleMapper.deleteByPrimaryKey(id);
+	}
+
+
+	@Override
+	public void addChange(Changesale changesale) {
+		// TODO 自动生成的方法存根
+		changesaleMapper.insertSelective(changesale);
+	}
+
+
+	@Override
+	public void updateState(Changesale changesale) {
+		// TODO 自动生成的方法存根
+		changesaleMapper.updateByPrimaryKeySelective(changesale);
 	}
 
 }

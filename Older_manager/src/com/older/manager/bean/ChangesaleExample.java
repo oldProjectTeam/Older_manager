@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ChangeExample {
+public class ChangesaleExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ChangeExample() {
+    public ChangesaleExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -1002,6 +1002,356 @@ public class ChangeExample {
 
         public Criteria andChthreeNotBetween(String value1, String value2) {
             addCriterion("chthree not between", value1, value2, "chthree");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeIsNull() {
+            addCriterion("chtype is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeIsNotNull() {
+            addCriterion("chtype is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeEqualTo(String value) {
+            addCriterion("chtype =", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeNotEqualTo(String value) {
+            addCriterion("chtype <>", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeGreaterThan(String value) {
+            addCriterion("chtype >", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeGreaterThanOrEqualTo(String value) {
+            addCriterion("chtype >=", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeLessThan(String value) {
+            addCriterion("chtype <", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeLessThanOrEqualTo(String value) {
+            addCriterion("chtype <=", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeLike(String value) {
+            addCriterion("chtype like", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeNotLike(String value) {
+            addCriterion("chtype not like", value, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeIn(List<String> values) {
+            addCriterion("chtype in", values, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeNotIn(List<String> values) {
+            addCriterion("chtype not in", values, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeBetween(String value1, String value2) {
+            addCriterion("chtype between", value1, value2, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChtypeNotBetween(String value1, String value2) {
+            addCriterion("chtype not between", value1, value2, "chtype");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyIsNull() {
+            addCriterion("chwhy is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyIsNotNull() {
+            addCriterion("chwhy is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyEqualTo(String value) {
+            addCriterion("chwhy =", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyNotEqualTo(String value) {
+            addCriterion("chwhy <>", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyGreaterThan(String value) {
+            addCriterion("chwhy >", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyGreaterThanOrEqualTo(String value) {
+            addCriterion("chwhy >=", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyLessThan(String value) {
+            addCriterion("chwhy <", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyLessThanOrEqualTo(String value) {
+            addCriterion("chwhy <=", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyLike(String value) {
+            addCriterion("chwhy like", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyNotLike(String value) {
+            addCriterion("chwhy not like", value, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyIn(List<String> values) {
+            addCriterion("chwhy in", values, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyNotIn(List<String> values) {
+            addCriterion("chwhy not in", values, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyBetween(String value1, String value2) {
+            addCriterion("chwhy between", value1, value2, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChwhyNotBetween(String value1, String value2) {
+            addCriterion("chwhy not between", value1, value2, "chwhy");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentIsNull() {
+            addCriterion("chcontent is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentIsNotNull() {
+            addCriterion("chcontent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentEqualTo(String value) {
+            addCriterion("chcontent =", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentNotEqualTo(String value) {
+            addCriterion("chcontent <>", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentGreaterThan(String value) {
+            addCriterion("chcontent >", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentGreaterThanOrEqualTo(String value) {
+            addCriterion("chcontent >=", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentLessThan(String value) {
+            addCriterion("chcontent <", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentLessThanOrEqualTo(String value) {
+            addCriterion("chcontent <=", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentLike(String value) {
+            addCriterion("chcontent like", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentNotLike(String value) {
+            addCriterion("chcontent not like", value, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentIn(List<String> values) {
+            addCriterion("chcontent in", values, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentNotIn(List<String> values) {
+            addCriterion("chcontent not in", values, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentBetween(String value1, String value2) {
+            addCriterion("chcontent between", value1, value2, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChcontentNotBetween(String value1, String value2) {
+            addCriterion("chcontent not between", value1, value2, "chcontent");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesIsNull() {
+            addCriterion("chimages is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesIsNotNull() {
+            addCriterion("chimages is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesEqualTo(String value) {
+            addCriterion("chimages =", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesNotEqualTo(String value) {
+            addCriterion("chimages <>", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesGreaterThan(String value) {
+            addCriterion("chimages >", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesGreaterThanOrEqualTo(String value) {
+            addCriterion("chimages >=", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesLessThan(String value) {
+            addCriterion("chimages <", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesLessThanOrEqualTo(String value) {
+            addCriterion("chimages <=", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesLike(String value) {
+            addCriterion("chimages like", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesNotLike(String value) {
+            addCriterion("chimages not like", value, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesIn(List<String> values) {
+            addCriterion("chimages in", values, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesNotIn(List<String> values) {
+            addCriterion("chimages not in", values, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesBetween(String value1, String value2) {
+            addCriterion("chimages between", value1, value2, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChimagesNotBetween(String value1, String value2) {
+            addCriterion("chimages not between", value1, value2, "chimages");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateIsNull() {
+            addCriterion("chdeletestate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateIsNotNull() {
+            addCriterion("chdeletestate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateEqualTo(String value) {
+            addCriterion("chdeletestate =", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateNotEqualTo(String value) {
+            addCriterion("chdeletestate <>", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateGreaterThan(String value) {
+            addCriterion("chdeletestate >", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateGreaterThanOrEqualTo(String value) {
+            addCriterion("chdeletestate >=", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateLessThan(String value) {
+            addCriterion("chdeletestate <", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateLessThanOrEqualTo(String value) {
+            addCriterion("chdeletestate <=", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateLike(String value) {
+            addCriterion("chdeletestate like", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateNotLike(String value) {
+            addCriterion("chdeletestate not like", value, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateIn(List<String> values) {
+            addCriterion("chdeletestate in", values, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateNotIn(List<String> values) {
+            addCriterion("chdeletestate not in", values, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateBetween(String value1, String value2) {
+            addCriterion("chdeletestate between", value1, value2, "chdeletestate");
+            return (Criteria) this;
+        }
+
+        public Criteria andChdeletestateNotBetween(String value1, String value2) {
+            addCriterion("chdeletestate not between", value1, value2, "chdeletestate");
             return (Criteria) this;
         }
     }

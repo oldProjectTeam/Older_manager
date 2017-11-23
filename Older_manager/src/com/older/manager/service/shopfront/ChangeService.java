@@ -2,7 +2,7 @@ package com.older.manager.service.shopfront;
 
 import java.util.List;
 
-import com.older.manager.bean.Change;
+import com.older.manager.bean.Changesale;
 /**
  * 售后退款
  * @author 疯癫
@@ -15,16 +15,22 @@ public interface ChangeService {
 	 * @param userid
 	 * @return
 	 */
-	public List<Change> selectAll(Integer userid);
+	public List<Changesale> selectAll(Integer userid);
 	/**
 	 * z增加
 	 * @param change
 	 */
-	public void addChange(Change change);
+	public void addChange(Changesale changesale);
 	
 	/**
 	 * 删除
 	 * @param id
 	 */
 	public void deleteChange(Integer id);
+	
+	/**
+	 * 标记被删除状态
+	 * @param changesale
+	 */
+	public void updateState(Changesale changesale);
 }

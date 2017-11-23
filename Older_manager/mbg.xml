@@ -86,7 +86,7 @@
 		</table> -->
 		<!-- <table tableName="shoppingcart" domainObjectName="ShoppingCart">
 		</table> -->
-		<table tableName="users" domainObjectName="Users">
+		<table tableName="changesale" domainObjectName="Changesale">
 		</table>
 	</context>
 </generatorConfiguration>

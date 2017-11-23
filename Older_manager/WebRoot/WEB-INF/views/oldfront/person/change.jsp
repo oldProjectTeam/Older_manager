@@ -102,6 +102,7 @@
 
                                 
                                 <c:forEach items="${list}" var="ch">
+                                  <c:if test="${ch.chdeletestate=='0'}">
 								<div class="order-main">
 									<div class="order-list">
 										<div class="order-title">
@@ -192,6 +193,7 @@
 									</div>
 
 								</div>
+								</c:if>
                                </c:forEach>
 							</div>
 							

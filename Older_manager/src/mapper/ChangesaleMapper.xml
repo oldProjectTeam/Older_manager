@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ChangeMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Change" >
+<mapper namespace="com.older.manager.mapper.ChangesaleMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Changesale" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="usid" property="usid" jdbcType="INTEGER" />
     <result column="chno" property="chno" jdbcType="VARCHAR" />
@@ -16,6 +16,11 @@
     <result column="chone" property="chone" jdbcType="INTEGER" />
     <result column="chtwo" property="chtwo" jdbcType="VARCHAR" />
     <result column="chthree" property="chthree" jdbcType="VARCHAR" />
+    <result column="chtype" property="chtype" jdbcType="VARCHAR" />
+    <result column="chwhy" property="chwhy" jdbcType="VARCHAR" />
+    <result column="chcontent" property="chcontent" jdbcType="VARCHAR" />
+    <result column="chimages" property="chimages" jdbcType="VARCHAR" />
+    <result column="chdeletestate" property="chdeletestate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -77,9 +82,9 @@
   </sql>
   <sql id="Base_Column_List" >
     id, usid, chno, chtime, chphoto, chbrieft, chname, chmoeny, chaftermoney, chstate, 
-    productid, chone, chtwo, chthree
+    productid, chone, chtwo, chthree, chtype, chwhy, chcontent, chimages, chdeletestate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ChangeExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ChangesaleExample" >
     select
     <if test="distinct" >
       distinct
@@ -103,25 +108,29 @@
     delete from changesale
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ChangeExample" >
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.ChangesaleExample" >
     delete from changesale
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Change" >
+  <insert id="insert" parameterType="com.older.manager.bean.Changesale" >
     insert into changesale (id, usid, chno, 
       chtime, chphoto, chbrieft, 
       chname, chmoeny, chaftermoney, 
       chstate, productid, chone, 
-      chtwo, chthree)
+      chtwo, chthree, chtype, 
+      chwhy, chcontent, chimages, 
+      chdeletestate)
     values (#{id,jdbcType=INTEGER}, #{usid,jdbcType=INTEGER}, #{chno,jdbcType=VARCHAR}, 
       #{chtime,jdbcType=TIMESTAMP}, #{chphoto,jdbcType=VARCHAR}, #{chbrieft,jdbcType=VARCHAR}, 
       #{chname,jdbcType=VARCHAR}, #{chmoeny,jdbcType=DOUBLE}, #{chaftermoney,jdbcType=DOUBLE}, 
       #{chstate,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{chone,jdbcType=INTEGER}, 
-      #{chtwo,jdbcType=VARCHAR}, #{chthree,jdbcType=VARCHAR})
+      #{chtwo,jdbcType=VARCHAR}, #{chthree,jdbcType=VARCHAR}, #{chtype,jdbcType=VARCHAR}, 
+      #{chwhy,jdbcType=VARCHAR}, #{chcontent,jdbcType=VARCHAR}, #{chimages,jdbcType=VARCHAR}, 
+      #{chdeletestate,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Change" >
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Changesale" >
     insert into changesale
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -165,6 +174,21 @@
       </if>
       <if test="chthree != null" >
         chthree,
+      </if>
+      <if test="chtype != null" >
+        chtype,
+      </if>
+      <if test="chwhy != null" >
+        chwhy,
+      </if>
+      <if test="chcontent != null" >
+        chcontent,
+      </if>
+      <if test="chimages != null" >
+        chimages,
+      </if>
+      <if test="chdeletestate != null" >
+        chdeletestate,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -210,9 +234,24 @@
       <if test="chthree != null" >
         #{chthree,jdbcType=VARCHAR},
       </if>
+      <if test="chtype != null" >
+        #{chtype,jdbcType=VARCHAR},
+      </if>
+      <if test="chwhy != null" >
+        #{chwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="chcontent != null" >
+        #{chcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="chimages != null" >
+        #{chimages,jdbcType=VARCHAR},
+      </if>
+      <if test="chdeletestate != null" >
+        #{chdeletestate,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ChangeExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.older.manager.bean.ChangesaleExample" resultType="java.lang.Integer" >
     select count(*) from changesale
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -263,6 +302,21 @@
       <if test="record.chthree != null" >
         chthree = #{record.chthree,jdbcType=VARCHAR},
       </if>
+      <if test="record.chtype != null" >
+        chtype = #{record.chtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chwhy != null" >
+        chwhy = #{record.chwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chcontent != null" >
+        chcontent = #{record.chcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chimages != null" >
+        chimages = #{record.chimages,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chdeletestate != null" >
+        chdeletestate = #{record.chdeletestate,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -283,12 +337,17 @@
       productid = #{record.productid,jdbcType=INTEGER},
       chone = #{record.chone,jdbcType=INTEGER},
       chtwo = #{record.chtwo,jdbcType=VARCHAR},
-      chthree = #{record.chthree,jdbcType=VARCHAR}
+      chthree = #{record.chthree,jdbcType=VARCHAR},
+      chtype = #{record.chtype,jdbcType=VARCHAR},
+      chwhy = #{record.chwhy,jdbcType=VARCHAR},
+      chcontent = #{record.chcontent,jdbcType=VARCHAR},
+      chimages = #{record.chimages,jdbcType=VARCHAR},
+      chdeletestate = #{record.chdeletestate,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Change" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Changesale" >
     update changesale
     <set >
       <if test="usid != null" >
@@ -330,10 +389,25 @@
       <if test="chthree != null" >
         chthree = #{chthree,jdbcType=VARCHAR},
       </if>
+      <if test="chtype != null" >
+        chtype = #{chtype,jdbcType=VARCHAR},
+      </if>
+      <if test="chwhy != null" >
+        chwhy = #{chwhy,jdbcType=VARCHAR},
+      </if>
+      <if test="chcontent != null" >
+        chcontent = #{chcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="chimages != null" >
+        chimages = #{chimages,jdbcType=VARCHAR},
+      </if>
+      <if test="chdeletestate != null" >
+        chdeletestate = #{chdeletestate,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Change" >
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Changesale" >
     update changesale
     set usid = #{usid,jdbcType=INTEGER},
       chno = #{chno,jdbcType=VARCHAR},
@@ -347,7 +421,12 @@
       productid = #{productid,jdbcType=INTEGER},
       chone = #{chone,jdbcType=INTEGER},
       chtwo = #{chtwo,jdbcType=VARCHAR},
-      chthree = #{chthree,jdbcType=VARCHAR}
+      chthree = #{chthree,jdbcType=VARCHAR},
+      chtype = #{chtype,jdbcType=VARCHAR},
+      chwhy = #{chwhy,jdbcType=VARCHAR},
+      chcontent = #{chcontent,jdbcType=VARCHAR},
+      chimages = #{chimages,jdbcType=VARCHAR},
+      chdeletestate = #{chdeletestate,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

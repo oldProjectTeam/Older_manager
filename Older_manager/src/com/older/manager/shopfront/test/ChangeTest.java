@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.older.manager.bean.Change;
+import com.older.manager.bean.Changesale;
 import com.older.manager.service.shopfront.ChangeService;
 
 
@@ -28,7 +28,7 @@ public class ChangeTest {
      @Test
      public void testadd()throws Exception{
     	 for (int i = 0; i < 10; i++) {
-    		 Change change=new Change();
+    		 Changesale change=new Changesale();
         	 change.setUsid(220);
         	 change.setChno("20171120113"+i);
         	 change.setChtime(new Date());

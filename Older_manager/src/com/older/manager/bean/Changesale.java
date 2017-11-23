@@ -2,7 +2,7 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
-public class Change {
+public class Changesale {
     private Integer id;
 
     private Integer usid;
@@ -30,6 +30,16 @@ public class Change {
     private String chtwo;
 
     private String chthree;
+
+    private String chtype;
+
+    private String chwhy;
+
+    private String chcontent;
+
+    private String chimages;
+
+    private String chdeletestate;
 
     public Integer getId() {
         return id;
@@ -141,5 +151,45 @@ public class Change {
 
     public void setChthree(String chthree) {
         this.chthree = chthree == null ? null : chthree.trim();
+    }
+
+    public String getChtype() {
+        return chtype;
+    }
+
+    public void setChtype(String chtype) {
+        this.chtype = chtype == null ? null : chtype.trim();
+    }
+
+    public String getChwhy() {
+        return chwhy;
+    }
+
+    public void setChwhy(String chwhy) {
+        this.chwhy = chwhy == null ? null : chwhy.trim();
+    }
+
+    public String getChcontent() {
+        return chcontent;
+    }
+
+    public void setChcontent(String chcontent) {
+        this.chcontent = chcontent == null ? null : chcontent.trim();
+    }
+
+    public String getChimages() {
+        return chimages;
+    }
+
+    public void setChimages(String chimages) {
+        this.chimages = chimages == null ? null : chimages.trim();
+    }
+
+    public String getChdeletestate() {
+        return chdeletestate;
+    }
+
+    public void setChdeletestate(String chdeletestate) {
+        this.chdeletestate = chdeletestate == null ? null : chdeletestate.trim();
     }
 }
