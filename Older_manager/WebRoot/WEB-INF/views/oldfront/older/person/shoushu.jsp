@@ -600,6 +600,12 @@ function to_page(pn){
 			});
 			return false;
 		}
+		if(time1>time2){
+			layer.msg("结束时间不能小于开始时间!",{
+				offset:['35%']
+			});
+			return false;
+		}
 		return "surgerytime1="+time1+"&surgerytime2="+time2;
 	}
 	

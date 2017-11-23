@@ -106,7 +106,7 @@
 														</div>
 													</div>
 													<div class="form-group">
-														<label for="" class="col-md-4 control-label">确诊地点：</label>
+														<label for="" class="col-md-4 control-label">医院名称：</label>
 														<div class="col-md-8" style="padding:0;">
 															<input type="text" class="form-control" id="place"
 																placeholder="" name="place">
@@ -628,6 +628,13 @@ function to_page(pn){
 			});
 			return false;
 		}
+		if(time1>time2){
+			layer.msg("结束时间不能小于开始时间!",{
+				offset:['35%']
+			});
+			return false;
+		}
+		
 		return "confirmedtime1="+time1+"&confirmedtime2="+time2;
 	}
 	

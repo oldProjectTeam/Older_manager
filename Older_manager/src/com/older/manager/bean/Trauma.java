@@ -2,15 +2,29 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Trauma {
     private Integer id;
 
+    @NotEmpty(message="外伤名称不能为空！")
+    @Length(min=1,max=50)
     private String traumaname;
 
+    @NotNull(message="治疗时间不能为空")
     private Date occurrencetime;
 
+    //条件查询所用
+    private Date occurrencetime1;
+    private Date occurrencetime2;
+     
+    @Length(min=0,max=100,message="医院名称长度超出限制")
     private String hospitalname;
-
+    
+    @Length(min=0,max=200,message="备注长度超出限制")
     private String remark;
 
     private Integer oldmanId;
@@ -111,4 +125,20 @@ public class Trauma {
     public void setNumthree(String numthree) {
         this.numthree = numthree == null ? null : numthree.trim();
     }
+
+	public Date getOccurrencetime1() {
+		return occurrencetime1;
+	}
+
+	public void setOccurrencetime1(Date occurrencetime1) {
+		this.occurrencetime1 = occurrencetime1;
+	}
+
+	public Date getOccurrencetime2() {
+		return occurrencetime2;
+	}
+
+	public void setOccurrencetime2(Date occurrencetime2) {
+		this.occurrencetime2 = occurrencetime2;
+	}
 }
