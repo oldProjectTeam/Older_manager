@@ -140,7 +140,7 @@ public class DiseaseController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping(value="/deleteDisease{id}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/deleteDisease/{id}")
 	@ResponseBody
 	public Msg deleteDisease(@PathVariable("id")Integer id){
 		 if(!Pattern.matches("[\\d]+",id+"")){

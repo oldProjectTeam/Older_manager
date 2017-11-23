@@ -49,8 +49,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
         <!-- 用户中心结束 -->
         <!-- 菜单开始 -->
         <div class="menu">
-            <ul>
-               <li><a href="${APP_PATH}/older/health" class="menu-item"><i class="icon-nav icon-jksj mr30"></i>健康数据</a></li>
+            <ul>      
                <li><a href="${APP_PATH}/older/pinggu" class="menu-item"><i class="icon-nav icon-fwyd mr30"></i>健康评估</a></li>
                <li><a href="${APP_PATH}/older/lvli" class="menu-item"><i class="icon-nav icon-fwyd mr30"></i>健康履历</a></li>
                <li><a href="${APP_PATH}/older/tijian" class="menu-item"><i class="icon-nav icon-dtdw mr30"></i>体检记录</a></li>

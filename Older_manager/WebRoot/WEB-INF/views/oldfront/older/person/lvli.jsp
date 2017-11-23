@@ -56,7 +56,8 @@
 						<div class="jksj">
 							<div class="xy-title">
 								健康履历
-								<button type="button" onclick="javascript:history.go(-1);"
+								<button type="button" 
+								 onclick="javascript:window.location.href='${APP_PATH}/older/older'"
 									class="btn back fr" id="btnclose">返回</button>
 							</div>
 							<div>
@@ -147,13 +148,9 @@
       location.href="${APP_PATH}/older/shuye";
    }  
     function goYiChuan(){
-      location.href="${APP_PATH}older/yichuan";
+      location.href="${APP_PATH}/older/yichuan";
    }  
-  function Login_Out() { 
-      if( confirm('您确定要退出本次登录吗?')) {
-         location.href = '/index.html';
-       }
-  };
+  
   
 </script>
 </body>

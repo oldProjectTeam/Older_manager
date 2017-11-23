@@ -2,6 +2,8 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -12,7 +14,7 @@ public class Disease {
     @Length(min=1,max=100)
     private String diseasename;
 
-    @NotEmpty(message="确诊时间不能为空")
+    @NotNull(message="确诊时间不能为空")
     private Date confirmedtime;
 
     //条件查询所用

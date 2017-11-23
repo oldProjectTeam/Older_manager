@@ -22,7 +22,7 @@ public class DiseaseServiceImpl implements IDiseaseService {
 		 criteria.andOldmanIdEqualTo(disease.getOldmanId());
 		 if(disease!=null){
 			 if(disease.getConfirmedtime1()!=null&&disease.getConfirmedtime2()!=null){
-				 criteria.andConfirmedtimeBetween(disease.getConfirmedtime1(),disease.getConfirmedtime1());
+				 criteria.andConfirmedtimeBetween(disease.getConfirmedtime1(),disease.getConfirmedtime2());
 			 }
 		 }
 		
