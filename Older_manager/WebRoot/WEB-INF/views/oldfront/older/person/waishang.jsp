@@ -169,7 +169,7 @@
 							</tbody>
 						</table>
 						<!-- 列表结束 -->
-						<!--分页信息开始  -->
+					  <!--分页信息开始  -->
 			          <div class="row">
 			          	<div class="col-md-10 col-md-offset-1" id="page_info">	          	           
 			          	</div>
