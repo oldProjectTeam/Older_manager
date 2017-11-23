@@ -337,7 +337,7 @@ $("#add_save_btn").click(function(){
 		offset : [ '40%' ],
 	});
 	 $.ajax({
-		 url:"${APP_PATH}/disease/insertDisease?",
+		 url:"${APP_PATH}/disease/insertDisease",
 		 data:$("#add_model_form").serialize(),
 		 type:"POST",
 		 success:function(result){
