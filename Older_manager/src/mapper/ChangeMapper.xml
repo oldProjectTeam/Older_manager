@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.ChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Change" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="usid" property="usid" jdbcType="INTEGER" />
+    <result column="chno" property="chno" jdbcType="VARCHAR" />
+    <result column="chtime" property="chtime" jdbcType="TIMESTAMP" />
+    <result column="chphoto" property="chphoto" jdbcType="VARCHAR" />
+    <result column="chbrieft" property="chbrieft" jdbcType="VARCHAR" />
+    <result column="chname" property="chname" jdbcType="VARCHAR" />
+    <result column="chmoeny" property="chmoeny" jdbcType="DOUBLE" />
+    <result column="chaftermoney" property="chaftermoney" jdbcType="DOUBLE" />
+    <result column="chstate" property="chstate" jdbcType="INTEGER" />
+    <result column="productid" property="productid" jdbcType="INTEGER" />
+    <result column="chone" property="chone" jdbcType="INTEGER" />
+    <result column="chtwo" property="chtwo" jdbcType="VARCHAR" />
+    <result column="chthree" property="chthree" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, usid, chno, chtime, chphoto, chbrieft, chname, chmoeny, chaftermoney, chstate, 
+    productid, chone, chtwo, chthree
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ChangeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from changesale
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from changesale
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from changesale
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.ChangeExample" >
+    delete from changesale
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Change" >
+    insert into changesale (id, usid, chno, 
+      chtime, chphoto, chbrieft, 
+      chname, chmoeny, chaftermoney, 
+      chstate, productid, chone, 
+      chtwo, chthree)
+    values (#{id,jdbcType=INTEGER}, #{usid,jdbcType=INTEGER}, #{chno,jdbcType=VARCHAR}, 
+      #{chtime,jdbcType=TIMESTAMP}, #{chphoto,jdbcType=VARCHAR}, #{chbrieft,jdbcType=VARCHAR}, 
+      #{chname,jdbcType=VARCHAR}, #{chmoeny,jdbcType=DOUBLE}, #{chaftermoney,jdbcType=DOUBLE}, 
+      #{chstate,jdbcType=INTEGER}, #{productid,jdbcType=INTEGER}, #{chone,jdbcType=INTEGER}, 
+      #{chtwo,jdbcType=VARCHAR}, #{chthree,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Change" >
+    insert into changesale
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="usid != null" >
+        usid,
+      </if>
+      <if test="chno != null" >
+        chno,
+      </if>
+      <if test="chtime != null" >
+        chtime,
+      </if>
+      <if test="chphoto != null" >
+        chphoto,
+      </if>
+      <if test="chbrieft != null" >
+        chbrieft,
+      </if>
+      <if test="chname != null" >
+        chname,
+      </if>
+      <if test="chmoeny != null" >
+        chmoeny,
+      </if>
+      <if test="chaftermoney != null" >
+        chaftermoney,
+      </if>
+      <if test="chstate != null" >
+        chstate,
+      </if>
+      <if test="productid != null" >
+        productid,
+      </if>
+      <if test="chone != null" >
+        chone,
+      </if>
+      <if test="chtwo != null" >
+        chtwo,
+      </if>
+      <if test="chthree != null" >
+        chthree,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="usid != null" >
+        #{usid,jdbcType=INTEGER},
+      </if>
+      <if test="chno != null" >
+        #{chno,jdbcType=VARCHAR},
+      </if>
+      <if test="chtime != null" >
+        #{chtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chphoto != null" >
+        #{chphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="chbrieft != null" >
+        #{chbrieft,jdbcType=VARCHAR},
+      </if>
+      <if test="chname != null" >
+        #{chname,jdbcType=VARCHAR},
+      </if>
+      <if test="chmoeny != null" >
+        #{chmoeny,jdbcType=DOUBLE},
+      </if>
+      <if test="chaftermoney != null" >
+        #{chaftermoney,jdbcType=DOUBLE},
+      </if>
+      <if test="chstate != null" >
+        #{chstate,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="chone != null" >
+        #{chone,jdbcType=INTEGER},
+      </if>
+      <if test="chtwo != null" >
+        #{chtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="chthree != null" >
+        #{chthree,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.ChangeExample" resultType="java.lang.Integer" >
+    select count(*) from changesale
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update changesale
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.usid != null" >
+        usid = #{record.usid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chno != null" >
+        chno = #{record.chno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chtime != null" >
+        chtime = #{record.chtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.chphoto != null" >
+        chphoto = #{record.chphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chbrieft != null" >
+        chbrieft = #{record.chbrieft,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chname != null" >
+        chname = #{record.chname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chmoeny != null" >
+        chmoeny = #{record.chmoeny,jdbcType=DOUBLE},
+      </if>
+      <if test="record.chaftermoney != null" >
+        chaftermoney = #{record.chaftermoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.chstate != null" >
+        chstate = #{record.chstate,jdbcType=INTEGER},
+      </if>
+      <if test="record.productid != null" >
+        productid = #{record.productid,jdbcType=INTEGER},
+      </if>
+      <if test="record.chone != null" >
+        chone = #{record.chone,jdbcType=INTEGER},
+      </if>
+      <if test="record.chtwo != null" >
+        chtwo = #{record.chtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chthree != null" >
+        chthree = #{record.chthree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update changesale
+    set id = #{record.id,jdbcType=INTEGER},
+      usid = #{record.usid,jdbcType=INTEGER},
+      chno = #{record.chno,jdbcType=VARCHAR},
+      chtime = #{record.chtime,jdbcType=TIMESTAMP},
+      chphoto = #{record.chphoto,jdbcType=VARCHAR},
+      chbrieft = #{record.chbrieft,jdbcType=VARCHAR},
+      chname = #{record.chname,jdbcType=VARCHAR},
+      chmoeny = #{record.chmoeny,jdbcType=DOUBLE},
+      chaftermoney = #{record.chaftermoney,jdbcType=DOUBLE},
+      chstate = #{record.chstate,jdbcType=INTEGER},
+      productid = #{record.productid,jdbcType=INTEGER},
+      chone = #{record.chone,jdbcType=INTEGER},
+      chtwo = #{record.chtwo,jdbcType=VARCHAR},
+      chthree = #{record.chthree,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Change" >
+    update changesale
+    <set >
+      <if test="usid != null" >
+        usid = #{usid,jdbcType=INTEGER},
+      </if>
+      <if test="chno != null" >
+        chno = #{chno,jdbcType=VARCHAR},
+      </if>
+      <if test="chtime != null" >
+        chtime = #{chtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="chphoto != null" >
+        chphoto = #{chphoto,jdbcType=VARCHAR},
+      </if>
+      <if test="chbrieft != null" >
+        chbrieft = #{chbrieft,jdbcType=VARCHAR},
+      </if>
+      <if test="chname != null" >
+        chname = #{chname,jdbcType=VARCHAR},
+      </if>
+      <if test="chmoeny != null" >
+        chmoeny = #{chmoeny,jdbcType=DOUBLE},
+      </if>
+      <if test="chaftermoney != null" >
+        chaftermoney = #{chaftermoney,jdbcType=DOUBLE},
+      </if>
+      <if test="chstate != null" >
+        chstate = #{chstate,jdbcType=INTEGER},
+      </if>
+      <if test="productid != null" >
+        productid = #{productid,jdbcType=INTEGER},
+      </if>
+      <if test="chone != null" >
+        chone = #{chone,jdbcType=INTEGER},
+      </if>
+      <if test="chtwo != null" >
+        chtwo = #{chtwo,jdbcType=VARCHAR},
+      </if>
+      <if test="chthree != null" >
+        chthree = #{chthree,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Change" >
+    update changesale
+    set usid = #{usid,jdbcType=INTEGER},
+      chno = #{chno,jdbcType=VARCHAR},
+      chtime = #{chtime,jdbcType=TIMESTAMP},
+      chphoto = #{chphoto,jdbcType=VARCHAR},
+      chbrieft = #{chbrieft,jdbcType=VARCHAR},
+      chname = #{chname,jdbcType=VARCHAR},
+      chmoeny = #{chmoeny,jdbcType=DOUBLE},
+      chaftermoney = #{chaftermoney,jdbcType=DOUBLE},
+      chstate = #{chstate,jdbcType=INTEGER},
+      productid = #{productid,jdbcType=INTEGER},
+      chone = #{chone,jdbcType=INTEGER},
+      chtwo = #{chtwo,jdbcType=VARCHAR},
+      chthree = #{chthree,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

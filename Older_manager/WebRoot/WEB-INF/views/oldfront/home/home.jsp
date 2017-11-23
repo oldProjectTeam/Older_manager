@@ -665,11 +665,11 @@
                 });
 
                 var a_activity = $("<a></a>");
-                a_activity.attr("href",);
+                a_activity.attr("href","#");
                 var div_outer_con = $("<div></div>").addClass("outer-con ");
                 var div_title1 = $("<div></div>").addClass("title").append("开抢啦！");
                 var div_sub_title1 = $("<div></div>").addClass("sub-title ");
-                var img_activity = $("<img>").attr("href", );
+                var img_activity = $("<img>").attr("href","");
                 var div_triangle_topright = $("<div></div>").addClass("triangle-topright");
 
                 a_activity.append(div_outer_con.append(div_title1).append(div_sub_title1)).append(img_activity);

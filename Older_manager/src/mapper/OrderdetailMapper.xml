@@ -41,7 +41,6 @@
 		<!-- 订单的 -->
 		<association property="orders" javaType="com.older.manager.bean.Orders">
 	     <id column="order_id" property="id"/>
-	    <result column="name" property="name"/>
 		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
 		<result column="transactionId" property="transactionid"
 			jdbcType="VARCHAR" />
@@ -57,11 +56,13 @@
 		<result column="shippingAddress_id" property="shippingaddressId"
 			jdbcType="INTEGER" />
 		<result column="user_id" property="userId" jdbcType="INTEGER" />
-		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="ostate" property="state" jdbcType="VARCHAR" />
 		<result column="freight" property="freight" jdbcType="DOUBLE" />
+		<result column="orders1" property="orders1" jdbcType="VARCHAR" />
+		<result column="orders2" property="orders2" jdbcType="VARCHAR" />
 	    </association>
 	        
-	     <!-- 产品的 --> 
+	     <!-- 产品的 -->       
 	   <association property="products"  javaType="com.older.manager.bean.Products">
 	    <id column="produccts_id" property="id" jdbcType="INTEGER" />
 		<result column="name" property="name" jdbcType="VARCHAR" />
@@ -71,7 +72,7 @@
 		<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
 		<result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
 		<result column="auditStatus" property="auditstatus" jdbcType="INTEGER" />
-		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="pstate" property="state" jdbcType="INTEGER" />
 		<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
 		<result column="placeOrigin" property="placeorigin" jdbcType="VARCHAR" />
 		<result column="type_id" property="typeId" jdbcType="INTEGER" />
@@ -167,6 +168,31 @@
 			</foreach>
 		</where>
 	</sql>
+	<sql id="Base_Column_List1">
+		d.id, d.detial_number, d.order_id, d.produccts_id, d.producctName,
+		d.basePrice,
+		d.number, d.orderDetail1,
+		d.orderDetail2, d.orderDetail3,
+		d.orderDetail4, d.orderDetail5, d.orderDetail6, d.orderDetail7,
+		
+		
+		o.id, o.order_no, o.transactionId, o.subject, o.cost, o.num, o.body, o.payType,
+		o.creatTime, o.shipper,
+		o.shipperPhone, o.formulaWay, o.shippingAddress_id, o.user_id, o.state as ostate, o.freight,o.orders1,o.orders2,
+		
+		
+		p.id, p.name as pname, p.number, p.orPrice, p.region, p.nowPrice, p.addTime,
+		p.auditStatus, p.state as pstate,
+		p.imageTitle,
+		p.placeOrigin, p.type_id, p.brand_id, p.texture,
+		p.weight, p.unit, p.synopsis, p.images,
+		p.description,
+		p.inventory, p.sales
+		
+		
+		
+	</sql>
+	
 	<sql id="Base_Column_List">
 		id, detial_number, order_id, produccts_id, producctName,
 		basePrice,
@@ -200,7 +226,9 @@
 	
 	<!-- 带产品与订单的 -->
 	<select id="selectByExampleWithOthre" resultMap="BaseResultMapWithOther" parameterType="com.older.manager.bean.Orderdetail">
-		select d.* from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
+		select
+		 <include refid="Base_Column_List1" />
+		 from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
 		
            <if test="orders.state!=null and orders.state!=''">
         		and o.state like '%${orders.state}%'
@@ -210,8 +238,8 @@
         		and o.user_id =${orders.userId}
         	</if>
         	
-        	 <if test="orders.orderNo!=null">
-        		and o.order_no like '%${orders.orderNo}%'
+        	 <if test="detialNumber!=null and detialNumber!=''" >
+        		and d.detial_number =${detialNumber}
         	</if>
 	
 	

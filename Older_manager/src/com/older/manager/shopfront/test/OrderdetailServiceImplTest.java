@@ -22,7 +22,7 @@ public class OrderdetailServiceImplTest {
 	
 	@Test
 	public void selectById()throws Exception{
-		System.out.println("*****************"+iOrderdetailService.selectOrderDetailByid(7));
+		System.out.println("*****************"+iOrderdetailService.selectOrderDetailByid(1));
 		
 	}
 
@@ -32,7 +32,7 @@ public class OrderdetailServiceImplTest {
 	public void selectall()throws Exception{
 		Orderdetail orderdetail=new Orderdetail();
 	     Orders orders=new Orders();
-	     orders.setUserId(2);
+	     orders.setUserId(220);
 	     orders.setState("待付款");
 	     //orders.setOrderNo("201711163630");
 	     orderdetail.setOrders(orders);
@@ -43,5 +43,16 @@ public class OrderdetailServiceImplTest {
 		
 		
 	}
+	@Test
+	public void testupdate()throws Exception{
+		Orders orders=new Orders();
+		orders.setState("已评价");
+		orders.setId(2);
+		orders.setFreight(100.0);
+		iOrderdetailService.updatestate(orders);
+		
+	}
+	
+	
 
 }

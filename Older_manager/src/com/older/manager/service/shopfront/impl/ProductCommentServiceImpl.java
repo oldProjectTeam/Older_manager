@@ -16,5 +16,9 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 	public List<ProductComment> queryProductComments() {
 		return productCommentMapper.selectProductsComments();
 	}
-
+	@Override
+	public void addProductComment(ProductComment productComment) {
+		// TODO 自动生成的方法存根
+		productCommentMapper.insertSelective(productComment);
+	}
 }
