@@ -51,4 +51,39 @@ public interface ProductTypeMapper {
 	 * @date: 2017年11月16日 下午8:32:11
 	 */
 	List<ProductType> selectAllProductsTypeByComplexSearch(Products products);
+	
+	/**
+	 * @Title:   selectAllProductsTypeByParentId
+	 * @Description:  通过父类id来查询所有的子产品类型
+	 * @param:    @param parendId
+	 * @param:    @return   
+	 * @return:   List<ProductType>   
+	 * @throws
+	 * @author:   ym
+	 * @date:     2017年11月20日 上午10:12:15
+	 */
+	List<ProductType> selectAllProductsTypeByParentId(Integer parendId);
+	
+	/**
+	 * @Title:   selectAllProductType
+	 * @Description:  查询所有父类和子类 id
+	 * @param:    @return   
+	 * @return:   List<ProductType>   
+	 * @throws
+	 * @author:   ym
+	 * @date:     2017年11月20日 下午8:34:21
+	 */
+	List<ProductType> selectAllProductType();
+	
+	/**
+	 * @Title:   selectAllProductTypeAndProducts
+	 * @Description:  查询所有的商品一级类型和二级类型下的商品
+	 * @param:    @return   
+	 * @return:   List<ProductType>   
+	 * @throws
+	 * @author:   ym
+	 * @date:     2017年11月21日 上午9:57:22
+	 */
+	List<ProductType> selectAllProductTypeAndProducts();
+	
 }

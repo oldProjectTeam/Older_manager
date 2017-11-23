@@ -75,4 +75,39 @@ public interface ProductsSearchService {
 	 * @date: 2017年11月17日 上午11:24:19
 	 */
 	public List<String> selectAllHosProductsKeyWordBySearch(Products products);
+
+	/**
+	 * @Title: selectAllProductsByBrandName
+	 * @Description: 通过商品名称查询所有的商品
+	 * @param: @param brandname
+	 * @param: @return
+	 * @return: List<Products>
+	 * @throws
+	 * @author: ym
+	 * @date: 2017年11月22日 下午10:57:31
+	 */
+	public List<Products> selectAllProductsByBrandName(String brandname);
+
+	/**
+	 * @Title: selecyAllProductsByTypeName
+	 * @Description: 通过商品标题查询所有的商品
+	 * @param: @param typename
+	 * @param: @return
+	 * @return: List<Products>
+	 * @throws
+	 * @author: ym
+	 * @date: 2017年11月22日 下午10:59:08
+	 */
+	public List<Products> selecyAllProductsByTypeName(String typename);
+
+	/**
+	 * @Title: selectSlidePeoducts
+	 * @Description: 查询首页轮播的产品图片
+	 * @param: @return
+	 * @return: List<Products>
+	 * @throws
+	 * @author: ym
+	 * @date: 2017年11月23日 上午1:12:30
+	 */
+	public List<Products> selectSlidePeoducts();
 }

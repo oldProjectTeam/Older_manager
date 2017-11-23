@@ -3,10 +3,8 @@ package com.older.manager.shopfront.test;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +16,7 @@ import com.older.manager.bean.ProductKeyword;
 import com.older.manager.bean.Products;
 import com.older.manager.service.shopfront.IProductKeywordService;
 import com.older.manager.service.shopfront.IProductService;
-import com.older.manager.utils.UUIDTools;
+import com.older.manager.service.shopfront.IProductsService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:applicationContext.xml" })
@@ -26,6 +24,10 @@ public class ProductServiceImplTest {
 
 	@Autowired
 	IProductService productService;
+	
+	@Autowired
+	IProductsService productsService;
+	
 	@Autowired
 	IProductKeywordService productKeywordService;
 
@@ -100,5 +102,15 @@ public class ProductServiceImplTest {
 	@Test
 	public void findProduct() throws Exception {
 		System.out.println(productService.findProduct(4));
+	}
+	
+	@Test
+	public void selectProductsTypeHeadsTest(){
+		System.out.println(productsService.findAllProductsTypeDetial());
+	};
+	
+	@Test
+	public void selectAllProductTypeAndProductsTest(){
+		
 	}
 }

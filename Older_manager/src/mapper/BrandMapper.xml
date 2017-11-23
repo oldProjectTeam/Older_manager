@@ -519,4 +519,37 @@
 			order by p.sales desc
 		</if>
 	</select>
+	
+	<!-- 23号新写的 -->
+	<select id="selectAllProductsBrandByPrductsParentId" resultMap="BaseResultMap">
+		SELECT DISTINCT
+		b.*
+		FROM
+		productType pt,
+		products p,
+		brand b
+		WHERE
+		pt.id =
+		p.type_id
+		AND p.brand_id = b.id
+		AND p.state = 1
+		AND pt.id =
+		#{productsId,jdbcType=INTEGER}
+	</select>
+
+	<select id="selectBrandByProductsId" resultMap="ResultMapWithBLOBs">
+		SELECT
+		distinct
+		b.*
+		FROM
+		productType pt,
+		products p,
+		brand b
+		WHERE
+		pt.id = p.type_id
+		AND
+		p.brand_id = b.id
+		and pt.parentId=#{productsId,jdbcType=INTEGER}
+		<!-- limit 1,6 -->
+	</select>
 </mapper>

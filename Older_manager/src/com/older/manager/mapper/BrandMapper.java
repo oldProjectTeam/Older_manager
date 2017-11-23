@@ -49,4 +49,28 @@ public interface BrandMapper {
      * @date:     2017年11月16日 下午8:27:23
      */
     List<Brand> selectAllProductsBrandByComplexSearch(Products products);
+    
+    /**
+     * @Title:   selectAllProductsBrandByPrductsParentId
+     * @Description:  通过产品类型id查询所有的品牌
+     * @param:    @param productsId
+     * @param:    @return   
+     * @return:   List<Brand>   
+     * @throws
+     * @author:   ym
+     * @date:     2017年11月20日 下午7:03:15
+     */
+    List<Brand> selectAllProductsBrandByPrductsParentId(Integer productsId);
+    
+    /**
+     * @Title:   selectBrandByProductsId
+     * @Description:  通过产品类型的id查询
+     * @param:    @param productsId
+     * @param:    @return   
+     * @return:   List<Brand>   
+     * @throws
+     * @author:   ym
+     * @date:     2017年11月20日 下午10:47:31
+     */
+    List<Brand> selectBrandByProductsId(Integer productsId);
 }

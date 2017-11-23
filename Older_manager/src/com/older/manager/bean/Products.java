@@ -12,30 +12,30 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Products {
 	private Integer id;
 
-	//分页参数
-	private Integer page;//当前页
-	private Integer limit;//每页显示大小
-	
-	//图片路径列表
-	private List<String>imgList;
-	
-	@NotEmpty(message="简略标题不能为空")
-	@Length(min=1,max=100,message="简略标题长度超出限制")
+	// 分页参数
+	private Integer page;// 当前页
+	private Integer limit;// 每页显示大小
+
+	// 图片路径列表
+	private List<String> imgList;
+
+	@NotEmpty(message = "简略标题不能为空")
+	@Length(min = 1, max = 100, message = "简略标题长度超出限制")
 	private String name;
-  
-	@Length(min=0,max=30,message="产品编号长度超出限制")
+
+	@Length(min = 0, max = 30, message = "产品编号长度超出限制")
 	private String number;
 
-	@NotNull(message="原来价格不能为空！")
-	@Min(value=0,message="原来价格不能为负数！")
+	@NotNull(message = "原来价格不能为空！")
+	@Min(value = 0, message = "原来价格不能为负数！")
 	private Double orprice;
 
-	@NotEmpty(message="所属地区/国家不能为空！")
-	@Length(min=1,max=50,message="所属地区/国家字数超过限制！")
+	@NotEmpty(message = "所属地区/国家不能为空！")
+	@Length(min = 1, max = 50, message = "所属地区/国家字数超过限制！")
 	private String region;
 
-	@NotNull(message="现在价格不能为空！")
-	@Min(value=0,message="现在价格不能为负数！")
+	@NotNull(message = "现在价格不能为空！")
+	@Min(value = 0, message = "现在价格不能为负数！")
 	private Double nowprice;
 
 	private Date addtime;
@@ -46,18 +46,18 @@ public class Products {
 
 	private Integer state;
 
-	@NotEmpty(message="图片标题不能为空")
-	@Length(min=1,max=50,message="图片标题长度超出限制")
+	@NotEmpty(message = "图片标题不能为空")
+	@Length(min = 1, max = 50, message = "图片标题长度超出限制")
 	private String imagetitle;
 
-	@Length(min=0,max=100,message="产地长度超出限制")
+	@Length(min = 0, max = 100, message = "产地长度超出限制")
 	private String placeorigin;
 
 	private Integer brandId;
 
 	@Valid
 	private ProductKeyword productKeyword;
-	
+
 	// 类型ID
 	private Integer typeId;
 
@@ -65,28 +65,28 @@ public class Products {
 
 	private BrandWithBLOBs brand;
 
-	@Length(min=0,max=100,message="材质长度超出限制")
+	@Length(min = 0, max = 100, message = "材质长度超出限制")
 	private String texture;
 
-	@Min(value=0,message="重量不能为负数！")
+	@Min(value = 0, message = "重量不能为负数！")
 	private Double weight;
 
-	@Length(min=0,max=20,message="单位长度超出限制！最长为20")
+	@Length(min = 0, max = 20, message = "单位长度超出限制！最长为20")
 	private String unit;
 
-	@NotEmpty(message="内容摘要不能为空")
-	@Length(min=1,max=200,message="内容摘要长度超出限制")
+	@NotEmpty(message = "内容摘要不能为空")
+	@Length(min = 1, max = 200, message = "内容摘要长度超出限制")
 	private String synopsis;
 
-	@NotEmpty(message="详细内容不能为空")
-	@Length(min=1,max=1000,message="详细内容长度超出限制")
+	@NotEmpty(message = "详细内容不能为空")
+	@Length(min = 1, max = 1000, message = "详细内容长度超出限制")
 	private String description;
-	
-	@NotNull(message="库存量不能为空！")
-	@Min(value=0,message="库存量不能为负数！")
+
+	@NotNull(message = "库存量不能为空！")
+	@Min(value = 0, message = "库存量不能为负数！")
 	private Integer inventory;
 
-	@Min(value=0,message="销量不能为负数！")
+	@Min(value = 0, message = "销量不能为负数！")
 	private Integer sales;
 
 	private String paral1;
@@ -124,6 +124,26 @@ public class Products {
 	private Double paral17;
 
 	private String images;
+
+	private List<ProductType> productTypes;
+
+	private List<Brand> brands;
+
+	public List<ProductType> getProductTypes() {
+		return productTypes;
+	}
+
+	public void setProductTypes(List<ProductType> productTypes) {
+		this.productTypes = productTypes;
+	}
+
+	public List<Brand> getBrands() {
+		return brands;
+	}
+
+	public void setBrands(List<Brand> brands) {
+		this.brands = brands;
+	}
 
 	public Integer getId() {
 		return id;
@@ -477,29 +497,6 @@ public class Products {
 		this.limit = limit;
 	}
 
-	@Override
-	public String toString() {
-		return "Products [id=" + id + ", page=" + page + ", limit=" + limit
-				+ ", name=" + name + ", number=" + number + ", orprice="
-				+ orprice + ", region=" + region + ", nowprice=" + nowprice
-				+ ", addtime=" + addtime + ", addtime1=" + addtime1
-				+ ", auditstatus=" + auditstatus + ", state=" + state
-				+ ", imagetitle=" + imagetitle + ", placeorigin=" + placeorigin
-				+ ", brandId=" + brandId + ", productKeyword=" + productKeyword
-				+ ", typeId=" + typeId + ", productType=" + productType
-				+ ", brand=" + brand + ", texture=" + texture + ", weight="
-				+ weight + ", unit=" + unit + ", synopsis=" + synopsis
-				+ ", description=" + description + ", inventory=" + inventory
-				+ ", sales=" + sales + ", paral1=" + paral1 + ", paral2="
-				+ paral2 + ", paral3=" + paral3 + ", paral4=" + paral4
-				+ ", paral5=" + paral5 + ", paral6=" + paral6 + ", paral7="
-				+ paral7 + ", paral8=" + paral8 + ", paral9=" + paral9
-				+ ", paral10=" + paral10 + ", paral11=" + paral11
-				+ ", paral12=" + paral12 + ", paral13=" + paral13
-				+ ", paral14=" + paral14 + ", paral15=" + paral15
-				+ ", paral16=" + paral16 + ", paral17=" + paral17 + ", images="
-				+ images + "]";
-	}
 
 	public List<String> getImgList() {
 		return imgList;
@@ -508,4 +505,31 @@ public class Products {
 	public void setImgList(List<String> imgList) {
 		this.imgList = imgList;
 	}
+
+	@Override
+	public String toString() {
+		return "Products [id=" + id + ", page=" + page + ", limit=" + limit
+				+ ", imgList=" + imgList + ", name=" + name + ", number="
+				+ number + ", orprice=" + orprice + ", region=" + region
+				+ ", nowprice=" + nowprice + ", addtime=" + addtime
+				+ ", addtime1=" + addtime1 + ", auditstatus=" + auditstatus
+				+ ", state=" + state + ", imagetitle=" + imagetitle
+				+ ", placeorigin=" + placeorigin + ", brandId=" + brandId
+				+ ", productKeyword=" + productKeyword + ", typeId=" + typeId
+				+ ", productType=" + productType + ", brand=" + brand
+				+ ", texture=" + texture + ", weight=" + weight + ", unit="
+				+ unit + ", synopsis=" + synopsis + ", description="
+				+ description + ", inventory=" + inventory + ", sales=" + sales
+				+ ", paral1=" + paral1 + ", paral2=" + paral2 + ", paral3="
+				+ paral3 + ", paral4=" + paral4 + ", paral5=" + paral5
+				+ ", paral6=" + paral6 + ", paral7=" + paral7 + ", paral8="
+				+ paral8 + ", paral9=" + paral9 + ", paral10=" + paral10
+				+ ", paral11=" + paral11 + ", paral12=" + paral12
+				+ ", paral13=" + paral13 + ", paral14=" + paral14
+				+ ", paral15=" + paral15 + ", paral16=" + paral16
+				+ ", paral17=" + paral17 + ", images=" + images
+				+ ", productTypes=" + productTypes + ", brands=" + brands + "]";
+	}
+	
+	
 }

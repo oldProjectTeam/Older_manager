@@ -479,4 +479,68 @@
 			order by p.sales desc
 		</if>
 	</select>
+	
+	<!-- 23号新加的 -->
+	<!-- 查询一级商品类型下得二级类型 -->
+	<select id="selectAllProductsTypeByParentId" resultMap="BaseResultMap">
+		select
+		DISTINCT *
+		from productType where parentId=
+		#{parendId,jdbcType=INTEGER}
+	</select>
+	<!-- 查询商品一级类型，二级类型和品牌的集合 -->
+	<resultMap id="BaseResultIncludeSecondTypeMap" type="com.older.manager.bean.ProductType">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="parentId" property="parentid" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="grade" property="grade" jdbcType="INTEGER" />
+		<result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+		<collection property="productTypes" javaType="ArrayList"
+			column="id" ofType="com.older.manager.bean.ProductType"
+			select="com.older.manager.mapper.ProductTypeMapper.selectAllProductsTypeByParentId"
+			fetchType="eager">
+		</collection>
+		<collection property="brands" javaType="ArrayList" column="id"
+			ofType="com.older.manager.bean.Brand" select="com.older.manager.mapper.BrandMapper.selectBrandByProductsId"
+			fetchType="eager"></collection>
+	</resultMap>
+	<!-- 查询一级商品类型 -->
+	<select id="selectAllProductType" resultMap="BaseResultIncludeSecondTypeMap">
+		SELECT * from
+		productType WHERE grade=1
+		<!-- limit 1,6 -->
+	</select>
+
+
+	<!-- 查询商品一级类型，二级类型和商品的集合 -->
+	<resultMap id="BaseResultIncludeProductsMap" type="com.older.manager.bean.ProductType">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sort" property="sort" jdbcType="INTEGER" />
+		<result column="parentId" property="parentid" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="grade" property="grade" jdbcType="INTEGER" />
+		<result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+		<collection property="productTypes" javaType="ArrayList"
+			column="id" ofType="com.older.manager.bean.ProductType"
+			select="com.older.manager.mapper.ProductTypeMapper.selectAllProductsTypeByParentId"
+			fetchType="eager"></collection>
+		<collection property="brands" javaType="ArrayList" column="id"
+			ofType="com.older.manager.bean.Brand" select="com.older.manager.mapper.BrandMapper.selectBrandByProductsId"
+			fetchType="eager"></collection>
+		<collection property="products" javaType="ArrayList"
+			column="id" ofType="com.older.manager.bean.Products"
+			select="com.older.manager.mapper.ProductsMapper.selectProductsByProductTypeParentId"
+			fetchType="eager"></collection>
+	</resultMap>
+
+
+	<!-- 查询一级商品类型 -->
+	<select id="selectAllProductTypeAndProducts" resultMap="BaseResultIncludeProductsMap">
+		SELECT * from
+		productType WHERE grade=1
+		<!-- limit 1,6 -->
+	</select>
 </mapper>

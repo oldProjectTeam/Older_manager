@@ -1035,4 +1035,135 @@
 			</if>
 		</where>
 	</select>
+	
+	<!-- 23号添加 -->
+	<!--联合查询产品信息、产品类型、品牌信息、产品关键词信息ResultMap结果集 -->
+	<resultMap id="ResultMapWithTypeBrand2" type="com.older.manager.bean.Products">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="number" property="number" jdbcType="VARCHAR" />
+		<result column="orPrice" property="orprice" jdbcType="DOUBLE" />
+		<result column="region" property="region" jdbcType="VARCHAR" />
+		<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+		<result column="addTime" property="addtime" jdbcType="TIMESTAMP" />
+		<result column="auditStatus" property="auditstatus" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+		<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+		<result column="placeOrigin" property="placeorigin" jdbcType="VARCHAR" />
+		<result column="brand_id" property="brandId" jdbcType="INTEGER" />
+		<result column="type_id" property="typeId" jdbcType="INTEGER" />
+		<result column="texture" property="texture" jdbcType="VARCHAR" />
+		<result column="weight" property="weight" jdbcType="DOUBLE" />
+		<result column="unit" property="unit" jdbcType="VARCHAR" />
+		<result column="synopsis" property="synopsis" jdbcType="VARCHAR" />
+		<result column="description" property="description" jdbcType="VARCHAR" />
+		<result column="inventory" property="inventory" jdbcType="INTEGER" />
+		<result column="sales" property="sales" jdbcType="INTEGER" />
+		<result column="images" property="images" jdbcType="LONGVARCHAR" />
+		<collection property="brands" column="brand_id"
+			ofType="com.older.manager.bean.Brand" javaType="ArrayList"
+			select="com.older.manager.mapper.BrandMapper.selectAllProductsBrandByPrductsParentId" />
+
+		<collection property="productTypes" column="parentId"
+			javaType="ArrayList" ofType="com.older.manager.bean.ProductType"
+			select="com.older.manager.mapper.ProductTypeMapper.selectAllProductsTypeByParentId" />
+
+	</resultMap>
+	
+	<!-- 查询首页的顶部数据 -->
+	<select id="selectProductsTypeHeads" resultMap="ResultMapWithTypeBrand2">
+		SELECT
+		DISTINCT
+		pt.*
+		FROM
+		producttype pt,
+		products p,
+		brand b
+		WHERE
+		pt.id = p.type_id
+		AND
+		p.brand_id = b.id
+		AND pt.grade = 1
+		AND p.state = 1
+	</select>
+
+
+	<select id="selectProductsByProductTypeParentId" resultMap="BaseResultMap">
+		SELECT DISTINCT
+		p.*
+		FROM
+		products p,
+		brand b,
+		productType pt
+		WHERE
+		p.type_id
+		= pt.id
+		AND p.brand_id = b.id
+		AND p.state = 1
+		AND
+		pt.parentId=#{parentId,jdbcType=INTEGER}
+		ORDER BY p.sales desc
+		LIMIT 1,6
+	</select>
+	<!-- 模糊查询2 -->
+	<select id="selectAllProductsBykeyWords" resultMap="BaseResultMap" parameterType="String">
+		SELECT
+		DISTINCT
+		p.*
+		FROM
+		producttype pt,
+		products p,
+		brand b,
+		productKeyword pk
+		WHERE
+		pt.id = p.type_id
+		AND
+		p.brand_id = b.id
+		and p.id=pk.product_id
+		AND pt.grade = 1
+		AND p.state = 1
+		or p.name like '%${_parameter}%'
+		or b.name like '%${_parameter}%'
+		or pt.name like '%${_parameter}%'
+		or pk.keyword like '%${_parameter}%'
+		<!-- or p.description like '%${_parameter}%' -->
+	</select>
+	
+	<select id="selectAllProductsByBrandName" resultMap="BaseResultMap" parameterType="String">
+		SELECT
+		DISTINCT
+		p.*
+		FROM
+		producttype pt,
+		products p,
+		brand b,
+		productKeyword pk
+		WHERE
+		pt.id = p.type_id
+		AND
+		p.brand_id = b.id
+		and p.id=pk.product_id
+		AND p.state = 1
+		and b.name = #{_parameter}
+		ORDER BY p.sales desc
+	</select>
+	
+	<select id="selectAllProductsByTypename" resultMap="BaseResultMap" parameterType="String">
+		SELECT
+		DISTINCT
+		p.*
+		FROM
+		producttype pt,
+		products p,
+		brand b,
+		productKeyword pk
+		WHERE
+		pt.id = p.type_id
+		AND
+		p.brand_id = b.id
+		and p.id=pk.product_id
+		AND p.state = 1
+		and pt.name = #{_parameter}
+		ORDER BY p.sales desc
+	</select>
 </mapper>

@@ -36,7 +36,7 @@ public class ProductsSearchServiceImpl implements ProductsSearchService {
 
 	@Autowired
 	ProductTypeMapper productTypeMapper;
-	
+
 	@Autowired
 	private ProductKeywordMapper productKeywordMapper;
 
@@ -136,5 +136,42 @@ public class ProductsSearchServiceImpl implements ProductsSearchService {
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * @Title: selectAllProductsByBrandName
+	 * @Description: 通过商品名称查询所有的商品
+	 * @param: @param brandname
+	 * @param: @return
+	 * @throws
+	 */
+	@Override
+	public List<Products> selectAllProductsByBrandName(String brandname) {
+		return productsMapper.selectAllProductsByBrandName(brandname);
+	}
+
+	/**
+	 * @Title: selecyAllProductsByTypeName
+	 * @Description: 通过商品标题查询所有的商品
+	 * @param: @param typename
+	 * @param: @return
+	 * @throws
+	 */
+	@Override
+	public List<Products> selecyAllProductsByTypeName(String typename) {
+		return productsMapper.selectAllProductsByTypename(typename);
+	}
+
+	/**
+	 * @Title: selectSlidePeoducts
+	 * @Description: 查询首页轮播的产品图片
+	 * @param: @return
+	 * @throws
+	 */
+	@Override
+	public List<Products> selectSlidePeoducts() {
+		ProductsExample example = new ProductsExample();
+		example.createCriteria().andStateEqualTo(1).andParal1EqualTo("1");
+		return productsMapper.selectByExample(example);
 	}
 }

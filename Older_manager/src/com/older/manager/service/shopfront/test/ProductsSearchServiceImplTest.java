@@ -23,7 +23,7 @@ public class ProductsSearchServiceImplTest {
 	@Test
 	public void findAllProductsBySearchTest() {
 		System.out.println(productsSearchService
-				.findAllProductsBySearch("vivo"));
+				.findAllProductsBySearch("肠胃消化"));
 	}
 
 	@Test

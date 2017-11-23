@@ -41,4 +41,14 @@ public class ProductsServiceImpl implements IProductsService {
 		return products;
 	}
 
+	/**
+	 * @Title:   findAllProductsTypeDetial
+	 * @Description:  查找产品的类型详细分布
+	 * @param:    @return     
+	 * @throws
+	 */
+	@Override
+	public List<Products> findAllProductsTypeDetial() {
+		return productsMapper.selectProductsTypeHeads();
+	}
 }
