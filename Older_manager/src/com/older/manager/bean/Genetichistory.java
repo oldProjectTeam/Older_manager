@@ -2,15 +2,29 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Genetichistory {
     private Integer id;
 
+    @NotEmpty
+    @Length(min=1,max=100)
     private String diseasename;
 
+    @NotNull
     private Date infectiontime;
+    
+    //条件查询所用
+    private Date infectiontime1;
+    private Date infectiontime2;
 
+    @Length(min=0,max=50)
     private String place;
 
+    @Length(min=0,max=200)
     private String remark;
 
     private Integer oldmanId;
@@ -187,4 +201,20 @@ public class Genetichistory {
     public void setGenetichistory10(String genetichistory10) {
         this.genetichistory10 = genetichistory10 == null ? null : genetichistory10.trim();
     }
+
+	public Date getInfectiontime1() {
+		return infectiontime1;
+	}
+
+	public void setInfectiontime1(Date infectiontime1) {
+		this.infectiontime1 = infectiontime1;
+	}
+
+	public Date getInfectiontime2() {
+		return infectiontime2;
+	}
+
+	public void setInfectiontime2(Date infectiontime2) {
+		this.infectiontime2 = infectiontime2;
+	}
 }

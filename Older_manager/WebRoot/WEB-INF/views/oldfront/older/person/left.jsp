@@ -24,6 +24,7 @@ a {
 	text-decoration: none !important;
 }
 </style>
+
 </head>
 
 <body>
@@ -32,8 +33,9 @@ a {
 			<!-- 用户中心开始 -->
 			<div class="user">
 				<div class="user-photo">
-					<img src="${APP_PATH}/static/oldfront/older/images/doctorbg.png"
-						height="115" width="108" border="0" alt="">
+					<img src="http://123.207.93.53/Older_back/${older.oldman.photo}"
+						height="115" width="108" border="0" class="img-circle"
+						nerror="onerror=null;src='${APP_PATH }/static/oldfront/older/images/doctor.png'" />
 				</div>
 				<div class="user-mes">
 					<ul>

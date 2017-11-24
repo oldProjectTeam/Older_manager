@@ -49,29 +49,31 @@
 			<div class="bgimg">
 				<img src="${APP_PATH}/static/oldfront/img/bggg1.png" />
 			</div>
-			<form action="oldmanaccount/olderLogin" method="POST">
+			<form action="${APP_PATH}/oldmanaccount/olderLogin" method="POST"
+				id="loginForm">
 				<div class="login1">
 					<p style="color: #31B0D5;">智慧老人系统登录</p>
 					<div class="login2">
-						<img src="${APP_PATH}/static/oldfront/img/zhanghao.png" />
-						<input name="account"
-							type="text" placeholder="请输入账号" />
-						<font color="red"></font>
+						<img src="${APP_PATH}/static/oldfront/img/zhanghao.png" /> <input
+							name="account" type="text" placeholder="请输入账号" id="account" /> <font
+							color="red"></font>
 					</div>
 					<div class="login2">
-						<img src="${APP_PATH}/static/oldfront/img/mima.png" />
-						<input name="password"
-							type="password" placeholder="请输入密码" />
+						<img src="${APP_PATH}/static/oldfront/img/mima.png" /> <input
+							name="password" type="password" placeholder="请输入密码" id="password" />
 						<font color="red"></font>
 					</div>
 					<div class="login3">
-						<input type="radio" /><span>记住密码</span> <a
-							href="${APP_PATH}/older/register">没有账号？</a>
+						<input type="radio" /><span>记住密码</span>
 					</div>
 					<div class="btn1">
-						<input type="submit" class="btn2" value="登 录" />
+						<input type="button" class="btn2" value="登 录" id="login" /> <img
+							src="${APP_PATH}/static/images/loading.gif" id="loading"
+							style="margin-left: 180px;display: none;">
 					</div>
-					<center><font color="red">${msg}</font></center>
+					<center>
+						<font color="red">${msg}</font>
+					</center>
 				</div>
 			</form>
 			<div class="clear"></div>
@@ -79,5 +81,17 @@
 	</a>
 	<br />
 	<jsp:include page="../footer.jsp"></jsp:include>
+
+	<script type="text/javascript">
+		$("#login").click(function() {
+			if ($("#account").val() == '' || $("#password").val() == '') {
+				layer.msg("请输入信息");
+			} else {
+				$("#login").val("正在登录...");
+				$("#loading").css("display", "block");
+				$("#loginForm").submit();
+			}
+		});
+	</script>
 </body>
 </html>

@@ -2,31 +2,59 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+/**
+ * 就诊类
+ * @author lenovo
+ *
+ */
 public class Medicalrecord {
 	private Integer id;
 
+	@NotEmpty
+	@Length(min=1,max=100)
 	private String hospital;
 
+	@NotEmpty
+	@Length(min=1,max=100)
 	private String department;
 
+	@NotEmpty
+	@Length(min=1,max=30)
 	private String doctor;
 
-	private Date clinicaltime;
+	@NotNull
+	private Date clinicaltime;//就诊时间
+	
+	//条件查询所用
+	private Date clinicaltime1;
+	private Date clinicaltime2;
 
 	private Date appointmenttime;
 
+	@Length(min=0,max=200)
 	private String chekcontent;
 
+	@Length(min=0,max=200)
 	private String ancillarycheckcontent;
 
+	@Length(min=0,max=200)
 	private String realcheckcontent;
 
+	@Length(min=0,max=200)
 	private String normalusedrug;
 
+	@Length(min=0,max=200)
 	private String diagnosis;
 
+	@Length(min=0,max=200)
 	private String treatmentcareprescription;
 
+	@Length(min=0,max=200)
 	private String tabooltems;
 
 	private Integer oldmanId;
@@ -290,5 +318,21 @@ public class Medicalrecord {
 	public void setMedicalrecord10(String medicalrecord10) {
 		this.medicalrecord10 = medicalrecord10 == null ? null : medicalrecord10
 				.trim();
+	}
+
+	public Date getClinicaltime1() {
+		return clinicaltime1;
+	}
+
+	public void setClinicaltime1(Date clinicaltime1) {
+		this.clinicaltime1 = clinicaltime1;
+	}
+
+	public Date getClinicaltime2() {
+		return clinicaltime2;
+	}
+
+	public void setClinicaltime2(Date clinicaltime2) {
+		this.clinicaltime2 = clinicaltime2;
 	}
 }

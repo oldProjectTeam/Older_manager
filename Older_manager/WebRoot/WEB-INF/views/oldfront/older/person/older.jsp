@@ -57,7 +57,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
                                 </div>
                                 <div class="main-body">
                                     <ul>                          
-                                        <li><a href="${APP_PATH}/older/pinggu"><i class="icon-nav2 icon-yjsz"></i>健康评估</a></li>
+                                        <li><a href="${APP_PATH}/older/pinggu/1&${older.oldman.id}"><i class="icon-nav2 icon-yjsz"></i>健康评估</a></li>
                                         <li><a href="${APP_PATH}/older/lvli"><i class="icon-nav2 icon-jkda"></i>健康履历</a></li>
                                         <li><a href="${APP_PATH}/older/takeDrug"><i class="icon-nav2 icon-yyjl"></i>用药记录</a></li>
                                         <li><a href="${APP_PATH}/older/tijian"><i class="icon-nav2 icon-tjjl"></i>体检记录</a></li>

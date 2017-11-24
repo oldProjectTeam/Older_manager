@@ -286,7 +286,7 @@ $("#add_save_btn").click(function(){
 		$("#traumaname").next("span").html("请输入外伤名称!");
 		return false;
 	}else if(!regex.test(traumaname)){
-		$("#traumaname").next("span").html("疾病名称可以是1-50的中文、数字、英文组合");
+		$("#traumaname").next("span").html("外伤名称可以是1-50的中文、数字、英文组合");
 		return false;
 	}else{
 		$("#traumaname").next("span").html("");

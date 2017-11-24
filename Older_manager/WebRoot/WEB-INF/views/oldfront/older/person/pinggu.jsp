@@ -57,6 +57,8 @@
 						<div class="gllr" style="padding:0;">
 							<div class="gllr-title">
 								<div style="float:left">健康评估</div>
+								<button type="button" class="btn back fr" 
+							onClick="javascript:history.go(-1);">返回</button>
 							</div>
 							<div id="DataList">
 								<table
