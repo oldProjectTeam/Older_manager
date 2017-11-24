@@ -41,6 +41,7 @@
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Lobster'
 	rel='stylesheet' type='text/css' />
+<script src="${APP_PATH}/static/oldfront/older/js/jquery.js"></script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -55,7 +56,7 @@
 					<p style="color: #31B0D5;">智慧老人系统登录</p>
 					<div class="login2">
 						<img src="${APP_PATH}/static/oldfront/img/zhanghao.png" /> <input
-							name="account" type="text" placeholder="请输入账号" id="account" /> <font
+							name="account" type="text" placeholder="手机号码" id="account" /> <font
 							color="red"></font>
 					</div>
 					<div class="login2">
@@ -72,7 +73,7 @@
 							style="margin-left: 180px;display: none;">
 					</div>
 					<center>
-						<font color="red">${msg}</font>
+						<font color="red" style="font-size:0.6em" id="msg">${msg}</font>
 					</center>
 				</div>
 			</form>
@@ -83,10 +84,32 @@
 	<jsp:include page="../footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
+	
 		$("#login").click(function() {
-			if ($("#account").val() == '' || $("#password").val() == '') {
-				layer.msg("请输入信息");
-			} else {
+			var regx=/^[1][3,4,5,7,8][0-9]{9}$/;
+			if($("#account").val() == ''){
+				$("#msg").html("请输入账号!");
+				return false;
+			}
+			if(!regx.test($("#account").val())){
+				$("#msg").html("请输入正确的手机号码!");
+				return false;
+			}
+			var pass=/^[a-zA-Z0-9_\.-]{6,30}$/;
+			var password=$("#password").val();
+			if (password=='') {
+				$("#msg").html("请输入密码!");
+				return false;
+			}if(password.length<6){
+				$("#msg").html("密码至少为六位!");
+				return false;
+			}
+			if(!pass.test(password)){
+				$("#msg").html("密码可以是6-30为[a-zA-Z0-9_.-]");
+				return false;
+			}
+			else {
+				$("#msg").html("");
 				$("#login").val("正在登录...");
 				$("#loading").css("display", "block");
 				$("#loginForm").submit();

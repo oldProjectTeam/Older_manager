@@ -94,7 +94,7 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
                                <div class="main-body">
                                    <ul class="ul-wzfw">
                                        <li><a href="${APP_PATH}/older/mycourse"><i class="icon-nav2 icon-dwfw"></i><div class="li-title">我的课程</div><p>我参加了哪些课程</p></a></li>
-                                       <li><a href="${APP_PATH}/older/allcourse"><i class="icon-nav2 icon-gjhf"></i><div class="li-title">寻找课程</div><p>所有课程，都在这里</p></a></li>
+                                      
                                        <li>
                                         <i class="icon-nav2"></i><div class="li-title"></div><p></p>
                                        </li>
