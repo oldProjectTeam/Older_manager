@@ -49,11 +49,7 @@ li {
 }
 
 .title {
-	color: white !important;
-}
-
-a {
-	text-decoration: none;
+	color: black !important;
 }
 </style>
 </head>
