@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import com.older.manager.bean.Courseenrol;
 import com.older.manager.bean.CourseenrolExample;
 import com.older.manager.bean.CourseenrolExample.Criteria;
+import com.older.manager.bean.Courses;
+import com.older.manager.bean.CoursesExample;
 import com.older.manager.mapper.CourseenrolMapper;
+import com.older.manager.mapper.CoursesMapper;
 import com.older.manager.service.oldfront.ICourseService;
 
 @Service
@@ -17,6 +20,9 @@ public class CourseServiceImpl implements ICourseService {
 
 	@Autowired
 	private CourseenrolMapper courseenrolMapper;
+
+	@Autowired
+	private CoursesMapper coursesMapper;
 
 	@Override
 	public boolean JoinCourseWithOldMan(Integer courseId, Integer oldManId) {
@@ -49,6 +55,20 @@ public class CourseServiceImpl implements ICourseService {
 		criteria.andCourseIdEqualTo(courseId);
 		criteria.andOldmamIdEqualTo(oldManId);
 		return courseenrolMapper.selectByExample(example);
+	}
+
+	@Override
+	public List<Courses> queryAllCourse() {
+		return coursesMapper.selectByExample(null);
+	}
+
+	@Override
+	public List<Courses> queryCourseByKeyWord(String key) {
+		CoursesExample example = new CoursesExample();
+		com.older.manager.bean.CoursesExample.Criteria criteria = example
+				.createCriteria();
+		criteria.andTitleLike("%" + key + "%");
+		return coursesMapper.selectByExample(example);
 	}
 
 }
