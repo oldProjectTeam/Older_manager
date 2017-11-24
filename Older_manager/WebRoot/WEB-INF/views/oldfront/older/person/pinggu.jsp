@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -56,8 +57,6 @@
 						<div class="gllr" style="padding:0;">
 							<div class="gllr-title">
 								<div style="float:left">健康评估</div>
-								<!--div style="float:right;"><button type="button" class="gllr-item-btn" onclick="add()" style="background:#13c0ab;color:#fff;margin:0;width:100px;">添加老人</button></div-->
-								<button type="button" class="btn back fr" id="btnclose">返回</button>
 							</div>
 							<div id="DataList">
 								<table
@@ -73,23 +72,30 @@
 										</tr>
 									</thead>
 									<tbody id="shuju">
-										<tr style="height:40px">
-											<td>高大神</td>
-											<td>良好</td>
-											<td>中等度热</td>
-											<td>忌吃叫辣的东西</td>
-										</tr>
+										<c:forEach items="${pageInfo.list}" var="assess">
+											<tr style="height:40px">
+												<td>${assess.doctor}</td>
+												<td>${assess.health}</td>
+												<td>${assess.healthdataassessment}</td>
+												<td>${assess.suggest}</td>
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<!-- 列表结束 -->
-
 							</div>
 							<div class="row" style="margin-top:30px;">
 								<div class="col-md-2 col-md-offset-4">
-									<button type="button" onclick="Last()" class="gllr-item-btn">上一页</button>
+									<c:if test="${pageInfo.hasPreviousPage}">
+										<button type="button" onclick="Last(${pageInfo.pageNum})"
+											class="gllr-item-btn">上一页</button>
+									</c:if>
 								</div>
 								<div class="col-md-2 ">
-									<button type="button" onclick="Next()" class="gllr-item-btn">下一页</button>
+									<c:if test="${pageInfo.hasNextPage}">
+										<button type="button" onclick="Next(${pageInfo.pageNum})"
+											class="gllr-item-btn">下一页</button>
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -97,13 +103,26 @@
 					</div>
 				</div>
 			</div>
-<!--底部开始  -->
-<jsp:include page="footer.jsp"></jsp:include>
-<!-- 底部结束 -->
-<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
-<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
-<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
-	type="text/javascript"></script>
-<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+		</div>
+	</div>
+	<!--底部开始  -->
+	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- 底部结束 -->
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
+		type="text/javascript"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+
+	<script type="text/javascript">
+		function Last(pn) {
+			window.location.href = "${APP_PATH}/older/pinggu/" + pn + "&"
+					+ ${older.oldman.id};
+		}
+		function Next(pn) {
+			window.location.href = "${APP_PATH}/older/pinggu/" + pn + "&"
+					+ ${older.oldman.id};
+		}
+	</script>
 </body>
 </html>
