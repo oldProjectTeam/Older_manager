@@ -48,7 +48,7 @@
 						<li><a href="${APP_PATH}/older/index"
 							class="menu-top-active check">主页</a></li>
 						<li><a href="${APP_PATH}/older/" class="check">课程专区</a></li>
-						<li><a href="${APP_PATH}/older/" class="check">视频专区</a></li>
+						<li><a href="${APP_PATH}/older/video_list" class="check">视频专区</a></li>
 						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
 						<li>
