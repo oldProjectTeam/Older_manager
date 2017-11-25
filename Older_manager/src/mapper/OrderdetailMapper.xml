@@ -241,7 +241,9 @@
         	 <if test="detialNumber!=null and detialNumber!=''" >
         		and d.detial_number =${detialNumber}
         	</if>
-	
+	        <if test="orders.orderNo!=null and orders.orderNo!=''" >
+        		and o.order_no =${orders.orderNo}
+        	</if>
 	
 	</select>
 	
@@ -251,8 +253,15 @@
 	</select>
 
 	
+	<!-- 通过订单id来查 -->
+		<select id="selectByExampleWithOthreByOrderid" resultMap="BaseResultMapWithOther" parameterType="java.lang.Integer">
+		select
+		 <include refid="Base_Column_List1" />
+		 from  orderdetail d,orders o,products p where d.order_id=o.id and d.produccts_id=p.id
+		   
+          and  o.id=#{value,jdbcType=INTEGER}
 	
-	
+	</select>
 	
 	
 	

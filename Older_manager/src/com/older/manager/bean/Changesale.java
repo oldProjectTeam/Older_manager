@@ -40,8 +40,23 @@ public class Changesale {
     private String chimages;
 
     private String chdeletestate;
+  
+    
+    
+    @Override
+	public String toString() {
+		return "Changesale [id=" + id + ", usid=" + usid + ", chno=" + chno
+				+ ", chtime=" + chtime + ", chphoto=" + chphoto + ", chbrieft="
+				+ chbrieft + ", chname=" + chname + ", chmoeny=" + chmoeny
+				+ ", chaftermoney=" + chaftermoney + ", chstate=" + chstate
+				+ ", productid=" + productid + ", chone=" + chone + ", chtwo="
+				+ chtwo + ", chthree=" + chthree + ", chtype=" + chtype
+				+ ", chwhy=" + chwhy + ", chcontent=" + chcontent
+				+ ", chimages=" + chimages + ", chdeletestate=" + chdeletestate
+				+ "]";
+	}
 
-    public Integer getId() {
+	public Integer getId() {
         return id;
     }
 

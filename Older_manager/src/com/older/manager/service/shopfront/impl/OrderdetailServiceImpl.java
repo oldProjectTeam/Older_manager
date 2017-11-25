@@ -58,6 +58,16 @@ public class OrderdetailServiceImpl implements IOrderdetailService {
 		// TODO 自动生成的方法存根
 		ordersMapper.updateByPrimaryKeySelective(orders);
 	}
+	@Override
+	public List<Orderdetail> selectAllOrderDetailByOrderId(Integer id) {
+		// TODO 自动生成的方法存根
+		return orderdetailMapper.selectByExampleWithOthreByOrderid(id);
+	}
+	@Override
+	public void updateOrderDetailStati(Orderdetail orderdetail) {
+		// TODO 自动生成的方法存根
+		orderdetailMapper.updateByPrimaryKeySelective(orderdetail);
+	}
 
 
 }

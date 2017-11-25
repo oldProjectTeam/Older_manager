@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.older.manager.mapper.QuestionandanswerMapper" >
+  <resultMap id="BaseResultMap" type="com.older.manager.bean.Questionandanswer" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="questionone" property="questionone" jdbcType="VARCHAR" />
+    <result column="answerone" property="answerone" jdbcType="VARCHAR" />
+    <result column="questiontwo" property="questiontwo" jdbcType="VARCHAR" />
+    <result column="answertwo" property="answertwo" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="one" property="one" jdbcType="VARCHAR" />
+    <result column="two" property="two" jdbcType="VARCHAR" />
+    <result column="three" property="three" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, questionone, answerone, questiontwo, answertwo, userid, one, two, three
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.QuestionandanswerExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from questionandanswer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from questionandanswer
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from questionandanswer
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.older.manager.bean.QuestionandanswerExample" >
+    delete from questionandanswer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.older.manager.bean.Questionandanswer" >
+    insert into questionandanswer (id, questionone, answerone, 
+      questiontwo, answertwo, userid, 
+      one, two, three)
+    values (#{id,jdbcType=INTEGER}, #{questionone,jdbcType=VARCHAR}, #{answerone,jdbcType=VARCHAR}, 
+      #{questiontwo,jdbcType=VARCHAR}, #{answertwo,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{one,jdbcType=VARCHAR}, #{two,jdbcType=VARCHAR}, #{three,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.older.manager.bean.Questionandanswer" >
+    insert into questionandanswer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="questionone != null" >
+        questionone,
+      </if>
+      <if test="answerone != null" >
+        answerone,
+      </if>
+      <if test="questiontwo != null" >
+        questiontwo,
+      </if>
+      <if test="answertwo != null" >
+        answertwo,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="one != null" >
+        one,
+      </if>
+      <if test="two != null" >
+        two,
+      </if>
+      <if test="three != null" >
+        three,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="questionone != null" >
+        #{questionone,jdbcType=VARCHAR},
+      </if>
+      <if test="answerone != null" >
+        #{answerone,jdbcType=VARCHAR},
+      </if>
+      <if test="questiontwo != null" >
+        #{questiontwo,jdbcType=VARCHAR},
+      </if>
+      <if test="answertwo != null" >
+        #{answertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="one != null" >
+        #{one,jdbcType=VARCHAR},
+      </if>
+      <if test="two != null" >
+        #{two,jdbcType=VARCHAR},
+      </if>
+      <if test="three != null" >
+        #{three,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.older.manager.bean.QuestionandanswerExample" resultType="java.lang.Integer" >
+    select count(*) from questionandanswer
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update questionandanswer
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.questionone != null" >
+        questionone = #{record.questionone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answerone != null" >
+        answerone = #{record.answerone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.questiontwo != null" >
+        questiontwo = #{record.questiontwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answertwo != null" >
+        answertwo = #{record.answertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.one != null" >
+        one = #{record.one,jdbcType=VARCHAR},
+      </if>
+      <if test="record.two != null" >
+        two = #{record.two,jdbcType=VARCHAR},
+      </if>
+      <if test="record.three != null" >
+        three = #{record.three,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update questionandanswer
+    set id = #{record.id,jdbcType=INTEGER},
+      questionone = #{record.questionone,jdbcType=VARCHAR},
+      answerone = #{record.answerone,jdbcType=VARCHAR},
+      questiontwo = #{record.questiontwo,jdbcType=VARCHAR},
+      answertwo = #{record.answertwo,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      one = #{record.one,jdbcType=VARCHAR},
+      two = #{record.two,jdbcType=VARCHAR},
+      three = #{record.three,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Questionandanswer" >
+    update questionandanswer
+    <set >
+      <if test="questionone != null" >
+        questionone = #{questionone,jdbcType=VARCHAR},
+      </if>
+      <if test="answerone != null" >
+        answerone = #{answerone,jdbcType=VARCHAR},
+      </if>
+      <if test="questiontwo != null" >
+        questiontwo = #{questiontwo,jdbcType=VARCHAR},
+      </if>
+      <if test="answertwo != null" >
+        answertwo = #{answertwo,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="one != null" >
+        one = #{one,jdbcType=VARCHAR},
+      </if>
+      <if test="two != null" >
+        two = #{two,jdbcType=VARCHAR},
+      </if>
+      <if test="three != null" >
+        three = #{three,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Questionandanswer" >
+    update questionandanswer
+    set questionone = #{questionone,jdbcType=VARCHAR},
+      answerone = #{answerone,jdbcType=VARCHAR},
+      questiontwo = #{questiontwo,jdbcType=VARCHAR},
+      answertwo = #{answertwo,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      one = #{one,jdbcType=VARCHAR},
+      two = #{two,jdbcType=VARCHAR},
+      three = #{three,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

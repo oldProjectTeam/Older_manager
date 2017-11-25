@@ -23,7 +23,7 @@ public interface OrderdetailMapper {
     
     //带订单与商品
     List<Orderdetail> selectByExampleWithOthre(Orderdetail orderdetail);
-
+    List<Orderdetail> selectByExampleWithOthreByOrderid(Integer id);
     Orderdetail selectByPrimaryKeyWithOther(Integer id);
     
     

@@ -33,4 +33,6 @@ public interface ChangeService {
 	 * @param changesale
 	 */
 	public void updateState(Changesale changesale);
+	
+	public int countChangesale(Changesale changesale);
 }

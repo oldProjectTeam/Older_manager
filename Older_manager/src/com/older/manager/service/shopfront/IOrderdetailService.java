@@ -27,6 +27,13 @@ public interface IOrderdetailService {
 	 * @return
 	 */
 	public List<Orderdetail> selectAllOrderDetail(Orderdetail orderdetail);
+	
+	/**
+	 * 通过订单的id来查所有的
+	 * @param id
+	 * @return
+	 */
+	public List<Orderdetail> selectAllOrderDetailByOrderId(Integer id);
 	/**
 	 * 修改状态
 	 * @param orders
@@ -48,6 +55,9 @@ public interface IOrderdetailService {
 	 * @param orders
 	 */
 	public void updateOrder(Orders orders);
-
-
+    /***
+     * 标记被评论过的
+     * @param orderdetail
+     */
+    public void updateOrderDetailStati(Orderdetail orderdetail);
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.older.manager.bean.Questionandanswer;
 import com.older.manager.bean.Users;
 import com.older.manager.service.shopfront.SafetyService;
 import com.older.manager.utils.Msg;
@@ -77,5 +78,34 @@ public class SafetyController {
     public String skipInformation(){
   	  return "oldfront/person/information";
     } 
+    /**
+     * 跳到问题
+     * @return
+     */
+    @RequestMapping("/skipquestion")
+    public String skipQuestion(){
+    	
+     return "oldfront/person/question";
+    }
+    /**
+     * 增加问题
+     * @param questionandanswer
+     * @return
+     */
+   @RequestMapping("/addquestionandanswer")
+   @ResponseBody
+   public Msg addQuestionAndAnswer(Questionandanswer questionandanswer){
+	   
+	   //如果存在就修改
+	   if(safetyService.selectQuestion(questionandanswer.getUserid())){
+		   safetyService.addQuestion(questionandanswer);
+	   }else{
+		     safetyService.updateQuestion(questionandanswer);
+	   }
 
+	   return Msg.success();
+   } 
+    
+    
+    
 }

@@ -1,210 +1,254 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
-	String path = request.getContextPath();
-	pageContext.setAttribute("APP_PATH", request.getContextPath());
-	String basePath = request.getScheme() + "://"
-			+ request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
+String path = request.getContextPath();
+pageContext.setAttribute("APP_PATH", request.getContextPath());
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt"  prefix="fmt"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-<head>
-<base href="<%=basePath%>">
+  <head>
+    <base href="<%=basePath%>">
+    
+    <title>My JSP 'refund.jsp' starting page</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<link href="${APP_PATH}/static/css/admin.css" rel="stylesheet" type="text/css">
+		<link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet" type="text/css">
 
-<title>My JSP 'refund.jsp' starting page</title>
+		<link href="${APP_PATH}/static/css/personal.css" rel="stylesheet" type="text/css">
+		<link href="${APP_PATH}/static/css/refstyle.css" rel="stylesheet" type="text/css">
+        
+		<script src="${APP_PATH}/static/js/jquery.min.js" type="text/javascript"></script>
+		<script src="${APP_PATH}/static/js/amazeui.js" type="text/javascript"></script>
+       <script type="text/javascript"
+	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
+	<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
+	
+	<script language="JavaScript"
+	src="${APP_PATH}/static/js/uploadPreview.js"></script>
+	
+	
+	</head>
 
-<meta http-equiv="pragma" content="no-cache">
-<meta http-equiv="cache-control" content="no-cache">
-<meta http-equiv="expires" content="0">
-<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
-<meta http-equiv="description" content="This is my page">
-<link href="${APP_PATH}/static/css/admin.css" rel="stylesheet"
-	type="text/css">
-<link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
-	type="text/css">
-
-<link href="${APP_PATH}/static/css/personal.css" rel="stylesheet"
-	type="text/css">
-<link href="${APP_PATH}/static/css/refstyle.css" rel="stylesheet"
-	type="text/css">
-
-<script src="${APP_PATH}/static/js/jquery.min.js" type="text/javascript"></script>
-<script src="${APP_PATH}/static/js/amazeui.js" type="text/javascript"></script>
-
-</head>
-
-<body>
-	<jsp:include page="../home/shopheader.jsp"></jsp:include>
-	<div class="nav-table">
-		<div class="long-title">
-			<span class="all-goods">全部分类</span>
-		</div>
-		<div class="nav-cont">
-			<ul>
-				<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
-			</ul>
-		</div>
-	</div>
-	<b class="line"></b>
-	<div class="center">
-		<div class="col-main">
-			<div class="main-wrap">
-				<!--标题 -->
-				<div class="am-cf am-padding">
-					<div class="am-fl am-cf">
-						<strong class="am-text-danger am-text-lg">退换货申请</strong> / <small>Apply&nbsp;for&nbsp;returns</small>
+	<body>
+		<jsp:include page="../home/shopheader.jsp"></jsp:include>
+            <div class="nav-table">
+					   <div class="long-title"><span class="all-goods">全部分类</span></div>
+					   <div class="nav-cont">
+							<ul>
+								<li class="index"><a href="#">首页</a></li>
+                                <li class="qc"><a href="#">闪购</a></li>
+                                <li class="qc"><a href="#">限时抢</a></li>
+                                <li class="qc"><a href="#">团购</a></li>
+                                <li class="qc last"><a href="#">大包装</a></li>
+							</ul>
+						    <div class="nav-extra">
+						    	<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
+						    	<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
+						    </div>
+						</div>
+			</div>
+			<b class="line"></b>
+		<div class="center">
+			<div class="col-main">
+				<div class="main-wrap">
+					<!--标题 -->
+					<div class="am-cf am-padding">
+						<div class="am-fl am-cf"><strong class="am-text-danger am-text-lg">退换货申请</strong> / <small>Apply&nbsp;for&nbsp;returns</small></div>
 					</div>
-				</div>
-				<hr />
-				<div class="comment-list">
-					<!--进度条-->
-					<div class="m-progress">
-						<div class="m-progress-list">
-							<span class="step-1 step"> <em class="u-progress-stage-bg"></em>
-								<i class="u-stage-icon-inner">1<em class="bg"></em></i>
-								<p class="stage-name">买家申请退款</p>
-							</span> <span class="step-2 step"> <em
-								class="u-progress-stage-bg"></em> <i class="u-stage-icon-inner">2<em
-									class="bg"></em></i>
-								<p class="stage-name">商家处理退款申请</p>
-							</span> <span class="step-3 step"> <em
-								class="u-progress-stage-bg"></em> <i class="u-stage-icon-inner">3<em
-									class="bg"></em></i>
-								<p class="stage-name">款项成功退回</p>
-							</span> <span class="u-progress-placeholder"></span>
-						</div>
-						<div class="u-progress-bar total-steps-2">
-							<div class="u-progress-bar-inner"></div>
-						</div>
-					</div>
-
-
-					<div class="refund-aside">
-						<div class="item-pic">
-							<a href="#" class="J_MakePoint"> <img
-								src="${APP_PATH}/static/images/comment.jpg_400x400.jpg"
-								class="itempic">
-							</a>
-						</div>
-
-						<div class="item-title">
-
-							<div class="item-name">
-								<a href="#">
-									<p class="item-basic-info">美康粉黛醉美唇膏 持久保湿滋润防水不掉色</p>
+					<hr/>
+					<div class="comment-list">
+				        <form action="" id="formid" enctype="multipart/form-data">
+					
+					 
+						<div class="">
+						 <c:forEach items="${list}" var="list" varStatus="v">
+						 
+						  <input type="hidden" name="chno" value="${list.orders.id}">
+						 
+						 
+						 
+						 
+						 
+						 
+							<div class="item-pic">
+								<a href="product/getProduct/${list.products.id}" class="J_MakePoint">
+									<%-- <img src="${APP_PATH}/static/images/comment.jpg_400x400.jpg" class="itempic"> --%>
+									<img src="http://123.207.93.53/Older_back/${list.products.images}" class="itempic">
 								</a>
 							</div>
-							<div class="info-little">
-								<span>颜色：洛阳牡丹</span> <span>包装：裸装</span>
-							</div>
-						</div>
-						<div class="item-info">
-							<div class="item-ordernumber">
-								<span class="info-title">订单编号：</span><a>1474784641639947</a>
-							</div>
-							<div class="item-price">
-								<span class="info-title">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span><span
-									class="price">19.88元</span> <span class="number">×1</span><span
-									class="item-title">(数量)</span>
-							</div>
-							<div class="item-amount">
-								<span class="info-title">小&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：</span><span
-									class="amount">19.88元</span>
-							</div>
-							<div class="item-pay-logis">
-								<span class="info-title">运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：</span><span
-									class="price">10.00元</span>
-							</div>
-							<div class="item-amountall">
-								<span class="info-title">总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：</span><span
-									class="amountall">29.88元</span>
-							</div>
-							<div class="item-time">
-								<span class="info-title">成交时间：</span><span class="time">2015-12-12&nbsp;17:07</span>
-							</div>
 
+							<div class="item-title">
+
+								<div class="item-name">
+									<a href="product/getProduct/${list.products.id}">
+										<p class="item-basic-info">${list.producctname}</p>
+									</a>
+								</div>
+								<div class="info-little">
+									<span>${list.products.synopsis}</span>
+									<span>包装：裸装</span>
+									<%-- <p>${list.producctname}</p>
+									<p class="info-little">${list.products.synopsis}
+										<br />包装：裸装
+									</p> --%>
+								</div>
+							</div>
+							<div class="item-info">
+								<div class="item-ordernumber">
+									<span class="info-title">订单编号：</span><a>${list.orders.orderNo}</a>
+								</div>
+								<div class="item-price">
+									<span class="info-title">价&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;格：</span><span class="price">${list.products.nowprice}元</span>
+									<span class="number">×${list.number}</span><span class="item-title">(数量)</span>
+								</div>
+								<div class="item-pay-logis">
+									<span class="info-title">含&nbsp;&nbsp;运&nbsp;费：</span><span class="price">${list.orders.freight}元</span>
+								</div>
+								<div class="item-amountall">                                                  <c:set var="sum" value="${list.baseprice*list.number}"></c:set>
+									<span class="info-title">总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;计：</span><span class="amountall">${sum}元</span>
+								</div>
+								<div class="item-time">
+								    <input value="${list.orders.cost}" id="cost" type="hidden">
+									<span class="info-title">成交时间：</span><span class="time"><fmt:formatDate value="${list.orders.creattime}" pattern="yyyy-MM-dd"/></span>
+								</div>
+
+							</div>
+							  <hr>
+							 </c:forEach>  
+							<!-- <div class="clear"></div> -->
 						</div>
-						<div class="clear"></div>
+						
+						<div class="refund-main" style="width:100%">
+							<div class="item-comment">
+								<div class="am-form-group">
+									<label for="refund-type" class="am-form-label">退款类型</label>
+									<div class="am-form-content">
+										<input type="text" id="refund-money" name="chtype" value="退款/退货" readonly="readonly" placeholder="退款/退货">
+									</div>
+								</div>
+								
+								<div class="am-form-group">
+									<label for="refund-reason" class="am-form-label">退款原因</label>
+									<div class="am-form-content">
+										<select data-am-selected="" name="chwhy" id="selectid">
+											<option value="a" selected>请选择退款原因</option>
+											<option value="没收到货">没收到货</option>											
+											<option value="与说明不符">与说明不符</option>
+										</select>
+									</div>
+								</div>
+                                 
+								<div class="am-form-group">
+									<label for="refund-money" class="am-form-label">退款金额<span>（不可修改）</span></label>
+									<div class="am-form-content">
+										<input type="text" id="costid" readonly="readonly" name="chmoeny">
+									</div>
+								</div>
+								<div class="am-form-group">
+									<label for="refund-info" class="am-form-label">退款说明<span>（可不填）</span></label>
+									<div class="am-form-content">
+										<textarea placeholder="请输入退款说明" required="required" name="chcontent" id="contentid"></textarea>
+									</div>
+								</div>
+
+							</div>
+							<div class="refund-tip">
+								<div class="filePic">
+									<input type="file" class="inputPic" id="up_img" value="选择凭证图片" name="file" max="5" maxsize="5120" allowexts="gif,jpeg,jpg,png,bmp" accept="image/*">
+									 <img src="${pageContext.request.contextPath}/upload/${user.image==null?'image.jpg':user.image}"
+								    id="imgShow" class="itempic J_ItemImg" > 
+								</div>
+								<span class="desc"></span>
+							</div>
+							<div class="info-btn">
+								<div class="am-btn am-btn-danger"  id="saveid">提交申请</div>
+							</div>
+						</div>
+						</form>
 					</div>
+					<div class="clear"></div>
+				</div>
 
-					<div class="refund-main">
-						<div class="item-comment">
-							<div class="am-form-group">
-								<label for="refund-type" class="am-form-label">退款类型</label>
-								<div class="am-form-content">
-									<select data-am-selected="">
-										<option value="a" selected>仅退款</option>
-										<option value="b">退款/退货</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="am-form-group">
-								<label for="refund-reason" class="am-form-label">退款原因</label>
-								<div class="am-form-content">
-									<select data-am-selected="">
-										<option value="a" selected>请选择退款原因</option>
-										<option value="b">不想要了</option>
-										<option value="c">买错了</option>
-										<option value="d">没收到货</option>
-										<option value="e">与说明不符</option>
-									</select>
-								</div>
-							</div>
-
-							<div class="am-form-group">
-								<label for="refund-money" class="am-form-label">退款金额<span>（不可修改）</span></label>
-								<div class="am-form-content">
-									<input type="text" id="refund-money" readonly="readonly"
-										placeholder="19.88">
-								</div>
-							</div>
-							<div class="am-form-group">
-								<label for="refund-info" class="am-form-label">退款说明<span>（可不填）</span></label>
-								<div class="am-form-content">
-									<textarea placeholder="请输入退款说明"></textarea>
-								</div>
-							</div>
-
-						</div>
-						<div class="refund-tip">
-							<div class="filePic">
-								<input type="file" class="inputPic" value="选择凭证图片" name="file"
-									max="5" maxsize="5120" allowexts="gif,jpeg,jpg,png,bmp"
-									accept="image/*"> <img
-									src="${APP_PATH}/static/images/image.jpg" alt="">
-							</div>
-							<span class="desc">上传凭证&nbsp;最多三张</span>
-						</div>
-						<div class="info-btn">
-							<div class="am-btn am-btn-danger">提交申请</div>
-						</div>
+				<!--底部-->
+				<div class="footer">
+					<div class="footer-hd">
+						<p>
+							<a href="#">恒望科技</a>
+							<b>|</b>
+							<a href="#">商城首页</a>
+							<b>|</b>
+							<a href="#">支付宝</a>
+							<b>|</b>
+							<a href="#">物流</a>
+						</p>
+					</div>
+					<div class="footer-bd">
+						<p>
+							<a href="#">关于恒望</a>
+							<a href="#">合作伙伴</a>
+							<a href="#">联系我们</a>
+							<a href="#">网站地图</a>
+							<em>© 2015-2025 Hengwang.com 版权所有</em>
+						</p>
 					</div>
 				</div>
-				<div class="clear"></div>
 			</div>
 
-			<!--底部-->
-			<div class="footer">
-				<div class="footer-hd">
-					<p>
-						<a href="#">恒望科技</a> <b>|</b> <a href="#">商城首页</a> <b>|</b> <a
-							href="#">支付宝</a> <b>|</b> <a href="#">物流</a>
-					</p>
-				</div>
-				<div class="footer-bd">
-					<p>
-						<a href="#">关于恒望</a> <a href="#">合作伙伴</a> <a href="#">联系我们</a> <a
-							href="#">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-					</p>
-				</div>
-			</div>
+	<jsp:include page="left.jsp"></jsp:include>
 		</div>
 
-		<jsp:include page="left.jsp"></jsp:include>
-	</div>
+<script type="text/javascript">
+   window.onload = function() {
+			new uploadPreview({
+				UpBtn : "up_img",
+				ImgShow : "imgShow"
+			});
+		};
+   $(function(){
+      $("#costid").val($("#cost").val());
+   });
+//保存申请
+  $("#saveid").click(function(){
+    if($("#selectid").val()!='a'){
+       
+        var kk=/^[\u4E00-\u9FA5A-Za-z0-9]/;
+        if($("#contentid").val()==""||!kk.test($("#contentid").val())){
+      layer.msg("请合理填写退款说明");
+    }else{
+    
+    $.ajax({
+			url : "order/addordercomment",
+			type : "POST",
+			data : new FormData($("#formid")[0]),
+			cache : false,
+			processData : false,
+			contentType : false,
+			success : function(result) {
+				if (result.code == 100) {
+					layer.msg("申请成功");
+					
+				}else{
+				   layer.msg("亲！已经申请过了");
+				   
+				}
+			}
+		});}
+     
+    } else{
+       layer.msg("请选着退款原因");
+    }
+	
 
-</body>
+	});
+</script>
+	</body>
 
 </html>

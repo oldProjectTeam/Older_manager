@@ -49,4 +49,18 @@ public class ChangeServiceImpl implements ChangeService{
 		changesaleMapper.updateByPrimaryKeySelective(changesale);
 	}
 
+
+
+
+	@Override
+	public int countChangesale(Changesale changesale) {
+		// TODO 自动生成的方法存根
+		
+		ChangesaleExample example=new ChangesaleExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andUsidEqualTo(changesale.getUsid());
+		criteria.andProductidEqualTo(changesale.getProductid());
+		return changesaleMapper.countByExample(example);
+	}
+
 }

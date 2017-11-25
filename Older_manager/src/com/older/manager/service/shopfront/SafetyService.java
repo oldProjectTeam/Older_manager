@@ -1,5 +1,8 @@
 package com.older.manager.service.shopfront;
 
+import org.aspectj.weaver.ast.And;
+
+import com.older.manager.bean.Questionandanswer;
 import com.older.manager.bean.Users;
 
 /**
@@ -19,5 +22,20 @@ public interface SafetyService {
 	 * @param users
 	 */
 	public void updateUser(Users users);
+	/**
+	 * 增加问题
+	 * @param questionandanswer
+	 */
+	public void addQuestion(Questionandanswer questionandanswer);
 	
+	/**
+	 * 查看存不存
+	 * @return
+	 */
+	public boolean selectQuestion(Integer userid);
+	/**
+	 * 更新
+	 * @param questionandanswer
+	 */
+	public void updateQuestion(Questionandanswer questionandanswer);
 }

@@ -15,13 +15,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.older.manager.bean.Changesale;
 import com.older.manager.bean.Orderdetail;
 import com.older.manager.bean.Orders;
 import com.older.manager.bean.ProductComment;
 import com.older.manager.bean.Products;
+import com.older.manager.service.shopfront.ChangeService;
 import com.older.manager.service.shopfront.IOrderdetailService;
 import com.older.manager.service.shopfront.IProductCommentService;
 import com.older.manager.service.shopfront.IProductService;
@@ -38,11 +41,11 @@ import com.older.manager.utils.SaveFile;
 public class OrderManagerController {
 	@Autowired
 	private IOrderdetailService orderdetailService;
-	@Autowired
-	private IProductService productService;
 	
 	@Autowired
 	private IProductCommentService productCommentService;
+	@Autowired
+	private  ChangeService changeService;
 	
     /**
      * 跳到订单管理
@@ -102,11 +105,11 @@ public class OrderManagerController {
 					all.add(orderdetail3);
 					date=orderdetail3.getOrders().getCreattime();
 					if (orderdetail3.getOrders().getCost()!=null) {
-						count+=orderdetail3.getOrders().getCost();
+						count=orderdetail3.getOrders().getCost();
 					}
 					
 					if (orderdetail3.getOrders().getFreight()!=null) {
-						count1+=orderdetail3.getOrders().getFreight();
+						count1=orderdetail3.getOrders().getFreight();
 					}
 					
 					sta=orderdetail3.getOrders().getState();
@@ -197,28 +200,20 @@ public class OrderManagerController {
 		return "oldfront/person/record";
 	}
 	
-	
-	  /**
-     *  个人中心的申请退款
-     * @return
-     */
-	@RequestMapping("/refund")
-	public String refund() {
-		return "oldfront/person/refund";
-	}
 	/**
 	 * 查商品信息
 	 * @param id
 	 * @return
 	 * @throws Exception 
 	 */
-	@RequestMapping("/selectproductbyid/{id}&{orid}")
-	public String selectProductById(@PathVariable Integer id, @PathVariable Integer orid,Model model,HttpServletRequest request) throws Exception{
-		 Products products= productService.findProductById(id);
-		 String str[]=products.getImages().split(",");
-		 products.setImages(str[0]);
-		 request.setAttribute("orid", orid);
-		 model.addAttribute("pro", products);
+	@RequestMapping("/selectproductbyid/{ordersid}")
+	public String selectProductById(@PathVariable Integer ordersid, Model model) throws Exception{
+		List<Orderdetail> list =orderdetailService.selectAllOrderDetailByOrderId(ordersid);
+		for (Orderdetail orderdetail : list) {
+			String str[]=orderdetail.getProducts().getImages().split(",");
+			orderdetail.getProducts().setImages(str[0]);
+		} 
+	     model.addAttribute("list", list);
 		 return "oldfront/person/commentlist";
 	}
 	/**
@@ -229,37 +224,47 @@ public class OrderManagerController {
 	 * @throws IllegalStateException 
 	 */
 	
-	
-	
-	
-	
-	
-	@RequestMapping("/addproductscomment")
+	@RequestMapping("/addproductscomment/{orderid}")
 	@ResponseBody
 	public Msg addProdctsComment(ProductComment productComment,MultipartFile file,
-			HttpServletRequest request) throws IllegalStateException, IOException{
-		
+			HttpServletRequest request,@PathVariable Integer orderid) throws IllegalStateException, IOException{
+		 System.out.println(orderid+"------------------------>");
 		String imgUrl = null;
-		if (file != null) {
+		if (!file.isEmpty()) {
 			imgUrl = SaveFile.saveImg(file, request);
 			productComment.setImageurl(imgUrl);
 		}else{
 			productComment.setImageurl("");
 			
 		}
-		
-		productComment.setCreatetime(new Date());
-		productCommentService.addProductComment(productComment);
-		
-		Orderdetail orderdetail=orderdetailService.selectOrderDetailByid(productComment.getOrdersdetailId());
 		Orders orders=new Orders();
-		orders.setState("已评价");
-		orders.setId(orderdetail.getOrderId());
-		orderdetailService.updatestate(orders);
+		List<Orderdetail> list =orderdetailService.selectAllOrderDetailByOrderId(orderid);
+		for (Orderdetail orderdetail : list) {
+			String str[]=orderdetail.getProducts().getImages().split(",");
+			orderdetail.getProducts().setImages(str[0]);
+			
+			productComment.setUsersId(orderdetail.getOrders().getUserId());
+			productComment.setOrdersdetailId(orderdetail.getId());
+			productComment.setCreatetime(new Date());
+			productCommentService.addProductComment(productComment);
+			orders.setId(orderdetail.getOrderId());
+		}
 		
-	
+		orders.setState("已评价");
+		orderdetailService.updatestate(orders);
 		return Msg.success();
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * 标记被删除状态
@@ -290,6 +295,85 @@ public class OrderManagerController {
     	orderdetailService.updateOrder(orders);
 		return Msg.success();
 	}
+    
+    /**
+     * 通过订单id来查 跳到申请退款
+     * @param no
+     * @return
+     */
+	@RequestMapping("/selectorderdetailbyorderno/{id}")
+	public String selectOrderDetailByOrderno(@PathVariable Integer id,Model model){
+		List<Orderdetail> list =orderdetailService.selectAllOrderDetailByOrderId(id);
+		for (Orderdetail orderdetail : list) {
+			String str[]=orderdetail.getProducts().getImages().split(",");
+			orderdetail.getProducts().setImages(str[0]);
+		}
+		
+		
+		model.addAttribute("list", list);
+		
+		return "oldfront/person/refund";
+	}
+	/**
+	 * 保存申请退款
+	 * @param changesale
+	 * @return
+	 */
+	@RequestMapping("/addordercomment")
+	@ResponseBody
+	public Msg addOrderComment(Changesale changesale,@RequestParam("file")MultipartFile file,
+			HttpServletRequest request)throws Exception{
+		String imgUrl = null;
+		if (!file.isEmpty()) {
+			imgUrl = SaveFile.saveImg(file, request);
+			changesale.setChimages(imgUrl);
+		}else{
+			changesale.setChimages("没有图片");
+			
+		}
+		 String str[]=changesale.getChno().split(",");
+		 List<Orderdetail> list =orderdetailService.selectAllOrderDetailByOrderId(Integer.parseInt(str[0]));
+		 
+		      
+		      
+		  //标记被删除状态
+		  Orders orders=new Orders();
+		  orders.setOrders1("0");
+		  orders.setId(Integer.parseInt(str[0]));
+    	  orderdetailService.updateOrder(orders);
+		   int i=0;
+			for (Orderdetail orderdetail : list) {
+				changesale.setProductid(orderdetail.getProducctsId());
+				changesale.setUsid(orderdetail.getOrders().getUserId());
+				if(changeService.countChangesale(changesale)>0){
+					System.out.println("------------------->"+changeService.countChangesale(changesale));
+					return Msg.fail();
+					
+				}else{
+					
+					String str1[]=orderdetail.getProducts().getImages().split(",");
+					orderdetail.getProducts().setImages(str1[0]);
+					changesale.setChno(orderdetail.getOrders().getOrderNo()+i);
+					i++;
+					changesale.setChtime(new Date());
+					changesale.setChphoto(orderdetail.getProducts().getImages());
+					changesale.setChbrieft(orderdetail.getProducts().getSynopsis());
+					changesale.setChname(orderdetail.getProducctname());
+					changesale.setChmoeny(orderdetail.getBaseprice()*orderdetail.getNumber());
+					changesale.setChaftermoney(orderdetail.getBaseprice()*orderdetail.getNumber());
+					
+					changeService.addChange(changesale);
+					
+					
+				}
+			}
+		   
+		return Msg.success();
+	}
+	
+	
+	
+	
 	
 	
 	

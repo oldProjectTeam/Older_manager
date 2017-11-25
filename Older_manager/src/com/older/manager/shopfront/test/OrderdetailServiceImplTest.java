@@ -32,14 +32,15 @@ public class OrderdetailServiceImplTest {
 	public void selectall()throws Exception{
 		Orderdetail orderdetail=new Orderdetail();
 	     Orders orders=new Orders();
-	     orders.setUserId(220);
-	     orders.setState("待付款");
-	     //orders.setOrderNo("201711163630");
+	  /*   orders.setUserId(220);
+	     orders.setState("待付款");*/
+	     //orders.setOrderNo("2017112273139");
+	     orders.setId(8);
 	     orderdetail.setOrders(orders);
 	     
 	     
 	     
-		System.out.println("*****************"+iOrderdetailService.selectAllOrderDetail(orderdetail).size());
+		System.out.println("*****************"+iOrderdetailService.selectAllOrderDetailByOrderId(8).size());
 		
 		
 	}
