@@ -333,4 +333,9 @@
       special10 = #{special10,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据老人id查询表 -->
+  <select id="selectSpecialByOldmanId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select * from special where oldMan_id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

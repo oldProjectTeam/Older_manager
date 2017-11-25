@@ -803,4 +803,60 @@
 		numthree = #{numthree,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
+	
+	<!-- 包含老人特长、爱好的结果集 -->
+	<resultMap id="detailIncludeHobbyAndSpecialResultMap" type="com.older.manager.bean.Oldman">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="nation" property="nation" jdbcType="VARCHAR" />
+		<result column="marriage" property="marriage" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="DATE" />
+		<result column="age" property="age" jdbcType="INTEGER" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="service" property="service" jdbcType="VARCHAR" />
+		<result column="urgencyContact" property="urgencycontact"
+			jdbcType="VARCHAR" />
+		<result column="urgencyContactPhone" property="urgencycontactphone"
+			jdbcType="VARCHAR" />
+		<result column="relation" property="relation" jdbcType="VARCHAR" />
+		<result column="serviceType" property="servicetype" jdbcType="VARCHAR" />
+		<result column="serviceStatu" property="servicestatu" jdbcType="VARCHAR" />
+		<result column="economicSource" property="economicsource"
+			jdbcType="VARCHAR" />
+		<result column="monthlyIncome" property="monthlyincome"
+			jdbcType="DOUBLE" />
+		<result column="healthCare" property="healthcare" jdbcType="VARCHAR" />
+		<result column="socialSecurityNo" property="socialsecurityno"
+			jdbcType="VARCHAR" />
+		<result column="chronicDiseases" property="chronicdiseases"
+			jdbcType="VARCHAR" />
+		<result column="bloodType" property="bloodtype" jdbcType="VARCHAR" />
+		<result column="disabilitySituation" property="disabilitysituation"
+			jdbcType="VARCHAR" />
+		<result column="disability" property="disability" jdbcType="VARCHAR" />
+		<result column="educationLevel" property="educationlevel"
+			jdbcType="VARCHAR" />
+		<result column="majors" property="majors" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="unitOrignal" property="unitorignal" jdbcType="VARCHAR" />
+		<result column="idcar" property="idcar" jdbcType="VARCHAR" />
+		<result column="liveinfo" property="liveinfo" jdbcType="VARCHAR" />
+		<result column="numone" property="numone" jdbcType="VARCHAR" />
+		<result column="numtwo" property="numtwo" jdbcType="VARCHAR" />
+		<result column="numthree" property="numthree" jdbcType="VARCHAR" />
+		<association property="special" column="id" javaType="com.older.manager.bean.Special"
+		select="com.older.manager.mapper.SpecialMapper.selectSpecialByOldmanId"
+		/>
+		<association property="hobby" column="id" javaType="com.older.manager.bean.Hobby"
+		select="com.older.manager.mapper.HobbyMapper.selecthobbyByOldamnId"
+		/>
+	</resultMap>
+	
+	<select id="selectOldmanById" resultMap="detailIncludeHobbyAndSpecialResultMap" parameterType="java.lang.Integer">
+		select * from oldman where id = #{id,jdbcType=INTEGER}
+	</select>
 </mapper>

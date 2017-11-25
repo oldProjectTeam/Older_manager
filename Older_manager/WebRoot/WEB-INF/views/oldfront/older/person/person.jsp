@@ -64,7 +64,7 @@
 									<div class="row" style="margin-top:20px;margin-bottom:20px;">
 										<div class="col-md-3" id="xueya">
 											<div class="jksj-box"
-												onclick="javascript:window.location.href='${APP_PATH}/older/person_info'">
+												onclick="javascript:window.location.href='${APP_PATH}/PersonalCenter/intoPersonalInfo?oldmanId=${older.oldmanId}'">
 												<div class="icon-person"></div>
 												<ul class=" list-paddingleft-2">
 													<li>
@@ -75,7 +75,7 @@
 										</div>
 										<div class="col-md-3 text-center" id="tiwen">
 											<div class="jksj-box"
-												onclick="javascript:window.location.href='${APP_PATH}/older/user_manager'">
+												onclick="javascript:window.location.href='${APP_PATH}/PersonalCenter/intoAcountManager?oldmanId=${older.oldmanId}'">
 												<div class="icon-zhanghu"></div>
 												<ul class=" list-paddingleft-2">
 													<li>
@@ -103,10 +103,10 @@
 	type="text/javascript"></script>
 <script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
 <script type="text/javascript">
-	 
+	
 	function Login_Out() {
 		if (confirm('您确定要退出本次登录吗?')) {
-			location.href = '/index.html';
+			window.location.href = "oldmanaccount/loginOut";
 		}
 	};
 </script>

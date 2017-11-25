@@ -402,4 +402,9 @@
       userType = #{usertype,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 通过老人id查询老人的账号信息 -->
+  <select id="selectOldmanAccountByOldmanId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  	select * from oldmanaccount where  oldMan_id = #{oldmanId,jdbcType=INTEGER}
+  </select>
 </mapper>

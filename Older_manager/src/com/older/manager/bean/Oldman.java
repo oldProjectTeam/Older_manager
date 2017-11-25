@@ -93,6 +93,48 @@ public class Oldman {
 
 	private String numthree;
 
+	// 个人中心关联到的属性
+	private Special special;// 特长
+
+	private Hobby hobby;// 爱好
+
+	// 个人中心涉及到的属性
+	private String specialString;// 特长
+
+	private String hobbyString;// 爱好
+
+	public Special getSpecial() {
+		return special;
+	}
+
+	public void setSpecial(Special special) {
+		this.special = special;
+	}
+
+	public Hobby getHobby() {
+		return hobby;
+	}
+
+	public void setHobby(Hobby hobby) {
+		this.hobby = hobby;
+	}
+
+	public String getSpecialString() {
+		return specialString;
+	}
+
+	public void setSpecialString(String specialString) {
+		this.specialString = specialString;
+	}
+
+	public String getHobbyString() {
+		return hobbyString;
+	}
+
+	public void setHobbyString(String hobbyString) {
+		this.hobbyString = hobbyString;
+	}
+
 	public Integer getId() {
 		return id;
 	}
@@ -391,7 +433,9 @@ public class Oldman {
 				+ ", title=" + title + ", unitorignal=" + unitorignal
 				+ ", idcar=" + idcar + ", liveinfo=" + liveinfo + ", numone="
 				+ numone + ", numtwo=" + numtwo + ", numthree=" + numthree
-				+ "]";
+				+ ", special=" + special + ", hobby=" + hobby
+				+ ", specialString=" + specialString + ", hobbyString="
+				+ hobbyString + "]";
 	}
 
 }

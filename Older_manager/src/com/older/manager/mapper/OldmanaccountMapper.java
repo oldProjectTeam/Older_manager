@@ -9,39 +9,56 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface OldmanaccountMapper {
-    int countByExample(OldmanaccountExample example);
+	int countByExample(OldmanaccountExample example);
 
-    int deleteByExample(OldmanaccountExample example);
+	int deleteByExample(OldmanaccountExample example);
 
-    int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-    int insert(Oldmanaccount record);
+	int insert(Oldmanaccount record);
 
-    int insertSelective(Oldmanaccount record);
-    
-    /**
-     * 查询所有账户信息和关联的老人信息
-     * @param oldmanaccount
-     * @return
-     */
-   List<Oldmanaccount> selectAccountAndOldmanByCondiction(Oldmanaccount oldmanaccount);
+	int insertSelective(Oldmanaccount record);
 
-    List<Oldmanaccount> selectByExample(OldmanaccountExample example);
+	/**
+	 * 查询所有账户信息和关联的老人信息
+	 * 
+	 * @param oldmanaccount
+	 * @return
+	 */
+	List<Oldmanaccount> selectAccountAndOldmanByCondiction(
+			Oldmanaccount oldmanaccount);
 
-    Oldmanaccount selectByPrimaryKey(Integer id);
-    
-    /**
-     * 查询不在账户表的所有老人信息
-     * @param oldman
-     * @return
-     */
-    List<Oldman> selectOldManNotAccount(Oldman oldman);
+	List<Oldmanaccount> selectByExample(OldmanaccountExample example);
 
-    int updateByExampleSelective(@Param("record") Oldmanaccount record, @Param("example") OldmanaccountExample example);
+	Oldmanaccount selectByPrimaryKey(Integer id);
 
-    int updateByExample(@Param("record") Oldmanaccount record, @Param("example") OldmanaccountExample example);
+	/**
+	 * 查询不在账户表的所有老人信息
+	 * 
+	 * @param oldman
+	 * @return
+	 */
+	List<Oldman> selectOldManNotAccount(Oldman oldman);
 
-    int updateByPrimaryKeySelective(Oldmanaccount record);
+	int updateByExampleSelective(@Param("record") Oldmanaccount record,
+			@Param("example") OldmanaccountExample example);
 
-    int updateByPrimaryKey(Oldmanaccount record);
+	int updateByExample(@Param("record") Oldmanaccount record,
+			@Param("example") OldmanaccountExample example);
+
+	int updateByPrimaryKeySelective(Oldmanaccount record);
+
+	int updateByPrimaryKey(Oldmanaccount record);
+
+	/**
+	 * @Title: selectOldmanAccountByOldmanId
+	 * @Description: 通过老人的id查询老人的账户信息
+	 * @param @param oldmanId
+	 * @param @return
+	 * @return Oldmanaccount
+	 * @throws
+	 * @author ym
+	 * @date 2017年11月24日 下午7:55:14
+	 */
+	Oldmanaccount selectOldmanAccountByOldmanId(Integer oldmanId);
 }
