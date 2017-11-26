@@ -324,7 +324,6 @@ ul li {
 						obj.style['filter'] = 'alpha(opacity=' + leader + ')';
 					} else if (k == 'zIndex') {
 						obj.style['zIndex'] = json[k];
-						console.log(666);
 					} else {
 						obj.style[k] = leader + "px";
 					}
@@ -352,7 +351,7 @@ ul li {
 		};
 	</script>
 	<script type="text/javascript">
-		var currentNum, flag;
+		var currentNum, total;
 		$(function() {
 			go(1);
 		});
@@ -365,28 +364,13 @@ ul li {
 				},
 				type : "GET",
 				success : function(result) {
-					currentNum = result.extend.pageInfo.pageNum;
-					flag = result.extend.pageInfo.hasNextPage;
-					//build_img(result);
-					build_recommend_course(result);
-					build_course(result);
-				}
-			});
-		}
-		//轮播图
-		function build_img(result) {
-			$.each(result.extend.pageInfo.list, function(index, item) {
-				if (index < 6) {
-					var imgDiv = $("<li></li>").append(
-							$("<a></a>").attr(
-									"href",
-									"${APP_PATH}/official/courseInfoId/"
-											+ item.id).append(
-									$("<img/>").attr(
-											"src",
-											"http://123.207.93.53/Older_back/"
-													+ item.photo)));
-					$("#imgContent").append(imgDiv);
+					console.log(result);
+					if (result.code == 100) {
+						currentNum = result.extend.pageInfo.pageNum;
+						total = result.extend.pageInfo.pages;
+						build_recommend_course(result);
+						build_course(result);
+					}
 				}
 			});
 		}
@@ -503,9 +487,8 @@ ul li {
 		}
 
 		$("#loading").click(function() {
-			if (flag) {
-				$("#ol").empty();
-				$("#imgOl").empty();
+			$("#imgOl").empty();
+			if (currentNum + 1 < total || currentNum + 1 == total) {
 				if ($("#key").val() == '') {
 					go(currentNum + 1);
 				} else {
@@ -544,8 +527,7 @@ ul li {
 						$("#courseContent").empty();
 						$("#course").empty();
 						currentNum = result.extend.pageInfo.pageNum;
-						flag = result.extend.pageInfo.hasNextPage;
-						build_img(result);
+						total = result.extend.pageInfo.pages;
 						build_recommend_course(result);
 						build_course(result);
 					}
