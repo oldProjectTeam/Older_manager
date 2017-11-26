@@ -16,6 +16,8 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>智慧老人系统</title>
+	
+
 <link href="${APP_PATH}/static/oldfront/assets/css/bootstrap.css"
 	rel="stylesheet" />
 <link href="${APP_PATH}/static/oldfront/assets/css/font-awesome.css"
@@ -36,46 +38,17 @@
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Lobster'
 	rel='stylesheet' type='text/css' />
+
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
+ 
 </head>
 <body>
-	<section class="menu-section">
-	<div class="container">
-		<div class="row ">
-			<div class="col-md-12">
-				<div class="navbar-collapse collapse">
-					<ul id="menu-top"
-						class="nav navbar-nav navbar-fixed-top navbar-inverse">
-						<li
-							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><a
-							href="${APP_PATH}/older/index"><img
-								src="${APP_PATH}/static/images/oldback/images/logo.png"
-								width="200px" style="margin-right: 240px;" /></a></li>
-						<li><a href="${APP_PATH}/older/index"
-							class="menu-top-active check">主页</a></li>
-						<li><a href="${APP_PATH}/course/course_list" class="check">课程专区</a></li>
-						<li><a href="${APP_PATH}/older/video_list" class="check">视频专区</a></li>
-						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
-						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
-						<li>
-							<!-- 用户头像 --> <c:if test="${!empty older}">
-								<img src="http://123.207.93.53/Older_back/${older.oldman.photo}"
-									height="30" width="30"
-									onerror="onerror=null;src='${APP_PATH }/static/oldfront/older/images/doctor.png'"
-									style="margin-left: 240px;margin-top: 20px;" class="img-circle"
-									onclick="person()" />
-							</c:if> <c:if test="${empty older}">
-								<a href="${APP_PATH}/older/login" style="margin-left: 240px;">登录</a>
-							</c:if>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	</section>
-	<div id="slideshow-sec" style="margin-top: 15px;">
+	 
+	<!--加载头部  -->
+	<jsp:include page="header.jsp"></jsp:include>
+	<!--头部结束  -->
+	<div id="slideshow-sec" style="margin-top:100px;">
 		<div id="carousel-div" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
 				<div class="item active">

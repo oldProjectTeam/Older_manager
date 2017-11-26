@@ -32,17 +32,20 @@ pageContext.setAttribute("APP_PATH", request.getContextPath());
     <!-- 头部开始 -->
 <header>
   
-    <div class="navbar navbar-default navbar-fixed-top" style="">
+    <div class="navbar navbar-default navbar-fixed-top">
        <div class="container" style="padding:15px 0;">
-          <div class="navbar-header pull-left" style="margin-left:0;">
+          <div class="navbar-header pull-left" style="margin-left:0">
+             
              <a href="${APP_PATH}/older/older" class="logo navbar-brand"
               style="margin-left:0;margin-top:0;background: url(${APP_PATH}/static/oldfront/older/images/logo.png) no-repeat">
              </a>
+             
           </div>
           <div class="navbar-collapse collapse" style="">
              <ul class="nav navbar-nav navbar-right" style="margin-right:0;">
                 <li><div class="navbar-header  telnum">服务热线：400-761-5656</div></li>
                 <li style="margin-left:50px;"><a href="javascript:;" onclick="Login_Out()" class="logout">退出<i class="icon-logout pull-right"></i></a></li>
+             	<li style="margin-right:-50px"><a href="javascript:window.location.href='${APP_PATH}/older/index';" class="logout">官网<i class="icon-logout pull-right"></i></a></li>
              </ul>
           </div>
        </div>

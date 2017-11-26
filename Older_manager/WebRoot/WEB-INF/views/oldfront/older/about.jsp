@@ -15,7 +15,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>智慧老人系统</title>
-<link href="${APP_PATH}/static/oldfront/assets/css/bootstrap.css"
+ <link href="${APP_PATH}/static/oldfront/assets/css/bootstrap.css"
 	rel="stylesheet" />
 <link href="${APP_PATH}/static/oldfront/assets/css/font-awesome.css"
 	rel="stylesheet" />
@@ -24,48 +24,25 @@
 <link href="${APP_PATH}/static/oldfront/assets/css/flexslider.css"
 	rel="stylesheet" />
 <link href="${APP_PATH}/static/oldfront/assets/css/style.css"
-	rel="stylesheet" />
-<link
+	rel="stylesheet" /> 
+
+ <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Lobster'
-	rel='stylesheet' type='text/css' />
+	rel='stylesheet' type='text/css' /> 
 </head>
 <body>
-	<section class="menu-section">
-	<div class="container">
-		<div class="row ">
-			<div class="col-md-12">
-				<div class="navbar-collapse collapse">
-					<ul id="menu-top"
-						class="nav navbar-nav navbar-fixed-top navbar-inverse">
-						<li
-							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
-							src="${APP_PATH}/static/images/oldback/images/logo.png"
-							width="200px" style="margin-right: 240px;" /></li>
-						<li><a href="${APP_PATH}/older/index"
-							class="menu-top-active check">主页</a></li>
-						<li><a href="${APP_PATH}/course/course_list" class="check">课程专区</a></li>
-						<li><a href="${APP_PATH}/older/video_list" class="check">视频专区</a></li>
-						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
-						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
-						<li>
-						<!-- 用户头像 -->
-						<img src="${APP_PATH}/static/images/old.png" height="30" width="30" style="margin-left: 240px;margin-top: 20px;display: none;"  class="img-circle">
-						 <a href="${APP_PATH}/older/login" style="margin-left: 240px;">登录</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	</section>
-	<div class="container">
+	<!--加载头部  -->
+	<jsp:include page="header.jsp"></jsp:include>
+	
+	<div class="container" style="margin-top:80px">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<h1 class="tag-home">
-					贵州孝和集团是一家业内资深的专注于提供优质健康管理服务的老年养护集团公司。和孝集团在老年养护行业深耕十年有余，实力雄厚。</h1>
+					贵州孝和集团是一家业内资深的专注于提供优质健康管理服务的老年养护集团公司。孝和集团在老年养护行业深耕十年有余，实力雄厚。</h1>
 				<hr />
 			</div>
 		</div>
