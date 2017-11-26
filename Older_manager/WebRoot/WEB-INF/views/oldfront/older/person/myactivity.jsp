@@ -36,6 +36,11 @@
 <script src="${APP_PATH}/static/oldfront/older/js/jquery.easyui.js"></script>
 <script src="${APP_PATH}/static/oldfront/older/js/easyui-lang-zh_CN.js"></script>
 <script src="${APP_PATH}/static/oldfront/older/js/KingonUI.js"></script>
+<%-- <script type="text/javascript"
+	src="${APP_PATH }/static/js/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="${APP_PATH }/static/bootstrap-3.3.7-dist/css/bootstrap.min.css"> --%>
+
 </head>
 <body style="overflow:auto;" class="layout panel-noscroll">
 	<!--头部开始  -->
@@ -57,22 +62,23 @@
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
 							我的活动
-							<button type="button" class="btn back fr" id="btnclose">返回</button>
+							<button type="button" class="btn back fr" id="btnclose"
+								onClick="javascript :history.back(-1);">返回</button>
 						</div>
-						<form class="form-inline" role="form">
+						<form class="form-inline" >
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">活动开始时间：</label> <input
 									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time1"
+									editable="false" id="starttime"
 									style="width: 180px; height: 30px; display: none;">
 							</div>
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">活动结束时间：</label> <input
 									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time2"
+									editable="false" id="endtime"
 									style="width: 180px; height: 30px; display: none;">
 							</div>
-							<button id="chaxun" class="btn btn-success col-md-2">查询</button>
+							<button type="button" id="search" class="btn btn-success col-md-2">查询</button>
 						</form>
 
 
@@ -97,37 +103,33 @@
 													<table class="table table-bordered">
 														<tr>
 															<td>活动标题</td>
-															<td id="title">老人故宫一日游</td>
+															<td id="title"></td>
 														</tr>
 														<tr>
 															<td>活动时间</td>
-															<td id="activitytime">2017-10-20</td>
+															<td id="activitytime"></td>
 														</tr>
 														<tr>
 															<td>活动地点</td>
-															<td id="place">故宫</td>
+															<td id="place"></td>
 														</tr>
 														<tr>
 															<td>活动状态</td>
-															<td id="state">结束</td>
+															<td id="state"></td>
 														</tr>
 														<tr>
 															<td>发布时间</td>
-															<td id="releasetime">2017-10-20</td>
+															<td id="releasetime"></td>
 														</tr>
 														<tr>
 															<td>发布人</td>
-															<td id="releasepeople">孝和集团</td>
+															<td id="releasepeople"></td>
 														</tr>
 
 													</table>
 													<div class="panel-heading">活动简介</div>
 													<div class="panel-body">
-														<p id="content">胶东在线11月20日讯(通讯员 赵中妹)
-															农历九月初九是我国古老的传统节日之一，古人把“九九相重”叫重阳节，我国把农历九月初九定为“老人节”，将传统与现代巧妙地结合，成为尊老、爱老、助老的“老人节”。长岛县第一实验学校家委会利用周末组织策划了“情浓重阳，礼敬老人”的主题活动。
-															让孩子们走进情感世界，感受长辈对自己的爱，并把长辈的爱“迁移”身边每一位老人和敬老院的老人，感受与老人一起的快乐，同时让老人们享受到被关怀的快乐，让老人为孩子的成长感到欣慰与骄傲。
-															通过开展礼敬老人的活动，激发孩子们关爱老人、孝敬老人的情感，培养孩子们关心老人、敬重老人的良好品质，弘扬了中华民族尊老敬老的优良传统。
-														</p>
+														<lable id="content"></lable>
 													</div>
 													<img id="img" src="images/bmfw.png" width="200"
 														height="150">
@@ -152,28 +154,14 @@
 							<thead>
 								<tr class="xy-head">
 									<th class="col-md-2">活动名称</th>
-									<th class="col-md-2">发部人</th>
+									<th class="col-md-2">活动状态</th>
 									<th class="col-md-2">报名时间</th>
 									<th class="col-md-2">活动时间</th>
 									<th class="col-md-2">是否到场</th>
 									<th class="col-md-2">操作</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>老人故宫一日游</td>
-									<td>孝和集团</td>
-									<td>2017-10-20</td>
-									<td>2017-11-1</td>
-									<td>是</td>
-									<td>
-										<div class="jjda-btn" data-toggle="modal" data-target="#jkda">
-											 
-											<i class="jjda-btn-view"></i>活动详细
-										</div>
-
-									</td>
-								</tr>
+							<tbody id="table_data">
 							</tbody>
 						</table>
 						<nav>
@@ -199,5 +187,166 @@
 		<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
 			type="text/javascript"></script>
 		<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				go(1);
+			});
+			function go(pn) {
+				var oldManId = ${older.oldman.id};
+				$.ajax({
+					url : "${APP_PATH}/activity/findTakeActivityBySearch",
+					data : {
+						"pn" : pn,
+						"oldManId" : oldManId,
+						"startTime" : "",
+						"endTime" : ""
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							$("#table_data").empty();
+							$("#page_list").empty();
+							build_data(result);
+							nav(result);
+						}
+					}
+				});
+			}
+			function build_data(result) {
+				$.each(result.extend.pageInfo.list, function(index, item) {
+					var tr = $("<tr></tr>");
+					var td1 = $("<td></td>").append(item.activity.title);
+					var td2 = $("<td></td>").append(item.activity.state);
+					var td3 = $("<td></td>").append(
+							ChangeDateFormat(item.taketime));
+					var td4 = $("<td></td>").append(
+							ChangeDateFormat(item.activity.activitytime));
+					var td5 = $("<td></td>").append(item.ispresent);
+					var div = $("<div></div>").addClass("jjda-btn").attr(
+							"data-toggle", "modal").attr("data-target",
+							"#courseenrol_view_modal").append(
+							$("<i></i>").addClass("jjda-btn-view")).append(
+							"课程详细");
+					div.attr("activity", item.activity.title + "-"
+							+ item.activity.releasetime + "-"
+							+ item.activity.activitytime + "-"
+							+ item.activity.place + "-"
+							+ item.activity.releasepeople + "-"
+							+ item.activity.state + "-"
+							+ item.activity.activity1).attr("cont",item.activity.content);
+					//点击查看模态框
+					div.click(function() {
+						putActivityInfo(div.attr("activity"),div.attr("cont"));
+					})
+					var td6 = $("<td></td>").append(div);
+					tr.append(td1).append(td2).append(td3).append(td4).append(
+							td5).append(td6).appendTo($("#table_data"));
+
+				});
+			}
+			function putActivityInfo(activity,cont) {
+				a = activity.split("-");
+				$("#jkda").modal();
+
+				$("#title").html(a[0]);
+				$("#activitytime").html(ChangeDateFormat(a[2]));
+				$("#place").html(a[3]);
+				$("#state").html(a[5]);
+				$("#releasetime").html(ChangeDateFormat(a[1]));
+				$("#releasepeople").html(a[4]);
+				$("#content").text(cont);
+				$("#img").attr("src", "http://123.207.93.53/Older_back/" + a[6]);
+			}
+			function search(pn) {
+				var oldManId = ${older.oldman.id};
+				$.ajax({
+					url : "${APP_PATH}/activity/findTakeActivityBySearch",
+					data : {
+						"pn" : pn,
+						"oldManId" : oldManId,
+						"startTime" : $("#starttime").datebox('getValue'),
+						"endTime" : $("#endtime").datebox('getValue')
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							$("#table_data").empty();
+							$("#page_list").empty();
+							build_data(result);
+							nav1(result);
+						} else {
+							layer.msg("没有查询到相关数据", {
+								offset : [ '20%' ]
+							});
+						}
+					}
+				});
+			}
+			$("#search").click(function() {
+				if ($("#endtime").datebox('getValue') == '' && $("#starttime").datebox('getValue') == '') {
+					layer.open({
+						title:"搜索提示",
+						content:"请输入信息再查询"
+					});
+				} else {
+					search(1);
+				}
+			});
+			function nav(result) {
+				var pre, next;
+				if (result.extend.pageInfo.pageNum == 1) {
+					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+				} else {
+					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+				}
+				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
+					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+				} else {
+					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+				}
+				$("#page_list").append(pre);
+				$.each(result.extend.pageInfo.navigatepageNums,
+				function(index, item) {
+					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+					$("#page_list").append(li);
+				});
+				$("#page_list").append(next);
+			}
+			function nav1(result) {
+				var pre, next;
+				if (result.extend.pageInfo.pageNum == 1) {
+					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+				} else {
+					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+				}
+				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
+					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+				} else {
+					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+				}
+				$("#page_list").append(pre);
+				$.each(result.extend.pageInfo.navigatepageNums,
+				function(index, item) {
+					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+					$("#page_list").append(li);
+				});
+				$("#page_list").append(next);
+			}
+			function ChangeDateFormat(d) {
+				//将时间戳转为int类型，构造Date类型
+				if (d != null) {
+					var date = new Date(parseInt(d));
+					//月份得+1，且只有个位数时在前面+0
+					var month = date.getMonth() + 1 + "月";
+					//日期为个位数时在前面+0
+					var currentDate = date.getDate() + "日";
+					//getFullYear得到4位数的年份 ，返回一串字符串
+					return date.getFullYear() + "年" + month + currentDate;
+				} else {
+					return null;
+				}
+			}
+		</script>
 </body>
 </html>

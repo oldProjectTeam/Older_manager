@@ -57,7 +57,8 @@
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
 							推荐活动
-							<button type="button" class="btn back fr" id="btnclose">返回</button>
+							<button type="button" class="btn back fr" id="btnclose"
+								onClick="javascript :history.back(-1);">返回</button>
 						</div>
 						<form class="form-inline" role="form">
 							<div class="form-group col-md-5">
@@ -169,11 +170,11 @@
 									</td>
 									<td>
 										<div class="jjda-btn" data-target="#jkda">
-											 
+
 											<i class="jjda-btn-bm"></i>立即报名
 										</div>
 										<div class="jjda-btn" data-toggle="modal" data-target="#jkda">
-											 
+
 											<i class="jjda-btn-view"></i>活动详细
 										</div>
 

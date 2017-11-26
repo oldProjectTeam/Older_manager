@@ -377,4 +377,55 @@
       takeActivity4 = #{takeactivity4,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据参加活动查询老人和活动的结果集，一对一关系 -->
+	<resultMap id="detailResultMap" type="com.older.manager.bean.Takeactivity">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="Activity_id" property="activityId" jdbcType="INTEGER" />
+		<result column="takeTime" property="taketime" jdbcType="TIMESTAMP" />
+		<result column="isPresent" property="ispresent" jdbcType="VARCHAR" />
+		<result column="remak" property="remak" jdbcType="VARCHAR" />
+		<result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+		<result column="takeActivity1" property="takeactivity1"
+			jdbcType="VARCHAR" />
+		<result column="takeActivity2" property="takeactivity2"
+			jdbcType="VARCHAR" />
+		<result column="takeActivity3" property="takeactivity3"
+			jdbcType="VARCHAR" />
+		<result column="takeActivity4" property="takeactivity4"
+			jdbcType="VARCHAR" />
+		<association property="activity" column="Activity_id"
+			javaType="com.older.manager.bean.Activity" select="com.older.manager.mapper.ActivityMapper.selectByPrimaryKey" />
+		<association property="oldman" column="oldMan_id"
+			javaType="com.older.manager.bean.Oldman" select="com.older.manager.mapper.OldmanMapper.selectBaseInfoById" />
+	</resultMap>
+
+	<!-- 根据时间搜索查询参加活动 -->
+	<select id="selectTakeactivityBysearchActivityTime" resultMap="detailResultMap"
+		parameterType="com.older.manager.bean.Takeactivity">
+		SELECT
+		t.*
+		FROM
+		oldman o,
+		activity a,
+		takeactivity t
+		WHERE
+		t.oldMan_id=o.id
+		AND t.Activity_id = a.id
+
+		<if test="activityId!=null">
+			and o.id=#{activityId}
+		</if>
+
+		<if test="activity!=null">
+			<!-- 临时设置activity2为活动的开始时间变量 -->
+			<if test="activity.activity2!=null and activity.activity2!=''">
+				and a.activityTime > #{activity.activity2}
+			</if>
+			<!-- 临时设置activity3为活动的结束时间变量 -->
+			<if test="activity.activity3!=null and activity.activity3!=''">
+				and a.activityTime &lt; #{activity.activity3}
+			</if>
+		</if>
+	</select>
 </mapper>
