@@ -36,6 +36,8 @@
 <script src="${APP_PATH}/static/oldfront/older/js/jquery.easyui.js"></script>
 <script src="${APP_PATH}/static/oldfront/older/js/easyui-lang-zh_CN.js"></script>
 <script src="${APP_PATH}/static/oldfront/older/js/KingonUI.js"></script>
+<script src="${APP_PATH}/static/shop/assets/layer/layer.js"
+	type="text/javascript"></script>
 </head>
 <body style="overflow:auto;" class="layout panel-noscroll">
 	<!--头部开始  -->
@@ -47,12 +49,8 @@
 				<!-- 左侧导航菜单开始 -->
 				<jsp:include page="left.jsp"></jsp:include>
 				<!-- 左侧导航菜单结束 -->
-
 				<!-- 右侧内容区开始 -->
 				<div class="col-md-9" style="background:#fff;min-height:647px;">
-
-
-
 					<!-- 健康数据开始 -->
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
@@ -60,23 +58,20 @@
 							<button type="button" class="btn back fr"
 								onclick="javascript:history.go(-1)">返回</button>
 						</div>
-						<form class="form-inline" role="form">
+						<div class="form-inline" role="form" id="searchForm">
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">课程开始时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time1"
-									style="width: 180px; height: 30px; display: none;">
+									id="h_Time1" type="date" class="form-control">
 							</div>
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">课程结束时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time2"
-									style="width: 180px; height: 30px; display: none;">
+									type="date" id="h_Time2" class="form-control">
 							</div>
-							<button id="chaxun" class="btn btn-success col-md-2">查询</button>
-						</form>
+							<button id="search" type="button"
+								class="btn btn-success col-md-2">查询</button>
+						</div>
 
-						 
+
 						<!-- 弹出框结束 -->
 
 						<!--我的课程详细模态框开始-->
@@ -146,7 +141,8 @@
 						<!-- 添加数据按钮结束 -->
 						<!-- 列表开始 -->
 						<table
-							class="table table-striped table-bordered table-hover text-center yyjl-table">
+							class="table table-striped table-bordered table-hover text-center yyjl-table"
+							style="margin-top: 15px;">
 							<thead>
 								<tr class="xy-head">
 									<th class="col-md-2">课程名称</th>
@@ -157,49 +153,278 @@
 									<th class="col-md-2">操作</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td><a href="${APP_PATH}/older/course_detail"> <font color="green">java后端开发</font></a>
-									</td>
-									<td>罗先生</td>
-									<td>2017-10-20</td>
-									<td>2017-11-1</td>
-									<td>报名成功</td>
-									<td>
-										<div class="jjda-btn" data-toggle="modal"
-											data-target="#courseenrol_view_modal">
-											
-											<i class="jjda-btn-view"></i>课程详细
-										</div>
-
-									</td>
-								</tr>
+							<tbody id="table_data">
 							</tbody>
 						</table>
 						<nav>
 						<ul class="pagination" id="page_list">
-							<li class="disabled"><a href="#">&lt;</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">&gt;</a></li>
 						</ul>
 						</nav>
 						<!-- 列表结束 -->
 					</div>
 					<!-- 健康数据结束 -->
-
-
 					<!-- 右侧内容区结束 -->
 				</div>
 				<!-- 右侧内容区结束 -->
 			</div>
 		</div>
-		<!--底部开始  -->
-		<jsp:include page="footer.jsp"></jsp:include>
-		<!-- 底部结束 -->
-		<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
-		<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
-		<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
-			type="text/javascript"></script>
-		<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+	</div>
+	<!--底部开始  -->
+	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- 底部结束 -->
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
+		type="text/javascript"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+
+	<script type="text/javascript">
+		$(function() {
+			go(1);
+		});
+
+		function go(pn) {
+			var oldManId = ${older.oldman.id};
+			$.ajax({
+				url : "${APP_PATH}/course/queryCourseByOldMan",
+				data : {
+					"pn" : pn,
+					"oldManId" : oldManId
+				},
+				type : "GET",
+				success : function(result) {
+					if (result.code == 100) {
+						$("#table_data").empty();
+						$("#page_list").empty();
+						build_data(result);
+						nav(result);
+					}
+				}
+			});
+		}
+
+		function build_data(result) {
+			$.each(result.extend.pageInfo.list, function(index, item) {
+				var tr = $("<tr></tr>");
+				var td1 = $("<td></td>").append(
+						$("<a></a>").attr(
+								"href",
+								"${APP_PATH}/official/courseInfoId/"
+										+ item.courses.id).append(
+								$("<font></font>").attr("color", "green")
+										.append(item.courses.title)));
+				var td2 = $("<td></td>").append(item.courses.teacher);
+				var td3 = $("<td></td>").append(
+						ChangeDateFormat(item.courses.starttime));
+				var td4 = $("<td></td>").append(
+						ChangeDateFormat(item.courses.endtime));
+				var td5 = $("<td></td>").append(item.enrolstate);
+				var div = $("<div></div>").addClass("jjda-btn").attr(
+						"data-toggle", "modal").attr("data-target",
+						"#courseenrol_view_modal").append(
+						$("<i></i>").addClass("jjda-btn-view")).append("课程详细");
+				div.attr("item", item.courses.title + "-"
+						+ item.coursecompletion + "-" + item.grade + "-"
+						+ item.rating + "-" + item.isnormalclass + "-"
+						+ item.courses.photo + "-" + item.enroltime + "-"
+						+ item.enrolstate + "-" + item.remark);
+				var td6 = $("<td></td>").append(div);
+
+				tr.append(td1).append(td2).append(td3).append(td4).append(td5)
+						.append(td6).appendTo($("#table_data"));
+
+				//课程详细
+				$(document).on(
+						"click",
+						".jjda-btn",
+						function() {
+							emptyInfo();
+							var c = $(this).attr("item");
+							c = c.split("-");
+							$("#courseTitle1").append(c[0]);
+							$("#oldManName1").append('${older.oldman.name}');
+							$("#oldManphone1").append('${older.oldman.phone}');
+							if (c[1].length == 4) {
+								$("#coursecompletion1").append("无");
+							} else {
+								$("#coursecompletion1").append(c[1]);
+							}
+							if (c[2].length == 4) {
+								$("#grade1").append("无");
+							} else {
+								$("#grade1").append(c[2]);
+							}
+							if (c[3].length == 4) {
+								$("#rating1").append("无");
+							} else {
+								$("#rating1").append(c[3]);
+							}
+							if (c[4].length == 4) {
+								$("#isnormalclass1").append("无");
+							} else {
+								$("#isnormalclass1").append(c[4]);
+							}
+							$("#img1").attr("src",
+									"http://123.207.93.53/Older_back/" + c[5]);
+							$("#timeStr1").append(ChangeDateFormat(c[6]));
+							$("#enrolstate1").append(c[7]);
+							if (c[8].length == 4) {
+								$("#remark1").append("无");
+							} else {
+								$("#remark1").append(c[8]);
+							}
+						});
+			});
+		}
+
+		function emptyInfo() {
+			$("#courseTitle1").empty();
+			$("#oldManName1").empty();
+			$("#oldManphone1").empty();
+			$("#coursecompletion1").empty();
+			$("#grade1").empty();
+			$("#rating1").empty();
+			$("#isnormalclass1").empty();
+			$("#img1").empty();
+			$("#timeStr1").empty();
+			$("#enrolstate1").empty();
+			$("#remark1").empty();
+		}
+
+		function search(pn) {
+			var oldManId = ${older.oldman.id};
+			$
+					.ajax({
+						url : "${APP_PATH}/course/queryCourseByOldManAndStartTimeAndEndTime",
+						data : {
+							"pn" : pn,
+							"oldManId" : oldManId,
+							"startTime" : $("#h_Time1").val(),
+							"endTime" : $("#h_Time2").val()
+						},
+						type : "GET",
+						success : function(result) {
+							if (result.code == 100) {
+								$("#table_data").empty();
+								$("#page_list").empty();
+								build_data(result);
+								nav1(result);
+							} else {
+								layer.msg("没有查询到相关数据", {
+									offset : [ '20%' ]
+								});
+							}
+						}
+					});
+		}
+
+		$("#search").click(function() {
+			if ($("#h_Time1").val() == '' || $("#h_Time2").val() == '') {
+				layer.msg("请输入信息再查询", {
+					offset : [ '20%' ]
+				});
+			} else {
+				search(1);
+			}
+		});
+
+		function nav(result) {
+			var pre, next;
+			if (result.extend.pageInfo.pageNum == 1) {
+				pre = $("<li></li>").addClass("disabled").append(
+						$("<a></a>").attr("href", "javascript:#")
+								.append("&lt;"));
+			} else {
+				pre = $("<li></li>").append(
+						$("<a></a>").attr(
+								"href",
+								"javascript:go("
+										+ (result.extend.pageInfo.pageNum - 1)
+										+ ")").append("&lt;"));
+			}
+			if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
+				next = $("<li></li>").addClass("disabled").append(
+						$("<a></a>").attr("href", "javascript:#")
+								.append("&gt;"));
+			} else {
+				next = $("<li></li>").append(
+						$("<a></a>").attr(
+								"href",
+								"javascript:go("
+										+ (result.extend.pageInfo.pageNum + 1)
+										+ ")").append("&gt;"));
+			}
+			$("#page_list").append(pre);
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var li = $("<li></li>").append(
+						$("<a></a>").attr(
+								"href",
+								"javascript:go("
+										+ (result.extend.pageInfo.pageNum)
+										+ ")").append(item));
+				$("#page_list").append(li);
+			});
+			$("#page_list").append(next);
+		}
+
+		function nav1(result) {
+			var pre, next;
+			if (result.extend.pageInfo.pageNum == 1) {
+				pre = $("<li></li>").addClass("disabled").append(
+						$("<a></a>").attr("href", "javascript:#")
+								.append("&lt;"));
+			} else {
+				pre = $("<li></li>").append(
+						$("<a></a>").attr(
+								"href",
+								"javascript:search("
+										+ (result.extend.pageInfo.pageNum - 1)
+										+ ")").append("&lt;"));
+			}
+			if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
+				next = $("<li></li>").addClass("disabled").append(
+						$("<a></a>").attr("href", "javascript:#")
+								.append("&gt;"));
+			} else {
+				next = $("<li></li>").append(
+						$("<a></a>").attr(
+								"href",
+								"javascript:search("
+										+ (result.extend.pageInfo.pageNum + 1)
+										+ ")").append("&gt;"));
+			}
+			$("#page_list").append(pre);
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var li = $("<li></li>").append(
+						$("<a></a>").attr(
+								"href",
+								"javascript:search("
+										+ (result.extend.pageInfo.pageNum)
+										+ ")").append(item));
+				$("#page_list").append(li);
+			});
+			$("#page_list").append(next);
+		}
+
+		function ChangeDateFormat(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
+
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "月";
+
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate() + "日";
+
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "年" + month + currentDate;
+			} else {
+				return null;
+			}
+		}
+	</script>
 </body>
 </html>

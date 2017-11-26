@@ -1,16 +1,22 @@
 package com.older.manager.controller.oldfront;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.older.manager.bean.Courseenrol;
 import com.older.manager.bean.Courses;
 import com.older.manager.service.oldfront.ICourseService;
 import com.older.manager.utils.Msg;
@@ -21,6 +27,21 @@ public class CourseController {
 
 	@Autowired
 	private ICourseService courseService;
+
+	/**
+	 * @Title: initBinder
+	 * @Description: 解决上传时间转换问题
+	 * @param: @param binder
+	 * @return: void
+	 * @throws
+	 */
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		dateFormat.setLenient(false);
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, true));
+	}; // true:允许输入空值，false:不能为空值
 
 	/**
 	 * 课程报名
@@ -72,6 +93,59 @@ public class CourseController {
 		}
 		List<Courses> list = courseService.queryCourseByKeyWord(key);
 		PageInfo<Courses> pageInfo = new PageInfo<Courses>(list, 6);
+		if (list.size() > 0) {
+			return Msg.success().add("pageInfo", pageInfo);
+		} else {
+			return Msg.fail();
+		}
+	}
+
+	/**
+	 * 查询课程
+	 * 
+	 * @param pn
+	 *            页数
+	 * @param oldManId
+	 *            老人id
+	 * @param startTime
+	 *            开始时间
+	 * @param endTime
+	 *            结束时间
+	 * @return
+	 */
+	@RequestMapping("/queryCourseByOldManAndStartTimeAndEndTime")
+	@ResponseBody
+	public Msg queryCourseByOldManAndStartTimeAndEndTime(
+			@RequestParam("pn") Integer pn,
+			@RequestParam("oldManId") Integer oldManId,
+			@RequestParam("startTime") Date startTime,
+			@RequestParam("endTime") Date endTime) {
+		PageHelper.startPage(pn, 12);
+		List<Courseenrol> list = courseService
+				.queryCourseByOldManAndStartTimeAndEndTime(oldManId, startTime,
+						endTime);
+		PageInfo<Courseenrol> pageInfo = new PageInfo<Courseenrol>(list, 6);
+		if (list != null && list.size() > 0) {
+			return Msg.success().add("pageInfo", pageInfo);
+		} else {
+			return Msg.fail();
+		}
+	}
+
+	/**
+	 * 查询当前老人的报名课程
+	 * 
+	 * @param pn
+	 * @param oldManId
+	 * @return
+	 */
+	@RequestMapping("/queryCourseByOldMan")
+	@ResponseBody
+	public Msg queryCourseByOldMan(@RequestParam("pn") Integer pn,
+			@RequestParam("oldManId") Integer oldManId) {
+		PageHelper.startPage(pn, 12);
+		List<Courseenrol> list = courseService.queryCourseByOldMan(oldManId);
+		PageInfo<Courseenrol> pageInfo = new PageInfo<Courseenrol>(list, 6);
 		if (list.size() > 0) {
 			return Msg.success().add("pageInfo", pageInfo);
 		} else {

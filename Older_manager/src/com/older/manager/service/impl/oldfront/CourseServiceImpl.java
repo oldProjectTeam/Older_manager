@@ -1,5 +1,8 @@
 package com.older.manager.service.impl.oldfront;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +17,7 @@ import com.older.manager.bean.CoursesExample;
 import com.older.manager.mapper.CourseenrolMapper;
 import com.older.manager.mapper.CoursesMapper;
 import com.older.manager.service.oldfront.ICourseService;
+import com.older.manager.utils.DateUtils;
 
 @Service
 public class CourseServiceImpl implements ICourseService {
@@ -71,4 +75,63 @@ public class CourseServiceImpl implements ICourseService {
 		return coursesMapper.selectByExample(example);
 	}
 
+	@Override
+	public List<Courseenrol> queryCourseByOldManAndStartTimeAndEndTime(
+			Integer oldManId, Date startTime, Date endTime) {
+		CourseenrolExample example = new CourseenrolExample();
+		Criteria criteria = example.createCriteria();
+		if (!"".equals(startTime) || !"".equals(endTime)) {
+			Courses courses = this.queryCourseByStartTimeAndEndTime(startTime,
+					endTime);
+			if (courses != null) {
+				criteria.andCourseIdEqualTo(courses.getId());
+				criteria.andOldmamIdEqualTo(oldManId);
+				List<Courseenrol> list = courseenrolMapper
+						.selectByExample(example);
+				List<Courseenrol> courseenrols = new ArrayList<Courseenrol>();
+				for (Courseenrol courseenrol : list) {
+					courseenrol.setCourses(courses);
+					courseenrols.add(courseenrol);
+				}
+				return courseenrols;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 通过课程开始时间和结束时间查询课程
+	 * 
+	 * @param start
+	 * @param end
+	 * @return
+	 */
+	private Courses queryCourseByStartTimeAndEndTime(Date start, Date end) {
+		CoursesExample example = new CoursesExample();
+		com.older.manager.bean.CoursesExample.Criteria criteria = example
+				.createCriteria();
+		criteria.andStarttimeEqualTo(start);
+		criteria.andEndtimeEqualTo(end);
+		List<Courses> list = coursesMapper.selectByExample(example);
+		if (list.size() > 0) {
+			return list.get(0);
+		}
+		return null;
+	}
+
+	@Override
+	public List<Courseenrol> queryCourseByOldMan(Integer oldManId) {
+		CourseenrolExample example = new CourseenrolExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andOldmamIdEqualTo(oldManId);
+		List<Courseenrol> list = courseenrolMapper.selectByExample(example);
+		List<Courseenrol> courseenrols = new ArrayList<Courseenrol>();
+		for (Courseenrol courseenrol : list) {
+			Courses courses = coursesMapper.selectByPrimaryKey(courseenrol
+					.getCourseId());
+			courseenrol.setCourses(courses);
+			courseenrols.add(courseenrol);
+		}
+		return courseenrols;
+	}
 }
