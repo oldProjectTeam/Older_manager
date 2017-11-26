@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -65,7 +66,11 @@ public class CourseController {
 	}
 
 	@RequestMapping("/course_list")
-	public String course() {
+	public String course(Model model) {
+		PageHelper.startPage(1, 6);
+		List<Courses> courses = courseService.queryAllCourse();
+		PageInfo<Courses> pageInfo = new PageInfo<Courses>(courses, 6);
+		model.addAttribute("pageInfo", pageInfo);
 		return "oldfront/older/course_list";
 	}
 
