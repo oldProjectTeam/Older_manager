@@ -182,21 +182,31 @@
 							if ($("#email").val() == ''
 									|| $("#passwordEmail").val() == ''
 									|| $("#passwordRepeatEmail").val() == '') {
-								layer.msg("请填写信息");
+								layer.msg("请填写信息", {
+									offset : [ '40%', '68%' ]
+								});
 							} else if ($("#passwordEmail").val() != $(
 									"#passwordRepeatEmail").val()) {
-								layer.msg("两次密码输入不一致");
+								layer.msg("两次密码输入不一致", {
+									offset : [ '40%', '68%' ]
+								});
 							} else {
 								if ($("#reader-me-Email").is(":checked")) {
 									if (!$("#email").val().match(email)) {
-										layer.msg("邮箱格式不正确");
+										layer.msg("邮箱格式不正确", {
+											offset : [ '40%', '68%' ]
+										});
 									} else if (!$("#passwordEmail").val()
 											.match(pwd)) {
-										layer.msg("密码可以是6-20个字母、数字、下划线 ");
+										layer.msg("密码可以是6-20个字母、数字、下划线 ", {
+											offset : [ '40%', '68%' ]
+										});
 									} else {
 										$("#accountEmail").val(
 												$("#email").val());
-										var index = layer.load();
+										var index = layer.load("注册中...", {
+											offset : [ '40%', '68%' ]
+										});
 										$
 												.ajax({
 													url : "registerOfEmail",
@@ -206,18 +216,30 @@
 													type : "POST",
 													success : function(result) {
 														if (result.code == 100) {
-															layer.msg("注册成功");
+															layer.msg("注册成功", {
+																offset : [
+																		'40%',
+																		'68%' ]
+															});
 															window.location.href = "shop/login";
 														} else {
 															layer
-																	.msg(result.extend.error);
+																	.msg(
+																			result.extend.error,
+																			{
+																				offset : [
+																						'40%',
+																						'68%' ]
+																			});
 															layer.close(index);
 														}
 													}
 												});
 									}
 								} else {
-									layer.msg("你还没用同意协议");
+									layer.msg("你还没用同意协议", {
+										offset : [ '40%', '68%' ]
+									});
 								}
 							}
 						});
@@ -229,24 +251,36 @@
 							if ($("#phone").val() == ''
 									|| $("#passwordPhone").val() == ''
 									|| $("#passwordRepeatPhone").val() == '') {
-								layer.msg("请填写信息");
+								layer.msg("请填写信息", {
+									offset : [ '40%', '68%' ]
+								});
 							} else if ($("#passwordPhone").val() != $(
 									"#passwordRepeatPhone").val()) {
-								layer.msg("两次密码输入不一致");
+								layer.msg("两次密码输入不一致", {
+									offset : [ '40%', '68%' ]
+								});
 							} else {
 								if ($("#reader-me-Phone").is(":checked")) {
 									if (!$("#phone").val().match(phone)) {
-										layer.msg("手机号码格式不正确");
+										layer.msg("手机号码格式不正确", {
+											offset : [ '40%', '68%' ]
+										});
 									} else if (!$("#passwordPhone").val()
 											.match(pwd)) {
-										layer.msg("密码可以是6-20个字母、数字、下划线 ");
+										layer.msg("密码可以是6-20个字母、数字、下划线 ", {
+											offset : [ '40%', '68%' ]
+										});
 									} else {
 										$("#accountPhone").val(
 												$("#phone").val());
 										if ($("#code").val() != code) {
-											layer.msg("验证码不正确 ");
+											layer.msg("验证码不正确 ", {
+												offset : [ '40%', '68%' ]
+											});
 										} else {
-											var index = layer.load();
+											var index = layer.load("注册中...", {
+												offset : [ '40%', '68%' ]
+											});
 											$
 													.ajax({
 														url : "registerOfPhone",
@@ -258,11 +292,23 @@
 																result) {
 															if (result.code == 100) {
 																layer
-																		.msg("注册成功");
+																		.msg(
+																				"注册成功",
+																				{
+																					offset : [
+																							'40%',
+																							'68%' ]
+																				});
 																window.location.href = "shop/login";
 															} else {
 																layer
-																		.msg(result.extend.error);
+																		.msg(
+																				result.extend.error,
+																				{
+																					offset : [
+																							'40%',
+																							'68%' ]
+																				});
 																layer
 																		.close(index);
 															}
@@ -271,7 +317,9 @@
 										}
 									}
 								} else {
-									layer.msg("你还没用同意协议");
+									layer.msg("你还没用同意协议", {
+										offset : [ '40%', '68%' ]
+									});
 								}
 							}
 						});
