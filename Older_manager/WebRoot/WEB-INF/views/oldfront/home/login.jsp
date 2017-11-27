@@ -79,14 +79,15 @@
 						</div>
 						<div class="user-pass">
 							<label class="password"> <img
-								src="static/images/code.png" width="20" height="20"
-								style="margin-top: 10px;">
+								src="static/images/code.png" width="12" height="12"
+								style="margin-top: 15px;">
 							</label> <input id="code" name="randomcode" class="input-text size-L"
 								placeholder="验证码"
 								style="width: 200px !important; margin-left: 0px;" /> <img
-								id="randomcode_img" src="validatecode.jsp" width="60"
+								id="randomcode_img" src="validatecode.jsp" width="70"
 								height="30" style="margin-top: 0px" /> <a
-								href="Shop/codeRefresh">刷新</a>
+								href="Shop/codeRefresh"
+								style="text-decoration: none;margin-left: 10px;">刷新</a>
 						</div>
 					</form>
 				</div>
@@ -94,9 +95,7 @@
 					<font color="red" id="msg" size="3" style="margin-left: 20px">${message}</font>
 				</center>
 				<div>
-					<input id="remember-me" type="radio"><span> 记住密码</span> <a
-						href="#" class="am-fr">忘记密码</a> <a
-						href="${APP_PATH}/shop/register"
+					<a href="${APP_PATH}/shop/register"
 						class="zcnext am-fr am-btn-default" style="text-decoration: none;">注册</a>
 					<br />
 				</div>
