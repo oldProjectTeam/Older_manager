@@ -114,7 +114,7 @@
 									</div>
 								</div>
 								<div class="fore3">
-									<a href="${APP_PATH}/shop/setpay">
+									<a href="${APP_PATH}/safety/skipsetpay">
 										<div class="am-btn am-btn-secondary">立即启用</div>
 									</a>
 								</div></li>
@@ -126,7 +126,7 @@
 									</div>
 								</div>
 								<div class="fore3">
-									<a href="${APP_PATH}/shop/bindphone">
+									<a href="${APP_PATH}/safety/skipbindphone">
 										<div class="am-btn am-btn-secondary">换绑</div>
 									</a>
 								</div></li>
@@ -138,7 +138,7 @@
 									</div>
 								</div>
 								<div class="fore3">
-									<a href="${APP_PATH}/shop/email">
+									<a href="${APP_PATH}/safety/skipemail">
 										<div class="am-btn am-btn-secondary">换绑</div>
 									</a>
 								</div></li>
@@ -150,7 +150,7 @@
 									</div>
 								</div>
 								<div class="fore3">
-									<a href="${APP_PATH}/shop/idcard">
+									<a href="${APP_PATH}/safety/skipidcard">
 										<div class="am-btn am-btn-secondary">认证</div>
 									</a>
 								</div></li>
@@ -179,14 +179,16 @@
 		$(function() {
 			//发送请求获取
 			$.ajax({
-				url : "${APP_PATH}/info/selectinformation/" + '${users.id}',
+				url : "${APP_PATH}/info/selectinformation",
+                 data : {
+					"usersid" : ${users.id}
+				},
 				type : "GET",
-
 				success : function(result) {
 
-					var rel = result.extend.shop;
+					var rel = result.extend.shopInfo;
 					$("#usernameid").text(rel.users.nickname);
-					$("#mvpid").text(rel.level);
+				    $("#mvpid").text(rel.level);
 					/* 	$("#ncikid").val(rel.users.nickname);
 					$("#truenameid").val(rel.users.realname);
 					$("#user-phone").val(rel.users.phone);

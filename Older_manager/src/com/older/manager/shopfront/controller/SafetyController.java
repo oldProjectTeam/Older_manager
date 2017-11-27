@@ -106,6 +106,43 @@ public class SafetyController {
 	   return Msg.success();
    } 
     
-    
+   /**
+    * 跳到支付密码
+    * @return
+    */
+  @RequestMapping("/skipsetpay")
+  public  String skipSetpay(){
+	   
+      return "oldfront/person/setpay"; 
+  }
+  /**
+   * 跳到手机验证
+   * @return
+   */
+  @RequestMapping("/skipbindphone")
+  public  String skipBindphone(){
+	   
+      return "oldfront/person/bindphone"; 
+  }
+   /**
+    * 邮箱验证
+    * @return
+    */
+  @RequestMapping("/skipemail")
+  public  String skipEmail(){
+	   
+      return "oldfront/person/email"; 
+  }
+  
+   /**
+    * 实名验证
+    * @return
+    */
+  @RequestMapping("/skipidcard")
+  public  String skipIdcard(){
+	   
+      return "oldfront/person/idcard"; 
+  }
+
     
 }
