@@ -115,37 +115,11 @@
 					<li><a href="#"><p>[特惠]洋河年末大促，低至两件五折</p></a></li>
 				</ul>
 				</section>
-
 			</div>
 		</div>
-
 	</div>
-
-	<div class="footer">
-		<div class="footer-hd">
-			<p>
-				<a href="#">恒望科技</a> <b>|</b> <a href="#">商城首页</a> <b>|</b> <a
-					href="#">支付宝</a> <b>|</b> <a href="#">物流</a>
-			</p>
-		</div>
-		<div class="footer-bd">
-			<p>
-				<a href="#">关于恒望</a> <a href="#">合作伙伴</a> <a href="#">联系我们</a> <a
-					href="#">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-			</p>
-		</div>
-	</div>
-
-	<!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="{{assets}}js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
-
-	<!--[if (gte IE 9)|!(IE)]><!-->
+	<jsp:include page="footer.jsp"></jsp:include>
 	<script src="../AmazeUI-2.4.2/assets/js/jquery.min.js"></script>
-	<!--<![endif]-->
 	<script src="../AmazeUI-2.4.2/assets/js/amazeui.min.js"></script>
-
 </body>
 </html>

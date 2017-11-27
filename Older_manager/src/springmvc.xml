@@ -34,9 +34,9 @@
 	<!-- 定义统一异常处理器 -->
 	<bean class="com.older.manager.exception.UserExceptionResolver"></bean>
 	<!--拦截器 -->
-<!-- 	<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
-			用户认证拦截
+			<!-- 用户认证拦截 -->
 			<mvc:mapping path="/**" />
 			<mvc:exclude-mapping path="/**/fonts/*" />
 			<mvc:exclude-mapping path="/**/*.css" />
@@ -47,5 +47,5 @@
 			<mvc:exclude-mapping path="/**/*.jpeg" />
 			<bean class="com.older.manager.interceptor.ShopLoginInterceptor"></bean>
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 </beans>

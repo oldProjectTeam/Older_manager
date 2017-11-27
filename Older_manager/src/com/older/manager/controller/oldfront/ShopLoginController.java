@@ -66,7 +66,6 @@ public class ShopLoginController {
 			Users users = shopLoginService.authenticat(useraccount, password);
 			if (users != null) {
 				// 如果service校验通过，将用户身份记录到session
-				System.out.println("..........商户登录成功！");
 				session.setAttribute("users", users);
 				return "redirect:/shop/oldfronthome";
 			}

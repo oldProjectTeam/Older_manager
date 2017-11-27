@@ -88,11 +88,11 @@ a {
 							</div>
 							<div class="u-level">
 								<span class="rank r2"> <s class="vip1"></s><a
-									class="classes" href="#" id="mvpid"></a>
+									class="classes" href="javascript:#" id="mvpid"></a>
 								</span>
 							</div>
 							<div class="u-safety">
-								<a href="safety.html"> 账户安全 <span class="u-profile"><i
+								<a href="${APP_PATH}/safety/skipsafety"> 账户安全 <span class="u-profile"><i
 										class="bc_ee0000" style="width: 60px;" width="0" id="numid">60分</i></span>
 								</a>
 							</div>
@@ -134,21 +134,18 @@ a {
 									</label>
 								</div>
 							</div>
-
 							<div class="am-form-group">
 								<label for="user-birth" class="am-form-label">身份证</label>
 								<div class="am-form-content birth">
 									<input type="text" id="idcarid" required="true" name="idcard"
 										placeholder="身份证">
 								</div>
-
 							</div>
 							<div class="am-form-group">
 								<label for="user-phone" class="am-form-label">电话</label>
 								<div class="am-form-content">
 									<input id="user-phone" name="phone" required="true"
 										placeholder="telephonenumber" type="tel">
-
 								</div>
 							</div>
 							<div class="am-form-group">
@@ -156,10 +153,8 @@ a {
 								<div class="am-form-content">
 									<input id="user-email" name="email" required="true"
 										placeholder="Email" type="email">
-
 								</div>
 							</div>
-
 							<div class="am-form-group">
 								<label for="user-email" class="am-form-label">收货地址</label>
 								<div class="am-form-content">
@@ -168,45 +163,25 @@ a {
 										class="am-form-label" id="addressid"> </a>
 								</div>
 							</div>
-
 							<div class="am-form-group ">
 								<label for="user-safety" class="am-form-label">账号安全</label>
 								<div class="am-form-content safety">
 									<a href="${APP_PATH}/safety/skipsafety" class="am-form-label">
 										> </a>
-
 								</div>
 							</div>
 							<div class="" align="center">
 								<button type="button" class="btn btn-danger" id="saveinfo">保存修改</button>
 							</div>
-
 						</form>
 					</div>
-
 				</div>
-
 			</div>
 			<!--底部-->
-			<div class="footer">
-				<div class="footer-hd">
-					<p>
-						<a href="#">恒望科技</a> <b>|</b> <a href="#">商城首页</a> <b>|</b> <a
-							href="#">支付宝</a> <b>|</b> <a href="#">物流</a>
-					</p>
-				</div>
-				<div class="footer-bd">
-					<p>
-						<a href="#">关于恒望</a> <a href="#">合作伙伴</a> <a href="#">联系我们</a> <a
-							href="#">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-					</p>
-				</div>
-			</div>
+			<jsp:include page="footer.jsp"></jsp:include>
 		</div>
-
 		<jsp:include page="left.jsp"></jsp:include>
 	</div>
-
 	<script type="text/javascript">
 		$(function() {
 			//发送请求获取

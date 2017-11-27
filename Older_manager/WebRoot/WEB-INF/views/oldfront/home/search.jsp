@@ -56,7 +56,7 @@
 			</div>
 			<div class="topMessage my-shangcheng">
 				<div class="menu-hd MyShangcheng">
-					<a href="shop/index" target="_top">
+					<a href="${APP_PATH}/address/index" target="_top">
 						<i class="am-icon-user am-icon-fw"></i>个人中心
 					</a>
 				</div>
