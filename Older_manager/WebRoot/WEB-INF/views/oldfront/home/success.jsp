@@ -44,10 +44,10 @@
 					<div class="user-info">
 						<p>收货人：${order.shippingaddress.name}</p>
 						<p>联系电话：${order.shippingaddress.phone}</p>
-						<p>收货地址：${order.shippingaddress.location} ${order.shippingaddress.detailaddress}</p>
+						<p>收货地址：${order.shippingaddress.location}
+							${order.shippingaddress.detailaddress}</p>
 					</div>
 					请认真核对您的收货信息，如有错误请联系客服
-
 				</ul>
 				<div class="option">
 					<span class="info">您可以</span> <a href="../person/order.html"
@@ -57,22 +57,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	<div class="footer">
-		<div class="footer-hd">
-			<p>
-				<a href="#">恒望科技</a> <b>|</b> <a href="#">商城首页</a> <b>|</b> <a
-					href="#">支付宝</a> <b>|</b> <a href="#">物流</a>
-			</p>
-		</div>
-		<div class="footer-bd">
-			<p>
-				<a href="#">关于恒望</a> <a href="#">合作伙伴</a> <a href="#">联系我们</a> <a
-					href="#">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-			</p>
-		</div>
-	</div>
-
+	<jsp:include page="../person/footer.jsp"></jsp:include>
 </body>
 </html>

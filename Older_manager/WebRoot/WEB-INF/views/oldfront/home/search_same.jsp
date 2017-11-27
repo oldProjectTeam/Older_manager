@@ -125,24 +125,9 @@
 
 				</div>
 			</div>
-			<div class="footer">
-				<div class="footer-hd">
-					<p>
-						<a href="#">恒望科技</a> <b>|</b> <a href="#">商城首页</a> <b>|</b> <a
-							href="#">支付宝</a> <b>|</b> <a href="#">物流</a>
-					</p>
-				</div>
-				<div class="footer-bd">
-					<p>
-						<a href="#">关于恒望</a> <a href="#">合作伙伴</a> <a href="#">联系我们</a> <a
-							href="#">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-					</p>
-				</div>
-			</div>
+			<jsp:include page="../person/footer.jsp"></jsp:include>
 		</div>
-
 	</div>
-
 	<!--引导 -->
 	<div class="navCir">
 		<li><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
@@ -151,7 +136,6 @@
 				class="am-icon-shopping-basket"></i>购物车</a></li>
 		<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>
 	</div>
-
 	<!--菜单 -->
 	<div class=tip>
 		<div id="sidebar">

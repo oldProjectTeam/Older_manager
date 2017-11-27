@@ -124,20 +124,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="footer ">
-		<div class="footer-hd ">
-			<p>
-				<a href="# ">孝和集团</a> <b>|</b> <a href="# ">商城首页</a> <b>|</b> <a
-					href="# ">支付宝</a> <b>|</b> <a href="# ">物流</a>
-			</p>
-		</div>
-		<div class="footer-bd ">
-			<p>
-				<a href="# ">关于我们</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a> <a
-					href="# ">网站地图</a> <em>© 2017孝和集团 版权所有</em>
-			</p>
-		</div>
-	</div>
+	<jsp:include page="../person/footer.jsp"></jsp:include>
 	<script type="text/javascript">
 		//倒计时60秒
 		var wait = 60;

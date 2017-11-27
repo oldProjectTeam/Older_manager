@@ -350,25 +350,9 @@
 
 		<div class="clear"></div>
 	</div>
-	</div>
-	<div class="footer">
-		<div class="footer-hd">
-			<p>
-				<a href="#">恒望科技</a> <b>|</b> <a href="#">商城首页</a> <b>|</b> <a
-					href="#">支付宝</a> <b>|</b> <a href="#">物流</a>
-			</p>
-		</div>
-		<div class="footer-bd">
-			<p>
-				<a href="#">关于恒望</a> <a href="#">合作伙伴</a> <a href="#">联系我们</a> <a
-					href="#">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-			</p>
-		</div>
-	</div>
-	</div>
+	<jsp:include page="../person/footer.jsp"></jsp:include>
 	<div class="theme-popover-mask"></div>
 	<div class="theme-popover" id="add_address_modal">
-
 		<!--标题 -->
 		<div class="am-cf am-padding">
 			<div class="am-fl am-cf">
@@ -377,10 +361,8 @@
 			</div>
 		</div>
 		<hr />
-
 		<div class="am-u-md-12">
 			<form class="am-form am-form-horizontal" id="add_address_form">
-
 				<div class="am-form-group">
 					<label for="user-name" class="am-form-label"><font
 						color="red">*</font>收货人</label>
@@ -390,7 +372,6 @@
 							type="hidden" name="userId" value="${users.id}" />
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>手机号码</label>
@@ -399,7 +380,6 @@
 							type="text"> <font color="red"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>所在地</label>
@@ -410,7 +390,6 @@
 						</select> <font color="red" id="p_msg"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-intro" class="am-form-label"><font
 						color="red">*</font>详细地址</label>
@@ -420,7 +399,6 @@
 						<small>100字以内写出你的详细地址...</small><font color="red" id="intro_msg"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group theme-poptit">
 					<div class="am-u-sm-9 am-u-sm-push-3">
 						<div class="am-btn am-btn-danger" id="add_save_btn">保存</div>

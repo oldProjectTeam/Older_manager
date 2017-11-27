@@ -27,6 +27,16 @@
 		});
 	}
 </script>
+<style type="text/css">
+.footer-bd a {
+	text-decoration: none;
+	color: black;
+}
+
+.footer-bd a:hover {
+	color: blue;
+}
+</style>
 </head>
 
 <body>

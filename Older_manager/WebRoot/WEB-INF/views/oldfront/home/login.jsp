@@ -45,15 +45,12 @@
 }
 </style>
 </head>
-
 <body>
-
 	<div class="login-boxtitle">
 		<a href="${APP_PATH}/shop/oldfronthome"><img
 			src="${APP_PATH}/static/images/oldback/images/logo.png"
 			height="65px;" /> </a>
 	</div>
-
 	<div class="login-banner">
 		<div class="login-main">
 			<div class="login-banner-bg">
@@ -100,7 +97,8 @@
 					<input id="remember-me" type="radio"><span> 记住密码</span> <a
 						href="#" class="am-fr">忘记密码</a> <a
 						href="${APP_PATH}/shop/register"
-						class="zcnext am-fr am-btn-default">注册</a> <br />
+						class="zcnext am-fr am-btn-default" style="text-decoration: none;">注册</a>
+					<br />
 				</div>
 				<div class="am-cf">
 					<input type="button" id="shopLogin" value="登 录"
@@ -112,22 +110,7 @@
 			</div>
 		</div>
 	</div>
-
-
-	<div class="footer ">
-		<div class="footer-hd ">
-			<p>
-				<a href="# ">恒望科技</a> <b>|</b> <a href="# ">商城首页</a> <b>|</b> <a
-					href="# ">支付宝</a> <b>|</b> <a href="# ">物流</a>
-			</p>
-		</div>
-		<div class="footer-bd ">
-			<p>
-				<a href="# ">关于恒望</a> <a href="# ">合作伙伴</a> <a href="# ">联系我们</a> <a
-					href="# ">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-			</p>
-		</div>
-	</div>
+	<jsp:include page="../person/footer.jsp"></jsp:include>
 	<script src="${APP_PATH}/static/dist/spin.min.js"></script>
 	<script src="${APP_PATH}/static/dist/ladda.min.js"></script>
 	<script type="text/javascript">
