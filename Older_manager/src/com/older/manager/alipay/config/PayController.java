@@ -444,11 +444,11 @@ public class PayController {
 							response.getWriter().write("failure");
 						}
 						
-						if(order.getState().equals("代发货")){
+						if(order.getState().equals("待发货")){
 							AlipayConfig.logResult("notify---系统订单："+ out_trade_no + "无需重复处理。");
 							logger.info("notify---系统订单："+ out_trade_no + "无需重复处理。");
 						}else{
-							order.setState("代发货");//修改当前订单为已支付
+							order.setState("待发货");//修改当前订单为已支付
 							order.setTransactionid(trade_no);//设置支付宝交易号
 							order.setCreattime(new Date());//下单时间
 							 orderService.updateOrder(order);
@@ -526,10 +526,10 @@ public class PayController {
 						logger.error("return---订单金额：数据库金额 "+ order.getCost().toString()+ "与total_amount "+total_amount+"不一致");
 						return "/oldfront/home/failure";
 					} 
-					if(order.getState().equals("代发货")){
+					if(order.getState().equals("待发货")){
 						logger.info("return---系统订单："+ out_trade_no + "无需重复处理。");
 					}else{
-						order.setState("代发货");//修改当前订单为已支付
+						order.setState("待发货");//修改当前订单为已支付
 						order.setTransactionid(trade_no);
 						order.setCreattime(new Date());
 						 orderService.updateOrder(order);

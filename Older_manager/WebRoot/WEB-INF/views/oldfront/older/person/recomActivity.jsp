@@ -47,12 +47,8 @@
 				<!-- 左侧导航菜单开始 -->
 				<jsp:include page="left.jsp"></jsp:include>
 				<!-- 左侧导航菜单结束 -->
-
 				<!-- 右侧内容区开始 -->
 				<div class="col-md-9" style="background:#fff;min-height:647px;">
-
-
-
 					<!-- 健康数据开始 -->
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
@@ -60,7 +56,7 @@
 							<button type="button" class="btn back fr" id="btnclose"
 								onClick="javascript :history.back(-1);">返回</button>
 						</div>
-						<form class="form-inline" role="form">
+						<form class="form-inline" role="form" style="margin-bottom: 15px;">
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">活动开始时间：</label> <input
 									class="easyui-datebox datebox-f combo-f textbox-f"
@@ -75,9 +71,6 @@
 							</div>
 							<button id="chaxun" class="btn btn-success col-md-2">查询</button>
 						</form>
-
-
-
 						<!-- 查看活动详细弹出框开始 -->
 						<div id="jkda" class="modal fade bs-example-modal-lg"
 							tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -192,20 +185,19 @@
 						<!-- 列表结束 -->
 					</div>
 					<!-- 健康数据结束 -->
-
-
 					<!-- 右侧内容区结束 -->
 				</div>
 				<!-- 右侧内容区结束 -->
 			</div>
 		</div>
-		<!--底部开始  -->
-		<jsp:include page="footer.jsp"></jsp:include>
-		<!-- 底部结束 -->
-		<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
-		<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
-		<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
-			type="text/javascript"></script>
-		<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+	</div>
+	<!--底部开始  -->
+	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- 底部结束 -->
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
+		type="text/javascript"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
 </body>
 </html>
