@@ -47,8 +47,12 @@
 				<!-- 左侧导航菜单开始 -->
 				<jsp:include page="left.jsp"></jsp:include>
 				<!-- 左侧导航菜单结束 -->
+
 				<!-- 右侧内容区开始 -->
 				<div class="col-md-9" style="background:#fff;min-height:647px;">
+
+
+
 					<!-- 健康数据开始 -->
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
@@ -56,21 +60,24 @@
 							<button type="button" class="btn back fr" id="btnclose"
 								onClick="javascript :history.back(-1);">返回</button>
 						</div>
-						<form class="form-inline" role="form" style="margin-bottom: 15px;">
+						<form class="form-inline">
 							<div class="form-group col-md-5">
-								<label for="" class="control-label">活动开始时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time1"
+								<label for="" class="control-label">最早推荐时间：</label> <input
+									class="easyui-datebox datebox-f combo-f textbox-f" 
+									editable="false" id="starttime"
 									style="width: 180px; height: 30px; display: none;">
 							</div>
 							<div class="form-group col-md-5">
-								<label for="" class="control-label">活动结束时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time2"
+								<label for="" class="control-label">最晚推荐时间：</label> <input
+									class="easyui-datebox datebox-f combo-f textbox-f" 
+									editable="false" id="endtime"
 									style="width: 180px; height: 30px; display: none;">
 							</div>
-							<button id="chaxun" class="btn btn-success col-md-2">查询</button>
+							<button type="button" id="search" class="btn btn-success col-md-2">查询</button>
 						</form>
+
+
+
 						<!-- 查看活动详细弹出框开始 -->
 						<div id="jkda" class="modal fade bs-example-modal-lg"
 							tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
@@ -91,37 +98,33 @@
 													<table class="table table-bordered">
 														<tr>
 															<td>活动标题</td>
-															<td id="title">老人故宫一日游</td>
+															<td id="title"></td>
 														</tr>
 														<tr>
 															<td>活动时间</td>
-															<td id="activitytime">2017-10-20</td>
+															<td id="activitytime"></td>
 														</tr>
 														<tr>
 															<td>活动地点</td>
-															<td id="place">故宫</td>
+															<td id="place"></td>
 														</tr>
 														<tr>
 															<td>活动状态</td>
-															<td id="state">结束</td>
+															<td id="state"></td>
 														</tr>
 														<tr>
 															<td>发布时间</td>
-															<td id="releasetime">2017-10-20</td>
+															<td id="releasetime"></td>
 														</tr>
 														<tr>
 															<td>发布人</td>
-															<td id="releasepeople">孝和集团</td>
+															<td id="releasepeople"></td>
 														</tr>
 
 													</table>
 													<div class="panel-heading">活动简介</div>
 													<div class="panel-body">
-														<p id="content">胶东在线11月20日讯(通讯员 赵中妹)
-															农历九月初九是我国古老的传统节日之一，古人把“九九相重”叫重阳节，我国把农历九月初九定为“老人节”，将传统与现代巧妙地结合，成为尊老、爱老、助老的“老人节”。长岛县第一实验学校家委会利用周末组织策划了“情浓重阳，礼敬老人”的主题活动。
-															让孩子们走进情感世界，感受长辈对自己的爱，并把长辈的爱“迁移”身边每一位老人和敬老院的老人，感受与老人一起的快乐，同时让老人们享受到被关怀的快乐，让老人为孩子的成长感到欣慰与骄傲。
-															通过开展礼敬老人的活动，激发孩子们关爱老人、孝敬老人的情感，培养孩子们关心老人、敬重老人的良好品质，弘扬了中华民族尊老敬老的优良传统。
-														</p>
+														<lable id="content"></lable>
 													</div>
 													<img id="img" src="images/bmfw.png" width="200"
 														height="150">
@@ -153,26 +156,7 @@
 									<th class="col-md-4">操作</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>老人故宫一日游</td>
-									<td>孝和集团</td>
-									<td>2017-10-20</td>
-									<td>2017-11-1</td>
-									<td>推荐失败（未报名）<br> 推荐成功（已报名）
-									</td>
-									<td>
-										<div class="jjda-btn" data-target="#jkda">
-
-											<i class="jjda-btn-bm"></i>立即报名
-										</div>
-										<div class="jjda-btn" data-toggle="modal" data-target="#jkda">
-
-											<i class="jjda-btn-view"></i>活动详细
-										</div>
-
-									</td>
-								</tr>
+							<tbody id="table_data">
 							</tbody>
 						</table>
 						<nav>
@@ -190,14 +174,224 @@
 				<!-- 右侧内容区结束 -->
 			</div>
 		</div>
-	</div>
-	<!--底部开始  -->
-	<jsp:include page="footer.jsp"></jsp:include>
-	<!-- 底部结束 -->
-	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
-	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
-	<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
-		type="text/javascript"></script>
-	<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+		<!--底部开始  -->
+		<jsp:include page="footer.jsp"></jsp:include>
+		<!-- 底部结束 -->
+		<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
+		<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
+		<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
+			type="text/javascript"></script>
+		<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+
+		<script type="text/javascript">
+			$(function() {
+				go(1);
+			});
+			function go(pn) {
+				var oldManId = ${older.oldman.id};
+				$.ajax({
+					url : "${APP_PATH}/activity/findRecomActivityBySearch",
+					data : {
+						"pn" : pn,
+						"oldManId" : oldManId,
+						"startTime" : "",
+						"endTime" : ""
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							$("#table_data").empty();
+							$("#page_list").empty();
+							build_data(result);
+							nav(result);
+						}
+					}
+				});
+			}
+			function build_data(result) {
+				$.each(result.extend.pageInfo.list, function(index, item) {
+					var tr = $("<tr></tr>");
+					var td1 = $("<td></td>").append(item.recomactivity.activity.title);
+					var td2 = $("<td></td>").append(item.recomactivity.recompeople);
+					var td3 = $("<td></td>").append(
+							ChangeDateFormat(item.recomactivity.activity.activitytime));
+					var td4 = $("<td></td>").append(
+							ChangeDateFormat(item.recomtime));
+					var td5 = $("<td></td>");
+					if(item.result==null||item.result=="失败"){
+						td5.append("未报名");
+					}else if(item.result=="成功"){
+						td5.append("已报名");
+					};
+					
+					var div_enrol = $("<div></div>").addClass("jjda-btn").attr(
+							"data-toggle", "#jkda").append(
+							$("<i></i>").addClass("jjda-btn-bm")).append(
+							"立即报名");
+					div_enrol.attr("enrolData", item.recomactivity.activity.id+"-"+${older.oldman.id}+"-"+item.id);
+					div_enrol.click(function(){
+						if(item.result==null||item.result=="失败"){
+							enrolActivity(div_enrol.attr("enrolData"));
+						}else if(item.result=="成功"){
+							layer.msg("你已经报名过，可以报名参加其他活动。", {
+								offset : [ '45%' ]
+							});
+						};
+						
+					});
+					var div = $("<div></div>").addClass("jjda-btn").attr(
+							"data-toggle", "modal").attr("data-target",
+							"#courseenrol_view_modal").append(
+							$("<i></i>").addClass("jjda-btn-view")).append(
+							"课程详细");
+					div.attr("activity",
+							item.recomactivity.activity.title + "-"
+									+ item.recomactivity.activity.releasetime + "-"
+									+item.recomactivity.activity.activitytime + "-"
+									+ item.recomactivity.activity.place + "-"
+									+ item.recomactivity.activity.releasepeople + "-"
+									+ item.recomactivity.activity.state + "-"
+									+ item.recomactivity.activity.activity1).attr("cont",
+									item.recomactivity.activity.content);
+					//点击查看模态框
+					div.click(function() {
+								putActivityInfo(div.attr("activity"), div
+										.attr("cont"));
+							})
+					var td6 = $("<td></td>").append(div_enrol).append(div);
+					tr.append(td1).append(td2).append(td3).append(td4).append(
+							td5).append(td6).appendTo($("#table_data"));
+
+				});
+			}
+			function enrolActivity(result){
+				data=result.split("-");
+				$.ajax({
+					url : "${APP_PATH}/activity/enrolActivity",
+					data : {
+						"activityId" : data[0],
+						"oldManId" : data[1],
+						"recomdActivitydetailId":data[2]
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							layer.msg("报名成功！请保持手机通讯通畅，活动举行前我们将会联系您", {
+								offset : [ '20%' ]
+							});
+						} else {
+							layer.msg("你已经报名过，不需要报名", {
+								offset : [ '20%' ]
+							});
+						}
+					}
+				});
+			}
+			
+			function putActivityInfo(activity, cont) {
+				a = activity.split("-");
+				$("#jkda").modal();
+
+				$("#title").html(a[0]);
+				$("#activitytime").html(ChangeDateFormat(a[2]));
+				$("#place").html(a[3]);
+				$("#state").html(a[5]);
+				$("#releasetime").html(ChangeDateFormat(a[1]));
+				$("#releasepeople").html(a[4]);
+				$("#content").text(cont);
+				$("#img")
+						.attr("src", "http://123.207.93.53/Older_back/" + a[6]);
+			}
+			function search(pn) {
+				var oldManId = ${older.oldman.id};
+				$.ajax({
+					url : "${APP_PATH}/activity/findRecomActivityBySearch",
+					data : {
+						"pn" : pn,
+						"oldManId" : oldManId,
+						"startTime" : $("#starttime").datebox('getValue'),
+						"endTime" : $("#endtime").datebox('getValue')
+					},
+					type : "GET",
+					success : function(result) {
+						if (result.code == 100) {
+							$("#table_data").empty();
+							$("#page_list").empty();
+							build_data(result);
+							nav1(result);
+						} else {
+							layer.msg("没有查询到相关数据", {
+								offset : [ '20%' ]
+							});
+						}
+					}
+				});
+			}
+			$("#search").click(
+					function() {
+						if ($("#endtime").datebox('getValue') == ''
+								&& $("#starttime").datebox('getValue') == '') {
+							layer.msg("请输入信息再查询", {
+								offset : [ '20%' ]
+							});
+						} else {
+							search(1);
+						}
+					});
+			function nav(result) {
+				var pre, next;
+				if (result.extend.pageInfo.pageNum == 1) {
+					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+				} else {
+					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+				}
+				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
+					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+				} else {
+					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+				}
+				$("#page_list").append(pre);
+				$.each(result.extend.pageInfo.navigatepageNums,
+				function(index, item) {
+					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+					$("#page_list").append(li);
+				});
+				$("#page_list").append(next);
+			}
+			function nav1(result) {
+				var pre, next;
+				if (result.extend.pageInfo.pageNum == 1) {
+					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+				} else {
+					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+				}
+				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
+					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+				} else {
+					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+				}
+				$("#page_list").append(pre);
+				$.each(result.extend.pageInfo.navigatepageNums,
+				function(index, item) {
+					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+					$("#page_list").append(li);
+				});
+				$("#page_list").append(next);
+			}s
+			function ChangeDateFormat(d) {
+				//将时间戳转为int类型，构造Date类型
+				if (d != null) {
+					var date = new Date(parseInt(d));
+					//月份得+1，且只有个位数时在前面+0
+					var month = date.getMonth() + 1 + "月";
+					//日期为个位数时在前面+0
+					var currentDate = date.getDate() + "日";
+					//getFullYear得到4位数的年份 ，返回一串字符串
+					return date.getFullYear() + "年" + month + currentDate;
+				} else {
+					return null;
+				}
+			}
+		</script>
 </body>
 </html>

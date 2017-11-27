@@ -33,4 +33,16 @@ public interface RecomactivitydetailsMapper {
     List<Recomactivitydetails> selectAllBaseRecomActivitydetails();
     
     List<Recomactivitydetails> selectByRecomactivitydetails(Recomactivitydetails recomactivitydetails);
+    
+    /**
+     * @Title: selectRecomActivityDetailBySearch
+     * @Description: 通过时间和老人id搜索老人的推荐活动
+     * @param @param recomactivitydetails
+     * @param @return   
+     * @return List<Recomactivitydetails>  
+     * @throws
+     * @author ym
+     * @date 2017年11月27日 下午2:55:50
+     */
+    List<Recomactivitydetails> selectRecomActivityDetailBySearch(Recomactivitydetails recomactivitydetails);
 }

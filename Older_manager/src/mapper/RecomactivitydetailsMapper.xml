@@ -377,4 +377,33 @@
 		where id =
 		#{id,jdbcType=INTEGER}
 	</update>
+	
+	<!-- 通过时间和老人id搜索老人的推荐活动 -->
+	<select id="selectRecomActivityDetailBySearch" resultMap="detailResultMap"
+		parameterType="com.older.manager.bean.Recomactivitydetails">
+
+		SELECT
+		rad.*
+		FROM
+		recomactivitydetails rad,
+		activity a,
+		recomactivity ra,
+		oldman o
+		WHERE
+		o.id = rad.oldMan_id
+		and rad.recomActivity_id=ra.id
+		and
+		ra.activityId=a.id
+		<if test="oldmanId!=null">
+			and rad.oldMan_id=#{oldmanId,jdbcType=INTEGER}
+		</if>
+		<!-- 临时使用recomactivitydetails2作为推荐最早时间 -->
+		<if test="recomactivitydetails2!=null and recomactivitydetails2!=''">
+			and rad.recomtime >= #{recomactivitydetails2}
+		</if>
+		<!-- 临时使用recomactivitydetails3作为推荐最晚时间 -->
+		<if test="recomactivitydetails3!=null and recomactivitydetails3!=''">
+			and rad.recomtime &lt;= #{recomactivitydetails3}
+		</if>
+	</select>
 </mapper>
