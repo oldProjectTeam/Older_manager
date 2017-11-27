@@ -13,10 +13,9 @@
 }
 dropdown{
    display: inline-block;
-   margin-left:300px; 
    width:110px;
    height:30px;
-   position:absolute;
+   position:relative;
 }
 
 dropdown label{

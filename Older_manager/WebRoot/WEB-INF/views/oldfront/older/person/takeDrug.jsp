@@ -57,23 +57,24 @@
 					<div class="jksj" style="margin-top:15px;">
 						<div class="xy-title">
 							用药记录
-							<button type="button" class="btn back fr" id="btnclose" onClick="javascript:history.go(-1);">返回</button>
+							<button type="button" class="btn back fr" id="btnclose"
+								onClick="javascript:history.go(-1);">返回</button>
 						</div>
-						
-							<div class="form-group col-md-5">
-								<label for="" class="control-label">开始时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time1"
-									style="width: 180px; height: 30px; display: none;">
-							</div>
-							<div class="form-group col-md-5">
-								<label for="" class="control-label">结束时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f"
-									editable="false" id="h_Time2"
-									style="width: 180px; height: 30px; display: none;">
-							</div>
-							<button id="chaxun" class="btn btn-success col-md-2">查询</button>
-						
+
+						<div class="form-group col-md-5">
+							<label for="" class="control-label">开始时间：</label> <input
+								class="easyui-datebox datebox-f combo-f textbox-f"
+								editable="false" id="h_Time1"
+								style="width: 180px; height: 30px; display: none;">
+						</div>
+						<div class="form-group col-md-5">
+							<label for="" class="control-label">结束时间：</label> <input
+								class="easyui-datebox datebox-f combo-f textbox-f"
+								editable="false" id="h_Time2"
+								style="width: 180px; height: 30px; display: none;">
+						</div>
+						<button id="chaxun" class="btn btn-success col-md-2">查询</button>
+
 
 						<!-- 添加数据按钮开始 -->
 						<button type="button" class="tjsj" data-toggle="modal"
@@ -102,18 +103,19 @@
 														</div>
 													</div>
 													<div class="form-group">
-														<label for="" class="col-md-4 control-label" >作用：</label>
+														<label for="" class="col-md-4 control-label">作用：</label>
 														<div class="col-md-8" style="padding:0;">
-															<input type="text" class="form-control" name="role" id="zuoyong"
-																placeholder="">
+															<input type="text" class="form-control" name="role"
+																id="zuoyong" placeholder="">
 														</div>
 													</div>
 													<!-- 开始时间与结束时间 -->
 													<input type="hidden" name="starttakingdate" id="startid">
 													<input type="hidden" name="endtakingdate" id="endid">
 													<!-- 使用方法 -->
-													<input type="hidden" id="mehtodid" name="methoduse"> 
-													<input type="hidden" name="oldmanId" value="${older.oldmanId}">
+													<input type="hidden" id="mehtodid" name="methoduse">
+													<input type="hidden" name="oldmanId"
+														value="${older.oldmanId}">
 													<div class="form-group">
 														<label for="" class="col-md-4 control-label">开始日期：</label>
 														<input class="easyui-datebox datebox-f combo-f textbox-f"
@@ -133,7 +135,7 @@
 																placeholder="" name="dosage">
 														</div>
 													</div>
-													
+
 													<div class="form-group ">
 														<label for="" class="col-md-4 control-label">使用方法：</label>
 														<div class="col-md-3 " style="padding:0;">
@@ -143,7 +145,7 @@
 
 															</select>
 														</div>
-                                                        <div class="col-md-2 " style="padding:0;">
+														<div class="col-md-2 " style="padding:0;">
 															<select class="form-control" id="danwei1">
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -163,7 +165,8 @@
 													<div class="form-group ">
 														<label for="" class="col-md-4 control-label">服用疗程：</label>
 														<div class="col-md-8 " style="padding:0;">
-															<select class="form-control" id="liaocheng" name="takedrugdetails2">
+															<select class="form-control" id="liaocheng"
+																name="takedrugdetails2">
 
 																<option value="两个月">两个月</option>
 																<option value="一个月">一个月</option>
@@ -211,18 +214,19 @@
 														</div>
 													</div>
 													<div class="form-group">
-														<label for="" class="col-md-4 control-label" >作用：</label>
+														<label for="" class="col-md-4 control-label">作用：</label>
 														<div class="col-md-8" style="padding:0;">
-															<input type="text" class="form-control" name="role" id="upzuoyong"
-																placeholder="">
+															<input type="text" class="form-control" name="role"
+																id="upzuoyong" placeholder="">
 														</div>
 													</div>
 													<!-- 开始时间与结束时间 -->
 													<input type="hidden" name="starttakingdate" id="upstartid">
 													<input type="hidden" name="endtakingdate" id="upendid">
 													<!-- 使用方法 -->
-													<input type="hidden" id="upmehtodid" name="methoduse"> 
-													<input type="hidden" name="upoldmanId" value="${older.oldmanId}">
+													<input type="hidden" id="upmehtodid" name="methoduse">
+													<input type="hidden" name="upoldmanId"
+														value="${older.oldmanId}">
 													<div class="form-group">
 														<label for="" class="col-md-4 control-label">开始日期：</label>
 														<input class="easyui-datebox datebox-f combo-f textbox-f"
@@ -242,7 +246,7 @@
 																placeholder="" name="dosage">
 														</div>
 													</div>
-													
+
 													<div class="form-group ">
 														<label for="" class="col-md-4 control-label">使用方法：</label>
 														<div class="col-md-3 " style="padding:0;">
@@ -252,7 +256,7 @@
 
 															</select>
 														</div>
-                                                        <div class="col-md-2 " style="padding:0;">
+														<div class="col-md-2 " style="padding:0;">
 															<select class="form-control" id="updanwei1">
 																<option value="1">1</option>
 																<option value="2">2</option>
@@ -272,7 +276,8 @@
 													<div class="form-group ">
 														<label for="" class="col-md-4 control-label">服用疗程：</label>
 														<div class="col-md-8 " style="padding:0;">
-															<select class="form-control" id="upliaocheng" name="takedrugdetails2">
+															<select class="form-control" id="upliaocheng"
+																name="takedrugdetails2">
 
 																<option value="两个月">两个月</option>
 																<option value="一个月">一个月</option>
@@ -308,25 +313,24 @@
 									<th class="col-md-3">操作</th>
 								</tr>
 							</thead>
-						
+
 							<tbody id="disease_tbody">
-								 
+
 							</tbody>
 						</table>
 						<!--分页信息  -->
-				          <div class="row">
-				          	<div class="col-md-10 col-md-offset-1" id="page_info">	          	           
-				          	</div>
-				          </div>
-				          <div class="row">
-				          	<div class="col-md-10 col-md-offset-1">
-			          	      <nav aria-label="Page navigation" style="float:right">
-			          	        <ul class="pagination pagination-sm" id="nav_ul_info">
-			          	        	
-			          	        </ul>
-			          	      </nav>
-				          	</div>
-				          </div>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1" id="page_info"></div>
+						</div>
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+								<nav aria-label="Page navigation" style="float:right">
+								<ul class="pagination pagination-sm" id="nav_ul_info">
+
+								</ul>
+								</nav>
+							</div>
+						</div>
 						<!-- 列表结束 -->
 					</div>
 					<!-- 健康数据结束 -->
@@ -335,324 +339,381 @@
 					<!-- 右侧内容区结束 -->
 				</div>
 			</div>
-			<!--底部开始  -->
-			<jsp:include page="footer.jsp"></jsp:include>
-			<!-- 底部结束 -->
-			<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
-			<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
-			<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
-				type="text/javascript"></script>
-			<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
-			
-			
-			
-			
-			
-			
-			
-			
-			<script type="text/javascript">
+		</div>
+	</div>
+	<!--底部开始  -->
+	<jsp:include page="footer.jsp"></jsp:include>
+	<!-- 底部结束 -->
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
+		type="text/javascript"></script>
+	<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
 
-				$(function() {
-					to_page(1,null,null);
+
+
+
+
+
+
+
+	<script type="text/javascript">
+		$(function() {
+			to_page(1, null, null);
+		});
+
+		var current_pageNum = "";
+		var current_pages = "";
+		var time1 = null, time2 = null;
+		//构建表格信息
+		function build_table(result) {
+			current_pageNum = result.extend.pageInfo.pageNum;
+			current_pages = result.extend.pageInfo.pages;
+			$("#disease_tbody").empty();
+			$.each(result.extend.pageInfo.list, function(index, item) {
+				var td1 = $("<td></td>").append(item.medicines);
+				var td2 = $("<td></td>").append(item.role);
+				var td3 = $("<td></td>").append(
+						ChangeDateFormat(item.starttakingdate) + "至"
+								+ ChangeDateFormat(item.endtakingdate));
+				var editbtn = $("<div class='jjda-btn editbtn'></div>").append(
+						"<i class='jjda-btn-editer'></i>").append("编辑");
+				editbtn.attr("edid", item.id);
+				var deletebtn = $("<div class='jjda-btn deleteid'></div>")
+						.append("<i class='jjda-btn-del'></i>").append("删除");
+				deletebtn.attr("delid", item.id);
+				var td4 = $("<td></td>").append(editbtn).append(" ").append(
+						deletebtn);
+				var tr = $("<tr></tr>");
+				tr.append(td1).append(td2).append(td3).append(td4).appendTo(
+						"#disease_tbody");
+			});
+		}
+
+		//构建分页信息
+		function buil_table_pageInfo(result) {
+			$("#nav_ul_info").empty();
+			$("#page_info").empty();
+			//左边分页信息
+			var pageInfo = result.extend.pageInfo;
+			$("#page_info").append(
+					" 当前第 " + pageInfo.pageNum + " 页，共 " + pageInfo.pages
+							+ "页，共计 " + pageInfo.total + " 条数据")
+
+			//右边分页导航
+			var firstPage = $("<li></li>").append($("<a></a>").append("首页"));
+			var prePage = $("<li></li>").append($("<a></a>").append("&laquo;"));
+			var nextPage = $("<li></li>")
+					.append($("<a></a>").append("&raquo;"));
+			var lastPage = $("<li></li>").append($("<a></a>").append("末页"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
+				firstPage.addClass("disabled");
+				prePage.addClass("disabled");
+			} else {
+				firstPage.click(function() {
+					to_page(1, time1, time2);
 				});
-				
-				
-var current_pageNum="";
-var current_pages="";
-var time1=null,time2=null;
-//构建表格信息
-function build_table(result){
-	current_pageNum=result.extend.pageInfo.pageNum;
-	current_pages=result.extend.pageInfo.pages;
-	$("#disease_tbody").empty();
-	$.each(result.extend.pageInfo.list,function(index,item){
-		var td1=$("<td></td>").append(item.medicines);
-		var td2=$("<td></td>").append(item.role);
-		var td3=$("<td></td>").append(ChangeDateFormat(item.starttakingdate)+"至"+ChangeDateFormat(item.endtakingdate));
-	    var editbtn=$("<div class='jjda-btn editbtn'></div>").append("<i class='jjda-btn-editer'></i>").append("编辑");
-	        editbtn.attr("edid",item.id);
-		var deletebtn=$("<div class='jjda-btn deleteid'></div>").append("<i class='jjda-btn-del'></i>").append("删除");
-		    deletebtn.attr("delid",item.id);
-		var td4=$("<td></td>").append(editbtn).append(" ").append(deletebtn);
-		var tr=$("<tr></tr>");
-		tr.append(td1).append(td2).append(td3).append(td4).appendTo("#disease_tbody");
-	});
-}
+				prePage.click(function() {
+					to_page(result.extend.pageInfo.pageNum - 1, time1, time2);
+				});
+			}
+			if (result.extend.pageInfo.hasNextPage == false) {
+				nextPage.addClass("disabled");
+				lastPage.addClass("disabled");
+			} else {
+				nextPage.click(function() {
+					to_page(result.extend.pageInfo.pageNum + 1, time1, time2);
+				});
+				lastPage.click(function() {
+					to_page(result.extend.pageInfo.pages, time1, time2);
+				});
+			}
+			$("#nav_ul_info").append(firstPage).append(prePage);
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("active");
+				}
+				numLi.click(function() {
+					to_page(item, time1, time2);
+				});
+				$("#nav_ul_info").append(numLi);
+			});
+			$("#nav_ul_info").append(nextPage).append(lastPage);
 
-//构建分页信息
-function buil_table_pageInfo(result){
-	$("#nav_ul_info").empty();
-	$("#page_info").empty();
-	//左边分页信息
-	var pageInfo=result.extend.pageInfo;
-	$("#page_info").append(" 当前第 "+pageInfo.pageNum+" 页，共 "+pageInfo.pages+"页，共计 "+pageInfo.total+" 条数据")
-	
-	//右边分页导航
-	var firstPage=$("<li></li>").append($("<a></a>").append("首页"));
-	var prePage=$("<li></li>").append($("<a></a>").append("&laquo;"));
-	var nextPage=$("<li></li>").append($("<a></a>").append("&raquo;"));
-	var lastPage=$("<li></li>").append($("<a></a>").append("末页"));
-	if(result.extend.pageInfo.hasPreviousPage==false){
-		firstPage.addClass("disabled");
-		prePage.addClass("disabled");
-	}else{
-		firstPage.click(function(){
-			to_page(1,time1,time2);
-		});
-		prePage.click(function(){
-			to_page(result.extend.pageInfo.pageNum-1,time1,time2);
-		});
-	}
-	if(result.extend.pageInfo.hasNextPage==false){
-		nextPage.addClass("disabled");
-		lastPage.addClass("disabled");
-	}else{
-		nextPage.click(function(){
-			to_page(result.extend.pageInfo.pageNum+1,time1,time2);
-		});
-		lastPage.click(function(){
-			to_page(result.extend.pageInfo.pages,time1,time2);
-		});
-	}
-	$("#nav_ul_info").append(firstPage).append(prePage);
-	$.each(result.extend.pageInfo.navigatepageNums,function(index,item){
-		var numLi=$("<li></li>").append($("<a></a>").append(item));
-		if(result.extend.pageInfo.pageNum==item){
-			numLi.addClass("active");	
 		}
-		numLi.click(function(){
-			to_page(item,time1,time2);
+
+		//去哪页加载数据
+		function to_page(pn, time1, time2) {
+			layer.msg('加载中', {
+				icon : 16,
+				shade : 0.01,
+				time : 100000,
+				offset : [ '40%' ],
+			});
+			$.ajax({
+				url : "${APP_PATH}/takedrug/selectalltakedrug",
+				data : {
+					pn : pn,
+					time1 : time1,
+					time2 : time2,
+					id : ${older.oldmanId},
+				},
+				type : "post",
+				success : function(result) {
+					layer.closeAll();
+					//console.log(result);
+					//1.构建表格数据
+					build_table(result);
+					//2.构建页信息
+					buil_table_pageInfo(result);
+				}
+			});
+		}
+		function ChangeDateFormat(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
+
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "-";
+
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate();
+
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "-" + month + currentDate;
+			} else {
+				return null;
+			}
+		}
+
+		//搜索
+		$("#chaxun").click(
+				function() {
+					if ($('#h_Time1').datebox('getValue') != ''
+							&& $('#h_Time2').datebox('getValue') != '') {
+						time1 = $('#h_Time1').datebox('getValue');
+						time2 = $('#h_Time2').datebox('getValue');
+						if (time1 < time2) {
+							to_page(1, time1, time2);
+						} else {
+							layer.msg("结束时间应该在开始时间之后");
+						}
+
+					} else if ($('#h_Time1').datebox('getValue') != ''
+							|| $('#h_Time2').datebox('getValue') != '') {
+						layer.msg("请选择正确的开始时间与结束时间");
+					} else if ($('#h_Time1').datebox('getValue') == ''
+							|| $('#h_Time2').datebox('getValue') == '') {
+
+						time1 = $('#h_Time1').datebox('getValue');
+						time2 = $('#h_Time2').datebox('getValue');
+						to_page(1, time1, time2);
+
+					}
+
+				});
+
+		//删除
+
+		$(document).on("click", ".deleteid", function() {
+			var id = $(this).attr("delid");
+
+			layer.confirm("确认删除吗？", function() {
+				$.ajax({
+					url : "${APP_PATH}/takedrug/deletetakedrug/" + id,
+					type : "POST",
+					success : function(result) {
+						if (result.code = 100) {
+							layer.msg("删除成功");
+							to_page(current_pageNum, time1, time2);
+						}
+					}
+
+				});
+			});
+
 		});
-		$("#nav_ul_info").append(numLi);
-	});
-	$("#nav_ul_info").append(nextPage).append(lastPage);
-	
-}
 
-//去哪页加载数据
-function to_page(pn,time1,time2){
-	layer.msg('加载中', {
-		icon : 16,
-		shade : 0.01,
-		time :100000,
-		offset : [ '40%' ],
-	});
-	$.ajax({
-		url:"${APP_PATH}/takedrug/selectalltakedrug",
-		data:{
-			pn:pn,
-		    time1:time1,
-		    time2:time2,
-		    id:${older.oldmanId},
-		},
-		type:"post",
-		success:function(result){
-			layer.closeAll();
-			//console.log(result);
-			//1.构建表格数据
-			build_table(result);
-			//2.构建页信息
-			buil_table_pageInfo(result);
-		}
-	});
-}
-function ChangeDateFormat(d) {
-		//将时间戳转为int类型，构造Date类型
-		if (d != null) {
-			var date = new Date(parseInt(d));
-	
-			//月份得+1，且只有个位数时在前面+0
-			var month = date.getMonth() + 1 + "-";
-	
-			//日期为个位数时在前面+0
-			var currentDate = date.getDate();
-	
-			//getFullYear得到4位数的年份 ，返回一串字符串
-			return date.getFullYear() + "-" + month + currentDate;
-		} else {
-			return null;
-		}
-	}
-	
-	
-	//搜索
-$("#chaxun").click(function(){
- 	if($('#h_Time1').datebox('getValue')!=''&&$('#h_Time2').datebox('getValue')!=''){
- 	     time1=$('#h_Time1').datebox('getValue');
- 	     time2=$('#h_Time2').datebox('getValue');
- 	      if(time1<time2){
- 	        to_page(1,time1,time2); 
- 	      }else{
- 	      layer.msg("结束时间应该在开始时间之后");
- 	      }
- 	  
- 	}else if($('#h_Time1').datebox('getValue')!=''||$('#h_Time2').datebox('getValue')!=''){
- 	    layer.msg("请选择正确的开始时间与结束时间");
- 	}else if($('#h_Time1').datebox('getValue')==''||$('#h_Time2').datebox('getValue')==''){
- 	
- 	        time1=$('#h_Time1').datebox('getValue');
- 	        time2=$('#h_Time2').datebox('getValue');
- 	        to_page(1,time1,time2);
- 	
- 	}
- 	  
- 	 
- 	  
- 	  
- 	
-});
+		$("#saveid")
+				.click(
+						function() {
 
-//删除
+							$("#mehtodid").val(
+									$("#fangfa").val() + "-"
+											+ $("#danwei1").val() + "-"
+											+ $("#danwei").val());
 
+							if ($("#yaoname").val() == null
+									|| $("#yaoname").val() == ''
+									|| $("#zuoyong").val() == null
+									|| $("#zuoyong").val() == ''
+									|| $('#h_jieshu').datebox('getValue') == null
+									|| $('#h_jieshu').datebox('getValue') == ''
+									|| $('#h_kaishi').datebox('getValue') == null
+									|| $('#h_kaishi').datebox('getValue') == ''
+									|| $("#jiliang").val() == null
+									|| $("#jiliang").val() == '') {
+								layer.msg("填完所有类容在保存！");
+							} else {
+								if ($('#h_jieshu').datebox('getValue') > $(
+										'#h_kaishi').datebox('getValue')) {
+									$("#startid").val(
+											$('#h_kaishi').datebox('getValue'));
+									$("#endid").val(
+											$('#h_jieshu').datebox('getValue'));
 
-$(document).on("click",".deleteid",function(){
-   var id=$(this).attr("delid");
-   
-     layer.confirm("确认删除吗？",function(){
-      $.ajax({
-          url:"${APP_PATH}/takedrug/deletetakedrug/"+id,
-          type:"POST",
-          success:function(result){
-            if(result.code=100){
-            layer.msg("删除成功");
-             to_page(current_pageNum,time1,time2);
-            }
-          }
-     
-     });
-     });
-     
-});
+									var dd = /^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/;
+									var num = /^[A-Za-z0-9]{1,20}$/;
+									if (!dd.test($("#yaoname").val())
+											|| !dd.test($("#zuoyong").val())
+											|| !num.test($("#jiliang").val())) {
+										layer.msg("输入的内容不规范");
+									} else {
+										$
+												.ajax({
+													url : "${APP_PATH}/takedrug/addtakedrug",
+													type : "POST",
+													data : $("#addformid")
+															.serialize(),
+													success : function(result) {
+														if (result.code == 100) {
 
-$("#saveid").click(function(){
-   
- 
-       $("#mehtodid").val($("#fangfa").val()+"-"+ $("#danwei1").val()+"-"+ $("#danwei").val());
-     
-     if($("#yaoname").val()==null||$("#yaoname").val()==''||
-        $("#zuoyong").val()==null||$("#zuoyong").val()==''||
-        $('#h_jieshu').datebox('getValue')==null||
-        $('#h_jieshu').datebox('getValue')==''||
-        $('#h_kaishi').datebox('getValue')==null||
-        $('#h_kaishi').datebox('getValue')==''||
-        $("#jiliang").val()==null||$("#jiliang").val()==''){
-          layer.msg("填完所有类容在保存！");
-     }else{
-         if($('#h_jieshu').datebox('getValue')> $('#h_kaishi').datebox('getValue')){
-        $("#startid").val($('#h_kaishi').datebox('getValue')); 
-        $("#endid").val($('#h_jieshu').datebox('getValue'));
-        
-        var dd=/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/;
-         var num=/^[A-Za-z0-9]{1,20}$/;
-          if(!dd.test($("#yaoname").val())||!dd.test($("#zuoyong").val())||!num.test($("#jiliang").val())){
-            layer.msg("输入的内容不规范");
-          }else{
-   $.ajax({
-          url:"${APP_PATH}/takedrug/addtakedrug",
-          type:"POST",
-          data:$("#addformid").serialize(),
-          success:function(result){
-             if(result.code==100){
-               
-                $("#jkda").modal('hide');
-               $("#addformid")[0].reset();
-               to_page(1,time1,time2);
-               layer.msg("添加成功");
-             }
-          }
-     });  
-          
-          }
-       }else{
-         layer.msg("结束时间应该在开始时间之后");
-       }
-     
-     }
-     
-
-});
-
-
-//点击编辑
-
-
-
-$(document).on("click",".editbtn",function(){
-    $("#updaateid").attr("upid",$(this).attr("edid"));
-    
-       $.ajax({
-          url:"${APP_PATH}/takedrug/selettakedrugbyid/"+$(this).attr("edid"),
-          type:"GET",
-          success:function(result){
-             if(result.code==100){
-                 $("#updateformid").modal();
-                      var rel=result.extend.tdd;
-				        $("#upyaoname").val(rel.medicines);
-						$("#upzuoyong").val(rel.role);
-						$("#uph_kaishi").datebox('setValue',ChangeDateFormat(rel.starttakingdate));
-						$("#uph_jieshu").datebox('setValue',ChangeDateFormat(rel.endtakingdate));
-						$("#upjiliang").val(rel.dosage);
-						var a=rel.methoduse.split("-");
-						$("#upfangfa").val([a[0]]);
-						$("#updanwei1").val([a[1]]);
-						$("#updanwei").val([a[2]]);
-						$("#upliaocheng").val([rel.takedrugdetails2]);
+															$("#jkda").modal(
+																	'hide');
+															$("#addformid")[0]
+																	.reset();
+															to_page(1, time1,
+																	time2);
+															layer.msg("添加成功");
+														}
+													}
+												});
 
 									}
+								} else {
+									layer.msg("结束时间应该在开始时间之后");
 								}
-							});
+
+							}
 
 						});
-						
-						
-//点击更新					
-      $("#updaateid").click(function(){
-      
-       $("#upmehtodid").val($("#upfangfa").val()+"-"+ $("#updanwei1").val()+"-"+ $("#updanwei").val());
-     
-     if($("#upyaoname").val()==null||$("#upyaoname").val()==''||
-        $("#upzuoyong").val()==null||$("#upzuoyong").val()==''||
-        $('#uph_jieshu').datebox('getValue')==null||
-        $('#uph_jieshu').datebox('getValue')==''||
-        $('#uph_kaishi').datebox('getValue')==null||
-        $('#uph_kaishi').datebox('getValue')==''||
-        $("#upjiliang").val()==null||$("#upjiliang").val()==''){
-          layer.msg("填完所有类容在保存！");
-     }else{
-         if($('#uph_jieshu').datebox('getValue')> $('#uph_kaishi').datebox('getValue')){
-        $("#upstartid").val($('#uph_kaishi').datebox('getValue')); 
-        $("#upendid").val($('#uph_jieshu').datebox('getValue'));
-        
-        var dd=/^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/;
-         var num=/^[A-Za-z0-9]{1,20}$/;
-          if(!dd.test($("#upyaoname").val())||!dd.test($("#upzuoyong").val())||!num.test($("#upjiliang").val())){
-            layer.msg("输入的内容不规范");
-          }else{
-   $.ajax({
-          url:"${APP_PATH}/takedrug/updatetakedrug/"+$(this).attr("upid"),
-          type:"POST",
-          data:$("#upformid").serialize(),
-          success:function(result){
-             if(result.code==100){
-                $("#updateformid").modal('hide');
-               to_page(current_pageNum,time1,time2);
-               layer.msg("更新成功");
-             }
-          }
-     });  
-          
-          }
-       }else{
-         layer.msg("结束时间应该在开始时间之后");
-       }
-     
-     }
-     
 
-      });		
-			
-						
-			</script>
+		//点击编辑
+
+		$(document)
+				.on(
+						"click",
+						".editbtn",
+						function() {
+							$("#updaateid").attr("upid", $(this).attr("edid"));
+
+							$
+									.ajax({
+										url : "${APP_PATH}/takedrug/selettakedrugbyid/"
+												+ $(this).attr("edid"),
+										type : "GET",
+										success : function(result) {
+											if (result.code == 100) {
+												$("#updateformid").modal();
+												var rel = result.extend.tdd;
+												$("#upyaoname").val(
+														rel.medicines);
+												$("#upzuoyong").val(rel.role);
+												$("#uph_kaishi")
+														.datebox(
+																'setValue',
+																ChangeDateFormat(rel.starttakingdate));
+												$("#uph_jieshu")
+														.datebox(
+																'setValue',
+																ChangeDateFormat(rel.endtakingdate));
+												$("#upjiliang").val(rel.dosage);
+												var a = rel.methoduse
+														.split("-");
+												$("#upfangfa").val([ a[0] ]);
+												$("#updanwei1").val([ a[1] ]);
+												$("#updanwei").val([ a[2] ]);
+												$("#upliaocheng")
+														.val(
+																[ rel.takedrugdetails2 ]);
+
+											}
+										}
+									});
+
+						});
+
+		//点击更新					
+		$("#updaateid")
+				.click(
+						function() {
+
+							$("#upmehtodid").val(
+									$("#upfangfa").val() + "-"
+											+ $("#updanwei1").val() + "-"
+											+ $("#updanwei").val());
+
+							if ($("#upyaoname").val() == null
+									|| $("#upyaoname").val() == ''
+									|| $("#upzuoyong").val() == null
+									|| $("#upzuoyong").val() == ''
+									|| $('#uph_jieshu').datebox('getValue') == null
+									|| $('#uph_jieshu').datebox('getValue') == ''
+									|| $('#uph_kaishi').datebox('getValue') == null
+									|| $('#uph_kaishi').datebox('getValue') == ''
+									|| $("#upjiliang").val() == null
+									|| $("#upjiliang").val() == '') {
+								layer.msg("填完所有类容在保存！");
+							} else {
+								if ($('#uph_jieshu').datebox('getValue') > $(
+										'#uph_kaishi').datebox('getValue')) {
+									$("#upstartid").val(
+											$('#uph_kaishi')
+													.datebox('getValue'));
+									$("#upendid").val(
+											$('#uph_jieshu')
+													.datebox('getValue'));
+
+									var dd = /^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/;
+									var num = /^[A-Za-z0-9]{1,20}$/;
+									if (!dd.test($("#upyaoname").val())
+											|| !dd.test($("#upzuoyong").val())
+											|| !num.test($("#upjiliang").val())) {
+										layer.msg("输入的内容不规范");
+									} else {
+										$
+												.ajax({
+													url : "${APP_PATH}/takedrug/updatetakedrug/"
+															+ $(this).attr(
+																	"upid"),
+													type : "POST",
+													data : $("#upformid")
+															.serialize(),
+													success : function(result) {
+														if (result.code == 100) {
+															$("#updateformid")
+																	.modal(
+																			'hide');
+															to_page(
+																	current_pageNum,
+																	time1,
+																	time2);
+															layer.msg("更新成功");
+														}
+													}
+												});
+
+									}
+								} else {
+									layer.msg("结束时间应该在开始时间之后");
+								}
+
+							}
+
+						});
+	</script>
 </body>
 </html>

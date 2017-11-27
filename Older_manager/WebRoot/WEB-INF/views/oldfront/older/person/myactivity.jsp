@@ -65,7 +65,7 @@
 							<button type="button" class="btn back fr" id="btnclose"
 								onClick="javascript :history.back(-1);">返回</button>
 						</div>
-						<form class="form-inline" >
+						<form class="form-inline" style="margin-bottom: 15px;">
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">活动开始时间：</label> <input
 									class="easyui-datebox datebox-f combo-f textbox-f"
@@ -78,7 +78,8 @@
 									editable="false" id="endtime"
 									style="width: 180px; height: 30px; display: none;">
 							</div>
-							<button type="button" id="search" class="btn btn-success col-md-2">查询</button>
+							<button type="button" id="search"
+								class="btn btn-success col-md-2">查询</button>
 						</form>
 
 
@@ -228,24 +229,29 @@
 							"#courseenrol_view_modal").append(
 							$("<i></i>").addClass("jjda-btn-view")).append(
 							"课程详细");
-					div.attr("activity", item.activity.title + "-"
-							+ item.activity.releasetime + "-"
-							+ item.activity.activitytime + "-"
-							+ item.activity.place + "-"
-							+ item.activity.releasepeople + "-"
-							+ item.activity.state + "-"
-							+ item.activity.activity1).attr("cont",item.activity.content);
+					div.attr(
+							"activity",
+							item.activity.title + "-"
+									+ item.activity.releasetime + "-"
+									+ item.activity.activitytime + "-"
+									+ item.activity.place + "-"
+									+ item.activity.releasepeople + "-"
+									+ item.activity.state + "-"
+									+ item.activity.activity1).attr("cont",
+							item.activity.content);
 					//点击查看模态框
-					div.click(function() {
-						putActivityInfo(div.attr("activity"),div.attr("cont"));
-					})
+					div
+							.click(function() {
+								putActivityInfo(div.attr("activity"), div
+										.attr("cont"));
+							})
 					var td6 = $("<td></td>").append(div);
 					tr.append(td1).append(td2).append(td3).append(td4).append(
 							td5).append(td6).appendTo($("#table_data"));
 
 				});
 			}
-			function putActivityInfo(activity,cont) {
+			function putActivityInfo(activity, cont) {
 				a = activity.split("-");
 				$("#jkda").modal();
 
@@ -256,7 +262,8 @@
 				$("#releasetime").html(ChangeDateFormat(a[1]));
 				$("#releasepeople").html(a[4]);
 				$("#content").text(cont);
-				$("#img").attr("src", "http://123.207.93.53/Older_back/" + a[6]);
+				$("#img")
+						.attr("src", "http://123.207.93.53/Older_back/" + a[6]);
 			}
 			function search(pn) {
 				var oldManId = ${older.oldman.id};
@@ -283,32 +290,58 @@
 					}
 				});
 			}
-			$("#search").click(function() {
-				if ($("#endtime").datebox('getValue') == '' && $("#starttime").datebox('getValue') == '') {
-					layer.open({
-						title:"搜索提示",
-						content:"请输入信息再查询"
+			$("#search").click(
+					function() {
+						if ($("#endtime").datebox('getValue') == ''
+								&& $("#starttime").datebox('getValue') == '') {
+							layer.msg("请输入信息再查询", {
+								offset : [ '20%' ]
+							});
+						} else {
+							search(1);
+						}
 					});
-				} else {
-					search(1);
-				}
-			});
 			function nav(result) {
 				var pre, next;
 				if (result.extend.pageInfo.pageNum == 1) {
-					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+					pre = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&lt;"));
 				} else {
-					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+					pre = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:go("
+															+ (result.extend.pageInfo.pageNum - 1)
+															+ ")").append(
+													"&lt;"));
 				}
 				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
-					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+					next = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&gt;"));
 				} else {
-					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+					next = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:go("
+															+ (result.extend.pageInfo.pageNum + 1)
+															+ ")").append(
+													"&gt;"));
 				}
 				$("#page_list").append(pre);
-				$.each(result.extend.pageInfo.navigatepageNums,
-				function(index, item) {
-					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+				$.each(result.extend.pageInfo.navigatepageNums, function(index,
+						item) {
+					var li = $("<li></li>").append(
+							$("<a></a>").attr(
+									"href",
+									"javascript:go("
+											+ (result.extend.pageInfo.pageNum)
+											+ ")").append(item));
 					$("#page_list").append(li);
 				});
 				$("#page_list").append(next);
@@ -316,19 +349,44 @@
 			function nav1(result) {
 				var pre, next;
 				if (result.extend.pageInfo.pageNum == 1) {
-					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+					pre = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&lt;"));
 				} else {
-					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+					pre = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:search("
+															+ (result.extend.pageInfo.pageNum - 1)
+															+ ")").append(
+													"&lt;"));
 				}
 				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
-					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+					next = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&gt;"));
 				} else {
-					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+					next = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:search("
+															+ (result.extend.pageInfo.pageNum + 1)
+															+ ")").append(
+													"&gt;"));
 				}
 				$("#page_list").append(pre);
-				$.each(result.extend.pageInfo.navigatepageNums,
-				function(index, item) {
-					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+				$.each(result.extend.pageInfo.navigatepageNums, function(index,
+						item) {
+					var li = $("<li></li>").append(
+							$("<a></a>").attr(
+									"href",
+									"javascript:search("
+											+ (result.extend.pageInfo.pageNum)
+											+ ")").append(item));
 					$("#page_list").append(li);
 				});
 				$("#page_list").append(next);

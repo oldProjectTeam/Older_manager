@@ -707,6 +707,7 @@
 				success : function(result) {
 					if (result.code == 100) {
 						layer.closeAll();
+						window.location.reload();
 						layer.msg("添加成功", {
 							icon : 6,
 							time : 1000

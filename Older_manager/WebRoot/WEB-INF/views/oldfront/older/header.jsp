@@ -6,7 +6,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -19,10 +19,9 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
- 
-<link href="${APP_PATH}/static/oldfront/css/style.css"
-	rel="stylesheet" /> 
-	
+
+<link href="${APP_PATH}/static/oldfront/css/style.css" rel="stylesheet" />
+
 <link rel="stylesheet"
 	href="${APP_PATH}/static/oldfront/assets/css/zhuye.css" />
 <script language="JavaScript"
@@ -56,29 +55,27 @@
 						<li><a href="${APP_PATH}/older/video_list" class="check">视频专区</a></li>
 						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/older/about" class="check">关于我们</a></li>
-						<li><a href="email:18037093@qq.com" class="check">联系我们</a></li>
+						<li><a href="javascript:contact()" id="contact">联系我们</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">购物商城</a></li>
-						<li>
-						<!-- 没有登录-->
-						 <c:if test="${empty older}">
-						 	<a href="${APP_PATH}/older/login" style="margin-left:300px;">登录</a>
-						 </c:if>
-						 <!--已登录  -->
-						 <c:if test="${!empty older}">
-						 	<dropdown>
-							  <input id="toggle2" type="checkbox">
-							  <label for="toggle2" class="animate">
-							  <img src="${APP_PATH}/static/images/old.png" 
-								style="height:30px;width:30px" class="img-circle">
-							  <i class="fa fa-bars float-right" style="margin-top:10px"></i>
-							  </label>
-							  <ul class="animate">
-							    <li class="animate" onClick="go_center()">管理中心<i class="fa fa-cog float-right"></i></li>
-							    <li class="animate" onClick="exit()">推出系统<i class="fa fa-arrows-alt float-right"></i></li>
-							     
-							  </ul>
-						 </dropdown>
-						 </c:if>
+						<li style="float:right;margin-right:40px">
+							<!-- 没有登录--> <c:if test="${empty older}">
+								<a href="${APP_PATH}/older/login">登录</a>
+							</c:if> <!--已登录  --> <c:if test="${!empty older}">
+								<dropdown> <input id="toggle2" type="checkbox">
+								<label for="toggle2" class="animate"> <img
+									src="${APP_PATH}/static/images/old.png"
+									style="height:30px;width:30px" class="img-circle"> <i
+									class="fa fa-bars float-right" style="margin-top:10px"></i>
+								</label>
+								<ul class="animate">
+									<li class="animate" onClick="go_center()">管理中心<i
+										class="fa fa-cog float-right"></i>
+									</li>
+									<li class="animate" onClick="exit()">退出系统<i
+										class="fa fa-arrows-alt float-right"></i></li>
+								</ul>
+								</dropdown>
+							</c:if>
 						</li>
 					</ul>
 				</div>
@@ -86,15 +83,23 @@
 		</div>
 	</div>
 	</section>
-	
+
 	<script type="text/javascript">
+		/* 联系我们 */
+		function contact() {
+			layer.tips('邮箱:1834678427@qq.com', '#contact', {
+				tips : [ 1, '#3595CC' ],
+				time : 4000,
+				offset : [ '20%' ]
+			});
+		}
 		//去管理中心
-		function go_center(){
-			window.location.href="${APP_PATH}/older/older";
+		function go_center() {
+			window.location.href = "${APP_PATH}/older/older";
 		}
 		//推出系统
-		function exit(){
-			window.location.href="${APP_PATH}/oldmanaccount/loginOut";
+		function exit() {
+			window.location.href = "${APP_PATH}/oldmanaccount/loginOut";
 		}
 	</script>
 </body>

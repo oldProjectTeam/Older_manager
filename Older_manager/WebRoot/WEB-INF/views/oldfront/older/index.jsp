@@ -16,7 +16,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>智慧老人系统</title>
-	
+
 
 <link href="${APP_PATH}/static/oldfront/assets/css/bootstrap.css"
 	rel="stylesheet" />
@@ -41,10 +41,18 @@
 
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
- 
+<style type="text/css">
+#course li {
+	list-style: none;
+}
+
+#video li {
+	list-style: none;
+}
+</style>
 </head>
 <body>
-	 
+
 	<!--加载头部  -->
 	<jsp:include page="header.jsp"></jsp:include>
 	<!--头部结束  -->

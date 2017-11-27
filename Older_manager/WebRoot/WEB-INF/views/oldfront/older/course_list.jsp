@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -12,7 +13,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>智慧老人系统</title>
+<title>智慧老人系统-课程</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -30,43 +31,117 @@
 	type="text/javascript"></script>
 <script src="${APP_PATH}/static/js/wySilder.min.js"
 	type="text/javascript"></script>
-<%-- <link rel="stylesheet" href="${APP_PATH}/static/css/index.css" /> --%>
-</head>
+<link rel="stylesheet" href="${APP_PATH}/static/css/index.css" />
+<style type="text/css" media="screen">
+html,body {
+	width: 100%;
+}
 
+ul li {
+	list-style: none;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+#box {
+	width: 1200px;
+	margin: 20px auto;
+}
+
+.slide {
+	height: 500px;
+	position: relative;
+}
+
+.slide ul {
+	height: 100%;
+}
+
+.slide li {
+	position: absolute;
+	left: 200px;
+	top: 0;
+}
+
+.slide li img {
+	width: 100%;
+}
+
+.arraw {
+	opacity: 0;
+}
+
+.arraw a {
+	width: 70px;
+	height: 110px;
+	display: block;
+	position: absolute;
+	top: 50%;
+	margin-top: -55px;
+	z-index: 999;
+}
+
+.next {
+	background: url(${APP_PATH}/static/images/right.png) no-repeat;
+	right: -10px;
+	/*opacity: .5;*/
+	/*filter: alpha(opacity=50);*/
+}
+
+.prev {
+	background: url(${APP_PATH}/static/images/left.png) no-repeat;
+	left: -10px;
+}
+</style>
+</head>
 <body>
-	<!--加载头部  -->
-	<jsp:include page="header.jsp"></jsp:include>
-	
-	<!-- 搜索 -->
-	<div style="height:300px;margin-top:150px" >
-		<div class="col-sm-12" style="margin-bottom:20px;">
-			<ul class="list-inline">
-				<li class="col-sm-4"><%-- <a href="${APP_PATH}/older/index"><img
-						src="${APP_PATH}/static/images/oldback/images/logo.png"
-						width="200px" style="margin-right: 240px;" /></a> --%></li>
-				<li class="col-sm-7" style="margin-top:20px"><input type="text"
-					class="col-sm-8" id="key" /> <input type="button"
-					class="cource_search" id="search" value="搜&nbsp;&nbsp;索"></li>
-			</ul>
-		</div>
-		<!-- 轮播图 -->
-		<div id="carousel-example-generic" class="carousel slide col-sm-12"
-			data-ride="carousel">
-			<ol class="carousel-indicators" id="imgOl">
-			</ol>
-			<div class="carousel-inner" id="imgContent"
-				style="height: 360px !important;"></div>
-			<a class="left carousel-control" href="#carousel-example-generic"
-				role="button" data-slide="prev"> <span
-				class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-				<span class="sr-only">Previous</span>
-			</a> <a class="right carousel-control" href="#carousel-example-generic"
-				role="button" data-slide="next"> <span
-				class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				<span class="sr-only">Next</span>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed"
+				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+				aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"> <img
+				src="${APP_PATH}/static/images/oldback/images/logo.png"
+				width="160px" />
 			</a>
 		</div>
+		<div id="navbar" class="navbar-collapse collapse"
+			style="margin-top: 18px;">
+			<form class="navbar-form navbar-right" id="searchForm">
+				<div class="form-group">
+					<input type="text" placeholder="搜索课程..." class="form-control"
+						id="key" name="key">
+				</div>
+				<button type="button" id="search" class="btn btn-success">搜索</button>
+			</form>
+		</div>
 	</div>
+	</nav>
+
+	<div id="box" style="margin-top: 70px;">
+		<div class="slide">
+			<ul id="imgContent">
+				<c:forEach items="${pageInfo.list}" var="course">
+					<li><a href="${APP_PATH}/official/courseInfoId/${course.id}"><img
+							src="http://123.207.93.53/Older_back/${course.photo}"></a></li>
+				</c:forEach>
+			</ul>
+			<div class="arraw">
+				<a href="javascript:;" class="next"></a> <a href="javascript:;"
+					class='prev'></a>
+			</div>
+		</div>
+	</div>
+
+
 	<!-- 轮播图结束 -->
 	<div class="col-sm-12 margin_div">
 		<div class="col-sm-12 border-style">
@@ -92,8 +167,191 @@
 	<div class="col-sm-12">
 		<jsp:include page="footer.jsp"></jsp:include>
 	</div>
+	<script>
+		var box = document.querySelector('#box');
+		var slide = document.querySelector('.slide');
+		var arraw = document.querySelector('.arraw');
+		var lis = document.querySelectorAll('li');
+		var json = [ //  包含了5张图片里面所有的样式
+		{ //  1
+			width : 400,
+			top : 20,
+			left : 100,
+			opacity : 20,
+			z : 2,
+			id : 1
+		}, { // 2
+			width : 600,
+			top : 70,
+			left : 50,
+			opacity : 60,
+			z : 3,
+			id : 2
+		}, { // 3
+			width : 800,
+			top : 100,
+			left : 200,
+			opacity : 100,
+			z : 4,
+			id : 3
+		}, { // 4
+			width : 600,
+			top : 70,
+			left : 550,
+			opacity : 60,
+			z : 3,
+			id : 4
+		}, { //5
+			width : 400,
+			top : 20,
+			left : 650,
+			opacity : 20,
+			z : 2,
+			id : 5
+		} ];
+		box.addEventListener('mouseover', function() {
+			// console.log('aaa')
+			animate(arraw, {
+				opacity : 100
+			});
+		});
+		box.addEventListener('mouseout', function() {
+			// console.log('aaa')
+			animate(arraw, {
+				opacity : 0
+			});
+		});
+
+		var next = document.querySelector('.next');
+		var prev = document.querySelector('.prev');
+		var timer = null;
+		var flag = true;
+		next.addEventListener('click', function() {
+			// alert('next');
+			// console.log(json);
+			// console.log('================')
+			clearInterval(timer);
+			if (flag == true) {
+				move(true);
+				flag = false;
+			}
+			//console.log(json);
+		});
+		next.addEventListener('mouseleave', function() {
+
+			clearInterval(timer);
+			//alert('next')
+			run();
+			//console.log(json);
+
+		});
+		prev.addEventListener('click', function() {
+			clearInterval(timer);
+			// alert('prev')
+			if (flag == true) {
+				move(false);
+				flag = false;
+			}
+		});
+		prev.addEventListener('mouseleave', function() {
+			// alert('prev')
+			// clearInterva(timer);
+			run();
+		});
+
+		move();
+		run();
+		function run() {
+			clearInterval(timer);
+			timer = setInterval(function() {
+				// console.log('run')
+				if (flag == true) {
+					flag = false;
+					move(true);
+				}
+				// console.log(json)
+			}, 500);
+		}
+
+		function move(x) {
+			if (x != undefined) {
+				if (x) {
+					json.push(json.shift());
+				} else {
+					json.unshift(json.pop());
+				}
+				;
+			}
+			;
+
+			for (var i = 0; i < json.length; i++) {
+				animate(lis[i], {
+					width : json[i].width,
+					top : json[i].top,
+					left : json[i].left,
+					opacity : json[i].opacity,
+					zIndex : json[i].z
+				}, function() {
+					flag = true;
+				})
+			}
+			;
+		}
+
+		function animate(obj, json, callback) {
+			// 先停止定时器
+			clearInterval(obj.timers);
+			obj.timers = setInterval(function() {
+				var stoped = true;
+				// console.log('sss')
+				for ( var k in json) {
+					// var leader = parseInt(getStyle(obj, k));
+					var leader = 0;
+					if (k == 'opacity') {
+						leader = Math.round(getStyle(obj, k) * 100) || 100;
+					} else {
+						// console.log(json[k]);
+						leader = parseInt(getStyle(obj, k)) || 0;
+					}
+					;
+					//         console.log(leader);
+					// json[k]是目标位置
+					var step = (json[k] - leader) / 10;
+					step = step > 0 ? Math.ceil(step) : Math.floor(step);
+					leader = leader + step;
+					if (k == 'opacity') {
+						obj.style[k] = leader / 100;
+						obj.style['filter'] = 'alpha(opacity=' + leader + ')';
+					} else if (k == 'zIndex') {
+						obj.style['zIndex'] = json[k];
+					} else {
+						obj.style[k] = leader + "px";
+					}
+					if (leader != json[k]) {
+						stoped = false;
+					}
+				}
+				;
+				if (stoped) {
+					// console.log('stop')
+					clearInterval(obj.timers);
+					callback && callback();
+				}
+				;
+			}, 50);
+		};
+		//获取属性值
+		function getStyle(obj, attr) {
+			if (obj.currentStyle) {
+				return obj.currentStyle[attr];
+			} else {
+				return window.getComputedStyle(obj, null)[attr];
+			}
+			;
+		};
+	</script>
 	<script type="text/javascript">
-		var currentNum, flag;
+		var currentNum, total;
 		$(function() {
 			go(1);
 		});
@@ -106,35 +364,13 @@
 				},
 				type : "GET",
 				success : function(result) {
-					currentNum = result.extend.pageInfo.pageNum;
-					flag = result.extend.pageInfo.hasNextPage;
-					build_img(result);
-					build_recommend_course(result);
-					build_course(result);
-				}
-			});
-		}
-		//轮播图
-		function build_img(result) {
-			$.each(result.extend.pageInfo.list, function(index, item) {
-				if (index < 3) {
-					var imgDiv = $("<div></div>").append(
-							$("<img/>").attr(
-									"src",
-									"http://123.207.93.53/Older_back/"
-											+ item.photo).attr("width", "100%")
-									.attr("height", "150px"));
-					var imgLi = $("<li></li>").attr("data-target",
-							"#carousel-example-generic").attr("data-slide-to",
-							index);
-					if (index == 0) {
-						imgDiv.addClass("item active");
-						imgLi.addClass("active");
-					} else {
-						imgDiv.addClass("item");
+					console.log(result);
+					if (result.code == 100) {
+						currentNum = result.extend.pageInfo.pageNum;
+						total = result.extend.pageInfo.pages;
+						build_recommend_course(result);
+						build_course(result);
 					}
-					$("#imgOl").append(imgLi);
-					$("#imgContent").append(imgDiv);
 				}
 			});
 		}
@@ -251,9 +487,8 @@
 		}
 
 		$("#loading").click(function() {
-			if (flag) {
-				$("#ol").empty();
-				$("#imgOl").empty();
+			$("#imgOl").empty();
+			if (currentNum + 1 < total || currentNum + 1 == total) {
 				if ($("#key").val() == '') {
 					go(currentNum + 1);
 				} else {
@@ -292,8 +527,7 @@
 						$("#courseContent").empty();
 						$("#course").empty();
 						currentNum = result.extend.pageInfo.pageNum;
-						flag = result.extend.pageInfo.hasNextPage;
-						build_img(result);
+						total = result.extend.pageInfo.pages;
 						build_recommend_course(result);
 						build_course(result);
 					}
