@@ -2,20 +2,27 @@ package com.older.manager.bean;
 
 import java.util.Date;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Peinfo {
     private Integer id;
-
+    @NotBlank
+    @Pattern(regexp="(^[a-zA-Z0-9_-]{4,16}$)|(^[\\u2E80-\\u9FFF]{2,5})",message="请输入4-16个英文组或者2-5个汉字")
     private String hospital;
-
+    @NotBlank
     private Date petime;
-
+    @NotBlank
     private Date nexttime;
-
+    @NotBlank
     private String remark;
 
     private String photo;
 
     private Integer oldmanId;
+    
+    private Pedetails pedetails;
 
     private String peinfo1;
 
@@ -31,12 +38,23 @@ public class Peinfo {
 
     private String peinfo7;
 
-    @Override
+    
+    
+    public Pedetails getPedetails() {
+		return pedetails;
+	}
+
+	public void setPedetails(Pedetails pedetails) {
+		this.pedetails = pedetails;
+	}
+
+	@Override
 	public String toString() {
 		return "Peinfo [id=" + id + ", hospital=" + hospital + ", petime="
 				+ petime + ", nexttime=" + nexttime + ", remark=" + remark
-				+ ", photo=" + photo + ", oldmanId=" + oldmanId + ", peinfo1="
-				+ peinfo1 + ", peinfo2=" + peinfo2 + ", peinfo3=" + peinfo3
+				+ ", photo=" + photo + ", oldmanId=" + oldmanId
+				+ ", pedetails=" + pedetails + ", peinfo1=" + peinfo1
+				+ ", peinfo2=" + peinfo2 + ", peinfo3=" + peinfo3
 				+ ", peinfo4=" + peinfo4 + ", peinfo5=" + peinfo5
 				+ ", peinfo6=" + peinfo6 + ", peinfo7=" + peinfo7 + "]";
 	}
@@ -152,4 +170,6 @@ public class Peinfo {
     public void setPeinfo7(String peinfo7) {
         this.peinfo7 = peinfo7 == null ? null : peinfo7.trim();
     }
+    
+    
 }

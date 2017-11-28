@@ -1,14 +1,20 @@
 package com.older.manager.bean;
 
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.NotBlank;
+
 public class Pedetails {
     private Integer id;
-
+    @NotBlank
+    @Pattern(regexp="^[A-Z|a-z|\\u4e00-\\u9fa5]*$",message="请输入英文与汉字")
     private String peproject;
-
+    @NotBlank
+    @Pattern(regexp="\\d",message="请输入数字")
     private String pevalue;
-
+    @NotBlank
     private String peresult;
-
+    @NotBlank
     private String resultanalysis;
 
     private Integer peinfoId;

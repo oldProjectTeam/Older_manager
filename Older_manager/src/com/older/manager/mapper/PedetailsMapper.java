@@ -6,32 +6,36 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface PedetailsMapper {
-    int countByExample(PedetailsExample example);
+	int countByExample(PedetailsExample example);
 
-    int deleteByExample(PedetailsExample example);
+	int deleteByExample(PedetailsExample example);
 
-    int deleteByPrimaryKey(Integer id);
+	int deleteByPrimaryKey(Integer id);
 
-    int insert(Pedetails record);
+	int insert(Pedetails record);
 
-    int insertSelective(Pedetails record);
+	int insertSelective(Pedetails record);
 
-    List<Pedetails> selectByExample(PedetailsExample example);
+	List<Pedetails> selectByExample(PedetailsExample example);
 
-    Pedetails selectByPrimaryKey(Integer id);
-    
-    
-    
-    //模糊查询
-    List<Pedetails> selectByExampleWithOldAndPe(Pedetails pedetails);
-    Pedetails selectByPrimaryKeyWithOldAndPe(Integer id);
-    
+	Pedetails selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Pedetails record, @Param("example") PedetailsExample example);
+	// 模糊查询
+	List<Pedetails> selectByExampleWithOldAndPe(Pedetails pedetails);
 
-    int updateByExample(@Param("record") Pedetails record, @Param("example") PedetailsExample example);
+	Pedetails selectByPrimaryKeyWithOldAndPe(Integer id);
 
-    int updateByPrimaryKeySelective(Pedetails record);
+	int updateByExampleSelective(@Param("record") Pedetails record,
+			@Param("example") PedetailsExample example);
 
-    int updateByPrimaryKey(Pedetails record);
+	int updateByExample(@Param("record") Pedetails record,
+			@Param("example") PedetailsExample example);
+
+	int updateByPrimaryKeySelective(Pedetails record);
+
+	int updateByPrimaryKey(Pedetails record);
+
+	// 更改信息
+	void updateByPeinfoID(Pedetails pedetails);
+
 }

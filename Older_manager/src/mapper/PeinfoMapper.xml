@@ -1,355 +1,473 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.PeinfoMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.Peinfo" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="hospital" property="hospital" jdbcType="VARCHAR" />
-    <result column="peTime" property="petime" jdbcType="TIMESTAMP" />
-    <result column="nextTime" property="nexttime" jdbcType="TIMESTAMP" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-    <result column="photo" property="photo" jdbcType="VARCHAR" />
-    <result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
-    <result column="PEInfo1" property="peinfo1" jdbcType="VARCHAR" />
-    <result column="PEInfo2" property="peinfo2" jdbcType="VARCHAR" />
-    <result column="PEInfo3" property="peinfo3" jdbcType="VARCHAR" />
-    <result column="PEInfo4" property="peinfo4" jdbcType="VARCHAR" />
-    <result column="PEInfo5" property="peinfo5" jdbcType="VARCHAR" />
-    <result column="PEInfo6" property="peinfo6" jdbcType="VARCHAR" />
-    <result column="PEInfo7" property="peinfo7" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, hospital, peTime, nextTime, remark, photo, oldMan_id, PEInfo1, PEInfo2, PEInfo3, 
-    PEInfo4, PEInfo5, PEInfo6, PEInfo7
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.PeinfoExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from peinfo
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-   order by id DESC
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from peinfo
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from peinfo
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.PeinfoExample" >
-    delete from peinfo
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.Peinfo" >
-    insert into peinfo (id, hospital, peTime, 
-      nextTime, remark, photo, 
-      oldMan_id, PEInfo1, PEInfo2, 
-      PEInfo3, PEInfo4, PEInfo5, 
-      PEInfo6, PEInfo7)
-    values (#{id,jdbcType=INTEGER}, #{hospital,jdbcType=VARCHAR}, #{petime,jdbcType=TIMESTAMP}, 
-      #{nexttime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, 
-      #{oldmanId,jdbcType=INTEGER}, #{peinfo1,jdbcType=VARCHAR}, #{peinfo2,jdbcType=VARCHAR}, 
-      #{peinfo3,jdbcType=VARCHAR}, #{peinfo4,jdbcType=VARCHAR}, #{peinfo5,jdbcType=VARCHAR}, 
-      #{peinfo6,jdbcType=VARCHAR}, #{peinfo7,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.Peinfo" useGeneratedKeys="true" keyProperty="id">
-    insert into peinfo
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="hospital != null" >
-        hospital,
-      </if>
-      <if test="petime != null" >
-        peTime,
-      </if>
-      <if test="nexttime != null" >
-        nextTime,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-      <if test="photo != null" >
-        photo,
-      </if>
-      <if test="oldmanId != null" >
-        oldMan_id,
-      </if>
-      <if test="peinfo1 != null" >
-        PEInfo1,
-      </if>
-      <if test="peinfo2 != null" >
-        PEInfo2,
-      </if>
-      <if test="peinfo3 != null" >
-        PEInfo3,
-      </if>
-      <if test="peinfo4 != null" >
-        PEInfo4,
-      </if>
-      <if test="peinfo5 != null" >
-        PEInfo5,
-      </if>
-      <if test="peinfo6 != null" >
-        PEInfo6,
-      </if>
-      <if test="peinfo7 != null" >
-        PEInfo7,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="hospital != null" >
-        #{hospital,jdbcType=VARCHAR},
-      </if>
-      <if test="petime != null" >
-        #{petime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nexttime != null" >
-        #{nexttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="photo != null" >
-        #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="oldmanId != null" >
-        #{oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="peinfo1 != null" >
-        #{peinfo1,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo2 != null" >
-        #{peinfo2,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo3 != null" >
-        #{peinfo3,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo4 != null" >
-        #{peinfo4,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo5 != null" >
-        #{peinfo5,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo6 != null" >
-        #{peinfo6,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo7 != null" >
-        #{peinfo7,jdbcType=VARCHAR},
-      </if>
-    </trim>
-    <selectKey resultType="java.lang.Integer" order="AFTER"
+<mapper namespace="com.older.manager.mapper.PeinfoMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.Peinfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="hospital" property="hospital" jdbcType="VARCHAR" />
+		<result column="peTime" property="petime" jdbcType="TIMESTAMP" />
+		<result column="nextTime" property="nexttime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+		<result column="PEInfo1" property="peinfo1" jdbcType="VARCHAR" />
+		<result column="PEInfo2" property="peinfo2" jdbcType="VARCHAR" />
+		<result column="PEInfo3" property="peinfo3" jdbcType="VARCHAR" />
+		<result column="PEInfo4" property="peinfo4" jdbcType="VARCHAR" />
+		<result column="PEInfo5" property="peinfo5" jdbcType="VARCHAR" />
+		<result column="PEInfo6" property="peinfo6" jdbcType="VARCHAR" />
+		<result column="PEInfo7" property="peinfo7" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, hospital, peTime, nextTime, remark, photo, oldMan_id,
+		PEInfo1,
+		PEInfo2, PEInfo3,
+		PEInfo4, PEInfo5, PEInfo6, PEInfo7
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.PeinfoExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from peinfo
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		order by id DESC
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from peinfo
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from peinfo
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.PeinfoExample">
+		delete from peinfo
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.Peinfo">
+		insert into peinfo (id,
+		hospital, peTime,
+		nextTime, remark, photo,
+		oldMan_id, PEInfo1, PEInfo2,
+		PEInfo3, PEInfo4, PEInfo5,
+		PEInfo6, PEInfo7)
+		values
+		(#{id,jdbcType=INTEGER}, #{hospital,jdbcType=VARCHAR},
+		#{petime,jdbcType=TIMESTAMP},
+		#{nexttime,jdbcType=TIMESTAMP},
+		#{remark,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR},
+		#{oldmanId,jdbcType=INTEGER}, #{peinfo1,jdbcType=VARCHAR},
+		#{peinfo2,jdbcType=VARCHAR},
+		#{peinfo3,jdbcType=VARCHAR},
+		#{peinfo4,jdbcType=VARCHAR}, #{peinfo5,jdbcType=VARCHAR},
+		#{peinfo6,jdbcType=VARCHAR}, #{peinfo7,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.Peinfo"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into peinfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="hospital != null">
+				hospital,
+			</if>
+			<if test="petime != null">
+				peTime,
+			</if>
+			<if test="nexttime != null">
+				nextTime,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test="oldmanId != null">
+				oldMan_id,
+			</if>
+			<if test="peinfo1 != null">
+				PEInfo1,
+			</if>
+			<if test="peinfo2 != null">
+				PEInfo2,
+			</if>
+			<if test="peinfo3 != null">
+				PEInfo3,
+			</if>
+			<if test="peinfo4 != null">
+				PEInfo4,
+			</if>
+			<if test="peinfo5 != null">
+				PEInfo5,
+			</if>
+			<if test="peinfo6 != null">
+				PEInfo6,
+			</if>
+			<if test="peinfo7 != null">
+				PEInfo7,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="hospital != null">
+				#{hospital,jdbcType=VARCHAR},
+			</if>
+			<if test="petime != null">
+				#{petime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nexttime != null">
+				#{nexttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="oldmanId != null">
+				#{oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="peinfo1 != null">
+				#{peinfo1,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo2 != null">
+				#{peinfo2,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo3 != null">
+				#{peinfo3,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo4 != null">
+				#{peinfo4,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo5 != null">
+				#{peinfo5,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo6 != null">
+				#{peinfo6,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo7 != null">
+				#{peinfo7,jdbcType=VARCHAR},
+			</if>
+		</trim>
+		<selectKey resultType="java.lang.Integer" order="AFTER"
 			keyProperty="id">
 			SELECT LAST_INSERT_ID() AS id
 		</selectKey>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.PeinfoExample" resultType="java.lang.Integer" >
-    select count(*) from peinfo
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update peinfo
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.hospital != null" >
-        hospital = #{record.hospital,jdbcType=VARCHAR},
-      </if>
-      <if test="record.petime != null" >
-        peTime = #{record.petime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.nexttime != null" >
-        nextTime = #{record.nexttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.remark != null" >
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-      <if test="record.photo != null" >
-        photo = #{record.photo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.oldmanId != null" >
-        oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="record.peinfo1 != null" >
-        PEInfo1 = #{record.peinfo1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.peinfo2 != null" >
-        PEInfo2 = #{record.peinfo2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.peinfo3 != null" >
-        PEInfo3 = #{record.peinfo3,jdbcType=VARCHAR},
-      </if>
-      <if test="record.peinfo4 != null" >
-        PEInfo4 = #{record.peinfo4,jdbcType=VARCHAR},
-      </if>
-      <if test="record.peinfo5 != null" >
-        PEInfo5 = #{record.peinfo5,jdbcType=VARCHAR},
-      </if>
-      <if test="record.peinfo6 != null" >
-        PEInfo6 = #{record.peinfo6,jdbcType=VARCHAR},
-      </if>
-      <if test="record.peinfo7 != null" >
-        PEInfo7 = #{record.peinfo7,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update peinfo
-    set id = #{record.id,jdbcType=INTEGER},
-      hospital = #{record.hospital,jdbcType=VARCHAR},
-      peTime = #{record.petime,jdbcType=TIMESTAMP},
-      nextTime = #{record.nexttime,jdbcType=TIMESTAMP},
-      remark = #{record.remark,jdbcType=VARCHAR},
-      photo = #{record.photo,jdbcType=VARCHAR},
-      oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
-      PEInfo1 = #{record.peinfo1,jdbcType=VARCHAR},
-      PEInfo2 = #{record.peinfo2,jdbcType=VARCHAR},
-      PEInfo3 = #{record.peinfo3,jdbcType=VARCHAR},
-      PEInfo4 = #{record.peinfo4,jdbcType=VARCHAR},
-      PEInfo5 = #{record.peinfo5,jdbcType=VARCHAR},
-      PEInfo6 = #{record.peinfo6,jdbcType=VARCHAR},
-      PEInfo7 = #{record.peinfo7,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Peinfo" >
-    update peinfo
-    <set >
-      <if test="hospital != null" >
-        hospital = #{hospital,jdbcType=VARCHAR},
-      </if>
-      <if test="petime != null" >
-        peTime = #{petime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="nexttime != null" >
-        nextTime = #{nexttime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-      <if test="photo != null" >
-        photo = #{photo,jdbcType=VARCHAR},
-      </if>
-      <if test="oldmanId != null" >
-        oldMan_id = #{oldmanId,jdbcType=INTEGER},
-      </if>
-      <if test="peinfo1 != null" >
-        PEInfo1 = #{peinfo1,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo2 != null" >
-        PEInfo2 = #{peinfo2,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo3 != null" >
-        PEInfo3 = #{peinfo3,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo4 != null" >
-        PEInfo4 = #{peinfo4,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo5 != null" >
-        PEInfo5 = #{peinfo5,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo6 != null" >
-        PEInfo6 = #{peinfo6,jdbcType=VARCHAR},
-      </if>
-      <if test="peinfo7 != null" >
-        PEInfo7 = #{peinfo7,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Peinfo" >
-    update peinfo
-    set hospital = #{hospital,jdbcType=VARCHAR},
-      peTime = #{petime,jdbcType=TIMESTAMP},
-      nextTime = #{nexttime,jdbcType=TIMESTAMP},
-      remark = #{remark,jdbcType=VARCHAR},
-      photo = #{photo,jdbcType=VARCHAR},
-      oldMan_id = #{oldmanId,jdbcType=INTEGER},
-      PEInfo1 = #{peinfo1,jdbcType=VARCHAR},
-      PEInfo2 = #{peinfo2,jdbcType=VARCHAR},
-      PEInfo3 = #{peinfo3,jdbcType=VARCHAR},
-      PEInfo4 = #{peinfo4,jdbcType=VARCHAR},
-      PEInfo5 = #{peinfo5,jdbcType=VARCHAR},
-      PEInfo6 = #{peinfo6,jdbcType=VARCHAR},
-      PEInfo7 = #{peinfo7,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.PeinfoExample"
+		resultType="java.lang.Integer">
+		select count(*) from peinfo
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update peinfo
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.hospital != null">
+				hospital = #{record.hospital,jdbcType=VARCHAR},
+			</if>
+			<if test="record.petime != null">
+				peTime = #{record.petime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.nexttime != null">
+				nextTime = #{record.nexttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.remark != null">
+				remark = #{record.remark,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo != null">
+				photo = #{record.photo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.oldmanId != null">
+				oldMan_id = #{record.oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="record.peinfo1 != null">
+				PEInfo1 = #{record.peinfo1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.peinfo2 != null">
+				PEInfo2 = #{record.peinfo2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.peinfo3 != null">
+				PEInfo3 = #{record.peinfo3,jdbcType=VARCHAR},
+			</if>
+			<if test="record.peinfo4 != null">
+				PEInfo4 = #{record.peinfo4,jdbcType=VARCHAR},
+			</if>
+			<if test="record.peinfo5 != null">
+				PEInfo5 = #{record.peinfo5,jdbcType=VARCHAR},
+			</if>
+			<if test="record.peinfo6 != null">
+				PEInfo6 = #{record.peinfo6,jdbcType=VARCHAR},
+			</if>
+			<if test="record.peinfo7 != null">
+				PEInfo7 = #{record.peinfo7,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update peinfo
+		set id = #{record.id,jdbcType=INTEGER},
+		hospital =
+		#{record.hospital,jdbcType=VARCHAR},
+		peTime =
+		#{record.petime,jdbcType=TIMESTAMP},
+		nextTime =
+		#{record.nexttime,jdbcType=TIMESTAMP},
+		remark =
+		#{record.remark,jdbcType=VARCHAR},
+		photo =
+		#{record.photo,jdbcType=VARCHAR},
+		oldMan_id =
+		#{record.oldmanId,jdbcType=INTEGER},
+		PEInfo1 =
+		#{record.peinfo1,jdbcType=VARCHAR},
+		PEInfo2 =
+		#{record.peinfo2,jdbcType=VARCHAR},
+		PEInfo3 =
+		#{record.peinfo3,jdbcType=VARCHAR},
+		PEInfo4 =
+		#{record.peinfo4,jdbcType=VARCHAR},
+		PEInfo5 =
+		#{record.peinfo5,jdbcType=VARCHAR},
+		PEInfo6 =
+		#{record.peinfo6,jdbcType=VARCHAR},
+		PEInfo7 =
+		#{record.peinfo7,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.Peinfo">
+		update peinfo
+		<set>
+			<if test="hospital != null">
+				hospital = #{hospital,jdbcType=VARCHAR},
+			</if>
+			<if test="petime != null">
+				peTime = #{petime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="nexttime != null">
+				nextTime = #{nexttime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				photo = #{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="oldmanId != null">
+				oldMan_id = #{oldmanId,jdbcType=INTEGER},
+			</if>
+			<if test="peinfo1 != null">
+				PEInfo1 = #{peinfo1,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo2 != null">
+				PEInfo2 = #{peinfo2,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo3 != null">
+				PEInfo3 = #{peinfo3,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo4 != null">
+				PEInfo4 = #{peinfo4,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo5 != null">
+				PEInfo5 = #{peinfo5,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo6 != null">
+				PEInfo6 = #{peinfo6,jdbcType=VARCHAR},
+			</if>
+			<if test="peinfo7 != null">
+				PEInfo7 = #{peinfo7,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.Peinfo">
+		update peinfo
+		set
+		hospital = #{hospital,jdbcType=VARCHAR},
+		peTime =
+		#{petime,jdbcType=TIMESTAMP},
+		nextTime =
+		#{nexttime,jdbcType=TIMESTAMP},
+		remark = #{remark,jdbcType=VARCHAR},
+		photo = #{photo,jdbcType=VARCHAR},
+		oldMan_id =
+		#{oldmanId,jdbcType=INTEGER},
+		PEInfo1 = #{peinfo1,jdbcType=VARCHAR},
+		PEInfo2 = #{peinfo2,jdbcType=VARCHAR},
+		PEInfo3 =
+		#{peinfo3,jdbcType=VARCHAR},
+		PEInfo4 = #{peinfo4,jdbcType=VARCHAR},
+		PEInfo5 = #{peinfo5,jdbcType=VARCHAR},
+		PEInfo6 =
+		#{peinfo6,jdbcType=VARCHAR},
+		PEInfo7 = #{peinfo7,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<!-- 查询体检信息的resultMap -->
+	<resultMap id="selectPeinfoAndDetailsMap" type="com.older.manager.bean.Peinfo">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="hospital" property="hospital" jdbcType="VARCHAR" />
+		<result column="peTime" property="petime" jdbcType="TIMESTAMP" />
+		<result column="nextTime" property="nexttime" jdbcType="TIMESTAMP" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="oldMan_id" property="oldmanId" jdbcType="INTEGER" />
+		<result column="PEInfo1" property="peinfo1" jdbcType="VARCHAR" />
+		<result column="PEInfo2" property="peinfo2" jdbcType="VARCHAR" />
+		<result column="PEInfo3" property="peinfo3" jdbcType="VARCHAR" />
+		<result column="PEInfo4" property="peinfo4" jdbcType="VARCHAR" />
+		<result column="PEInfo5" property="peinfo5" jdbcType="VARCHAR" />
+		<result column="PEInfo6" property="peinfo6" jdbcType="VARCHAR" />
+		<result column="PEInfo7" property="peinfo7" jdbcType="VARCHAR" />
+		<collection property="pedetails" ofType="com.older.manager.bean.Pedetails">
+			<id column="id" property="id" jdbcType="INTEGER" />
+			<result column="peProject" property="peproject" jdbcType="VARCHAR" />
+			<result column="peValue" property="pevalue" jdbcType="VARCHAR" />
+			<result column="peResult" property="peresult" jdbcType="VARCHAR" />
+			<result column="resultAnalysis" property="resultanalysis"
+				jdbcType="VARCHAR" />
+			<result column="peInfo_id" property="peinfoId" jdbcType="INTEGER" />
+			<result column="PEDetails1" property="pedetails1" jdbcType="VARCHAR" />
+			<result column="PEDetails2" property="pedetails2" jdbcType="VARCHAR" />
+			<result column="PEDetails3" property="pedetails3" jdbcType="VARCHAR" />
+			<result column="PEDetails4" property="pedetails4" jdbcType="VARCHAR" />
+			<result column="PEDetails5" property="pedetails5" jdbcType="VARCHAR" />
+			<result column="PEDetails6" property="pedetails6" jdbcType="VARCHAR" />
+			<result column="PEDetails7" property="pedetails7" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+	<!-- 查询体检信息 -->
+	<select id="selectPeinfoAndDetails" parameterType="int"
+		resultMap="selectPeinfoAndDetailsMap">
+		select
+		pe.id, pe.hospital, pe.peTime, pe.nextTime, pe.remark,
+		pe.photo,
+		pe.oldMan_id,
+		pt.id, pt.peProject, pt.peValue, pt.peResult,
+		pt.resultAnalysis,
+		pt.peInfo_id
+		from peinfo pe join pedetails pt on
+		pe.id=pt.peInfo_id and
+		oldMan_id=#{oldmanId}
+	</select>
+
+	<!-- 模糊查询 -->
+	<select id="selectByHospitalAnduserId" parameterType="com.older.manager.bean.Peinfo"
+		resultMap="selectPeinfoAndDetailsMap">
+		select
+		pe.id, pe.hospital, pe.peTime, pe.nextTime, pe.remark, pe.photo,
+		pe.oldMan_id,
+		pt.id, pt.peProject, pt.peValue, pt.peResult,
+		pt.resultAnalysis,
+		pt.peInfo_id
+		from peinfo pe, pedetails pt
+		<where>
+			pe.id=pt.peInfo_id and pe.oldMan_id=#{oldmanId}
+			<if test="hospital!=null">
+				and pe.hospital like "%${hospital}%"
+			</if>
+		</where>
+	</select>
+
+	<!-- 根据id查询信息 -->
+	<select id="selectByPeInfoId" parameterType="int"
+		resultMap="selectPeinfoAndDetailsMap">
+		select
+		pe.id, pe.hospital, pe.peTime, pe.nextTime, pe.remark, pe.photo,
+		pe.oldMan_id,
+		pt.id, pt.peProject, pt.peValue, pt.peResult,
+		pt.resultAnalysis,
+		pt.peInfo_id
+		from peinfo pe, pedetails pt
+		<where>
+			pe.id=pt.peInfo_id and pe.id=#{id}
+		</where>
+	</select>
 </mapper>
