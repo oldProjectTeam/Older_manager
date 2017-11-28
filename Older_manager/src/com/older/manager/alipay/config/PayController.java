@@ -1,5 +1,6 @@
 package com.older.manager.alipay.config;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -386,10 +387,10 @@ public class PayController {
 	 * @return
 	 * @throws Exception
 	 */
+	@SuppressWarnings("rawtypes")
 	@RequestMapping("/notifyUrl")
 	public String notifyUrl(HttpServletRequest request,HttpServletResponse response)throws Exception{
 		
-		AlipayConfig.logResult("进入异步通知页面");
 		Map<String, String> params = new HashMap<String, String>();
 		Map requestParams = request.getParameterMap();
 		for (Iterator iter = requestParams.keySet().iterator(); iter.hasNext();) {
@@ -406,8 +407,9 @@ public class PayController {
 		}
 		boolean signVerified = false;
 		signVerified = AlipaySignature.rsaCheckV1(params,
-					AlipayConfig.alipay_public_key, AlipayConfig.charset,
-					AlipayConfig.sign_type);
+				AlipayConfig.alipay_public_key, AlipayConfig.charset,
+				AlipayConfig.sign_type);
+		String msg=new String();//返回信息
 		if (signVerified) {
 				
 				AlipayConfig.logResult("签证成功！");//记录日志
@@ -433,17 +435,14 @@ public class PayController {
 				if (order == null) {
 						signVerified=false;
 						logger.error("notify----系统订单："+ out_trade_no + "不存在。");
-						response.getWriter().write("failure");
+						 msg="failure";
+						 
 				}else{
 					 
 						if(!order.getCost().equals(new Double(total_amount))){
-							signVerified=false;
-							AlipayConfig.logResult("notify---订单金额：数据库金额 "+ order.getCost().toString()+ "与total_amount "+total_amount+"不一致");
-							request.setAttribute("reason", "签证失败");
-							logger.error("notify---订单金额：数据库金额 "+ order.getCost().toString()+ "与total_amount "+total_amount+"不一致");
-							response.getWriter().write("failure");
+							AlipayConfig.logResult("notify---系统订单："+ out_trade_no + "无需重复处理。");
+							 msg="failure";
 						}
-						
 						if(order.getState().equals("待发货")){
 							AlipayConfig.logResult("notify---系统订单："+ out_trade_no + "无需重复处理。");
 							logger.info("notify---系统订单："+ out_trade_no + "无需重复处理。");
@@ -455,13 +454,15 @@ public class PayController {
 							AlipayConfig.logResult("notify----系统订单："+ out_trade_no + "成功支付。");
 							logger.info("notify----系统订单："+ out_trade_no + "成功支付。");
 						}
-						response.getWriter().write("success");
+						msg="success";
 				}
 			}else{
-				AlipayConfig.logResult("签证失败!");
-				response.getWriter().write("failure");
-				
+				AlipayConfig.logResult("notify:签证失败!");
+				 msg="failure";
 			}
+		response.setContentType("text/html;charset="+AlipayConfig.charset);
+		response.getWriter().write(msg);
+		request.setAttribute("success", msg);
 		return "/oldfront/home/notifyUrl";
 	}
 	
@@ -486,7 +487,7 @@ public class PayController {
 						: valueStr + values[i] + ",";
 			}
 			// 乱码解决，这段代码在出现乱码时使用。
-			valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
+			//valueStr = new String(valueStr.getBytes("ISO-8859-1"), "utf-8");
 			params.put(name, valueStr);
 		}
 		boolean signVerified = false;
@@ -522,7 +523,6 @@ public class PayController {
 			}else{
 					if(!order.getCost().equals(new Double(total_amount))){
 						signVerified=false;
-						request.setAttribute("reason", "付款金额不对");
 						logger.error("return---订单金额：数据库金额 "+ order.getCost().toString()+ "与total_amount "+total_amount+"不一致");
 						return "/oldfront/home/failure";
 					} 
@@ -543,5 +543,11 @@ public class PayController {
 		}else{
 			return "/oldfront/home/failure";
 		}
+	}
+	
+	@RequestMapping("/test")
+	public String test(HttpServletResponse response) throws IOException{
+		response.getWriter().print("success");
+		return "/oldfront/home/notifyUrl";
 	}
 }

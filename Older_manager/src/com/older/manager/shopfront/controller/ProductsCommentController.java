@@ -15,17 +15,21 @@ import com.older.manager.service.shopfront.IProductCommentService;
 import com.older.manager.utils.Msg;
 
 @Controller
+@RequestMapping("comment")
 public class ProductsCommentController {
 	@Autowired
 	private IProductCommentService productCommentService;
-	
-	@RequestMapping("/queryProductsComment")
+
+	@RequestMapping("/queryProductsCommentByUserId")
 	@ResponseBody
-	public Msg queryProductsComment(@RequestParam(value="pn",defaultValue="1")String pn){
-		int p=Integer.parseInt(pn);
-		PageHelper.startPage(p,15);
-		List<ProductComment> productComments=productCommentService.queryProductComments();
-		PageInfo pageInfo=new PageInfo(productComments,5);
+	public Msg queryProductsComment(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+			Integer userId) {
+		PageHelper.startPage(pn, 15);
+		List<ProductComment> productComments = productCommentService
+				.queryProductCommentByUserId(userId);
+		PageInfo<ProductComment> pageInfo = new PageInfo<ProductComment>(
+				productComments, 6);
 		return Msg.success().add("pageInfo", pageInfo);
 	}
 }

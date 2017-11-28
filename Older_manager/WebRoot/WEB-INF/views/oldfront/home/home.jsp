@@ -63,23 +63,7 @@
 				<ul>
 					<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a>
 					</li>
-					<!-- <li class="qc">
-						<a href="#">闪购</a>
-					</li>
-					<li class="qc">
-						<a href="#">限时抢</a>
-					</li>
-					<li class="qc">
-						<a href="#">团购</a>
-					</li>
-					<li class="qc last">
-						<a href="#">大包装</a>
-					</li> -->
 				</ul>
-				<div class="nav-extra">
-					<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-					<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-				</div>
 			</div>
 
 			<!--侧边导航 -->
@@ -325,46 +309,6 @@
 	</div>
 	<div class="shopMainbg">
 		<div class="shopMain" id="shopmain">
-
-			<!--今日推荐 -->
-
-			<div class="am-g am-g-fixed recommendation">
-				<div class="clock am-u-sm-3"">
-					<img src="${APP_PATH}/static/images/2016.png "></img>
-					<p>
-						今日<br>推荐
-					</p>
-				</div>
-				<div class="am-u-sm-4 am-u-lg-3 ">
-					<div class="info ">
-						<h3>真的有鱼</h3>
-						<h4>开年福利篇</h4>
-					</div>
-					<div class="recommendationMain one">
-						<a href="introduction.html"> <img
-							src="${APP_PATH}/static/images/tj.png "></img>
-						</a>
-					</div>
-				</div>
-				<div class="am-u-sm-4 am-u-lg-3 ">
-					<div class="info ">
-						<h3>囤货过冬</h3>
-						<h4>让爱早回家</h4>
-					</div>
-					<div class="recommendationMain two">
-						<img src="${APP_PATH}/static/images/tj1.png "></img>
-					</div>
-				</div>
-				<div class="am-u-sm-4 am-u-lg-3 ">
-					<div class="info ">
-						<h3>浪漫情人节</h3>
-						<h4>甜甜蜜蜜</h4>
-					</div>
-					<div class="recommendationMain three">
-						<img src="${APP_PATH}/static/images/tj2.png "></img>
-					</div>
-				</div>
-			</div>
 			<div class="clear "></div>
 			<div id="center_product_data"></div>
 			<jsp:include page="../person/footer.jsp"></jsp:include>

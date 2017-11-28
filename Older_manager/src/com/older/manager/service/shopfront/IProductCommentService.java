@@ -5,7 +5,7 @@ import java.util.List;
 import com.older.manager.bean.ProductComment;
 
 public interface IProductCommentService {
-	List<ProductComment> queryProductComments();
+	List<ProductComment> queryProductCommentByUserId(Integer userId);
 
 	public void  addProductComment(ProductComment productComment);
 }
