@@ -148,9 +148,13 @@
 		var code;
 		function getCode() {
 			if ($("#phone").val() == '') {
-				layer.msg("请输入手机号");
+				layer.msg("请输入手机号", {
+					offset : [ '40%', '68%' ]
+				});
 			} else if (!$("#phone").val().match(phone)) {
-				layer.msg("手机号码格式不正确");
+				layer.msg("手机号码格式不正确", {
+					offset : [ '40%', '68%' ]
+				});
 			} else {
 				$.ajax({
 					url : "getCode",
@@ -161,11 +165,15 @@
 					success : function(result) {
 						console.log(result);
 						if (result.code == 100) {
-							layer.msg("短信已经下发到手机");
+							layer.msg("短信已经下发到手机", {
+								offset : [ '40%', '68%' ]
+							});
 							code = result.extend.msg;
 							time();
 						} else {
-							layer.msg(result.extend.error);
+							layer.msg(result.extend.error, {
+								offset : [ '40%', '68%' ]
+							});
 						}
 					}
 				});
