@@ -142,7 +142,7 @@ public class OlderController {
 	}
 
 	@RequestMapping("/recomActivity")
-	public String sms() {
+	public String recomActivity() {
 		return "oldfront/older/person/recomActivity";
 	}
 
@@ -152,7 +152,7 @@ public class OlderController {
 	}
 
 	@RequestMapping("/shuye")
-	public String notice() {
+	public String shuye() {
 		return "oldfront/older/person/shuye";
 	}
 
@@ -194,5 +194,27 @@ public class OlderController {
 	@RequestMapping("/yichuan")
 	public String yichuan() {
 		return "oldfront/older/person/yichuan";
+	}
+	
+	@RequestMapping("/sms")
+	public String sms() {
+		return "oldfront/older/person/sms";
+	}
+	
+
+	@RequestMapping("/notice")
+	public String notice() {
+		return "oldfront/older/person/notice";
+	}
+	
+	@RequestMapping("/notice_detail/{id}")
+	public String notice_dettail(@PathVariable("id")String id,Model model) {
+		model.addAttribute("noticeId",id);
+		return "oldfront/older/person/notice_detail";
+	}
+	@RequestMapping("/sms_detail/{id}")
+	public String sms_detail(@PathVariable("id")String id,Model model) {
+		model.addAttribute("smsId",id);
+		return "oldfront/older/person/sms_detail";
 	}
 }

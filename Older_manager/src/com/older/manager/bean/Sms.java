@@ -17,6 +17,10 @@ public class Sms {
     private String sender;
 
     private Date sendtime;
+    
+    //条件查询所用
+    private Date sendtime1;
+    private Date sendtime2;
 
     @NotNull
     private String content;
@@ -136,6 +140,22 @@ public class Sms {
     public void setSms7(String sms7) {
         this.sms7 = sms7 == null ? null : sms7.trim();
     }
+
+	public Date getSendtime1() {
+		return sendtime1;
+	}
+
+	public void setSendtime1(Date sendtime1) {
+		this.sendtime1 = sendtime1;
+	}
+
+	public Date getSendtime2() {
+		return sendtime2;
+	}
+
+	public void setSendtime2(Date sendtime2) {
+		this.sendtime2 = sendtime2;
+	}
 
 	/*@Override
 	public String toString() {

@@ -43,11 +43,15 @@ a {
 							${older.oldman.name }</li>
 						<li><i class="icon-phone"></i>${older.oldman.phone }</li>
 						<li>
-							<div class="news">
-								<i class="icon-mail"></i>5
+							<div class="news" 
+							onClick="javascript:window.location.href='${APP_PATH}/older/sms'">
+								<i class="icon-mail"></i>
+					            <span id="sms_count"></span>
 							</div>
-							<div class="tips">
-								<i class="icon-light"></i>5
+							<div class="tips" 
+							onClick="javascript:window.location.href='${APP_PATH}/older/notice'">
+								<i class="icon-light"></i>
+								<span id="notice_count"></span>
 							</div>
 						</li>
 					</ul>
@@ -78,5 +82,36 @@ a {
 			<!-- 菜单结束 -->
 		</div>
 	</div>
+<script type="text/javascript">
+//默认加载数据
+$(function(){
+	
+	//加载短信总数
+	getSmsCount();
+	//加载公告总数
+	getNoticeCount();
+});
+//获得短信总数
+function getSmsCount(){
+	$.ajax({
+		url:"${APP_PATH}/sms/getCount/${older.account}",
+		type:"post",
+		success:function(result){ 
+			 $("#sms_count").html(result.extend.count);
+		}
+	});
+}
+
+//获得短信总数
+function getNoticeCount(){
+	$.ajax({
+		url:"${APP_PATH}/notice/getCount",
+		type:"post",
+		success:function(result){ 
+			 $("#notice_count").html(result.extend.count);
+		}
+	});
+}
+</script>
 </body>
 </html>

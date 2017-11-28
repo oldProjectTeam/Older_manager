@@ -12,6 +12,10 @@ public class Notice {
 	private String title;
 	
 	private Date time;
+	
+	//条件查询所用
+	private Date time1;
+	private Date time2;
 
 	@NotNull
 	@Pattern(regexp = "(^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$)", message = "姓名不合法")
@@ -149,6 +153,22 @@ public class Notice {
 				+ ", notice2=" + notice2 + ", notice3=" + notice3
 				+ ", notice4=" + notice4 + ", notice5=" + notice5
 				+ ", notice6=" + notice6 + ", notice7=" + notice7 + "]";
+	}
+
+	public Date getTime1() {
+		return time1;
+	}
+
+	public void setTime1(Date time1) {
+		this.time1 = time1;
+	}
+
+	public Date getTime2() {
+		return time2;
+	}
+
+	public void setTime2(Date time2) {
+		this.time2 = time2;
 	}
 
 }
