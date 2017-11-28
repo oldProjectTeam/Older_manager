@@ -371,12 +371,19 @@ public class OrderManagerController {
 		return Msg.success();
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * 查询个人中心里面的订单信息
+	 * @param usersid
+	 * @return
+	 */
+	@RequestMapping("/queryOrderInfoByUserId")
+	@ResponseBody
+	public Msg queryOrderInfoByUserId(@RequestParam("usersid")Integer usersid){
+		List<Integer> list=orderdetailService.queryOrderInfoByUserId(usersid);
+		if (list.size()>0) {
+			return Msg.success().add("orderInfo", list);
+		}else {
+			return Msg.fail();
+		}
+	}
 }

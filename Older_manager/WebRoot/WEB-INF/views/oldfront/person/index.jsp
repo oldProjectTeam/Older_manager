@@ -80,21 +80,21 @@
 						<div class="m-order">
 							<div class="s-bar">
 								<i class="s-icon"></i>我的订单 <a class="i-load-more-item-shadow"
-									href="order.html">全部订单</a>
+									href="${APP_PATH}/order/selectallorder/${users.id}">全部订单</a>
 							</div>
 							<ul>
-								<li><a href="order.html"><i><img
-											src="${APP_PATH}/static/images/pay.png" /></i><span>待付款</span></a></li>
-								<li><a href="order.html"><i><img
+								<li><a href="javascript:#"><i><img
+											src="${APP_PATH}/static/images/pay.png" /></i><span>待付款<em
+											class="m-num" id="orderNum1"></em></span></a></li>
+								<li><a href="javascript:#"><i><img
 											src="${APP_PATH}/static/images/send.png" /></i><span>待发货<em
-											class="m-num">1</em></span></a></li>
-								<li><a href="order.html"><i><img
-											src="${APP_PATH}/static/images/receive.png" /></i><span>待收货</span></a></li>
-								<li><a href="order.html"><i><img
+											class="m-num" id="orderNum2"></em></span></a></li>
+								<li><a href="javascript:#"><i><img
+											src="${APP_PATH}/static/images/receive.png" /></i><span>待收货<em
+											class="m-num" id="orderNum3"></em></span></a></li>
+								<li><a href="javascript:#"><i><img
 											src="${APP_PATH}/static/images/comment.png" /></i><span>待评价<em
-											class="m-num">3</em></span></a></li>
-								<li><a href="change.html"><i><img
-											src="${APP_PATH}/static/images/refund.png" /></i><span>退换货</span></a></li>
+											class="m-num" id="orderNum4"></em></span></a></li>
 							</ul>
 						</div>
 						<!--物流 -->
@@ -209,6 +209,7 @@
 
 	<script type="text/javascript">
 		$(function() {
+			orderInfo();
 			//发送请求获取
 			$.ajax({
 				url : "${APP_PATH}/info/selectinformation",
@@ -222,6 +223,27 @@
 				}
 			});
 		});
+
+		function orderInfo() {
+			$.ajax({
+				url : "${APP_PATH}/order/queryOrderInfoByUserId",
+				data : {
+					"usersid" : ${users.id}
+				},
+				type : "GET",
+				success : function(result) {
+					$("#orderNum1").empty();
+					$("#orderNum2").empty();
+					$("#orderNum3").empty();
+					$("#orderNum4").empty();
+					var order = result.extend.orderInfo;
+					$("#orderNum1").append(order[0]);
+					$("#orderNum2").append(order[1]);
+					$("#orderNum3").append(order[2]);
+					$("#orderNum4").append(order[3]);
+				}
+			});
+		}
 	</script>
 </body>
 </html>
