@@ -246,6 +246,7 @@ public class OrderManagerController {
 			productComment.setUsersId(orderdetail.getOrders().getUserId());
 			productComment.setOrdersdetailId(orderdetail.getId());
 			productComment.setCreatetime(new Date());
+			productComment.setProductid(orderdetail.getProducctsId());//
 			productCommentService.addProductComment(productComment);
 			orders.setId(orderdetail.getOrderId());
 		}

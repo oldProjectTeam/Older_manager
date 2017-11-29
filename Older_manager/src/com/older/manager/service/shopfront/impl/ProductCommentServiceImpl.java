@@ -1,7 +1,9 @@
 package com.older.manager.service.shopfront.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,4 +56,32 @@ public class ProductCommentServiceImpl implements IProductCommentService {
 		// TODO 自动生成的方法存根
 		productCommentMapper.insertSelective(productComment);
 	}
+	
+
+	@Override
+	public Map<String, Integer> countComment(Integer pid) {
+		Map<String, Integer> map=new HashMap<String, Integer>();
+		for (int i = 0; i < 5; i++) {
+			ProductCommentExample example=new ProductCommentExample();
+			Criteria criteria=example.createCriteria();
+			criteria.andGradeEqualTo(i+1);
+			criteria.andProductidEqualTo(pid);
+			map.put(""+(i+1), productCommentMapper.countByExample(example));
+			
+		 }
+		
+		return map;
+	}
+	@Override
+	public List<ProductComment> selectAllProductComment(Integer pid) {
+		
+		return productCommentMapper.selectByExampleWithUserid(pid);
+	}
+	
+	
+	
+	
+	
+	
+	
 }

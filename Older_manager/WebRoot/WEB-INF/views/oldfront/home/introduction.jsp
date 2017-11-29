@@ -41,6 +41,8 @@
 <script type="text/javascript" src="${APP_PATH}/static/js/list.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
+	
+	
 </head>
 <body>
 	<jsp:include page="shopheader.jsp"></jsp:include>
@@ -54,6 +56,10 @@
 			<div class="nav-cont">
 				<ul>
 					<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
+					<li class="qc"><a href="#">闪购</a></li>
+					<li class="qc"><a href="#">限时抢</a></li>
+					<li class="qc"><a href="#">团购</a></li>
+					<li class="qc last"><a href="#">大包装</a></li>
 				</ul>
 			</div>
 		</div>
@@ -303,102 +309,52 @@
 
 						<!-- 全部评价 -->
 						<div class="am-tab-panel am-fade">
-							<div class="actor-new">
-								<div class="rate">
-									<strong>100<span>%</span></strong> <br> <span>好评度</span>
-								</div>
-								<dl>
-									<dt>买家印象</dt>
-									<dd class="p-bfc">
-										<q class="comm-tags"><span>味道不错</span><em>(2177)</em></q> <q
-											class="comm-tags"><span>颗粒饱满</span><em>(1860)</em></q> <q
-											class="comm-tags"><span>口感好</span><em>(1823)</em></q> <q
-											class="comm-tags"><span>商品不错</span><em>(1689)</em></q> <q
-											class="comm-tags"><span>香脆可口</span><em>(1488)</em></q> <q
-											class="comm-tags"><span>个个开口</span><em>(1392)</em></q> <q
-											class="comm-tags"><span>价格便宜</span><em>(1119)</em></q> <q
-											class="comm-tags"><span>特价买的</span><em>(865)</em></q> <q
-											class="comm-tags"><span>皮很薄</span><em>(831)</em></q>
-									</dd>
-								</dl>
-							</div>
+							
 							<div class="clear"></div>
 
 							<div class="tb-r-filter-bar">
 								<ul class=" tb-taglist am-avg-sm-4">
 									<li class="tb-taglist-li tb-taglist-li-current">
 										<div class="comment-info">
-											<span>全部评价</span> <span class="tb-tbcr-num">(32)</span>
+											<span>全部评价</span> <span class="tb-tbcr-num" id="comm1"></span>
 										</div>
 									</li>
 									<li class="tb-taglist-li tb-taglist-li-1">
 										<div class="comment-info">
-											<span>好评</span> <span class="tb-tbcr-num">(32)</span>
+											<span>好评</span> <span class="tb-tbcr-num" id="comm2"></span>
 										</div>
 									</li>
 									<li class="tb-taglist-li tb-taglist-li-0">
 										<div class="comment-info">
-											<span>中评</span> <span class="tb-tbcr-num">(32)</span>
+											<span>中评</span> <span class="tb-tbcr-num" id="comm3"></span>
 										</div>
 									</li>
 									<li class="tb-taglist-li tb-taglist-li--1">
 										<div class="comment-info">
-											<span>差评</span> <span class="tb-tbcr-num">(32)</span>
+											<span>差评</span> <span class="tb-tbcr-num" id="comm4"></span>
 										</div>
 									</li>
 								</ul>
 							</div>
 							<div class="clear"></div>
-
-							<ul class="am-comments-list am-comments-list-flip">
-								<!-- 评论容器 -->
-								<li class="am-comment"><a href=""> <!-- 评论者头像 --> <img
-										class="am-comment-avatar"
-										src="${APP_PATH}/static/images/hwbn40x40.jpg" />
-								</a>
-									<div class="am-comment-main">
-										<!-- 评论内容容器 -->
-										<header class="am-comment-hd"> <!--<h3 class="am-comment-title">评论标题</h3>-->
-										<!-- 评论元数据 -->
-										<div class="am-comment-meta">
-											<!-- 评论者 -->
-											<a href="#link-to-user" class="am-comment-author">b***1
-												(匿名)</a>评论于
-											<time datetime="">2015年11月02日 17:46</time>
-										</div>
-										</header>
-
-										<div class="am-comment-bd">
-											<div class="tb-rev-item " data-id="255776406962">
-												<!-- 评论内容 -->
-												<div class="J_TbcRate_ReviewContent tb-tbcr-content ">
-													摸起来丝滑柔软，不厚，没色差，颜色好看！买这个衣服还接到诈骗电话，我很好奇他们是怎么知道我买了这件衣服，并且还知道我的电话的！
-												</div>
-												<div class="tb-r-act-bar">颜色分类：柠檬黄&nbsp;&nbsp;尺码：S</div>
-											</div>
-										</div>
-									</div></li>
-							</ul>
+                             <div id="divid">
+                             
+                             </div>
 							<div class="clear"></div>
 
 							<!--评论的分页 -->
-							<ul class="am-pagination am-pagination-right">
-								<li class="am-disabled"><a href="#">&laquo;</a></li>
-								<li class="am-active"><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">&raquo;</a></li>
-							</ul>
+							<!--分页信息  -->
+						<div class="row">
+							<div class="col-md-10">
+								<nav aria-label="Page navigation" style="float:right">
+								<ul class="am-pagination am-pagination-right" id="nav_ul_info">
+
+								</ul>
+								</nav>
+							</div>
+						</div>
 							<div class="clear"></div>
 
-							<!-- 提示信息 -->
-							<div class="tb-reviewsft">
-								<div class="tb-rate-alert type-attention">
-									购买前请查看该商品的 <a href="#" target="_blank">购物保障</a>，明确您的售后保障权益。
-								</div>
-							</div>
 						</div>
 					</div>
 					<!-- 介绍主体内容 -->
@@ -414,6 +370,8 @@
 		var num = $('#text_box').val();
 		var id = '${product.id}';
 		var userId = '${users.id}';
+		var current_pageNum = "";
+		var current_pages = "";
 		function now_pay() {
 			window.location.href = "${APP_PATH}/confirm/now_buy/" + id + "&"
 					+ num + "&" + userId;
@@ -439,6 +397,165 @@
 				});
 			}
 		}
+		//好评 差评
+	$(function(){
+	       $.ajax({
+					url : "${APP_PATH}/comment/selectcomment",
+					type : "GET",
+					data : {
+						"pid" : ${product.id},
+						
+					},
+					success : function(result) {
+						if (result.code == 100) {
+							var rel=result.extend.map;
+							
+							$("#comm1").text('('+(rel[1]+rel[2]+rel[3]+rel[4]+rel[5])+')');
+							$("#comm2").text('('+(rel[4]+rel[5])+')');
+							$("#comm3").text('('+(rel[3])+')');
+							$("#comm4").text('('+(rel[1]+rel[2])+')');
+						}
+					}
+				});
+	
+	
+	//构建
+	bulidthis();
+	});	
+		
+		
+	//评论	
+	//构建
+							
+	function bulidthis(result){	
+	       $("#divid").empty();	
+		    current_pageNum = result.extend.pageInfo.pageNum;
+			current_pages = result.extend.pageInfo.pages;
+	$.each(result.extend.pageInfo.list, function(index, item) {	
+	var tul=$("<ul></ul>").addClass("am-comments-list am-comments-list-flip").appendTo("#divid");
+	var tli=$("<li></li>").addClass("am-comment").appendTo(tul);
+	var ta=$("<a></a>").append("<img class='am-comment-avatar' src='${APP_PATH}/static/images/hwbn40x40.jpg' />").appendTo(tli);
+	
+	var divout=$("<div></div>").addClass("am-comment-main").appendTo(tli);
+	var theader=$("<header></header>").addClass("am-comment-hd").appendTo(divout);
+	var divin=$("<div></div>").addClass("am-comment-meta").appendTo(theader);
+	var tain=$("<a></a>").addClass("am-comment-author").append(item.users.email+'  ').appendTo(divin);
+	var ttime=$("<time datetime=''></time>").append(ChangeDateFormat(item.createtime)).appendTo(divin);
+	var div1=$("<div></div>").addClass("am-comment-bd").appendTo(divout);
+	var div4=$("<div data-id='255776406962'></div>").addClass("tb-rev-item").appendTo(div1);
+	var div2=$("<div></div>").append(item.content).addClass("J_TbcRate_ReviewContent tb-tbcr-content").appendTo(div4);
+	
+	});
+	
+	}	
+	
+	
+	function buil_table_pageInfo(result) {
+			$("#nav_ul_info").empty();
+			$("#page_info").empty();
+			//左边分页信息
+			var pageInfo = result.extend.pageInfo;
+			
+			var firstPage = $("<li></li>").append($("<a></a>").append("首页"));
+			var prePage = $("<li></li>").append($("<a></a>").append("&laquo;"));
+			var nextPage = $("<li></li>")
+					.append($("<a></a>").append("&raquo;"));
+			var lastPage = $("<li></li>").append($("<a></a>").append("末页"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
+				firstPage.addClass("am-disabled");
+				prePage.addClass("am-disabled");
+			} else {
+				firstPage.click(function() {
+					go(1);
+				});
+				prePage.click(function() {
+					go(result.extend.pageInfo.pageNum - 1);
+				});
+			}
+			if (result.extend.pageInfo.hasNextPage == false) {
+				nextPage.addClass("am-disabled");
+				lastPage.addClass("am-disabled");
+			} else {
+				nextPage.click(function() {
+					go(result.extend.pageInfo.pageNum + 1);
+				});
+				lastPage.click(function() {
+					go(result.extend.pageInfo.pages);
+				});
+			}
+			$("#nav_ul_info").append(firstPage).append(prePage);
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("am-active");
+				}
+				numLi.click(function() {
+					go(item);
+				});
+				$("#nav_ul_info").append(numLi);
+			});
+			$("#nav_ul_info").append(nextPage).append(lastPage);
+
+		}
+	$(function(){
+	      go(1);
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//去第几页		
+function go(pn){
+
+         $.ajax({
+					url : "${APP_PATH}/comment/selectallcomment",
+					type : "GET",
+					data : {
+					    "pn":pn,
+						"pid" : ${product.id},
+						
+					},
+					success : function(result) {
+						if (result.code == 100) {
+						   //构建这个
+							bulidthis(result);
+						   //分页
+						   buil_table_pageInfo(result);
+						}
+					}
+				});
+	
+
+}		
+		
+		function ChangeDateFormat(d) {
+			//将时间戳转为int类型，构造Date类型
+			if (d != null) {
+				var date = new Date(parseInt(d));
+
+				//月份得+1，且只有个位数时在前面+0
+				var month = date.getMonth() + 1 + "月";
+
+				//日期为个位数时在前面+0
+				var currentDate = date.getDate()+"日";
+                var hoses=date.getHours();
+                var mm=date.getMinutes();
+                if(mm<10){
+                   mm="0"+mm;
+                }
+				//getFullYear得到4位数的年份 ，返回一串字符串
+				return date.getFullYear() + "年" + month + currentDate+" "+hoses+":"+mm;
+			} else {
+				return null;
+			}
+		}
+		
 	</script>
 </body>
 </html>

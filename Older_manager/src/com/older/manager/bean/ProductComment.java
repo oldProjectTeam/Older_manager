@@ -6,7 +6,7 @@ public class ProductComment {
     private Integer id;
 
     private Integer usersId;
-
+  
     private Integer ordersdetailId;
 
     private String content;
@@ -26,10 +26,23 @@ public class ProductComment {
     private String param3;
 
     private String param4;
+
+    private Integer productid;
     
     private Orderdetail orderdetail;
+    //用户 
+    private Users users;
     
-    public Orderdetail getOrderdetail() {
+
+    public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Orderdetail getOrderdetail() {
 		return orderdetail;
 	}
 
@@ -133,16 +146,11 @@ public class ProductComment {
         this.param4 = param4 == null ? null : param4.trim();
     }
 
-	@Override
-	public String toString() {
-		return "ProductComment [id=" + id + ", usersId=" + usersId
-				+ ", ordersdetailId=" + ordersdetailId + ", content=" + content
-				+ ", createtime=" + createtime + ", grade=" + grade
-				+ ", imageurl=" + imageurl + ", anonymity=" + anonymity
-				+ ", param1=" + param1 + ", param2=" + param2 + ", param3="
-				+ param3 + ", param4=" + param4 + ", orderdetail="
-				+ orderdetail + "]";
-	}
-    
-    
+    public Integer getProductid() {
+        return productid;
+    }
+
+    public void setProductid(Integer productid) {
+        this.productid = productid;
+    }
 }
