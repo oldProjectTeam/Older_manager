@@ -7,21 +7,17 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <base href="<%=basePath%>">
-
 <title>购物商城</title>
 <link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
 	type="text/css" />
 <link href="${APP_PATH}/static/css/admin.css" rel="stylesheet"
 	type="text/css" />
-
 <link href="${APP_PATH}/static/css/demo.css" rel="stylesheet"
 	type="text/css" />
-
 <link href="${APP_PATH}/static/css/hmstyle.css" rel="stylesheet"
 	type="text/css" />
 <link href="${APP_PATH}/static/css/skin.css" rel="stylesheet"
@@ -30,7 +26,6 @@
 <script src="${APP_PATH}/static/js/amazeui.min.js"></script>
 <script src="${APP_PATH}/lib/layer/2.4/layer.js"></script>
 </head>
-
 <body>
 	<jsp:include page="shopheader.jsp"></jsp:include>
 	<div class="banner">
@@ -65,14 +60,12 @@
 					</li>
 				</ul>
 			</div>
-
 			<!--侧边导航 -->
 			<div id="nav" class="navfull">
 				<div class="area clearfix">
 					<div class="category-content" id="guide_2">
 						<div class="category">
 							<ul class="category-list" id="js_climit_li">
-
 								<!-- 构建信息 -->
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
@@ -155,16 +148,12 @@
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
 								</li>
-
 							</ul>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
 			<!--轮播-->
-
 			<script type="text/javascript">
 				(function() {
 					$('.am-slider').flexslider();
@@ -201,9 +190,6 @@
 													});
 								});
 			</script>
-
-
-
 			<!--小导航 -->
 			<div class="am-g am-g-fixed smallnav">
 				<div class="am-u-sm-3">
@@ -230,31 +216,25 @@
 					</a>
 				</div>
 			</div>
-
 			<!--走马灯 -->
-
 			<div class="marqueen">
 				<span class="marqueen-title">商城头条</span>
 				<div class="demo">
-
 					<ul>
-						<li class="title-first"><a target="_blank" href="#"> <img
-								src="${APP_PATH}/static/images/TJ2.jpg"></img> <span>[特惠]</span>商城爆品1分秒
-						</a></li>
+						<li class="title-first"><img
+							src="${APP_PATH}/static/images/TJ2.jpg"></img> <span>[特惠]</span>商城爆品1分秒
+						</li>
 						<span>[公告]</span>商城与广州市签署战略合作协议
 						<img src="${APP_PATH}/static/images/TJ.jpg"></img>
 						<p>XXXXXXXXXXXXXXXXXX</p>
 						</a>
 						</li>
-
 						<div class="mod-vip">
 							<div class="m-baseinfo">
-								<a href="../person/index.html"> <img
+								<a href="${APP_PATH}/address/index"> <img
 									src="${APP_PATH}/static/images/getAvatar.do.jpg">
 								</a> <em> Hi,<span class="s-name"><c:if
-											test="${uses}==null">小叮当</c:if>${users.account}</span> <a href="#">
-										<p>点击更多优惠活动</p>
-								</a>
+											test="${uses}==null">小叮当</c:if>${users.account}</span>
 								</em>
 							</div>
 							<c:if test="${uses}==null || ${uses}==''">
@@ -263,7 +243,6 @@
 										class="am-btn-warning btn" href="register.html">注册</a>
 								</div>
 							</c:if>
-
 							<div class="member-login">
 								<a href="#"> <strong>0</strong>待收货
 								</a> <a href="#"> <strong>0</strong>待发货
@@ -273,7 +252,6 @@
 							</div>
 							<div class="clear"></div>
 						</div>
-
 						<li><a target="_blank" href="#"> <span>[特惠]</span>洋河年末大促，低至两件五折
 						</a></li>
 						<li><a target="_blank" href="#"> <span>[公告]</span>华北、华中部分地区配送延迟
@@ -281,7 +259,6 @@
 						<li><a target="_blank" href="#"> <span>[特惠]</span>家电狂欢千亿礼券
 								买1送1！
 						</a></li>
-
 					</ul>
 					<div class="advTip">
 						<img src="${APP_PATH}/static/images/advTip.jpg" />

@@ -64,10 +64,7 @@
 							name="password" type="password" placeholder="请输入密码" id="password" />
 						<font color="red"></font>
 					</div>
-					<div class="login3">
-						<input type="radio" /><span>记住密码</span>
-					</div>
-					<div class="btn1">
+					<div class="btn1" style="margin-top: 15px;">
 						<input type="button" class="btn2" value="登 录" id="login" /> <img
 							src="${APP_PATH}/static/images/loading.gif" id="loading"
 							style="margin-left: 180px;display: none;">
@@ -84,31 +81,30 @@
 	<jsp:include page="../footer.jsp"></jsp:include>
 
 	<script type="text/javascript">
-	
 		$("#login").click(function() {
-			var regx=/^[1][3,4,5,7,8][0-9]{9}$/;
-			if($("#account").val() == ''){
+			var regx = /^[1][3,4,5,7,8][0-9]{9}$/;
+			if ($("#account").val() == '') {
 				$("#msg").html("请输入账号!");
 				return false;
 			}
-			if(!regx.test($("#account").val())){
+			if (!regx.test($("#account").val())) {
 				$("#msg").html("请输入正确的手机号码!");
 				return false;
 			}
-			var pass=/^[a-zA-Z0-9_\.-]{6,30}$/;
-			var password=$("#password").val();
-			if (password=='') {
+			var pass = /^[a-zA-Z0-9_\.-]{6,30}$/;
+			var password = $("#password").val();
+			if (password == '') {
 				$("#msg").html("请输入密码!");
 				return false;
-			}if(password.length<6){
+			}
+			if (password.length < 6) {
 				$("#msg").html("密码至少为六位!");
 				return false;
 			}
-			if(!pass.test(password)){
+			if (!pass.test(password)) {
 				$("#msg").html("密码可以是6-30为[a-zA-Z0-9_.-]");
 				return false;
-			}
-			else {
+			} else {
 				$("#msg").html("");
 				$("#login").val("正在登录...");
 				$("#loading").css("display", "block");
