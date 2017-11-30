@@ -92,7 +92,7 @@
 									<a href="product/getProduct/${list.products.id}"
 										class="J_MakePoint"> <%-- <img src="${APP_PATH}/static/images/comment.jpg_400x400.jpg" class="itempic"> --%>
 										<img
-										src="http://123.207.93.53/Older_back/${list.products.images}"
+										src="http://gyadmin-1252357563.file.myqcloud.com/${list.products.images}"
 										class="itempic">
 									</a>
 								</div>

@@ -74,7 +74,7 @@
 					<p>${activity.content}</p>
 				</div>
 				<div>
-					<img src="http://123.207.93.53/Older_back/${activity.activity1}" />
+					<img src="http://gyadmin-1252357563.file.myqcloud.com/${activity.activity1}" />
 				</div>
 			</div>
 		</div>

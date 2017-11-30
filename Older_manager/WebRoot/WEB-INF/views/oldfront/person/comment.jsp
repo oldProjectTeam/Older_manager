@@ -165,7 +165,7 @@
 								if (imgUrl == null || imgUrl == '') {
 									imgUrl = '${APP_PATH}/static/images/logo.png';
 								} else {
-									imgUrl = "http://123.207.93.53/Older_back/"
+									imgUrl = "http://gyadmin-1252357563.file.myqcloud.com/"
 											+ imgUrl;
 								}
 								firstA.append($("<img/>").addClass("itempic")

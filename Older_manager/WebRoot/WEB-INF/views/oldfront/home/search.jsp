@@ -626,10 +626,10 @@
 				var dataimg = $("<img>").css("height", "218").css("width",
 						"218");
 				if (item.images.indexOf(",") > 0) {
-					dataimg.attr("src", "http://123.207.93.53/Older_back/"
+					dataimg.attr("src", "http://gyadmin-1252357563.file.myqcloud.com/"
 							+ item.images.split(",", 1));
 				} else {
-					dataimg.attr("src", "http://123.207.93.53/Older_back/"
+					dataimg.attr("src", "http://gyadmin-1252357563.file.myqcloud.com/"
 							+ item.images);
 				}
 

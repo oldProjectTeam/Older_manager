@@ -300,7 +300,7 @@
 				$("#releasepeople").html(a[4]);
 				$("#content").text(cont);
 				$("#img")
-						.attr("src", "http://123.207.93.53/Older_back/" + a[6]);
+						.attr("src", "http://gyadmin-1252357563.file.myqcloud.com/" + a[6]);
 			}
 			function search(pn) {
 				var oldManId = ${older.oldman.id};

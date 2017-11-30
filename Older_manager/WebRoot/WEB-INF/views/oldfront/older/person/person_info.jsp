@@ -91,7 +91,7 @@
 											<td width="35%" align="center" rowspan="3"
 												style="vertical-align: middle;">
 												<div id="h_YPhoto_div"></div> <img
-												src="http://123.207.93.53/Older_back/${oldman.photo}"
+												src="http://gyadmin-1252357563.file.myqcloud.com/${oldman.photo}"
 												width="120" height="120" name="photo"
 												value="${oldman.photo}" id="imgShow" style="display: block;" />
 												<input type="file" id="up_img"

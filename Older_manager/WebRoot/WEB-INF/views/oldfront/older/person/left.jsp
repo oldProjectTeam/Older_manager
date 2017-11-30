@@ -33,7 +33,7 @@ a {
 			<!-- 用户中心开始 -->
 			<div class="user">
 				<div class="user-photo">
-					<img src="http://123.207.93.53/Older_back/${older.oldman.photo}"
+					<img src="http://gyadmin-1252357563.file.myqcloud.com/${older.oldman.photo}"
 						height="115" width="108" border="0" class="img-circle"
 						nerror="onerror=null;src='${APP_PATH }/static/oldfront/older/images/doctor.png'" />
 				</div>

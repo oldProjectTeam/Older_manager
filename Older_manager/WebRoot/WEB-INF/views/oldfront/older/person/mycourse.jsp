@@ -265,7 +265,7 @@
 								$("#isnormalclass1").append(c[4]);
 							}
 							$("#img1").attr("src",
-									"http://123.207.93.53/Older_back/" + c[5]);
+									"http://gyadmin-1252357563.file.myqcloud.com/" + c[5]);
 							$("#timeStr1").append(ChangeDateFormat(c[6]));
 							$("#enrolstate1").append(c[7]);
 							if (c[8].length == 4) {

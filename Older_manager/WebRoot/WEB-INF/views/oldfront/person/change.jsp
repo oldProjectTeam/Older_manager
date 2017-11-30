@@ -112,7 +112,7 @@
 																<div class="item-pic">
 																	<a href="product/getProduct/${ch.productid}"
 																		class="J_MakePoint"> <img
-																		src="http://123.207.93.53/Older_back/${ch.chphoto}"
+																		src="http://gyadmin-1252357563.file.myqcloud.com/${ch.chphoto}"
 																		class="itempic J_ItemImg">
 																	</a>
 																</div>

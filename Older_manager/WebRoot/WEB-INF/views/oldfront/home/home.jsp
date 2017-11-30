@@ -632,7 +632,7 @@
 														img_content
 																.attr(
 																		"src",
-																		"http://123.207.93.53/Older_back/"
+																		"http://gyadmin-1252357563.file.myqcloud.com/"
 																				+ item.images
 																						.split(
 																								",",
@@ -641,7 +641,7 @@
 														img_content
 																.attr(
 																		"src",
-																		"http://123.207.93.53/Older_back/"
+																		"http://gyadmin-1252357563.file.myqcloud.com/"
 																				+ item.images);
 													}
 

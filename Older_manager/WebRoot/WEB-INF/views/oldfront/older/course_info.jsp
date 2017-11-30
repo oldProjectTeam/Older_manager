@@ -74,7 +74,7 @@
 					<p>${course.content}</p>
 				</div>
 				<div>
-					<img src="http://123.207.93.53/Older_back/${course.photo}" />
+					<img src="http://gyadmin-1252357563.file.myqcloud.com/${course.photo}" />
 				</div>
 			</div>
 		</div>

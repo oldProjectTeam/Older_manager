@@ -133,7 +133,7 @@
 																					"img-responsive")
 																			.attr(
 																					"src",
-																					"http://123.207.93.53/Older_back/"
+																					"http://gyadmin-1252357563.file.myqcloud.com/"
 																							+ item.activity1))
 															.css("height",
 																	"240").css(

@@ -111,10 +111,10 @@
 					</script>
 
 					<div class="tb-booth tb-pic tb-s310">
-						<a href="http://123.207.93.53/Older_back/${product.imgList[0]}"><img
-							src="http://123.207.93.53/Older_back/${product.imgList[0]}"
+						<a href="http://gyadmin-1252357563.file.myqcloud.com/${product.imgList[0]}"><img
+							src="http://gyadmin-1252357563.file.myqcloud.com/${product.imgList[0]}"
 							alt="细节展示放大镜特效"
-							rel="http://123.207.93.53/Older_back/${product.imgList[0]}"
+							rel="http://gyadmin-1252357563.file.myqcloud.com/${product.imgList[0]}"
 							class="jqzoom" /></a>
 					</div>
 					<ul class="tb-thumb" id="thumblist">
@@ -122,9 +122,9 @@
 							<li class="tb-selected">
 								<div class="tb-pic tb-s40">
 									<a href="javascript:#"> <img
-										src="http://123.207.93.53/Older_back/${s}"
-										mid="http://123.207.93.53/Older_back/${s}"
-										big="http://123.207.93.53/Older_back/${s}">
+										src="http://gyadmin-1252357563.file.myqcloud.com/${s}"
+										mid="http://gyadmin-1252357563.file.myqcloud.com/${s}"
+										big="http://gyadmin-1252357563.file.myqcloud.com/${s}">
 									</a>
 								</div>
 							</li>
@@ -300,7 +300,7 @@
 								</div>
 								<div class="twlistNews">
 									<c:forEach items="${product.imgList}" var="s">
-										<img src="http://123.207.93.53/Older_back/${s}" />
+										<img src="http://gyadmin-1252357563.file.myqcloud.com/${s}" />
 									</c:forEach>
 								</div>
 							</div>

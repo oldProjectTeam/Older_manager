@@ -131,7 +131,7 @@ ul li {
 			<ul id="imgContent">
 				<c:forEach items="${pageInfo.list}" var="course">
 					<li><a href="${APP_PATH}/official/courseInfoId/${course.id}"><img
-							src="http://123.207.93.53/Older_back/${course.photo}"></a></li>
+							src="http://gyadmin-1252357563.file.myqcloud.com/${course.photo}"></a></li>
 				</c:forEach>
 			</ul>
 			<div class="arraw">
@@ -385,7 +385,7 @@ ul li {
 					var imgLi = $("<li></li>").append(
 							$("<img/>").addClass("img-size").attr(
 									"src",
-									"http://123.207.93.53/Older_back/"
+									"http://gyadmin-1252357563.file.myqcloud.com/"
 											+ item.photo));
 					var title = item.title;
 					if (title.length > 10) {
@@ -438,7 +438,7 @@ ul li {
 					var imgLi = $("<li></li>").append(
 							$("<img/>").addClass("img-size").attr(
 									"src",
-									"http://123.207.93.53/Older_back/"
+									"http://gyadmin-1252357563.file.myqcloud.com/"
 											+ item.photo));
 					var title = item.title;
 					if (title.length > 10) {
