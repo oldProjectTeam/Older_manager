@@ -234,46 +234,42 @@
 						.append(td6).appendTo($("#table_data"));
 
 				//课程详细
-				$(document).on(
-						"click",
-						".jjda-btn",
-						function() {
-							emptyInfo();
-							var c = $(this).attr("item");
-							c = c.split("-");
-							$("#courseTitle1").append(c[0]);
-							$("#oldManName1").append('${older.oldman.name}');
-							$("#oldManphone1").append('${older.oldman.phone}');
-							if (c[1].length == 4) {
-								$("#coursecompletion1").append("无");
-							} else {
-								$("#coursecompletion1").append(c[1]);
-							}
-							if (c[2].length == 4) {
-								$("#grade1").append("无");
-							} else {
-								$("#grade1").append(c[2]);
-							}
-							if (c[3].length == 4) {
-								$("#rating1").append("无");
-							} else {
-								$("#rating1").append(c[3]);
-							}
-							if (c[4].length == 4) {
-								$("#isnormalclass1").append("无");
-							} else {
-								$("#isnormalclass1").append(c[4]);
-							}
-							$("#img1").attr("src",
-									"http://gyadmin-1252357563.file.myqcloud.com/" + c[5]);
-							$("#timeStr1").append(ChangeDateFormat(c[6]));
-							$("#enrolstate1").append(c[7]);
-							if (c[8].length == 4) {
-								$("#remark1").append("无");
-							} else {
-								$("#remark1").append(c[8]);
-							}
-						});
+				$(document).on("click", ".jjda-btn", function() {
+					emptyInfo();
+					var c = $(this).attr("item");
+					c = c.split("-");
+					$("#courseTitle1").append(c[0]);
+					$("#oldManName1").append('${older.oldman.name}');
+					$("#oldManphone1").append('${older.oldman.phone}');
+					if (c[1].length == 4) {
+						$("#coursecompletion1").append("无");
+					} else {
+						$("#coursecompletion1").append(c[1]);
+					}
+					if (c[2].length == 4) {
+						$("#grade1").append("无");
+					} else {
+						$("#grade1").append(c[2]);
+					}
+					if (c[3].length == 4) {
+						$("#rating1").append("无");
+					} else {
+						$("#rating1").append(c[3]);
+					}
+					if (c[4].length == 4) {
+						$("#isnormalclass1").append("无");
+					} else {
+						$("#isnormalclass1").append(c[4]);
+					}
+					$("#img1").attr("src", c[5]);
+					$("#timeStr1").append(ChangeDateFormat(c[6]));
+					$("#enrolstate1").append(c[7]);
+					if (c[8].length == 4) {
+						$("#remark1").append("无");
+					} else {
+						$("#remark1").append(c[8]);
+					}
+				});
 			});
 		}
 

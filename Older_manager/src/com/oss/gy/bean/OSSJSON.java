@@ -1,4 +1,4 @@
-package com.older.manager.bean;
+package com.oss.gy.bean;
 
 public class OSSJSON {
 	private int code;

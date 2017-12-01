@@ -4,8 +4,6 @@ import java.nio.charset.Charset;
 import java.util.concurrent.Callable;
 
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.qcloud.cos.common_utils.CommonFileUtils;
 import com.qcloud.cos.exception.UnknownException;

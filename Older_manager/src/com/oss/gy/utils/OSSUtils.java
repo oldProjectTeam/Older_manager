@@ -1,4 +1,4 @@
-package com.older.manager.utils;
+package com.oss.gy.utils;
 
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;

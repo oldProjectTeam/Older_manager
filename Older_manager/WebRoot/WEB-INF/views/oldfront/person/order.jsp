@@ -128,7 +128,7 @@
 																			<div class="item-pic">
 																				<a href="product/getProduct/${list.products.id}"
 																					class="J_MakePoint"> <img
-																					src="http://gyadmin-1252357563.file.myqcloud.com/${list.products.images}"
+																					src="${list.products.images}"
 																					class="itempic J_ItemImg">
 																				</a>
 																			</div>
@@ -385,7 +385,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="http://gyadmin-1252357563.file.myqcloud.com/${list.products.images}"
+																							src="${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>
@@ -548,7 +548,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="http://gyadmin-1252357563.file.myqcloud.com/${list.products.images}"
+																							src="${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>
@@ -710,7 +710,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="http://gyadmin-1252357563.file.myqcloud.com/${list.products.images}"
+																							src="${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>
@@ -891,7 +891,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="http://gyadmin-1252357563.file.myqcloud.com/${list.products.images}"
+																							src="${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>

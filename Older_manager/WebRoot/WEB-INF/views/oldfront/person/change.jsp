@@ -111,8 +111,7 @@
 															<li class="td td-item">
 																<div class="item-pic">
 																	<a href="product/getProduct/${ch.productid}"
-																		class="J_MakePoint"> <img
-																		src="http://gyadmin-1252357563.file.myqcloud.com/${ch.chphoto}"
+																		class="J_MakePoint"> <img src="${ch.chphoto}"
 																		class="itempic J_ItemImg">
 																	</a>
 																</div>

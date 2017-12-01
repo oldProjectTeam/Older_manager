@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'commentlist.jsp' starting page</title>
+<title>商品评价</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -152,8 +152,7 @@
 
 								<div class="item-pic1">
 									<a href="product/getProduct/${l.producctsId}"
-										class="J_MakePoint"> <img
-										src="http://gyadmin-1252357563.file.myqcloud.com/${l.products.images}"
+										class="J_MakePoint"> <img src="${l.products.images}"
 										class="itempic J_ItemImg">
 
 									</a>

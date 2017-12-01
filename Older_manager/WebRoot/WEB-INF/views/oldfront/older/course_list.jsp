@@ -131,7 +131,7 @@ ul li {
 			<ul id="imgContent">
 				<c:forEach items="${pageInfo.list}" var="course">
 					<li><a href="${APP_PATH}/official/courseInfoId/${course.id}"><img
-							src="http://gyadmin-1252357563.file.myqcloud.com/${course.photo}"></a></li>
+							src="${course.photo}"></a></li>
 				</c:forEach>
 			</ul>
 			<div class="arraw">

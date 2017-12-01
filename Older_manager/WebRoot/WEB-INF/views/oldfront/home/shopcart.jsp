@@ -85,7 +85,7 @@
 										<a href="${APP_PATH}/product/getProduct/${cart.product.id}"
 											title="${cart.product.imagetitle}" class="J_MakePoint"
 											data-point="tbcart.8.12"> <img
-											src="http://gyadmin-1252357563.file.myqcloud.com/${cart.product.images}"
+											src="${cart.product.images}"
 											onerror="onerror=null;src='${APP_PATH }/static/images/f9b49612f9d78f425c77eae488b9c1ad.jpg'"
 											class="itempic J_ItemImg" width="80px" height="80px">
 										</a>

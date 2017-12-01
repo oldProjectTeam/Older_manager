@@ -20,8 +20,6 @@ import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.qcloud.cos.ClientConfig;
 import com.qcloud.cos.exception.AbstractCosException;

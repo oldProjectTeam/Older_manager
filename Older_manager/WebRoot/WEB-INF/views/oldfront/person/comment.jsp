@@ -164,9 +164,6 @@
 								var imgUrl = item.imageurl;
 								if (imgUrl == null || imgUrl == '') {
 									imgUrl = '${APP_PATH}/static/images/logo.png';
-								} else {
-									imgUrl = "http://gyadmin-1252357563.file.myqcloud.com/"
-											+ imgUrl;
 								}
 								firstA.append($("<img/>").addClass("itempic")
 										.attr("src", imgUrl)

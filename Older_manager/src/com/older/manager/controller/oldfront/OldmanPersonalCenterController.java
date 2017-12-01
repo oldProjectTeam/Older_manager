@@ -22,14 +22,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.older.manager.bean.OSSJSON;
 import com.older.manager.bean.Oldman;
 import com.older.manager.bean.Oldmanaccount;
 import com.older.manager.service.oldfront.IOldmanService;
 import com.older.manager.utils.Msg;
-import com.older.manager.utils.OSSFileUtils;
-import com.older.manager.utils.OSSUtils;
 import com.older.manager.utils.SaveFile;
+import com.oss.gy.bean.OSSJSON;
+import com.oss.gy.utils.OSSFileUtils;
 
 /**
  * @author ym
@@ -130,9 +129,6 @@ public class OldmanPersonalCenterController {
 		if (imgFile.exists()) {
 			// 按照日期在oss里面创建文件夹
 			OSSFileUtils.createFolder();
-			System.out.println(oldman.getPhoto().substring(
-					oldman.getPhoto().indexOf("com") + 1,
-					oldman.getPhoto().length()));
 			// 删除原来的图片
 			OSSFileUtils.deleteFile(oldman.getPhoto().substring(
 					oldman.getPhoto().indexOf("com") + 3,

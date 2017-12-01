@@ -41,8 +41,8 @@
 <script type="text/javascript" src="${APP_PATH}/static/js/list.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
-	
-	
+
+
 </head>
 <body>
 	<jsp:include page="shopheader.jsp"></jsp:include>
@@ -111,20 +111,16 @@
 					</script>
 
 					<div class="tb-booth tb-pic tb-s310">
-						<a href="http://gyadmin-1252357563.file.myqcloud.com/${product.imgList[0]}"><img
-							src="http://gyadmin-1252357563.file.myqcloud.com/${product.imgList[0]}"
-							alt="细节展示放大镜特效"
-							rel="http://gyadmin-1252357563.file.myqcloud.com/${product.imgList[0]}"
-							class="jqzoom" /></a>
+						<a href="${product.imgList[0]}"><img
+							src="${product.imgList[0]}" alt="细节展示放大镜特效"
+							rel="${product.imgList[0]}" class="jqzoom" /></a>
 					</div>
 					<ul class="tb-thumb" id="thumblist">
 						<c:forEach items="${product.imgList}" var="s">
 							<li class="tb-selected">
 								<div class="tb-pic tb-s40">
-									<a href="javascript:#"> <img
-										src="http://gyadmin-1252357563.file.myqcloud.com/${s}"
-										mid="http://gyadmin-1252357563.file.myqcloud.com/${s}"
-										big="http://gyadmin-1252357563.file.myqcloud.com/${s}">
+									<a href="javascript:#"> <img src="${s}" mid="${s}"
+										big="${s}">
 									</a>
 								</div>
 							</li>
@@ -300,7 +296,7 @@
 								</div>
 								<div class="twlistNews">
 									<c:forEach items="${product.imgList}" var="s">
-										<img src="http://gyadmin-1252357563.file.myqcloud.com/${s}" />
+										<img src="${s}" />
 									</c:forEach>
 								</div>
 							</div>
@@ -309,7 +305,7 @@
 
 						<!-- 全部评价 -->
 						<div class="am-tab-panel am-fade">
-							
+
 							<div class="clear"></div>
 
 							<div class="tb-r-filter-bar">
@@ -337,22 +333,20 @@
 								</ul>
 							</div>
 							<div class="clear"></div>
-                             <div id="divid">
-                             
-                             </div>
+							<div id="divid"></div>
 							<div class="clear"></div>
 
 							<!--评论的分页 -->
 							<!--分页信息  -->
-						<div class="row">
-							<div class="col-md-10">
-								<nav aria-label="Page navigation" style="float:right">
-								<ul class="am-pagination am-pagination-right" id="nav_ul_info">
+							<div class="row">
+								<div class="col-md-10">
+									<nav aria-label="Page navigation" style="float:right">
+									<ul class="am-pagination am-pagination-right" id="nav_ul_info">
 
-								</ul>
-								</nav>
+									</ul>
+									</nav>
+								</div>
 							</div>
-						</div>
 							<div class="clear"></div>
 
 						</div>
@@ -398,64 +392,92 @@
 			}
 		}
 		//好评 差评
-	$(function(){
-	       $.ajax({
-					url : "${APP_PATH}/comment/selectcomment",
-					type : "GET",
-					data : {
-						"pid" : ${product.id},
-						
-					},
-					success : function(result) {
-						if (result.code == 100) {
-							var rel=result.extend.map;
-							
-							$("#comm1").text('('+(rel[1]+rel[2]+rel[3]+rel[4]+rel[5])+')');
-							$("#comm2").text('('+(rel[4]+rel[5])+')');
-							$("#comm3").text('('+(rel[3])+')');
-							$("#comm4").text('('+(rel[1]+rel[2])+')');
-						}
+		$(function() {
+			$.ajax({
+				url : "${APP_PATH}/comment/selectcomment",
+				type : "GET",
+				data : {
+					"pid" : ${product.id},
+
+				},
+				success : function(result) {
+					if (result.code == 100) {
+						var rel = result.extend.map;
+
+						$("#comm1")
+								.text(
+										'('
+												+ (rel[1] + rel[2] + rel[3]
+														+ rel[4] + rel[5])
+												+ ')');
+						$("#comm2").text('(' + (rel[4] + rel[5]) + ')');
+						$("#comm3").text('(' + (rel[3]) + ')');
+						$("#comm4").text('(' + (rel[1] + rel[2]) + ')');
 					}
-				});
-	
-	
-	//构建
-	bulidthis();
-	});	
-		
-		
-	//评论	
-	//构建
-							
-	function bulidthis(result){	
-	       $("#divid").empty();	
-		    current_pageNum = result.extend.pageInfo.pageNum;
+				}
+			});
+
+			//构建
+			bulidthis();
+		});
+
+		//评论	
+		//构建
+
+		function bulidthis(result) {
+			$("#divid").empty();
+			current_pageNum = result.extend.pageInfo.pageNum;
 			current_pages = result.extend.pageInfo.pages;
-	$.each(result.extend.pageInfo.list, function(index, item) {	
-	var tul=$("<ul></ul>").addClass("am-comments-list am-comments-list-flip").appendTo("#divid");
-	var tli=$("<li></li>").addClass("am-comment").appendTo(tul);
-	var ta=$("<a></a>").append("<img class='am-comment-avatar' src='${APP_PATH}/static/images/hwbn40x40.jpg' />").appendTo(tli);
-	
-	var divout=$("<div></div>").addClass("am-comment-main").appendTo(tli);
-	var theader=$("<header></header>").addClass("am-comment-hd").appendTo(divout);
-	var divin=$("<div></div>").addClass("am-comment-meta").appendTo(theader);
-	var tain=$("<a></a>").addClass("am-comment-author").append(item.users.email+'  ').appendTo(divin);
-	var ttime=$("<time datetime=''></time>").append(ChangeDateFormat(item.createtime)).appendTo(divin);
-	var div1=$("<div></div>").addClass("am-comment-bd").appendTo(divout);
-	var div4=$("<div data-id='255776406962'></div>").addClass("tb-rev-item").appendTo(div1);
-	var div2=$("<div></div>").append(item.content).addClass("J_TbcRate_ReviewContent tb-tbcr-content").appendTo(div4);
-	
-	});
-	
-	}	
-	
-	
-	function buil_table_pageInfo(result) {
+			$
+					.each(
+							result.extend.pageInfo.list,
+							function(index, item) {
+								var tul = $("<ul></ul>")
+										.addClass(
+												"am-comments-list am-comments-list-flip")
+										.appendTo("#divid");
+								var tli = $("<li></li>").addClass("am-comment")
+										.appendTo(tul);
+								var ta = $("<a></a>")
+										.append(
+												"<img class='am-comment-avatar' src='${APP_PATH}/static/images/hwbn40x40.jpg' />")
+										.appendTo(tli);
+
+								var divout = $("<div></div>").addClass(
+										"am-comment-main").appendTo(tli);
+								var theader = $("<header></header>").addClass(
+										"am-comment-hd").appendTo(divout);
+								var divin = $("<div></div>").addClass(
+										"am-comment-meta").appendTo(theader);
+								var tain = $("<a></a>").addClass(
+										"am-comment-author").append(
+										item.users.email + '  ')
+										.appendTo(divin);
+								var ttime = $("<time datetime=''></time>")
+										.append(
+												ChangeDateFormat(item.createtime))
+										.appendTo(divin);
+								var div1 = $("<div></div>").addClass(
+										"am-comment-bd").appendTo(divout);
+								var div4 = $(
+										"<div data-id='255776406962'></div>")
+										.addClass("tb-rev-item").appendTo(div1);
+								var div2 = $("<div></div>")
+										.append(item.content)
+										.addClass(
+												"J_TbcRate_ReviewContent tb-tbcr-content")
+										.appendTo(div4);
+
+							});
+
+		}
+
+		function buil_table_pageInfo(result) {
 			$("#nav_ul_info").empty();
 			$("#page_info").empty();
 			//左边分页信息
 			var pageInfo = result.extend.pageInfo;
-			
+
 			var firstPage = $("<li></li>").append($("<a></a>").append("首页"));
 			var prePage = $("<li></li>").append($("<a></a>").append("&laquo;"));
 			var nextPage = $("<li></li>")
@@ -498,42 +520,33 @@
 			$("#nav_ul_info").append(nextPage).append(lastPage);
 
 		}
-	$(function(){
-	      go(1);
-	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//去第几页		
-function go(pn){
+		$(function() {
+			go(1);
+		});
 
-         $.ajax({
-					url : "${APP_PATH}/comment/selectallcomment",
-					type : "GET",
-					data : {
-					    "pn":pn,
-						"pid" : ${product.id},
-						
-					},
-					success : function(result) {
-						if (result.code == 100) {
-						   //构建这个
-							bulidthis(result);
-						   //分页
-						   buil_table_pageInfo(result);
-						}
+		//去第几页		
+		function go(pn) {
+
+			$.ajax({
+				url : "${APP_PATH}/comment/selectallcomment",
+				type : "GET",
+				data : {
+					"pn" : pn,
+					"pid" : ${product.id},
+
+				},
+				success : function(result) {
+					if (result.code == 100) {
+						//构建这个
+						bulidthis(result);
+						//分页
+						buil_table_pageInfo(result);
 					}
-				});
-	
+				}
+			});
 
-}		
-		
+		}
+
 		function ChangeDateFormat(d) {
 			//将时间戳转为int类型，构造Date类型
 			if (d != null) {
@@ -543,19 +556,19 @@ function go(pn){
 				var month = date.getMonth() + 1 + "月";
 
 				//日期为个位数时在前面+0
-				var currentDate = date.getDate()+"日";
-                var hoses=date.getHours();
-                var mm=date.getMinutes();
-                if(mm<10){
-                   mm="0"+mm;
-                }
+				var currentDate = date.getDate() + "日";
+				var hoses = date.getHours();
+				var mm = date.getMinutes();
+				if (mm < 10) {
+					mm = "0" + mm;
+				}
 				//getFullYear得到4位数的年份 ，返回一串字符串
-				return date.getFullYear() + "年" + month + currentDate+" "+hoses+":"+mm;
+				return date.getFullYear() + "年" + month + currentDate + " "
+						+ hoses + ":" + mm;
 			} else {
 				return null;
 			}
 		}
-		
 	</script>
 </body>
 </html>

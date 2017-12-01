@@ -262,8 +262,7 @@
 				$("#releasetime").html(ChangeDateFormat(a[1]));
 				$("#releasepeople").html(a[4]);
 				$("#content").text(cont);
-				$("#img")
-						.attr("src", "http://gyadmin-1252357563.file.myqcloud.com/" + a[6]);
+				$("#img").attr("src", a[6]);
 			}
 			function search(pn) {
 				var oldManId = ${older.oldman.id};

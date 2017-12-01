@@ -63,17 +63,18 @@
 						<form class="form-inline">
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">最早推荐时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f" 
+									class="easyui-datebox datebox-f combo-f textbox-f"
 									editable="false" id="starttime"
 									style="width: 180px; height: 30px; display: none;">
 							</div>
 							<div class="form-group col-md-5">
 								<label for="" class="control-label">最晚推荐时间：</label> <input
-									class="easyui-datebox datebox-f combo-f textbox-f" 
+									class="easyui-datebox datebox-f combo-f textbox-f"
 									editable="false" id="endtime"
 									style="width: 180px; height: 30px; display: none;">
 							</div>
-							<button type="button" id="search" class="btn btn-success col-md-2">查询</button>
+							<button type="button" id="search"
+								class="btn btn-success col-md-2">查询</button>
 						</form>
 
 
@@ -209,69 +210,100 @@
 				});
 			}
 			function build_data(result) {
-				$.each(result.extend.pageInfo.list, function(index, item) {
-					var tr = $("<tr></tr>");
-					var td1 = $("<td></td>").append(item.recomactivity.activity.title);
-					var td2 = $("<td></td>").append(item.recomactivity.recompeople);
-					var td3 = $("<td></td>").append(
-							ChangeDateFormat(item.recomactivity.activity.activitytime));
-					var td4 = $("<td></td>").append(
-							ChangeDateFormat(item.recomtime));
-					var td5 = $("<td></td>");
-					if(item.result==null||item.result=="失败"){
-						td5.append("未报名");
-					}else if(item.result=="成功"){
-						td5.append("已报名");
-					};
-					
-					var div_enrol = $("<div></div>").addClass("jjda-btn").attr(
-							"data-toggle", "#jkda").append(
-							$("<i></i>").addClass("jjda-btn-bm")).append(
-							"立即报名");
-					div_enrol.attr("enrolData", item.recomactivity.activity.id+"-"+${older.oldman.id}+"-"+item.id);
-					div_enrol.click(function(){
-						if(item.result==null||item.result=="失败"){
-							enrolActivity(div_enrol.attr("enrolData"));
-						}else if(item.result=="成功"){
-							layer.msg("你已经报名过，可以报名参加其他活动。", {
-								offset : [ '45%' ]
-							});
-						};
-						
-					});
-					var div = $("<div></div>").addClass("jjda-btn").attr(
-							"data-toggle", "modal").attr("data-target",
-							"#courseenrol_view_modal").append(
-							$("<i></i>").addClass("jjda-btn-view")).append(
-							"课程详细");
-					div.attr("activity",
-							item.recomactivity.activity.title + "-"
-									+ item.recomactivity.activity.releasetime + "-"
-									+item.recomactivity.activity.activitytime + "-"
-									+ item.recomactivity.activity.place + "-"
-									+ item.recomactivity.activity.releasepeople + "-"
-									+ item.recomactivity.activity.state + "-"
-									+ item.recomactivity.activity.activity1).attr("cont",
-									item.recomactivity.activity.content);
-					//点击查看模态框
-					div.click(function() {
-								putActivityInfo(div.attr("activity"), div
-										.attr("cont"));
-							})
-					var td6 = $("<td></td>").append(div_enrol).append(div);
-					tr.append(td1).append(td2).append(td3).append(td4).append(
-							td5).append(td6).appendTo($("#table_data"));
+				$
+						.each(
+								result.extend.pageInfo.list,
+								function(index, item) {
+									var tr = $("<tr></tr>");
+									var td1 = $("<td></td>").append(
+											item.recomactivity.activity.title);
+									var td2 = $("<td></td>").append(
+											item.recomactivity.recompeople);
+									var td3 = $("<td></td>")
+											.append(
+													ChangeDateFormat(item.recomactivity.activity.activitytime));
+									var td4 = $("<td></td>").append(
+											ChangeDateFormat(item.recomtime));
+									var td5 = $("<td></td>");
+									if (item.result == null
+											|| item.result == "失败") {
+										td5.append("未报名");
+									} else if (item.result == "成功") {
+										td5.append("已报名");
+									}
+									;
 
-				});
+									var div_enrol = $("<div></div>").addClass(
+											"jjda-btn").attr("data-toggle",
+											"#jkda").append(
+											$("<i></i>")
+													.addClass("jjda-btn-bm"))
+											.append("立即报名");
+									div_enrol.attr("enrolData",
+											item.recomactivity.activity.id
+													+ "-" + ${older.oldman.id}
+													+ "-" + item.id);
+									div_enrol.click(function() {
+										if (item.result == null
+												|| item.result == "失败") {
+											enrolActivity(div_enrol
+													.attr("enrolData"));
+										} else if (item.result == "成功") {
+											layer.msg("你已经报名过，可以报名参加其他活动。", {
+												offset : [ '45%' ]
+											});
+										}
+										;
+
+									});
+									var div = $("<div></div>").addClass(
+											"jjda-btn").attr("data-toggle",
+											"modal").attr("data-target",
+											"#courseenrol_view_modal").append(
+											$("<i></i>").addClass(
+													"jjda-btn-view")).append(
+											"课程详细");
+									div
+											.attr(
+													"activity",
+													item.recomactivity.activity.title
+															+ "-"
+															+ item.recomactivity.activity.releasetime
+															+ "-"
+															+ item.recomactivity.activity.activitytime
+															+ "-"
+															+ item.recomactivity.activity.place
+															+ "-"
+															+ item.recomactivity.activity.releasepeople
+															+ "-"
+															+ item.recomactivity.activity.state
+															+ "-"
+															+ item.recomactivity.activity.activity1)
+											.attr(
+													"cont",
+													item.recomactivity.activity.content);
+									//点击查看模态框
+									div.click(function() {
+										putActivityInfo(div.attr("activity"),
+												div.attr("cont"));
+									})
+									var td6 = $("<td></td>").append(div_enrol)
+											.append(div);
+									tr.append(td1).append(td2).append(td3)
+											.append(td4).append(td5)
+											.append(td6).appendTo(
+													$("#table_data"));
+
+								});
 			}
-			function enrolActivity(result){
-				data=result.split("-");
+			function enrolActivity(result) {
+				data = result.split("-");
 				$.ajax({
 					url : "${APP_PATH}/activity/enrolActivity",
 					data : {
 						"activityId" : data[0],
 						"oldManId" : data[1],
-						"recomdActivitydetailId":data[2]
+						"recomdActivitydetailId" : data[2]
 					},
 					type : "GET",
 					success : function(result) {
@@ -287,7 +319,7 @@
 					}
 				});
 			}
-			
+
 			function putActivityInfo(activity, cont) {
 				a = activity.split("-");
 				$("#jkda").modal();
@@ -299,8 +331,7 @@
 				$("#releasetime").html(ChangeDateFormat(a[1]));
 				$("#releasepeople").html(a[4]);
 				$("#content").text(cont);
-				$("#img")
-						.attr("src", "http://gyadmin-1252357563.file.myqcloud.com/" + a[6]);
+				$("#img").attr("src", a[6]);
 			}
 			function search(pn) {
 				var oldManId = ${older.oldman.id};
@@ -341,19 +372,44 @@
 			function nav(result) {
 				var pre, next;
 				if (result.extend.pageInfo.pageNum == 1) {
-					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+					pre = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&lt;"));
 				} else {
-					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+					pre = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:go("
+															+ (result.extend.pageInfo.pageNum - 1)
+															+ ")").append(
+													"&lt;"));
 				}
 				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
-					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+					next = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&gt;"));
 				} else {
-					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+					next = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:go("
+															+ (result.extend.pageInfo.pageNum + 1)
+															+ ")").append(
+													"&gt;"));
 				}
 				$("#page_list").append(pre);
-				$.each(result.extend.pageInfo.navigatepageNums,
-				function(index, item) {
-					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:go(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+				$.each(result.extend.pageInfo.navigatepageNums, function(index,
+						item) {
+					var li = $("<li></li>").append(
+							$("<a></a>").attr(
+									"href",
+									"javascript:go("
+											+ (result.extend.pageInfo.pageNum)
+											+ ")").append(item));
 					$("#page_list").append(li);
 				});
 				$("#page_list").append(next);
@@ -361,23 +417,49 @@
 			function nav1(result) {
 				var pre, next;
 				if (result.extend.pageInfo.pageNum == 1) {
-					pre = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&lt;"));
+					pre = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&lt;"));
 				} else {
-					pre = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum - 1) + ")").append("&lt;"));
+					pre = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:search("
+															+ (result.extend.pageInfo.pageNum - 1)
+															+ ")").append(
+													"&lt;"));
 				}
 				if (result.extend.pageInfo.pageNum == result.extend.pageInfo.lastPage) {
-					next = $("<li></li>").addClass("disabled").append($("<a></a>").attr("href", "javascript:#").append("&gt;"));
+					next = $("<li></li>").addClass("disabled").append(
+							$("<a></a>").attr("href", "javascript:#").append(
+									"&gt;"));
 				} else {
-					next = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum + 1) + ")").append("&gt;"));
+					next = $("<li></li>")
+							.append(
+									$("<a></a>")
+											.attr(
+													"href",
+													"javascript:search("
+															+ (result.extend.pageInfo.pageNum + 1)
+															+ ")").append(
+													"&gt;"));
 				}
 				$("#page_list").append(pre);
-				$.each(result.extend.pageInfo.navigatepageNums,
-				function(index, item) {
-					var li = $("<li></li>").append($("<a></a>").attr("href", "javascript:search(" + (result.extend.pageInfo.pageNum) + ")").append(item));
+				$.each(result.extend.pageInfo.navigatepageNums, function(index,
+						item) {
+					var li = $("<li></li>").append(
+							$("<a></a>").attr(
+									"href",
+									"javascript:search("
+											+ (result.extend.pageInfo.pageNum)
+											+ ")").append(item));
 					$("#page_list").append(li);
 				});
 				$("#page_list").append(next);
-			}s
+			}
+			s
 			function ChangeDateFormat(d) {
 				//将时间戳转为int类型，构造Date类型
 				if (d != null) {

@@ -3,9 +3,6 @@ package com.qcloud.cos.common_utils;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.qcloud.cos.exception.AbstractCosException;
 import com.qcloud.cos.exception.UnknownException;
 

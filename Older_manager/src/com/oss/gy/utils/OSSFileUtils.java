@@ -1,13 +1,12 @@
-package com.older.manager.utils;
+package com.oss.gy.utils;
 
-import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.older.manager.bean.OSSJSON;
+import com.oss.gy.bean.OSSJSON;
 import com.qcloud.cos.common_utils.CommonFileUtils;
 import com.qcloud.cos.meta.InsertOnly;
 import com.qcloud.cos.request.CreateFolderRequest;

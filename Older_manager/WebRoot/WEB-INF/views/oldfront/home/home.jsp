@@ -632,17 +632,13 @@
 														img_content
 																.attr(
 																		"src",
-																		"http://gyadmin-1252357563.file.myqcloud.com/"
-																				+ item.images
-																						.split(
-																								",",
-																								1));
+																		item.images
+																				.split(
+																						",",
+																						1));
 													} else {
-														img_content
-																.attr(
-																		"src",
-																		"http://gyadmin-1252357563.file.myqcloud.com/"
-																				+ item.images);
+														img_content.attr("src",
+																item.images);
 													}
 
 													var a_href = $("<a></a>")

@@ -622,18 +622,13 @@
 
 				var dataLi = $("<li></li>");
 				var dataDiv = $("<div></div>").addClass("i-pic limit");
-				//var dataimg = $("<img>").attr("src", item.images);//原始图片数据
 				var dataimg = $("<img>").css("height", "218").css("width",
 						"218");
 				if (item.images.indexOf(",") > 0) {
-					dataimg.attr("src", "http://gyadmin-1252357563.file.myqcloud.com/"
-							+ item.images.split(",", 1));
+					dataimg.attr("src", item.images.split(",", 1));
 				} else {
-					dataimg.attr("src", "http://gyadmin-1252357563.file.myqcloud.com/"
-							+ item.images);
+					dataimg.attr("src", item.images);
 				}
-
-				//var dataimg = $("<img>").attr("src", "${APP_PATH}/static/images/imgsearch1.jpg");
 				var dataPname = $("<p></p>").addClass("title fl").append(
 						item.name);
 				var dateSprice = $("<strong></strong>").append(item.nowprice);

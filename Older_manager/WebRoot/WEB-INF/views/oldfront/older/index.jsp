@@ -222,11 +222,9 @@
 										.each(
 												result.extend.activityPageInfo.list,
 												function(index, item) {
-													var img = $("<img/>")
-															.attr(
-																	"src",
-																	'http://gyadmin-1252357563.file.myqcloud.com/'
-																			+ item.activity1)
+													var img = $("<img/>").attr(
+															"src",
+															item.activity1)
 															.css("height",
 																	"240").css(
 																	"width",

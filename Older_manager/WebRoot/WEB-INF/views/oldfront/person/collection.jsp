@@ -150,8 +150,7 @@
 																					"s-pic-img s-guess-item-img")
 																			.attr(
 																					"src",
-																					"http://gyadmin-1252357563.file.myqcloud.com/"
-																							+ item.products.images)
+																					item.products.images)
 																			.attr(
 																					"alt",
 																					item.products.imagetitle)
