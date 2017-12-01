@@ -77,7 +77,7 @@
 									style="width:90%;margin: 0 auto;">
 									<tbody align="right">
 										<tr class="firstRow">
-											<input type="hidden" value="${oldman.id}" name="id" id="id">
+											<input type="hidden" value="${oldman.id}" name="id" id="id" />
 											<th width="15%" height="50px"
 												style="text-align:right;vertical-align: middle;"><span
 												style="color:red;">* </span>姓名:</th>
@@ -90,12 +90,12 @@
 												style="color:red;">* </span>头像:</th>
 											<td width="35%" align="center" rowspan="3"
 												style="vertical-align: middle;">
-												<div id="h_YPhoto_div"></div> <img
-												src="http://gyadmin-1252357563.file.myqcloud.com/${oldman.photo}"
-												width="120" height="120" name="photo"
-												value="${oldman.photo}" id="imgShow" style="display: block;" />
-												<input type="file" id="up_img"
-												style="border-left:none;margin:0;" value="更换图像" name="file">
+												<div id="h_YPhoto_div"></div> <img src="${oldman.photo}"
+												width="120" height="120" id="imgShow"
+												style="display: block;" /> <input type="hidden"
+												name="photo" value="${oldman.photo}" /> <input type="file"
+												id="up_img" style="border-left:none;margin:0;" value="更换图像"
+												name="file">
 											</td>
 										</tr>
 										<tr>
@@ -244,12 +244,18 @@
 			$("#sex:input[name=sex]").val([ '${oldman.sex}' ]);
 		})
 		function Login_Out() {
-			if (confirm('您确定要退出本次登录吗?')) {
+			layer.confirm('您确定要退出本次登录吗?', {
+				offset : [ '30%','50%' ]
+			}, function(index) {
 				window.location.href = "oldmanaccount/loginOut";
-			}
+			});
 		};
 		function doUpload() {
-			if(validateForm().form() ){
+			if (validateForm().form()) {
+				layer.load(1, {
+					shade : [ 0.1, '#fff' ],
+					offset : [ '20%' ]
+				});
 				$.ajax({
 					url : "${APP_PATH}/PersonalCenter/modifyAcountInfo",
 					type : 'POST',
@@ -259,19 +265,16 @@
 					processData : false,
 					success : function(result) {
 						if (result.code == 100) {
-							layer.open({
-								offset:['30%'],
-								title : '更新提示！',
-								content : '更新成功！'
+							layer.msg("更新成功", {
+								offset : [ '30%' ]
 							});
+							window.location.reload();
 						}
 					},
 					error : function(result) {
 						if (code == 200) {
-							layer.open({
-								offset:['30%'],
-								title : '更新提示！',
-								content : '更新失败！'
+							layer.msg("更新失败", {
+								offset : [ '30%' ]
 							});
 						}
 					}

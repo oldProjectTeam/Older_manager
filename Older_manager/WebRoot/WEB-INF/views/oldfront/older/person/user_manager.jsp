@@ -87,8 +87,7 @@
 														<th align="right" width="100px" for="account"
 															style="vertical-align: middle;">登录号码:</th>
 														<td align="left" style="vertical-align: middle;">
-														${oldmanaccount.account}
-														</td>
+															${oldmanaccount.account}</td>
 													</tr>
 													<tr height="60px">
 														<th align="right" width="100px" for="orgin_password"
@@ -147,9 +146,11 @@
 	<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
 	<script type="text/javascript">
 		function Login_Out() {
-			if (confirm('您确定要退出本次登录吗?')) {
+			layer.confirm('您确定要退出本次登录吗?', {
+				offset : [ '30%', '50%' ]
+			}, function(index) {
 				window.location.href = "oldmanaccount/loginOut";
-			}
+			});
 		};
 
 		$("#save").click(function() {
@@ -160,7 +161,6 @@
 					data : $("#account_form").serialize(),
 					success : function(result) {
 						if (result.code == 100) {
-
 							layer.msg("修改账户成功！", {
 								icon : 6,
 								time : 1000,
@@ -169,10 +169,10 @@
 							$("#account_form")[0].reset();
 
 						} else {
-							layer.open({
-								offset:['30%'],
-								title : '添加提示',
-								content : '添加用户会员失败！'
+							layer.msg("修改账户失败！", {
+								icon : 6,
+								time : 1000,
+								offset : [ '35%' ]
 							});
 						}
 					}
@@ -186,7 +186,7 @@
 				return true;
 			} else {
 				layer.open({
-					offset:['30%'],
+					offset : [ '30%' ],
 					title : '密码提示',
 					content : '你输入的原密码错误'
 				});

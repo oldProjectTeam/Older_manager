@@ -94,21 +94,22 @@
 					</div>
 				</div>
 			</div>
-<!--底部开始  -->
-<jsp:include page="footer.jsp"></jsp:include>
-<!-- 底部结束 -->
-<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
-<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
-<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
-	type="text/javascript"></script>
-<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
-<script type="text/javascript">
-	
-	function Login_Out() {
-		if (confirm('您确定要退出本次登录吗?')) {
-			window.location.href = "oldmanaccount/loginOut";
-		}
-	};
-</script>
+			<!--底部开始  -->
+			<jsp:include page="footer.jsp"></jsp:include>
+			<!-- 底部结束 -->
+			<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.js"></script>
+			<script src="${APP_PATH}/static/oldfront/older/js/bootstrap.min.js"></script>
+			<script src="${APP_PATH}/static/oldfront/older/js/TableJS.js"
+				type="text/javascript"></script>
+			<script src="${APP_PATH}/static/oldfront/older/js/md5.js"></script>
+			<script type="text/javascript">
+				function Login_Out() {
+					layer.confirm('您确定要退出本次登录吗?', {
+						offset : [ '30%', '50%' ]
+					}, function(index) {
+						window.location.href = "oldmanaccount/loginOut";
+					});
+				};
+			</script>
 </body>
 </html>
