@@ -52,10 +52,10 @@
 						<li><a href="${APP_PATH}/older/index"
 							class="menu-top-active check">首页</a></li>
 						<li><a href="${APP_PATH}/course/course_list" class="check">课程专区</a></li>
-						<li><a href="${APP_PATH}/older/video_list" class="check">视频专区</a></li>
+						<li><a href="${APP_PATH}/older/video_list" class="check ">视频专区</a></li>
 						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/older/about" class="check">关于我们</a></li>
-						<li><a href="javascript:contact()" id="contact">联系我们</a></li>
+						<li><a href="javascript:contact()" id="contact" class="check">联系我们</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">购物商城</a></li>
 						<li style="float:right;margin-right:40px">
 							<!-- 没有登录--> <c:if test="${empty older}">
@@ -83,7 +83,6 @@
 		</div>
 	</div>
 	</section>
-
 	<script type="text/javascript">
 		/* 联系我们 */
 		function contact() {

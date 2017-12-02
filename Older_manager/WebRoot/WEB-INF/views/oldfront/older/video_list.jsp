@@ -86,12 +86,12 @@ li {
 	<!-- 视频区域 -->
 	<div style="margin-top: 20px;">
 		<section class="main-preview-player"> <video id="my_video_1"
-			class="video-js vjs-default-skin" width="640px" height="360px"
-			controls preload="none"
+			autoplay="autoplay" class="video-js vjs-default-skin" width="640px"
+			height="360px" controls preload="none"
 			poster='http://video-js.zencoder.com/oceans-clip.jpg'
 			data-setup='{ "aspectRatio":"640:360", "playbackRates": [1, 1.5, 2] }'>
 		<source src="http://123.207.93.53/Older_back/${video.path}"
-			type='video/mp4' autoplay="autoplay" /> </video>
+			type='video/mp4' /> </video>
 		<div class="playlist-container preview-player-dimensions vjs-fluid">
 			<ol class="vjs-playlist" id="video_list">
 				<img src="${APP_PATH}/static/images/load.gif"

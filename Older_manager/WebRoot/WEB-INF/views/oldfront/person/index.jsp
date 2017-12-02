@@ -60,6 +60,10 @@
 									<div class="s-prestige am-btn am-round">
 										</span><font color="black" id="level"></font>
 									</div>
+									<div class="u-safety">
+								当前积分 <span class="u-profile"><i class="bc_ee0000"
+									style="width: 60px;" width="0" id="numid"></i></span>
+							</div>
 								</div>
 								<div class="m-right">
 									<div class="m-new">
@@ -220,7 +224,8 @@
 				success : function(result) {
 					var rel = result.extend.shopInfo;
 					$("#level").append(rel.level);
-				}
+					$("#numid").text(rel.integral.currentintegral + '分');
+		}
 			});
 		});
 

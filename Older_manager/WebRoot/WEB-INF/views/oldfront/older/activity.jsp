@@ -71,8 +71,15 @@
 		src="${APP_PATH}/static/oldfront/assets/js/jquery.mixitup.min.js"></script>
 	<script src="${APP_PATH}/static/oldfront/assets/js/custom.js"></script>
 	<script type="text/javascript">
+	$(function(){
+    	var x = document.getElementsByClassName("check");
+    	$(x[0]).removeClass("menu-top-active");
+    	$(x[3]).addClass("menu-top-active");
+    	 
+     });
 		$(function() {
 			go(1);
+			
 		});
 		function go(pn) {
 			$("#content1").empty();

@@ -33,8 +33,8 @@ a {
 			<!-- 用户中心开始 -->
 			<div class="user">
 				<div class="user-photo">
-					<img src="${older.oldman.photo}"
-						height="115" width="108" border="0" class="img-circle"
+					<img src="${older.oldman.photo}" height="115" width="108"
+						border="0" class="img-circle"
 						nerror="onerror=null;src='${APP_PATH }/static/oldfront/older/images/doctor.png'" />
 				</div>
 				<div class="user-mes">
@@ -42,16 +42,15 @@ a {
 						<li class="name"><i class="icon-nav icon-user"></i>
 							${older.oldman.name }</li>
 						<li><i class="icon-phone"></i>${older.oldman.phone }</li>
+						<li>所属分部:${older.oldman.service}</li>
 						<li>
-							<div class="news" 
-							onClick="javascript:window.location.href='${APP_PATH}/older/sms'">
-								<i class="icon-mail"></i>
-					            <span id="sms_count"></span>
+							<div class="news"
+								onClick="javascript:window.location.href='${APP_PATH}/older/sms'">
+								<i class="icon-mail"></i> <span id="sms_count"></span>
 							</div>
-							<div class="tips" 
-							onClick="javascript:window.location.href='${APP_PATH}/older/notice'">
-								<i class="icon-light"></i>
-								<span id="notice_count"></span>
+							<div class="tips"
+								onClick="javascript:window.location.href='${APP_PATH}/older/notice'">
+								<i class="icon-light"></i> <span id="notice_count"></span>
 							</div>
 						</li>
 					</ul>
@@ -63,8 +62,8 @@ a {
 			<!-- 菜单开始 -->
 			<div class="menu">
 				<ul>
-					<li><a href="${APP_PATH}/older/pinggu/1&${older.oldman.id}" class="menu-item"><i
-							class="icon-nav icon-fwyd mr30"></i>健康评估</a></li>
+					<li><a href="${APP_PATH}/older/pinggu/1&${older.oldman.id}"
+						class="menu-item"><i class="icon-nav icon-fwyd mr30"></i>健康评估</a></li>
 					<li><a href="${APP_PATH}/older/lvli" class="menu-item"><i
 							class="icon-nav icon-fwyd mr30"></i>健康履历</a></li>
 					<li><a href="${APP_PATH}/older/tijian" class="menu-item"><i
@@ -82,36 +81,36 @@ a {
 			<!-- 菜单结束 -->
 		</div>
 	</div>
-<script type="text/javascript">
-//默认加载数据
-$(function(){
-	
-	//加载短信总数
-	getSmsCount();
-	//加载公告总数
-	getNoticeCount();
-});
-//获得短信总数
-function getSmsCount(){
-	$.ajax({
-		url:"${APP_PATH}/sms/getCount/${older.account}",
-		type:"post",
-		success:function(result){ 
-			 $("#sms_count").html(result.extend.count);
-		}
-	});
-}
+	<script type="text/javascript">
+		//默认加载数据
+		$(function() {
 
-//获得短信总数
-function getNoticeCount(){
-	$.ajax({
-		url:"${APP_PATH}/notice/getCount",
-		type:"post",
-		success:function(result){ 
-			 $("#notice_count").html(result.extend.count);
+			//加载短信总数
+			getSmsCount();
+			//加载公告总数
+			getNoticeCount();
+		});
+		//获得短信总数
+		function getSmsCount() {
+			$.ajax({
+				url : "${APP_PATH}/sms/getCount/${older.account}",
+				type : "post",
+				success : function(result) {
+					$("#sms_count").html(result.extend.count);
+				}
+			});
 		}
-	});
-}
-</script>
+
+		//获得短信总数
+		function getNoticeCount() {
+			$.ajax({
+				url : "${APP_PATH}/notice/getCount",
+				type : "post",
+				success : function(result) {
+					$("#notice_count").html(result.extend.count);
+				}
+			});
+		}
+	</script>
 </body>
 </html>

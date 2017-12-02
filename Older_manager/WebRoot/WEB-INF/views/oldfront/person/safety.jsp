@@ -85,9 +85,8 @@
 								</span>
 							</div>
 							<div class="u-safety">
-								<a href="${APP_PATH}/safety/skipsafety"> 账户安全 <span class="u-profile"><i
-										class="bc_ee0000" style="width: 60px;" width="0" id="numid">60分</i></span>
-								</a>
+								当前积分 <span class="u-profile"><i class="bc_ee0000"
+									style="width: 60px;" width="0" id="numid"></i></span>
 							</div>
 						</div>
 					</div>
@@ -180,24 +179,15 @@
 			//发送请求获取
 			$.ajax({
 				url : "${APP_PATH}/info/selectinformation",
-                 data : {
+				data : {
 					"usersid" : ${users.id}
 				},
 				type : "GET",
 				success : function(result) {
-
 					var rel = result.extend.shopInfo;
 					$("#usernameid").text(rel.users.nickname);
-				    $("#mvpid").text(rel.level);
-					/* 	$("#ncikid").val(rel.users.nickname);
-					$("#truenameid").val(rel.users.realname);
-					$("#user-phone").val(rel.users.phone);
-					$("#user-email").val(rel.users.email);
-					$("#idcarid").val(rel.users.idcard);
-					   $("#formid input[name=sex]").val([rel.users.sex]);
-					   var a=rel.shippingaddress.location+" "+rel.shippingaddress.detailaddress;
-					   //alert(a);
-					   $("#addressid").text(a); */
+					$("#mvpid").text(rel.level);
+					$("#numid").text(rel.integral.currentintegral + '分');
 				}
 			});
 

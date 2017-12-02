@@ -92,9 +92,8 @@ a {
 								</span>
 							</div>
 							<div class="u-safety">
-								<a href="${APP_PATH}/safety/skipsafety"> 账户安全 <span class="u-profile"><i
-										class="bc_ee0000" style="width: 60px;" width="0" id="numid">60分</i></span>
-								</a>
+								当前积分<span class="u-profile"><i class="bc_ee0000"
+									style="width: 60px;" width="0" id="numid"></i></span>
 							</div>
 						</div>
 					</div>
@@ -200,6 +199,7 @@ a {
 					$("#user-phone").val(rel.users.phone);
 					$("#user-email").val(rel.users.email);
 					$("#idcarid").val(rel.users.idcard);
+					$("#numid").text(rel.integral.currentintegral + '分');
 					$("#formid input[name=sex]").val([ rel.users.sex ]);
 					var a = rel.shippingaddress.location + " "
 							+ rel.shippingaddress.detailaddress;

@@ -15,7 +15,7 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>智慧老人系统</title>
- <link href="${APP_PATH}/static/oldfront/assets/css/bootstrap.css"
+<link href="${APP_PATH}/static/oldfront/assets/css/bootstrap.css"
 	rel="stylesheet" />
 <link href="${APP_PATH}/static/oldfront/assets/css/font-awesome.css"
 	rel="stylesheet" />
@@ -24,20 +24,20 @@
 <link href="${APP_PATH}/static/oldfront/assets/css/flexslider.css"
 	rel="stylesheet" />
 <link href="${APP_PATH}/static/oldfront/assets/css/style.css"
-	rel="stylesheet" /> 
+	rel="stylesheet" />
 
- <link
+<link
 	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans'
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Lobster'
-	rel='stylesheet' type='text/css' /> 
+	rel='stylesheet' type='text/css' />
 </head>
 <body>
 	<!--加载头部  -->
 	<jsp:include page="header.jsp"></jsp:include>
-	
+
 	<div class="container" style="margin-top:80px">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -107,12 +107,20 @@
 		</div>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>
-	<script
-		src="${APP_PATH}/static/oldfront/assets/js/jquery-1.11.1.min.js"></script>
+	<script language="JavaScript"
+		src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
 	<script src="${APP_PATH}/static/oldfront/assets/js/bootstrap.js"></script>
 	<script src="${APP_PATH}/static/oldfront/assets/js/wow.js"></script>
 	<script
 		src="${APP_PATH}/static/oldfront/assets/js/jquery.flexslider.js"></script>
 	<script src="${APP_PATH}/static/oldfront/assets/js/custom.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var x = document.getElementsByClassName("check");
+			$(x[0]).removeClass("menu-top-active");
+			$(x[4]).addClass("menu-top-active");
+
+		});
+	</script>
 </body>
 </html>

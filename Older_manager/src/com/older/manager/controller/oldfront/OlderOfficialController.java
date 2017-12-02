@@ -18,6 +18,7 @@ import com.older.manager.bean.Activity;
 import com.older.manager.bean.Courses;
 import com.older.manager.bean.Video;
 import com.older.manager.service.oldfront.IOlderOfficialService;
+import com.older.manager.service.oldfront.IVideoService;
 import com.older.manager.utils.Msg;
 
 @Controller
@@ -26,6 +27,9 @@ public class OlderOfficialController {
 
 	@Autowired
 	private IOlderOfficialService officialService;
+
+	@Autowired
+	private IVideoService videoService;
 
 	@RequestMapping("/info")
 	@ResponseBody
@@ -148,6 +152,8 @@ public class OlderOfficialController {
 	@RequestMapping("/videoItemInfo/{id}")
 	public String videoInfo(@PathVariable("id") Integer id, Model model) {
 		Video video = officialService.queryVideoById(id);
+		// 更新播放量
+		videoService.updateVideoNum(video);
 		model.addAttribute("video", video);
 		return "oldfront/older/video_list";
 	}

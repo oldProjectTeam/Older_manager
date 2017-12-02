@@ -32,6 +32,7 @@
 	rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Lobster'
 	rel='stylesheet' type='text/css' />
+
 </head>
 <body>
 	<section class="menu-section">
@@ -52,9 +53,12 @@
 						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
 						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">电子商务</a></li>
 						<li>
-						<!-- 用户头像 -->
-						<img src="${APP_PATH}/static/images/old.png" height="30" width="30" style="margin-left: 240px;margin-top: 20px;display: none;"  class="img-circle">
-						 <a href="${APP_PATH}/older/login" style="margin-left: 240px;">登录</a></li>
+							<!-- 用户头像 --> <img src="${APP_PATH}/static/images/old.png"
+							height="30" width="30"
+							style="margin-left: 240px;margin-top: 20px;display: none;"
+							class="img-circle"> <a href="${APP_PATH}/older/login"
+							style="margin-left: 240px;">登录</a>
+						</li>
 					</ul>
 				</div>
 			</div>
@@ -64,8 +68,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<h1 class="tag-home">
-					孝和集团目标成为最符合社会需要的养老综合服务运营商，所以我们欢迎您的意见或者建议。</h1>
+				<h1 class="tag-home">孝和集团目标成为最符合社会需要的养老综合服务运营商，所以我们欢迎您的意见或者建议。</h1>
 				<hr />
 			</div>
 		</div>
