@@ -109,7 +109,10 @@
 				var div2 = $("<div></div>").addClass("goods-pic");
 				var div3 = $("<div></div>").append(
 						$("<a></a>").append(
-								$("<img>").attr("src", item.products.images)
+								$("<img>").attr(
+										"src",
+										"http://123.207.93.53/Older_back/"
+												+ item.products.images)
 										.addClass("goods-img")).attr("target",
 								"_blank").attr("title",
 								item.products.imagetitle).addClass(

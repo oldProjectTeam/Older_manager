@@ -166,9 +166,11 @@
 									imgUrl = '${APP_PATH}/static/images/logo.png';
 								}
 								firstA.append($("<img/>").addClass("itempic")
-										.attr("src", imgUrl)
-										.attr("width", "80").attr("height",
-												"80"));
+										.attr(
+												"src",
+												"http://123.207.93.53/Older_back/"
+														+ imgUrl).attr("width",
+												"80").attr("height", "80"));
 								var firstLi = $("<li></li>").addClass(
 										"td td-item").append(
 										$("<div></div>").addClass("item-pic")
@@ -247,10 +249,14 @@
 													"href",
 													"${APP_PATH}/product/getProduct/"
 															+ item.orderdetail.producctsId);
-									firstA.append($("<img/>").addClass(
-											"itempic").attr("src",
-											item.imageurl).attr("width", "80")
-											.attr("height", "80"));
+									firstA
+											.append($("<img/>").addClass(
+													"itempic").attr(
+													"src",
+													"http://123.207.93.53/Older_back/"
+															+ item.imageurl)
+													.attr("width", "80").attr(
+															"height", "80"));
 									var firstLi = $("<li></li>").addClass(
 											"td td-item").append(
 											$("<div></div>").addClass(

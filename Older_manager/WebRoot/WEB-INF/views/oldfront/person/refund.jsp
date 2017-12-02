@@ -90,8 +90,9 @@
 
 								<div class="item-pic">
 									<a href="product/getProduct/${list.products.id}"
-										class="J_MakePoint"> <%-- <img src="${APP_PATH}/static/images/comment.jpg_400x400.jpg" class="itempic"> --%>
-										<img src="${list.products.images}" class="itempic">
+										class="J_MakePoint"> <img
+										src="http://123.207.93.53/Older_back/${list.products.images}"
+										class="itempic">
 									</a>
 								</div>
 

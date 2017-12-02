@@ -111,7 +111,8 @@
 															<li class="td td-item">
 																<div class="item-pic">
 																	<a href="product/getProduct/${ch.productid}"
-																		class="J_MakePoint"> <img src="${ch.chphoto}"
+																		class="J_MakePoint"> <img
+																		src="http://123.207.93.53/Older_back/${ch.chphoto}"
 																		class="itempic J_ItemImg">
 																	</a>
 																</div>

@@ -128,7 +128,7 @@
 																					"s-pic-img s-guess-item-img")
 																			.attr(
 																					"src",
-																					"http://gyadmin-1252357563.file.myqcloud.com/"
+																					"http://123.207.93.53/Older_back/"
 																							+ pImg[0])
 																			.attr(
 																					"alt",
@@ -150,7 +150,8 @@
 																					"s-pic-img s-guess-item-img")
 																			.attr(
 																					"src",
-																					item.products.images)
+																					"http://123.207.93.53/Older_back/"
+																							+ item.products.images)
 																			.attr(
 																					"alt",
 																					item.products.imagetitle)

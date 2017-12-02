@@ -195,7 +195,8 @@
 												<div class="item-pic">
 													<a href="${APP_PATH}/product/getProduct/${cart.product.id}"
 														class="J_MakePoint" title="${cart.product.imagetitle}">
-														<img src="${APP_PATH}/${cart.product.images}"
+														<img
+														src="http://123.207.93.53/Older_back/${cart.product.images}"
 														onerror="onerror=null;src='${APP_PATH }/static/images/f9b49612f9d78f425c77eae488b9c1ad.jpg'"
 														class="itempic J_ItemImg" width="80px" height="80px">
 													</a>

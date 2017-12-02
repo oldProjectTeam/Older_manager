@@ -128,7 +128,7 @@
 																			<div class="item-pic">
 																				<a href="product/getProduct/${list.products.id}"
 																					class="J_MakePoint"> <img
-																					src="${list.products.images}"
+																					src="http://123.207.93.53/Older_back/${list.products.images}"
 																					class="itempic J_ItemImg">
 																				</a>
 																			</div>

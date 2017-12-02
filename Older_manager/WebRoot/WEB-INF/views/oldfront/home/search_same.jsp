@@ -83,7 +83,8 @@
 
 								<li>
 									<div class="i-pic limit">
-										<img src="${ productsinfo.images}" />
+										<img
+											src="http://123.207.93.53/Older_back/${ productsinfo.images}" />
 										<p class="title fl" id="img_title">${productsinfo.imagetitle }</p>
 										<p class="price fl">
 											<b>¥</b> <strong>${productsinfo.nowprice }</strong>
@@ -284,7 +285,8 @@
 			$.each(result.extend.pageInfo.list, function(index, item) {
 				var createLi = $("<li></li>");
 				var createDiv = $("<div></div>").addClass("i-pic limit");
-				var createImg = $("<img>").attr("src", item.images);
+				var createImg = $("<img>").attr("src",
+						"http://123.207.93.53/Older_back/" + item.images);
 				var createP = $("<p></p>").append(item.imagetitle).addClass(
 						"title fl");
 				var createp1 = $("<p></p>").append($("<b></b>").append("¥"))

@@ -111,16 +111,20 @@
 					</script>
 
 					<div class="tb-booth tb-pic tb-s310">
-						<a href="${product.imgList[0]}"><img
-							src="${product.imgList[0]}" alt="细节展示放大镜特效"
-							rel="${product.imgList[0]}" class="jqzoom" /></a>
+						<a href="http://123.207.93.53/Older_back/${product.imgList[0]}"><img
+							src="http://123.207.93.53/Older_back/${product.imgList[0]}"
+							alt="细节展示放大镜特效"
+							rel="http://123.207.93.53/Older_back/${product.imgList[0]}"
+							class="jqzoom" /></a>
 					</div>
 					<ul class="tb-thumb" id="thumblist">
 						<c:forEach items="${product.imgList}" var="s">
 							<li class="tb-selected">
 								<div class="tb-pic tb-s40">
-									<a href="javascript:#"> <img src="${s}" mid="${s}"
-										big="${s}">
+									<a href="javascript:#"> <img
+										src="http://123.207.93.53/Older_back/${s}"
+										mid="http://123.207.93.53/Older_back/${s}"
+										big="http://123.207.93.53/Older_back/${s}">
 									</a>
 								</div>
 							</li>
@@ -296,7 +300,7 @@
 								</div>
 								<div class="twlistNews">
 									<c:forEach items="${product.imgList}" var="s">
-										<img src="${s}" />
+										<img src="http://123.207.93.53/Older_back/${s}" />
 									</c:forEach>
 								</div>
 							</div>
