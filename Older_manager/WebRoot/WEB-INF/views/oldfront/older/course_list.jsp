@@ -95,6 +95,14 @@ ul li {
 	background: url(${APP_PATH}/static/images/left.png) no-repeat;
 	left: -10px;
 }
+
+#ol {
+	list-style: none;
+}
+
+body {
+	background-color: #F4F9F4 !important;
+}
 </style>
 </head>
 <body>
@@ -126,12 +134,12 @@ ul li {
 	</div>
 	</nav>
 
-	<div id="box" style="margin-top: 70px;">
-		<div class="slide">
+	<div id="box" style="margin-top: 100px;">
+		<div class="slide" style="height: 410px !important;">
 			<ul id="imgContent">
 				<c:forEach items="${pageInfo.list}" var="course">
 					<li><a href="${APP_PATH}/official/courseInfoId/${course.id}"><img
-							src="${course.photo}"></a></li>
+							src="${course.photo}" height="400"></a></li>
 				</c:forEach>
 			</ul>
 			<div class="arraw">
@@ -140,8 +148,6 @@ ul li {
 			</div>
 		</div>
 	</div>
-
-
 	<!-- 轮播图结束 -->
 	<div class="col-sm-12 margin_div">
 		<div class="col-sm-12 border-style">
@@ -149,7 +155,7 @@ ul li {
 			<div class="col-sm-12" id="courseContent"></div>
 		</div>
 		<div class="col-sm-12 div-background">
-			<span class="col-sm-6 big-text-style" style="margin-top: 50px;">不一样的线下课程与活动!!!!!</span>
+			<span class="col-sm-6 big-text-style" style="margin-top: 50px;">不一样的线下课程与活动</span>
 			<ol class="col-sm-5 ol-style" id="ol">
 			</ol>
 		</div>
@@ -182,21 +188,21 @@ ul li {
 			id : 1
 		}, { // 2
 			width : 600,
-			top : 70,
+			top : 20,
 			left : 50,
 			opacity : 60,
 			z : 3,
 			id : 2
 		}, { // 3
 			width : 800,
-			top : 100,
+			top : 20,
 			left : 200,
 			opacity : 100,
 			z : 4,
 			id : 3
 		}, { // 4
 			width : 600,
-			top : 70,
+			top : 20,
 			left : 550,
 			opacity : 60,
 			z : 3,
@@ -383,10 +389,8 @@ ul li {
 					var ul = $("<ul></ul>")
 							.addClass("list-unstyled ul-li-text");
 					var imgLi = $("<li></li>").append(
-							$("<img/>").addClass("img-size").attr(
-									"src",
-									"http://gyadmin-1252357563.file.myqcloud.com/"
-											+ item.photo));
+							$("<img/>").addClass("img-size").attr("src",
+									item.photo));
 					var title = item.title;
 					if (title.length > 10) {
 						title = title.substring(0, 10) + "...";
@@ -436,10 +440,8 @@ ul li {
 					var ul = $("<ul></ul>")
 							.addClass("list-unstyled ul-li-text");
 					var imgLi = $("<li></li>").append(
-							$("<img/>").addClass("img-size").attr(
-									"src",
-									"http://gyadmin-1252357563.file.myqcloud.com/"
-											+ item.photo));
+							$("<img/>").addClass("img-size").attr("src",
+									item.photo));
 					var title = item.title;
 					if (title.length > 10) {
 						title = title.substring(0, 10) + "...";
@@ -489,6 +491,7 @@ ul li {
 		$("#loading").click(function() {
 			$("#imgOl").empty();
 			if (currentNum + 1 < total || currentNum + 1 == total) {
+				$("#ol").empty();
 				if ($("#key").val() == '') {
 					go(currentNum + 1);
 				} else {

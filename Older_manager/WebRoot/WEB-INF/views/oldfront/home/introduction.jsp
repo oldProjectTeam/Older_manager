@@ -56,10 +56,6 @@
 			<div class="nav-cont">
 				<ul>
 					<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
-					<li class="qc"><a href="#">闪购</a></li>
-					<li class="qc"><a href="#">限时抢</a></li>
-					<li class="qc"><a href="#">团购</a></li>
-					<li class="qc last"><a href="#">大包装</a></li>
 				</ul>
 			</div>
 		</div>
@@ -67,7 +63,7 @@
 		<!-- 路径导航 -->
 		<ol class="am-breadcrumb am-breadcrumb-slash">
 			<li><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
-			<li><a href="#">分类</a></li>
+			<li><a href="javascript:#">分类</a></li>
 			<li class="am-active">内容</li>
 		</ol>
 

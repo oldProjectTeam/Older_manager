@@ -40,16 +40,6 @@
 	<div class="just-sec" id="port-folio">
 		<div class="container">
 			<div class="row">
-				<ul id="filters">
-					<li><span class="filter active"
-						data-filter="landscape nature awesome">比赛 </span></li>
-					<li><span class="filter active">/</span></li>
-					<li><span class="filter" data-filter="landscape">旅游</span></li>
-					<li><span class="filter">/</span></li>
-					<li><span class="filter" data-filter="nature">歌舞会</span></li>
-					<li><span class="filter">/</span></li>
-					<li><span class="filter" data-filter="awesome">欢迎您的加入</span></li>
-				</ul>
 				<img src="${APP_PATH}/static/images/load.gif" width="100"
 					height="100" class="col-md-offset-5 activity" />
 				<div id="content1" class="row"></div>
@@ -71,15 +61,16 @@
 		src="${APP_PATH}/static/oldfront/assets/js/jquery.mixitup.min.js"></script>
 	<script src="${APP_PATH}/static/oldfront/assets/js/custom.js"></script>
 	<script type="text/javascript">
-	$(function(){
-    	var x = document.getElementsByClassName("check");
-    	$(x[0]).removeClass("menu-top-active");
-    	$(x[3]).addClass("menu-top-active");
-    	 
-     });
+		$(function() {
+			var x = document.getElementsByClassName("check");
+			$(x[0]).removeClass("menu-top-active");
+			$(x[3]).addClass("menu-top-active");
+
+		});
 		$(function() {
 			go(1);
-			
+			$("#change").click(function() {
+			});
 		});
 		function go(pn) {
 			$("#content1").empty();
@@ -101,11 +92,12 @@
 															.addClass(
 																	"col-md-4 find")
 															.attr("id", item.id);
+
 													var inDiv = $("<div></div>")
 															.addClass(
 																	"portfolio-item awesome mix_all")
-															.attr("data-cat",
-																	"awesome");
+															.attr("style",
+																	"height: 240px; width: 350px;  display: inline-block; opacity: 1;");
 													var overlayDiv = $(
 															"<div></div>")
 															.addClass("overlay")

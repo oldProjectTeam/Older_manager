@@ -107,7 +107,7 @@
 							<div class="s-bar">
 								<i class="s-icon"></i>我的物流
 							</div>
-							<div class="s-content">
+							<%-- 				<div class="s-content">
 								<ul class="lg-list">
 
 									<li class="lg-item">
@@ -190,7 +190,7 @@
 
 								</ul>
 
-							</div>
+							</div> --%>
 
 						</div>
 					</div>

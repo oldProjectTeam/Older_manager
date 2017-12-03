@@ -567,12 +567,18 @@
 
 									var dd = /^[\u4E00-\u9FA5A-Za-z0-9]{2,20}$/;
 									var num = /^[A-Za-z0-9]{1,20}$/;
-									if (!dd.test($("#yaoname").val())
-											|| !dd.test($("#zuoyong").val())
-											|| !num.test($("#jiliang").val())) {
-										layer.msg("输入的内容不规范");
-									} else {
-										$
+									if (!dd.test($("#yaoname").val())){
+									  layer.msg("输入的药名不规范");
+									}else{
+									         if(!dd.test($("#zuoyong").val())){
+									            layer.msg("输入的作用不规范");
+									         }else{
+									              if(!num.test($("#jiliang").val())){
+									              
+									              layer.msg("输入的药量不规范");
+									              }else{
+									              
+									                $
 												.ajax({
 													url : "${APP_PATH}/takedrug/addtakedrug",
 													type : "POST",
@@ -591,8 +597,11 @@
 														}
 													}
 												});
-
+									                
+									              }
+									         }
 									}
+											
 								} else {
 									layer.msg("结束时间应该在开始时间之后");
 								}

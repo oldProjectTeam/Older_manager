@@ -33,7 +33,7 @@
 		<div class="am-slider am-slider-default scoll" data-am-flexslider
 			id="demo-slider-0">
 			<ul class="am-slides">
-				<li class="banner1"><a href="introduction.html"> <img
+				<li class="banner1"><a href="javascript:#"> <img
 						src="${APP_PATH}/static/images/ad1.jpg" />
 				</a></li>
 				<li class="banner2"><a> <img
