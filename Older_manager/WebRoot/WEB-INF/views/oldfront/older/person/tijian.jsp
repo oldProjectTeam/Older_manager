@@ -225,7 +225,7 @@
 														<label for="" class="col-md-4 control-label">下次体检时间：</label>
 														<input
 															class="easyui-datebox datebox-f combo-f textbox-f nexttime1"
-															editable="false" id="peinfo_nexttime11" name="nexttime1"
+															editable="false" id="peinfo_nexttime11" name="nexttime"
 															type="date"
 															style="width: 280px; height: 30px; display: none;">
 														<p style="color:red" id="next_time1"></p>
@@ -475,25 +475,76 @@
 				function() {
 					if ($(".hospital1").val() == '') {
 						$(".hospital1").next("p").html("请输入4-16个英文组或者2-5个汉字");
-					} else if ($(".peproject1").val() == '') {
+						updateinfo = "fail";
+						return false;
+					}
+					else{
+						$(".hospital1").next("p").html("");
+						updateinfo = "success";
+					} if ($(".peproject1").val() == '') {
 						$(".peproject1").next("p").html("请输入英文与汉字");
-					} else if ($(".petime1").datebox("getValue") == '') {
+						updateinfo = "fail";
+						return false;
+					} else{
+						$(".peproject1").next("p").html("");
+						updateinfo = "success";
+					} 
+					var petime1= $(".petime1").datebox("getValue")	
+					if (petime1== '') {
 						$("#pe_time1").html("请输入体检时间");
-					} else if ($(".nexttime1").datebox("getValue") == '') {
+						updateinfo = "fail";
+						return false;
+					} else{
+						$("#pe_time1").html("");
+						updateinfo = "success";
+					}
+					var nexttime1=$(".nexttime1").datebox("getValue");	
+					if (nexttime1== '') {
 						$("#next_time1").html("请输入下次体检时间");
-					} else if ($("#peinfo_petime11").datebox("getValue") > $(
-							"#peinfo_nexttime11").datebox("getValue")) {
+						updateinfo = "fail";
+						return false;
+					} 
+					else if (petime1>nexttime1) {
 						$("#next_time1").html("请输入在体检时间之后的时间");
-						return;
-					} else if ($(".pevalue1").val() == '') {
+						updateinfo = "fail";
+						return false;
+					}else{
+						$("#next_time1").html("");
+						updateinfo = "success";
+					} 
+					if ($(".pevalue1").val() == '') {
 						$(".pevalue1").next("p").html("请输入数字");
-					} else if ($(".peresult1").val() == '') {
+						updateinfo = "fail";
+						return false;
+					}else{
+						$(".pevalue1").next("p").html("");
+						updateinfo = "success";
+					}
+					
+					if ($(".peresult1").val() == '') {
 						$(".peresult1").next("p").html("请输入内容");
-					} else if ($(".resultanalysis1").val() == '') {
+						updateinfo = "fail";
+						return false;
+					} else{
+						$(".peresult1").next("p").html("");
+						updateinfo = "success";
+					}
+					if ($(".resultanalysis1").val() == '') {
 						$(".resultanalysis1").next("p").html("请输入内容");
-					} else if ($(".remark1").val() == '') {
+						updateinfo = "fail";
+						return false;
+					} else{
+						$(".resultanalysis1").next("p").html("");
+						updateinfo = "success";
+					} 
+					if ($(".remark1").val() == '') {
 						$(".remark1").next("p").html("请输入内容");
-					} else {
+						updateinfo = "fail";
+					}else{
+						$(".remark1").next("p").html("");
+						updateinfo = "success";
+					}
+					if(updateinfo=="success"){
 						$.ajax({
 							url : "${APP_PATH}/peinfo/update",
 							type : "POST",
@@ -559,43 +610,77 @@
 					if ($(".hospital").val() == '') {
 						$(".hospital").next("p").html("请输入4-16个英文组或者2-5个汉字");
 						save = "fail";
+						return false;
+					}else{
+						$(".hospital").next("p").html("");
 					}
 					if ($(".peproject").val() == '') {
 						$(".peproject").next("p").html("请输入英文与汉字");
 						save = "fail";
+						return false;
+					}else{
+						$(".peproject").next("p").html("");
 					}
-					if ($(".petime").datebox("getValue") == '') {
+					var petime=$(".petime").datebox("getValue");
+					if (petime=='') {
 						$("#pe_time").html("请输入体检时间");
 						save = "fail";
+						return false;
+					}else if(new Date(petime)>new Date()){
+						$("#pe_time").html("体检时间不能是未来时间！");
+						save = "fail";
+						return false;
+					}else{
+						$("#pe_time").html("");
 					}
-					if ($(".nexttime").datebox("getValue") == '') {
+					var nexttime=$(".nexttime").datebox("getValue");
+					if (nexttime=='') {
 						$("#next_time").html("请输入下次体检时间");
 						save = "fail";
+						return false;
 					}
-					if ($(".petime").datebox("getValue") > $(".nexttime")
-							.datebox("getValue")) {
-						$("#next_time").html("请输入在体检时间之后的时间");
+					if (new Date(petime)>new Date(nexttime)) {
+						$("#next_time").html("下次体检时间不能小于体检时间!");
 						save = "fail";
+						return false;
 					} else {
+						$("#next_time").html("");
 						save = "success";
 					}
-					if ($(".pevalue").val() == '') {
+					
+					if ($(".pevalue").val()=='') {
 						$(".pevalue").next("p").html("请输入数字");
 						save = "fail";
+						return false;
+					}  
+					else{
+						$(".pevalue").next("p").html("");
+						save ="success";
 					}
 					if ($(".peresult").val() == '') {
 						$(".peresult").next("p").html("请输入内容");
 						save = "fail";
+						return false;
+					}else{
+						$(".peresult").next("p").html("");
+						save = "success";
 					}
 					if ($(".resultanalysis").val() == '') {
 						$(".resultanalysis").next("p").html("请输入内容");
 						save = "fail";
+						return false;
+					}else{
+						$(".resultanalysis").next("p").html("");
+						save = "success";
 					}
 					if ($(".remark").val() == '') {
 						$(".remark").next("p").html("请输入内容");
 						save = "fail";
+						return false;
+					}else{
+						$(".remark").next("p").html("");
+						save = "success";
 					}
-
 					if (save == "success") {
 						$.ajax({
 							url : "${APP_PATH}/peinfo/addpeinfo",
@@ -640,6 +725,7 @@
 							if (!reghospital.test(hospital)) {
 								$(this).next("p").html("请输入4-16个英文组或者2-5个汉字");
 								save = "fail";
+								return false;
 							} else {
 								$(this).next("p").html(" ");
 								save = "success";
@@ -657,7 +743,7 @@
 				save = "success";
 			}
 		});
-		$(".petime").change(function() {
+		/* $(".petime").change(function() {
 			if ($(".petime").datebox("getValue") == '') {
 				$("#pe_time").html("请输入体检时间");
 				save = "fail";
@@ -675,10 +761,10 @@
 				save = "success";
 			}
 		});
-
+ */
 		$(".pevalue").change(function() {
 			var pevalue = $(".pevalue").val();
-			var regpevalue = /\d/;
+			var regpevalue =/^[0-9]+(.[0-9]{0,2})?$/;
 			if (!regpevalue.test(pevalue)) {
 				$(this).next("p").html("请输入数字");
 				save = "fail";
@@ -712,7 +798,7 @@
 				updateinfo = "success";
 			}
 		});
-		$(".petime1").change(function() {
+		/* $(".petime1").change(function() {
 			if ($(".petime1").datebox("getValue") == '') {
 				$("#pe_time1").html("请输入体检时间");
 				updateinfo = "fail";
@@ -729,11 +815,11 @@
 				$("#next_time1").html(" ");
 				updateinfo = "success";
 			}
-		});
+		}); */
 
 		$(".pevalue1").change(function() {
 			var pevalue = $(".pevalue1").val();
-			var regpevalue = /\d/;
+			var regpevalue =/^[0-9]+(.[0-9]{0,2})?$/;
 			if (!regpevalue.test(pevalue)) {
 				$(this).next("p").html("请输入数字");
 				updateinfo = "fail";

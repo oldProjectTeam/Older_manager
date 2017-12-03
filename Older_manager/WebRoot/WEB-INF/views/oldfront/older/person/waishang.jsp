@@ -302,7 +302,7 @@ $("#add_save_btn").click(function(){
 	if(occurrencetime==''){
 		$("#add_time_msg").html("请选择治疗时间!");
 		return false;
-	}else if(occurrencetime>getSysDate()){
+	}else if(new Date(occurrencetime)>new Date()){
 		$("#add_time_msg").html("治疗时间不能是未来时间!");
 		return false;
 	}else{
@@ -542,7 +542,7 @@ function to_page(pn){
 		if(occurrencetime==''){
 			$("#edit_time_msg").html("请选择治疗时间!");
 			return false;
-		}else if(occurrencetime>getSysDate()){
+		}else if(new Date(occurrencetime)>new Date()){
 			$("#edit_time_msg").html("治疗时间不能是未来时间!");
 			return false;
 		}else{
@@ -608,7 +608,7 @@ function to_page(pn){
 			});
 			return false;
 		}
-		if(time1>time2){
+		if(new Date(time1)>new Date(time2)){
 			layer.msg("结束时间不能小于开始时间!",{
 				offset:['35%']
 			});

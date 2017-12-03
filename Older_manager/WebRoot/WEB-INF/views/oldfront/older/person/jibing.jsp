@@ -310,7 +310,7 @@ $("#add_save_btn").click(function(){
 	if(confirmedtime==''){
 		$("#add_time_msg").html("请选择确诊时间!");
 		return false;
-	}else if(confirmedtime>getSysDate()){
+	}else if(new Date(confirmedtime)>new Date()){
 		$("#add_time_msg").html("确诊时间不能是未来时间!");
 		return false;
 	}else{
@@ -557,7 +557,7 @@ function to_page(pn){
 		if(confirmedtime==''){
 			$("#edit_time_msg").html("请选择确诊时间!");
 			return false;
-		}else if(confirmedtime>getSysDate()){
+		}else if(new Date(confirmedtime)>new Date()){
 			$("#edit_time_msg").html("确诊时间不能是未来时间!");
 			return false;
 		}else{
@@ -628,7 +628,7 @@ function to_page(pn){
 			});
 			return false;
 		}
-		if(time1>time2){
+		if(new Date(time1)>new Date(time2)){
 			layer.msg("结束时间不能小于开始时间!",{
 				offset:['35%']
 			});

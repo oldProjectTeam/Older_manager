@@ -415,7 +415,7 @@ $("#add_save_btn").click(function(){
 	if(clinicaltime==''){
 		show_vaildate_msg("#clinicaltime","error","请选择就诊时间!!");
 		return false;
-	}else if(clinicaltime>getSysDate()){
+	}else if(new Date(clinicaltime)>new Date()){
 		show_vaildate_msg("#clinicaltime","error","就诊时间不能是未来时间!");
 		return false;
 	}else{
@@ -747,7 +747,7 @@ function to_page(pn){
 		if(clinicaltime==''){
 			show_vaildate_msg("#clinicaltime1","error","请选择就诊时间!!");
 			return false;
-		}else if(clinicaltime>getSysDate()){
+		}else if(new Date(clinicaltime)>new Date()){
 			show_vaildate_msg("#clinicaltime1","error","就诊时间不能是未来时间!");
 			return false;
 		}else{
@@ -877,7 +877,7 @@ function to_page(pn){
 			});
 			return false;
 		}
-		if(time1>time2){
+		if(new Date(time1)>new Date(time2)){
 			layer.msg("结束时间不能小于开始时间!",{
 				offset:['35%']
 			});
