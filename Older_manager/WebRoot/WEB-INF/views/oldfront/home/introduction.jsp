@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%
 	String path = request.getContextPath();
 	pageContext.setAttribute("APP_PATH", request.getContextPath());
@@ -114,17 +115,32 @@
 							class="jqzoom" /></a>
 					</div>
 					<ul class="tb-thumb" id="thumblist">
-						<c:forEach items="${product.imgList}" var="s">
-							<li class="tb-selected">
-								<div class="tb-pic tb-s40">
-									<a href="javascript:#"> <img
-										src="http://123.207.93.53/Older_back/${s}"
-										mid="http://123.207.93.53/Older_back/${s}"
-										big="http://123.207.93.53/Older_back/${s}">
-									</a>
-								</div>
-							</li>
-						</c:forEach>
+						<c:if test="${fn:length(product.imgList)>4}">
+							<c:forEach items="${product.imgList}" var="s" begin="0" end="3">
+								<li class="tb-selected">
+									<div class="tb-pic tb-s40">
+										<a href="javascript:#"> <img
+											src="http://123.207.93.53/Older_back/${s}"
+											mid="http://123.207.93.53/Older_back/${s}"
+											big="http://123.207.93.53/Older_back/${s}">
+										</a>
+									</div>
+								</li>
+							</c:forEach>
+						</c:if>
+						<c:if test="${fn:length(product.imgList)<4}">
+							<c:forEach items="${product.imgList}" var="s">
+								<li class="tb-selected">
+									<div class="tb-pic tb-s40">
+										<a href="javascript:#"> <img
+											src="http://123.207.93.53/Older_back/${s}"
+											mid="http://123.207.93.53/Older_back/${s}"
+											big="http://123.207.93.53/Older_back/${s}">
+										</a>
+									</div>
+								</li>
+							</c:forEach>
+						</c:if>
 					</ul>
 
 				</div>

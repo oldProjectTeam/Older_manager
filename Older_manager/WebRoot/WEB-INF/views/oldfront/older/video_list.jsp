@@ -6,7 +6,7 @@
 			+ path + "/";
 	request.setAttribute("APP_PATH", request.getContextPath());
 %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -39,11 +39,8 @@
 <script src="http://vjs.zencdn.net/5.0.2/video.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
+<link href="${APP_PATH}/static/oldfront/css/style.css" rel="stylesheet" />
 <style type="text/css">
-a:hover {
-	color: red !important;
-}
-
 li {
 	padding-right: 10px;
 }
@@ -55,34 +52,58 @@ li {
 </head>
 
 <body>
-	<!-- 轮播条与收搜框 -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed"
-				data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-				aria-controls="navbar">
-				<span class="sr-only">Toggle navigation</span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span> <span
-					class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#"> <img
-				src="${APP_PATH}/static/images/oldback/images/logo.png"
-				width="160px" />
-			</a>
-		</div>
-		<div id="navbar" class="navbar-collapse collapse"
-			style="margin-top: 18px;">
-			<form class="navbar-form navbar-right" id="searchForm">
-				<div class="form-group">
-					<input type="text" placeholder="搜索视频..." class="form-control"
-						id="key" name="key">
+		<div class="row ">
+			<div class="col-md-12">
+				<div class="navbar-collapse collapse">
+					<ul id="menu-top"
+						class="nav navbar-nav navbar-fixed-top navbar-inverse">
+						<li
+							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
+							src="${APP_PATH}/static/images/oldback/images/logo.png"
+							width="200px" style="margin-right:150px;" /></li>
+						<li><a href="${APP_PATH}/older/index"
+							class="menu-top-active check">首页</a></li>
+						<li><a href="${APP_PATH}/course/course_list" class="check">课程专区</a></li>
+						<li><a href="${APP_PATH}/older/video_list" class="check ">视频专区</a></li>
+						<li><a href="${APP_PATH}/older/activity" class="check">社区活动</a></li>
+						<li><a href="${APP_PATH}/older/about" class="check">关于我们</a></li>
+						<li><a href="javascript:contact()" id="contact" class="check">联系我们</a></li>
+						<li><a href="${APP_PATH}/shop/oldfronthome" class="check">购物商城</a></li>
+						<li style="float:right;margin-right:40px">
+							<!-- 没有登录--> <c:if test="${empty older}">
+								<a href="${APP_PATH}/older/login">登录</a>
+							</c:if> <!--已登录  --> <c:if test="${!empty older}">
+								<dropdown> <input id="toggle2" type="checkbox">
+								<label for="toggle2" class="animate"> <img
+									src="${APP_PATH}/static/images/old.png"
+									style="height:30px;width:30px" class="img-circle"> <i
+									class="fa fa-bars float-right" style="margin-top:10px"></i>
+								</label>
+								<ul class="animate">
+									<li class="animate" onClick="go_center()">管理中心<i
+										class="fa fa-cog float-right"></i>
+									</li>
+									<li class="animate" onClick="exit()">退出系统<i
+										class="fa fa-arrows-alt float-right"></i></li>
+								</ul>
+								</dropdown>
+							</c:if>
+						</li>
+					</ul>
 				</div>
-				<button type="button" id="search" class="btn btn-success">搜索</button>
-			</form>
+			</div>
 		</div>
 	</div>
-	</nav>
+	<div style="margin-top: 70px;" class="col-md-offset-4">
+		<form id="searchForm" class="form-inline">
+			<div class="form-group">
+				<input type="text" placeholder="搜索视频..." class="form-control"
+					id="key" name="key" style="width:400px;">
+			</div>
+			<button type="button" id="search" class="btn btn-success">搜索</button>
+		</form>
+	</div>
 	<!-- 视频区域 -->
 	<div style="margin-top: 20px;">
 		<section class="main-preview-player"> <video id="my_video_1"
@@ -118,6 +139,30 @@ li {
 	<jsp:include page="footer.jsp"></jsp:include>
 	<script src="${APP_PATH}/static/video/js/video.js"></script>
 	<script type="text/javascript">
+		/* 联系我们 */
+		function contact() {
+			layer.tips('邮箱:1834678427@qq.com', '#contact', {
+				tips : [ 1, '#3595CC' ],
+				time : 4000,
+				offset : [ '20%' ]
+			});
+		}
+		//去管理中心
+		function go_center() {
+			window.location.href = "${APP_PATH}/older/older";
+		}
+		//推出系统
+		function exit() {
+			window.location.href = "${APP_PATH}/oldmanaccount/loginOut";
+		}
+	</script>
+	<script type="text/javascript">
+		$(function() {
+			var x = document.getElementsByClassName("check");
+			$(x[0]).removeClass("menu-top-active");
+			$(x[2]).addClass("menu-top-active");
+
+		});
 		$("#search").click(function() {
 			if ($("#key").val() == '') {
 				layer.msg("请输入关键字再查询", {

@@ -729,6 +729,10 @@
 			}
 			//收货地址id
 			var addressId = $("input[name='state']:checked").val();
+			if (addressId =='' || addressId == null) {
+				layer.msg("请选择收货地址！");
+				return false;
+			}
 			if (formulaWay == '' || formulaWay == null) {
 				layer.msg("请选择物流方式！");
 				return false;

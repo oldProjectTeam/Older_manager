@@ -33,17 +33,8 @@
 	rel="stylesheet" />
 <link href="${APP_PATH}/static/oldfront/assets/css/flexslider.css"
 	rel="stylesheet" />
-<link href="${APP_PATH}/static/oldfront/assets/css/style.css"
-	rel="stylesheet" />
 <script language="JavaScript"
 	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
-	rel='stylesheet' type='text/css' />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css' />
-<link href='http://fonts.googleapis.com/css?family=Lobster'
-	rel='stylesheet' type='text/css' />
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
 </head>
@@ -57,6 +48,7 @@
 }
 </style>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 		<div class="all" style="margin: 15px;">
 			<hr />

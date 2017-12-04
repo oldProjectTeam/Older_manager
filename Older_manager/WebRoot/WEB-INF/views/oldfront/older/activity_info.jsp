@@ -57,6 +57,7 @@
 }
 </style>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container" style="margin: 15px;">
 		<div class="all" style="margin: 15px;">
 			<hr />

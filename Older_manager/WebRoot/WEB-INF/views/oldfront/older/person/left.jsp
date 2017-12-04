@@ -42,7 +42,6 @@ a {
 						<li class="name"><i class="icon-nav icon-user"></i>
 							${older.oldman.name }</li>
 						<li><i class="icon-phone"></i>${older.oldman.phone }</li>
-						<li>所属分部:${older.oldman.service}</li>
 						<li>
 							<div class="news"
 								onClick="javascript:window.location.href='${APP_PATH}/older/sms'">
@@ -56,7 +55,8 @@ a {
 					</ul>
 				</div>
 				<div class="my_center"
-					onclick="javascript:window.location.href='${APP_PATH}/older/person'">&gt;&gt;个人中心</div>
+					onclick="javascript:window.location.href='${APP_PATH}/older/person'">&gt;&gt;个人中心
+					&nbsp;&nbsp;&nbsp;&nbsp;所属分部:${older.oldman.service}</div>
 			</div>
 			<!-- 用户中心结束 -->
 			<!-- 菜单开始 -->

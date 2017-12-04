@@ -21,18 +21,10 @@
 <meta http-equiv="description" content="This is my page">
 
 <link href="${APP_PATH}/static/oldfront/css/style.css" rel="stylesheet" />
-
 <link rel="stylesheet"
 	href="${APP_PATH}/static/oldfront/assets/css/zhuye.css" />
 <script language="JavaScript"
 	src="${APP_PATH}/static/js/jquery-3.2.1.min.js"></script>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300'
-	rel='stylesheet' type='text/css' />
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css' />
-<link href='http://fonts.googleapis.com/css?family=Lobster'
-	rel='stylesheet' type='text/css' />
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
 	type="text/javascript"></script>
 </head>
@@ -65,7 +57,7 @@
 								<label for="toggle2" class="animate"> <img
 									src="${APP_PATH}/static/images/old.png"
 									style="height:30px;width:30px" class="img-circle"> <i
-									class="fa fa-bars float-right" style="margin-top:10px"></i>
+									class="fa fa-bars float-right" style="margin-top:10px;"></i>
 								</label>
 								<ul class="animate">
 									<li class="animate" onClick="go_center()">管理中心<i
