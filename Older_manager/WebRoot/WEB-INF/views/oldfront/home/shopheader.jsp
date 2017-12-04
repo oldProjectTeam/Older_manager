@@ -87,11 +87,11 @@
 			</div>
 			<div class="search-bar pr">
 				<a name="index_none_header_sysc" href="#"></a>
-				<form action="home/search">
+				<form>
 					<input id="searchInput" name="searchKeyWord" type="text"
-						placeholder="搜索" autocomplete="off"> <input
+						placeholder="搜索" autocomplete="on"> <input
 						id="ai-topsearch" class="submit am-btn" value="搜索" index="1"
-						type="submit">
+						type="button" onclick="search()">
 				</form>
 			</div>
 		</div>
@@ -132,6 +132,24 @@
 				}
 			});
 		});
+
+		function search() {
+			var searchcontent = $("#searchInput").val();
+			if (searchcontent == null || searchcontent == '') {
+				layer.msg("请输入搜索信息", {
+					offset : [ '16%' ]
+				});
+			} else {
+				window.location.href = "home/search?searchKeyWord="
+						+ searchcontent;
+			}
+		}
+
+		document.onkeydown = function() {
+			if (event.keyCode == 13) {
+				search();
+			}
+		}
 	</script>
 </body>
 </html>

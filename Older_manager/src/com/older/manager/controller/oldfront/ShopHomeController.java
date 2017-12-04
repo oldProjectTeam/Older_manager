@@ -64,18 +64,18 @@ public class ShopHomeController {
 				new String(searchKeyWord.getBytes("iso-8859-1"), "utf-8"));
 		return "oldfront/home/search";
 	}
-	
+
 	/**
-	 * @Title:   typeIntoSearch
-	 * @Description:  通过类型跳转到搜索
-	 * @param:    @param typeName
-	 * @param:    @param model
-	 * @param:    @return
-	 * @param:    @throws UnsupportedEncodingException   
-	 * @return:   String   
+	 * @Title: typeIntoSearch
+	 * @Description: 通过类型跳转到搜索
+	 * @param: @param typeName
+	 * @param: @param model
+	 * @param: @return
+	 * @param: @throws UnsupportedEncodingException
+	 * @return: String
 	 * @throws
-	 * @author:   ym
-	 * @date:     2017年11月22日 下午11:28:12
+	 * @author: ym
+	 * @date: 2017年11月22日 下午11:28:12
 	 */
 	@RequestMapping("/typeIntoSearch")
 	public String typeIntoSearch(String typeName, Model model)
@@ -84,18 +84,18 @@ public class ShopHomeController {
 				new String(typeName.getBytes("iso-8859-1"), "utf-8"));
 		return "oldfront/home/search";
 	}
-	
+
 	/**
-	 * @Title:   brandIntoSearch
-	 * @Description:  通过品牌跳转到搜索
-	 * @param:    @param brandName
-	 * @param:    @param model
-	 * @param:    @return
-	 * @param:    @throws UnsupportedEncodingException   
-	 * @return:   String   
+	 * @Title: brandIntoSearch
+	 * @Description: 通过品牌跳转到搜索
+	 * @param: @param brandName
+	 * @param: @param model
+	 * @param: @return
+	 * @param: @throws UnsupportedEncodingException
+	 * @return: String
 	 * @throws
-	 * @author:   ym
-	 * @date:     2017年11月22日 下午11:28:49
+	 * @author: ym
+	 * @date: 2017年11月22日 下午11:28:49
 	 */
 	@RequestMapping("/brandIntoSearch")
 	public String brandIntoSearch(String brandName, Model model)
@@ -126,16 +126,16 @@ public class ShopHomeController {
 	}
 
 	/**
-	 * @Title:   searchType
-	 * @Description:  首页点击产品名称跳转到搜索界面
-	 * @param:    @param type
-	 * @param:    @param model
-	 * @param:    @return
-	 * @param:    @throws UnsupportedEncodingException   
-	 * @return:   String   
+	 * @Title: searchType
+	 * @Description: 首页点击产品名称跳转到搜索界面
+	 * @param: @param type
+	 * @param: @param model
+	 * @param: @return
+	 * @param: @throws UnsupportedEncodingException
+	 * @return: String
 	 * @throws
-	 * @author:   ym
-	 * @date:     2017年11月22日 下午4:36:49
+	 * @author: ym
+	 * @date: 2017年11月22日 下午4:36:49
 	 */
 	@RequestMapping("/searchType")
 	public String searchType(String type, Model model)
@@ -168,45 +168,56 @@ public class ShopHomeController {
 			@RequestParam(value = "pageSize", defaultValue = "12", required = false) Integer pageSize)
 			throws UnsupportedEncodingException {
 		PageHelper.startPage(pn, pageSize);
-		
+
 		List<Products> list = new ArrayList<Products>();
-		if (keyword!=null && keyword.length()>0) {
-			String keywordString = new String(keyword.getBytes("iso-8859-1"), "utf-8");
+		if (keyword != null && keyword.length() > 0) {
+			String keywordString = new String(keyword.getBytes("iso-8859-1"),
+					"utf-8");
 			if (!keywordString.equals("?")) {
 				System.out.println("........empString" + keywordString);
-				list = productsSearchService.findAllProductsBySearch(keywordString);
+				list = productsSearchService
+						.findAllProductsBySearch(keywordString);
 				System.out.println(".........list" + list);
 			} else {
 				System.out.println("........search" + keyword);
 				list = productsSearchService.findAllProductsBySearch(keyword);
 				System.out.println(".........list" + list);
 			}
-		};
-		if (typename!=null && typename.length()>0) {
-			String typenameString=new String(typename.getBytes("iso-8859-1"), "utf-8");
+		}
+		;
+		if (typename != null && typename.length() > 0) {
+			String typenameString = new String(typename.getBytes("iso-8859-1"),
+					"utf-8");
 			if (!typenameString.equals("?")) {
 				System.out.println("........empString" + typenameString);
-				list = productsSearchService.selecyAllProductsByTypeName(typenameString);
+				list = productsSearchService
+						.selecyAllProductsByTypeName(typenameString);
 				System.out.println(".........list" + list);
 			} else {
 				System.out.println("........search" + keyword);
-				list = productsSearchService.selecyAllProductsByTypeName(typename);
+				list = productsSearchService
+						.selecyAllProductsByTypeName(typename);
 				System.out.println(".........list" + list);
 			}
-		};
-		
-		if (brandname!=null && brandname.length()>0) {
-			String brandnameString=new String(brandname.getBytes("iso-8859-1"), "utf-8");
+		}
+		;
+
+		if (brandname != null && brandname.length() > 0) {
+			String brandnameString = new String(
+					brandname.getBytes("iso-8859-1"), "utf-8");
 			if (!brandnameString.equals("?")) {
 				System.out.println("........empString" + brandnameString);
-				list = productsSearchService.selectAllProductsByBrandName(brandnameString);
+				list = productsSearchService
+						.selectAllProductsByBrandName(brandnameString);
 				System.out.println(".........list" + list);
 			} else {
 				System.out.println("........search" + keyword);
-				list = productsSearchService.selectAllProductsByBrandName(brandname);
+				list = productsSearchService
+						.selectAllProductsByBrandName(brandname);
 				System.out.println(".........list" + list);
 			}
-		};
+		}
+		;
 		PageInfo<Products> pageInfo = new PageInfo<Products>(list, 6);
 		if (list.size() == 0) {
 			return Msg.fail().add("msg", "没有查询到数据");
@@ -296,18 +307,59 @@ public class ShopHomeController {
 	 * @param: @param search
 	 * @param: @return
 	 * @return: Msg
+	 * @throws UnsupportedEncodingException
 	 * @throws
 	 * @author: ym
 	 * @date: 2017年11月16日 下午10:35:41
 	 */
 	@RequestMapping("/searchProductsByAllBrand")
 	@ResponseBody
-	public Msg searchProductsByAllBrand(String search) {
+	public Msg searchProductsByAllBrand(String search, String brandname,
+			String productsname) throws UnsupportedEncodingException {
+
 		Products products = new Products();
 		if (search != null && !search.equals("")) {
-			products.setName(search);
+			String keywordString = new String(search.getBytes("iso-8859-1"),
+					"utf-8");
+			if (!keywordString.equals("?")) {
+				products.setName(keywordString);
+			} else {
+				products.setName(search);
+			}
+			;
+
 		}
 		;
+		if (brandname != null && !brandname.equals("")) {
+			BrandWithBLOBs brand = new BrandWithBLOBs();
+			String keywordString = new String(brandname.getBytes("iso-8859-1"),
+					"utf-8");
+			if (!keywordString.equals("?")) {
+				brand.setName(keywordString);
+				products.setBrand(brand);
+			} else {
+				brand.setName(brandname);
+				products.setBrand(brand);
+			}
+			;
+		}
+		;
+		if (productsname != null && !productsname.equals("")) {
+			ProductType productType = new ProductType();
+			String keywordString = new String(
+					productsname.getBytes("iso-8859-1"), "utf-8");
+			if (!keywordString.equals("?")) {
+				productType.setName(keywordString);
+				products.setProductType(productType);
+			} else {
+				productType.setName(productsname);
+				products.setProductType(productType);
+			}
+			;
+		}/* else {
+			return Msg.fail().add("msg", "非法输入数据！");
+		}*/
+
 		List<Brand> allBrant = productsSearchService
 				.selectAllProductsBrandByComplexSearch(products);
 		if (allBrant != null) {
@@ -315,6 +367,9 @@ public class ShopHomeController {
 		} else {
 			return Msg.fail().add("msg", "没有相关品牌");
 		}
+
+		
+
 	}
 
 	/**
@@ -323,24 +378,64 @@ public class ShopHomeController {
 	 * @param: @param search
 	 * @param: @return
 	 * @return: Msg
+	 * @throws UnsupportedEncodingException
 	 * @throws
 	 * @author: ym
 	 * @date: 2017年11月16日 下午10:35:14
 	 */
 	@RequestMapping("/searchProductsByAllProductType")
 	@ResponseBody
-	public Msg searchProductsByAllProductType(String search) {
+	public Msg searchProductsByAllProductType(String search, String brandname,
+			String productsname) throws UnsupportedEncodingException {
 		Products products = new Products();
 		if (search != null && !search.equals("")) {
-			products.setName(search);
+			String keywordString = new String(search.getBytes("iso-8859-1"),
+					"utf-8");
+			if (!keywordString.equals("?")) {
+				products.setName(keywordString);
+			} else {
+				products.setName(search);
+			}
+			;
+
 		}
 		;
+		if (brandname != null && !brandname.equals("")) {
+			BrandWithBLOBs brand = new BrandWithBLOBs();
+			String keywordString = new String(brandname.getBytes("iso-8859-1"),
+					"utf-8");
+			if (!keywordString.equals("?")) {
+				brand.setName(keywordString);
+				products.setBrand(brand);
+			} else {
+				brand.setName(brandname);
+				products.setBrand(brand);
+			}
+			;
+		}
+		;
+		if (productsname != null && !productsname.equals("")) {
+			ProductType productType = new ProductType();
+			String keywordString = new String(
+					productsname.getBytes("iso-8859-1"), "utf-8");
+			if (!keywordString.equals("?")) {
+				productType.setName(keywordString);
+				products.setProductType(productType);
+			} else {
+				productType.setName(productsname);
+				products.setProductType(productType);
+			}
+			;
+		}/* else {
+			return Msg.fail().add("msg", "非法输入数据！");
+		}*/
+
 		List<ProductType> allType = productsSearchService
 				.selectAllProductsTypeByComplexSearch(products);
 		if (allType != null) {
 			return Msg.success().add("bran", allType);
 		} else {
-			return Msg.fail().add("msg", "没有相关品牌");
+			return Msg.fail().add("msg", "没有相关产品类型");
 		}
 	}
 
@@ -350,18 +445,58 @@ public class ShopHomeController {
 	 * @param: @param search
 	 * @param: @return
 	 * @return: Msg
+	 * @throws UnsupportedEncodingException
 	 * @throws
 	 * @author: ym
 	 * @date: 2017年11月17日 下午2:36:15
 	 */
 	@RequestMapping("/searchHotKeywordProductsByAllProductType")
 	@ResponseBody
-	public Msg searchHotKeywordProductsByAllProductType(String search) {
+	public Msg searchHotKeywordProductsByAllProductType(String search,
+			String brandname, String productsname)
+			throws UnsupportedEncodingException {
+
 		Products products = new Products();
 		if (search != null && !search.equals("")) {
-			products.setName(search);
-		}
-		;
+			String keywordString = new String(search.getBytes("iso-8859-1"),
+					"utf-8");
+			if (!keywordString.equals("?")) {
+				products.setName(keywordString);
+			} else {
+				products.setName(search);
+			}
+			;
+
+		};
+		if (brandname != null && !brandname.equals("")) {
+			BrandWithBLOBs brand = new BrandWithBLOBs();
+			String keywordString = new String(brandname.getBytes("iso-8859-1"),
+					"utf-8");
+			if (!keywordString.equals("?")) {
+				brand.setName(keywordString);
+				products.setBrand(brand);
+			} else {
+				brand.setName(brandname);
+				products.setBrand(brand);
+			}
+			;
+		};
+		if (productsname != null && !productsname.equals("")) {
+			ProductType productType = new ProductType();
+			String keywordString = new String(
+					productsname.getBytes("iso-8859-1"), "utf-8");
+			if (!keywordString.equals("?")) {
+				productType.setName(keywordString);
+				products.setProductType(productType);
+			} else {
+				productType.setName(productsname);
+				products.setProductType(productType);
+			}
+			;
+		}/* else {
+			return Msg.fail().add("msg", "非法输入数据！");
+		}*/
+
 		List<String> HotkeyWord = productsSearchService
 				.selectAllHosProductsKeyWordBySearch(products);
 		if (HotkeyWord != null) {
@@ -369,6 +504,19 @@ public class ShopHomeController {
 		} else {
 			return Msg.fail().add("msg", "没有相关商品关键词");
 		}
+
+		/*
+		 * if (search != null && !search.equals("")) { Products products = new
+		 * Products(); String keywordString = new
+		 * String(search.getBytes("iso-8859-1"), "utf-8"); if
+		 * (!keywordString.equals("?")) { products.setName(keywordString); }
+		 * else { products.setName(search); } ; List<String> HotkeyWord =
+		 * productsSearchService .selectAllHosProductsKeyWordBySearch(products);
+		 * if (HotkeyWord != null) { return Msg.success().add("HotkeyWord",
+		 * HotkeyWord); } else { return Msg.fail().add("msg", "没有相关商品关键词"); } }
+		 * else { return Msg.fail().add("msg", "非法输入数据！"); }
+		 */
+
 	}
 
 	/**
@@ -412,21 +560,20 @@ public class ShopHomeController {
 			return Msg.fail().add("msg", "查询不到相关数据");
 		}
 	}
-	
+
 	/**
-	 * @Title:   selectSlidePeoducts
-	 * @Description:  查询首页轮播的产品图片
-	 * @param:    @return   
-	 * @return:   Msg   
+	 * @Title: selectSlidePeoducts
+	 * @Description: 查询首页轮播的产品图片
+	 * @param: @return
+	 * @return: Msg
 	 * @throws
-	 * @author:   ym
-	 * @date:     2017年11月23日 上午1:19:31
+	 * @author: ym
+	 * @date: 2017年11月23日 上午1:19:31
 	 */
 	@RequestMapping("/selectSlidePeoducts")
 	@ResponseBody
 	public Msg selectSlidePeoducts() {
-		List<Products> products = productsSearchService
-				.selectSlidePeoducts();
+		List<Products> products = productsSearchService.selectSlidePeoducts();
 		if (products.size() > 0) {
 			return Msg.success().add("products", products);
 		} else {

@@ -375,7 +375,7 @@
 		</if>
 		<if test="productType!=null">
 			<if test="productType.name!=null and productType.name!=''">
-				and py.name= #{productType.name}
+				and pt.name= #{productType.name}
 			</if>
 		</if>
 		<if test="productKeyword!=null">
