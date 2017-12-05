@@ -341,22 +341,16 @@
 										<td class="td-inner">交易操作</td>
 									</div>
 								</div>
-
 								<div class="order-main">
 									<div class="order-list">
-
 										<!--交易成功-->
-
-
 										<c:forEach var="item" items="${map}">
 											<div class="order-status5">
-
 												<c:forEach items="${item.value}" var="l" end="${exitId1}">
 													<c:if test="${l.orders.orders1=='1'}">
 														<c:forEach items="${item.value}" var="kk" end="${exitId}">
 															<c:if test="${kk.getOrders().getState()=='待付款' }">
 																<div class="order-title">
-
 																	<div class="dd-num">
 																		订单编号：<a href="javascript:;">${item.key}</a>
 																	</div>
@@ -365,17 +359,9 @@
 																			<span>成交时间：<fmt:formatDate value="${m.value}"
 																					pattern="yyyy-MM-dd" /></span>
 																		</c:if>
-
 																	</c:forEach>
-
-
-
-
-
-
 																	<!--    <em>店铺：小桔灯</em>-->
 																</div>
-
 																<div class="order-content">
 
 																	<div class="order-left">
@@ -385,7 +371,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="${list.products.images}"
+																							src="http://123.207.93.53/Older_back/${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>
@@ -470,15 +456,8 @@
 
 											</div>
 										</c:forEach>
-
-
 									</div>
-
-
-
-
 								</div>
-
 							</div>
 							<div class="am-tab-panel am-fade am-in" id="tab3">
 								<div class="order-top">
@@ -891,7 +870,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="${list.products.images}"
+																							src="http://123.207.93.53/Older_back/${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>

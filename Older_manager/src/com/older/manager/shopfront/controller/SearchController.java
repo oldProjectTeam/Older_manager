@@ -19,37 +19,43 @@ import com.older.manager.utils.Msg;
 @Controller
 public class SearchController {
 	@Autowired
-	private SearchService searchService; 
-	
-	//根据销量排序查询
+	private SearchService searchService;
+
+	// 根据销量排序查询
 	@RequestMapping("/salesOrPrices/{prod}")
 	@ResponseBody
-	public Msg salesOrPricesSorting(@RequestParam(value="pn",defaultValue="1")Integer pn,@PathVariable("prod")String prod){
-		String prods=null;
+	public Msg salesOrPricesSorting(
+			@RequestParam(value = "pn", defaultValue = "1") Integer pn,
+			@PathVariable("prod") String prod) {
+		String prods = null;
 		try {
-			prods = new String(prod.getBytes("ISO-8859-1"),"utf-8");
+			prods = new String(prod.getBytes("ISO-8859-1"), "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(prods!=null){
-			Products products=new Products();
-			String[] prodinfo=prods.split("-");
-			
-			if("销量".equals(prodinfo[0])){
+		if (prods != null) {
+			Products products = new Products();
+			String[] prodinfo = prods.split("-");
+
+			if ("销量".equals(prodinfo[0])) {
 				products.setSales(1);
 				products.setImagetitle(prodinfo[1]);
-			}else if("价格".equals(prodinfo[0])){
+			} else if ("价格".equals(prodinfo[0])) {
 				products.setNowprice(1.0);
 				products.setImagetitle(prodinfo[1]);
 			}
-			PageHelper.startPage(pn,15);
-			List<Products> info= searchService.salesSorting(products);
-			PageInfo pageInfo=new PageInfo(info,5);
+			PageHelper.startPage(pn, 15);
+			List<Products> info = searchService.salesSorting(products);
+			for (Products products2 : info) {
+				String s[] = products2.getImages().split(",");
+				products2.setImages(s[0]);
+			}
+			PageInfo pageInfo = new PageInfo(info, 5);
 			return Msg.success().add("pageInfo", pageInfo);
-		}else{
+		} else {
 			return Msg.fail();
 		}
 	}
-	
+
 }

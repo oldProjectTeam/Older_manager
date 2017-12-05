@@ -73,6 +73,10 @@ public class CollectionController {
 
 		PageHelper.startPage(pn, 15);
 		List<Products> products = collectionService.dimQuery(productsInfo);
+		for (Products products2 : products) {
+			String s[] = products2.getImages().split(",");
+			products2.setImages(s[0]);
+		}
 		PageInfo<Products> pageInfo = new PageInfo<Products>(products, 5);
 		model.addAttribute("pageInfo", pageInfo);
 		model.addAttribute("title", title);

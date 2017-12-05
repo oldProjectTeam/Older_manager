@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>商品详情</title>
+<title>购物商城-商品详情</title>
 
 <link href="${APP_PATH}/static/css/admin.css" rel="stylesheet"
 	type="text/css" />
@@ -402,6 +402,7 @@
 					success : function(result) {
 						if (result.code == 100) {
 							layer.msg("加入成功");
+							updateNum();
 						}
 					}
 				});

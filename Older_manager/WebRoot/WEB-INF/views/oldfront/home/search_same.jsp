@@ -14,7 +14,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'search.jsp' starting page</title>
+<title>购物商城-找相似</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -48,16 +48,8 @@
 				</div>
 				<div class="nav-cont">
 					<ul>
-						<li class="index"><a href="#">首页</a></li>
-						<li class="qc"><a href="#">闪购</a></li>
-						<li class="qc"><a href="#">限时抢</a></li>
-						<li class="qc"><a href="#">团购</a></li>
-						<li class="qc last"><a href="#">大包装</a></li>
+						<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
 					</ul>
-					<div class="nav-extra">
-						<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利
-						<i class="am-icon-angle-right" style="padding-left: 10px;"></i>
-					</div>
 				</div>
 			</div>
 
@@ -83,15 +75,16 @@
 
 								<li>
 									<div class="i-pic limit">
-										<img
-											src="http://123.207.93.53/Older_back/${ productsinfo.images}" />
-										<p class="title fl" id="img_title">${productsinfo.imagetitle }</p>
-										<p class="price fl">
-											<b>¥</b> <strong>${productsinfo.nowprice }</strong>
-										</p>
-										<p class="number fl">
-											销量<span>${productsinfo.sales }</span>
-										</p>
+										<a href="${APP_PATH}/product/getProduct/${productsinfo.id}"><img
+											src="http://123.207.93.53/Older_back/${productsinfo.images}"
+											height="150" />
+											<p class="title fl" id="img_title">${productsinfo.imagetitle }</p>
+											<p class="price fl">
+												<b>¥</b> <strong>${productsinfo.nowprice }</strong>
+											</p>
+											<p class="number fl">
+												销量<span>${productsinfo.sales }</span>
+											</p></a>
 									</div>
 								</li>
 							</c:forEach>
@@ -241,22 +234,6 @@
 				<i class="am-icon-angle-right am-icon-fw"></i>
 			</div>
 			<div>资产</div>
-
-			<!-- <div class="ia-head-list">
-					<a href="#" target="_blank" class="pl">
-						<div class="num">0</div>
-						<div class="text">优惠券</div>
-					</a>
-					<a href="#" target="_blank" class="pl">
-						<div class="num">0</div>
-						<div class="text">红包</div>
-					</a>
-					<a href="#" target="_blank" class="pl money">
-						<div class="num">￥0</div>
-						<div class="text">余额</div>
-					</a>
-				</div> -->
-
 		</div>
 		<div id="foot-content" class="nav-content">
 			<div class="nav-con-close">
@@ -286,7 +263,8 @@
 				var createLi = $("<li></li>");
 				var createDiv = $("<div></div>").addClass("i-pic limit");
 				var createImg = $("<img>").attr("src",
-						"http://123.207.93.53/Older_back/" + item.images);
+						"http://123.207.93.53/Older_back/" + item.images).attr(
+						"height", "150");
 				var createP = $("<p></p>").append(item.imagetitle).addClass(
 						"title fl");
 				var createp1 = $("<p></p>").append($("<b></b>").append("¥"))
@@ -297,9 +275,11 @@
 						"number fl");
 				createDiv.append(createImg).append(createP).append(createp1)
 						.append(createp2);
-				createLi.append(createDiv).appendTo($(".products_info"));
+				var a = $("<a></a>").attr("href",
+						"${APP_PATH}/product/getProduct/" + item.id).append(
+						createDiv);
+				createLi.append(a).appendTo($(".products_info"));
 			});
-
 		}
 		//分页条
 		function products_page(result) {

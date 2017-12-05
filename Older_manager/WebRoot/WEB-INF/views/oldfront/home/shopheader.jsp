@@ -117,7 +117,10 @@
 		}
 
 		$(function() {
-			$("#J_MiniCartNum").empty();
+			updateNum();
+		});
+
+		function updateNum() {
 			$.ajax({
 				url : "${APP_PATH}/cart/findCartUserId",
 				data : {
@@ -126,12 +129,12 @@
 				type : "GET",
 				success : function(result) {
 					if (result.code == 100) {
-						$("#J_MiniCartNum").append(
+						$("#J_MiniCartNum").html(
 								"(" + result.extend.carts + ")");
 					}
 				}
 			});
-		});
+		}
 
 		function search() {
 			var searchcontent = $("#searchInput").val();
@@ -149,7 +152,7 @@
 			if (event.keyCode == 13) {
 				search();
 			}
-		}
+		};
 	</script>
 </body>
 </html>

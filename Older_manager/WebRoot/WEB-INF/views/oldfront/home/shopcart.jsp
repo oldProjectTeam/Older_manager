@@ -99,7 +99,7 @@
 									</div>
 								</li>
 								<li class="td td-info">
-									<div class="item-props "></div>
+									<div class="item-props"></div>
 								</li>
 								<li class="td td-price">
 									<div class="item-price price-promo-promo">

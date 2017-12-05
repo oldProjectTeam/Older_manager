@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>注册</title>
+<title>购物商城-注册</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">

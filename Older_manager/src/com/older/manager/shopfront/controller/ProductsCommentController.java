@@ -64,7 +64,6 @@ public class ProductsCommentController {
 		PageHelper.startPage(pn,2);
 		List<ProductComment> all=productCommentService.selectAllProductComment(pid);
 		PageInfo pageInfo=new PageInfo(all,2);
-		
 		return Msg.success().add("pageInfo", pageInfo);
 		
 	}
