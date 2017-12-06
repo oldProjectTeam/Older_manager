@@ -20,25 +20,35 @@ import com.older.manager.utils.Msg;
 public class ProductsViewsController {
 	@Autowired
 	private IProductsViewsService productsViewsService;
-	
+
 	@RequestMapping("/queryProductsViewsInfo")
 	@ResponseBody
-	public Msg queryProductsViewsInfo(@RequestParam(value="pn",defaultValue="1")String pn){
-		int p=Integer.parseInt(pn);
-		PageHelper.startPage(p,15);
-		List<ProductsViews> productsViews=productsViewsService.queryProductsViews();
-		PageInfo pageInfo=new PageInfo(productsViews,5);
+	public Msg queryProductsViewsInfo(
+			@RequestParam(value = "pn", defaultValue = "1") String pn,
+			@RequestParam("userId") Integer userId) {
+		int p = Integer.parseInt(pn);
+		PageHelper.startPage(p, 15);
+		List<ProductsViews> productsViews = productsViewsService
+				.queryProductsViews(userId);
+		for (ProductsViews productsViews2 : productsViews) {
+			String s[] = productsViews2.getProducts().getImages().split(",");
+			productsViews2.getProducts().setImages(s[0]);
+		}
+		PageInfo<ProductsViews> pageInfo = new PageInfo<ProductsViews>(
+				productsViews, 5);
 		return Msg.success().add("pageInfo", pageInfo);
 	}
-	
-	//删除
-	@RequestMapping("/deleteProductsViews/{productsview_id}")
+
+	// 删除
+	@RequestMapping("/deleteProductsViews/{productsViewid}")
 	@ResponseBody
-	public Msg deleteProductsViews(@PathVariable("productsViewid")Integer productsViewid){
-		if(productsViewid!=null){
+	public Msg deleteProductsViews(
+			@PathVariable("productsViewid") Integer productsViewid) {
+		if (productsViewid != null) {
 			productsViewsService.deleteProductsViews(productsViewid);
 			return Msg.success();
 		}
 		return Msg.fail();
 	}
+	
 }

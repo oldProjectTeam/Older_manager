@@ -206,39 +206,7 @@
 													});
 								});
 			</script>
-
-
-
-			<!--小导航 -->
-			<div class="am-g am-g-fixed smallnav">
-				<div class="am-u-sm-3">
-					<a href="sort.html"> <img
-						src="http://gyadmin-1252357563.file.myqcloud.com/images/navsmall.jpg" />
-						<div class="title">商品分类</div>
-					</a>
-				</div>
-				<div class="am-u-sm-3">
-					<a href="#"> <img
-						src="http://gyadmin-1252357563.file.myqcloud.com/images/huismall.jpg" />
-						<div class="title">大聚惠</div>
-					</a>
-				</div>
-				<div class="am-u-sm-3">
-					<a href="shop/index"> <img
-						src="http://gyadmin-1252357563.file.myqcloud.com/images/mansmall.jpg" />
-						<div class="title">个人中心</div>
-					</a>
-				</div>
-				<div class="am-u-sm-3">
-					<a href="#"> <img
-						src="http://gyadmin-1252357563.file.myqcloud.com/images/moneysmall.jpg" />
-						<div class="title">投资理财</div>
-					</a>
-				</div>
-			</div>
-
 			<!--走马灯 -->
-
 			<div class="marqueen">
 				<span class="marqueen-title">商城头条</span>
 				<div class="demo">
@@ -316,16 +284,18 @@
 	</div>
 	<!--引导 -->
 	<div class="navCir">
-		<li class="active"><a href="shop/oldfronthome"> <i
-				class="am-icon-home "></i>首页
-		</a></li>
-		<li><a href="shop/sort"> <i class="am-icon-list"></i>分类
-		</a></li>
-		<li><a href="shop/shopcart"> <i
-				class="am-icon-shopping-basket"></i>购物车
-		</a></li>
-		<li><a href="shop/index"> <i class="am-icon-user"></i>我的
-		</a></li>
+		<div class="navCir">
+			<li class="active"><a href="${APP_PATH}/shop/oldfronthome"><i
+					class="am-icon-home "></i>首页</a></li>
+			<li><a href="${APP_PATH}/home/search?searchKeyWord="> <i
+					class="am-icon-list"></i>分类
+			</a></li>
+			<li><a
+				href="${APP_PATH}/cart/findAllByUserId?userId=${users.id}"><i
+					class="am-icon-shopping-basket"></i>购物车</a></li>
+			<li><a href="${APP_PATH}/address/index"><i
+					class="am-icon-user"></i>我的</a></li>
+		</div>
 	</div>
 	<script>
 		window.jQuery
@@ -335,12 +305,6 @@
 	<script type="text/javascript " src="../basic/js/quick_links.js "></script>
 	<script type="text/javascript">
 		jQuery(function($) {
-			//请求侧边栏的商品类型数据
-			/* var index=layer.msg("加载中",{
-				icon:16,
-				time:300000,
-				offset:['80%']
-			}) */
 			var index = layer.load(1, {
 				offset : [ '80%' ]
 			});
@@ -736,7 +700,7 @@
 								div_f.append(div_am_container).append(
 										div_floodFour).append(div_clear)
 										.appendTo(center_caner);
-							});//$.parser.parse($("#center_product_data"));
+							});
 
 		}
 	</script>

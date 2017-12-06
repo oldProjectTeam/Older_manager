@@ -211,7 +211,6 @@
 								<span class="desc"></span>
 							</div>
 							<div class="info-btn" style="margin-top:10px;position: relative;">
-								<!-- <div class="am-btn am-btn-danger">发表评论</div> -->
 								<button type="button" class="am-btn am-btn-danger" id="savebtn">发表评论</button>
 							</div>
 						</div>
@@ -235,7 +234,6 @@
 		};
 		$(document).ready(function() {
 			//隐藏图片
-			// $("#imgShow").hide();
 			var _temp_value = 0;//鼠标hover时的等级value
 			var choiceValue = 0;//默认选定的等级值为1
 
@@ -272,40 +270,43 @@
 				}
 			}
 		});
-		//发表评论($.trim($(selector).val())==""
-		$("#savebtn").click(
-				function() {
-					if ($("#gardeid").val() == null) {
-						$("#gardeid").val(0);
-					}
-					if ($("#gardeid").val() > 0) {
-						if (($.trim($("#textid").val()) != "")) {
-							$.ajax({
-								url : "order/addproductscomment/"
-										+ $("#orderid").val(),
-								type : "POST",
-								data : new FormData($("#formid")[0]),
-								cache : false,
-								processData : false,
-								contentType : false,
-								success : function(result) {
-									if (result.code == 100) {
-										layer.msg("评论成功");
-										window.location.reload();
-										$("#formid")[0].reset();
-									}
+		$("#savebtn")
+				.click(
+						function() {
+							if ($("#gardeid").val() == null) {
+								$("#gardeid").val(0);
+							}
+							if ($("#gardeid").val() > 0) {
+								if (($.trim($("#textid").val()) != "")) {
+									var index = layer.load();
+									$
+											.ajax({
+												url : "order/addproductscomment/"
+														+ $("#orderid").val(),
+												type : "POST",
+												data : new FormData(
+														$("#formid")[0]),
+												cache : false,
+												processData : false,
+												contentType : false,
+												success : function(result) {
+													if (result.code == 100) {
+														layer.close(index);
+														layer.msg("评论成功");
+														window.location.href = "order/selectallorder/"
+																+ ${users.id};
+														$("#formid")[0].reset();
+													}
+												}
+											});
+								} else {
+									layer.msg("亲！给点评语吧");
 								}
-							});
-						} else {
-							layer.msg("亲！给点评语吧");
-						}
+							} else {
+								layer.msg("亲！给颗星吧");
+							}
 
-					} else {
-						layer.msg("亲！给颗星吧");
-
-					}
-
-				});
+						});
 	</script>
 
 </body>

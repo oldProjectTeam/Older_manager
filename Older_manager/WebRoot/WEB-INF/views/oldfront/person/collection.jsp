@@ -107,8 +107,9 @@
 										.addClass("s-info");
 								var paggingdiv = $("<div></div>").addClass(
 										"s-item");
-								var del = $("<img/>").attr("src",
-										"http://gyadmin-1252357563.file.myqcloud.com/images/del.png")
+								var del = $("<img/>")
+										.attr("src",
+												"http://gyadmin-1252357563.file.myqcloud.com/images/del.png")
 										.css("margin-left", "150px").addClass(
 												"del");
 								del.attr("id", item.id);
@@ -342,6 +343,7 @@
 				success : function(result) {
 					if (result.code == 100) {
 						layer.msg("加入成功");
+						updateNum();
 					}
 				}
 			});

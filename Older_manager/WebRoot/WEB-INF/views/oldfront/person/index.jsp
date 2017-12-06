@@ -103,46 +103,19 @@
 							</div>
 							<div class="s-content">
 								<ul class="lg-list" id="myLogistics">
-									 
-									<li class="lg-item">
-										<div class="item-info">
-											<a href="#" title="">
-											 <img
-												src="${APP_PATH}/static/images/65.jpg_120x120xz.jpg"
-												alt="抗严寒冬天保暖隔凉羊毛毡底鞋垫超薄0.35厘米厚吸汗排湿气舒适">
-											</a>
-										</div>
-										<div class="lg-info">
-											<p>快件已发出,请耐心等待...</p>
-											<div class="lg-detail-wrap">
-												 
-												<div class="J_TipsCon">
-													<div class="s-tip-bar">中通快递&nbsp;&nbsp;&nbsp;&nbsp;运单号：373269427686</div>
-													<div class="s-tip-content">
-													</div>
-												</div>
-											</div>
-
-										</div>
-										<div class="lg-confirm">
-											<a class="i-btn-typical" href="${APP_PATH}/order/logistic/${order.id}">查看物流</a>
-										</div>
-									</li>
 									<div class="clear"></div>
-									 
 								</ul>
 							</div>
 							<!--分页信息  -->
-				          <div class="row">
-				          	<div class="col-md-12">
-			          	      <nav aria-label="Page navigation" style="float:right">
-			          	        <ul class="pagination pagination-sm" id="nav_ul_info">
-			          	        	
-			          	        </ul>
-			          	      </nav>
-				          	</div>
-				          </div>
-				          
+							<div class="row">
+								<div class="col-md-12">
+									<nav aria-label="Page navigation" style="float:right">
+									<ul class="pagination pagination-sm" id="nav_ul_info">
+									</ul>
+									</nav>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
@@ -154,14 +127,19 @@
 	</div>
 	<!--引导 -->
 	<div class="navCir">
-		<li><a href="../home/home.html"><i class="am-icon-home "></i>首页</a></li>
-		<li><a href="../home/sort.html"><i class="am-icon-list"></i>分类</a></li>
-		<li><a href="../home/shopcart.html"><i
-				class="am-icon-shopping-basket"></i>购物车</a></li>
-		<li class="active"><a href="index.html"><i
-				class="am-icon-user"></i>我的</a></li>
+		<div class="navCir">
+			<li><a href="${APP_PATH}/shop/oldfronthome"><i
+					class="am-icon-home "></i>首页</a></li>
+			<li><a href="${APP_PATH}/home/search?searchKeyWord="> <i
+					class="am-icon-list"></i>分类
+			</a></li>
+			<li><a
+				href="${APP_PATH}/cart/findAllByUserId?userId=${users.id}"><i
+					class="am-icon-shopping-basket"></i>购物车</a></li>
+			<li class="active"><a href="${APP_PATH}/address/index"><i
+					class="am-icon-user"></i>我的</a></li>
+		</div>
 	</div>
-
 	<script type="text/javascript">
 		$(function() {
 			//加载我的物流信息
@@ -201,76 +179,85 @@
 				}
 			});
 		}
-		
-		 
+
 		//构建我的物流信息
-		function build_myLogistics(result){
+		function build_myLogistics(result) {
 			$("#myLogistics").empty();
-			$.each(result.extend.pageInfo.list,function(index,items){
-				$.each(items.products,function(i,item){
-					var li=$("<li></li>").addClass("lg-item");
-					 var div1=$("<div></div>").addClass("item-info");
-					 var a1=$("<a></a>").attr("href","${APP_PATH}/product/getProduct/"+item.id)
-					 .attr("title",item.name);
-					 var img1=$("<img>").attr("src","http://123.207.93.53/Older_back/"+item.images);
-					 a1.append(img1);
-					 div1.append(a1);
-					 
-					 var div2=$("<div><p>快件已发出,请耐心等待...</p></div>").addClass("lg-info");
-					 var div21=$("<div></div>").addClass("lg-detail-wrap");
-					 var div211=$("<div></div>").addClass("J_TipsCon");
-					 var div2111=$("<div></div>").addClass("s-tip-bar")
-					 .append(item.formulaway+"快递"+"&nbsp;&nbsp;&nbsp;&nbsp;运单号："+items.orders4);
-					 div211.append(div2111);
-					 div21.append(div211);
-					 div2.append(div21);
-					 
-					 var div3=$("<div></div>").addClass("lg-confirm");
-					 var a3=$("<a class='i-btn-typical'>查看物流</a>").attr("href","${APP_PATH}/order/logistic/"+items.id);
-					 div3.append(a3);
-		
-					 li.append(div1).append(div2).append(div3).appendTo("#myLogistics");
+			$.each(result.extend.pageInfo.list, function(index, items) {
+				$.each(items.products, function(i, item) {
+					var li = $("<li></li>").addClass("lg-item");
+					var div1 = $("<div></div>").addClass("item-info");
+					var a1 = $("<a></a>").attr("href",
+							"${APP_PATH}/product/getProduct/" + item.id).attr(
+							"title", item.name);
+					var img1 = $("<img>").attr("src",
+							"http://123.207.93.53/Older_back/" + item.images);
+					a1.append(img1);
+					div1.append(a1);
+
+					var div2 = $("<div><p>快件已发出,请耐心等待...</p></div>").addClass(
+							"lg-info");
+					var div21 = $("<div></div>").addClass("lg-detail-wrap");
+					var div211 = $("<div></div>").addClass("J_TipsCon");
+					var div2111 = $("<div></div>").addClass("s-tip-bar")
+							.append(
+									items.formulaway + "快递"
+											+ "&nbsp;&nbsp;&nbsp;&nbsp;运单号："
+											+ items.orders4);
+					div211.append(div2111);
+					div21.append(div211);
+					div2.append(div21);
+
+					var div3 = $("<div></div>").addClass("lg-confirm");
+					var a3 = $("<a class='i-btn-typical'>查看物流</a>").attr(
+							"href", "${APP_PATH}/order/logistic/" + items.id);
+					div3.append(a3);
+
+					li.append(div1).append(div2).append(div3).appendTo(
+							"#myLogistics");
 				});
 			});
 		}
 
 		//构建分页信息
-		function buil_nav_pageInfo(result){
+		function buil_nav_pageInfo(result) {
 			$("#nav_ul_info").empty();
 			//右边分页导航
-			var firstPage=$("<li></li>").append($("<a></a>").append("首页"));
-			var prePage=$("<li></li>").append($("<a></a>").append("&laquo;"));
-			var nextPage=$("<li></li>").append($("<a></a>").append("&raquo;"));
-			var lastPage=$("<li></li>").append($("<a></a>").append("末页"));
-			if(result.extend.pageInfo.hasPreviousPage==false){
+			var firstPage = $("<li></li>").append($("<a></a>").append("首页"));
+			var prePage = $("<li></li>").append($("<a></a>").append("&laquo;"));
+			var nextPage = $("<li></li>")
+					.append($("<a></a>").append("&raquo;"));
+			var lastPage = $("<li></li>").append($("<a></a>").append("末页"));
+			if (result.extend.pageInfo.hasPreviousPage == false) {
 				firstPage.addClass("disabled");
 				prePage.addClass("disabled");
-			}else{
-				firstPage.click(function(){
+			} else {
+				firstPage.click(function() {
 					to_page(1);
 				});
-				prePage.click(function(){
-					to_page(result.extend.pageInfo.pageNum-1);
+				prePage.click(function() {
+					to_page(result.extend.pageInfo.pageNum - 1);
 				});
 			}
-			if(result.extend.pageInfo.hasNextPage==false){
+			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPage.addClass("disabled");
 				lastPage.addClass("disabled");
-			}else{
-				nextPage.click(function(){
-					to_page(result.extend.pageInfo.pageNum+1);
+			} else {
+				nextPage.click(function() {
+					to_page(result.extend.pageInfo.pageNum + 1);
 				});
-				lastPage.click(function(){
+				lastPage.click(function() {
 					to_page(result.extend.pageInfo.pages);
 				});
 			}
 			$("#nav_ul_info").append(firstPage).append(prePage);
-			$.each(result.extend.pageInfo.navigatepageNums,function(index,item){
-				var numLi=$("<li></li>").append($("<a></a>").append(item));
-				if(result.extend.pageInfo.pageNum==item){
-					numLi.addClass("active");	
+			$.each(result.extend.pageInfo.navigatepageNums, function(index,
+					item) {
+				var numLi = $("<li></li>").append($("<a></a>").append(item));
+				if (result.extend.pageInfo.pageNum == item) {
+					numLi.addClass("active");
 				}
-				numLi.click(function(){
+				numLi.click(function() {
 					to_page(item);
 				});
 				$("#nav_ul_info").append(numLi);
@@ -279,27 +266,27 @@
 		}
 
 		//去哪页加载数据
-		function to_page(pn){
+		function to_page(pn) {
 			layer.msg('加载中', {
 				icon : 16,
 				shade : 0.01,
-				time :100000,
+				time : 100000,
 				offset : [ '60%' ],
 			});
 			$.ajax({
-				url:"${APP_PATH}/order/orderListByState",
-				data:{
-					pn:pn,
-					userId:'${users.id}'
+				url : "${APP_PATH}/order/orderListByState",
+				data : {
+					pn : pn,
+					userId : '${users.id}'
 				},
-				type:"post",
-				success:function(result){
+				type : "post",
+				success : function(result) {
 					layer.closeAll();
 					//console.log(result);
 					//1.构建我的物流数据
 					build_myLogistics(result);
 					//2.构建分页信息
-					if(result.extend.pageInfo.pages>2)
+					if (result.extend.pageInfo.pages > 2)
 						buil_nav_pageInfo(result);
 				}
 			});

@@ -1,323 +1,369 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.older.manager.mapper.ShoppingCartMapper" >
-  <resultMap id="BaseResultMap" type="com.older.manager.bean.ShoppingCart" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="users_id" property="usersId" jdbcType="INTEGER" />
-    <result column="Produts_id" property="produtsId" jdbcType="INTEGER" />
-    <result column="number" property="number" jdbcType="INTEGER" />
-    <result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="shoppingCart1" property="shoppingcart1" jdbcType="VARCHAR" />
-    <result column="shoppingCart2" property="shoppingcart2" jdbcType="VARCHAR" />
-    <result column="shoppingCart3" property="shoppingcart3" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, users_id, Produts_id, number, basePrice, time, shoppingCart1, shoppingCart2, 
-    shoppingCart3
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.older.manager.bean.ShoppingCartExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from shoppingcart
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from shoppingcart
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  
-  
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from shoppingcart
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.older.manager.bean.ShoppingCartExample" >
-    delete from shoppingcart
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.older.manager.bean.ShoppingCart" >
-    insert into shoppingcart (id, users_id, Produts_id, 
-      number, basePrice, time, 
-      shoppingCart1, shoppingCart2, shoppingCart3
-      )
-    values (#{id,jdbcType=INTEGER}, #{usersId,jdbcType=INTEGER}, #{produtsId,jdbcType=INTEGER}, 
-      #{number,jdbcType=INTEGER}, #{baseprice,jdbcType=DOUBLE}, #{time,jdbcType=TIMESTAMP}, 
-      #{shoppingcart1,jdbcType=VARCHAR}, #{shoppingcart2,jdbcType=VARCHAR}, #{shoppingcart3,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.older.manager.bean.ShoppingCart" >
-    insert into shoppingcart
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="usersId != null" >
-        users_id,
-      </if>
-      <if test="produtsId != null" >
-        Produts_id,
-      </if>
-      <if test="number != null" >
-        number,
-      </if>
-      <if test="baseprice != null" >
-        basePrice,
-      </if>
-      <if test="time != null" >
-        time,
-      </if>
-      <if test="shoppingcart1 != null" >
-        shoppingCart1,
-      </if>
-      <if test="shoppingcart2 != null" >
-        shoppingCart2,
-      </if>
-      <if test="shoppingcart3 != null" >
-        shoppingCart3,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="usersId != null" >
-        #{usersId,jdbcType=INTEGER},
-      </if>
-      <if test="produtsId != null" >
-        #{produtsId,jdbcType=INTEGER},
-      </if>
-      <if test="number != null" >
-        #{number,jdbcType=INTEGER},
-      </if>
-      <if test="baseprice != null" >
-        #{baseprice,jdbcType=DOUBLE},
-      </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="shoppingcart1 != null" >
-        #{shoppingcart1,jdbcType=VARCHAR},
-      </if>
-      <if test="shoppingcart2 != null" >
-        #{shoppingcart2,jdbcType=VARCHAR},
-      </if>
-      <if test="shoppingcart3 != null" >
-        #{shoppingcart3,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.older.manager.bean.ShoppingCartExample" resultType="java.lang.Integer" >
-    select count(*) from shoppingcart
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update shoppingcart
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.usersId != null" >
-        users_id = #{record.usersId,jdbcType=INTEGER},
-      </if>
-      <if test="record.produtsId != null" >
-        Produts_id = #{record.produtsId,jdbcType=INTEGER},
-      </if>
-      <if test="record.number != null" >
-        number = #{record.number,jdbcType=INTEGER},
-      </if>
-      <if test="record.baseprice != null" >
-        basePrice = #{record.baseprice,jdbcType=DOUBLE},
-      </if>
-      <if test="record.time != null" >
-        time = #{record.time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.shoppingcart1 != null" >
-        shoppingCart1 = #{record.shoppingcart1,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shoppingcart2 != null" >
-        shoppingCart2 = #{record.shoppingcart2,jdbcType=VARCHAR},
-      </if>
-      <if test="record.shoppingcart3 != null" >
-        shoppingCart3 = #{record.shoppingcart3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update shoppingcart
-    set id = #{record.id,jdbcType=INTEGER},
-      users_id = #{record.usersId,jdbcType=INTEGER},
-      Produts_id = #{record.produtsId,jdbcType=INTEGER},
-      number = #{record.number,jdbcType=INTEGER},
-      basePrice = #{record.baseprice,jdbcType=DOUBLE},
-      time = #{record.time,jdbcType=TIMESTAMP},
-      shoppingCart1 = #{record.shoppingcart1,jdbcType=VARCHAR},
-      shoppingCart2 = #{record.shoppingcart2,jdbcType=VARCHAR},
-      shoppingCart3 = #{record.shoppingcart3,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ShoppingCart" >
-    update shoppingcart
-    <set >
-      <if test="usersId != null" >
-        users_id = #{usersId,jdbcType=INTEGER},
-      </if>
-      <if test="produtsId != null" >
-        Produts_id = #{produtsId,jdbcType=INTEGER},
-      </if>
-      <if test="number != null" >
-        number = #{number,jdbcType=INTEGER},
-      </if>
-      <if test="baseprice != null" >
-        basePrice = #{baseprice,jdbcType=DOUBLE},
-      </if>
-      <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
-      </if>
-      <if test="shoppingcart1 != null" >
-        shoppingCart1 = #{shoppingcart1,jdbcType=VARCHAR},
-      </if>
-      <if test="shoppingcart2 != null" >
-        shoppingCart2 = #{shoppingcart2,jdbcType=VARCHAR},
-      </if>
-      <if test="shoppingcart3 != null" >
-        shoppingCart3 = #{shoppingcart3,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ShoppingCart" >
-    update shoppingcart
-    set users_id = #{usersId,jdbcType=INTEGER},
-      Produts_id = #{produtsId,jdbcType=INTEGER},
-      number = #{number,jdbcType=INTEGER},
-      basePrice = #{baseprice,jdbcType=DOUBLE},
-      time = #{time,jdbcType=TIMESTAMP},
-      shoppingCart1 = #{shoppingcart1,jdbcType=VARCHAR},
-      shoppingCart2 = #{shoppingcart2,jdbcType=VARCHAR},
-      shoppingCart3 = #{shoppingcart3,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  
-  <!--封装购物车信息和产品信息结果集  -->
-   <resultMap id="CartProductResultMap" type="com.older.manager.bean.ShoppingCart" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="users_id" property="usersId" jdbcType="INTEGER" />
-    <result column="Produts_id" property="produtsId" jdbcType="INTEGER" />
-    <result column="number" property="number" jdbcType="INTEGER" />
-    <result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="shoppingCart1" property="shoppingcart1" jdbcType="VARCHAR" />
-    <result column="shoppingCart2" property="shoppingcart2" jdbcType="VARCHAR" />
-    <result column="shoppingCart3" property="shoppingcart3" jdbcType="VARCHAR" />
-    <collection property="product" ofType="products">
-    	<id column="pId" property="id" jdbcType="INTEGER" />
-    	<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
-    	<result column="images" property="images" jdbcType="LONGVARCHAR" />
-		<result column="name" property="name" jdbcType="VARCHAR" />
-		<result column="orPrice" property="orprice" jdbcType="DOUBLE" />
-		<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
-		<result column="paral11" property="paral11" jdbcType="DOUBLE" />
-    </collection>
-  </resultMap>
-  <!--包含购物车信息和产品信息字段  -->
-  <sql id="cart_product_Column_List" >
-    s.id, s.users_id, s.Produts_id, s.number, s.basePrice, s.time, s.shoppingCart1, s.shoppingCart2, 
-    s.shoppingCart3,
-    p.id pId,p.imageTitle,p.images,p.name, p.orPrice,p.nowPrice,p.paral11
-  </sql>
-  <!--根据用户id查询该用户所有购物车信息和产品信息  -->
-  <select id="selectByUserId" resultMap="CartProductResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="cart_product_Column_List" />
-    from shoppingcart s,products p
-    where s.users_id=#{usersId} and s.Produts_id=p.id
-  </select>
-  
-  <!--根据Id联合查询产品信息  -->
-  <select id="selectWithProductById" resultMap="CartProductResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="cart_product_Column_List" />
-    from shoppingcart s,products p
-    where s.id=#{id} and s.Produts_id=p.id
-  </select>
-  
+<mapper namespace="com.older.manager.mapper.ShoppingCartMapper">
+	<resultMap id="BaseResultMap" type="com.older.manager.bean.ShoppingCart">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="users_id" property="usersId" jdbcType="INTEGER" />
+		<result column="Produts_id" property="produtsId" jdbcType="INTEGER" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
+		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="shoppingCart1" property="shoppingcart1"
+			jdbcType="VARCHAR" />
+		<result column="shoppingCart2" property="shoppingcart2"
+			jdbcType="VARCHAR" />
+		<result column="shoppingCart3" property="shoppingcart3"
+			jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, users_id, Produts_id, number, basePrice, time,
+		shoppingCart1,
+		shoppingCart2,
+		shoppingCart3
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.older.manager.bean.ShoppingCartExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from shoppingcart
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from shoppingcart
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		shoppingcart
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.older.manager.bean.ShoppingCartExample">
+		delete from shoppingcart
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.older.manager.bean.ShoppingCart">
+		insert into shoppingcart (id,
+		users_id, Produts_id,
+		number, basePrice, time,
+		shoppingCart1,
+		shoppingCart2, shoppingCart3
+		)
+		values (#{id,jdbcType=INTEGER},
+		#{usersId,jdbcType=INTEGER},
+		#{produtsId,jdbcType=INTEGER},
+		#{number,jdbcType=INTEGER}, #{baseprice,jdbcType=DOUBLE},
+		#{time,jdbcType=TIMESTAMP},
+		#{shoppingcart1,jdbcType=VARCHAR},
+		#{shoppingcart2,jdbcType=VARCHAR},
+		#{shoppingcart3,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.older.manager.bean.ShoppingCart">
+		insert into shoppingcart
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="usersId != null">
+				users_id,
+			</if>
+			<if test="produtsId != null">
+				Produts_id,
+			</if>
+			<if test="number != null">
+				number,
+			</if>
+			<if test="baseprice != null">
+				basePrice,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+			<if test="shoppingcart1 != null">
+				shoppingCart1,
+			</if>
+			<if test="shoppingcart2 != null">
+				shoppingCart2,
+			</if>
+			<if test="shoppingcart3 != null">
+				shoppingCart3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="usersId != null">
+				#{usersId,jdbcType=INTEGER},
+			</if>
+			<if test="produtsId != null">
+				#{produtsId,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				#{number,jdbcType=INTEGER},
+			</if>
+			<if test="baseprice != null">
+				#{baseprice,jdbcType=DOUBLE},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shoppingcart1 != null">
+				#{shoppingcart1,jdbcType=VARCHAR},
+			</if>
+			<if test="shoppingcart2 != null">
+				#{shoppingcart2,jdbcType=VARCHAR},
+			</if>
+			<if test="shoppingcart3 != null">
+				#{shoppingcart3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.older.manager.bean.ShoppingCartExample"
+		resultType="java.lang.Integer">
+		select count(*) from shoppingcart
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update shoppingcart
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.usersId != null">
+				users_id = #{record.usersId,jdbcType=INTEGER},
+			</if>
+			<if test="record.produtsId != null">
+				Produts_id = #{record.produtsId,jdbcType=INTEGER},
+			</if>
+			<if test="record.number != null">
+				number = #{record.number,jdbcType=INTEGER},
+			</if>
+			<if test="record.baseprice != null">
+				basePrice = #{record.baseprice,jdbcType=DOUBLE},
+			</if>
+			<if test="record.time != null">
+				time = #{record.time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.shoppingcart1 != null">
+				shoppingCart1 = #{record.shoppingcart1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.shoppingcart2 != null">
+				shoppingCart2 = #{record.shoppingcart2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.shoppingcart3 != null">
+				shoppingCart3 = #{record.shoppingcart3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update shoppingcart
+		set id = #{record.id,jdbcType=INTEGER},
+		users_id =
+		#{record.usersId,jdbcType=INTEGER},
+		Produts_id =
+		#{record.produtsId,jdbcType=INTEGER},
+		number =
+		#{record.number,jdbcType=INTEGER},
+		basePrice =
+		#{record.baseprice,jdbcType=DOUBLE},
+		time =
+		#{record.time,jdbcType=TIMESTAMP},
+		shoppingCart1 =
+		#{record.shoppingcart1,jdbcType=VARCHAR},
+		shoppingCart2 =
+		#{record.shoppingcart2,jdbcType=VARCHAR},
+		shoppingCart3 =
+		#{record.shoppingcart3,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.older.manager.bean.ShoppingCart">
+		update shoppingcart
+		<set>
+			<if test="usersId != null">
+				users_id = #{usersId,jdbcType=INTEGER},
+			</if>
+			<if test="produtsId != null">
+				Produts_id = #{produtsId,jdbcType=INTEGER},
+			</if>
+			<if test="number != null">
+				number = #{number,jdbcType=INTEGER},
+			</if>
+			<if test="baseprice != null">
+				basePrice = #{baseprice,jdbcType=DOUBLE},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=TIMESTAMP},
+			</if>
+			<if test="shoppingcart1 != null">
+				shoppingCart1 = #{shoppingcart1,jdbcType=VARCHAR},
+			</if>
+			<if test="shoppingcart2 != null">
+				shoppingCart2 = #{shoppingcart2,jdbcType=VARCHAR},
+			</if>
+			<if test="shoppingcart3 != null">
+				shoppingCart3 = #{shoppingcart3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.older.manager.bean.ShoppingCart">
+		update
+		shoppingcart
+		set users_id = #{usersId,jdbcType=INTEGER},
+		Produts_id =
+		#{produtsId,jdbcType=INTEGER},
+		number = #{number,jdbcType=INTEGER},
+		basePrice = #{baseprice,jdbcType=DOUBLE},
+		time =
+		#{time,jdbcType=TIMESTAMP},
+		shoppingCart1 =
+		#{shoppingcart1,jdbcType=VARCHAR},
+		shoppingCart2 =
+		#{shoppingcart2,jdbcType=VARCHAR},
+		shoppingCart3 =
+		#{shoppingcart3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<!--封装购物车信息和产品信息结果集 -->
+	<resultMap id="CartProductResultMap" type="com.older.manager.bean.ShoppingCart">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="users_id" property="usersId" jdbcType="INTEGER" />
+		<result column="Produts_id" property="produtsId" jdbcType="INTEGER" />
+		<result column="number" property="number" jdbcType="INTEGER" />
+		<result column="basePrice" property="baseprice" jdbcType="DOUBLE" />
+		<result column="time" property="time" jdbcType="TIMESTAMP" />
+		<result column="shoppingCart1" property="shoppingcart1"
+			jdbcType="VARCHAR" />
+		<result column="shoppingCart2" property="shoppingcart2"
+			jdbcType="VARCHAR" />
+		<result column="shoppingCart3" property="shoppingcart3"
+			jdbcType="VARCHAR" />
+		<collection property="product" ofType="products">
+			<id column="pId" property="id" jdbcType="INTEGER" />
+			<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+			<result column="images" property="images" jdbcType="LONGVARCHAR" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="orPrice" property="orprice" jdbcType="DOUBLE" />
+			<result column="nowPrice" property="nowprice" jdbcType="DOUBLE" />
+			<result column="paral11" property="paral11" jdbcType="DOUBLE" />
+		</collection>
+	</resultMap>
+	<!--包含购物车信息和产品信息字段 -->
+	<sql id="cart_product_Column_List">
+		s.id, s.users_id, s.Produts_id, s.number, s.basePrice,
+		s.time,
+		s.shoppingCart1, s.shoppingCart2,
+		s.shoppingCart3,
+		p.id
+		pId,p.imageTitle,p.images,p.name, p.orPrice,p.nowPrice,p.paral11
+	</sql>
+	<!--根据用户id查询该用户所有购物车信息和产品信息 -->
+	<select id="selectByUserId" resultMap="CartProductResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="cart_product_Column_List" />
+		from shoppingcart s,products p
+		where s.users_id=#{usersId} and
+		s.Produts_id=p.id order by s.id DESC
+	</select>
+
+	<!--根据Id联合查询产品信息 -->
+	<select id="selectWithProductById" resultMap="CartProductResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="cart_product_Column_List" />
+		from shoppingcart s,products p
+		where s.id=#{id} and s.Produts_id=p.id
+	</select>
+
 </mapper>

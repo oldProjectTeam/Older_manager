@@ -55,9 +55,7 @@
 	<div class="center">
 		<div class="col-main">
 			<div class="main-wrap">
-
 				<div class="user-order">
-
 					<!--标题 -->
 					<div class="am-cf am-padding">
 						<div class="am-fl am-cf">
@@ -65,9 +63,7 @@
 						</div>
 					</div>
 					<hr />
-
 					<div class="am-tabs am-tabs-d2 am-margin" data-am-tabs>
-
 						<ul class="am-avg-sm-5 am-tabs-nav am-nav am-nav-tabs">
 							<li class="am-active"><a href="#tab1">所有订单</a></li>
 							<li><a href="#tab2">待付款</a></li>
@@ -75,7 +71,6 @@
 							<li><a href="#tab4">待收货</a></li>
 							<li><a href="#tab5">待评价</a></li>
 						</ul>
-
 						<div class="am-tabs-bd">
 							<div class="am-tab-panel am-fade am-in am-active" id="tab1">
 								<div class="order-top">
@@ -194,8 +189,7 @@
 																					</li>
 																					<li class="td td-change">
 																						<p class="order-info">
-																							<a
-																								onclick="order/selectproductbyid/${mp3.value[3]}">评价商品</a>
+																							<a href="order/selectproductbyid/${mp3.value[3]}">评价商品</a>
 																						</p>
 																						<p class="order-info">
 																							<a onclick="deleteOrder(${mp3.value[3]},this)">删除记录</a>
@@ -527,7 +521,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="${list.products.images}"
+																							src="http://123.207.93.53/Older_back/${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>
@@ -999,6 +993,7 @@
 									layer.msg("感谢你的支持");
 									$(obj).parents("div:.order-status5")
 											.remove();
+									window.location.reload();
 								}
 							}
 						});

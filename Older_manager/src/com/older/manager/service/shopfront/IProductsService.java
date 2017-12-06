@@ -18,4 +18,11 @@ public interface IProductsService {
 	 * @date:     2017年11月20日 上午1:13:09
 	 */
 	public List<Products> findAllProductsTypeDetial();
+
+	/**
+	 * 添加足迹
+	 * @param id
+	 * @param id2
+	 */
+	public void addFoot(Integer id, Integer id2);
 }

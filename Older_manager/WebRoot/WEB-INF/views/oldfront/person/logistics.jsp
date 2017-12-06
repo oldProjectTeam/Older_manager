@@ -30,6 +30,9 @@
 <link href="${APP_PATH}/static/css/KDNWidget.css" rel="stylesheet"
 	type="text/css" />
 <script type="text/javascript" src="${APP_PATH}/static/js/KDNWidget.js"></script>
+<script src="${APP_PATH}/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript"
+	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../home/shopheader.jsp"></jsp:include>
@@ -82,6 +85,9 @@
 	</div>
 
 	<script type="text/javascript">
+		$(function() {
+			updateNum();
+		});
 		window.onload = function() {
 			KDNWidget.run({
 				serviceType : "B",//服务类型：此功能的服务类型值为"B"

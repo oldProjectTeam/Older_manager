@@ -118,11 +118,6 @@
 			<div class="am-g am-g-fixed">
 				<div class="am-u-sm-12 am-u-md-12">
 					<div class="theme-popover">
-						<!-- <div class="searchAbout">
-							<span class="font-pale">相关搜索：</span> <a title="坚果" href="#">坚果</a>
-							<a title="瓜子" href="#">瓜子</a> <a title="鸡腿" href="#">豆干</a>
-
-						</div> -->
 						<ul class="select">
 							<p class="title font-normal">
 								<span class="fl" id="searchword"></span> <span class="total fl">搜索到<strong
@@ -167,9 +162,6 @@
 							<li class="first" id="composite"><a title="综合">综合排序</a></li>
 							<li id="sales"><a title="销量">销量排序</a></li>
 							<li id="price"><a title="价格">价格优先</a></li>
-							<!-- <li class="big">
-								<a title="评价" href="#">评价为主</a>
-							</li> -->
 						</div>
 						<div class="clear"></div>
 
@@ -188,17 +180,41 @@
 	</div>
 	<!--引导 -->
 	<div class="navCir">
-		<li><a href="home.html"> <i class="am-icon-home "></i>首页
-		</a></li>
-		<li><a href="sort.html"> <i class="am-icon-list"></i>分类
-		</a></li>
-		<li><a href="shopcart.html"> <i
-				class="am-icon-shopping-basket"></i>购物车
-		</a></li>
-		<li><a href="../person/index.html"> <i class="am-icon-user"></i>我的
-		</a></li>
+		<div class="navCir">
+			<li><a href="${APP_PATH}/shop/oldfronthome"><i
+					class="am-icon-home "></i>首页</a></li>
+			<li class="active"><a
+				href="${APP_PATH}/home/search?searchKeyWord="> <i
+					class="am-icon-list"></i>分类
+			</a></li>
+			<li><a
+				href="${APP_PATH}/cart/findAllByUserId?userId=${users.id}"><i
+					class="am-icon-shopping-basket"></i>购物车</a></li>
+			<li><a href="${APP_PATH}/address/index"><i
+					class="am-icon-user"></i>我的</a></li>
+		</div>
 	</div>
 	<script>
+		$(function() {
+			updateNum();
+		});
+
+		function updateNum() {
+			$.ajax({
+				url : "${APP_PATH}/cart/findCartUserId",
+				data : {
+					"userId" : '${users.id}'
+				},
+				type : "GET",
+				success : function(result) {
+					if (result.code == 100) {
+						$("#J_MiniCartNum").html(
+								"(" + result.extend.carts + ")");
+					}
+				}
+			});
+		}
+
 		var brand_data;
 		var type_data;
 		var keyword_data;

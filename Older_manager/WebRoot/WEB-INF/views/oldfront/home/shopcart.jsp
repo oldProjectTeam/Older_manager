@@ -27,7 +27,6 @@
 	type="text/css" />
 <link href="${APP_PATH}/static/css/optstyle.css" rel="stylesheet"
 	type="text/css" />
-
 <script type="text/javascript"
 	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
 <script src="${APP_PATH}/static/shop/assets/layer/layer.js"
@@ -160,8 +159,7 @@
 			</div>
 			<div class="operations">
 				<a href="javascript:;" onClick="batchDel_btn()" hidefocus="true"
-					class="deleteAll">删除</a> <a href="#" hidefocus="true"
-					class="J_BatchFav">移入收藏夹</a>
+					class="deleteAll">删除</a>
 			</div>
 			<div class="float-bar-right">
 				<div class="amount-sum">
@@ -189,11 +187,18 @@
 	<div class="theme-popover-mask"></div>
 	<!--引导 -->
 	<div class="navCir">
-		<li><a href="home.html"><i class="am-icon-home "></i>首页</a></li>
-		<li><a href="sort.html"><i class="am-icon-list"></i>分类</a></li>
-		<li class="active"><a href="shopcart.html"><i
-				class="am-icon-shopping-basket"></i>购物车</a></li>
-		<li><a href="../person/index.html"><i class="am-icon-user"></i>我的</a></li>
+		<div class="navCir">
+			<li><a href="${APP_PATH}/shop/oldfronthome"><i
+					class="am-icon-home "></i>首页</a></li>
+			<li><a href="${APP_PATH}/home/search?searchKeyWord="> <i
+					class="am-icon-list"></i>分类
+			</a></li>
+			<li class="active"><a
+				href="${APP_PATH}/cart/findAllByUserId?userId=${users.id}"><i
+					class="am-icon-shopping-basket"></i>购物车</a></li>
+			<li><a href="${APP_PATH}/address/index"><i
+					class="am-icon-user"></i>我的</a></li>
+		</div>
 	</div>
 	<script type="text/javascript">
 		function addCollection(id) {
@@ -446,6 +451,7 @@
 								icon : 6,
 								time : 1000
 							});
+							updateNum();
 							//如果此产品是选中状态，则修改相应结算金额
 							if ($(obj).parents("ul").find(".item_check").prop(
 									"checked")) {
@@ -497,7 +503,7 @@
 								icon : 6,
 								time : 1000
 							});
-
+							updateNum();
 							//重置结算金额和选中数量
 							$("#J_Total").html("0.00");
 							$("#J_SelectedItemsCount").html("0");

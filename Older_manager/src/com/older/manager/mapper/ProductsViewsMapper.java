@@ -45,5 +45,5 @@ public interface ProductsViewsMapper {
 	 * 
 	 * @return
 	 */
-	List<ProductsViews> selectProductsViews();
+	List<ProductsViews> selectProductsViews(Integer id);
 }

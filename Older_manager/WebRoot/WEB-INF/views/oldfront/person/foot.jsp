@@ -30,12 +30,11 @@
 	type="text/css">
 <link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
 	type="text/css">
-
 <link href="${APP_PATH}/static/css/personal.css" rel="stylesheet"
 	type="text/css">
 <link href="${APP_PATH}/static/css/footstyle.css" rel="stylesheet"
 	type="text/css">
-
+<script src="${APP_PATH}/static/js/jquery.min.js"></script>
 </head>
 
 <body>
@@ -74,20 +73,7 @@
 			</div>
 
 			<!--底部-->
-			<div class="footer">
-				<div class="footer-hd">
-					<p>
-						<a href="#">恒望科技</a> <b>|</b> <a href="#">商城首页</a> <b>|</b> <a
-							href="#">支付宝</a> <b>|</b> <a href="#">物流</a>
-					</p>
-				</div>
-				<div class="footer-bd">
-					<p>
-						<a href="#">关于恒望</a> <a href="#">合作伙伴</a> <a href="#">联系我们</a> <a
-							href="#">网站地图</a> <em>© 2015-2025 Hengwang.com 版权所有</em>
-					</p>
-				</div>
-			</div>
+			<jsp:include page="../person/footer.jsp"></jsp:include>
 		</div>
 		<jsp:include page="left.jsp"></jsp:include>
 	</div>
@@ -108,15 +94,19 @@
 				var div1 = $("<div></div>").addClass("goods-box");
 				var div2 = $("<div></div>").addClass("goods-pic");
 				var div3 = $("<div></div>").append(
-						$("<a></a>").append(
-								$("<img>").attr(
-										"src",
-										"http://123.207.93.53/Older_back/"
-												+ item.products.images)
-										.addClass("goods-img")).attr("target",
-								"_blank").attr("title",
-								item.products.imagetitle).addClass(
-								"goods-pic-link")).addClass("goods-pic-box");
+						$("<a></a>").attr("href",
+								"product/getProduct/" + item.productsId)
+								.append(
+										$("<img>").attr(
+												"src",
+												"http://123.207.93.53/Older_back/"
+														+ item.products.images)
+												.attr("height", "150")
+												.addClass("goods-img")).attr(
+										"target", "_blank").attr("title",
+										item.products.imagetitle).addClass(
+										"goods-pic-link")).addClass(
+						"goods-pic-box");
 				var a = $("<a></a>").append(
 						$("<i><i>").addClass("am-icon-trash").attr(
 								"productsview_id", item.id)
@@ -147,11 +137,6 @@
 				div1.append(div2).append(div4);
 				oneDiv.append(twoDiv).append(div1).appendTo(
 						"#productsViews_list");
-				//去除样式，假装删除
-				$(".goods-delete").click(function() {
-					oneDiv.remove();
-
-				});
 			});
 		}
 		//分页条
@@ -196,9 +181,12 @@
 			$.ajax({
 				url : "${APP_PATH}/queryProductsViewsInfo",
 				type : "POST",
-				data : "pn" + pn,
+				data : {
+					"pn" : pn,
+					"userId" : '${users.id}'
+				},
 				success : function(result) {
-					//console.log(result);
+					console.log(result);
 					products_views_info(result);
 					productsViews_page_info(result);
 					layer.close(index);
@@ -217,6 +205,7 @@
 						success : function(result) {
 							if (result.code == 100) {
 								layer.msg("删除成功");
+								window.location.reload();
 							}
 						}
 					});

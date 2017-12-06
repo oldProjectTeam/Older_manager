@@ -338,12 +338,13 @@
 	</resultMap>
 
 	<!-- 查询浏览记录、用户信息、产品情况 -->
-	<select id="selectProductsViews" resultMap="selectProductsViewsMap">
+	<select id="selectProductsViews" resultMap="selectProductsViewsMap"
+		parameterType="int">
 		select
 		<include refid="select_Products_Views_list" />
 		from productsviews pv join users u join products p on
 		pv.users_id=u.id
-		and pv.products_id=p.id
+		and pv.products_id=p.id and u.id=#{id}
 	</select>
 	<sql id="select_Products_Views_list">
 		pv.id, pv.users_id, pv.products_id,pv.viewTime,

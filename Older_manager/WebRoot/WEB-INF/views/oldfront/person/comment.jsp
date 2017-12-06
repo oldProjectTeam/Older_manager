@@ -143,7 +143,6 @@
 				},
 				type : "GET",
 				success : function(result) {
-					console.log(result);
 					build_all_comment(result);
 					build_page_nav(result);
 					build_all_comment_img(result);
@@ -166,11 +165,9 @@
 									imgUrl = '${APP_PATH}/static/images/logo.png';
 								}
 								firstA.append($("<img/>").addClass("itempic")
-										.attr(
-												"src",
-												"http://123.207.93.53/Older_back/"
-														+ imgUrl).attr("width",
-												"80").attr("height", "80"));
+										.attr("src", imgUrl)
+										.attr("width", "80").attr("height",
+												"80"));
 								var firstLi = $("<li></li>").addClass(
 										"td td-item").append(
 										$("<div></div>").addClass("item-pic")
@@ -218,11 +215,11 @@
 																		.append(
 																				"单价:"
 																						+ item.orderdetail.baseprice))
-														.append($("<br/>"))
+
 														.append(
-																$("<p></p>")
-																		.addClass(
-																				"info-time")
+																$(
+																		"<span></span>")
+
 																		.append(
 																				ChangeDateFormat(item.createtime))));
 								div3.append(div33);
@@ -249,14 +246,10 @@
 													"href",
 													"${APP_PATH}/product/getProduct/"
 															+ item.orderdetail.producctsId);
-									firstA
-											.append($("<img/>").addClass(
-													"itempic").attr(
-													"src",
-													"http://123.207.93.53/Older_back/"
-															+ item.imageurl)
-													.attr("width", "80").attr(
-															"height", "80"));
+									firstA.append($("<img/>").addClass(
+											"itempic").attr("src",
+											item.imageurl).attr("width", "80")
+											.attr("height", "80"));
 									var firstLi = $("<li></li>").addClass(
 											"td td-item").append(
 											$("<div></div>").addClass(
@@ -307,11 +300,11 @@
 																			.append(
 																					"单价:"
 																							+ item.orderdetail.baseprice))
-															.append($("<br/>"))
+
 															.append(
-																	$("<p></p>")
-																			.addClass(
-																					"info-time")
+																	$(
+																			"<span></span>")
+
 																			.append(
 																					ChangeDateFormat(item.createtime))));
 									div3.append(div33);
