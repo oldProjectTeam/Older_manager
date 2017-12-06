@@ -47,7 +47,7 @@
 		</div>
 		<div class="nav-cont">
 			<ul>
-				<li class="index"><a href="#">首页</a></li>
+				<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
 			</ul>
 		</div>
 	</div>
@@ -70,14 +70,15 @@
 							<input type="file" class="inputPic"
 								allowexts="gif,jpeg,jpg,png,bmp" accept="image/*"> <img
 								class="am-circle am-img-thumbnail"
-								src="${APP_PATH}/static/images/getAvatar.do.jpg" alt="" />
+								src="http://gyadmin-1252357563.file.myqcloud.com/images/getAvatar.do.jpg"
+								alt="" />
 						</div>
 
 						<p class="am-form-help">头像</p>
 
 						<div class="info-m">
 							<div>
-								<b>用户名：<i id="usernameid" class="form-control-static"></i></b>
+								<b>用户名：<i id="usernameid" class="form-control-static">${users.nickname}</i></b>
 							</div>
 							<div class="u-level">
 								<span class="rank r2"> <s class="vip1"></s><a
@@ -105,14 +106,13 @@
 										<div class="am-btn am-btn-secondary">修改</div>
 									</a>
 								</div></li>
-							<li><i class="i-safety-wallet"></i>
+							<%--<li><i class="i-safety-wallet"></i>
 								<div class="m-left">
 									<div class="fore1">支付密码</div>
 									<div class="fore2">
 										<small>启用支付密码功能，为您资产账户安全加把锁。</small>
 									</div>
-								</div>
-								<div class="fore3">
+								</div> <div class="fore3">
 									<a href="${APP_PATH}/safety/skipsetpay">
 										<div class="am-btn am-btn-secondary">立即启用</div>
 									</a>
@@ -152,7 +152,7 @@
 									<a href="${APP_PATH}/safety/skipidcard">
 										<div class="am-btn am-btn-secondary">认证</div>
 									</a>
-								</div></li>
+								</div></li> --%>
 							<li><i class="i-safety-security"></i>
 								<div class="m-left">
 									<div class="fore1">安全问题</div>

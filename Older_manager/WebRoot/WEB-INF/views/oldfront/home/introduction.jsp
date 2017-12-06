@@ -229,7 +229,7 @@
 										</div>
 										<div class="theme-signin-right">
 											<div class="img-info">
-												<img src="${APP_PATH}/static/images/songzi.jpg" />
+												<img src="http://gyadmin-1252357563.file.myqcloud.com/images/songzi.jpg" />
 											</div>
 											<div class="text-info">
 												<span class="J_Price price-now">¥39.00</span> <span
@@ -457,7 +457,7 @@
 										.appendTo(tul);
 								var ta = $("<a></a>")
 										.append(
-												"<img class='am-comment-avatar' src='${APP_PATH}/static/images/hwbn40x40.jpg' />")
+												"<img class='am-comment-avatar' src='http://gyadmin-1252357563.file.myqcloud.com/images/hwbn40x40.jpg' />")
 										.appendTo(tli);
 
 								var divout = $("<div></div>").addClass(

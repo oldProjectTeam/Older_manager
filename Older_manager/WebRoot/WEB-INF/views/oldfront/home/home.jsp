@@ -39,16 +39,16 @@
 			id="demo-slider-0">
 			<ul class="am-slides">
 				<li class="banner4"><a> <img
-						src="${APP_PATH}/static/images/ad4.jpg" />
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/ad4.jpg" />
 				</a></li>
 				<li class="banner2"><a> <img
-						src="${APP_PATH}/static/images/ad2.jpg" />
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/ad2.jpg" />
 				</a></li>
 				<li class="banner3"><a> <img
-						src="${APP_PATH}/static/images/ad3.jpg" />
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/ad3.jpg" />
 				</a></li>
 				<li class="banner1"><a> <img
-						src="${APP_PATH}/static/images/ad1.jpg" />
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/ad1.jpg" />
 				</a></li>
 			</ul>
 		</div>
@@ -77,8 +77,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">保健品</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">保健品</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -86,8 +87,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">医疗器材</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">医疗器材</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -95,8 +97,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">健身器材</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">健身器材</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -104,8 +107,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">床上用品</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">床上用品</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -113,8 +117,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">厨卫用品</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">厨卫用品</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -122,8 +127,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">日常用品</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">日常用品</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -131,8 +137,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">服装</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">服装</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -140,8 +147,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">食品</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">食品</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -149,8 +157,9 @@
 								<li class="appliance js_toggle relative first">
 									<div class="category-info">
 										<h3 class="category-name b-category-name">
-											<i><img src="${APP_PATH}/static/images/cake.png"> </i>
-											<a class="ml-22" title="保健品">药品</a>
+											<i><img
+												src="http://gyadmin-1252357563.file.myqcloud.com/images/cake.png">
+											</i> <a class="ml-22" title="保健品">药品</a>
 										</h3>
 										<em>&gt;</em>
 									</div> <b class="arrow"></b>
@@ -204,24 +213,25 @@
 			<div class="am-g am-g-fixed smallnav">
 				<div class="am-u-sm-3">
 					<a href="sort.html"> <img
-						src="${APP_PATH}/static/images/navsmall.jpg" />
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/navsmall.jpg" />
 						<div class="title">商品分类</div>
 					</a>
 				</div>
 				<div class="am-u-sm-3">
-					<a href="#"> <img src="${APP_PATH}/static/images/huismall.jpg" />
+					<a href="#"> <img
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/huismall.jpg" />
 						<div class="title">大聚惠</div>
 					</a>
 				</div>
 				<div class="am-u-sm-3">
 					<a href="shop/index"> <img
-						src="${APP_PATH}/static/images/mansmall.jpg" />
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/mansmall.jpg" />
 						<div class="title">个人中心</div>
 					</a>
 				</div>
 				<div class="am-u-sm-3">
 					<a href="#"> <img
-						src="${APP_PATH}/static/images/moneysmall.jpg" />
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/moneysmall.jpg" />
 						<div class="title">投资理财</div>
 					</a>
 				</div>
@@ -235,10 +245,11 @@
 
 					<ul>
 						<li class="title-first"><a target="_blank" href="#"> <img
-								src="${APP_PATH}/static/images/TJ2.jpg"></img>
+								src="http://gyadmin-1252357563.file.myqcloud.com/images/TJ2.jpg"></img>
 						</a></li>
 						<span>[公告]</span>商城与广州市签署战略合作协议
-						<img src="${APP_PATH}/static/images/TJ.jpg"></img>
+						<img
+							src="http://gyadmin-1252357563.file.myqcloud.com/images/TJ.jpg"></img>
 						<p>XXXXXXXXXXXXXXXXXX</p>
 						</a>
 						</li>
@@ -246,7 +257,7 @@
 						<div class="mod-vip">
 							<div class="m-baseinfo">
 								<a href="address/index"> <img
-									src="${APP_PATH}/static/images/getAvatar.do.jpg">
+									src="http://gyadmin-1252357563.file.myqcloud.com/images/getAvatar.do.jpg">
 								</a> <em> Hi,<span class="s-name"><c:if
 											test="${uses}==null">小叮当</c:if>${users.account}</span> <a href="#">
 								</a>
@@ -270,7 +281,8 @@
 						</div>
 					</ul>
 					<div class="advTip">
-						<img src="${APP_PATH}/static/images/advTip.jpg" />
+						<img
+							src="http://gyadmin-1252357563.file.myqcloud.com/images/advTip.jpg" />
 					</div>
 				</div>
 			</div>
@@ -379,88 +391,131 @@
 		//构建侧边栏商品类型数据
 		function build_slide_data(result) {
 			$("#js_climit_li").empty();
-			$.each(result.extend.productTypes, function(index, item) {
-				//信息头
-				var li_head = $("<li></li>").addClass(
-						"appliance js_toggle relative first head");
-				var b_arrow = $("<b></b>").addClass("arrow");
-				var div_info = $("<div></div>").addClass("category-info");
-				var h3_name = $("<h3></h3>").addClass(
-						"category-name b-category-name");
-				var img_typename = $("<img>").attr("src",
-						"${APP_PATH}/static/images/cake.png");//类型图片
-				var i_img = $("<i></i>").append(img_typename);
-				var a_first_typname = $("<a></a>").addClass("ml-22").attr(
-						"title", item.name).append(item.name);//产品类型名称
-				var em = $("<em></em>").append("&gt;");
-				div_info.append(h3_name.append(i_img).append(a_first_typname))
-						.append(em);
+			$
+					.each(
+							result.extend.productTypes,
+							function(index, item) {
+								//信息头
+								var li_head = $("<li></li>")
+										.addClass(
+												"appliance js_toggle relative first head");
+								var b_arrow = $("<b></b>").addClass("arrow");
+								var div_info = $("<div></div>").addClass(
+										"category-info");
+								var h3_name = $("<h3></h3>").addClass(
+										"category-name b-category-name");
+								var img_typename = $("<img>")
+										.attr("src",
+												"http://gyadmin-1252357563.file.myqcloud.com/images/cake.png");//类型图片
+								var i_img = $("<i></i>").append(img_typename);
+								var a_first_typname = $("<a></a>").addClass(
+										"ml-22").attr("title", item.name)
+										.append(item.name);//产品类型名称
+								var em = $("<em></em>").append("&gt;");
+								div_info.append(
+										h3_name.append(i_img).append(
+												a_first_typname)).append(em);
 
-				// 构建二级商品类型名称
-				var div_second_top = $("<div></div>").addClass(
-						"menu-item menu-in top second");
-				var div_area_in = $("<div></div>").addClass("area-in");
-				var div_area_bg = $("<div></div>").addClass("area-bg");
-				var div_menu_srot = $("<div></div>").addClass("menu-srot");
-				var div_sort_side = $("<div></div>").addClass("sort-side");
-				var dl_dl_sort = $("<dl></dl>").addClass("dl-sort");
-				var dt_head = $("<dt></dt>").attr("title", item.name).append(
-						$("<span></span>").append(item.name));
-				dl_dl_sort.append(dt_head);
-				$.each(item.productTypes, function(index, item) {
-					//循环构建a标签
-					var a_second_type_name = $("<a></a>").attr("href",
-							"home/typeIntoSearch?typeName=" + item.name)
-							.append($("<span></span>").append(item.name)).attr(
-									"title", item.name);
-					var dd = $("<dd></dd>").append(a_second_type_name);
-					dd.appendTo(dl_dl_sort);
-				})
+								// 构建二级商品类型名称
+								var div_second_top = $("<div></div>").addClass(
+										"menu-item menu-in top second");
+								var div_area_in = $("<div></div>").addClass(
+										"area-in");
+								var div_area_bg = $("<div></div>").addClass(
+										"area-bg");
+								var div_menu_srot = $("<div></div>").addClass(
+										"menu-srot");
+								var div_sort_side = $("<div></div>").addClass(
+										"sort-side");
+								var dl_dl_sort = $("<dl></dl>").addClass(
+										"dl-sort");
+								var dt_head = $("<dt></dt>").attr("title",
+										item.name).append(
+										$("<span></span>").append(item.name));
+								dl_dl_sort.append(dt_head);
+								$
+										.each(
+												item.productTypes,
+												function(index, item) {
+													//循环构建a标签
+													var a_second_type_name = $(
+															"<a></a>")
+															.attr(
+																	"href",
+																	"home/typeIntoSearch?typeName="
+																			+ item.name)
+															.append(
+																	$(
+																			"<span></span>")
+																			.append(
+																					item.name))
+															.attr("title",
+																	item.name);
+													var dd = $("<dd></dd>")
+															.append(
+																	a_second_type_name);
+													dd.appendTo(dl_dl_sort);
+												})
 
-				dl_dl_sort.appendTo(div_sort_side);
-				// 构建商品品牌名称
-				var div_brand_side = $("<div></div>").addClass("brand-side");
-				var dl_dl_sort2 = $("<dl></dl>").addClass("dl-sort");
-				var dt_brand = $("<dt></dt>").append(
-						$("<span></span>").append("实力品牌"));
-				//dt_brand.appendTo(dl_dl_sort2);
+								dl_dl_sort.appendTo(div_sort_side);
+								// 构建商品品牌名称
+								var div_brand_side = $("<div></div>").addClass(
+										"brand-side");
+								var dl_dl_sort2 = $("<dl></dl>").addClass(
+										"dl-sort");
+								var dt_brand = $("<dt></dt>").append(
+										$("<span></span>").append("实力品牌"));
+								//dt_brand.appendTo(dl_dl_sort2);
 
-				$.each(item.brands, function(index, item) {
-					if (index < 10) {
-						var dd_brand = $("<dd></dd>");
-						var a_brand = $("<a></a>").attr("ref", "nofollow")
-								.attr("title", item.name).attr("target",
-										"_blank").attr(
-										"href",
-										"home/brandIntoSearch?brandName="
-												+ item.name).attr("rel",
-										"nofollow");
-						if (index % 2 != 0) {
-							a_brand.addClass("red");
-						}
-						dd_brand.append(a_brand).appendTo(dl_dl_sort2);
-					}
+								$.each(item.brands, function(index, item) {
+									if (index < 10) {
+										var dd_brand = $("<dd></dd>");
+										var a_brand = $("<a></a>").attr("ref",
+												"nofollow").attr("title",
+												item.name).attr("target",
+												"_blank").attr(
+												"href",
+												"home/brandIntoSearch?brandName="
+														+ item.name).attr(
+												"rel", "nofollow");
+										if (index % 2 != 0) {
+											a_brand.addClass("red");
+										}
+										dd_brand.append(a_brand).appendTo(
+												dl_dl_sort2);
+									}
 
-				});
+								});
 
-				div_brand_side.append(dl_dl_sort2);
-				div_second_top.append(div_area_in.append(div_area_bg
-						.append(div_menu_srot.append(div_sort_side).append(
-								div_brand_side))));
+								div_brand_side.append(dl_dl_sort2);
+								div_second_top.append(div_area_in
+										.append(div_area_bg
+												.append(div_menu_srot.append(
+														div_sort_side).append(
+														div_brand_side))));
 
-				li_head.append(div_info).append(div_second_top).append(b_arrow)
-						.appendTo($("#js_climit_li"));
+								li_head.append(div_info).append(div_second_top)
+										.append(b_arrow).appendTo(
+												$("#js_climit_li"));
 
-				$(document).on("mouseover", ".head", function() {
-					$(this).addClass("hover");
-					$(this).find($(".second")).css("display", "block");
-				});
+								$(document).on(
+										"mouseover",
+										".head",
+										function() {
+											$(this).addClass("hover");
+											$(this).find($(".second")).css(
+													"display", "block");
+										});
 
-				$(document).on("mouseout", ".head", function() {
-					$(this).removeClass("hover");
-					$(this).find($(".second")).css("display", "none");
-				});
-			});
+								$(document).on(
+										"mouseout",
+										".head",
+										function() {
+											$(this).removeClass("hover");
+											$(this).find($(".second")).css(
+													"display", "none");
+										});
+							});
 		};
 		//构建底部商品类型数据
 		function build_center_products_data(result) {

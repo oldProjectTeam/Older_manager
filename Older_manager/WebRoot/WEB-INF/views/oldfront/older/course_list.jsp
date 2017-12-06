@@ -50,7 +50,7 @@ body {
 						class="nav navbar-nav navbar-fixed-top navbar-inverse">
 						<li
 							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
-							src="${APP_PATH}/static/images/oldback/images/logo.png"
+							src="http://gyadmin-1252357563.file.myqcloud.com/images/oldback/images/logo.png"
 							width="200px" style="margin-right:150px;" /></li>
 						<li><a href="${APP_PATH}/older/index"
 							class="menu-top-active check">首页</a></li>

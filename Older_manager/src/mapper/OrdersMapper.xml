@@ -569,7 +569,7 @@
 	</select>
 	
 	
-	<!--订单信息和订单信息信息和产品信息结果集  -->
+	<!--订单信息和订单详细信息和产品信息和地址信息结果集  -->
 	<resultMap id="orderWithDetailAndProductResultMap" type="com.older.manager.bean.Orders">
 		<id column="id" property="id" jdbcType="INTEGER" />
 		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
@@ -615,6 +615,14 @@
 				<result column="paral11" property="paral11" jdbcType="DOUBLE" />
 			</association>
 		</collection>
+		<collection property="shippingaddress" ofType="shippingaddress">
+			<id column="sId" property="id" jdbcType="INTEGER" />
+		    <result column="location" property="location" jdbcType="VARCHAR" />
+		    <result column="detailAddress" property="detailaddress" jdbcType="VARCHAR" />
+		    <result column="sName" property="name" jdbcType="VARCHAR" />
+		    <result column="phone" property="phone" jdbcType="VARCHAR" />
+		    <result column="postcode" property="postcode" jdbcType="VARCHAR" />
+		</collection>
 	</resultMap>
 	<!--订单信息和订单详细字段  -->
 	<sql id="order_detail_product_Column_List">
@@ -625,14 +633,52 @@
 		o.orders3, o.orders4, o.orders5, o.orders6, o.orders7,
 		ord.id orId, ord.detial_number, ord.order_id orderId, ord.produccts_id, ord.producctName,
 		ord.basePrice,ord.number,
-		p.id pId, p.name, p.nowPrice,p.images,p.imageTitle,p.inventory,p.paral11
+		p.id pId, p.name, p.nowPrice,p.images,p.imageTitle,p.inventory,p.paral11,
+		s.id sId,s.location, s.detailAddress, s.name sName, s.phone, s.postcode
 	</sql>
-	<!--通过订单id查询订单信息和关联的订单详细信息和产品信息  -->
+	<!--通过订单id查询订单信息和关联的订单详细信息和产品信息和地址信息  -->
 	<select id="selectOrderWithDetailById" resultMap="orderWithDetailAndProductResultMap"
 		parameterType="Integer">
 		select
 		<include refid="order_detail_product_Column_List" />
-		from orders o,orderdetail ord,products p
-		where o.id=ord.order_id and p.id=ord.produccts_id and o.id=#{id}
+		from orders o,orderdetail ord,products p,shippingaddress s
+		where o.id=ord.order_id and p.id=ord.produccts_id and s.id=o.shippingAddress_id and o.id=#{id}
 	</select>
+
+	<!--订单信息和产品信息结果集  -->
+	<resultMap id="orderAndProductResultMap" type="com.older.manager.bean.Orders">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+		<result column="creatTime" property="creattime" jdbcType="DATE" />
+		<result column="formulaWay" property="formulaway" jdbcType="VARCHAR" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="orders3" property="orders3" jdbcType="VARCHAR" />
+		<result column="orders4" property="orders4" jdbcType="VARCHAR" />
+		<collection property="products" ofType="products">
+			<id column="pId" property="id" jdbcType="INTEGER" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="imageTitle" property="imagetitle" jdbcType="VARCHAR" />
+			<result column="images" property="images" jdbcType="LONGVARCHAR" />
+		</collection>
+		 
+	</resultMap>
+    <!--订单信息和订单详细字段  -->
+	<sql id="order_product_Column_List">
+		o.id, o.order_no, 
+		o.creatTime,o.formulaWay,o.state, 
+		o.orders3, o.orders4, 
+		p.id pId, p.name,p.images,p.imageTitle
+	</sql>
+	<!--通过用户id查询订单信息和产品信息-->
+	<select id="orderListByState" resultMap="orderAndProductResultMap"
+		parameterType="orders">
+		select
+		<include refid="order_product_Column_List" />
+		from orders o,orderdetail ord,products p,users u
+		where u.id=#{userId} and o.state=#{state} and o.user_id=u.id and o.id=ord.order_id and p.id=ord.produccts_id
+		order by creatTime desc
+	</select>
+	
+	
+	
 </mapper>

@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,12 +23,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.older.manager.bean.Changesale;
 import com.older.manager.bean.Orderdetail;
 import com.older.manager.bean.Orders;
 import com.older.manager.bean.ProductComment;
 import com.older.manager.bean.Products;
 import com.older.manager.service.shopfront.ChangeService;
+import com.older.manager.service.shopfront.IOrderService;
 import com.older.manager.service.shopfront.IOrderdetailService;
 import com.older.manager.service.shopfront.IProductCommentService;
 import com.older.manager.service.shopfront.IProductService;
@@ -49,8 +53,12 @@ public class OrderManagerController {
 
 	@Autowired
 	private IProductCommentService productCommentService;
+
 	@Autowired
 	private ChangeService changeService;
+
+	@Autowired
+	private IOrderService orderService;
 
 	/**
 	 * 跳到订单管理
@@ -70,6 +78,25 @@ public class OrderManagerController {
 	@RequestMapping("/skipchange")
 	public String skipChange() {
 		return "oldfront/person/change";
+	}
+
+	/**
+	 * 物流详情
+	 * 
+	 * @param orders
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/logistic/{id}")
+	public String logistics(@PathVariable("id") Integer id, Model model) {
+		Orders orders = null;
+		try {
+			orders = orderService.findOrders(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("orders", orders);
+		return "oldfront/person/logistics";
 	}
 
 	/**
@@ -181,24 +208,55 @@ public class OrderManagerController {
 
 	}
 
-	/***
-	 * 查看物流
-	 * 
+ /**
+	 * 订单明细
 	 * @return
 	 */
-	@RequestMapping("/logistics")
-	public String billlist() {
-		return "oldfront/person/logistics";
+	@RequestMapping("/orderinfo/{id}")
+	
+	public String orderinfo(@PathVariable("id")Integer id,Model model) {
+			if(Pattern.matches("[\\d]+", id+"")){
+				Orders order=orderService.findOrderWithDetailById(id);
+				List<Orderdetail>orderdetails=order.getOrderdetails();
+				for(Orderdetail orderdetail:orderdetails){
+					Products products=orderdetail.getProduct();
+					if(products.getImages().contains(",")){
+						String s[]=products.getImages().split(",");
+						products.setImages(s[0]);
+					}
+				}
+				model.addAttribute("order", order);
+			}  
+			return "oldfront/person/orderinfo";
 	}
 
 	/**
-	 * 订单明细
-	 * 
+	 * 根据用户id 查询用户所有未确定收货订单
+	 * @param userId
+	 * @param pn
 	 * @return
+	 * @throws Exception
 	 */
-	@RequestMapping("/orderinfo")
-	public String orderinfo() {
-		return "oldfront/person/orderinfo";
+	@RequestMapping("/orderListByState")
+	@ResponseBody
+	public Msg orderListByState(Orders order,
+			@RequestParam(value="pn",defaultValue="1")Integer pn) throws Exception{
+		PageHelper.startPage(pn,2);
+		order.setState("待收货");
+		List<Orders> orders=orderService.orderListByState(order);
+	 
+		for(Orders orders2:orders){
+			List<Products>products=orders2.getProducts();
+			for(Products product:products){
+				if(product.getImages().contains(",")){
+					String s[]=product.getImages().split(",");
+					product.setImages(s[0]);
+				}
+			}
+			//orders2.setProduct(product);
+		}
+		PageInfo pageInfo=new PageInfo(orders,3);
+		return Msg.success().add("pageInfo", pageInfo);
 	}
 
 	/**

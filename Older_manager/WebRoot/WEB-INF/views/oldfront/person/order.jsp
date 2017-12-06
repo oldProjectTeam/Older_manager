@@ -180,10 +180,10 @@
 																							<p class="Mystatus">交易成功</p>
 
 																							<p class="order-info">
-																								<a href="order/orderinfo">订单详情</a>
+																								<a href="order/orderinfo/${mp3.value[3]}">订单详情</a>
 																							</p>
 																							<p class="order-info">
-																								<a href="order/logistics">查看物流</a>
+																								<a href="order/logistic/${mp3.value[3]}">查看物流</a>
 																							</p>
 																							<p class="order-info">
 																								<a
@@ -232,10 +232,10 @@
 																							<p class="Mystatus">卖家已发货</p>
 
 																							<p class="order-info">
-																								<a href="order/orderinfo">订单详情</a>
+																								<a href="order/orderinfo/${mp3.value[3]}">订单详情</a>
 																							</p>
 																							<p class="order-info">
-																								<a href="order/logistics">查看物流</a>
+																								<a href="order/logistic/${mp3.value[3]}">查看物流</a>
 																							</p>
 																							<p class="order-info">
 
@@ -264,7 +264,7 @@
 																							<p class="Mystatus">买家已付款</p>
 
 																							<p class="order-info">
-																								<a href="order/orderinfo">订单详情</a>
+																								<a href="order/orderinfo/${mp3.value[3]}">订单详情</a>
 																							</p>
 
 
@@ -579,7 +579,7 @@
 																									<p class="Mystatus">买家已付款</p>
 																									<!-- 删除点单 -->
 																									<p class="order-info">
-																										<a href="order/billlist">查看详情</a>
+																										<a href="order/orderinfo/${mp3.value[3]}">查看详情</a>
 																									</p>
 
 
@@ -689,7 +689,7 @@
 																					<div class="item-pic">
 																						<a href="product/getProduct/${list.products.id}"
 																							class="J_MakePoint"> <img
-																							src="${list.products.images}"
+																							src="http://123.207.93.53/Older_back/${list.products.images}"
 																							class="itempic J_ItemImg">
 																						</a>
 																					</div>
@@ -741,10 +741,10 @@
 																									<p class="Mystatus">卖家已发货</p>
 																									<!-- 删除点单 -->
 																									<p class="order-info">
-																										<a href="order/orderinfo">订单详情</a>
+																										<a href="order/orderinfo/${mp3.value[3]}">订单详情</a>
 																									</p>
 																									<p class="order-info">
-																										<a href="order/logistics">查看物流</a>
+																										<a href="order/logistic/${mp3.value[3]}">查看物流</a>
 																									</p>
 																									<p class="order-info">
 
@@ -922,10 +922,10 @@
 																									<p class="Mystatus">交易成功</p>
 																									<!-- 删除点单 -->
 																									<p class="order-info">
-																										<a href="logistics.html">点单详情</a>
+																										<a href="order/orderinfo/${mp3.value[3] }">点单详情</a>
 																									</p>
 																									<p class="order-info">
-																										<a href="order/logistics">查看物流</a>
+																										<a href="order/logistic/${mp3.value[3] }">查看物流</a>
 																									</p>
 																									<p class="order-info">
 																										<a

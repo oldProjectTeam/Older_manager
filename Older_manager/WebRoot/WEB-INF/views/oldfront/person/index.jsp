@@ -6,7 +6,7 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
@@ -19,6 +19,8 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
+<link href="${APP_PATH}/static/oldfront/older/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="${APP_PATH}/static/css/admin.css" rel="stylesheet"
 	type="text/css">
 <link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
@@ -54,22 +56,14 @@
 							<div class="m-userinfo">
 								<div class="m-baseinfo">
 									<a href="${APP_PATH}/safety/skipinformation1"> <img
-										src="${APP_PATH}/static/images/getAvatar.do.jpg">
+										src="http://gyadmin-1252357563.file.myqcloud.com/images/getAvatar.do.jpg">
 									</a> <em class="s-name"><font color="black">(${users.account})</font><span
 										class="vip1"></em>
 									<div class="s-prestige am-btn am-round">
 										</span><font color="black" id="level"></font>
 									</div>
-									<div class="u-safety">
-								当前积分 <span class="u-profile"><i class="bc_ee0000"
-									style="width: 60px;" width="0" id="numid"></i></span>
-							</div>
 								</div>
 								<div class="m-right">
-									<div class="m-new">
-										<a href="javascript:#"><i class="am-icon-bell-o"></i><font
-											color="black">消息</font></a>
-									</div>
 									<div class="m-address">
 										<a
 											href="${APP_PATH}/address/selectallshoppingaddress/${users.id}"
@@ -87,17 +81,17 @@
 									href="${APP_PATH}/order/selectallorder/${users.id}">全部订单</a>
 							</div>
 							<ul>
-								<li><a href="javascript:#"><i><img
-											src="${APP_PATH}/static/images/pay.png" /></i><span>待付款<em
+								<li><a href="${APP_PATH}/order/selectallorder/${users.id}"><i><img
+											src="http://gyadmin-1252357563.file.myqcloud.com/images/pay.png" /></i><span>待付款<em
 											class="m-num" id="orderNum1"></em></span></a></li>
-								<li><a href="javascript:#"><i><img
-											src="${APP_PATH}/static/images/send.png" /></i><span>待发货<em
+								<li><a href="${APP_PATH}/order/selectallorder/${users.id}"><i><img
+											src="http://gyadmin-1252357563.file.myqcloud.com/images/send.png" /></i><span>待发货<em
 											class="m-num" id="orderNum2"></em></span></a></li>
-								<li><a href="javascript:#"><i><img
-											src="${APP_PATH}/static/images/receive.png" /></i><span>待收货<em
+								<li><a href="${APP_PATH}/order/selectallorder/${users.id}"><i><img
+											src="http://gyadmin-1252357563.file.myqcloud.com/images/receive.png" /></i><span>待收货<em
 											class="m-num" id="orderNum3"></em></span></a></li>
-								<li><a href="javascript:#"><i><img
-											src="${APP_PATH}/static/images/comment.png" /></i><span>待评价<em
+								<li><a href="${APP_PATH}/order/selectallorder/${users.id}"><i><img
+											src="http://gyadmin-1252357563.file.myqcloud.com/images/comment.png" /></i><span>待评价<em
 											class="m-num" id="orderNum4"></em></span></a></li>
 							</ul>
 						</div>
@@ -107,91 +101,48 @@
 							<div class="s-bar">
 								<i class="s-icon"></i>我的物流
 							</div>
-							<%-- 				<div class="s-content">
-								<ul class="lg-list">
-
+							<div class="s-content">
+								<ul class="lg-list" id="myLogistics">
+									 
 									<li class="lg-item">
 										<div class="item-info">
-											<a href="#"> <img
+											<a href="#" title="">
+											 <img
 												src="${APP_PATH}/static/images/65.jpg_120x120xz.jpg"
 												alt="抗严寒冬天保暖隔凉羊毛毡底鞋垫超薄0.35厘米厚吸汗排湿气舒适">
 											</a>
-
 										</div>
 										<div class="lg-info">
-
-											<p>快件已从 义乌 发出</p>
-											<time>2015-12-20 17:58:05</time>
-
+											<p>快件已发出,请耐心等待...</p>
 											<div class="lg-detail-wrap">
-												<a class="lg-detail i-tip-trigger" href="logistics.html">查看物流明细</a>
-												<div class="J_TipsCon hide">
+												 
+												<div class="J_TipsCon">
 													<div class="s-tip-bar">中通快递&nbsp;&nbsp;&nbsp;&nbsp;运单号：373269427686</div>
 													<div class="s-tip-content">
-														<ul>
-															<li>快件已从 义乌 发出2015-12-20 17:58:05</li>
-															<li>义乌 的 义乌总部直发车 已揽件2015-12-20 17:54:49</li>
-															<li class="s-omit"><a
-																data-spm-anchor-id="a1z02.1.1998049142.3"
-																target="_blank" href="#">··· 查看全部</a></li>
-															<li>您的订单开始处理2015-12-20 08:13:48</li>
-
-														</ul>
 													</div>
 												</div>
 											</div>
 
 										</div>
 										<div class="lg-confirm">
-											<a class="i-btn-typical" href="#">确认收货</a>
+											<a class="i-btn-typical" href="${APP_PATH}/order/logistic/${order.id}">查看物流</a>
 										</div>
 									</li>
 									<div class="clear"></div>
-
-									<li class="lg-item">
-										<div class="item-info">
-											<a href="#"> <img
-												src="${APP_PATH}/static/images/88.jpg_120x120xz.jpg"
-												alt="礼盒袜子女秋冬 纯棉袜加厚 女式中筒袜子 韩国可爱 女袜 女棉袜">
-											</a>
-
-										</div>
-										<div class="lg-info">
-
-											<p>已签收,签收人是青年城签收</p>
-											<time>2015-12-19 15:35:42</time>
-
-											<div class="lg-detail-wrap">
-												<a class="lg-detail i-tip-trigger" href="logistics.html">查看物流明细</a>
-												<div class="J_TipsCon hide">
-													<div class="s-tip-bar">天天快递&nbsp;&nbsp;&nbsp;&nbsp;运单号：666287461069</div>
-													<div class="s-tip-content">
-														<ul>
-
-															<li>已签收,签收人是青年城签收2015-12-19 15:35:42</li>
-															<li>【光谷关山分部】的派件员【关山代派】正在派件 电话:*2015-12-19 14:27:28</li>
-															<li class="s-omit"><a
-																data-spm-anchor-id="a1z02.1.1998049142.7"
-																target="_blank"
-																href="//wuliu.taobao.com/user/order_detail_new.htm?spm=a1z02.1.1998049142.7.8BJBiJ&amp;trade_id=1479374251166800&amp;seller_id=1651462988&amp;tracelog=yimaidaologistics">···
-																	查看全部</a></li>
-															<li>您的订单开始处理2015-12-17 14:27:50</li>
-
-														</ul>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										<div class="lg-confirm">
-											<a class="i-btn-typical" href="#">确认收货</a>
-										</div>
-									</li>
-
+									 
 								</ul>
-
-							</div> --%>
-
+							</div>
+							<!--分页信息  -->
+				          <div class="row">
+				          	<div class="col-md-12">
+			          	      <nav aria-label="Page navigation" style="float:right">
+			          	        <ul class="pagination pagination-sm" id="nav_ul_info">
+			          	        	
+			          	        </ul>
+			          	      </nav>
+				          	</div>
+				          </div>
+				          
 						</div>
 					</div>
 				</div>
@@ -213,6 +164,8 @@
 
 	<script type="text/javascript">
 		$(function() {
+			//加载我的物流信息
+			to_page(1);
 			orderInfo();
 			//发送请求获取
 			$.ajax({
@@ -224,8 +177,7 @@
 				success : function(result) {
 					var rel = result.extend.shopInfo;
 					$("#level").append(rel.level);
-					$("#numid").text(rel.integral.currentintegral + '分');
-		}
+				}
 			});
 		});
 
@@ -246,6 +198,109 @@
 					$("#orderNum2").append(order[1]);
 					$("#orderNum3").append(order[2]);
 					$("#orderNum4").append(order[3]);
+				}
+			});
+		}
+		
+		 
+		//构建我的物流信息
+		function build_myLogistics(result){
+			$("#myLogistics").empty();
+			$.each(result.extend.pageInfo.list,function(index,items){
+				$.each(items.products,function(i,item){
+					var li=$("<li></li>").addClass("lg-item");
+					 var div1=$("<div></div>").addClass("item-info");
+					 var a1=$("<a></a>").attr("href","${APP_PATH}/product/getProduct/"+item.id)
+					 .attr("title",item.name);
+					 var img1=$("<img>").attr("src","http://123.207.93.53/Older_back/"+item.images);
+					 a1.append(img1);
+					 div1.append(a1);
+					 
+					 var div2=$("<div><p>快件已发出,请耐心等待...</p></div>").addClass("lg-info");
+					 var div21=$("<div></div>").addClass("lg-detail-wrap");
+					 var div211=$("<div></div>").addClass("J_TipsCon");
+					 var div2111=$("<div></div>").addClass("s-tip-bar")
+					 .append(item.formulaway+"快递"+"&nbsp;&nbsp;&nbsp;&nbsp;运单号："+items.orders4);
+					 div211.append(div2111);
+					 div21.append(div211);
+					 div2.append(div21);
+					 
+					 var div3=$("<div></div>").addClass("lg-confirm");
+					 var a3=$("<a class='i-btn-typical'>查看物流</a>").attr("href","${APP_PATH}/order/logistic/"+items.id);
+					 div3.append(a3);
+		
+					 li.append(div1).append(div2).append(div3).appendTo("#myLogistics");
+				});
+			});
+		}
+
+		//构建分页信息
+		function buil_nav_pageInfo(result){
+			$("#nav_ul_info").empty();
+			//右边分页导航
+			var firstPage=$("<li></li>").append($("<a></a>").append("首页"));
+			var prePage=$("<li></li>").append($("<a></a>").append("&laquo;"));
+			var nextPage=$("<li></li>").append($("<a></a>").append("&raquo;"));
+			var lastPage=$("<li></li>").append($("<a></a>").append("末页"));
+			if(result.extend.pageInfo.hasPreviousPage==false){
+				firstPage.addClass("disabled");
+				prePage.addClass("disabled");
+			}else{
+				firstPage.click(function(){
+					to_page(1);
+				});
+				prePage.click(function(){
+					to_page(result.extend.pageInfo.pageNum-1);
+				});
+			}
+			if(result.extend.pageInfo.hasNextPage==false){
+				nextPage.addClass("disabled");
+				lastPage.addClass("disabled");
+			}else{
+				nextPage.click(function(){
+					to_page(result.extend.pageInfo.pageNum+1);
+				});
+				lastPage.click(function(){
+					to_page(result.extend.pageInfo.pages);
+				});
+			}
+			$("#nav_ul_info").append(firstPage).append(prePage);
+			$.each(result.extend.pageInfo.navigatepageNums,function(index,item){
+				var numLi=$("<li></li>").append($("<a></a>").append(item));
+				if(result.extend.pageInfo.pageNum==item){
+					numLi.addClass("active");	
+				}
+				numLi.click(function(){
+					to_page(item);
+				});
+				$("#nav_ul_info").append(numLi);
+			});
+			$("#nav_ul_info").append(nextPage).append(lastPage);
+		}
+
+		//去哪页加载数据
+		function to_page(pn){
+			layer.msg('加载中', {
+				icon : 16,
+				shade : 0.01,
+				time :100000,
+				offset : [ '60%' ],
+			});
+			$.ajax({
+				url:"${APP_PATH}/order/orderListByState",
+				data:{
+					pn:pn,
+					userId:'${users.id}'
+				},
+				type:"post",
+				success:function(result){
+					layer.closeAll();
+					//console.log(result);
+					//1.构建我的物流数据
+					build_myLogistics(result);
+					//2.构建分页信息
+					if(result.extend.pageInfo.pages>2)
+						buil_nav_pageInfo(result);
 				}
 			});
 		}

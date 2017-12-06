@@ -132,69 +132,86 @@
 
 		});
 		//点击保存
-		$("#saveid").click(
-				function() {
-					var value = 0;
-					var time = 10;
-					//进度条复位函数
+		$("#saveid")
+				.click(
+						function() {
+							var value = 0;
+							var time = 10;
+							//进度条复位函数
 
-					if ($("#pass2").val() != $("#pass3").val()) {
-						layer.msg("新密码不一致");
-					} else {
-
-						function reset() {
-							value = 0;
-							$("#prog").removeClass("progress-bar-success").css(
-									"width", "0%").text("等待启动");
-							//setTimeout(increment,5000);
-						}
-						//百分数增加，0-30时为红色，30-60为黄色，60-90为蓝色，>90为绿色
-						function increment() {
-							value += 1;
-							$("#prog").css("width", value + "%").text(
-									value + "%");
-							if (value >= 0 && value <= 30) {
-								$("#prog").addClass("progress-bar-danger");
-							} else if (value >= 30 && value <= 60) {
-								$("#prog").removeClass("progress-bar-danger");
-								$("#prog").addClass("progress-bar-warning");
-							} else if (value >= 60 && value <= 90) {
-								$("#prog").removeClass("progress-bar-warning");
-								$("#prog").addClass("progress-bar-info");
-							} else if (value >= 90 && value < 100) {
-								$("#prog").removeClass("progress-bar-info");
-								$("#prog").addClass("progress-bar-success");
+							if ($("#pass2").val() != $("#pass3").val()) {
+								layer.msg("新密码不一致");
 							} else {
-								setTimeout(reset, 1000);
-								return;
+								var password = /^[A-Za-z0-9]{8,40}$/;
+								if (!password.test($("#pass2").val())) {
 
-							}
+									layer.msg("密码由数字与英语组成，8到40位");
+								} else {
 
-							st = setTimeout(increment, time);
-						}
+									function reset() {
+										value = 0;
+										$("#prog").removeClass(
+												"progress-bar-success").css(
+												"width", "0%").text("等待启动");
+										//setTimeout(increment,5000);
+									}
+									//百分数增加，0-30时为红色，30-60为黄色，60-90为蓝色，>90为绿色
+									function increment() {
+										value += 1;
+										$("#prog").css("width", value + "%")
+												.text(value + "%");
+										if (value >= 0 && value <= 30) {
+											$("#prog").addClass(
+													"progress-bar-danger");
+										} else if (value >= 30 && value <= 60) {
+											$("#prog").removeClass(
+													"progress-bar-danger");
+											$("#prog").addClass(
+													"progress-bar-warning");
+										} else if (value >= 60 && value <= 90) {
+											$("#prog").removeClass(
+													"progress-bar-warning");
+											$("#prog").addClass(
+													"progress-bar-info");
+										} else if (value >= 90 && value < 100) {
+											$("#prog").removeClass(
+													"progress-bar-info");
+											$("#prog").addClass(
+													"progress-bar-success");
+										} else {
+											setTimeout(reset, 1000);
+											return;
 
-						increment();
+										}
 
-						$.ajax({
-							url : "${APP_PATH}/safety/upateusers/"
-									+ ${users.id} + "&"
-									+ $.md5($("#pass3").val()),
-							type : "POST",
-							success : function(result) {
-								if (result.code == 100) {
-									value = 100;
-									layer.msg("保存成功！");
-									$("#formid")[0].reset();
+										st = setTimeout(increment, time);
+									}
+
+									increment();
+
+									$
+											.ajax({
+												url : "${APP_PATH}/safety/upateusers/"
+														+ ${users.id}
+														+ "&"
+														+ $.md5($("#pass3")
+																.val()),
+												type : "POST",
+												success : function(result) {
+													if (result.code == 100) {
+														value = 100;
+														layer.msg("保存成功！");
+														$("#formid")[0].reset();
+													}
+													$("#saveid").attr(
+															"disabled", true);
+												}
+											});
+
 								}
-								$("#saveid").attr("disabled", true);
 							}
 						});
-
-					}
-				});
 	</script>
-
-
 </body>
 
 </html>

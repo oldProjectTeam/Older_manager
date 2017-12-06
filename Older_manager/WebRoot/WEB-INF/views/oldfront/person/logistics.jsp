@@ -12,7 +12,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'logistics.jsp' starting page</title>
+<title>购物商城-我的物流</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -23,14 +23,14 @@
 	type="text/css">
 <link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
 	type="text/css">
-
 <link href="${APP_PATH}/static/css/personal.css" rel="stylesheet"
 	type="text/css">
 <link href="${APP_PATH}/static/css/lostyle.css" rel="stylesheet"
 	type="text/css">
-
+<link href="${APP_PATH}/static/css/KDNWidget.css" rel="stylesheet"
+	type="text/css" />
+<script type="text/javascript" src="${APP_PATH}/static/js/KDNWidget.js"></script>
 </head>
-
 <body>
 	<jsp:include page="../home/shopheader.jsp"></jsp:include>
 	<div class="nav-table">
@@ -58,104 +58,21 @@
 					<div class="package-title">
 						<div class="m-item">
 							<div class="item-pic">
-								<img src="${APP_PATH}/static/images/kouhong.jpg_80x80.jpg"
-									class="itempic J_ItemImg">
+								<img
+									src="http://gyadmin-1252357563.file.myqcloud.com/images/logistic.png"
+									class="itempic J_ItemImg" style="margin-right: 25px;">
 							</div>
 							<div class="item-info">
 								<p class="log-status">
-									物流状态:<span>已签收</span>
+									物流状态:<span>${orders.state=='待评价'?'已签收':'运输中'}</span>
 								</p>
-								<p>承运公司：天天物流</p>
-								<p>快递单号：373269427868</p>
-								<p>官方电话：4001-888-888</p>
+								<p>承运公司:${orders.formulaway}</p>
+								<p>快递单号:${orders.orders4}</p>
 							</div>
 						</div>
 						<div class="clear"></div>
 					</div>
-					<div class="package-status">
-						<ul class="status-list">
-							<li class="latest">
-								<p class="text">【武汉市】已签收,签收人是青年城签收，感谢使用天天快递，期待再次为您服务</p>
-								<div class="time-list">
-									<span class="date">2015-12-19</span><span class="week">周六</span><span
-										class="time">15:35:42</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">【武汉市】光谷关山分部派件员正在为您派件</p>
-								<div class="time-list">
-									<span class="date hidden">2015-12-19</span><span
-										class="week hidden">周六</span><span class="time">14:27:28</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">【武汉市】快件已到达 光谷关山分部</p>
-								<div class="time-list">
-									<span class="date hidden">2015-12-19</span><span
-										class="week hidden">周六</span><span class="time">09:25:51</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">【武汉市】武汉 已发出</p>
-								<div class="time-list">
-									<span class="date  hidden">2015-12-19</span><span
-										class="week  hidden">周六</span><span class="time">06:56:03</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">【杭州市】杭州集散陆运 已发出</P>
-								<div class="time-list">
-									<span class="date">2015-12-17</span><span class="week">周四</span><span
-										class="time">22:15:23</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">【绍兴市】诸暨 已发出</p>
-								<div class="time-list">
-									<span class="date hidden">2015-12-17</span><span
-										class="week hidden">周四</span><span class="time">18:55:25</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">
-									【绍兴市】天天快递 诸暨收件员 已揽件</span>
-								<div class="time-list">
-									<span class="date hidden">2015-12-17</span><span
-										class="week hidden">周四</span><span class="time">18:54:25</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">
-									商家正通知快递公司揽件</span>
-								<div class="time-list">
-									<span class="date hidden">2015-12-17</span><span
-										class="week hidden">周四</span><span class="time">15:49:40</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">
-									您的包裹已出库</span>
-								<div class="time-list">
-									<span class="date hidden">2015-12-17</span><span
-										class="week hidden">周四</span><span class="time">15:49:40</span>
-								</div>
-							</li>
-							<li>
-								<p class="text">您的订单待配货</p>
-								<div class="time-list">
-									<span class="date hidden">2015-12-17</span><span
-										class="week hidden">周四</span><span class="time">15:18:15</span>
-								</div>
-							</li>
-							<li class="first">
-								<p class="text">您的订单开始处理</p>
-								<div class="time-list">
-									<span class="date  hidden">2015-12-17</span><span
-										class="week  hidden">周四</span><span class="time">14:27:50</span>
-								</div>
-							</li>
-						</ul>
-					</div>
+					<div id="logistics"></div>
 				</div>
 			</div>
 			<!--底部-->
@@ -163,5 +80,17 @@
 		</div>
 		<jsp:include page="left.jsp"></jsp:include>
 	</div>
+
+	<script type="text/javascript">
+		window.onload = function() {
+			KDNWidget.run({
+				serviceType : "B",//服务类型：此功能的服务类型值为"B"
+				expCode : "${orders.orders3}",//快递公司编号,例如:申通（编号：ZTO）
+				expNo : "${orders.orders4}",//快递公司运单号453173031799
+				showType : "normal",//呈现方式：normal-直接把结果显示在您定义的容器中，pop-将结果显示在您定义的容器中并以弹窗的形式呈现。
+				container : "logistics"//您自定义的容器ID（一般是定义一个div,注意值不要加#）
+			});
+		};
+	</script>
 </body>
 </html>

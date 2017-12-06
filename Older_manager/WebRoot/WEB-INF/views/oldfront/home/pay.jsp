@@ -11,29 +11,20 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-
 <title>孝和购物商城-商品结算</title>
-
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-
-
-
 <link href="${APP_PATH}/static/css/amazeui.css" rel="stylesheet"
 	type="text/css" />
-
 <link href="${APP_PATH}/static/css/demo.css" rel="stylesheet"
 	type="text/css" />
-
 <link href="${APP_PATH}/static/css/cartstyle.css" rel="stylesheet"
 	type="text/css" />
-
 <link href="${APP_PATH}/static/css/jsstyle.css" rel="stylesheet"
 	type="text/css" />
-
 <script type="text/javascript" src="${APP_PATH}/static/js/address.js"></script>
 <script type="text/javascript"
 	src="${APP_PATH}/static/js/jquery-1.7.2.min.js"></script>
@@ -41,9 +32,7 @@
 	type="text/javascript"></script>
 <script language="javascript"
 	src="${APP_PATH}/static/shop/city/PCASClass.js"></script>
-
 </head>
-
 <body>
 	<jsp:include page="shopheader.jsp"></jsp:include>
 	<c:if test="${empty carts }">
@@ -65,10 +54,8 @@
 					<c:forEach items="${addressList}" var="address" varStatus="a">
 						<div class="per-border"></div>
 						<li class="user-addresslist defaultAddr">
-
 							<div class="address-left">
 								<div class="user DefaultAddr">
-
 									<span class="buy-address-detail"> <span class="buy-user">${address.name}
 									</span> <span class="buy-phone">${address.phone}</span>
 									</span>
@@ -90,9 +77,7 @@
 									class="am-icon-angle-right am-icon-lg"></span></a>
 							</div>
 							<div class="clear"></div>
-
 							<div class="new-addr-btn">
-
 								<c:if test="${a.count==1}">
 									<span class="new-addr-bar">启用</span>
 									<span class="new-addr-bar"> <input type="radio"
@@ -101,8 +86,6 @@
 										style="width:18px;height:18px;margin-top:-5px">
 									</span>
 									<span class="new-addr-bar">|</span>
-
-
 								</c:if>
 								<c:if test="${a.count!=1}">
 									<span class="new-addr-bar">启用</span>
@@ -112,14 +95,10 @@
 									<span class="new-addr-bar">|</span>
 								</c:if>
 								<a href="javascript:;" onClick="edit_btn(this,'${address.id}')">编辑</a>
-								<%-- <span class="new-addr-bar">|</span>
-									<a href="javascript:void(0);" onclick="delClick(this,'${address.id}');">删除</a> --%>
 							</div>
-
 						</li>
 					</c:forEach>
 				</ul>
-
 				<div class="clear"></div>
 			</div>
 			<!--物流 -->
@@ -143,7 +122,6 @@
 				</ul>
 			</div>
 			<div class="clear"></div>
-
 			<!--支付方式-->
 			<div>
 				<h3>选择支付方式</h3>
@@ -152,19 +130,17 @@
 						style="border-color:#F03726 ;position:relative ;"><input
 						type="radio" name="payType" checked="true" value="1"
 						style="width:18px;height:18px"> &nbsp;&nbsp; <img
-						src="${APP_PATH}/static/images/zhifubao.jpg" />支付宝(默认)<span></span>
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/zhifubao.jpg" />支付宝(默认)<span></span>
 					</li>
 				</ul>
 			</div>
 			<div class="clear"></div>
-
 			<!--订单 -->
 			<div class="concent">
 				<div id="payTable">
 					<h3>确认订单信息</h3>
 					<div class="cart-table-th">
 						<div class="wp">
-
 							<div class="th th-item">
 								<div class="td-inner">商品信息</div>
 							</div>
@@ -180,14 +156,12 @@
 							<div class="th th-oplist">
 								<div class="td-inner">配送方式</div>
 							</div>
-
 						</div>
 					</div>
 					<div class="clear"></div>
 					<c:forEach items="${carts }" var="cart">
 						<tr class="item-list">
 							<div class="bundle  bundle-last">
-
 								<div class="bundle-main">
 									<ul class="item-content clearfix" value="${cart.id}">
 										<div class="pay-phone">
@@ -210,12 +184,6 @@
 													</div>
 												</div>
 											</li>
-											<!-- <li class="td td-info">
-												<div class="item-props">
-													<span class="sku-line">颜色：12#川南玛瑙</span>
-													<span class="sku-line">包装：裸装</span>
-												</div>
-											</li> -->
 											<li class="td td-price">
 												<div class="item-price price-promo-promo">
 													<div class="price-content">
@@ -252,7 +220,6 @@
 													<c:if test="${cart.product.paral11==null}">
 											   	包邮 
 											   </c:if>
-
 												</div>
 											</div>
 										</li>
@@ -262,10 +229,7 @@
 						</tr>
 						<div class="clear"></div>
 					</c:forEach>
-
 				</div>
-
-
 			</div>
 			<div class="clear"></div>
 			<div class="pay-total">
@@ -282,9 +246,7 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 				<div class="clear"></div>
 			</div>
 			<!--含运费小计 -->
@@ -293,7 +255,6 @@
 					合计（含运费） <span>¥</span><em class="pay-sum" id="pay-sum">${cost}</em>
 				</p>
 			</div>
-
 			<!--信息 -->
 			<div class="order-go clearfix">
 				<div class="pay-confirm clearfix">
@@ -303,17 +264,13 @@
 								<em class="style-large-bold-red " id="J_ActualFee">${cost}</em>
 							</span>
 						</div>
-
 						<div id="holyshit268" class="pay-address">
 							<c:if test="${!empty addressList[0]}">
-
 								<p class="buy-footer-address">
 									<span class="buy-line-title buy-line-title-type">寄送至：</span> <span
 										class="buy--address-detail"> <span class="province">${addressList[0].location}</span>
-
 										<span class="street">${addressList[0].detailaddress }</span>
 									</span>
-
 								</p>
 								<p class="buy-footer-address">
 									<span class="buy-line-title">收货人：</span> <span
@@ -321,17 +278,13 @@
 										<span class="buy-phone">${addressList[0].phone}</span>
 									</span>
 								</p>
-
 							</c:if>
 							<c:if test="${empty addressList[0]}">
-
 								<p class="buy-footer-address">
 									<span class="buy-line-title buy-line-title-type">寄送至：</span> <span
 										class="buy--address-detail"> <span class="province">暂无</span>
-
 										<span class="street">暂无</span>
 									</span>
-
 								</p>
 								<p class="buy-footer-address">
 									<span class="buy-line-title">收货人：</span> <span
@@ -339,7 +292,6 @@
 										<span class="buy-phone">暂无</span>
 									</span>
 								</p>
-
 							</c:if>
 						</div>
 					</div>
@@ -359,7 +311,6 @@
 	<jsp:include page="../person/footer.jsp"></jsp:include>
 	<div class="theme-popover-mask"></div>
 	<div class="theme-popover" id="add_address_modal">
-
 		<!--标题 -->
 		<div class="am-cf am-padding">
 			<div class="am-fl am-cf">
@@ -368,10 +319,8 @@
 			</div>
 		</div>
 		<hr />
-
 		<div class="am-u-md-12">
 			<form class="am-form am-form-horizontal" id="add_address_form">
-
 				<div class="am-form-group">
 					<label for="user-name" class="am-form-label"><font
 						color="red">*</font>收货人</label>
@@ -381,7 +330,6 @@
 							type="hidden" name="userId" value="${users.id}" />
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>手机号码</label>
@@ -390,7 +338,6 @@
 							type="text"> <font color="red"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>所在地</label>
@@ -401,7 +348,6 @@
 						</select> <font color="red" id="p_msg"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-intro" class="am-form-label"><font
 						color="red">*</font>详细地址</label>
@@ -411,7 +357,6 @@
 						<small>100字以内写出你的详细地址...</small><font color="red" id="intro_msg"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group theme-poptit">
 					<div class="am-u-sm-9 am-u-sm-push-3">
 						<div class="am-btn am-btn-danger" id="add_save_btn">保存</div>
@@ -420,10 +365,8 @@
 				</div>
 			</form>
 		</div>
-
 	</div>
 	<div class="clear"></div>
-
 	<!--编辑地址模块  -->
 	<div class="theme-popover1" id="edit_address_modal">
 		<!--标题 -->
@@ -447,7 +390,6 @@
 							type="hidden" name="id" id="addressId" />
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>手机号码</label>
@@ -456,7 +398,6 @@
 							type="text"> <font color="red"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>所在地</label>
@@ -470,7 +411,6 @@
 						</select> <font color="red" id="p_msg1"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-intro" class="am-form-label"><font
 						color="red">*</font>详细地址</label>
@@ -480,7 +420,6 @@
 						<small>100字以内写出你的详细地址...</small><font color="red" id="intro_msg1"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group theme-poptit">
 					<div class="am-u-sm-9 am-u-sm-push-3">
 						<div class="am-btn am-btn-danger" id="edit_save_btn">保存</div>

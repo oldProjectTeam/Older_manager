@@ -40,8 +40,9 @@
 	<div class="just-sec" id="port-folio">
 		<div class="container">
 			<div class="row">
-				<img src="${APP_PATH}/static/images/load.gif" width="100"
-					height="100" class="col-md-offset-5 activity" />
+				<img
+					src="http://gyadmin-1252357563.file.myqcloud.com/images/load.gif"
+					width="100" height="100" class="col-md-offset-5 activity" />
 				<div id="content1" class="row"></div>
 				<div id="content2" class="row"></div>
 			</div>

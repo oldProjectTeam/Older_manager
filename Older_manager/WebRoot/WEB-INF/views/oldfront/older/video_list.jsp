@@ -60,7 +60,7 @@ li {
 						class="nav navbar-nav navbar-fixed-top navbar-inverse">
 						<li
 							style="padding-left: 15px;padding-top: 6px;padding-bottom: 6px;"><img
-							src="${APP_PATH}/static/images/oldback/images/logo.png"
+							src="http://gyadmin-1252357563.file.myqcloud.com/images/oldback/images/logo.png"
 							width="200px" style="margin-right:150px;" /></li>
 						<li><a href="${APP_PATH}/older/index"
 							class="menu-top-active check">首页</a></li>
@@ -76,7 +76,7 @@ li {
 							</c:if> <!--已登录  --> <c:if test="${!empty older}">
 								<dropdown> <input id="toggle2" type="checkbox">
 								<label for="toggle2" class="animate"> <img
-									src="${APP_PATH}/static/images/old.png"
+									src="http://gyadmin-1252357563.file.myqcloud.com/images/old.png"
 									style="height:30px;width:30px" class="img-circle"> <i
 									class="fa fa-bars float-right" style="margin-top:10px"></i>
 								</label>
@@ -115,7 +115,8 @@ li {
 			type='video/mp4' /> </video>
 		<div class="playlist-container preview-player-dimensions vjs-fluid">
 			<ol class="vjs-playlist" id="video_list">
-				<img src="${APP_PATH}/static/images/load.gif"
+				<img
+					src="http://gyadmin-1252357563.file.myqcloud.com/images/load.gif"
 					style="margin-left: 160px !important;width: 100px !important;height:100px !important;margin-top: 260px;"
 					id="loading" />
 			</ol>

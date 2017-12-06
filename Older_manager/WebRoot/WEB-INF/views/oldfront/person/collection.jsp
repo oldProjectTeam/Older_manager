@@ -108,7 +108,7 @@
 								var paggingdiv = $("<div></div>").addClass(
 										"s-item");
 								var del = $("<img/>").attr("src",
-										"${APP_PATH}/static/images/del.png")
+										"http://gyadmin-1252357563.file.myqcloud.com/images/del.png")
 										.css("margin-left", "150px").addClass(
 												"del");
 								del.attr("id", item.id);

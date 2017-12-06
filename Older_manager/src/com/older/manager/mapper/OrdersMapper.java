@@ -51,4 +51,11 @@ public interface OrdersMapper {
      * @return
      */
     Orders selectOrderWithDetailById(Integer id);
+
+    /**
+     * 通过用户id查询用户所有未确定收货订单
+     * @param order
+     * @return
+     */
+	List<Orders> orderListByState(Orders order);
 }

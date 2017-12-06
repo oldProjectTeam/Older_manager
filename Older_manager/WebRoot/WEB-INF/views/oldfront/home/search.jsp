@@ -87,7 +87,7 @@
 	<div class="nav white">
 		<div class="logoBig">
 			<li><a href="${APP_PATH}/shop/oldfronthome"><img
-					src="${APP_PATH}/static/images/oldback/images/logo.png"
+					src="http://gyadmin-1252357563.file.myqcloud.com/images/oldback/images/logo.png"
 					height="65px;" style="margin-top: 10px" /></a></li>
 		</div>
 
@@ -215,34 +215,33 @@
 				$("#searchInput").val(data2);
 				$("#searchword").html(data2);
 				search_key = data2;
-				<%request.removeAttribute("rearchkey");%>
+	<%request.removeAttribute("rearchkey");%>
 		} else if (brand_data_go != '') {
 				$("#searchInput").val(brand_data_go);
 				$("#searchword").html(brand_data_go);
 				brand_data = brand_data_go;
-				<%request.removeAttribute("brandkey");%>
+	<%request.removeAttribute("brandkey");%>
 		} else if (type_data_go != '') {
 				$("#searchInput").val(type_data_go);
 				$("#searchword").html(type_data_go);
 				type_data = type_data_go;
-				<%request.removeAttribute("typekey");%>
+	<%request.removeAttribute("typekey");%>
 		}
 			go(1);
-			init_ProductsDetail(data2,brand_data,type_data);
+			init_ProductsDetail(data2, brand_data, type_data);
 			data = $('#searchInput').val();
-			
+
 		});
-		
-		
+
 		//通过产品名称来搜索构建产品的品牌，热搜关键词，类型
-		function init_ProductsDetail(data,brandname,productsname) {
+		function init_ProductsDetail(data, brandname, productsname) {
 			//查询商品对应的品牌
 			$.ajax({
 				url : "home/searchProductsByAllBrand",
 				data : {
 					"search" : data,
-					"brandname":brandname,
-					"productsname":productsname
+					"brandname" : brandname,
+					"productsname" : productsname
 				},
 				type : "GET",
 				success : function(result) {
@@ -261,8 +260,8 @@
 				url : "home/searchProductsByAllProductType",
 				data : {
 					"search" : data,
-					"brandname":brandname,
-					"productsname":productsname
+					"brandname" : brandname,
+					"productsname" : productsname
 				},
 				type : "GET",
 				success : function(result) {
@@ -281,8 +280,8 @@
 				url : "home/searchHotKeywordProductsByAllProductType",
 				data : {
 					"search" : data,
-					"brandname":brandname,
-					"productsname":productsname
+					"brandname" : brandname,
+					"productsname" : productsname
 				},
 				type : "GET",
 				success : function(result) {
@@ -298,7 +297,7 @@
 				}
 			});
 		}
-		
+
 		//构建品牌
 		function build_brand(result) {
 			$("#brand_nav").empty();
@@ -329,7 +328,6 @@
 				});
 			}
 		};
-
 
 		//构建种类
 		function build_productType(result) {
@@ -441,32 +439,32 @@
 			var lastPageLi;
 			$("#footerPage").empty();
 			var ul = $("#footerPage");
-			firstPageLi = $("<li></li>").append(
-					$("<a></a>").append("首页"));
-			firstPageLi.click(function(){
-				if(result.extend.pageInfo.isFirstPage == true){
+			firstPageLi = $("<li></li>").append($("<a></a>").append("首页"));
+			firstPageLi.click(function() {
+				if (result.extend.pageInfo.isFirstPage == true) {
 					firstPageLi.addClass("disabled");
-				}else{
+				} else {
 					if (code == 1) {
-						if (pricestate == 0 && salestate == 0 && commentstate == 0) {
-							search(1,0,0,0);
+						if (pricestate == 0 && salestate == 0
+								&& commentstate == 0) {
+							search(1, 0, 0, 0);
 						} else if (pricestate == 1 && salestate == 0
 								&& commentstate == 0) {
-							search(1,1,0,0);
+							search(1, 1, 0, 0);
 						} else if (pricestate == 1 && salestate == 1
 								&& commentstate == 0) {
-							search(1,1,1,0);
+							search(1, 1, 1, 0);
 						} else if (pricestate == 0 && salestate == 1
 								&& commentstate == 0) {
-							search(1,0,1,0);
-						};
+							search(1, 0, 1, 0);
+						}
+						;
 
 					} else {
 						go(1);
 					}
 				}
 			});
-			
 
 			var prePageLi = $("<li></li>").append(
 					$("<a></a>").append("&laquo;"));
@@ -503,32 +501,32 @@
 			}
 			var nextPageLi = $("<li></li>").append(
 					$("<a></a>").append("&raquo;"));
-			lastPageLi = $("<li></li>").append(
-					$("<a></a>").append("末页"));
-			lastPageLi.click(function(){
-				if(result.extend.pageInfo.isLastPage == true){
+			lastPageLi = $("<li></li>").append($("<a></a>").append("末页"));
+			lastPageLi.click(function() {
+				if (result.extend.pageInfo.isLastPage == true) {
 					lastPageLi.addClass("disabled");
-				}else{
+				} else {
 					if (code == 1) {
-						if (pricestate == 0 && salestate == 0 && commentstate == 0) {
-							search(result.extend.pageInfo.pages,0,0,0);
+						if (pricestate == 0 && salestate == 0
+								&& commentstate == 0) {
+							search(result.extend.pageInfo.pages, 0, 0, 0);
 						} else if (pricestate == 1 && salestate == 0
 								&& commentstate == 0) {
-							search(result.extend.pageInfo.pages,1,0,0);
+							search(result.extend.pageInfo.pages, 1, 0, 0);
 						} else if (pricestate == 1 && salestate == 1
 								&& commentstate == 0) {
-							search(result.extend.pageInfo.pages,1,1,0);
+							search(result.extend.pageInfo.pages, 1, 1, 0);
 						} else if (pricestate == 0 && salestate == 1
 								&& commentstate == 0) {
-							search(result.extend.pageInfo.pages,0,1,0);
-						};
+							search(result.extend.pageInfo.pages, 0, 1, 0);
+						}
+						;
 
 					} else {
 						go(result.extend.pageInfo.pages);
 					}
 				}
 			});
-			
 
 			if (result.extend.pageInfo.hasNextPage == false) {
 				nextPageLi.addClass("disabled");
@@ -697,103 +695,106 @@
 						}); */
 				go(1);
 			} else {
-				
+
 				//通过标题搜索
 				if (type_data_go == dtitle) {
 					layer.load(2);
 					$.ajax({
-						url: "home/complexSearch",
-						data: {
-							"searchkey": "",
-							"brandname": brand_data,
-							"typename": type_data_go,
-							"keywordname": keyword_data,
-							"pricestate": pricestate,
-							"salestate": salestate,
-							"commentstate": commentstate,
-							"pn": pn
+						url : "home/complexSearch",
+						data : {
+							"searchkey" : "",
+							"brandname" : brand_data,
+							"typename" : type_data_go,
+							"keywordname" : keyword_data,
+							"pricestate" : pricestate,
+							"salestate" : salestate,
+							"commentstate" : commentstate,
+							"pn" : pn
 						},
-						type: "get",
-						success: function(result) {
+						type : "get",
+						success : function(result) {
 							setTimeout(function() {
 								layer.closeAll('loading');
-							},
-							200);
+							}, 200);
 							if (result.code == 100) {
 								if (result.extend.pageInfo.list == null) {
 									layer.open({
-										offset: ['10%'],
-										title: '搜索提示',
-										content: '查询不到相关数据！'
+										offset : [ '10%' ],
+										title : '搜索提示',
+										content : '查询不到相关数据！'
 									});
 								} else {
 									//构建分页信息
 									build_page_text(result);
 									//构建分页条
-									build_page_nav(result, 1, pricestate, salestate, commentstate);
+									build_page_nav(result, 1, pricestate,
+											salestate, commentstate);
 									//构建表格数据
 									build_table_data(result);
 
 									//构建产品的产品类型，品牌数据
-									init_ProductsDetail(type_data, brand_data, type_data_go);
+									init_ProductsDetail(type_data, brand_data,
+											type_data_go);
 								}
 
 							} else {
 								layer.open({
-									offset: ['10%'],
-									title: '搜索提示',
-									content: result.extend.msg
+									offset : [ '10%' ],
+									title : '搜索提示',
+									content : result.extend.msg
 								});
 							}
 						}
 					});
 				} else {
-					 $.ajax({
-						url: "home/complexSearch",
-						data: {
-							"searchkey": dtitle,
-							"brandname": brand_data,
-							"typename": type_data,
-							"keywordname": keyword_data,
-							"pricestate": pricestate,
-							"salestate": salestate,
-							"commentstate": commentstate,
-							"pn": pn
+					$.ajax({
+						url : "home/complexSearch",
+						data : {
+							"searchkey" : dtitle,
+							"brandname" : brand_data,
+							"typename" : type_data,
+							"keywordname" : keyword_data,
+							"pricestate" : pricestate,
+							"salestate" : salestate,
+							"commentstate" : commentstate,
+							"pn" : pn
 						},
-						type: "get",
-						success: function(result) {
+						type : "get",
+						success : function(result) {
 							setTimeout(function() {
 								layer.closeAll('loading');
-							},
-							200);
+							}, 200);
 							if (result.code == 100) {
-								if (result.extend.pageInfo.list == null || result.extend.pageInfo.list == '') {
+								if (result.extend.pageInfo.list == null
+										|| result.extend.pageInfo.list == '') {
 									layer.open({
-										offset: ['10%'],
-										title: '搜索提示',
-										content: '查询不到相关数据！'
+										offset : [ '10%' ],
+										title : '搜索提示',
+										content : '查询不到相关数据！'
 									});
 								} else {
 									//构建分页信息
-									 build_page_text(result);
+									build_page_text(result);
 									//构建分页条
-									build_page_nav(result, 1, pricestate, salestate, commentstate);
+									build_page_nav(result, 1, pricestate,
+											salestate, commentstate);
 									//构建表格数据
 									build_table_data(result);
 
 									//构建产品的产品类型，品牌数据
-									init_ProductsDetail(dtitle, brand_data, type_data);
+									init_ProductsDetail(dtitle, brand_data,
+											type_data);
 								}
 
 							} else {
 								layer.open({
-									offset: ['10%'],
-									title: '搜索提示',
-									content: result.extend.msg
+									offset : [ '10%' ],
+									title : '搜索提示',
+									content : result.extend.msg
 								});
 							}
 						}
-					});  
+					});
 				}
 
 			}

@@ -73,9 +73,7 @@
 								<div class="default-address DefaultAddr">
 									<span class="buy-line-title buy-line-title-type">收货地址：</span> <span
 										class="buy--address-detail"> <span class="province">${address.location}</span>
-										<!-- <span class="city">武汉</span>市
-										<span class="dist">洪山</span>区 --> <br> <span
-										class="street">${address.detailaddress}</span>
+										<br> <span class="street">${address.detailaddress}</span>
 									</span>
 								</div>
 								<c:if test="${address.state==1}">
@@ -147,7 +145,7 @@
 						style="border-color:#F03726 ;position:relative ;"><input
 						type="radio" name="payType" checked="true" value="1"
 						style="width:18px;height:18px"> &nbsp;&nbsp; <img
-						src="${APP_PATH}/static/images/zhifubao.jpg" />支付宝(默认)<span></span>
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/zhifubao.jpg" />支付宝(默认)<span></span>
 					</li>
 				</ul>
 			</div>
@@ -175,14 +173,12 @@
 							<div class="th th-oplist">
 								<div class="td-inner">配送方式</div>
 							</div>
-
 						</div>
 					</div>
 					<div class="clear"></div>
 					<c:forEach items="${products}" var="product">
 						<tr class="item-list">
 							<div class="bundle  bundle-last">
-
 								<div class="bundle-main">
 									<ul class="item-content clearfix" value="${product.id}">
 										<div class="pay-phone">
@@ -203,12 +199,6 @@
 													</div>
 												</div>
 											</li>
-											<!-- <li class="td td-info">
-												<div class="item-props">
-													<span class="sku-line">颜色：12#川南玛瑙</span>
-													<span class="sku-line">包装：裸装</span>
-												</div>
-											</li> -->
 											<li class="td td-price">
 												<div class="item-price price-promo-promo">
 													<div class="price-content">
@@ -245,7 +235,6 @@
 													<c:if test="${product.paral11==null}">
 											   	包邮 
 											   </c:if>
-
 												</div>
 											</div>
 										</li>
@@ -255,10 +244,7 @@
 						</tr>
 						<div class="clear"></div>
 					</c:forEach>
-
 				</div>
-
-
 			</div>
 			<div class="clear"></div>
 			<div class="pay-total">
@@ -275,9 +261,7 @@
 							</div>
 						</div>
 					</div>
-
 				</div>
-
 				<div class="clear"></div>
 			</div>
 			<!--含运费小计 -->
@@ -286,7 +270,6 @@
 					合计（含运费） <span>¥</span><em class="pay-sum" id="pay-sum">${cost}</em>
 				</p>
 			</div>
-
 			<!--信息 -->
 			<div class="order-go clearfix">
 				<div class="pay-confirm clearfix">
@@ -296,17 +279,13 @@
 								<em class="style-large-bold-red " id="J_ActualFee">${cost}</em>
 							</span>
 						</div>
-
 						<div id="holyshit268" class="pay-address">
 							<c:if test="${!empty addressList[0]}">
-
 								<p class="buy-footer-address">
 									<span class="buy-line-title buy-line-title-type">寄送至：</span> <span
 										class="buy--address-detail"> <span class="province">${addressList[0].location}</span>
-
 										<span class="street">${addressList[0].detailaddress }</span>
 									</span>
-
 								</p>
 								<p class="buy-footer-address">
 									<span class="buy-line-title">收货人：</span> <span
@@ -314,17 +293,13 @@
 										<span class="buy-phone">${addressList[0].phone}</span>
 									</span>
 								</p>
-
 							</c:if>
 							<c:if test="${empty addressList[0]}">
-
 								<p class="buy-footer-address">
 									<span class="buy-line-title buy-line-title-type">寄送至：</span> <span
 										class="buy--address-detail"> <span class="province">暂无</span>
-
 										<span class="street">暂无</span>
 									</span>
-
 								</p>
 								<p class="buy-footer-address">
 									<span class="buy-line-title">收货人：</span> <span
@@ -332,7 +307,6 @@
 										<span class="buy-phone">暂无</span>
 									</span>
 								</p>
-
 							</c:if>
 						</div>
 					</div>
@@ -347,7 +321,6 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="clear"></div>
 	</div>
 	<jsp:include page="../person/footer.jsp"></jsp:include>
@@ -407,10 +380,8 @@
 				</div>
 			</form>
 		</div>
-
 	</div>
 	<div class="clear"></div>
-
 	<!--编辑地址模块  -->
 	<div class="theme-popover1" id="edit_address_modal">
 		<!--标题 -->
@@ -434,7 +405,6 @@
 							type="hidden" name="id" id="addressId" />
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>手机号码</label>
@@ -443,7 +413,6 @@
 							type="text"> <font color="red"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-phone" class="am-form-label"><font
 						color="red">*</font>所在地</label>
@@ -457,7 +426,6 @@
 						</select> <font color="red" id="p_msg1"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group">
 					<label for="user-intro" class="am-form-label"><font
 						color="red">*</font>详细地址</label>
@@ -467,7 +435,6 @@
 						<small>100字以内写出你的详细地址...</small><font color="red" id="intro_msg1"></font>
 					</div>
 				</div>
-
 				<div class="am-form-group theme-poptit">
 					<div class="am-u-sm-9 am-u-sm-push-3">
 						<div class="am-btn am-btn-danger" id="edit_save_btn">保存</div>
@@ -499,7 +466,6 @@
 
 		//编辑地址，保存后，页面地址信息要相应变化
 		function updataAddressPage(obj) {
-
 			//更改被编辑地址页面信息
 			$(obj).parents("li").find("span:.buy-user").html(
 					$("#user-name1").val());
@@ -729,7 +695,7 @@
 			}
 			//收货地址id
 			var addressId = $("input[name='state']:checked").val();
-			if (addressId =='' || addressId == null) {
+			if (addressId == '' || addressId == null) {
 				layer.msg("请选择收货地址！");
 				return false;
 			}

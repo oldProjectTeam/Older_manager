@@ -1,6 +1,7 @@
 package com.older.manager.service.shopfront.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,6 @@ public class OrderServiceImpl implements IOrderService {
 
 	@Override
 	public Orders findOrders(Integer id) throws Exception {
-		// TODO Auto-generated method stub
 		return ordersMapper.selectByPrimaryKey(id);
 	}
 
@@ -53,4 +53,12 @@ public class OrderServiceImpl implements IOrderService {
 		return ordersMapper.selectOrderWithDetailById(id);
 	}
 
+	@Override
+	public List<Orders> orderListByState(Orders order) {
+		// TODO Auto-generated method stub
+	 return ordersMapper.orderListByState(order);
+	}
+
+	 
+	 
 }

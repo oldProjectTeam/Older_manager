@@ -1,5 +1,7 @@
 package com.older.manager.service.shopfront;
 
+import java.util.List;
+
 import com.older.manager.bean.Orders;
 
 public interface IOrderService {
@@ -40,4 +42,11 @@ public interface IOrderService {
 	 * @return
 	 */
 	public Orders findOrderWithDetailById(Integer id);
+
+	/**
+	 * 通过用户id查询用户所有未确定收货订单
+	 * @param order
+	 * @return
+	 */
+	public List<Orders> orderListByState(Orders order);
 }

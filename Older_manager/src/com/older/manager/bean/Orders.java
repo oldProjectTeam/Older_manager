@@ -24,7 +24,18 @@ public class Orders {
     //关联订单详细表
     private List<Orderdetail>orderdetails;
     
-    @Length(min=0,max=200,message="买家留言不能超过200！")
+    //查询用户所有未确认订单时所用
+    private List<Products>products;
+    
+    public List<Products> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Products> products) {
+		this.products = products;
+	}
+
+	@Length(min=0,max=200,message="买家留言不能超过200！")
     private String body;
 
     @NotEmpty(message="支付方式不能为空！")

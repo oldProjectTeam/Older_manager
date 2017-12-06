@@ -82,7 +82,7 @@
 		<div class="nav white">
 			<div class="logoBig">
 				<li><a href="${APP_PATH}/shop/oldfronthome"><img
-						src="${APP_PATH}/static/images/oldback/images/logo.png"
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/oldback/images/logo.png"
 						height="65px;" style="margin-top: 10px" /></a></li>
 			</div>
 			<div class="search-bar pr">

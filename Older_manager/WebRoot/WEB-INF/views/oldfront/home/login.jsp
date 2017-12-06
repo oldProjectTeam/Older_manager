@@ -48,13 +48,14 @@
 <body>
 	<div class="login-boxtitle">
 		<a href="${APP_PATH}/shop/oldfronthome"><img
-			src="${APP_PATH}/static/images/oldback/images/logo.png"
+			src="http://gyadmin-1252357563.file.myqcloud.com/images/oldback/images/logo.png"
 			height="65px;" /> </a>
 	</div>
 	<div class="login-banner">
 		<div class="login-main">
 			<div class="login-banner-bg">
-				<span></span><img src="${APP_PATH}/static/images/big.jpg" />
+				<span></span><img
+					src="http://gyadmin-1252357563.file.myqcloud.com/images/big.jpg" />
 			</div>
 			<div class="login-box">
 
@@ -79,8 +80,8 @@
 						</div>
 						<div class="user-pass">
 							<label class="password"> <img
-								src="static/images/code.png" width="12" height="12"
-								style="margin-top: 15px;">
+								src="http://gyadmin-1252357563.file.myqcloud.com/images/code.png"
+								width="12" height="12" style="margin-top: 15px;">
 							</label> <input id="code" name="randomcode" class="input-text size-L"
 								placeholder="验证码"
 								style="width: 200px !important; margin-left: 0px;" /> <img
@@ -102,7 +103,7 @@
 				<div class="am-cf">
 					<input type="button" id="shopLogin" value="登 录"
 						class="am-btn am-btn-primary am-btn-sm"> <img
-						src="${APP_PATH}/static/images/loading.gif"
+						src="http://gyadmin-1252357563.file.myqcloud.com/images/loading.gif"
 						style="margin-left: 150px;margin-top: 6px;display: none;"
 						id="loading">
 				</div>

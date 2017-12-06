@@ -13,7 +13,7 @@
 <head>
 <base href="<%=basePath%>">
 
-<title>My JSP 'refund.jsp' starting page</title>
+<title>购物商城-退款/退货</title>
 
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
@@ -51,16 +51,8 @@
 		</div>
 		<div class="nav-cont">
 			<ul>
-				<li class="index"><a href="#">首页</a></li>
-				<li class="qc"><a href="#">闪购</a></li>
-				<li class="qc"><a href="#">限时抢</a></li>
-				<li class="qc"><a href="#">团购</a></li>
-				<li class="qc last"><a href="#">大包装</a></li>
+				<li class="index"><a href="${APP_PATH}/shop/oldfronthome">首页</a></li>
 			</ul>
-			<div class="nav-extra">
-				<i class="am-icon-user-secret am-icon-md nav-user"></i><b></b>我的福利 <i
-					class="am-icon-angle-right" style="padding-left: 10px;"></i>
-			</div>
 		</div>
 	</div>
 	<b class="line"></b>
@@ -242,7 +234,7 @@
 						}
 
 					} else {
-						layer.msg("请选着退款原因");
+						layer.msg("请选择退款原因");
 					}
 
 				});

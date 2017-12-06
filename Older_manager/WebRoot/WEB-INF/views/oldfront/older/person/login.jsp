@@ -66,7 +66,7 @@
 					</div>
 					<div class="btn1" style="margin-top: 15px;">
 						<input type="button" class="btn2" value="登 录" id="login" /> <img
-							src="${APP_PATH}/static/images/loading.gif" id="loading"
+							src="http://gyadmin-1252357563.file.myqcloud.com/images/loading.gif" id="loading"
 							style="margin-left: 180px;display: none;">
 					</div>
 					<center>

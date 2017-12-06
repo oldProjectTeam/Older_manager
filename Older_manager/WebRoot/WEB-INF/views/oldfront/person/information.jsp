@@ -77,7 +77,7 @@ a {
 							<input type="file" class="inputPic"
 								allowexts="gif,jpeg,jpg,png,bmp" accept="image/*"> <img
 								class="am-circle am-img-thumbnail"
-								src="${APP_PATH}/static/images/getAvatar.do.jpg" alt="" />
+								src="http://gyadmin-1252357563.file.myqcloud.com/images/getAvatar.do.jpg" alt="" />
 						</div>
 
 						<p class="am-form-help">头像</p>

@@ -109,12 +109,14 @@
 	</div>
 	<div class="container">
 		<div class="row" id="activity1">
-			<img src="${APP_PATH}/static/images/load.gif" width="100"
-				height="100" class="col-md-offset-5 activity1">
+			<img
+				src="http://gyadmin-1252357563.file.myqcloud.com/images/load.gif"
+				width="100" height="100" class="col-md-offset-5 activity1">
 		</div>
 		<div class="row" id="activity2">
-			<img src="${APP_PATH}/static/images/load.gif" width="100"
-				height="100" class="col-md-offset-5 activity2">
+			<img
+				src="http://gyadmin-1252357563.file.myqcloud.com/images/load.gif"
+				width="100" height="100" class="col-md-offset-5 activity2">
 		</div>
 	</div>
 	<div class="container">
@@ -134,8 +136,9 @@
 					<hr />
 					<div class="new2">
 						<ul id="course">
-							<img src="${APP_PATH}/static/images/load.gif" width="100"
-								height="100" class="col-md-offset-5 course" />
+							<img
+								src="http://gyadmin-1252357563.file.myqcloud.com/images/load.gif"
+								width="100" height="100" class="col-md-offset-5 course" />
 						</ul>
 					</div>
 				</div>
@@ -146,8 +149,9 @@
 					<hr />
 					<div class="new2">
 						<ul id="video">
-							<img src="${APP_PATH}/static/images/load.gif" width="100"
-								height="100" class="col-md-offset-5 video" />
+							<img
+								src="http://gyadmin-1252357563.file.myqcloud.com/images/load.gif"
+								width="100" height="100" class="col-md-offset-5 video" />
 						</ul>
 					</div>
 				</div>
